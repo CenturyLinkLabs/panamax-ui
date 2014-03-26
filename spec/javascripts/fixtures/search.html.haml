@@ -1,6 +1,6 @@
-= form_for :search, method: :get do |f|
-  = f.label :query, 'Command'
-  = f.text_field :query, placeholder: 'enter your command / query'
+%form
+  %label{for: 'query'} Command
+  %input#search_query{type: 'text', name: 'query'}
 
 %p.example-searches
   %strong
