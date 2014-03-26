@@ -16,4 +16,6 @@ end
 group :test, :development do
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'teaspoon'
+  gem "phantomjs", ">= 1.8.1.1"
 end
