@@ -1,0 +1,14 @@
+deployment:
+  #Production:
+    #branch: release
+    #commands:
+      #- ./deploy_pro.sh
+  QA:
+    branch: master
+    commands:
+      - ./bin/deploy_qa.sh
+      - curl -d "room_id=458534&from=CI&message_format=text&message=QA+Server=+http://205.139.160.215:8898&color=green" https://api.hipchat.com/v1/rooms/message?auth_token=$HIPCHAT&format=json
+  #Feature_Branch:
+    #branch: /feature_.*/
+    #commands:
+      #- ./deploy_feature.sh
