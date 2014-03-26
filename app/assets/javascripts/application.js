@@ -12,4 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require pmx_namespace
 //= require_tree .
+
+$(document).ready(function() {
+  $('.example-searches').searchQueryPopulator({
+    $searchField: $('input#search_query')
+  });
+});
