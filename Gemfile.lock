@@ -1,3 +1,12 @@
+GIT
+  remote: git@github.com:CenturyLinkLabs/ctl-base-ui.git
+  revision: fe157321bdb13e801c70e318a6d269b53c2ce62f
+  specs:
+    ctl_base_ui (0.0.1)
+      haml (~> 4.0.0)
+      rails (~> 4.0.3)
+      sass-rails (~> 4.0.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -131,6 +140,7 @@ PLATFORMS
 
 DEPENDENCIES
   capybara
+  ctl_base_ui!
   haml
   jquery-rails
   phantomjs (>= 1.8.1.1)
