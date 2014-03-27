@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.0.4'
 
-gem 'sass-rails', '~> 4.0.2'
+gem 'sass'
 gem 'therubyracer', platforms: :ruby
 gem 'haml'
 gem 'jquery-rails'
