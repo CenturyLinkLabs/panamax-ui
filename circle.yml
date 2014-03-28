@@ -3,7 +3,7 @@ deployment:
     #branch: release
     #commands:
       #- ./deploy_pro.sh
-  QA:
+  #QA:
     #branch: master
     #commands:
       #- ./bin/deploy_qa.sh
