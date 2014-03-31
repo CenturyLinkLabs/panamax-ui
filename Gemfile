@@ -7,7 +7,7 @@ gem 'therubyracer', platforms: :ruby
 gem 'haml'
 gem 'jquery-rails'
 gem 'uglifier', '>= 1.3.0'
-gem 'ctl_base_ui', git: 'git@github.com:CenturyLinkLabs/ctl-base-ui.git'
+gem 'ctl_base_ui', path: '../ctl-base-ui'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
