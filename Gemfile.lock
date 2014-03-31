@@ -1,6 +1,5 @@
-GIT
-  remote: git@github.com:CenturyLinkLabs/ctl-base-ui.git
-  revision: ff6bbbfdb42d85b865f122ef2e53c259dab76ea5
+PATH
+  remote: ../ctl-base-ui
   specs:
     ctl_base_ui (0.0.1)
       haml (~> 4.0.0)
