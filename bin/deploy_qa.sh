@@ -1,3 +1,3 @@
 #!/bin/bash
 
-ssh root@205.139.160.215 "cd /home/panamax && git pull && ./setup.sh -op=reinstall"
+ssh clouduser@63.128.180.11 "cd /home/panamax && git pull && ./setup.sh -op=reinstall && cd ~ && ./screensh.sh"
