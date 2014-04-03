@@ -1,3 +1,5 @@
+%script#result_template{type: 'text/x-handlebars-template'}
+  = render 'image_row', {presenter: JsonImagePresenter.new}
 
 .filterable-list
   = form_for @search_form, url: search_path, method: :get do |f|

@@ -13,8 +13,11 @@
     base.init = function(){
       base.options = $.extend({}, base.defaultOptions, options);
 
-      $(base.$el).on('click', base.options.queryLinkSelector, base.handleQueryClick);
+      base.bindEvents();
+    };
 
+    base.bindEvents = function() {
+      $(base.$el).on('click', base.options.queryLinkSelector, base.handleQueryClick);
     };
 
     base.handleQueryClick = function(e) {
