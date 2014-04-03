@@ -1,12 +1,20 @@
-%form
-  %label{for: 'query'} Command
-  %input#search_query{type: 'text', name: 'query'}
+%script#result_template{type: 'text/x-handlebars-template'}
+  %h4= '{{name}}'
+  %p= '{{description}}'
 
-%p.example-searches
-  %strong
-    Examples:
-  %a{data: {query: "wordpress"}} wordpress,
-  %a{data: {query: "apache"}} apache,
-  %a{data: {query: "rails"}} rails,
-  %a{data: {query: "ubuntu"}} ubuntu,
-  %a{data: {query: "java"}} java
+
+.filterable-list
+  %form{action: '/search'}
+    %label{for: 'query'} Command
+    %input#search_query{type: 'text', name: 'query'}
+
+  %p.example-searches
+    %strong
+      Examples:
+    %a{data: {query: "wordpress"}} wordpress,
+    %a{data: {query: "apache"}} apache,
+    %a{data: {query: "rails"}} rails,
+    %a{data: {query: "ubuntu"}} ubuntu,
+    %a{data: {query: "java"}} java
+
+  .search-results

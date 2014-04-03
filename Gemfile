@@ -8,6 +8,7 @@ gem 'haml'
 gem 'jquery-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'ctl_base_ui', path: '../ctl-base-ui'
+gem 'faraday'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -18,7 +19,12 @@ group :test, :development do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'teaspoon'
-  gem "phantomjs", ">= 1.8.1.1"
+  gem 'phantomjs', '>= 1.8.1.1'
+end
+
+group :test do
+  gem 'webmock'
+  gem 'sinatra'
 end
 
 group :test do

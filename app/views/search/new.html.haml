@@ -1,12 +1,19 @@
-= form_for :search, method: :get do |f|
-  = f.label :query, 'Command'
-  = f.text_field :query, placeholder: 'enter your command / query'
+%script#result_template{type: 'text/x-handlebars-template'}
+  = render 'image_row', {presenter: JsonImagePresenter.new}
 
-%p.example-searches
-  %strong
-    Examples:
-  %a{data: {query: "wordpress"}} wordpress,
-  %a{data: {query: "apache"}} apache,
-  %a{data: {query: "rails"}} rails,
-  %a{data: {query: "ubuntu"}} ubuntu,
-  %a{data: {query: "java"}} java
+.filterable-list
+  = form_for @search_form, url: search_path, method: :get do |f|
+    = f.label :query, 'Command'
+    = f.text_field :query, placeholder: 'enter your command / query'
+    = f.submit 'Go'
+
+  %p.example-searches
+    %strong
+      Examples:
+    %a{data: {query: 'wordpress'}} wordpress,
+    %a{data: {query: 'apache'}} apache,
+    %a{data: {query: 'rails'}} rails,
+    %a{data: {query: 'ubuntu'}} ubuntu,
+    %a{data: {query: 'java'}} java
+
+  .search-results
