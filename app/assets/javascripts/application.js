@@ -18,7 +18,7 @@
 
 $(document).ready(function() {
   $('.example-searches').searchQueryPopulator({
-    $searchField: $('input#search_query')
+    $searchField: $('input#search_form_query')
   });
 
   $('.filterable-list').filterableList({

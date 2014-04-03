@@ -7,7 +7,7 @@ describe "searching for templates and images" do
 
       fill_in "Command", with: "nginx"
 
-      expect(find_field("Command").value).to eq "nginx"
+      expect(find_field("search_form_query").value).to eq "nginx"
       expect(page).to have_content "Examples: wordpress, apache, rails, ubuntu, java"
 
       click_on "Go"

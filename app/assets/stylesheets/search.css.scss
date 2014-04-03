@@ -1,0 +1,11 @@
+@import 'ctl_base_ui/colors';
+
+.search-result-item {
+  background-color: $light_grey;
+  border: darken( $light_grey, 10% ) 1px solid;
+  margin: 1em 0;
+
+  .basic-info {
+    padding: 0.5em 20px;
+  }
+}
