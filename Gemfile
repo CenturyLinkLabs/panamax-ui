@@ -20,3 +20,7 @@ group :test, :development do
   gem 'teaspoon'
   gem "phantomjs", ">= 1.8.1.1"
 end
+
+group :test do
+  gem 'coveralls'
+end
