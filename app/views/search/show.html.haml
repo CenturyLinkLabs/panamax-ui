@@ -1,0 +1,3 @@
+%h2= "Results for #{@search_results.query}"
+- @search_results.remote_images.each do |image|
+  = render 'image_row', {presenter: ImagePresenter.new(image)}
