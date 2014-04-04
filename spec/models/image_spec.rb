@@ -4,10 +4,8 @@ describe Image do
   let(:attributes) do
     {
       'id' => 77,
-      'info' => {
-        'name' => 'boom/shaka',
-        'description' => 'this thing goes boom shaka laka'
-      }
+      'name' => 'boom/shaka',
+      'description' => 'this thing goes boom shaka laka'
     }
   end
 
