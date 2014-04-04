@@ -1,3 +1,7 @@
 %h2= "Results for #{@search_results.query}"
+- @search_results.local_images.each do |image|
+  = render 'image_row', {presenter: ImagePresenter.new(image)}
 - @search_results.remote_images.each do |image|
+  = render 'image_row', {presenter: ImagePresenter.new(image)}
+- @search_results.templates.each do |image|
   = render 'image_row', {presenter: ImagePresenter.new(image)}

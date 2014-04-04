@@ -9,8 +9,11 @@
       queryFieldSelector: 'input#search_query',
       queryFormSelector: 'form',
       $queryForm: base.$el.find('form'),
-      $results: base.$el.find('.search-results'),
-      resultTemplate: Handlebars.compile($('#result_template').html())
+      $imageResults: base.$el.find('.image-results'),
+      $templateResults: base.$el.find('.template-results'),
+      resultTemplate: Handlebars.compile($('#result_template').html()),
+      loadingTemplate: Handlebars.compile($('#loading_row_template').html()),
+      noResultsTemplate: Handlebars.compile($('#no_results_row_template').html())
     }
 
     base.init = function(){
@@ -26,6 +29,7 @@
 
     base.handleSubmit = function(e) {
       e.preventDefault();
+      base.fetchResults();
     };
 
     base.handleQueryChange = function(e) {
@@ -33,20 +37,42 @@
     };
 
     base.fetchResults = function() {
+      base.displayLoadingIndicators();
       $.ajax({
         url: base.resultsEndpoint(),
         data: base.options.$queryForm.serialize()
       }).done(function(response, status) {
-        base.updateResults(response);
+        allImages = response.remote_images.concat(response.local_images);
+        base.updateImageResults(allImages);
+        base.updateTemplateResults(response.templates);
       });
     };
 
-    base.updateResults = function(results) {
+    base.updateImageResults = function(allImages) {
       var resultsHtml = '';
-      $.each(results.remote_images, function(i, image) {
+      $.each(allImages, function(i, image) {
         resultsHtml += base.options.resultTemplate(image);
       });
-      base.options.$results.html(resultsHtml);
+      base.options.$imageResults.html(resultsHtml);
+    };
+
+    base.updateTemplateResults = function(templates) {
+      var resultsHtml = '';
+      if (templates && templates.length) {
+        $.each(templates, function(i, template) {
+          resultsHtml += base.options.resultTemplate(template);
+        });
+      } else {
+        resultsHtml = base.options.noResultsTemplate();
+      }
+      base.options.$templateResults.html(resultsHtml);
+    };
+
+    base.displayLoadingIndicators = function() {
+      var forTemplates = base.options.loadingTemplate({loading_copy: 'Finding Templates'}),
+          forImages = base.options.loadingTemplate({loading_copy: 'Finding Images'});
+      base.options.$templateResults.html(forTemplates);
+      base.options.$imageResults.html(forImages);
     };
 
     base.resultsEndpoint = function() {

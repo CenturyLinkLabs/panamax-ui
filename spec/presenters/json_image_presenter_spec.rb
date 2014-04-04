@@ -12,4 +12,10 @@ describe JsonImagePresenter do
       expect(subject.description).to eq '{{description}}'
     end
   end
+
+  describe '#updated_at' do
+    it 'exposes the handlebar template tag for updated at' do
+      expect(subject.updated_at).to eq '{{updated_at}}'
+    end
+  end
 end

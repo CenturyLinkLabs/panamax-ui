@@ -1,6 +1,14 @@
+%script#loading_row_template{type: 'text/x-handlebars-template'}
+  .search-result-item.in-progress
+    .badge
+    .basic-info
+      %p= '{{loading_copy}}'
 %script#result_template{type: 'text/x-handlebars-template'}
   %h4= '{{name}}'
   %p= '{{description}}'
+  %p= '{{updated_at}}'
+%script#no_results_row_template{type: 'text/x-handlebars-template'}
+  %p sorry, nothin here
 
 
 .filterable-list
@@ -17,4 +25,5 @@
     %a{data: {query: "ubuntu"}} ubuntu,
     %a{data: {query: "java"}} java
 
-  .search-results
+  .template-results
+  .image-results
