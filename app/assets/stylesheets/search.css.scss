@@ -32,10 +32,30 @@
     margin: 10px 0;
     padding: 0.5em 20px;
     border-left: darken( $light_grey, 10% ) 1px solid;
+
+    h3 {
+      margin-bottom: 0;
+    }
+    p {
+      padding: 0;
+    }
   }
   .badge {
     height: 110px;
     width: 120px;
+  }
+  .actions {
+    float: right;
+    min-height: 90px;
+    border-left: darken( $light_grey, 10% ) 1px solid;
+    padding-left: 20px;
+    margin: 10px 20px;
+
+    .button-positive {
+      @extend .icon-thick-arrow-right-for-button;
+      padding-right: 50px;
+      background-position: 110px -704px;
+    }
   }
 }
 
@@ -52,6 +72,8 @@
 .search-result-item.no-results {
   .basic-info {
     padding-top: 20px;
+    min-height: 90px;
+    @include border-box;
   }
   .badge {
     background: asset-url('frowny_face.png') no-repeat center center;
