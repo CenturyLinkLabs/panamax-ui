@@ -5,7 +5,8 @@ describe Image do
     {
       'id' => 77,
       'name' => 'boom/shaka',
-      'description' => 'this thing goes boom shaka laka'
+      'description' => 'this thing goes boom shaka laka',
+      'updated_at' => 'Mon'
     }
   end
 
@@ -28,12 +29,19 @@ describe Image do
     end
   end
 
+  describe '#updated_at' do
+    it 'exposes updated_at' do
+      expect(subject.updated_at).to eq 'Mon'
+    end
+  end
+
   describe '#as_json' do
     it 'provides the attributes to be converted to JSON' do
       expected = {
         'id' => 77,
         'name' => 'boom/shaka',
-        'description' => 'this thing goes boom shaka laka'
+        'description' => 'this thing goes boom shaka laka',
+        'updated_at' => 'Mon'
       }
       expect(subject.as_json).to eq expected
     end

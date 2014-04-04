@@ -3,6 +3,6 @@
     %h3
       %a= presenter.name
     %p= presenter.description
-    %p.microcopy Last Updated: 03/16/2014
+    %p.microcopy= "Last Updated: #{presenter.updated_at}"
   .actions
     = button_to "Run Image", "#todo", class: "button-positive"
