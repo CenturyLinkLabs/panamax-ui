@@ -1,11 +1,15 @@
 %script#result_template{type: 'text/x-handlebars-template'}
   = render 'image_row', {presenter: JsonImagePresenter.new}
+%script#loading_row_template{type: 'text/x-handlebars-template'}
+  = render 'loading_row'
+%script#no_results_row_template{type: 'text/x-handlebars-template'}
+  = render 'no_results_row'
 
 .filterable-list
-  = form_for @search_form, url: search_path, method: :get do |f|
-    = f.label :query, 'Command'
+  %h1 Search Templates &amp; Images
+  = form_for @search_form, url: search_path, method: :get, html: {class: 'search-form'} do |f|
     = f.text_field :query, placeholder: 'enter your command / query'
-    = f.submit 'Go'
+    = f.submit 'Search', class: 'button-primary'
 
   %p.example-searches
     %strong
@@ -16,4 +20,8 @@
     %a{data: {query: 'ubuntu'}} ubuntu,
     %a{data: {query: 'java'}} java
 
-  .search-results
+  %h3 Templates
+  .template-results
+
+  %h3 Images
+  .image-results

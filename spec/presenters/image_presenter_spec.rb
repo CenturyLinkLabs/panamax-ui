@@ -4,7 +4,8 @@ describe ImagePresenter do
   let(:fake_image) do
     double(:fake_image, {
       name: 'boom/shaka',
-      description: 'goes boom shaka laka'
+      description: 'goes boom shaka laka',
+      updated_at: 'Mon'
     })
   end
 
@@ -19,6 +20,12 @@ describe ImagePresenter do
   describe '#description' do
     it 'exposes the image description' do
       expect(subject.description).to eq 'goes boom shaka laka'
+    end
+  end
+
+  describe '#updated_at' do
+    it 'exposes the image updated_at' do
+      expect(subject.updated_at).to eq 'Mon'
     end
   end
 end

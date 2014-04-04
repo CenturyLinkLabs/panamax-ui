@@ -3,12 +3,13 @@ require 'active_model'
 class SearchResultSet
   include ActiveModel::Model
 
-  attr_reader :query, :remote_images, :local_images
+  attr_reader :query, :remote_images, :local_images, :templates
 
   def initialize(attributes)
     @query = attributes['q']
     @remote_images = wrap_images(attributes['remote_images'])
     @local_images = wrap_images(attributes['local_images'])
+    @templates = wrap_images(attributes['templates'])
   end
 
   def self.create_from_response(response)

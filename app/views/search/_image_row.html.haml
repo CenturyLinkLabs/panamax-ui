@@ -1,3 +1,8 @@
-%hr/
-%h4= presenter.name
-%p= presenter.description
+.search-result-item
+  .basic-info
+    %h3
+      %a= presenter.name
+    %p= presenter.description
+    %p.microcopy= "Last Updated: #{presenter.updated_at}"
+  .actions
+    = button_to "Run Image", "#todo", class: "button-positive"
