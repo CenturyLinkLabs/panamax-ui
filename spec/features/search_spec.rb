@@ -13,6 +13,7 @@ describe "searching for templates and images" do
       click_on "Search"
 
       expect(page).to have_content "Image to test docker deployments. Has Apache with a 'Hello World' page listening in port 80"
+      expect(page).to have_content "a wordpress template"
     end
   end
 end

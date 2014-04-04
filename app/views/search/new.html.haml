@@ -6,7 +6,7 @@
   = render 'no_results_row'
 
 .filterable-list
-  %h1 Search Tempaltes &amp; Images
+  %h1 Search Templates &amp; Images
   = form_for @search_form, url: search_path, method: :get, html: {class: 'search-form'} do |f|
     = f.text_field :query, placeholder: 'enter your command / query'
     = f.submit 'Search', class: 'button-primary'

@@ -6,7 +6,8 @@ describe SearchResultSet do
     {
       'q' => 'bla',
       'remote_images' => [],
-      'local_images' => []
+      'local_images' => [],
+      'templates' => []
     }
   end
 
@@ -41,6 +42,7 @@ describe SearchResultSet do
         'query' => 'bla',
         'remote_images' => [],
         'local_images' => [],
+        'templates' => []
       }
       expect(subject.as_json).to eq expected
     end
