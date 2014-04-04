@@ -1,11 +1,59 @@
 @import 'ctl_base_ui/colors';
+@import 'ctl_base_ui/mixins';
+@import 'ctl_base_ui/icons';
+
+.search-form {
+  input#search_form_query {
+    @include border-box;
+    padding: 15px;
+    font-size: 0.9em;
+    border: $dark_grey 1px solid;
+    width: 740px;
+  }
+  input[type='submit'] {
+    @include border-box;
+    @extend .icon-magnifying-glass-for-button;
+    float: right;
+    width: 200px;
+  }
+}
 
 .search-result-item {
   background-color: $light_grey;
   border: darken( $light_grey, 10% ) 1px solid;
   margin: 1em 0;
+  overflow: auto;
 
+  .badge {
+    float: left;
+  }
   .basic-info {
+    float: left;
+    margin: 10px 0;
     padding: 0.5em 20px;
+    border-left: darken( $light_grey, 10% ) 1px solid;
+  }
+  .badge {
+    height: 110px;
+    width: 120px;
+  }
+}
+
+.search-result-item.in-progress {
+  .basic-info p {
+    line-height: 74px;
+    padding: 0;
+  }
+  .badge {
+    background: asset-url('loading_blocks.gif') no-repeat center center;
+  }
+}
+
+.search-result-item.no-results {
+  .basic-info {
+    padding-top: 20px;
+  }
+  .badge {
+    background: asset-url('frowny_face.png') no-repeat center center;
   }
 }
