@@ -29,7 +29,7 @@ describe SearchResultSet do
       without_remote_images = response_attributes.except(:remote_images).to_json
       expect {
         subject.create_from_response(without_remote_images)
-      }.to_not raise_error NoMethodError
+      }.to_not raise_error
     end
   end
 
