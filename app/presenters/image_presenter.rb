@@ -1,8 +1,8 @@
 class ImagePresenter
-  attr_reader :name, :description, :updated_at
+  attr_reader :title, :description, :updated_at
 
   def initialize(image)
-    @name = image.name
+    @title = image.repository
     @description = image.description
     @updated_at = image.updated_at
   end

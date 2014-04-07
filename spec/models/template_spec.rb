@@ -1,25 +1,25 @@
 require 'spec_helper'
 
-describe Image do
+describe Template do
   let(:attributes) do
     {
       'id' => 77,
-      'repository' => 'boom/shaka',
+      'name' => 'boom/shaka',
       'description' => 'this thing goes boom shaka laka',
       'updated_at' => 'Mon'
     }
   end
 
-  subject { Image.new(attributes) }
+  subject { Template.new(attributes) }
   describe '#id' do
     it 'exposes an id' do
       expect(subject.id).to eq 77
     end
   end
 
-  describe '#repository' do
-    it 'exposes a repository repository' do
-      expect(subject.repository).to eq 'boom/shaka'
+  describe '#name' do
+    it 'exposes a name' do
+      expect(subject.name).to eq 'boom/shaka'
     end
   end
 
@@ -39,7 +39,7 @@ describe Image do
     it 'provides the attributes to be converted to JSON' do
       expected = {
         'id' => 77,
-        'repository' => 'boom/shaka',
+        'name' => 'boom/shaka',
         'description' => 'this thing goes boom shaka laka',
         'updated_at' => 'Mon'
       }
