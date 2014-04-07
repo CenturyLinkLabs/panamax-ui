@@ -20,6 +20,7 @@ group :test, :development do
   gem 'capybara'
   gem 'teaspoon'
   gem 'phantomjs', '>= 1.8.1.1'
+  gem 'dotenv-rails'
 end
 
 group :test do

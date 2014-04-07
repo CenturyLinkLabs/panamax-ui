@@ -1,4 +1,3 @@
 module PanamaxApi
-  #TODO: pull this from ENV
-  URL = 'http://localhost:8888'
+  URL = "http://#{ENV['PMX_API_HOST']}:#{ENV['PMX_API_PORT']}"
 end
