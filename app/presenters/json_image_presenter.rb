@@ -10,4 +10,8 @@ class JsonImagePresenter
   def updated_at
     '{{updated_at}}'
   end
+
+  def status_label
+    '{{status_label}}'
+  end
 end

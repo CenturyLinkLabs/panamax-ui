@@ -26,11 +26,22 @@
 
   .badge {
     float: left;
+    width: 110px;
+    height: 110px;
+    text-align: center;
+    line-height: 110px;
+    background-color: $grey;
+    color: $white;
+    font-size: 0.9em;
   }
   .basic-info {
     float: left;
-    margin: 10px 0;
-    padding: 0.5em 20px;
+    margin: 10px 20px;
+    padding: 5px 20px;
+    @include border-box;
+    width: 520px;
+    height: 90px;
+    overflow: auto;
     border-left: darken( $light_grey, 10% ) 1px solid;
 
     h3 {
@@ -42,7 +53,7 @@
   }
   .badge {
     height: 110px;
-    width: 120px;
+    width: 110px;
   }
   .actions {
     float: right;
