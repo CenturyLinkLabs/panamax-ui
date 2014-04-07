@@ -4,7 +4,7 @@ describe Image do
   let(:attributes) do
     {
       'id' => 77,
-      'name' => 'boom/shaka',
+      'repository' => 'boom/shaka',
       'description' => 'this thing goes boom shaka laka',
       'updated_at' => 'Mon'
     }
@@ -18,9 +18,9 @@ describe Image do
     end
   end
 
-  describe '#name' do
-    it 'exposes a name' do
-      expect(subject.name).to eq 'boom/shaka'
+  describe '#repository' do
+    it 'exposes a repository repository' do
+      expect(subject.repository).to eq 'boom/shaka'
     end
   end
 
@@ -70,7 +70,7 @@ describe Image do
     it 'provides the attributes to be converted to JSON' do
       expected = {
         'id' => 77,
-        'name' => 'boom/shaka',
+        'repository' => 'boom/shaka',
         'description' => 'this thing goes boom shaka laka',
         'updated_at' => 'Mon',
         'status_label' => 'Repository'

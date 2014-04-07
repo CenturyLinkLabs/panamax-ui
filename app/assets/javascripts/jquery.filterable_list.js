@@ -11,7 +11,8 @@
       $queryForm: base.$el.find('form'),
       $imageResults: base.$el.find('.image-results'),
       $templateResults: base.$el.find('.template-results'),
-      resultTemplate: Handlebars.compile($('#result_template').html()),
+      imageResultTemplate: Handlebars.compile($('#image_result_template').html()),
+      templateResultTemplate: Handlebars.compile($('#template_result_template').html()),
       loadingTemplate: Handlebars.compile($('#loading_row_template').html()),
       noResultsTemplate: Handlebars.compile($('#no_results_row_template').html())
     }
@@ -51,7 +52,7 @@
     base.updateImageResults = function(allImages) {
       var resultsHtml = '';
       $.each(allImages, function(i, image) {
-        resultsHtml += base.options.resultTemplate(image);
+        resultsHtml += base.options.imageResultTemplate(image);
       });
       base.options.$imageResults.html(resultsHtml);
     };
@@ -60,7 +61,7 @@
       var resultsHtml = '';
       if (templates && templates.length) {
         $.each(templates, function(i, template) {
-          resultsHtml += base.options.resultTemplate(template);
+          resultsHtml += base.options.templateResultTemplate(template);
         });
       } else {
         resultsHtml = base.options.noResultsTemplate();

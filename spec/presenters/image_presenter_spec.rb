@@ -3,7 +3,7 @@ require 'spec_helper'
 describe ImagePresenter do
   let(:fake_image) do
     double(:fake_image, {
-      name: 'boom/shaka',
+      repository: 'boom/shaka',
       description: 'goes boom shaka laka',
       updated_at: 'Mon',
       status_label: 'Repository'
@@ -12,9 +12,9 @@ describe ImagePresenter do
 
   subject { ImagePresenter.new(fake_image) }
 
-  describe '#name' do
-    it 'exposes the image name' do
-      expect(subject.name).to eq 'boom/shaka'
+  describe '#title' do
+    it 'exposes the image repository' do
+      expect(subject.title).to eq 'boom/shaka'
     end
   end
 

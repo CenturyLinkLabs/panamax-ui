@@ -3,8 +3,12 @@
     .badge
     .basic-info
       %p= '{{loading_copy}}'
-%script#result_template{type: 'text/x-handlebars-template'}
-  %h4= '{{name}}'
+%script#template_result_template{type: 'text/x-handlebars-template'}
+  %h4= '{{title}}'
+  %p= '{{description}}'
+  %p= '{{updated_at}}'
+%script#image_result_template{type: 'text/x-handlebars-template'}
+  %h4= '{{title}}'
   %p= '{{description}}'
   %p= '{{updated_at}}'
 %script#no_results_row_template{type: 'text/x-handlebars-template'}

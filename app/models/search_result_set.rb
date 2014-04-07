@@ -9,7 +9,7 @@ class SearchResultSet
     @query = attributes['q']
     @remote_images = wrap_images(attributes['remote_images'])
     @local_images = wrap_images(attributes['local_images'])
-    @templates = wrap_images(attributes['templates'])
+    @templates = wrap_templates(attributes['templates'])
   end
 
   def self.create_from_response(response)
@@ -18,6 +18,12 @@ class SearchResultSet
   end
 
   private
+
+  def wrap_templates(templates)
+    (templates || []).map do |template_attributes|
+      Template.new(template_attributes)
+    end
+  end
 
   def wrap_images(images)
     (images || []).map do |image_attributes|

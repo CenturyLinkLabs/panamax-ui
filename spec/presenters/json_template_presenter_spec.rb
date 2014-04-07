@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe JsonImagePresenter do
+describe JsonTemplatePresenter do
   describe '#title' do
-    it 'returns the handlebar template tag for repository' do
-      expect(subject.title).to eq '{{repository}}'
+    it 'returns the handlebar template tag for name' do
+      expect(subject.title).to eq '{{name}}'
     end
   end
 
@@ -16,12 +16,6 @@ describe JsonImagePresenter do
   describe '#updated_at' do
     it 'exposes the handlebar template tag for updated at' do
       expect(subject.updated_at).to eq '{{updated_at}}'
-    end
-  end
-
-  describe '#status_label' do
-    it 'exposes the handlebar template tag for status label' do
-      expect(subject.status_label).to eq '{{status_label}}'
     end
   end
 end

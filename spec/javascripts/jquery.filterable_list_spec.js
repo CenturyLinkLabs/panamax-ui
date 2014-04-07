@@ -48,20 +48,20 @@ describe('$.fn.filterableList', function() {
         remote_images: [
           {
             description:"some description",
-            name:"some/name",
+            title:"some/name",
             id:"dlacewell/asdf"
           }
         ],
         local_images: [
           {
             description:"a local image",
-            name:"local/image",
+            title:"local/image",
             id:"dlacewell/local"
           }
         ],
         templates: [
           {
-            name: 'some template',
+            title: 'some template',
             description: 'this template will change your life'
           }
         ]
