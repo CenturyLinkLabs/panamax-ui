@@ -1,12 +1,31 @@
 (function($){
-  $.PMX.filterableList = function(el, options){
+
+  $.PMX.QueryField = function(el) {
     var base = this;
 
     base.$el = $(el);
-    base.el = el;
+
+    base.bindEvents = function() {
+      base.$el.on('keyup', base.handleChange);
+    };
+
+    base.handleChange = function() {
+      base.changeCallback.call();
+    };
+
+    base.onChange = function(callback) {
+      base.changeCallback = callback;
+    };
+  };
+
+
+  $.PMX.FilterableList = function(el, options){
+    var base = this;
+
+    base.$el = $(el);
 
     base.defaultOptions = {
-      queryFieldSelector: 'input#search_query',
+      $queryField: base.$el.find('input#search_query'),
       queryFormSelector: 'form',
       $queryForm: base.$el.find('form'),
       $imageResults: base.$el.find('.image-results'),
@@ -19,12 +38,14 @@
 
     base.init = function(){
       base.options = $.extend({}, base.defaultOptions, options);
+      base.queryField = new $.PMX.QueryField(base.options.$queryField);
+      base.queryField.bindEvents();
 
       base.bindEvents();
     };
 
     base.bindEvents = function() {
-      base.$el.on('keyup', base.options.queryFieldSelector, base.handleQueryChange);
+      base.queryField.onChange(base.fetchResults);
       base.$el.on('submit', base.options.queryFormSelector, base.handleSubmit);
     };
 
@@ -81,9 +102,10 @@
     };
   };
 
+
   $.fn.filterableList = function(options){
     return this.each(function(){
-      (new $.PMX.filterableList(this, options)).init();
+      (new $.PMX.FilterableList(this, options)).init();
     });
   };
 
