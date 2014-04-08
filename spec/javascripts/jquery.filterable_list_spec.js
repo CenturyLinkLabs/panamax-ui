@@ -24,17 +24,34 @@ describe('$.fn.filterableList', function() {
       $('.filterable-list form').submit();
 
       var request = mostRecentAjaxRequest();
-      expect(request.url).toBe('/search.json?query=mys');
+      expect(request.url).toBe('/search.json?search_form%5Bquery%5D=mys');
       expect(request.method).toBe('GET');
     });
   });
 
   describe('changing the text in the query field', function() {
+    it('does not request results if fewer than 3 charectors exist', function() {
+      $('input#search_query').val('my').keyup();
+
+      var request = mostRecentAjaxRequest();
+      expect(request.url).not.toBe('/search.json?search_form%5Bquery%5D=my');
+    });
+
+    it('does not re-request results if the value has not actually changed', function() {
+      $('input#search_query').val('word').keyup();
+      $('input#search_query').val('word').keyup();
+
+      var request = mostRecentAjaxRequest();
+      var secondToLastAjaxRequest = ajaxRequests[ajaxRequests.length - 2]
+      expect(request.url).toBe('/search.json?search_form%5Bquery%5D=word');
+      expect(secondToLastAjaxRequest.url).not.toBe('/search.json?search_form%5Bquery%5D=word');
+    });
+
     it('requests results when the searchfield is changed', function() {
       $('input#search_query').val('mys').keyup();
 
       var request = mostRecentAjaxRequest();
-      expect(request.url).toBe('/search.json?query=mys');
+      expect(request.url).toBe('/search.json?search_form%5Bquery%5D=mys');
       expect(request.method).toBe('GET');
     });
 

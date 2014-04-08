@@ -4,17 +4,25 @@
     var base = this;
 
     base.$el = $(el);
+    base.previousTerm = '';
 
     base.bindEvents = function() {
       base.$el.on('keyup', base.handleChange);
     };
 
     base.handleChange = function() {
-      base.changeCallback.call();
+      if (base.getTerm().length > 2 && base.getTerm() != base.previousTerm) {
+        base.changeCallback.call(base, base.getTerm());
+        base.previousTerm = base.getTerm();
+      }
     };
 
     base.onChange = function(callback) {
       base.changeCallback = callback;
+    };
+
+    base.getTerm = function() {
+      return base.$el.val();
     };
   };
 
@@ -51,18 +59,18 @@
 
     base.handleSubmit = function(e) {
       e.preventDefault();
-      base.fetchResults();
+      base.fetchResults(base.queryField.getTerm());
     };
 
     base.handleQueryChange = function(e) {
       base.fetchResults();
     };
 
-    base.fetchResults = function() {
+    base.fetchResults = function(term) {
       base.displayLoadingIndicators();
       $.ajax({
         url: base.resultsEndpoint(),
-        data: base.options.$queryForm.serialize()
+        data: {'search_form[query]': term}
       }).done(function(response, status) {
         allImages = response.remote_images.concat(response.local_images);
         base.updateImageResults(allImages);
