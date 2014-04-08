@@ -10,4 +10,8 @@ class JsonTemplatePresenter
   def updated_at
     '{{updated_at}}'
   end
+
+  def status_label
+    'Template'
+  end
 end
