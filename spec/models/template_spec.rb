@@ -23,6 +23,19 @@ describe Template do
     end
   end
 
+  describe '#short_description' do
+    subject do
+      long_description_attributes = attributes.merge({
+        'description' => 'w'*300
+      })
+      Template.new(long_description_attributes)
+    end
+
+    it 'truncates the description to 165 charectors' do
+      expect(subject.short_description).to eq 'w'*162 + '...'
+    end
+  end
+
   describe '#description' do
     it 'exposes a description' do
       expect(subject.description).to eq 'this thing goes boom shaka laka'
@@ -41,6 +54,7 @@ describe Template do
         'id' => 77,
         'name' => 'boom/shaka',
         'description' => 'this thing goes boom shaka laka',
+        'short_description' => 'this thing goes boom shaka laka',
         'updated_at' => 'Mon'
       }
       expect(subject.as_json).to eq expected

@@ -5,6 +5,7 @@ describe TemplatePresenter do
     double(:fake_template, {
       name: 'boom shaka',
       description: 'goes boom shaka laka',
+      short_description: 'goes boom',
       updated_at: 'Mon'
     })
   end
@@ -14,6 +15,12 @@ describe TemplatePresenter do
   describe '#title' do
     it 'exposes the template name' do
       expect(subject.title).to eq 'boom shaka'
+    end
+  end
+
+  describe '#short_description' do
+    it 'exposes the template short description' do
+      expect(subject.short_description).to eq 'goes boom'
     end
   end
 

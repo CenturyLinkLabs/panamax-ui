@@ -7,6 +7,12 @@ describe JsonImagePresenter do
     end
   end
 
+  describe '#short_description' do
+    it 'exposes the handlebar template tag for short description' do
+      expect(subject.short_description).to eq '{{short_description}}'
+    end
+  end
+
   describe '#description' do
     it 'exposes the handlebar template tag for description' do
       expect(subject.description).to eq '{{description}}'

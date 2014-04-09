@@ -1,5 +1,6 @@
 class Image
   include ActiveModel::Model
+  include ActionView::Helpers::TextHelper
 
   attr_reader :id, :description, :repository
 
@@ -20,11 +21,16 @@ class Image
     end
   end
 
+  def short_description
+    truncate(description, length: 165)
+  end
+
   def as_json(options={})
     super.
       except('attributes').
       merge({
-        'status_label' => status_label
+        'status_label' => status_label,
+        'short_description' => short_description
       })
   end
 end

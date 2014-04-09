@@ -29,6 +29,19 @@ describe Image do
     end
   end
 
+  describe '#short_description' do
+    subject do
+      long_description_attributes = attributes.merge({
+        'description' => 'w'*300
+      })
+      Image.new(long_description_attributes)
+    end
+
+    it 'truncates the description to 165 charectors' do
+      expect(subject.short_description).to eq 'w'*162 + '...'
+    end
+  end
+
   describe '#status_label' do
     it 'is repository by default' do
       expect(subject.status_label).to eql 'Repository'
@@ -65,6 +78,7 @@ describe Image do
         'id' => 77,
         'repository' => 'boom/shaka',
         'description' => 'this thing goes boom shaka laka',
+        'short_description' => 'this thing goes boom shaka laka',
         'status_label' => 'Repository'
       }
       expect(subject.as_json).to eq expected

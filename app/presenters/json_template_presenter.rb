@@ -3,6 +3,10 @@ class JsonTemplatePresenter
     '{{name}}'
   end
 
+  def short_description
+    '{{short_description}}'
+  end
+
   def description
     '{{description}}'
   end
