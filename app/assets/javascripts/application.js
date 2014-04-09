@@ -22,6 +22,6 @@ $(document).ready(function() {
   });
 
   $('.filterable-list').filterableList({
-    queryFieldSelector: 'input#search_form_query'
+    $queryField: $('input#search_form_query')
   });
 });
