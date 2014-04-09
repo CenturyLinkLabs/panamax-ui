@@ -37,9 +37,9 @@
   .basic-info {
     float: left;
     margin: 10px 20px;
-    padding: 5px 20px;
+    padding: 0 20px;
     @include border-box;
-    width: 520px;
+    width: 530px;
     height: 90px;
     overflow: auto;
     border-left: darken( $light_grey, 10% ) 1px solid;
@@ -48,7 +48,9 @@
       margin-bottom: 0;
     }
     p {
-      padding: 0;
+      padding-bottom: 0.5em;
+      font-size: 0.8em;
+      line-height: 1.2;
     }
   }
   .badge {
@@ -72,8 +74,7 @@
 
 .search-result-item.in-progress {
   .basic-info p {
-    line-height: 74px;
-    padding: 0;
+    margin-top: 35px;
   }
   .badge {
     background: asset-url('loading_blocks.gif') no-repeat center center;
@@ -82,8 +83,9 @@
 
 .search-result-item.no-results {
   .basic-info {
-    padding-top: 20px;
+    padding-top: 30px;
     min-height: 90px;
+    width: 700px;
     @include border-box;
   }
   .badge {
