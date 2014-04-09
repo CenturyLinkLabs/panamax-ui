@@ -2,7 +2,7 @@ require 'sinatra/base'
 
 class FakePanamaxApi < Sinatra::Base
   get '/search' do
-    json_response 200, 'images.json'
+    json_response 200, 'search_results.json'
   end
 
   private

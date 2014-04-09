@@ -6,6 +6,7 @@ describe Image do
       'id' => 77,
       'repository' => 'boom/shaka',
       'description' => 'this thing goes boom shaka laka',
+      'star_count' => 127
     }
   end
 
@@ -72,6 +73,12 @@ describe Image do
     end
   end
 
+  describe '#star_count' do
+    it 'exposes the star count' do
+      expect(subject.star_count).to eq 127
+    end
+  end
+
   describe '#as_json' do
     it 'provides the attributes to be converted to JSON' do
       expected = {
@@ -79,7 +86,8 @@ describe Image do
         'repository' => 'boom/shaka',
         'description' => 'this thing goes boom shaka laka',
         'short_description' => 'this thing goes boom shaka laka',
-        'status_label' => 'Repository'
+        'status_label' => 'Repository',
+        'star_count' => 127
       }
       expect(subject.as_json).to eq expected
     end
