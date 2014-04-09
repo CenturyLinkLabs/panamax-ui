@@ -1,14 +1,13 @@
 class Image
   include ActiveModel::Model
 
-  attr_reader :id, :description, :repository, :updated_at
+  attr_reader :id, :description, :repository
 
   def initialize(attributes)
     @attributes = attributes
     @id = attributes['id']
     @description = attributes['description']
     @repository = attributes['repository']
-    @updated_at = attributes['updated_at']
   end
 
   def status_label

@@ -5,7 +5,6 @@ describe ImagePresenter do
     double(:fake_image, {
       repository: 'boom/shaka',
       description: 'goes boom shaka laka',
-      updated_at: 'Mon',
       status_label: 'Repository'
     })
   end
@@ -21,12 +20,6 @@ describe ImagePresenter do
   describe '#description' do
     it 'exposes the image description' do
       expect(subject.description).to eq 'goes boom shaka laka'
-    end
-  end
-
-  describe '#updated_at' do
-    it 'exposes the image updated_at' do
-      expect(subject.updated_at).to eq 'Mon'
     end
   end
 
