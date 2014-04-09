@@ -10,6 +10,7 @@
     border: $dark_grey 1px solid;
     width: 740px;
   }
+
   button.button-primary {
     @include border-box;
     @extend .icon-magnifying-glass-for-button;
@@ -34,12 +35,13 @@
     color: $white;
     font-size: 0.9em;
   }
+
   .basic-info {
     float: left;
     margin: 10px 20px;
     padding: 0 20px;
     @include border-box;
-    width: 530px;
+    width: 500px;
     height: 90px;
     overflow: auto;
     border-left: darken( $light_grey, 10% ) 1px solid;
@@ -47,23 +49,61 @@
     h3 {
       margin-bottom: 0;
     }
+
     p {
       padding-bottom: 0.5em;
       font-size: 0.8em;
       line-height: 1.2;
     }
   }
+
   .badge {
     height: 110px;
     width: 110px;
   }
-  .actions {
+
+  .actions,
+  .community-data {
     float: right;
     min-height: 90px;
     border-left: darken( $light_grey, 10% ) 1px solid;
-    padding-left: 20px;
-    margin: 10px 20px;
+    padding: 0 20px;
+    margin: 10px 0;
+  }
 
+  .community-data {
+    .star-count {
+      @include border-radius(3px);
+      @include border-box;
+      width: 80px;
+      height: 40px;
+      padding: 13px 0 0 40px;
+      overflow: hidden;
+      background-color: darken( $light_grey, 10% );
+      position: relative;
+      font-size: 0.9em;
+
+      &:before {
+        @extend .icon-star-large;
+        content: '';
+        display: block;
+        position: absolute;
+        left: 10px;
+        top: 10px;
+      }
+
+      &:hover {
+        background-color: $grey;
+        color: $white;
+
+        &:before {
+          @include icon-white;
+        }
+      }
+    }
+  }
+
+  .actions {
     .button-positive {
       padding-right: 30px;
       width: 145px;
@@ -88,6 +128,7 @@
   .basic-info p {
     margin-top: 35px;
   }
+
   .badge {
     background: asset-url('loading_blocks.gif') no-repeat center center;
   }
@@ -100,6 +141,7 @@
     width: 700px;
     @include border-box;
   }
+
   .badge {
     background: asset-url('frowny_face.png') no-repeat center center;
   }

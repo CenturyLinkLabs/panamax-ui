@@ -6,7 +6,8 @@ describe ImagePresenter do
       repository: 'boom/shaka',
       description: 'goes boom shaka laka',
       short_description: 'goes boom',
-      status_label: 'Repository'
+      status_label: 'Repository',
+      star_count: 123
     })
   end
 
@@ -27,6 +28,12 @@ describe ImagePresenter do
   describe '#status_label' do
     it 'exposes the image status label' do
       expect(subject.status_label).to eq 'Repository'
+    end
+  end
+
+  describe '#star_count' do
+    it 'exposes the star count' do
+      expect(subject.star_count).to eq 123
     end
   end
 end

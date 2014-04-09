@@ -2,13 +2,14 @@ class Image
   include ActiveModel::Model
   include ActionView::Helpers::TextHelper
 
-  attr_reader :id, :description, :repository
+  attr_reader :id, :description, :repository, :star_count
 
   def initialize(attributes)
     @attributes = attributes
     @id = attributes['id']
     @description = attributes['description']
     @repository = attributes['repository']
+    @star_count = attributes['star_count']
   end
 
   def status_label

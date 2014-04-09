@@ -24,4 +24,10 @@ describe JsonImagePresenter do
       expect(subject.status_label).to eq '{{status_label}}'
     end
   end
+
+  describe '#star_count' do
+    it 'exposes the handlebar template tag for star count' do
+      expect(subject.star_count).to eq '{{star_count}}'
+    end
+  end
 end
