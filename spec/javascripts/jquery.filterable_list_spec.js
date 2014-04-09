@@ -47,6 +47,20 @@ describe('$.fn.filterableList', function() {
       expect(secondToLastAjaxRequest.url).not.toBe('/search.json?search_form%5Bquery%5D=word');
     });
 
+    it('aborts the previous xhr request when sending a new one', function() {
+      fakeXhr = {
+        abort: function() {},
+        done: function() {return fakeXhr;}
+      }
+      spyOn($, 'ajax').andReturn(fakeXhr)
+      spyOn(fakeXhr, 'abort');
+
+      $('input#search_query').val('word').keyup();
+      $('input#search_query').val('apac').keyup();
+
+      expect(fakeXhr.abort.calls.length).toEqual(1);
+    });
+
     it('requests results when the searchfield is changed', function() {
       $('input#search_query').val('mys').keyup();
 

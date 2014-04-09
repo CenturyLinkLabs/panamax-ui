@@ -31,6 +31,7 @@
     var base = this;
 
     base.$el = $(el);
+    base.xhr = null;
 
     base.defaultOptions = {
       $queryField: base.$el.find('input#search_query'),
@@ -68,10 +69,17 @@
 
     base.fetchResults = function(term) {
       base.displayLoadingIndicators();
-      $.ajax({
+
+      if (base.xhr) {
+        base.xhr.abort();
+      }
+
+      base.xhr = $.ajax({
         url: base.resultsEndpoint(),
         data: {'search_form[query]': term}
-      }).done(function(response, status) {
+      });
+
+      base.xhr.done(function(response, status) {
         allImages = response.remote_images.concat(response.local_images);
         base.updateImageResults(allImages);
         base.updateTemplateResults(response.templates);
