@@ -65,9 +65,21 @@
     margin: 10px 20px;
 
     .button-positive {
-      @extend .icon-thick-arrow-right-for-button;
-      padding-right: 50px;
-      background-position: 110px -704px;
+      padding-right: 30px;
+      width: 145px;
+      position: relative;
+
+      &:before {
+        content: '';
+        position: absolute;
+        right: 10px;
+        top: 20px;
+        display: block;
+        @extend .icon-thick-arrow-right;
+        @include icon-white;
+        width: 10px;
+        height: 10px;
+      }
     }
   }
 }
