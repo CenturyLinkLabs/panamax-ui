@@ -1,12 +1,40 @@
 (function($){
-  $.PMX.filterableList = function(el, options){
+
+  $.PMX.QueryField = function(el) {
     var base = this;
 
     base.$el = $(el);
-    base.el = el;
+    base.previousTerm = '';
+
+    base.bindEvents = function() {
+      base.$el.on('keyup', base.handleChange);
+    };
+
+    base.handleChange = function() {
+      if (base.getTerm().length > 2 && base.getTerm() != base.previousTerm) {
+        base.changeCallback.call(base, base.getTerm());
+        base.previousTerm = base.getTerm();
+      }
+    };
+
+    base.onChange = function(callback) {
+      base.changeCallback = callback;
+    };
+
+    base.getTerm = function() {
+      return base.$el.val();
+    };
+  };
+
+
+  $.PMX.FilterableList = function(el, options){
+    var base = this;
+
+    base.$el = $(el);
+    base.xhr = null;
 
     base.defaultOptions = {
-      queryFieldSelector: 'input#search_query',
+      $queryField: base.$el.find('input#search_query'),
       queryFormSelector: 'form',
       $queryForm: base.$el.find('form'),
       $imageResults: base.$el.find('.image-results'),
@@ -19,30 +47,39 @@
 
     base.init = function(){
       base.options = $.extend({}, base.defaultOptions, options);
+      base.queryField = new $.PMX.QueryField(base.options.$queryField);
+      base.queryField.bindEvents();
 
       base.bindEvents();
     };
 
     base.bindEvents = function() {
-      base.$el.on('keyup', base.options.queryFieldSelector, base.handleQueryChange);
+      base.queryField.onChange(base.fetchResults);
       base.$el.on('submit', base.options.queryFormSelector, base.handleSubmit);
     };
 
     base.handleSubmit = function(e) {
       e.preventDefault();
-      base.fetchResults();
+      base.fetchResults(base.queryField.getTerm());
     };
 
     base.handleQueryChange = function(e) {
       base.fetchResults();
     };
 
-    base.fetchResults = function() {
+    base.fetchResults = function(term) {
       base.displayLoadingIndicators();
-      $.ajax({
+
+      if (base.xhr) {
+        base.xhr.abort();
+      }
+
+      base.xhr = $.ajax({
         url: base.resultsEndpoint(),
-        data: base.options.$queryForm.serialize()
-      }).done(function(response, status) {
+        data: {'search_form[query]': term}
+      });
+
+      base.xhr.done(function(response, status) {
         allImages = response.remote_images.concat(response.local_images);
         base.updateImageResults(allImages);
         base.updateTemplateResults(response.templates);
@@ -81,9 +118,10 @@
     };
   };
 
+
   $.fn.filterableList = function(options){
     return this.each(function(){
-      (new $.PMX.filterableList(this, options)).init();
+      (new $.PMX.FilterableList(this, options)).init();
     });
   };
 
