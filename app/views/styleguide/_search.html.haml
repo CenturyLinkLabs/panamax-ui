@@ -1,7 +1,7 @@
 %h4 Search Form
 = form_tag('/', class: 'search-form') do
   = text_field_tag :query, '', placeholder: 'enter your command / query', id: 'search_form_query'
-  = submit_tag 'Search', class: 'button-primary'
+  = button_tag 'Search', class: 'button-primary'
 
 %p.example-searches
   %strong

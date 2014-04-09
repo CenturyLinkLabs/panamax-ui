@@ -10,7 +10,7 @@
     border: $dark_grey 1px solid;
     width: 740px;
   }
-  input[type='submit'] {
+  button.button-primary {
     @include border-box;
     @extend .icon-magnifying-glass-for-button;
     float: right;
