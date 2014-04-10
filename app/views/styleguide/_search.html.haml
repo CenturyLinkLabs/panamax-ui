@@ -11,12 +11,33 @@
   %a{data: {query: 'rails'}} rails,
   %a{data: {query: 'ubuntu'}} ubuntu,
   %a{data: {query: 'java'}} java
+
 %h4 Result blocks
+
 %h5 Image Row
-= render '/search/image_row', {presenter: JsonImagePresenter.new}
+:ruby
+  dummy_image_presenter = OpenStruct.new({
+    title: 'SomeDude/SomeImage',
+    status_label: 'Repository',
+    short_description: 'This is a short description it should be truncated at 165 charectors in the real implementation',
+    star_count: 72
+  })
+= render '/search/image_row', {presenter: dummy_image_presenter}
+
 %h5 Template Row
-= render '/search/template_row', {presenter: JsonTemplatePresenter.new}
+:ruby
+  fake_template_presenter = OpenStruct.new({
+    title: 'SomeDude/SomeImage',
+    status_label: 'Repository',
+    short_description: 'This is a short description it should be truncated at 165 charectors in the real implementation',
+    image_count: 4,
+    image_count_label: 'Images',
+    updated_at: '4/14/2013'
+  })
+= render '/search/template_row', {presenter: fake_template_presenter}
+
 %h5 Loading Row
 = render '/search/loading_row'
+
 %h5 No Results Row
 = render '/search/no_results_row'
