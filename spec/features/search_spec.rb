@@ -15,6 +15,7 @@ describe "searching for templates and images" do
       expect(page).to have_content "Image to test docker deployments. Has Apache with a 'Hello World' page listening in port 80"
       expect(page).to have_content "a wordpress template"
       expect(page).to have_css '.star-count', text: '3'
+      expect(page).to have_css '.image-count', text: '2 Images'
     end
   end
 end

@@ -1,4 +1,4 @@
-.search-result-item
+.search-result-item.template-result
   .badge= presenter.status_label
   .basic-info
     %h3
@@ -7,3 +7,7 @@
     %p.microcopy= "Last Updated: #{presenter.updated_at}"
   .actions
     %button.button-positive Run Template
+  .actions
+    .image-count
+      %em= presenter.image_count
+      = presenter.image_count_label
