@@ -6,7 +6,7 @@ describe Template do
       'id' => 77,
       'name' => 'boom/shaka',
       'description' => 'this thing goes boom shaka laka',
-      'updated_at' => 'Mon'
+      'updated_at' => Time.parse('2012-1-13').to_s
     }
   end
 
@@ -44,7 +44,7 @@ describe Template do
 
   describe '#updated_at' do
     it 'exposes updated_at' do
-      expect(subject.updated_at).to eq 'Mon'
+      expect(subject.updated_at).to eq 'January 13th, 2012 00:00'
     end
   end
 
@@ -55,7 +55,7 @@ describe Template do
         'name' => 'boom/shaka',
         'description' => 'this thing goes boom shaka laka',
         'short_description' => 'this thing goes boom shaka laka',
-        'updated_at' => 'Mon'
+        'updated_at' => 'January 13th, 2012 00:00'
       }
       expect(subject.as_json).to eq expected
     end

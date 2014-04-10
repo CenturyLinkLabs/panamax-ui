@@ -2,13 +2,17 @@ class Template
   include ActiveModel::Model
   include ActionView::Helpers::TextHelper
 
-  attr_reader :id, :description, :name, :updated_at
+  attr_reader :id, :description, :name
 
   def initialize(attributes)
+    @attributes = attributes
     @id = attributes['id']
     @description = attributes['description']
     @name = attributes['name']
-    @updated_at = attributes['updated_at']
+  end
+
+  def updated_at
+    @attributes['updated_at'].try(:to_time).try(:to_s, :long_ordinal)
   end
 
   def short_description
@@ -19,7 +23,8 @@ class Template
     super.
       except('attributes').
       merge({
-        'short_description' => short_description
+        'short_description' => short_description,
+        'updated_at' => updated_at
       })
   end
 end
