@@ -3,7 +3,7 @@ class TemplatePresenter
     @template = template
   end
 
-  delegate :description, :updated_at, :short_description, to: :template
+  delegate :description, :updated_at, :short_description, :image_count, :image_count_label, to: :template
 
   def title
     template.name

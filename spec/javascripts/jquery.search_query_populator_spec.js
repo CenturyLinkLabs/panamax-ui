@@ -11,6 +11,14 @@ describe('$.fn.searchQueryPopulator', function() {
     expect($('input#search_query').val()).toEqual('apache');
   });
 
+  it('gives the search box focus after clicking a term', function() {
+    var focusSpy = spyOn($.fn, 'focus');
+    $('a[data-query="apache"]').click();
+    expect(focusSpy).toHaveBeenCalled();
+    // unfortanetely the below assertion does not work headlessly
+    // expect($('input#search_query').is(':focus')).toBeTruthy();
+  });
+
   it('re-populates the search box with the next clicked term', function() {
     $('input#search_query').val('old term')
     $('a[data-query="java"]').click();
