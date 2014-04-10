@@ -6,7 +6,8 @@ describe Template do
       'id' => 77,
       'name' => 'boom/shaka',
       'description' => 'this thing goes boom shaka laka',
-      'updated_at' => Time.parse('2012-1-13').to_s
+      'updated_at' => Time.parse('2012-1-13').to_s,
+      'image_count' => 4
     }
   end
 
@@ -48,6 +49,31 @@ describe Template do
     end
   end
 
+  describe '#image_count' do
+    it 'exposes image_count' do
+      expect(subject.image_count).to eq 4
+    end
+  end
+
+  describe '#image_count_label' do
+    it 'exposes image_count_label' do
+      expect(subject.image_count_label).to eq 'Images'
+    end
+
+    context 'with just a single image' do
+      subject do
+        single_image_attributes = attributes.merge({
+          'image_count' => 1
+        })
+        Template.new(single_image_attributes)
+      end
+
+      it 'returns Image instead of Images' do
+        expect(subject.image_count_label).to eq 'Image'
+      end
+    end
+  end
+
   describe '#as_json' do
     it 'provides the attributes to be converted to JSON' do
       expected = {
@@ -55,7 +81,9 @@ describe Template do
         'name' => 'boom/shaka',
         'description' => 'this thing goes boom shaka laka',
         'short_description' => 'this thing goes boom shaka laka',
-        'updated_at' => 'January 13th, 2012 00:00'
+        'updated_at' => 'January 13th, 2012 00:00',
+        'image_count' => 4,
+        'image_count_label' => 'Images'
       }
       expect(subject.as_json).to eq expected
     end

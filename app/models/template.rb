@@ -2,13 +2,14 @@ class Template
   include ActiveModel::Model
   include ActionView::Helpers::TextHelper
 
-  attr_reader :id, :description, :name
+  attr_reader :id, :description, :name, :updated_at, :image_count
 
   def initialize(attributes)
     @attributes = attributes
     @id = attributes['id']
     @description = attributes['description']
     @name = attributes['name']
+    @image_count = attributes['image_count']
   end
 
   def updated_at
@@ -19,12 +20,17 @@ class Template
     truncate(description, length: 165)
   end
 
+  def image_count_label
+    'Image'.pluralize(image_count)
+  end
+
   def as_json(options={})
     super.
       except('attributes').
       merge({
         'short_description' => short_description,
-        'updated_at' => updated_at
+        'updated_at' => updated_at,
+        'image_count_label' => image_count_label
       })
   end
 end
