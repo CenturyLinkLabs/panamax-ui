@@ -10,7 +10,7 @@
 .filterable-list
   %h1 Search Templates &amp; Images
   = form_for @search_form, url: search_path, method: :get, html: {class: 'search-form'} do |f|
-    = f.text_field :query, placeholder: 'enter your command / query'
+    = f.text_field :query, placeholder: 'enter your command / query', accesskey: 's'
     = f.button 'Search', class: 'button-primary'
 
   %p.example-searches

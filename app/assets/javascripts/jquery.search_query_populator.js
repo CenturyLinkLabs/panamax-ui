@@ -23,6 +23,7 @@
     base.handleQueryClick = function(e) {
       var query = $(e.currentTarget).data('query');
       base.updateSearchFieldWith(query);
+      base.options.$searchField.focus();
     };
 
     base.updateSearchFieldWith = function(query) {
