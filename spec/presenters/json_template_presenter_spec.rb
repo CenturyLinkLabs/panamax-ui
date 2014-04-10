@@ -24,4 +24,16 @@ describe JsonTemplatePresenter do
       expect(subject.updated_at).to eq '{{updated_at}}'
     end
   end
+
+  describe '#image_count' do
+    it 'exposes the handlebar template tag for image count' do
+      expect(subject.image_count).to eq '{{image_count}}'
+    end
+  end
+
+  describe '#image_count_label' do
+    it 'exposes the handlebar template tag for image count label' do
+      expect(subject.image_count_label).to eq '{{image_count_label}}'
+    end
+  end
 end

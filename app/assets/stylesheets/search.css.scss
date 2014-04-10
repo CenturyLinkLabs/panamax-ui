@@ -41,7 +41,7 @@
     margin: 10px 20px;
     padding: 0 20px;
     @include border-box;
-    width: 500px;
+    width: 490px;
     height: 90px;
     overflow: auto;
     border-left: darken( $light_grey, 10% ) 1px solid;
@@ -62,16 +62,37 @@
     width: 110px;
   }
 
-  .actions,
-  .community-data {
+  .actions {
     float: right;
     min-height: 90px;
     border-left: darken( $light_grey, 10% ) 1px solid;
     padding: 0 20px;
     margin: 10px 0;
-  }
 
+    .button-positive {
+      padding-right: 30px;
+      width: 145px;
+      position: relative;
+
+      &:before {
+        content: '';
+        position: absolute;
+        right: 10px;
+        top: 20px;
+        display: block;
+        @extend .icon-thick-arrow-right;
+        @include icon-white;
+        width: 10px;
+        height: 10px;
+      }
+    }
+  }
+}
+
+.search-result-item.image-result {
   .community-data {
+    @extend .actions;
+
     .star-count {
       @include border-radius(3px);
       @include border-box;
@@ -102,24 +123,23 @@
       }
     }
   }
+}
 
-  .actions {
-    .button-positive {
-      padding-right: 30px;
-      width: 145px;
-      position: relative;
+.search-result-item.template-result {
+  .image-count {
+    @include border-radius(45px);
+    @include border-box;
+    background-color: darken( $light_grey, 10% );
+    width: 90px;
+    height: 90px;
+    padding-top: 20px;
+    text-align: center;
+    font-size: 13px;
 
-      &:before {
-        content: '';
-        position: absolute;
-        right: 10px;
-        top: 20px;
-        display: block;
-        @extend .icon-thick-arrow-right;
-        @include icon-white;
-        width: 10px;
-        height: 10px;
-      }
+    em {
+      display: block;
+      font-size: 36px;
+      font-weight: bold;
     }
   }
 }

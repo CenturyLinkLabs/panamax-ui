@@ -15,6 +15,14 @@ class JsonTemplatePresenter
     '{{updated_at}}'
   end
 
+  def image_count
+    '{{image_count}}'
+  end
+
+  def image_count_label
+    '{{image_count_label}}'
+  end
+
   def status_label
     'Template'
   end

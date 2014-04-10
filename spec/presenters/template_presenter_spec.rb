@@ -6,7 +6,9 @@ describe TemplatePresenter do
       name: 'boom shaka',
       description: 'goes boom shaka laka',
       short_description: 'goes boom',
-      updated_at: 'Mon'
+      updated_at: 'Mon',
+      image_count: 5,
+      image_count_label: 'Images'
     })
   end
 
@@ -33,6 +35,18 @@ describe TemplatePresenter do
   describe '#updated_at' do
     it 'exposes the template updated_at' do
       expect(subject.updated_at).to eq 'Mon'
+    end
+  end
+
+  describe '#image_count' do
+    it 'exposes the template image_count' do
+      expect(subject.image_count).to eq 5
+    end
+  end
+
+  describe '#image_count_label' do
+    it 'exposes the template image_count_label' do
+      expect(subject.image_count_label).to eq 'Images'
     end
   end
 end
