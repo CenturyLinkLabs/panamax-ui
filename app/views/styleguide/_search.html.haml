@@ -1,7 +1,7 @@
 %h4 Search Form
 = form_tag('/', class: 'search-form') do
   = text_field_tag :query, '', placeholder: 'enter your command / query', id: 'search_form_query'
-  = submit_tag 'Search', class: 'button-primary'
+  = button_tag 'Search', class: 'button-primary'
 
 %p.example-searches
   %strong
@@ -14,6 +14,8 @@
 %h4 Result blocks
 %h5 Image Row
 = render '/search/image_row', {presenter: JsonImagePresenter.new}
+%h5 Template Row
+= render '/search/template_row', {presenter: JsonTemplatePresenter.new}
 %h5 Loading Row
 = render '/search/loading_row'
 %h5 No Results Row

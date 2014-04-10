@@ -14,4 +14,8 @@ class JsonImagePresenter
   def status_label
     '{{status_label}}'
   end
+
+  def star_count
+    '{{star_count}}'
+  end
 end

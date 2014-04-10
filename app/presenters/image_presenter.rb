@@ -1,12 +1,17 @@
 class ImagePresenter
-  attr_reader :title, :description, :status_label, :short_description
-
   def initialize(image)
-    @title = image.repository
-    @description = image.description
-    @short_description = image.short_description
-    @status_label = image.status_label
+    @image = image
   end
+
+  delegate :description, :status_label, :short_description, :star_count, to: :image
+
+  def title
+    @image.repository
+  end
+
+  private
+
+  attr_reader :image
 end
 
 
