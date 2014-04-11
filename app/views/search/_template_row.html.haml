@@ -6,7 +6,9 @@
     %p= presenter.short_description
     %p.microcopy= "Last Updated: #{presenter.updated_at}"
   .actions
-    %button.button-positive Run Template
+    = form_tag applications_path do
+      = hidden_field_tag 'application[template_id]', presenter.id
+      = button_tag 'Run Template', class: 'button-positive'
   .actions
     .image-count
       %em= presenter.image_count

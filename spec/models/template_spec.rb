@@ -12,6 +12,7 @@ describe Template do
   end
 
   subject { Template.new(attributes) }
+
   describe '#id' do
     it 'exposes an id' do
       expect(subject.id).to eq 77

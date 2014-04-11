@@ -35,8 +35,8 @@
 
     base.defaultOptions = {
       $queryField: base.$el.find('input#search_query'),
-      queryFormSelector: 'form',
-      $queryForm: base.$el.find('form'),
+      queryFormSelector: 'form.search-form',
+      $queryForm: base.$el.find('form.search-form'),
       $imageResults: base.$el.find('.image-results'),
       $templateResults: base.$el.find('.template-results'),
       imageResultTemplate: Handlebars.compile($('#image_result_template').html()),

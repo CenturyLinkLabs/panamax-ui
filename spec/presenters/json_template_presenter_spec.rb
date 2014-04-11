@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe JsonTemplatePresenter do
+  describe '#id' do
+    it 'returns the handlebar template tag for id' do
+      expect(subject.id).to eq '{{id}}'
+    end
+  end
+
   describe '#title' do
     it 'returns the handlebar template tag for name' do
       expect(subject.title).to eq '{{name}}'
