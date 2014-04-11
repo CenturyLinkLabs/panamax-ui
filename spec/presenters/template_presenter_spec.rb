@@ -3,6 +3,7 @@ require 'spec_helper'
 describe TemplatePresenter do
   let(:fake_template) do
     double(:fake_template, {
+      id: 99,
       name: 'boom shaka',
       description: 'goes boom shaka laka',
       short_description: 'goes boom',
@@ -13,6 +14,12 @@ describe TemplatePresenter do
   end
 
   subject { TemplatePresenter.new(fake_template) }
+
+  describe '#id' do
+    it 'exposes the template id' do
+      expect(subject.id).to eq 99
+    end
+  end
 
   describe '#title' do
     it 'exposes the template name' do

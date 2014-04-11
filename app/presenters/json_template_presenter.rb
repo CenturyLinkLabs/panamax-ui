@@ -1,4 +1,8 @@
 class JsonTemplatePresenter
+  def id
+    '{{id}}'
+  end
+
   def title
     '{{name}}'
   end

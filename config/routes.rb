@@ -3,5 +3,7 @@ PanamaxUi::Application.routes.draw do
 
   resource :search, only: [:new, :show], controller: 'search'
 
+  resources :applications, only: [:create]
+
   mount CtlBaseUi::Engine => "/ctl-base-ui"
 end
