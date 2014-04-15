@@ -1,4 +1,4 @@
-PanamaxUi::Application.routes.draw do
+Rails.application.routes.draw do
   root 'search#new'
 
   resource :search, only: [:new, :show], controller: 'search'
