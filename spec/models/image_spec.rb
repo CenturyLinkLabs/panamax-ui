@@ -71,6 +71,16 @@ describe Image do
         expect(subject.status_label).to eql 'Recommended'
       end
     end
+
+    context 'when type local is set' do
+      subject do
+        Image.new(attributes.merge({'location' => 'local'}))
+      end
+
+      it 'is local' do
+        expect(subject.status_label).to eql 'Local'
+      end
+    end
   end
 
   describe '#star_count' do
@@ -87,6 +97,7 @@ describe Image do
         'description' => 'this thing goes boom shaka laka',
         'short_description' => 'this thing goes boom shaka laka',
         'status_label' => 'Repository',
+        'location' => nil,
         'star_count' => 127
       }
       expect(subject.as_json).to eq expected

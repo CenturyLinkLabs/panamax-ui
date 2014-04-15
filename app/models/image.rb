@@ -2,7 +2,7 @@ class Image
   include ActiveModel::Model
   include ActionView::Helpers::TextHelper
 
-  attr_reader :id, :description, :repository, :star_count
+  attr_reader :id, :description, :repository, :star_count, :location
 
   def initialize(attributes)
     @attributes = attributes
@@ -10,6 +10,7 @@ class Image
     @description = attributes['description']
     @repository = attributes['repository']
     @star_count = attributes['star_count']
+    @location = attributes['location']
   end
 
   def status_label
@@ -17,6 +18,8 @@ class Image
       'Recommended'
     elsif @attributes['is_trusted']
       'Trusted'
+    elsif location == 'local'
+      'Local'
     else
       'Repository'
     end
