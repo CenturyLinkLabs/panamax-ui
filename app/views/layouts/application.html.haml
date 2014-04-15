@@ -5,11 +5,15 @@
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
-  %body
+  %body{id: yield(:body_id)}
     %header
       %h1.panamax-logo
         = link_to 'Panamax', root_path, title: 'Home'
       %h1.ctl-labs-logo
-        = link_to 'CenturyLink Labs', 'http://www.centurylinklabs.com', title: 'CenturyLink Labs'
+        = link_to 'CenturyLink Labs', 'http://www.centurylinklabs.com', title: 'CenturyLink Labs', target: '_blank'
+      %nav
+        %ul
+          %li.search-link= link_to 'Search', new_search_path
+          %li.manage-link= link_to 'Manage', '#todo'
     %main
       = yield

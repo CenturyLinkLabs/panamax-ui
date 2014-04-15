@@ -1,3 +1,5 @@
+- content_for(:body_id, 'search_flow')
+
 %script#template_result_template{type: 'text/x-handlebars-template'}
   = render 'template_row', {presenter: JsonTemplatePresenter.new}
 %script#image_result_template{type: 'text/x-handlebars-template'}

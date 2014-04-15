@@ -10,7 +10,9 @@ describe "searching for templates and images" do
       expect(find_field("search_form_query").value).to eq "wordpress"
       expect(page).to have_content "Examples: wordpress, apache, rails, ubuntu, java"
 
-      click_on "Search"
+      within 'form' do
+        click_on "Search"
+      end
 
       expect(page).to have_content "Image to test docker deployments. Has Apache with a 'Hello World' page listening in port 80"
       expect(page).to have_content "a wordpress template"
