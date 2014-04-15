@@ -7,8 +7,8 @@ class SearchResultSet
 
   def initialize(attributes)
     @query = attributes['q']
-    @remote_images = wrap_images(attributes['remote_images'])
-    @local_images = wrap_images(attributes['local_images'])
+    @remote_images = wrap_images(attributes['remote_images'], 'remote')
+    @local_images = wrap_images(attributes['local_images'], 'local')
     @templates = wrap_templates(attributes['templates'])
   end
 
@@ -25,9 +25,10 @@ class SearchResultSet
     end
   end
 
-  def wrap_images(images)
+  def wrap_images(images, label)
     (images || []).map do |image_attributes|
-      Image.new(image_attributes)
+      Image.new( image_attributes.merge('location' => label) )
     end
   end
+
 end
