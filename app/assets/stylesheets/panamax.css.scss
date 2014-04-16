@@ -1,8 +1,103 @@
+@import 'ctl_base_ui/colors';
+@import 'ctl_base_ui/mixins';
+@import 'ctl_base_ui/icons';
+
+header {
+  background: $light_grey;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 35px;
+
+  h1 {
+    border: none;
+    float: left;
+    padding: 0;
+    margin: 10px;
+
+    a {
+      @include border-box;
+      @include hide-text;
+      display: block;
+      height: 50px;
+    }
+  }
+  h1.panamax-logo a {
+    background: image-url('pmx_logo.svg') no-repeat;
+    @include background-size(148px, 19px);
+    background-position: center left;
+    width: 168px;
+    border-right: $grey 1px solid;
+  }
+  h1.ctl-labs-logo a {
+    background: image-url('ctl_labs_logo.svg') no-repeat;
+    @include background-size(100px, 40px);
+    background-position: center left;
+    width: 100px;
+  }
+
+  nav {
+    float: right;
+    margin-right: 20px;
+
+    ul li {
+      float: left;
+
+      a {
+        @include border-box;
+        @include border-radius(3px);
+        display: block;
+        margin: 10px;
+        padding: 0 20px 0 35px;
+        height: 50px;
+        line-height: 50px;
+        text-decoration: none;
+        position: relative;
+        font-size: 0.9em;
+
+        &:before {
+          @include icon-light-grey;
+          display: block;
+          content: '';
+          position: absolute;
+          left: 10px;
+          top: 15px;
+        }
+
+        &:hover {
+          background-color: $dark_blue;
+          color: $white;
+
+          &:before {
+            @include icon-light-blue;
+          }
+        }
+      }
+    }
+  }
+}
+
+header nav ul li {
+  &.search-link a:before {
+    @extend .icon-magnifying-glass-large;
+  }
+  &.manage-link a:before {
+    @extend .icon-sprocket-large;
+  }
+
+  /* active states */
+  #search_flow &.search-link a,
+  #manage_flow &.manage-link a {
+    background-color: $grey;
+    color: $dark_grey;
+
+    &:before {
+      @include icon-grey;
+    }
+  }
+}
+
 main {
   width: 960px;
   margin: 0 auto;
 }
-
-
-
 
