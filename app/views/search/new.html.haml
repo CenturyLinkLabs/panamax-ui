@@ -2,7 +2,9 @@
 
 %script#template_result_template{type: 'text/x-handlebars-template'}
   = render 'template_row', {presenter: JsonTemplatePresenter.new}
-%script#image_result_template{type: 'text/x-handlebars-template'}
+%script#remote_image_result_template{type: 'text/x-handlebars-template'}
+  = render 'image_row', {presenter: JsonImagePresenter.new, remote: true}
+%script#local_image_result_template{type: 'text/x-handlebars-template'}
   = render 'image_row', {presenter: JsonImagePresenter.new}
 %script#loading_row_template{type: 'text/x-handlebars-template'}
   = render 'loading_row'

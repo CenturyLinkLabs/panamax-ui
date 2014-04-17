@@ -36,4 +36,10 @@ describe JsonImagePresenter do
       expect(subject.recommended_class).to eq '{{recommended_class}}'
     end
   end
+
+  describe '#docker_index_url' do
+    it 'exposes the handlebar template tag for docker index url' do
+      expect(subject.docker_index_url).to eq '{{docker_index_url}}'
+    end
+  end
 end
