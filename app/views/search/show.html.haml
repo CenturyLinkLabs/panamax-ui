@@ -4,6 +4,6 @@
 - @search_results.local_images.each do |image|
   = render 'image_row', {presenter: ImagePresenter.new(image)}
 - @search_results.remote_images.each do |image|
-  = render 'image_row', {presenter: ImagePresenter.new(image)}
+  = render 'image_row', {presenter: ImagePresenter.new(image), remote: true}
 - @search_results.templates.each do |image|
   = render 'template_row', {presenter: TemplatePresenter.new(image)}

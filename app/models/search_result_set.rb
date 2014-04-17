@@ -7,8 +7,8 @@ class SearchResultSet
 
   def initialize(attributes)
     @query = attributes['q']
-    @remote_images = wrap_images(attributes['remote_images'], 'remote')
-    @local_images = wrap_images(attributes['local_images'], 'local')
+    @remote_images = wrap_images(attributes['remote_images'], Image.locations[:remote])
+    @local_images = wrap_images(attributes['local_images'], Image.locations[:local])
     @templates = wrap_templates(attributes['templates'])
   end
 

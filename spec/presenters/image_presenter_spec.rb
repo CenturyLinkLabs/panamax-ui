@@ -7,7 +7,8 @@ describe ImagePresenter do
       description: 'goes boom shaka laka',
       short_description: 'goes boom',
       status_label: 'Repository',
-      star_count: 123
+      star_count: 123,
+      docker_index_url: 'index.docker/boom/shaka'
     })
   end
 
@@ -34,6 +35,12 @@ describe ImagePresenter do
   describe '#star_count' do
     it 'exposes the star count' do
       expect(subject.star_count).to eq 123
+    end
+  end
+
+  describe '#docker_index_url' do
+    it 'exposes the docker index url' do
+      expect(subject.docker_index_url).to eq 'index.docker/boom/shaka'
     end
   end
 end

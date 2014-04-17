@@ -14,12 +14,12 @@ describe "searching for templates and images" do
         click_on "Search"
       end
 
-      #wordpress remote image result
-      expect(page).to have_content "tutum/wordpress"
+      # remote image result
+      expect(page.find_link("tutum/wordpress")['href']).to eq 'https://index.docker.io/u/tutum/wordpress'
       expect(page).to have_content "Wordpress Docker image - listens in port 80."
       expect(page).to have_css '.star-count', text: '7'
 
-      # Wordpress template result
+      # template result
       expect(page).to have_content "a wordpress template"
       expect(page).to have_css '.image-count', text: '2 Images'
     end

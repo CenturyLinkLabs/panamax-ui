@@ -1,8 +1,12 @@
+- remote ||= false
 .search-result-item.image-result
   .badge= presenter.status_label
   .basic-info
     %h3
-      %a= presenter.title
+      - if remote
+        = link_to presenter.title, presenter.docker_index_url, target: '_blank'
+      - else
+        = presenter.title
     %p= presenter.short_description
   .actions
     = form_tag applications_path do
