@@ -1,5 +1,7 @@
 .search-result-item.template-result
   .badge= presenter.status_label
+  .icon-gutter
+    .icon-star-large{:class => ("recommended" if (presenter.recommended))}
   .basic-info
     %h3
       %a= presenter.title
@@ -9,7 +11,7 @@
     = form_tag applications_path do
       = hidden_field_tag 'application[template_id]', presenter.id
       = button_tag 'Run Template', class: 'button-positive'
-  .actions
+  .community-data
     .image-count
       %em= presenter.image_count
       = presenter.image_count_label

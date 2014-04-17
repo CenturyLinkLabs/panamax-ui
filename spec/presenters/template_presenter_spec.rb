@@ -9,7 +9,8 @@ describe TemplatePresenter do
       short_description: 'goes boom',
       updated_at: 'Mon',
       image_count: 5,
-      image_count_label: 'Images'
+      image_count_label: 'Images',
+      recommended: 'true'
     })
   end
 
@@ -54,6 +55,12 @@ describe TemplatePresenter do
   describe '#image_count_label' do
     it 'exposes the template image_count_label' do
       expect(subject.image_count_label).to eq 'Images'
+    end
+  end
+
+  describe '#recommended' do
+    it 'exposes the template recommended value' do
+      expect(subject.recommended).to eq 'true'
     end
   end
 end

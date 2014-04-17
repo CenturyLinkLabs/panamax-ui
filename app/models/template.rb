@@ -24,6 +24,10 @@ class Template
     'Image'.pluralize(image_count)
   end
 
+  def recommended
+    @attributes['recommended']
+  end
+
   def as_json(options={})
     super.
       except('attributes').

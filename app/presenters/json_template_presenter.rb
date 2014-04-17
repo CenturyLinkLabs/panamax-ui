@@ -30,4 +30,8 @@ class JsonTemplatePresenter
   def status_label
     'Template'
   end
+
+  def recommended
+    '{{recommended}}'
+  end
 end

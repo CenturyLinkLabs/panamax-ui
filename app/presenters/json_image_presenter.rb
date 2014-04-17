@@ -18,4 +18,8 @@ class JsonImagePresenter
   def star_count
     '{{star_count}}'
   end
+
+  def recommended
+    '{{recommended}}'
+  end
 end
