@@ -1,8 +1,7 @@
 .search-result-item.template-result
   .badge= presenter.status_label
   .basic-info
-    %h3
-      %a= presenter.title
+    %h3= presenter.title
     %p= presenter.short_description
     %p.microcopy= "Last Updated: #{presenter.updated_at}"
   .actions
