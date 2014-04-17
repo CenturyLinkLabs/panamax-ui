@@ -30,4 +30,10 @@ describe JsonImagePresenter do
       expect(subject.star_count).to eq '{{star_count}}'
     end
   end
+
+  describe '#recommended_class' do
+    it 'exposes the template recommended_class value' do
+      expect(subject.recommended_class).to eq '{{recommended_class}}'
+    end
+  end
 end

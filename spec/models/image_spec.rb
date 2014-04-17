@@ -98,7 +98,8 @@ describe Image do
         'short_description' => 'this thing goes boom shaka laka',
         'status_label' => 'Repository',
         'location' => nil,
-        'star_count' => 127
+        'star_count' => 127,
+        'recommended_class' => 'not-recommended'
       }
       expect(subject.as_json).to eq expected
     end

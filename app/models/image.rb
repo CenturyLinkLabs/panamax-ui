@@ -25,6 +25,11 @@ class Image
     end
   end
 
+  def recommended_class
+    @attributes['recommended'] ? 'recommended' : 'not-recommended'
+  end
+
+
   def short_description
     truncate(description, length: 165)
   end
@@ -34,7 +39,8 @@ class Image
       except('attributes').
       merge({
         'status_label' => status_label,
-        'short_description' => short_description
+        'short_description' => short_description,
+        'recommended_class' => recommended_class
       })
   end
 end
