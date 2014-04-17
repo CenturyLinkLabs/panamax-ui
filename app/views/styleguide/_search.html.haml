@@ -21,7 +21,8 @@
     title: 'SomeDude/SomeImage',
     status_label: 'Repository',
     short_description: 'This is a short description it should be truncated at 165 charectors in the real implementation',
-    star_count: 72
+    star_count: 72,
+    recommended_class: 'not-recommended'
   })
 = render '/search/image_row', {presenter: dummy_image_presenter}
 
@@ -33,7 +34,8 @@
     short_description: 'This is a short description it should be truncated at 165 charectors in the real implementation',
     image_count: 4,
     image_count_label: 'Images',
-    updated_at: '4/14/2013'
+    updated_at: '4/14/2013',
+    recommended_class: 'recommended'
   })
 = render '/search/template_row', {presenter: fake_template_presenter}
 
