@@ -10,7 +10,7 @@ describe Image do
     }
   end
 
-  subject { Image.new(attributes) }
+  subject { described_class.new(attributes) }
 
   describe '#id' do
     it 'exposes an id' do
@@ -21,6 +21,24 @@ describe Image do
   describe '#repository' do
     it 'exposes a repository repository' do
       expect(subject.repository).to eq 'boom/shaka'
+    end
+  end
+
+  describe '#docker_index_url' do
+    context 'when a remote image' do
+      subject { described_class.new('location' => described_class.locations[:remote], 'repository' => 'boom/shaka') }
+
+      it 'composes a docker index URL' do
+        expect(subject.docker_index_url).to eq 'https://index.docker.io/u/boom/shaka'
+      end
+    end
+
+    context 'when a local image' do
+      subject { described_class.new(location: described_class.locations[:local]) }
+
+      it 'returns nil' do
+        expect(subject.docker_index_url).to be_nil
+      end
     end
   end
 
@@ -35,7 +53,7 @@ describe Image do
       long_description_attributes = attributes.merge({
         'description' => 'w'*300
       })
-      Image.new(long_description_attributes)
+      described_class.new(long_description_attributes)
     end
 
     it 'truncates the description to 165 charectors' do
@@ -50,7 +68,7 @@ describe Image do
 
     context 'when the trusted flag is set' do
       subject do
-        Image.new(attributes.merge({'is_trusted' => true}))
+        described_class.new(attributes.merge({'is_trusted' => true}))
       end
 
       it 'is trusted' do
@@ -64,7 +82,7 @@ describe Image do
           'is_trusted' => true,
           'recommended' => true
         })
-        Image.new(modified_attributes)
+        described_class.new(modified_attributes)
       end
 
       it 'is recommended if both the trusted and recommended flags are set' do
@@ -74,7 +92,7 @@ describe Image do
 
     context 'when type local is set' do
       subject do
-        Image.new(attributes.merge({'location' => 'local'}))
+        described_class.new(attributes.merge({'location' => described_class.locations[:local]}))
       end
 
       it 'is local' do
@@ -86,6 +104,38 @@ describe Image do
   describe '#star_count' do
     it 'exposes the star count' do
       expect(subject.star_count).to eq 127
+    end
+  end
+
+  describe '#remote?' do
+    it 'is true for a remote image' do
+      subject = described_class.new('location' => described_class.locations[:remote])
+      expect(subject.remote?).to be_true
+    end
+
+    it 'is falsey for a non-remote image' do
+      expect(subject.remote?).to be_false
+    end
+  end
+
+  describe '.locations' do
+    it 'is a hash of possible location values' do
+      expected_hash = {
+        remote: :remote,
+        local: :local
+      }
+      expect(described_class.locations).to eq expected_hash
+    end
+  end
+
+  describe '#local?' do
+    it 'is true for a local image' do
+      subject = described_class.new('location' => described_class.locations[:local])
+      expect(subject.local?).to be_true
+    end
+
+    it 'is falsey for a non-local image' do
+      expect(subject.local?).to be_false
     end
   end
 

@@ -4,6 +4,8 @@ class Image
 
   attr_reader :id, :description, :repository, :star_count, :location
 
+  DOCKER_INDEX_BASE_URL = 'https://index.docker.io/u/'
+
   def initialize(attributes)
     @attributes = attributes
     @id = attributes['id']
@@ -18,11 +20,15 @@ class Image
       'Recommended'
     elsif @attributes['is_trusted']
       'Trusted'
-    elsif location == 'local'
+    elsif local?
       'Local'
     else
       'Repository'
     end
+  end
+
+  def docker_index_url
+    "#{DOCKER_INDEX_BASE_URL}#{repository}" if remote?
   end
 
   def short_description
@@ -36,5 +42,20 @@ class Image
         'status_label' => status_label,
         'short_description' => short_description
       })
+  end
+
+  def local?
+    location == self.class.locations[:local]
+  end
+
+  def remote?
+    location == self.class.locations[:remote]
+  end
+
+  def self.locations
+    {
+      remote: :remote,
+      local: :local
+    }
   end
 end

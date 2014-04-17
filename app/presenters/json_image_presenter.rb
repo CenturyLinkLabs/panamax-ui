@@ -18,4 +18,8 @@ class JsonImagePresenter
   def star_count
     '{{star_count}}'
   end
+
+  def docker_index_url
+    '{{docker_index_url}}'
+  end
 end
