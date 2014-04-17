@@ -42,4 +42,10 @@ describe JsonTemplatePresenter do
       expect(subject.image_count_label).to eq '{{image_count_label}}'
     end
   end
+
+  describe '#recommended_class' do
+    it 'exposes the template recommended class label' do
+      expect(subject.recommended_class).to eq '{{recommended_class}}'
+    end
+  end
 end

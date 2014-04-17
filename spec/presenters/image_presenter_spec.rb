@@ -7,7 +7,8 @@ describe ImagePresenter do
       description: 'goes boom shaka laka',
       short_description: 'goes boom',
       status_label: 'Repository',
-      star_count: 123
+      star_count: 123,
+      recommended_class: 'not-recommended'
     })
   end
 
@@ -34,6 +35,12 @@ describe ImagePresenter do
   describe '#star_count' do
     it 'exposes the star count' do
       expect(subject.star_count).to eq 123
+    end
+  end
+
+  describe '#recommended_class' do
+    it 'exposes the recommended_class value' do
+      expect(subject.recommended_class).to eq 'not-recommended'
     end
   end
 end

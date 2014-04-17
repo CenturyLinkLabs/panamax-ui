@@ -24,13 +24,18 @@ class Template
     'Image'.pluralize(image_count)
   end
 
+  def recommended_class
+    @attributes['recommended'] ? 'recommended' : 'not-recommended'
+  end
+
   def as_json(options={})
     super.
       except('attributes').
       merge({
         'short_description' => short_description,
         'updated_at' => updated_at,
-        'image_count_label' => image_count_label
+        'image_count_label' => image_count_label,
+        'recommended_class' => recommended_class
       })
   end
 end
