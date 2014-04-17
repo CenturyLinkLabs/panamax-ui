@@ -1,7 +1,7 @@
 .search-result-item.image-result
   .badge= presenter.status_label
-  .icon-gutter
-    .icon-star-large{:class => ("recommended" if (presenter.recommended == 'true'))}
+  .authority
+    %div{ :class => presenter.recommended_class}
   .basic-info
     %h3
       %a= presenter.title

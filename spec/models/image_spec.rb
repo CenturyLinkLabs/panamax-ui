@@ -6,8 +6,7 @@ describe Image do
       'id' => 77,
       'repository' => 'boom/shaka',
       'description' => 'this thing goes boom shaka laka',
-      'star_count' => 127,
-      'recommended' => false
+      'star_count' => 127
     }
   end
 
@@ -100,7 +99,7 @@ describe Image do
         'status_label' => 'Repository',
         'location' => nil,
         'star_count' => 127,
-        'recommended' => 'false'
+        'recommended_class' => 'not-recommended'
       }
       expect(subject.as_json).to eq expected
     end

@@ -19,7 +19,7 @@ class JsonImagePresenter
     '{{star_count}}'
   end
 
-  def recommended
-    '{{recommended}}'
+  def recommended_class
+    '{{recommended_class}}'
   end
 end

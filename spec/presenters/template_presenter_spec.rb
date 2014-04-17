@@ -10,7 +10,7 @@ describe TemplatePresenter do
       updated_at: 'Mon',
       image_count: 5,
       image_count_label: 'Images',
-      recommended: 'true'
+      recommended_class: 'not-recommended'
     })
   end
 
@@ -58,9 +58,9 @@ describe TemplatePresenter do
     end
   end
 
-  describe '#recommended' do
-    it 'exposes the template recommended value' do
-      expect(subject.recommended).to eq 'true'
+  describe '#recommended_class' do
+    it 'exposes the template recommended_class value' do
+      expect(subject.recommended_class).to eq 'not-recommended'
     end
   end
 end

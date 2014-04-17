@@ -84,7 +84,8 @@ describe Template do
         'short_description' => 'this thing goes boom shaka laka',
         'updated_at' => 'January 13th, 2012 00:00',
         'image_count' => 4,
-        'image_count_label' => 'Images'
+        'image_count_label' => 'Images',
+        'recommended_class' => 'not-recommended'
       }
       expect(subject.as_json).to eq expected
     end

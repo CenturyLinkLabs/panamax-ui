@@ -31,7 +31,7 @@ class JsonTemplatePresenter
     'Template'
   end
 
-  def recommended
-    '{{recommended}}'
+  def recommended_class
+    '{{recommended_class}}'
   end
 end

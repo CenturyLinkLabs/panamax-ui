@@ -36,13 +36,16 @@
     font-size: 0.9em;
   }
 
-  .icon-gutter {
+  .authority {
     float: left;
     width: 20px;
     padding-left: 10px;
 
     .recommended {
         @include icon-light-green;
+        @extend .icon-star-large;
+    }
+    .not-recommended {
         @extend .icon-star-large;
     }
     div {

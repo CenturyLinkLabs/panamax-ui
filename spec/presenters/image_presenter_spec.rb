@@ -8,7 +8,7 @@ describe ImagePresenter do
       short_description: 'goes boom',
       status_label: 'Repository',
       star_count: 123,
-      recommended: false
+      recommended_class: 'not-recommended'
     })
   end
 
@@ -38,9 +38,9 @@ describe ImagePresenter do
     end
   end
 
-  describe '#recommended' do
-    it 'exposes the recommended value' do
-      expect(subject.recommended).to be_false
+  describe '#recommended_class' do
+    it 'exposes the recommended_class value' do
+      expect(subject.recommended_class).to eq 'not-recommended'
     end
   end
 end

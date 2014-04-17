@@ -3,7 +3,7 @@ class ImagePresenter
     @image = image
   end
 
-  delegate :description, :status_label, :short_description, :star_count, :recommended, to: :image
+  delegate :description, :status_label, :short_description, :star_count, :recommended_class, to: :image
 
   def title
     @image.repository
