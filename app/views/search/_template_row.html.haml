@@ -1,5 +1,7 @@
 .search-result-item.template-result
-  .badge= presenter.status_label
+  .badge
+    %img{src: presenter.icon_src}
+    = presenter.status_label
   .authority
     %div{:class => presenter.recommended_class}
   .basic-info

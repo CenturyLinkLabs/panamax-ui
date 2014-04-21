@@ -34,4 +34,8 @@ class JsonTemplatePresenter
   def recommended_class
     '{{recommended_class}}'
   end
+
+  def icon_src
+    '{{icon}}'
+  end
 end
