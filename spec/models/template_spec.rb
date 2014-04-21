@@ -7,7 +7,8 @@ describe Template do
       'name' => 'boom/shaka',
       'description' => 'this thing goes boom shaka laka',
       'updated_at' => Time.parse('2012-1-13').to_s,
-      'image_count' => 4
+      'image_count' => 4,
+      'icon' => 'http://iconwarehouse.io/myicon.png'
     }
   end
 
@@ -75,6 +76,20 @@ describe Template do
     end
   end
 
+  describe '#icon' do
+    it 'exposes the icon url' do
+      expect(subject.icon).to eq 'http://iconwarehouse.io/myicon.png'
+    end
+
+    context 'when no image exists' do
+      subject { described_class.new(attributes.merge('icon' => nil)) }
+
+      it 'returns the default image url if no image exists' do
+        expect(subject.icon).to eq '/assets/template_logos/default.png'
+      end
+    end
+  end
+
   describe '#as_json' do
     it 'provides the attributes to be converted to JSON' do
       expected = {
@@ -85,7 +100,8 @@ describe Template do
         'updated_at' => 'January 13th, 2012 00:00',
         'image_count' => 4,
         'image_count_label' => 'Images',
-        'recommended_class' => 'not-recommended'
+        'recommended_class' => 'not-recommended',
+        'icon' => 'http://iconwarehouse.io/myicon.png'
       }
       expect(subject.as_json).to eq expected
     end

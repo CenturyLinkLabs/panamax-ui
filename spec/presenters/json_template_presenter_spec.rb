@@ -44,8 +44,14 @@ describe JsonTemplatePresenter do
   end
 
   describe '#recommended_class' do
-    it 'exposes the template recommended class label' do
+    it 'exposes the handlebar template tag for recommended class label' do
       expect(subject.recommended_class).to eq '{{recommended_class}}'
+    end
+  end
+
+  describe '#icon_src' do
+    it 'exposes the handlebar template tag for icon src' do
+      expect(subject.icon_src).to eq '{{icon}}'
     end
   end
 end

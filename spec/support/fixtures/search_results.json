@@ -31,7 +31,7 @@
       "description":"This is a wordpress template",
       "keywords":null,
       "recommended":true,
-      "icon":null,
+      "icon": "/icons/icon.png",
       "created_at":"2014-04-17T16:07:35.690Z",
       "updated_at":"2014-04-17T16:07:35.690Z",
       "image_count":2

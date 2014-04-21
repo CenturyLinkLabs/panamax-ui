@@ -163,6 +163,22 @@
       }
     }
   }
+
+  .badge {
+    line-height: 1;
+
+    img {
+      @include border-box;
+      @include border-radius(30px);
+      margin: 18px 0 5px;
+      width: 60px;
+      height: 60px;
+      padding: 10px;
+      background-color: $sky_blue;
+    }
+
+    background-color: $dark_blue;
+  }
 }
 
 .search-result-item.in-progress {

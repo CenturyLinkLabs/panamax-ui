@@ -10,7 +10,8 @@ describe TemplatePresenter do
       updated_at: 'Mon',
       image_count: 5,
       image_count_label: 'Images',
-      recommended_class: 'not-recommended'
+      recommended_class: 'not-recommended',
+      icon: '/icons/icon.png'
     })
   end
 
@@ -61,6 +62,12 @@ describe TemplatePresenter do
   describe '#recommended_class' do
     it 'exposes the template recommended_class value' do
       expect(subject.recommended_class).to eq 'not-recommended'
+    end
+  end
+
+  describe '#icon_src' do
+    it 'exposes the icon src' do
+      expect(subject.icon_src).to eq '/icons/icon.png'
     end
   end
 end
