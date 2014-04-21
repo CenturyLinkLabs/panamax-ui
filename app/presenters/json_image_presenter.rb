@@ -22,4 +22,8 @@ class JsonImagePresenter
   def recommended_class
     '{{recommended_class}}'
   end
+
+  def docker_index_url
+    '{{docker_index_url}}'
+  end
 end

@@ -3,7 +3,9 @@ class ImagePresenter
     @image = image
   end
 
-  delegate :description, :status_label, :short_description, :star_count, :recommended_class, to: :image
+  delegate :description, :status_label, :short_description,
+           :star_count, :docker_index_url, :recommended_class,
+           to: :image
 
   def title
     @image.repository

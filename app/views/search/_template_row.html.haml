@@ -3,8 +3,7 @@
   .authority
     %div{:class => presenter.recommended_class}
   .basic-info
-    %h3
-      %a= presenter.title
+    %h3= presenter.title
     %p= presenter.short_description
     %p.microcopy= "Last Updated: #{presenter.updated_at}"
   .actions

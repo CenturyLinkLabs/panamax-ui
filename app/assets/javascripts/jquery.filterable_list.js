@@ -39,7 +39,8 @@
       $queryForm: base.$el.find('form.search-form'),
       $imageResults: base.$el.find('.image-results'),
       $templateResults: base.$el.find('.template-results'),
-      imageResultTemplate: Handlebars.compile($('#image_result_template').html()),
+      remoteImageResultTemplate: Handlebars.compile($('#remote_image_result_template').html()),
+      localImageResultTemplate: Handlebars.compile($('#local_image_result_template').html()),
       templateResultTemplate: Handlebars.compile($('#template_result_template').html()),
       loadingTemplate: Handlebars.compile($('#loading_row_template').html()),
       noResultsTemplate: Handlebars.compile($('#no_results_row_template').html())
@@ -80,16 +81,18 @@
       });
 
       base.xhr.done(function(response, status) {
-        allImages = response.remote_images.concat(response.local_images);
-        base.updateImageResults(allImages);
+        base.updateImageResults(response.remote_images, response.local_images);
         base.updateTemplateResults(response.templates);
       });
     };
 
-    base.updateImageResults = function(allImages) {
+    base.updateImageResults = function(remoteImages, localImages) {
       var resultsHtml = '';
-      $.each(allImages, function(i, image) {
-        resultsHtml += base.options.imageResultTemplate(image);
+      $.each(localImages, function(i, image) {
+        resultsHtml += base.options.localImageResultTemplate(image);
+      });
+      $.each(remoteImages, function(i, image) {
+        resultsHtml += base.options.remoteImageResultTemplate(image);
       });
       base.options.$imageResults.html(resultsHtml);
     };
