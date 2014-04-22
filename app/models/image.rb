@@ -45,7 +45,8 @@ class Image
       merge({
         'status_label' => status_label,
         'short_description' => short_description,
-        'recommended_class' => recommended_class
+        'recommended_class' => recommended_class,
+        'docker_index_url' => docker_index_url
       })
   end
 

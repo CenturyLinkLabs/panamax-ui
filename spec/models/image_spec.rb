@@ -149,7 +149,8 @@ describe Image do
         'status_label' => 'Repository',
         'location' => nil,
         'star_count' => 127,
-        'recommended_class' => 'not-recommended'
+        'recommended_class' => 'not-recommended',
+        'docker_index_url' => nil
       }
       expect(subject.as_json).to eq expected
     end
