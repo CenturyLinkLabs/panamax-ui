@@ -4,6 +4,10 @@ class ApplicationsController < ApplicationController
     render text: 'good job, you created an app'
   end
 
+  def show
+
+  end
+
   private
 
   def applications_service

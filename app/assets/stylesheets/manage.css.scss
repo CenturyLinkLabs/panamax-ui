@@ -1,0 +1,10 @@
+@import 'ctl_base_ui/colors';
+@import 'ctl_base_ui/mixins';
+@import 'ctl_base_ui/icons';
+
+section.application-services {
+  header {
+    border-bottom: 1px solid $grey;
+    background: none;
+  }
+}
