@@ -20,8 +20,8 @@ bundle
 # the below environment variables are set by .env in the root of the project.
 # You may need to override them to point to the API installation you are using.
 # Do not check your local changes into version control
-export PMX_API_HOST=localhost
-export PMX_API_PORT=8888
+export PMX_API_PORT_3000_TCP_ADDR=localhost
+export PMX_API_PORT_3000_TCP_PORT=8888
 rails s
 ```
 now visit localhost:3000 and see if it works
