@@ -16,4 +16,5 @@
       = button_tag 'Run Image', class: 'button-positive'
   - if remote
     .community-data
-      .star-count= presenter.star_count
+      = link_to presenter.docker_index_url + "/stars/" do
+        .star-count=presenter.star_count
