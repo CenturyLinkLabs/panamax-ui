@@ -3,17 +3,6 @@ require 'spec_helper'
 describe SearchController do
   let(:fake_search_form) { double(:fake_search_form) }
 
-  let(:fake_response_body) do
-    {
-      'remote_images' => [
-        {
-          'id' => 'ctlc/apache',
-          'info' => { 'description' => 'some apache image' }
-        }
-      ]
-    }
-  end
-
   let(:fake_result_set) do
     double(:fake_result_set)
   end
