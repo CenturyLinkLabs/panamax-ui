@@ -1,11 +1,17 @@
 class ApplicationsController < ApplicationController
   def create
-    applications_service.create(params[:application])
-    render text: 'good job, you created an app'
+    @app = applications_service.create(params[:application])
+
+    if @app.valid?
+      redirect_to application_url(@app.to_param)
+    else
+      render :show
+    end
   end
 
   def show
-
+    @app = applications_service.find_by_id(params[:id])
+    render status: :not_found unless @app.present?
   end
 
   private

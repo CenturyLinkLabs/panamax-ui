@@ -6,12 +6,18 @@ class ApplicationsService
     @connection = connection
   end
 
+  def find_by_id(id)
+    response = connection.get "/apps/#{id}"
+    App.create_from_response(response.body) unless response.status == 404
+  end
+
   def create(params)
-    connection.post do |req|
+    response = connection.post do |req|
       req.url '/apps'
       req.headers['Content-Type'] = 'application/json'
       req.body = params.to_json
     end
+    App.create_from_response(response.body)
   end
 
   def self.default_connection
