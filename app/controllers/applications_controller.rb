@@ -8,6 +8,10 @@ class ApplicationsController < ApplicationController
 
   end
 
+  def index
+
+  end
+
   private
 
   def applications_service
