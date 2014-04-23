@@ -1,4 +1,4 @@
-require 'spec_helper.rb'
+require 'spec_helper'
 
 describe SearchResultSet do
 
@@ -16,7 +16,7 @@ describe SearchResultSet do
 
     let(:fake_json_response) { response_attributes.to_json }
 
-    it 'instatiates itself with the parsed json attribes' do
+    it 'instatiates itself with the parsed json attributes' do
       result = subject.create_from_response(fake_json_response)
 
       expect(result).to be_a SearchResultSet
@@ -32,7 +32,6 @@ describe SearchResultSet do
       }.to_not raise_error
     end
   end
-
 
   describe '#as_json' do
     subject { SearchResultSet.new(response_attributes) }

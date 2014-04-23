@@ -6,7 +6,11 @@ class FakePanamaxApi < Sinatra::Base
   end
 
   post '/apps' do
-    json_response 200, 'search_results.json' #todo change this to something else
+    json_response 200, 'app_representation.json'
+  end
+
+  get "/apps/:id" do
+    json_response 200, 'app_representation.json'
   end
 
   private
