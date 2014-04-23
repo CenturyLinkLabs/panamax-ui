@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resource :search, only: [:new, :show], controller: 'search'
 
-  resources :applications, only: [:create, :show]
+  resources :applications, only: [:index, :create, :show], controller: 'applications'
 
   mount CtlBaseUi::Engine => "/ctl-base-ui"
 end
