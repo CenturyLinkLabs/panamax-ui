@@ -2,8 +2,13 @@
 
 %h1= @app.name
 %section.application-services
-  %h3
-    Application Services
-  %nav
-    %a.list.selected= ''
-    %a.link= ''
+  %header
+    %h3
+      Application Services
+    %nav
+      %a.list.selected= ''
+      %a.link= ''
+  .categories
+    - @app.service_categories.each do |cat|
+      .category
+        = cat['name']

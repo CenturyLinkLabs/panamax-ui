@@ -3,12 +3,13 @@ require 'active_model'
 class App
   include ActiveModel::Model
 
-  attr_reader :name, :id
+  attr_reader :name, :id, :services
 
   def initialize(attributes={})
     add_errors(attributes['errors'])
     @name = attributes['name']
     @id = attributes['id']
+    @services = attributes['services']
   end
 
   def self.create_from_response(response)
@@ -22,6 +23,10 @@ class App
 
   def valid?
     errors.empty?
+  end
+
+  def service_categories
+    services.map{ |service| service['tags'] }.flatten.compact
   end
 
   private
