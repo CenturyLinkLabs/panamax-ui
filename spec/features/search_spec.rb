@@ -24,23 +24,5 @@ describe "searching for templates and images" do
       expect(page).to have_css '.image-count', text: '2 Images'
       expect(page).to have_css 'img[src="/icons/icon.png"]'
     end
-
-    it 'can run an image' do
-      visit '/search?utf8=%E2%9C%93&search_form[query]=wordpress'
-
-      within '.image-result', text: 'tutum/wordpress' do
-        click_on "Run Image"
-      end
-
-      expect(page).to have_content 'good job, you created an app'
-    end
-
-    it 'can run a template' do
-      visit '/search?utf8=%E2%9C%93&search_form[query]=wordpress'
-
-      click_on "Run Template"
-
-      expect(page).to have_content 'good job, you created an app'
-    end
   end
 end
