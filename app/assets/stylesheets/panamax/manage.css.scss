@@ -2,9 +2,25 @@
 @import 'ctl_base_ui/mixins';
 @import 'ctl_base_ui/icons';
 
+@mixin panel {
+  border-top: 10px solid $grey;
+  margin: 10px 10px 10px 0;
+  padding: 10px;
+  font-size: 0.9em;
+  .title {
+    border-bottom: 1px solid $grey;
+    color: $dark_blue;
+    line-height: 25px;
+    padding-bottom: 10px;
+  }
+}
+
 section.application-services {
-  border-bottom: 1px solid $grey;
-  line-height: 30px;
+  .title {
+    border-bottom: 1px solid $grey;
+    line-height: 30px;
+    margin-bottom: 19px;
+  }
   h3 {
     @include border-box;
     width: 890px;
@@ -61,5 +77,10 @@ section.application-services {
         height: 20px;
       }
     }
+  }
+  .category-panel {
+    @include panel;
+    width: 263px;
+    float: left;
   }
 }

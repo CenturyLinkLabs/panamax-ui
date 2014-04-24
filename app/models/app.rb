@@ -26,7 +26,7 @@ class App
   end
 
   def service_categories
-    services.map{ |service| service['tags'] }.flatten.compact
+    services.map{ |service| service['categories'] }.flatten.compact
   end
 
   private
