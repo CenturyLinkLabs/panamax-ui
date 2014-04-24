@@ -13,3 +13,8 @@
       .category-panel
         .title
           = cat['name']
+        %ul.services
+          - @app.categorized_services[cat['name']].each do |service|
+            %li
+              = service['name']
+

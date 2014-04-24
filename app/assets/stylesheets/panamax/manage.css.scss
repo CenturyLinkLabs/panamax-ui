@@ -82,5 +82,12 @@ section.application-services {
     @extend .panel;
     width: 263px;
     float: left;
+    ul.services {
+      li {
+        margin-bottom: 10px;
+        line-height: 20px;
+        padding: 10px;
+      }
+    }
   }
 }
