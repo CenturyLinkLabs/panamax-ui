@@ -4,7 +4,8 @@ describe App do
   let(:response_attributes) do
     {
       'name' => 'App Daddy',
-      'id' => 77
+      'id' => 77,
+      "services" => [{'name' => 'blah'}]
     }
   end
 
@@ -50,7 +51,8 @@ describe App do
     it 'provides the attributes to be converted to JSON' do
       expected = {
         'name' => 'App Daddy',
-        'id' => 77
+        'id' => 77,
+        "services"=>[{"name"=>"blah"}]
       }
       expect(subject.as_json).to eq expected
     end
