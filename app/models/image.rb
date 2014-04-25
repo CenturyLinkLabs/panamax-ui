@@ -4,7 +4,7 @@ class Image
 
   attr_reader :id, :description, :repository, :star_count, :location
 
-  DOCKER_INDEX_BASE_URL = 'https://index.docker.io/u/'
+  DOCKER_INDEX_BASE_URL = 'https://index.docker.io/'
 
   def initialize(attributes)
     @attributes = attributes
@@ -32,7 +32,10 @@ class Image
   end
 
   def docker_index_url
-    "#{DOCKER_INDEX_BASE_URL}#{repository}" if remote?
+    if remote?
+      path_part = (repository =~ /\//) ? "u/#{repository}" : "_/#{repository}"
+      "#{DOCKER_INDEX_BASE_URL}#{path_part}"
+    end
   end
 
   def short_description
