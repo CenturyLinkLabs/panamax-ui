@@ -16,5 +16,7 @@
         %ul.services
           - @app.categorized_services[cat['name']].each do |service|
             %li
-              = service['name']
+              .service-icon
+              %span
+                = service['name']
 

@@ -7,9 +7,17 @@
   margin: 10px 10px 10px 0;
   padding: 10px;
   font-size: 0.9em;
+  &:hover {
+    border-top-color: $sky_blue;
+    background-color: $light_grey;
+    .title {
+      color: $sky_blue;
+    }
+  }
   .title {
     border-bottom: 1px solid $grey;
     color: $dark_blue;
+    font-weight: bold;
     line-height: 25px;
     padding-bottom: 10px;
   }
@@ -82,11 +90,48 @@ section.application-services {
     @extend .panel;
     width: 263px;
     float: left;
+    &:hover {
+      ul.services {
+        li {
+          &:hover {
+            background-color: $white;
+            color: $dark_blue;
+          }
+          .service-icon {
+            background-color: $white;
+          }
+        }
+      }
+    }
     ul.services {
       li {
         margin-bottom: 10px;
         line-height: 20px;
-        padding: 10px;
+        height: 41px;
+        border-radius: 4px;
+        span {
+          position: relative;
+          top: -16px;
+        }
+        .service-icon {
+          display: inline-block;
+          position: relative;
+          background-color: $light_grey;
+          width: 41px;
+          height: 41px;
+          margin-right: 6px;
+          border-radius: 4px;
+          &:before {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 6px;
+            display: block;
+            @include icon-white;
+            width: 31px;
+            height: 31px;
+          }
+        }
       }
     }
   }
