@@ -26,10 +26,21 @@ describe Image do
 
   describe '#docker_index_url' do
     context 'when a remote image' do
-      subject { described_class.new('location' => described_class.locations[:remote], 'repository' => 'boom/shaka') }
 
-      it 'composes a docker index URL' do
-        expect(subject.docker_index_url).to eq 'https://index.docker.io/u/boom/shaka'
+      context 'for official images' do
+        subject { described_class.new('location' => described_class.locations[:remote], 'repository' => 'shaka') }
+
+        it 'composes a docker index URL' do
+          expect(subject.docker_index_url).to eq 'https://index.docker.io/_/shaka'
+        end
+      end
+
+      context 'for unofficial images' do
+        subject { described_class.new('location' => described_class.locations[:remote], 'repository' => 'boom/shaka') }
+
+        it 'composes a docker index URL' do
+          expect(subject.docker_index_url).to eq 'https://index.docker.io/u/boom/shaka'
+        end
       end
     end
 
