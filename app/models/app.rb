@@ -25,8 +25,10 @@ class App
     errors.empty?
   end
 
-  def service_categories
-    Set.new(services.map{ |service| service['categories'] }.flatten.compact)
+  concerning :ServiceCategories do
+    def service_categories
+      Set.new(services.map{ |service| service['categories'] }.flatten.compact)
+    end
   end
 
   private
