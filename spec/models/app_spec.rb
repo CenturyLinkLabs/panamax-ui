@@ -4,7 +4,12 @@ describe App do
   let(:response_attributes) do
     {
       'name' => 'App Daddy',
-      'id' => 77
+      'id' => 77,
+      "services" => [
+          {'name' => 'blah', 'categories' => [ {'name' => 'foo'}, {'name' => 'baz'}]},
+          {'name' => 'barf', 'categories' => [ {'name' => 'foo'} ]},
+          {'name' => 'barf', 'categories' => [ {'name' => 'bar'} ]}
+      ]
     }
   end
 
@@ -48,11 +53,22 @@ describe App do
     subject { App.new(response_attributes) }
 
     it 'provides the attributes to be converted to JSON' do
-      expected = {
-        'name' => 'App Daddy',
-        'id' => 77
-      }
+      expected = response_attributes
       expect(subject.as_json).to eq expected
+    end
+  end
+
+  context 'when dealing with service categories' do
+    subject { App.new(response_attributes) }
+
+    it 'returns the union of all service categories for the app services' do
+      categories = subject.service_categories
+      expect(categories.collect{|c| c['name']}).to include('foo', 'baz', 'bar')
+    end
+
+    it 'returns a list of unique service categories' do
+      categories = subject.service_categories.find_all{|c| c['name'] == 'foo'}
+      expect(categories).to have_at_most(1).item
     end
   end
 end
