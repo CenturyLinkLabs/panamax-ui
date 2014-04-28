@@ -2,7 +2,7 @@
 @import 'ctl_base_ui/mixins';
 @import 'ctl_base_ui/icons';
 
-@mixin panel {
+.panel {
   border-top: 10px solid $grey;
   margin: 10px 10px 10px 0;
   padding: 10px;
@@ -79,7 +79,7 @@ section.application-services {
     }
   }
   .category-panel {
-    @include panel;
+    @extend .panel;
     width: 263px;
     float: left;
   }
