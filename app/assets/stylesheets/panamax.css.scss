@@ -101,3 +101,21 @@ main {
   margin: 0 auto;
 }
 
+h1.breadcrumbs {
+  ul li {
+    display: inline;
+
+    a {
+      color: $lipstick_red;
+    }
+
+    &:not(:last-child):after {
+      content: ' /';
+      color: $grey;
+    }
+
+    &:last-child {
+      color: $sky_blue;
+    }
+  }
+}
