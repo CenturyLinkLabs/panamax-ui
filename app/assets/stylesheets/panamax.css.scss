@@ -101,24 +101,21 @@ main {
   margin: 0 auto;
 }
 
-ul.breadcrumbs {
-  li {
-    display: inline-block;
-    color: $sky_blue;
-    &:before {
-      content: '/';
-      color: $grey;
-      display: inline-block;
-      padding: 0 2px;
-    }
-
-    &:first-child:before {
-      display: none;
-    }
+h1.breadcrumbs {
+  ul li {
+    display: inline;
 
     a {
-      color: $dark_red;
+      color: $lipstick_red;
+    }
+
+    &:not(:last-child):after {
+      content: ' /';
+      color: $grey;
+    }
+
+    &:last-child {
+      color: $sky_blue;
     }
   }
 }
-
