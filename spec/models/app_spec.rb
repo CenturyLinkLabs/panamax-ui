@@ -53,11 +53,7 @@ describe App do
     subject { App.new(response_attributes) }
 
     it 'provides the attributes to be converted to JSON' do
-      expected = {
-        'name' => 'App Daddy',
-        'id' => 77,
-        "services"=>[{"name"=>"blah"}]
-      }
+      expected = response_attributes
       expect(subject.as_json).to eq expected
     end
   end
