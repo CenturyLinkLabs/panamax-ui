@@ -11,25 +11,27 @@
   &:hover {
     border-top-color: $sky_blue;
     background-color: $light_grey;
-    .title {
+    header {
       color: $sky_blue;
     }
   }
 
-  .title {
+  header {
     border-bottom: 1px solid $grey;
     color: $dark_blue;
     font-weight: bold;
     line-height: 25px;
     padding-bottom: 10px;
+    background: none;
   }
 }
 
 section.application-services {
-  .title {
+  header {
     border-bottom: 1px solid $grey;
     line-height: 30px;
     margin-bottom: 19px;
+    background: none;
   }
 
   h3 {
@@ -160,15 +162,18 @@ section.application-services {
             height: 31px;
           }
         }
+
         .actions {
           position: relative;
           vertical-align: top;
           display: none;
+
           .delete {
             width: 20px;
             height: 31px;
             line-height: 41px;
             display: inline-block;
+
             &:before {
               @extend .icon-x;
               @include icon-grey;
@@ -178,6 +183,7 @@ section.application-services {
               bottom: 10px;
               display: block;
             }
+
             &:hover:before {
               @include icon-red;
             }
