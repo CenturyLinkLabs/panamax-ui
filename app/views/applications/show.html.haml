@@ -26,7 +26,7 @@
                 %span
                   = service['name']
                 .actions
-                  .delete
-                  = link_to service['name'], application_service_path(@app.to_param, service['id'])
+                  = link_to 'edit', application_service_path(@app.to_param, service['id']), class: 'edit-action', title: 'details'
+                  %a.delete-action
         %button.button-positive
           Add a Service

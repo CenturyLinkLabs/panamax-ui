@@ -6,8 +6,8 @@ describe 'managing an application' do
       it 'can navigate to a running service' do
         visit '/applications/2'
 
-        within '.category-panel', text: 'Web Tier' do
-          click_on 'tutum_wordpress_1'
+        within '.category-panel li', text: 'tutum_wordpress_1' do
+          click_on 'details'
         end
 
         expect(page).to have_css 'h1', text: 'tutum/wordpress'
