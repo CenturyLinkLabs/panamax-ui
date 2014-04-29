@@ -45,6 +45,11 @@ class App
         hash[category.name] = services_with_category_name(category.name)
         hash
       end
+
+      if groups.present? && uncategorized_services.present?
+        groups = groups.merge('Uncategorized' => uncategorized_services)
+      end
+
       return groups
     end
 
@@ -65,4 +70,5 @@ class App
       errors.add(k,v)
     end
   end
+
 end
