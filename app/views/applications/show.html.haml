@@ -2,7 +2,7 @@
 
 %h1= @app.name
 %section.application-services
-  .title
+  %header
     %h3
       Application Services
     %nav
@@ -11,7 +11,7 @@
   .categories
     - @app.service_categories.each do |cat|
       .category-panel
-        .title
+        %header
           = cat['name']
         %ul.services
           - @app.categorized_services[cat['name']].each do |service|
