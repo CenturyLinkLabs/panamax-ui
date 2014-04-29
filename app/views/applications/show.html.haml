@@ -13,12 +13,14 @@
       .category-panel
         %header
           = cat['name']
-        %ul.services
-          - @app.categorized_services[cat['name']].each do |service|
-            %li
-              .service-icon
-              %span
-                = service['name']
-              .actions
-                .delete
-
+        - unless @app.categorized_services.empty?
+          %ul.services
+            - @app.categorized_services[cat['name']].each do |service|
+              %li
+                .service-icon
+                %span
+                  = service['name']
+                .actions
+                  .delete
+        %button.button-positive
+          Add a Service
