@@ -124,7 +124,29 @@ section.application-services {
       }
     }
 
+    .button-positive {
+      width: 100%;
+      position: relative;
+      padding-left: 30px;
+      text-align: left;
+      &:after {
+        @include icon-white;
+        @extend .icon-plus;
+        content: '';
+        position: absolute;
+        left: 11px;
+        top: 19px;
+        display: block;
+        height: 10px;
+        width: 10px;
+      }
+    }
+
     ul.services {
+      padding-bottom: 6px;
+      border-bottom: 1px solid $grey;
+      margin-bottom: 19px;
+
       li {
         margin-bottom: 10px;
         line-height: 20px;
