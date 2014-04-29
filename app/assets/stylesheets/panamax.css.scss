@@ -101,3 +101,24 @@ main {
   margin: 0 auto;
 }
 
+ul.breadcrumbs {
+  li {
+    display: inline-block;
+    color: $sky_blue;
+    &:before {
+      content: '/';
+      color: $grey;
+      display: inline-block;
+      padding: 0 2px;
+    }
+
+    &:first-child:before {
+      display: none;
+    }
+
+    a {
+      color: $dark_red;
+    }
+  }
+}
+

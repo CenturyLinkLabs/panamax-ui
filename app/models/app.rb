@@ -2,6 +2,7 @@ require 'active_model'
 
 class App
   include ActiveModel::Model
+  include ActionView::Helpers::TextHelper
 
   attr_reader :name, :id, :services
 
@@ -19,6 +20,10 @@ class App
 
   def to_param
     id
+  end
+
+  def truncate_name(length)
+    truncate(name, length: length)
   end
 
   def valid?
