@@ -113,7 +113,7 @@ section.application-services {
               display: inline-block;
             }
             span {
-              width: 177px;
+              width: 160px;
             }
           }
 
@@ -162,6 +162,49 @@ section.application-services {
           text-overflow: ellipsis;
         }
 
+        .actions {
+          display: none;
+          float: right;
+          height: 41px;
+          padding-right: 5px;
+
+          a {
+            @include hide-text;
+            float: left;
+            width: 20px;
+            height: 100%;
+            position: relative;
+            &:after {
+              left: 5px;
+              top: 16px;
+              position: absolute;
+              content: '';
+            }
+          }
+
+          a.delete-action {
+            &:after {
+              @extend .icon-x;
+              @include icon-light-grey;
+            }
+
+            &:hover:after {
+              @include icon-red;
+            }
+          }
+
+          a.edit-action {
+            &:after {
+              @extend .icon-magnifying-glass;
+              @include icon-light-grey;
+            }
+
+            &:hover:after {
+              @include icon-grey;
+            }
+          }
+        }
+
         .service-icon {
           display: inline-block;
           position: relative;
@@ -180,33 +223,6 @@ section.application-services {
             @include icon-white;
             width: 31px;
             height: 31px;
-          }
-        }
-
-        .actions {
-          position: relative;
-          vertical-align: top;
-          display: none;
-
-          .delete {
-            width: 20px;
-            height: 31px;
-            line-height: 41px;
-            display: inline-block;
-
-            &:before {
-              @extend .icon-x;
-              @include icon-grey;
-              position: absolute;
-              content: '';
-              left: 10px;
-              bottom: 10px;
-              display: block;
-            }
-
-            &:hover:before {
-              @include icon-red;
-            }
           }
         }
       }
