@@ -1,0 +1,7 @@
+:ruby
+  crumbs = breadcrumbs_for(
+    'Manage',
+    link_to(@app.name, application_path(@app.to_param)),
+    @service.name
+  )
+= render '/shared/breadcrumbs', breadcrumbs: crumbs

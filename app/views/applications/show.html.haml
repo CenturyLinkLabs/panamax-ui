@@ -27,5 +27,6 @@
                   = service['name']
                 .actions
                   .delete
+                  = link_to service['name'], application_service_path(@app.to_param, service['id'])
         %button.button-positive
           Add a Service
