@@ -113,7 +113,7 @@ section.application-services {
               display: inline-block;
             }
             span {
-              width: 177px;
+              width: 165px;
             }
           }
 
@@ -162,14 +162,18 @@ section.application-services {
         }
 
         .actions {
-          position: relative;
           vertical-align: top;
           display: none;
 
+          div {
+            position: relative;
+          }
+
           .delete {
-            width: 20px;
+            width: 15px;
             height: 31px;
             line-height: 41px;
+            margin: 0;
             display: inline-block;
 
             &:before {
@@ -177,13 +181,35 @@ section.application-services {
               @include icon-grey;
               position: absolute;
               content: '';
-              left: 10px;
-              bottom: 10px;
+              left: 5px;
+              bottom: 5px;
               display: block;
             }
 
             &:hover:before {
               @include icon-red;
+            }
+          }
+
+          .details {
+            width: 15px;
+            height: 31px;
+            line-height: 41px;
+            margin: 0;
+            display: inline-block;
+
+            &:before {
+              @extend .icon-magnifying-glass;
+              @include icon-light-grey;
+              position: absolute;
+              content: '';
+              left: 5px;
+              bottom: 5px;
+              display: block;
+            }
+
+            &:hover:before {
+              @include icon-grey;
             }
           }
         }
