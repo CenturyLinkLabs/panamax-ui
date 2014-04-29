@@ -2,7 +2,7 @@
 @import 'ctl_base_ui/mixins';
 @import 'ctl_base_ui/icons';
 
-header {
+body > header {
   background: $light_grey;
   width: 100%;
   overflow: hidden;
@@ -76,7 +76,7 @@ header {
   }
 }
 
-header nav ul li {
+body > header nav ul li {
   &.search-link a:before {
     @extend .icon-magnifying-glass-large;
   }
