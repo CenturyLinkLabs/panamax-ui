@@ -7,6 +7,7 @@
   margin: 10px 10px 10px 0;
   padding: 10px;
   font-size: 0.9em;
+
   &:hover {
     border-top-color: $sky_blue;
     background-color: $light_grey;
@@ -14,6 +15,7 @@
       color: $sky_blue;
     }
   }
+
   .title {
     border-bottom: 1px solid $grey;
     color: $dark_blue;
@@ -29,15 +31,18 @@ section.application-services {
     line-height: 30px;
     margin-bottom: 19px;
   }
+
   h3 {
     @include border-box;
     width: 890px;
     display: inline-block;
     margin-bottom: 4px;
   }
+
   nav {
     @include border-box;
     display: inline-block;
+
     a {
       @include border-radius(4px);
       vertical-align: top;
@@ -47,14 +52,17 @@ section.application-services {
       background: none;
       height: 31px;
     }
+
     a.list {
       &.selected {
         background: $grey;
       }
+
       &.selected:before {
         @extend .icon-list-large;
         @include icon-grey;
       }
+
       &:before {
         content: '';
         position: absolute;
@@ -67,13 +75,16 @@ section.application-services {
         height: 20px;
       }
     }
+
     a.link {
       &.selected {
         background: $grey;
       }
+
       &.selected:before {
         @include icon-grey;
       }
+
       &:before {
         content: '';
         position: absolute;
@@ -86,10 +97,12 @@ section.application-services {
       }
     }
   }
+
   .category-panel {
     @extend .panel;
     width: 263px;
     float: left;
+
     &:hover {
       ul.services {
         li {
@@ -97,22 +110,26 @@ section.application-services {
             background-color: $white;
             color: $dark_blue;
           }
+
           .service-icon {
             background-color: $white;
           }
         }
       }
     }
+
     ul.services {
       li {
         margin-bottom: 10px;
         line-height: 20px;
         height: 41px;
         border-radius: 4px;
+
         span {
           position: relative;
           top: -16px;
         }
+
         .service-icon {
           display: inline-block;
           position: relative;
@@ -121,6 +138,7 @@ section.application-services {
           height: 41px;
           margin-right: 6px;
           border-radius: 4px;
+
           &:before {
             content: '';
             position: absolute;
