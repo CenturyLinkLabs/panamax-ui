@@ -5,6 +5,7 @@
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
+    = favicon_link_tag 'http://www.centurylinklabs.com/images/favicon.ico'
   %body{id: yield(:body_id)}
     %header
       %h1.panamax-logo

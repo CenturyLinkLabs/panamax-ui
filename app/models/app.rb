@@ -29,7 +29,20 @@ class App
     def service_categories
       Set.new(services.map{ |service| service['categories'] }.flatten.compact)
     end
+
+    def categorized_services
+      groups = {}
+      service_categories.each do |category|
+        groups[category['name']] = services_with_category_name(category['name'])
+      end
+      return groups
+    end
+
+    def services_with_category_name(name)
+      services.select { |service| service['categories'].any?{ |cat| cat['name'] == name } }
+    end
   end
+
 
   private
 
