@@ -1,6 +1,8 @@
+- content_for(:body_id, 'manage_flow')
+
 :ruby
   crumbs = breadcrumbs_for(
-    'Manage',
+    link_to("Manage", applications_path),
     link_to(@app.name, application_path(@app.to_param)),
     @service.name
   )
