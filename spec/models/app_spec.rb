@@ -41,15 +41,6 @@ describe App do
     end
   end
 
-  describe '#truncate_name' do
-    subject { described_class.new('id' => 77, 'name' => 'Testing') }
-
-    it 'returns truncated name if length is smaller than name' do
-      expect(subject.truncate_name(100)).to eq 'Testing'
-      expect(subject.truncate_name(4)).to eq 'T...'
-    end
-  end
-
   describe '#to_param' do
     subject { described_class.new('id' => 77) }
 
