@@ -1,11 +1,12 @@
 - content_for(:body_id, 'manage_flow')
 
-%h1
-  %ul.breadcrumbs
-    %li
-      = link_to "Manage", applications_path
-    %li
-      = @app.truncate_name 40
+:ruby
+  crumbs = breadcrumbs_for(
+    link_to("Manage", applications_path),
+    @app.name
+  )
+= render '/shared/breadcrumbs', breadcrumbs: crumbs
+
 %section.application-services
   %header
     %h3
