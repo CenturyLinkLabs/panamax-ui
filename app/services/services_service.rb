@@ -2,7 +2,7 @@ class ServicesService
 
   attr_accessor :connection
 
-  def initialize(connection = ApplicationsService.default_connection)
+  def initialize(connection = ServicesService.default_connection)
     @connection = connection
   end
 
