@@ -5,7 +5,7 @@
   "from": "panamax/panamax-docker-wordpress:latest",
   "links": [
     {
-    "service": "DB_1",
+    "service_name": "DB_1",
     "alias": "DB_1"
   }
   ],

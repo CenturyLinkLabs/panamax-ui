@@ -3,7 +3,7 @@ require 'active_model'
 class Service
   include ActiveModel::Model
 
-  attr_reader :name, :id, :categories, :ports, :environment
+  attr_reader :name, :id, :categories, :ports, :links, :environment
 
   def initialize(attributes={})
     @name = attributes['name']
@@ -11,6 +11,7 @@ class Service
     @categories = attributes['categories']
     @ports = attributes['ports']
     @environment = attributes['environment']
+    @links = attributes['links']
   end
 
   def category_names
@@ -30,6 +31,7 @@ class Service
     attributes['categories'] = attributes['categories'].map{ |category_hash| ServiceCategory.new(category_hash)  }
     attributes['ports'] = PortMapping.instantiate_collection(attributes['ports'])
     attributes['environment'] = EnvironmentVariable.instantiate_collection(attributes['environment'])
+    attributes['links'] = Link.instantiate_collection(attributes['links'])
     self.new(attributes)
   end
 

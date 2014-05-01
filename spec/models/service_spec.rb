@@ -13,7 +13,11 @@ describe Service do
       'environment' => {
         'DB_PASS' => 'pazz',
         'WP_PASS' => 'abc123'
-      }
+      },
+      'links' => [
+        {'service_name' => 'DB'},
+        {'service_name' => 'Wordpress'}
+      ]
     }
   end
 
@@ -45,6 +49,11 @@ describe Service do
       expect(result.environment.map(&:name)).to eq ['DB_PASS', 'WP_PASS']
       expect(result.environment.map(&:value)).to eq ['pazz', 'abc123']
       expect(result.environment.map(&:class).uniq).to match_array([EnvironmentVariable])
+    end
+
+    it 'instantiates a link for each link' do
+      result = described_class.create_from_response(fake_json_response)
+      expect(result.links.map(&:service_name)).to match_array(['DB', 'Wordpress'])
     end
   end
 
