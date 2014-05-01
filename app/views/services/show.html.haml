@@ -7,3 +7,18 @@
     @service.name
   )
 = render '/shared/breadcrumbs', breadcrumbs: crumbs
+
+.port-detail
+  %h3 Ports
+  %ul
+    - @service.ports.each do |port|
+      %li{title: "container: #{port.container_port}, host: #{port.host_port}"}
+        %strong= port.host_port
+        = "/tcp"
+
+.environment-variables
+  %h3 Environment Variables
+  %dl
+    - @service.environment.each do |var|
+      %dt= var.name
+      %dd= var.value
