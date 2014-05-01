@@ -28,7 +28,9 @@
           type: 'DELETE'
         })
         .done(function() {
-          $(base.$el).fadeOut('slow');
+          $(base.$el).css('opacity', '0.5')
+                     .delay(1000)
+                     .fadeOut('slow');
         })
         .fail(function(){
           alert('Unable to delete service.');
