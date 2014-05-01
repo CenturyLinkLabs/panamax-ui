@@ -11,6 +11,10 @@ class ServicesService
     Service.build_from_response(response.body) unless response.status == 404
   end
 
+  def destroy(service_id)
+    [true, 200]
+  end
+
   def self.default_connection
     Faraday.new(url: PanamaxApi::URL)
   end
