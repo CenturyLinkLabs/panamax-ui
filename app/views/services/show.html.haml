@@ -8,6 +8,12 @@
   )
 = render '/shared/breadcrumbs', breadcrumbs: crumbs
 
+.service-links
+  %h3 Service Links
+  %ul
+    - @service.links.each do |link|
+      %li= link.service_name
+
 .port-detail
   %h3 Ports
   %ul
