@@ -32,19 +32,24 @@ class App
 
   concerning :ServiceCategories do
     def service_categories
-      services.inject([]) do |array, service|
+      services.each_with_object([]) do |service, array|
         service.categories.each do |category|
           array << category unless array.any?{ |cat| cat.name == category.name }
         end
-        array
       end
     end
 
     def categorized_services
-      groups = service_categories.inject({}) do |hash, category|
+      groups = service_categories.each_with_object({}) do |category, hash|
         hash[category.name] = services_with_category_name(category.name)
-        hash
       end
+
+      if groups.present?
+        groups = groups.merge('Uncategorized' => uncategorized_services) if uncategorized_services.present?
+      else
+        groups['Services'] = services
+      end
+
       return groups
     end
 
@@ -65,4 +70,5 @@ class App
       errors.add(k,v)
     end
   end
+
 end

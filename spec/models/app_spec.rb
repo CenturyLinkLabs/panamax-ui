@@ -86,6 +86,23 @@ describe App do
         expect(groups.keys).to include('foo', 'baz', 'bar')
         expect(groups.values.flatten.map { |s| s.name }).to include('blah', 'barf', 'bark')
       end
+
+      it 'includes an Uncategorized service group if there are categorized and uncategorized services' do
+        groups = subject.categorized_services
+        expect(groups.keys).to include('Uncategorized')
+      end
+
+      it 'does not include Uncategorized service group if there are only categorized services' do
+        response_attributes['services'].delete({'name' => 'bard', 'categories' => []})
+        groups = subject.categorized_services
+        expect(groups.keys).to_not include('Uncategorized')
+      end
+
+      it 'groups all services under a "Service" group if there are only uncategorized services' do
+        response_attributes['services'].each { |s| s['categories'] = [] }
+        groups = subject.categorized_services
+        expect(groups.keys).to match_array(['Services'])
+      end
     end
 
     describe '#services_with_category_name' do
@@ -98,6 +115,14 @@ describe App do
       it 'returns an empty array if the category name is not present' do
         services = subject.services_with_category_name('notaname')
         expect(services).to eq []
+      end
+    end
+
+    describe '#uncategorized_services' do
+      it 'returns an array of services that have no categories' do
+        subject.uncategorized_services.each do |service|
+          expect(service.categories).to eq []
+        end
       end
     end
   end
