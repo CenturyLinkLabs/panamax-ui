@@ -57,3 +57,27 @@
     width: 260px;
   }
 }
+
+.service-links {
+  @extend .service-detail;
+  width: 310px;
+
+  ul li {
+    margin-left: 20px;
+    padding-left: 40px;
+    position: relative;
+    border: 0;
+
+    &:before {
+      z-index: -1;
+      position: absolute;
+      content: '';
+      border: $sky_blue 1px solid;
+      border-width: 0 0 1px 1px;
+      height: 50px;
+      width: 20px;
+      top: -27px;
+      left: 0;
+    }
+  }
+}
