@@ -1,0 +1,13 @@
+#add-service-form
+  %form.search-form
+    = form_for @search_form, url: search_path, method: :get, html: {class: 'search-form'} do |f|
+      = f.text_field :query, placeholder: 'enter your command / query', accesskey: 's'
+      = f.button 'Search', class: 'button-primary'
+  %p.example-searches
+    %strong
+      Examples:
+    %a{data: {query: 'wordpress'}} wordpress,
+    %a{data: {query: 'apache'}} apache,
+    %a{data: {query: 'rails'}} rails,
+    %a{data: {query: 'ubuntu'}} ubuntu,
+    %a{data: {query: 'java'}} java

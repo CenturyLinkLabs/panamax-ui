@@ -26,4 +26,7 @@ $(document).ready(function() {
   });
 
   $('ul.services li').serviceActions();
+
+  $('.category-panel').categoryActions();
+
 });
