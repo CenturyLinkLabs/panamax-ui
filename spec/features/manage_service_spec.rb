@@ -8,7 +8,11 @@ describe 'managing a service' do
       expect(page).to have_css 'h1', text: 'tutum/wordpress'
       expect(page).to have_css 'h1', text: 'WP_1'
 
-      expect(page).to have_content "8080 /tcp"
+      expect(page).to have_content '8080 /tcp'
+
+      within '.service-links', text: 'Service Links' do
+        expect(page).to have_content 'DB_1'
+      end
     end
 
     it 'can navigate back to the application via the crumbs' do
