@@ -2,7 +2,12 @@
 @import 'ctl_base_ui/colors';
 
 .service-detail {
+  float: left;
   font-size: 13px;
+
+  & + & {
+    margin-left: 20px;
+  }
 
   h3 {
     @include border-radius(3px);
@@ -12,15 +17,43 @@
     padding: 13px 15px;
   }
 
-  ul {
-    li {
-      padding: 15px 0 20px;
-      border-bottom: $light_grey 1px solid;
+  ul li,
+  dl dt,
+  dl dd {
+    padding: 15px 0 20px;
+    border-bottom: $light_grey 1px solid;
+  }
+
+  dl {
+    overflow: auto;
+
+    dt,
+    dd {
+      @include border-box;
+      float: left;
+      padding-left: 0;
+    }
+
+    dt {
+      font-weight: bold;
     }
   }
+
 }
 
 .port-detail {
   @extend .service-detail;
   width: 140px;
+}
+
+.environment-variables {
+  @extend .service-detail;
+  width: 470px;
+
+  dl dt {
+    width: 220px;
+  }
+  dl dd {
+    width: 260px;
+  }
 }
