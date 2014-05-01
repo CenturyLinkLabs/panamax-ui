@@ -27,7 +27,7 @@ class Service
 
   def self.create_with_sub_resources(attributes)
     attributes['categories'] = attributes['categories'].map{ |category_hash| ServiceCategory.new(category_hash)  }
-    attributes['ports'] = (attributes['ports'] || []).map{ |ports_hash| PortMapping.new(ports_hash)  }
+    attributes['ports'] = PortMapping.new_from_collection(attributes['ports'])
     self.new(attributes)
   end
 
