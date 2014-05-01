@@ -97,6 +97,12 @@ describe App do
         groups = subject.categorized_services
         expect(groups.keys).to_not include('Uncategorized')
       end
+
+      it 'groups all services under a "Service" group if there are only uncategorized services' do
+        response_attributes['services'].each { |s| s['categories'] = [] }
+        groups = subject.categorized_services
+        expect(groups.keys).to match_array(['Services'])
+      end
     end
 
     describe '#services_with_category_name' do

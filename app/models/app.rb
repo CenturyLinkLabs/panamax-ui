@@ -44,9 +44,10 @@ class App
         hash[category.name] = services_with_category_name(category.name)
       end
 
-      if groups.present? && uncategorized_services.present?
-        groups = groups.merge('Uncategorized' => uncategorized_services)
-
+      if groups.present?
+        groups = groups.merge('Uncategorized' => uncategorized_services) if uncategorized_services.present?
+      else
+        groups['Services'] = services
       end
 
       return groups
