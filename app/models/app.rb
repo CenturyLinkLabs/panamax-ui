@@ -14,6 +14,11 @@ class App
 
   def self.create_from_response(response)
     attributes = JSON.parse(response)
+    create_with_sub_resources(attributes)
+  end
+
+  def self.create_with_sub_resources(attributes)
+    attributes['services'] = attributes['services'].map{ |service_hash| Service.create_with_sub_resources(service_hash) }
     self.new(attributes)
   end
 
@@ -27,19 +32,28 @@ class App
 
   concerning :ServiceCategories do
     def service_categories
-      Set.new(services.map{ |service| service['categories'] }.flatten.compact)
+      services.inject([]) do |array, service|
+        service.categories.each do |category|
+          array << category unless array.any?{ |cat| cat.name == category.name }
+        end
+        array
+      end
     end
 
     def categorized_services
-      groups = {}
-      service_categories.each do |category|
-        groups[category['name']] = services_with_category_name(category['name'])
+      groups = service_categories.inject({}) do |hash, category|
+        hash[category.name] = services_with_category_name(category.name)
+        hash
       end
       return groups
     end
 
     def services_with_category_name(name)
-      services.select { |service| service['categories'].any?{ |cat| cat['name'] == name } }
+      services.select { |service| service.categories.any?{ |cat| cat.name == name } }
+    end
+
+    def uncategorized_services
+      services.select { |service| service.categories.blank? }
     end
   end
 

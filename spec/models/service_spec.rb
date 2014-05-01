@@ -4,7 +4,8 @@ describe Service do
   let(:response_attributes) do
     {
       'name' => 'Wordpress',
-      'id' => 77
+      'id' => 77,
+      'categories' => [{'name' => 'foo'}, {'name' => 'baz'}]
     }
   end
 
@@ -16,6 +17,12 @@ describe Service do
       expect(result).to be_a Service
       expect(result.name).to eq 'Wordpress'
       expect(result.id).to eq 77
+    end
+
+    it 'instantiates a ServiceCategory for each nested category' do
+      result = described_class.create_from_response(fake_json_response)
+      expect(result.categories.map(&:name)).to match_array(['foo', 'baz'])
+      expect(result.categories.map(&:class).uniq).to match_array([ServiceCategory])
     end
   end
 
