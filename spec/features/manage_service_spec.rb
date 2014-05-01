@@ -11,6 +11,10 @@ describe 'managing a service' do
       within 'div', text: 'Ports' do
         expect(page).to have_content "8080 /tcp"
       end
+
+      within 'div', text: 'Environment Variables' do
+        expect(page).to have_content "DB_PASSWORD pass@word01"
+      end
     end
 
     it 'can navigate back to the application via the crumbs' do
