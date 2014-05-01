@@ -83,18 +83,19 @@ body > header nav ul li {
   &.manage-link a:before {
     @extend .icon-sprocket-large;
   }
+}
 
-  /* active states */
-  #search_flow &.search-link a,
-  #manage_flow &.manage-link a {
-    background-color: $grey;
-    color: $dark_grey;
+/* active states */
+#search_flow .search-link a,
+#manage_flow .manage-link a {
+  background-color: $grey;
+  color: $dark_grey;
 
-    &:before {
-      @include icon-grey;
-    }
+  &:before {
+    @include icon-grey;
   }
 }
+
 
 main {
   width: 960px;
