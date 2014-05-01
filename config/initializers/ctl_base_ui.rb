@@ -1,7 +1,8 @@
 CtlBaseUi.configure do |config|
   config.additional_entries = [
     'search',
-    'breadcrumbs'
+    'breadcrumbs',
+    'service_details'
   ]
 
   config.view_helpers = [

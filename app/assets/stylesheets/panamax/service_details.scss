@@ -1,0 +1,50 @@
+@import 'ctl_base_ui/mixins';
+@import 'ctl_base_ui/colors';
+
+.service-detail {
+  font-size: 13px;
+
+  h3 {
+    @include border-radius(3px);
+    background: $sky_blue;
+    color: $white;
+    font-weight: normal;
+    padding: 13px 15px;
+  }
+
+  ul {
+    li {
+      padding: 15px 0 20px;
+      border-bottom: $light_grey 1px solid;
+    }
+  }
+}
+
+.port-detail {
+  @extend .service-detail;
+  width: 143px;
+}
+
+.service-links {
+  @extend .service-detail;
+  width: 320px;
+
+  ul li {
+    margin-left: 20px;
+    padding-left: 40px;
+    position: relative;
+    border: 0;
+
+    &:before {
+      z-index: -1;
+      position: absolute;
+      content: '';
+      border: $sky_blue 1px solid;
+      border-width: 0 0 1px 1px;
+      height: 50px;
+      width: 20px;
+      top: -27px;
+      left: 0;
+    }
+  }
+}
