@@ -9,7 +9,11 @@ describe Service do
       'ports' => [
         {'host_port' => 8080, 'container_port' => 80},
         {'host_port' => 7000, 'container_port' => 77}
-      ]
+      ],
+      'environment' => {
+        'DB_PASS' => 'pazz',
+        'WP_PASS' => 'abc123'
+      }
     }
   end
 
@@ -34,6 +38,13 @@ describe Service do
       expect(result.ports.map(&:host_port)).to match_array([8080, 7000])
       expect(result.ports.map(&:container_port)).to match_array([80, 77])
       expect(result.ports.map(&:class).uniq).to match_array([PortMapping])
+    end
+
+    it 'instantiates an environment variable for each nested variable' do
+      result = described_class.create_from_response(fake_json_response)
+      expect(result.environment.map(&:name)).to eq ['DB_PASS', 'WP_PASS']
+      expect(result.environment.map(&:value)).to eq ['pazz', 'abc123']
+      expect(result.environment.map(&:class).uniq).to match_array([EnvironmentVariable])
     end
   end
 
