@@ -32,18 +32,16 @@ class App
 
   concerning :ServiceCategories do
     def service_categories
-      services.inject([]) do |array, service|
+      services.each_with_object([]) do |array, service|
         service.categories.each do |category|
           array << category unless array.any?{ |cat| cat.name == category.name }
         end
-        array
       end
     end
 
     def categorized_services
-      groups = service_categories.inject({}) do |hash, category|
+      groups = service_categories.each_with_object({}) do |hash, category|
         hash[category.name] = services_with_category_name(category.name)
-        hash
       end
 
       if groups.present? && uncategorized_services.present?
