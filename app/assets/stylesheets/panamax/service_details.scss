@@ -1,0 +1,26 @@
+@import 'ctl_base_ui/mixins';
+@import 'ctl_base_ui/colors';
+
+.service-detail {
+  font-size: 13px;
+
+  h3 {
+    @include border-radius(3px);
+    background: $sky_blue;
+    color: $white;
+    font-weight: normal;
+    padding: 13px 15px;
+  }
+
+  ul {
+    li {
+      padding: 15px 0 20px;
+      border-bottom: $light_grey 1px solid;
+    }
+  }
+}
+
+.port-detail {
+  @extend .service-detail;
+  width: 143px;
+}
