@@ -15,19 +15,18 @@
       %a.list.selected= ''
       %a.link= ''
   .categories
-    - @app.service_categories.each do |cat|
+    - @app.categorized_services.each do |group, services|
       .category-panel
         %header
-          = cat['name']
-        - unless @app.categorized_services.empty?
-          %ul.services
-            - @app.categorized_services[cat['name']].each do |service|
-              %li
-                .service-icon
-                %span
-                  = service['name']
-                .actions
-                  = link_to 'edit', application_service_path(@app.to_param, service['id']), class: 'edit-action', title: 'details'
-                  %a.delete-action
+          = group
+        %ul.services
+          - services.each do |service|
+            %li
+              .service-icon
+              %span
+                = service.name
+              .actions
+                = link_to 'edit', application_service_path(@app.to_param, service.id), class: 'edit-action', title: 'details'
+                %a.delete-action
         %button.button-positive
           Add a Service
