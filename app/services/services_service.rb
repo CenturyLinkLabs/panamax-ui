@@ -11,8 +11,9 @@ class ServicesService
     Service.build_from_response(response.body) unless response.status == 404
   end
 
-  def destroy(service_id)
-    [true, 200]
+  def destroy(app_id, service_id)
+    response = connection.delete "/apps/#{app_id}/services/#{service_id}"
+    [response.body, response.status]
   end
 
   def self.default_connection

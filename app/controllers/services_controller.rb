@@ -7,10 +7,10 @@ class ServicesController < ApplicationController
 
   def destroy
     app = applications_service.find_by_id(params[:application_id])
-    deleted,status = services_service.destroy(params[:id])
+    service, status = services_service.destroy(app.id, params[:id])
     respond_to do |format|
       format.html { redirect_to application_path app.id }
-      format.json { render(json: ({'deleted' => deleted }).to_json, status: status) }
+      format.json { render(json: service.to_json, status: status) }
     end
 
   end
