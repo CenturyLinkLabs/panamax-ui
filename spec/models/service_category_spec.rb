@@ -8,6 +8,8 @@ describe ServiceCategory do
     }
   end
 
+  it_behaves_like 'a view model'
+
   subject { described_class.new(attributes) }
 
   describe '#name' do

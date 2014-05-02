@@ -1,7 +1,4 @@
-require 'active_model'
-
-class SearchResultSet
-  include ActiveModel::Model
+class SearchResultSet < BaseViewModel
 
   attr_reader :query, :remote_images, :local_images, :templates
 

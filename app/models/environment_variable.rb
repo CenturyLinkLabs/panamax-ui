@@ -1,11 +1,6 @@
-class EnvironmentVariable
+class EnvironmentVariable < BaseViewModel
 
   attr_reader :name, :value
-
-  def initialize(attributes={})
-    @name = attributes['name']
-    @value = attributes['value']
-  end
 
   def self.instantiate_collection(hash)
     if hash.present?

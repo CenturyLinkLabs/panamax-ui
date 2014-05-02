@@ -1,15 +1,11 @@
-class Template
-  include ActiveModel::Model
+class Template < BaseViewModel
   include ActionView::Helpers::TextHelper
 
-  attr_reader :id, :description, :name, :updated_at, :image_count
+  attr_reader :id, :description, :name, :image_count
 
   def initialize(attributes)
+    super
     @attributes = attributes
-    @id = attributes['id']
-    @description = attributes['description']
-    @name = attributes['name']
-    @image_count = attributes['image_count']
   end
 
   def updated_at

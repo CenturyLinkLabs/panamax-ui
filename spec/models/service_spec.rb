@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Service do
-  let(:response_attributes) do
+  let(:attributes) do
     {
       'name' => 'Wordpress',
       'id' => 77,
@@ -21,7 +21,9 @@ describe Service do
     }
   end
 
-  let(:fake_json_response) { response_attributes.to_json }
+  it_behaves_like 'a view model'
+
+  let(:fake_json_response) { attributes.to_json }
 
   describe '.build_from_response' do
     it 'instantiates itself with the parsed json attributes' do
@@ -73,10 +75,10 @@ describe Service do
   end
 
   describe '#as_json' do
-    subject { Service.new(response_attributes) }
+    subject { Service.new(attributes) }
 
     it 'provides the attributes to be converted to JSON' do
-      expected = response_attributes
+      expected = attributes
       expect(subject.as_json).to eq expected
     end
   end

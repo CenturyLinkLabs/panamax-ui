@@ -1,15 +1,13 @@
 require 'active_model'
 
-class App
-  include ActiveModel::Model
+class App < BaseViewModel
+  include ActiveModel::Validations
 
   attr_reader :name, :id, :services
 
   def initialize(attributes={})
+    super
     add_errors(attributes['errors'])
-    @name = attributes['name']
-    @id = attributes['id']
-    @services = attributes['services']
   end
 
   def self.build_from_response(response)

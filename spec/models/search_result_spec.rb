@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe SearchResultSet do
 
-  let(:response_attributes) do
+  let(:attributes) do
     {
       'q' => 'bla',
       'remote_images' => [],
@@ -11,10 +11,12 @@ describe SearchResultSet do
     }
   end
 
+  it_behaves_like 'a view model'
+
   describe '.build_from_response' do
     subject { SearchResultSet }
 
-    let(:fake_json_response) { response_attributes.to_json }
+    let(:fake_json_response) { attributes.to_json }
 
     it 'instatiates itself with the parsed json attributes' do
       result = subject.build_from_response(fake_json_response)
@@ -26,7 +28,7 @@ describe SearchResultSet do
     end
 
     it 'does not blow up if remote images is not defined' do
-      without_remote_images = response_attributes.except(:remote_images).to_json
+      without_remote_images = attributes.except(:remote_images).to_json
       expect {
         subject.build_from_response(without_remote_images)
       }.to_not raise_error
@@ -34,7 +36,7 @@ describe SearchResultSet do
   end
 
   describe '#as_json' do
-    subject { SearchResultSet.new(response_attributes) }
+    subject { SearchResultSet.new(attributes) }
 
     it 'provides the attributes to be converted to JSON' do
       expected = {

@@ -8,6 +8,8 @@ describe EnvironmentVariable do
     }
   end
 
+  it_behaves_like 'a view model'
+
   subject { described_class.new(attributes) }
 
   describe '#name' do
@@ -28,10 +30,15 @@ describe EnvironmentVariable do
         'MY_VAR' => 'some value',
         'FOO' => 'bar'
       }
+
       result = described_class.instantiate_collection(hash)
 
-      expect(result.map(&:name)).to eq ['MY_VAR', 'FOO']
-      expect(result.map(&:value)).to eq ['some value', 'bar']
+      expected = [
+        described_class.new(name: 'MY_VAR', value: 'some value'),
+        described_class.new(name: 'FOO', value: 'bar')
+      ]
+
+      expect(result).to match_array expected
     end
   end
 end

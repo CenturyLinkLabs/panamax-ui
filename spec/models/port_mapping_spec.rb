@@ -8,6 +8,8 @@ describe PortMapping do
     }
   end
 
+  it_behaves_like 'a view model'
+
   subject { described_class.new(attributes) }
 
   describe '#host_port' do

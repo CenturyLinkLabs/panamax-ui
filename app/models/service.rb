@@ -1,18 +1,5 @@
-require 'active_model'
-
-class Service
-  include ActiveModel::Model
-
+class Service < BaseViewModel
   attr_reader :name, :id, :categories, :ports, :links, :environment
-
-  def initialize(attributes={})
-    @name = attributes['name']
-    @id = attributes['id']
-    @categories = attributes['categories']
-    @ports = attributes['ports']
-    @environment = attributes['environment']
-    @links = attributes['links']
-  end
 
   def category_names
     categories.map(&:name)

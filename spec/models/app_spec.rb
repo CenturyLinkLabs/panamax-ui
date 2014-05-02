@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe App do
-  let(:response_attributes) do
+  let(:attributes) do
     {
       'name' => 'App Daddy',
       'id' => 77,
@@ -14,7 +14,9 @@ describe App do
     }
   end
 
-  let(:fake_json_response) { response_attributes.to_json }
+  it_behaves_like 'a view model'
+
+  let(:fake_json_response) { attributes.to_json }
 
   describe '.build_from_response' do
 
@@ -57,10 +59,10 @@ describe App do
   end
 
   describe '#as_json' do
-    subject { App.new(response_attributes) }
+    subject { App.new(attributes) }
 
     it 'provides the attributes to be converted to JSON' do
-      expected = response_attributes
+      expected = attributes
       expect(subject.as_json).to eq expected
     end
   end
@@ -93,13 +95,13 @@ describe App do
       end
 
       it 'does not include Uncategorized service group if there are only categorized services' do
-        response_attributes['services'].delete({'name' => 'bard', 'categories' => []})
+        attributes['services'].delete({'name' => 'bard', 'categories' => []})
         groups = subject.categorized_services
         expect(groups.keys).to_not include('Uncategorized')
       end
 
       it 'groups all services under a "Service" group if there are only uncategorized services' do
-        response_attributes['services'].each { |s| s['categories'] = [] }
+        attributes['services'].each { |s| s['categories'] = [] }
         groups = subject.categorized_services
         expect(groups.keys).to match_array(['Services'])
       end

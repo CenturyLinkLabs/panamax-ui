@@ -7,6 +7,8 @@ describe Link do
     }
   end
 
+  it_behaves_like 'a view model'
+
   subject { described_class.new(attributes) }
 
   describe '#service_name' do
@@ -16,15 +18,21 @@ describe Link do
   end
 
   describe '.instantiate_collection' do
-    it 'instantiates itself with each item in the collection' do
-      collection = [
+    let(:collection) do
+      [
         { 'service_name' => 'foo'},
         { 'service_name' => 'bar'}
       ]
+    end
 
+    it 'instantiates itself with each item in the collection' do
       result = described_class.instantiate_collection(collection)
+      expected = [
+        described_class.new(collection[0]),
+        described_class.new(collection[1])
+      ]
 
-      expect(result.map(&:service_name)).to match_array ['foo', 'bar']
+      expect(result).to eq expected
     end
   end
 end

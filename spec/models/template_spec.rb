@@ -12,6 +12,8 @@ describe Template do
     }
   end
 
+  it_behaves_like 'a view model'
+
   subject { Template.new(attributes) }
 
   describe '#id' do
