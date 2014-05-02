@@ -14,7 +14,7 @@ class FakePanamaxApi < Sinatra::Base
   end
 
   delete "/apps/:app_id/services/:id" do
-    
+
   end
 
   get "/apps/:app_id/services/:id" do

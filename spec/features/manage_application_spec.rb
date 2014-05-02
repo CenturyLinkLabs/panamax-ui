@@ -21,7 +21,8 @@ describe 'managing an application' do
           click_on 'delete'
         end
 
-        assert_redirected_to application_path 2
+        expect(page).to have_css 'h1', text: 'tutum/wordpress'
+        #TODO: assert flash message
       end
     end
   end

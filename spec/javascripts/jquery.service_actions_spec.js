@@ -3,7 +3,6 @@ describe('$.fn.serviceActions', function () {
     fixture.load('manage-service.html');
     $('ul.services li').serviceActions();
     jasmine.Ajax.useMock();
-    jasmine.Clock.useMock();
   });
 
   describe('clicking remove service', function() {
@@ -20,6 +19,18 @@ describe('$.fn.serviceActions', function () {
       expect(clickEvent.isDefaultPrevented()).toBeTruthy();
     });
 
+    it('hides the dom element', function() {
+      $('ul.services li .actions .delete-action').click();
+      var request = mostRecentAjaxRequest();
+
+      request.response({
+        status: 200,
+        responseText: '{}'
+      });
+
+      expect($('ul.services li').css('opacity')).toBe('0.5');
+      // Testing opacity because animations have been turned off
+    });
   });
 
 });

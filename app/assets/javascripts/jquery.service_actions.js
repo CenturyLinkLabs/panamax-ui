@@ -30,7 +30,7 @@
         .done(function() {
           $(base.$el).css('opacity', '0.5')
                      .delay(1000)
-                     .fadeOut('slow');
+                     .fadeOut('slow')
         })
         .fail(function(){
           alert('Unable to delete service.');
