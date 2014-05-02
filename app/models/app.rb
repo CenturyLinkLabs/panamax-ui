@@ -16,7 +16,7 @@ class App < BaseViewModel
   end
 
   def self.build_with_sub_resources(attributes)
-    attributes['services'] = attributes['services'].map{ |service_hash| Service.build_with_sub_resources(service_hash) }
+    attributes['services'].map! { |service_hash| Service.build_with_sub_resources(service_hash) }
     self.new(attributes)
   end
 
