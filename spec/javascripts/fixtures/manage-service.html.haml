@@ -1,0 +1,15 @@
+%ul.services
+  %li
+    .service-icon
+    %span
+      Wordpress
+    .actions
+      = link_to 'edit',
+                 '/applications/1/services/1',
+                 class: 'edit-action',
+                 title: 'details'
+      = link_to 'delete',
+                '/applications/1/services/1',
+                class: 'delete-action',
+                title: 'delete',
+                method: :delete

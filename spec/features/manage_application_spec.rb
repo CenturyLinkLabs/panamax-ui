@@ -13,6 +13,16 @@ describe 'managing an application' do
         expect(page).to have_css 'h1', text: 'tutum/wordpress'
         expect(page).to have_css 'h1', text: 'WP_1'
       end
+
+      it 'can destroy a running service' do
+        visit '/applications/2'
+
+        within 'ul.services li .actions' do
+          click_on 'delete'
+        end
+
+        assert_redirected_to application_path 2
+      end
     end
   end
 end
