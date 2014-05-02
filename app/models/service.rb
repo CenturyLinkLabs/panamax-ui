@@ -28,7 +28,7 @@ class Service
   end
 
   def self.create_with_sub_resources(attributes)
-    attributes['categories'] = attributes['categories'].map{ |category_hash| ServiceCategory.new(category_hash)  }
+    attributes['categories'] = ServiceCategory.instantiate_collection(attributes['categories'])
     attributes['ports'] = PortMapping.instantiate_collection(attributes['ports'])
     attributes['environment'] = EnvironmentVariable.instantiate_collection(attributes['environment'])
     attributes['links'] = Link.instantiate_collection(attributes['links'])
