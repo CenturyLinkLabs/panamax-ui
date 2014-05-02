@@ -26,6 +26,13 @@ describe Service do
     end
   end
 
+  describe '#category_names' do
+    it 'returns an array containing the names of its categories' do
+      result = described_class.create_from_response(fake_json_response)
+      expect(result.category_names).to match_array(['foo', 'baz'])
+    end
+  end
+
   describe '#to_param' do
     subject { described_class.new('id' => 77) }
 
