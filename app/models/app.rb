@@ -12,13 +12,13 @@ class App
     @services = attributes['services']
   end
 
-  def self.create_from_response(response)
+  def self.build_from_response(response)
     attributes = JSON.parse(response)
-    create_with_sub_resources(attributes)
+    build_with_sub_resources(attributes)
   end
 
-  def self.create_with_sub_resources(attributes)
-    attributes['services'] = attributes['services'].map{ |service_hash| Service.create_with_sub_resources(service_hash) }
+  def self.build_with_sub_resources(attributes)
+    attributes['services'] = attributes['services'].map{ |service_hash| Service.build_with_sub_resources(service_hash) }
     self.new(attributes)
   end
 

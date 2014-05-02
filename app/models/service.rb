@@ -22,12 +22,14 @@ class Service
     id
   end
 
-  def self.create_from_response(response)
+  def self.build_from_response(response)
     attributes = JSON.parse(response)
-    create_with_sub_resources(attributes)
+    build_with_sub_resources(attributes)
   end
 
-  def self.create_with_sub_resources(attributes)
+  private
+
+  def self.build_with_sub_resources(attributes)
     attributes['categories'] = ServiceCategory.instantiate_collection(attributes['categories'])
     attributes['ports'] = PortMapping.instantiate_collection(attributes['ports'])
     attributes['environment'] = EnvironmentVariable.instantiate_collection(attributes['environment'])

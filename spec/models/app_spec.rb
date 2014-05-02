@@ -16,17 +16,17 @@ describe App do
 
   let(:fake_json_response) { response_attributes.to_json }
 
-  describe '.create_from_response' do
+  describe '.build_from_response' do
 
     it 'instantiates itself with the parsed json attributes' do
-      result = described_class.create_from_response(fake_json_response)
+      result = described_class.build_from_response(fake_json_response)
       expect(result).to be_an App
       expect(result.name).to eq 'App Daddy'
       expect(result.id).to eq 77
     end
 
     it 'instantiates a Service for each nested service' do
-      result = described_class.create_from_response(fake_json_response)
+      result = described_class.build_from_response(fake_json_response)
       expect(result.services.map(&:name)).to match_array(['blah', 'barf', 'bark', 'bard'])
       expect(result.services.map(&:class).uniq).to match_array([Service])
     end
@@ -66,7 +66,7 @@ describe App do
   end
 
   context 'when dealing with service categories' do
-    subject { described_class.create_from_response(fake_json_response) }
+    subject { described_class.build_from_response(fake_json_response) }
 
     describe '#service_categories' do
       it 'returns the union of all service categories for the app services' do

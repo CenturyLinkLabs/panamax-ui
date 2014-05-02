@@ -11,13 +11,13 @@ describe SearchResultSet do
     }
   end
 
-  describe '.create_from_response' do
+  describe '.build_from_response' do
     subject { SearchResultSet }
 
     let(:fake_json_response) { response_attributes.to_json }
 
     it 'instatiates itself with the parsed json attributes' do
-      result = subject.create_from_response(fake_json_response)
+      result = subject.build_from_response(fake_json_response)
 
       expect(result).to be_a SearchResultSet
       expect(result.query).to eql 'bla'
@@ -28,7 +28,7 @@ describe SearchResultSet do
     it 'does not blow up if remote images is not defined' do
       without_remote_images = response_attributes.except(:remote_images).to_json
       expect {
-        subject.create_from_response(without_remote_images)
+        subject.build_from_response(without_remote_images)
       }.to_not raise_error
     end
   end

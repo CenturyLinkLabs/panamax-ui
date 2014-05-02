@@ -12,7 +12,7 @@ class SearchResultSet
     @templates = wrap_templates(attributes['templates'])
   end
 
-  def self.create_from_response(response)
+  def self.build_from_response(response)
     attributes = JSON.parse(response)
     self.new(attributes)
   end
