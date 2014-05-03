@@ -8,31 +8,16 @@ describe Link do
   end
 
   it_behaves_like 'a view model'
+  it_behaves_like 'a collection builder', [
+    { 'service_name' => 'foo'},
+    { 'service_name' => 'bar'}
+  ]
 
   subject { described_class.new(attributes) }
 
   describe '#service_name' do
     it 'exposes the service_name' do
-      expect(subject.service_name).to eq 'DB'
-    end
-  end
-
-  describe '.instantiate_collection' do
-    let(:collection) do
-      [
-        { 'service_name' => 'foo'},
-        { 'service_name' => 'bar'}
-      ]
-    end
-
-    it 'instantiates itself with each item in the collection' do
-      result = described_class.instantiate_collection(collection)
-      expected = [
-        described_class.new(collection[0]),
-        described_class.new(collection[1])
-      ]
-
-      expect(result).to eq expected
+      expect(subject.service_name).to eq attributes['service_name']
     end
   end
 end

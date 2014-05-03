@@ -1,11 +1,5 @@
 class PortMapping < BaseViewModel
-  attr_reader :host_port, :container_port
+  include CollectionBuilder
 
-  def self.instantiate_collection(hashes)
-    if hashes.present?
-      hashes.map do |hash|
-        self.new(hash)
-      end
-    end
-  end
+  attr_reader :host_port, :container_port
 end

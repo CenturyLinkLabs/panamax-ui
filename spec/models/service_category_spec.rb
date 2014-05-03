@@ -9,6 +9,10 @@ describe ServiceCategory do
   end
 
   it_behaves_like 'a view model'
+  it_behaves_like 'a collection builder', [
+    {'name' => 'App tier'},
+    {'name' => 'DB tier'}
+  ]
 
   subject { described_class.new(attributes) }
 
@@ -21,18 +25,6 @@ describe ServiceCategory do
   describe '#id' do
     it 'exposes the id' do
       expect(subject.id).to eq 77
-    end
-  end
-
-  describe '.instantiate_collection' do
-    it 'creates a new instance of itself for each item in the collection' do
-      collection = [
-        {'name' => 'App tier'},
-        {'name' => 'DB tier'}
-      ]
-      result = described_class.instantiate_collection(collection)
-
-      expect(result.map(&:name)).to eq ['App tier', 'DB tier']
     end
   end
 end
