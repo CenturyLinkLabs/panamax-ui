@@ -20,8 +20,14 @@
   ul li,
   dl dt,
   dl dd {
-    padding: 15px 0 20px;
+    line-height: 42px;
     border-bottom: $light_grey 1px solid;
+
+    &:hover {
+      .actions {
+        display: block;
+      }
+    }
   }
 
   dl {
@@ -39,6 +45,11 @@
     }
   }
 
+  .actions {
+    display: none;
+    float: right;
+    width: 20px;
+  }
 }
 
 .port-detail {

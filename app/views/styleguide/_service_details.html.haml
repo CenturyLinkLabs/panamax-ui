@@ -4,9 +4,13 @@
     %li
       %strong 8888
       = "/tcp"
+      .actions
+        = link_to 'remove', '#', class: 'delete-action', title: 'remove'
     %li
       %strong 2020
       = "/tcp"
+      .actions
+        = link_to 'remove', '#', class: 'delete-action', title: 'remove'
 .environment-variables
   %h3 Environment Variables
   %dl
