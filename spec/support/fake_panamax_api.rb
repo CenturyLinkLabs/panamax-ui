@@ -13,10 +13,6 @@ class FakePanamaxApi < Sinatra::Base
     json_response 200, 'app_representation.json'
   end
 
-  delete "/apps/:app_id/services/:id" do
-
-  end
-
   get "/apps/:app_id/services/:id" do
     json_response 200, 'service_representation.json'
   end
