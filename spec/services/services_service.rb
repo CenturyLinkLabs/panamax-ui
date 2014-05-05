@@ -9,7 +9,7 @@ describe ServicesService do
   subject { ServicesService.new(fake_connection) }
 
   before do
-    Service.stub(:create_from_response).and_return(fake_service)
+    Service.stub(:build_from_response).and_return(fake_service)
   end
 
   describe '#find_by_id' do
@@ -20,13 +20,13 @@ describe ServicesService do
 
     it 'creates an app instance' do
       fake_connection.stub(:get).and_return(fake_response)
-      expect(Service).to receive(:create_from_response).and_return(fake_service)
+      expect(Service).to receive(:build_from_response).and_return(fake_service)
       subject.find_by_id(77, 89)
     end
 
     it 'returns the created app instance' do
       fake_connection.stub(:get).and_return(fake_response)
-      Service.stub(:create_from_response).and_return(fake_service)
+      Service.stub(:build_from_response).and_return(fake_service)
       result = subject.find_by_id(77, 89)
       expect(result).to eq fake_service
     end

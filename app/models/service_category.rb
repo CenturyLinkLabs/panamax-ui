@@ -1,10 +1,5 @@
-class ServiceCategory
+class ServiceCategory < BaseViewModel
+  include CollectionBuilder
 
   attr_reader :name, :id
-
-  def initialize(attributes={})
-    @name = attributes['name']
-    @id = attributes['id']
-  end
-
 end

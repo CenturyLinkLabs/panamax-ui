@@ -12,19 +12,25 @@ describe Template do
     }
   end
 
+  it_behaves_like 'a view model', {
+    'id' => 77,
+    'name' => 'boom/shaka',
+    'description' => 'this thing goes boom shaka laka',
+    'image_count' => 4
+  }
+
+  it_behaves_like 'a collection builder', [
+    {
+      'id' => 77,
+      'name' => 'boom/shaka'
+    },
+    {
+      'id' => 87,
+      'name' => 'foo/bar'
+    }
+  ]
+
   subject { Template.new(attributes) }
-
-  describe '#id' do
-    it 'exposes an id' do
-      expect(subject.id).to eq 77
-    end
-  end
-
-  describe '#name' do
-    it 'exposes a name' do
-      expect(subject.name).to eq 'boom/shaka'
-    end
-  end
 
   describe '#short_description' do
     subject do
@@ -38,22 +44,9 @@ describe Template do
       expect(subject.short_description).to eq 'w'*162 + '...'
     end
   end
-
-  describe '#description' do
-    it 'exposes a description' do
-      expect(subject.description).to eq 'this thing goes boom shaka laka'
-    end
-  end
-
   describe '#updated_at' do
     it 'exposes updated_at' do
       expect(subject.updated_at).to eq 'January 13th, 2012 00:00'
-    end
-  end
-
-  describe '#image_count' do
-    it 'exposes image_count' do
-      expect(subject.image_count).to eq 4
     end
   end
 

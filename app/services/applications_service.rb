@@ -8,7 +8,7 @@ class ApplicationsService
 
   def find_by_id(id)
     response = connection.get "/apps/#{id}"
-    App.create_from_response(response.body) unless response.status == 404
+    App.build_from_response(response.body) unless response.status == 404
   end
 
   def create(params)
@@ -17,7 +17,7 @@ class ApplicationsService
       req.headers['Content-Type'] = 'application/json'
       req.body = params.to_json
     end
-    App.create_from_response(response.body)
+    App.build_from_response(response.body)
   end
 
   def self.default_connection

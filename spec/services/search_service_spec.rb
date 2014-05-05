@@ -13,7 +13,7 @@ describe SearchService do
       let(:fake_search_result_set) { double(:fake_search_result_set) }
 
       before do
-        SearchResultSet.stub(:create_from_response).and_return(fake_search_result_set)
+        SearchResultSet.stub(:build_from_response).and_return(fake_search_result_set)
       end
 
       it 'makes a request to the external API to get the results' do
