@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe App do
-  let(:response_attributes) do
+  let(:attributes) do
     {
       'name' => 'App Daddy',
       'id' => 77,
-      "services" => [
+      'services' => [
           {'name' => 'blah', 'categories' => [ {'name' => 'foo'}, {'name' => 'baz'}]},
           {'name' => 'barf', 'categories' => [ {'name' => 'foo'} ]},
           {'name' => 'bark', 'categories' => [ {'name' => 'bar'} ]},
@@ -14,19 +14,25 @@ describe App do
     }
   end
 
-  let(:fake_json_response) { response_attributes.to_json }
+  it_behaves_like 'a view model', {
+    'name' => 'App Daddy',
+    'id' => 77,
+    'services' => []
+  }
 
-  describe '.create_from_response' do
+  let(:fake_json_response) { attributes.to_json }
+
+  describe '.build_from_response' do
 
     it 'instantiates itself with the parsed json attributes' do
-      result = described_class.create_from_response(fake_json_response)
+      result = described_class.build_from_response(fake_json_response)
       expect(result).to be_an App
       expect(result.name).to eq 'App Daddy'
       expect(result.id).to eq 77
     end
 
     it 'instantiates a Service for each nested service' do
-      result = described_class.create_from_response(fake_json_response)
+      result = described_class.build_from_response(fake_json_response)
       expect(result.services.map(&:name)).to match_array(['blah', 'barf', 'bark', 'bard'])
       expect(result.services.map(&:class).uniq).to match_array([Service])
     end
@@ -57,16 +63,16 @@ describe App do
   end
 
   describe '#as_json' do
-    subject { App.new(response_attributes) }
+    subject { App.new(attributes) }
 
     it 'provides the attributes to be converted to JSON' do
-      expected = response_attributes
+      expected = attributes
       expect(subject.as_json).to eq expected
     end
   end
 
   context 'when dealing with service categories' do
-    subject { described_class.create_from_response(fake_json_response) }
+    subject { described_class.build_from_response(fake_json_response) }
 
     describe '#service_categories' do
       it 'returns the union of all service categories for the app services' do
@@ -93,13 +99,13 @@ describe App do
       end
 
       it 'does not include Uncategorized service group if there are only categorized services' do
-        response_attributes['services'].delete({'name' => 'bard', 'categories' => []})
+        attributes['services'].delete({'name' => 'bard', 'categories' => []})
         groups = subject.categorized_services
         expect(groups.keys).to_not include('Uncategorized')
       end
 
       it 'groups all services under a "Service" group if there are only uncategorized services' do
-        response_attributes['services'].each { |s| s['categories'] = [] }
+        attributes['services'].each { |s| s['categories'] = [] }
         groups = subject.categorized_services
         expect(groups.keys).to match_array(['Services'])
       end

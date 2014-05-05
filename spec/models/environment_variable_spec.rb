@@ -1,26 +1,11 @@
 require 'spec_helper'
 
 describe EnvironmentVariable do
-  let(:attributes) do
-    {
-      'name' => 'DB_PASSWORD',
-      'value' => 'pazzword'
-    }
-  end
 
-  subject { described_class.new(attributes) }
-
-  describe '#name' do
-    it 'exposes the name' do
-      expect(subject.name).to eq 'DB_PASSWORD'
-    end
-  end
-
-  describe '#value' do
-    it 'exposes the value' do
-      expect(subject.value).to eq 'pazzword'
-    end
-  end
+  it_behaves_like 'a view model', {
+    'name' => 'DB_PASSWORD',
+    'value' => 'pazzword'
+  }
 
   describe '.instantiate_collection' do
     it 'creates a new instance of itself for each key value pair' do
@@ -28,10 +13,15 @@ describe EnvironmentVariable do
         'MY_VAR' => 'some value',
         'FOO' => 'bar'
       }
+
       result = described_class.instantiate_collection(hash)
 
-      expect(result.map(&:name)).to eq ['MY_VAR', 'FOO']
-      expect(result.map(&:value)).to eq ['some value', 'bar']
+      expected = [
+        described_class.new(name: 'MY_VAR', value: 'some value'),
+        described_class.new(name: 'FOO', value: 'bar')
+      ]
+
+      expect(result).to match_array expected
     end
   end
 end

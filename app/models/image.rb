@@ -1,5 +1,5 @@
-class Image
-  include ActiveModel::Model
+class Image < BaseViewModel
+  include CollectionBuilder
   include ActionView::Helpers::TextHelper
 
   attr_reader :id, :description, :repository, :star_count, :location
@@ -7,12 +7,8 @@ class Image
   DOCKER_INDEX_BASE_URL = 'https://index.docker.io/'
 
   def initialize(attributes)
+    super
     @attributes = attributes
-    @id = attributes['id']
-    @description = attributes['description']
-    @repository = attributes['repository']
-    @star_count = attributes['star_count']
-    @location = attributes['location']
   end
 
   def status_label

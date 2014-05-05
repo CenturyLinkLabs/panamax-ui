@@ -8,7 +8,7 @@ class SearchService
 
   def search_for(query)
     response = connection.get '/search', {q: query}
-    SearchResultSet.create_from_response(response.body)
+    SearchResultSet.build_from_response(response.body)
   end
 
   def self.default_connection

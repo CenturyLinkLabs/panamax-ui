@@ -1,34 +1,29 @@
-require 'active_model'
-
-class SearchResultSet
-  include ActiveModel::Model
+class SearchResultSet < BaseViewModel
 
   attr_reader :query, :remote_images, :local_images, :templates
 
   def initialize(attributes)
+    super
     @query = attributes['q']
-    @remote_images = wrap_images(attributes['remote_images'], Image.locations[:remote])
-    @local_images = wrap_images(attributes['local_images'], Image.locations[:local])
-    @templates = wrap_templates(attributes['templates'])
   end
 
-  def self.create_from_response(response)
+  def self.build_from_response(response)
     attributes = JSON.parse(response)
-    self.new(attributes)
+    build_with_sub_resources(attributes)
   end
 
   private
 
-  def wrap_templates(templates)
-    (templates || []).map do |template_attributes|
-      Template.new(template_attributes)
+  def self.build_with_sub_resources(attributes)
+    attributes['remote_images'].each do |image|
+      image['location'] = Image.locations[:remote]
     end
-  end
-
-  def wrap_images(images, label)
-    (images || []).map do |image_attributes|
-      Image.new( image_attributes.merge('location' => label) )
+    attributes['remote_images'] = Image.instantiate_collection(attributes['remote_images'])
+    attributes['local_images'].each do |image|
+      image['location'] = Image.locations[:local]
     end
+    attributes['local_images'] = Image.instantiate_collection(attributes['local_images'])
+    attributes['templates'] = Template.instantiate_collection(attributes['templates'])
+    self.new(attributes)
   end
-
 end
