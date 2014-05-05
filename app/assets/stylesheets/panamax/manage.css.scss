@@ -115,11 +115,13 @@ section.application-services {
             span {
               width: 160px;
             }
+            .service-icon:before {
+              @include icon-light-blue;
+            }
           }
-
-          .service-icon {
-            background-color: $white;
-          }
+        }
+        .service-icon {
+          background-color: $white;
         }
       }
     }
@@ -150,13 +152,13 @@ section.application-services {
       li {
         margin-bottom: 10px;
         line-height: 20px;
-        height: 41px;
+        height: 40px;
         border-radius: 4px;
 
         span {
           display: inline-block;
           position: relative;
-          line-height: 41px;
+          line-height: 40px;
           width: 210px;
           overflow: hidden;
           text-overflow: ellipsis;
@@ -165,7 +167,7 @@ section.application-services {
         .actions {
           display: none;
           float: right;
-          height: 41px;
+          height: 40px;
           padding-right: 5px;
 
           a {
@@ -209,18 +211,19 @@ section.application-services {
           display: inline-block;
           position: relative;
           background-color: $light_grey;
-          width: 41px;
-          height: 41px;
+          width: 40px;
+          height: 40px;
           margin-right: 6px;
           border-radius: 4px;
 
           &:before {
             content: '';
             position: absolute;
-            left: 6px;
-            top: 6px;
+            left: 10px;
+            top: 10px;
             display: block;
-            @include icon-white;
+            @include icon-grey;
+            @extend .icon-docker-blocks-large;
             width: 31px;
             height: 31px;
           }
