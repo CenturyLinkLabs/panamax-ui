@@ -11,6 +11,16 @@ describe Image do
   end
 
   it_behaves_like 'a view model'
+  it_behaves_like 'a collection builder', [
+    {
+      'id' => 77,
+      'repository' => 'foo/bar'
+    },
+    {
+      'id' => 77,
+      'repository' => 'boom/shaka'
+    }
+  ]
 
   subject { described_class.new(attributes) }
 

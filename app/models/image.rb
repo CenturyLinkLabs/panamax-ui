@@ -1,4 +1,5 @@
 class Image < BaseViewModel
+  include CollectionBuilder
   include ActionView::Helpers::TextHelper
 
   attr_reader :id, :description, :repository, :star_count, :location

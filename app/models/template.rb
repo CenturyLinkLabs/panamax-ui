@@ -1,4 +1,5 @@
 class Template < BaseViewModel
+  include CollectionBuilder
   include ActionView::Helpers::TextHelper
 
   attr_reader :id, :description, :name, :image_count

@@ -13,6 +13,16 @@ describe Template do
   end
 
   it_behaves_like 'a view model'
+  it_behaves_like 'a collection builder', [
+    {
+      'id' => 77,
+      'name' => 'boom/shaka'
+    },
+    {
+      'id' => 87,
+      'name' => 'foo/bar'
+    }
+  ]
 
   subject { Template.new(attributes) }
 

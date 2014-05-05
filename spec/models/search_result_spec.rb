@@ -5,9 +5,18 @@ describe SearchResultSet do
   let(:attributes) do
     {
       'q' => 'bla',
-      'remote_images' => [],
-      'local_images' => [],
-      'templates' => []
+      'local_images' => [
+        {'name' => 'Wordpress'},
+        {'name' => 'MYSQL'}
+      ],
+      'remote_images' => [
+        {'name' => 'Drupal'},
+        {'name' => 'Postgres'}
+      ],
+      'templates' => [
+        {'name' => 'Rails'},
+        {'name' => 'Django'}
+      ]
     }
   end
 
@@ -23,8 +32,33 @@ describe SearchResultSet do
 
       expect(result).to be_a SearchResultSet
       expect(result.query).to eql 'bla'
-      expect(result.remote_images).to eql []
-      expect(result.local_images).to eql []
+    end
+
+    it 'instantiates a local image for each nested local image' do
+      result = described_class.build_from_response(fake_json_response)
+      expected = [
+        Image.new(name: 'Wordpress', location: :local),
+        Image.new(name: 'MYSQL', location: :local)
+      ]
+      expect(result.local_images).to match_array(expected)
+    end
+
+    it 'instantiates a remote image for each nested remote image' do
+      result = described_class.build_from_response(fake_json_response)
+      expected = [
+        Image.new(name: 'Drupal', location: :remote),
+        Image.new(name: 'Postgres', location: :remote)
+      ]
+      expect(result.remote_images).to match_array(expected)
+    end
+
+    it 'instantiates a template for each nested template' do
+      result = described_class.build_from_response(fake_json_response)
+      expected = [
+        Template.new(name: 'Rails'),
+        Template.new(name: 'Django')
+      ]
+      expect(result.templates).to match_array(expected)
     end
 
     it 'does not blow up if remote images is not defined' do
@@ -39,13 +73,11 @@ describe SearchResultSet do
     subject { SearchResultSet.new(attributes) }
 
     it 'provides the attributes to be converted to JSON' do
-      expected = {
-        'query' => 'bla',
-        'remote_images' => [],
-        'local_images' => [],
-        'templates' => []
-      }
-      expect(subject.as_json).to eq expected
+      result = subject.as_json
+
+      query = attributes.delete('q')
+      expected = attributes.merge({'query' => query})
+      expect(result).to eq expected
     end
   end
 end
