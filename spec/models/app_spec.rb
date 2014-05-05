@@ -5,6 +5,11 @@ describe App do
     {
       'name' => 'App Daddy',
       'id' => 77,
+      'categories' => [
+          {'name' => 'foo'},
+          {'name' => 'baz'},
+          {'name' => 'bar'}
+      ],
       'services' => [
           {'name' => 'blah', 'categories' => [ {'name' => 'foo'}, {'name' => 'baz'}]},
           {'name' => 'barf', 'categories' => [ {'name' => 'foo'} ]},
@@ -17,6 +22,7 @@ describe App do
   it_behaves_like 'a view model', {
     'name' => 'App Daddy',
     'id' => 77,
+    'categories' => [],
     'services' => []
   }
 
@@ -35,6 +41,11 @@ describe App do
       result = described_class.build_from_response(fake_json_response)
       expect(result.services.map(&:name)).to match_array(['blah', 'barf', 'bark', 'bard'])
       expect(result.services.map(&:class).uniq).to match_array([Service])
+    end
+
+    it 'instantiates an AppCategory for each nested category' do
+      result = described_class.build_from_response(fake_json_response)
+      expect(result.categories.map(&:name)).to match_array(['foo','baz','bar'])
     end
   end
 
@@ -71,20 +82,8 @@ describe App do
     end
   end
 
-  context 'when dealing with service categories' do
+  context 'when dealing with application categories' do
     subject { described_class.build_from_response(fake_json_response) }
-
-    describe '#service_categories' do
-      it 'returns the union of all service categories for the app services' do
-        categories = subject.service_categories
-        expect(categories.collect{|c| c.name}).to include('foo', 'baz', 'bar')
-      end
-
-      it 'returns a list of unique service categories' do
-        categories = subject.service_categories.find_all{|c| c.name == 'foo'}
-        expect(categories).to have_at_most(1).item
-      end
-    end
 
     describe '#categorized_services' do
       it 'returns a hash of services grouped by category name' do
@@ -104,8 +103,9 @@ describe App do
         expect(groups.keys).to_not include('Uncategorized')
       end
 
-      it 'groups all services under a "Service" group if there are only uncategorized services' do
+      it 'groups all services under a "Services" group if there are no categories' do
         attributes['services'].each { |s| s['categories'] = [] }
+        attributes['categories'] = []
         groups = subject.categorized_services
         expect(groups.keys).to match_array(['Services'])
       end

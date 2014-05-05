@@ -3,6 +3,12 @@
   "name": "tutum/wordpress",
   "from": "Image: tutum/wordpress",
   "errors": null,
+  "categories": [
+    {
+      "id": 4,
+      "name": "Web Tier"
+    }
+  ],
   "services": [
     {
       "id": 6,
