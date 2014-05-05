@@ -10,39 +10,41 @@
     };
 
     base.init = function(){
+      base.defaultOptions.deleteHandler = base.handleDelete;
       base.options = $.extend({}, base.defaultOptions, options);
 
       base.bindEvents();
     };
 
     base.bindEvents = function() {
-      base.$el.on('click', base.options.deleteSelector.selector, function(event) {
-        event.preventDefault();
-        event.stopPropagation();
+      base.$el.on('click', base.options.deleteSelector.selector, base.options.deleteHandler);
+    };
 
-        $.ajax({
-          url: $(this).attr('href'),
-            headers: {
-              'Accept': 'application/json'
-            },
-          type: 'DELETE'
-        })
-        .done(function() {
-          $(base.$el).css('opacity', '0.5')
-                     .delay(1000)
-                     .fadeOut('slow')
-        })
-        .fail(function(){
-          alert('Unable to delete service.');
-        });
+    base.handleDelete = function(event) {
+      event.preventDefault();
+      event.stopPropagation();
 
+      $.ajax({
+        url: $(this).attr('href'),
+        headers: {
+          'Accept': 'application/json'
+        },
+        type: 'DELETE'
+      })
+      .done(function() {
+        $(base.$el).css('opacity', '0.5')
+          .delay(1000)
+          .fadeOut('slow')
+      })
+      .fail(function(){
+        alert('Unable to delete service.');
       });
     };
   };
 
   $.fn.serviceActions = function(options){
-      return this.each(function(){
-          (new $.PMX.ServiceDestroyer(this, options)).init();
-      });
+    return this.each(function(){
+      (new $.PMX.ServiceDestroyer(this, options)).init();
+    });
   };
 })(jQuery);
