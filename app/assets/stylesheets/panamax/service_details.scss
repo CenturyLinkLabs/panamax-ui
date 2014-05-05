@@ -23,10 +23,14 @@
     line-height: 42px;
     border-bottom: $light_grey 1px solid;
 
-    &:hover {
-      .actions {
-        display: block;
-      }
+  }
+
+  ul li:hover .actions,
+  dl dt:hover + dd + .actions,
+  dl dd:hover + .actions,
+  dl dd.actions:hover {
+    > * {
+      visibility: visible;
     }
   }
 
@@ -46,9 +50,11 @@
   }
 
   .actions {
-    display: none;
     float: right;
     width: 20px;
+    > * {
+      visibility: hidden;
+    }
   }
 }
 
@@ -65,7 +71,11 @@
     width: 220px;
   }
   dl dd {
-    width: 250px;
+    width: 230px;
+
+    &.actions {
+      width: 20px;
+    }
   }
 }
 

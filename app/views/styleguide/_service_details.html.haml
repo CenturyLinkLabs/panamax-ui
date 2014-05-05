@@ -16,8 +16,12 @@
   %dl
     %dt DATABASE_NAME
     %dd myapp_development
+    %dd.actions
+      = link_to 'remove', '#', class: 'delete-action', title: 'remove'
     %dt DB_PASSWORD
     %dd abc12378987
+    %dd.actions
+      = link_to 'remove', '#', class: 'delete-action', title: 'remove'
 
 .service-links
   %h3 Service Links
