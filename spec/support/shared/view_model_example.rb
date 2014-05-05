@@ -1,4 +1,16 @@
-shared_examples "a view model" do
+shared_examples "a view model" do |attributes|
+
+  describe 'attribute readers' do
+    subject { described_class.new(attributes) }
+
+    attributes.each do |name, value|
+      describe "##{name}" do
+        it "exposes #{name}" do
+          expect(subject.send(name)).to eq value
+        end
+      end
+    end
+  end
 
   describe 'comparison' do
     let(:thing_1) { described_class.new(attributes) }

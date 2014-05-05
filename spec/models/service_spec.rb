@@ -21,7 +21,14 @@ describe Service do
     }
   end
 
-  it_behaves_like 'a view model'
+  it_behaves_like 'a view model', {
+    'name' => 'Wordpress',
+    'id' => 77,
+    'categories' => [],
+    'ports' => [],
+    'environment' => {},
+    'links' => []
+  }
 
   let(:fake_json_response) { attributes.to_json }
 

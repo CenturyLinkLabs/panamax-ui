@@ -20,7 +20,11 @@ describe SearchResultSet do
     }
   end
 
-  it_behaves_like 'a view model'
+  it_behaves_like 'a view model', {
+    'remote_images' => [],
+    'local_images' => [],
+    'templates' => []
+  }
 
   describe '.build_from_response' do
     subject { SearchResultSet }

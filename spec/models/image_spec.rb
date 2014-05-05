@@ -10,7 +10,14 @@ describe Image do
     }
   end
 
-  it_behaves_like 'a view model'
+  it_behaves_like 'a view model', {
+    'id' => 77,
+    'repository' => 'boom/shaka',
+    'description' => 'this thing goes boom shaka laka',
+    'star_count' => 127,
+    'location' => 'remote'
+  }
+
   it_behaves_like 'a collection builder', [
     {
       'id' => 77,
@@ -23,18 +30,6 @@ describe Image do
   ]
 
   subject { described_class.new(attributes) }
-
-  describe '#id' do
-    it 'exposes an id' do
-      expect(subject.id).to eq 77
-    end
-  end
-
-  describe '#repository' do
-    it 'exposes a repository repository' do
-      expect(subject.repository).to eq 'boom/shaka'
-    end
-  end
 
   describe '#docker_index_url' do
     context 'when a remote image' do
@@ -62,12 +57,6 @@ describe Image do
       it 'returns nil' do
         expect(subject.docker_index_url).to be_nil
       end
-    end
-  end
-
-  describe '#description' do
-    it 'exposes a description' do
-      expect(subject.description).to eq 'this thing goes boom shaka laka'
     end
   end
 
@@ -121,12 +110,6 @@ describe Image do
       it 'is local' do
         expect(subject.status_label).to eql 'Local'
       end
-    end
-  end
-
-  describe '#star_count' do
-    it 'exposes the star count' do
-      expect(subject.star_count).to eq 127
     end
   end
 

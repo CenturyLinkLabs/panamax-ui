@@ -5,7 +5,7 @@ describe App do
     {
       'name' => 'App Daddy',
       'id' => 77,
-      "services" => [
+      'services' => [
           {'name' => 'blah', 'categories' => [ {'name' => 'foo'}, {'name' => 'baz'}]},
           {'name' => 'barf', 'categories' => [ {'name' => 'foo'} ]},
           {'name' => 'bark', 'categories' => [ {'name' => 'bar'} ]},
@@ -14,7 +14,11 @@ describe App do
     }
   end
 
-  it_behaves_like 'a view model'
+  it_behaves_like 'a view model', {
+    'name' => 'App Daddy',
+    'id' => 77,
+    'services' => []
+  }
 
   let(:fake_json_response) { attributes.to_json }
 
