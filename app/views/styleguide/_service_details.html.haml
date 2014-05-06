@@ -26,5 +26,9 @@
 .service-links
   %h3 Service Links
   %ul
-    %li panamax-wordpress
-    %li panamax-mysql
+    %li
+      = link_to 'remove', '#', class: 'remove-link', title: 'remove link'
+      panamax-wordpress
+    %li
+      panamax-mysql
+      = link_to 'remove', '#', class: 'remove-link', title: 'remove link'
