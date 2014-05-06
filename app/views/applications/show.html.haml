@@ -35,5 +35,6 @@
                           class: 'delete-action',
                           title: 'delete',
                           method: :delete
-        %button.button-positive
-          Add a Service
+        = link_to 'Add a Service', '#', class: 'button-positive add-service', title: 'add'
+
+= render 'services/add_service'

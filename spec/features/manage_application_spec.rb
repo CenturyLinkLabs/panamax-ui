@@ -24,6 +24,14 @@ describe 'managing an application' do
         expect(page).to have_css 'h1', text: 'tutum/wordpress'
         #TODO: assert flash message
       end
+
+      it 'shows a button to add a service to the app' do
+        visit '/applications/2'
+
+        within '.category-panel' do
+          expect(page).to have_css 'a.add-service', text: 'Add a Service'
+        end
+      end
     end
   end
 end

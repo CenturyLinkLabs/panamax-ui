@@ -10,6 +10,7 @@ class ApplicationsController < ApplicationController
   end
 
   def show
+    @search_form = SearchForm.new
     @app = applications_service.find_by_id(params[:id])
     render status: :not_found unless @app.present?
   end

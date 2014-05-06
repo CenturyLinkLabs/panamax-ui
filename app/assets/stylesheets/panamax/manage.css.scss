@@ -126,11 +126,13 @@ section.application-services {
       }
     }
 
-    .button-positive {
+    a.button-positive {
+      @include border-box;
       width: 100%;
       position: relative;
       padding-left: 30px;
       text-align: left;
+      text-decoration: none;
       &:after {
         @include icon-white;
         @extend .icon-plus;
@@ -230,5 +232,14 @@ section.application-services {
         }
       }
     }
+  }
+}
+
+// Add Service Form in modal window
+#add-service-form {
+  overflow: hidden;
+
+  input#search_form_query {
+    width: 550px;
   }
 }
