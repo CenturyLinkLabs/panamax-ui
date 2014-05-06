@@ -3,7 +3,7 @@ require 'active_model'
 class App < BaseViewModel
   include ActiveModel::Validations
 
-  attr_reader :name, :id, :services
+  attr_reader :name, :id, :services, :categories
 
   def initialize(attributes={})
     super
@@ -17,6 +17,7 @@ class App < BaseViewModel
 
   def self.build_with_sub_resources(attributes)
     attributes['services'].map! { |service_hash| Service.build_with_sub_resources(service_hash) }
+    attributes['categories'] = AppCategory.instantiate_collection(attributes['categories'])
     self.new(attributes)
   end
 
@@ -29,16 +30,8 @@ class App < BaseViewModel
   end
 
   concerning :ServiceCategories do
-    def service_categories
-      services.each_with_object([]) do |service, array|
-        service.categories.each do |category|
-          array << category unless array.any?{ |cat| cat.name == category.name }
-        end
-      end
-    end
-
     def categorized_services
-      groups = service_categories.each_with_object({}) do |category, hash|
+      groups = categories.each_with_object({}) do |category, hash|
         hash[category.name] = services_with_category_name(category.name)
       end
 
