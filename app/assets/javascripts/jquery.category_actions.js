@@ -23,7 +23,6 @@
 
     base.bindEvents = function() {
       base.$el.on('click', base.defaultOptions.$addServiceButton.selector, base.showDialogForm);
-      base.defaultOptions.$dialogBox.on('click', base.defaultOptions.$titlebarCloseButton.selector, base.handleClose);
     };
 
     base.showDialogForm = function (e) {
@@ -36,7 +35,7 @@
       $(this).dialog("close");
       $('.image-results').empty();
       $('#search_form_query').val('');
-      $('body').css('overflow', 'auto')
+      $('body').css('overflow', 'auto');
     };
 
     base.initiateDialog = function() {
@@ -48,6 +47,7 @@
         width: 860,
         position: ["top", 50],
         title: 'Search Images',
+        close: base.handleClose,
         buttons: [
           {
             text: "Cancel",
