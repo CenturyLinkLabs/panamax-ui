@@ -26,7 +26,14 @@
               %span
                 = service.name
               .actions
-                = link_to 'edit', application_service_path(@app.to_param, service.id), class: 'edit-action', title: 'details'
-                %a.delete-action
+                = link_to 'edit',
+                           application_service_path(@app.to_param, service.id),
+                           class: 'edit-action',
+                           title: 'details'
+                = link_to 'delete',
+                          application_service_path(@app.to_param, service.id),
+                          class: 'delete-action',
+                          title: 'delete',
+                          method: :delete
         %button.button-positive
           Add a Service

@@ -24,4 +24,6 @@ $(document).ready(function() {
   $('.filterable-list').filterableList({
     $queryField: $('input#search_form_query')
   });
+
+  $('ul.services li').serviceActions();
 });
