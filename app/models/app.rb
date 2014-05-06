@@ -1,6 +1,7 @@
 require 'active_model'
 
 class App < BaseViewModel
+  include CollectionBuilder
   include ActiveModel::Validations
 
   attr_reader :name, :id, :services, :categories
@@ -27,6 +28,10 @@ class App < BaseViewModel
 
   def valid?
     errors.empty?
+  end
+
+  def service_count_label
+    'Service'.pluralize(self.services.length)
   end
 
   concerning :ServiceCategories do

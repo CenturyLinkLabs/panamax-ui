@@ -5,6 +5,10 @@ class FakePanamaxApi < Sinatra::Base
     json_response 200, 'search_results.json'
   end
 
+  get '/apps' do
+    json_response 200, 'app_list_representation.json'
+  end
+
   post '/apps' do
     json_response 200, 'app_representation.json'
   end

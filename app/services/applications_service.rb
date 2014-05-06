@@ -6,6 +6,11 @@ class ApplicationsService
     @connection = connection
   end
 
+  def all
+    response = connection.get "/apps"
+    App.instantiate_collection(JSON.parse(response.body))
+  end
+
   def find_by_id(id)
     response = connection.get "/apps/#{id}"
     App.build_from_response(response.body) unless response.status == 404
