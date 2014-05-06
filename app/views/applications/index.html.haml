@@ -1,3 +1,18 @@
 - content_for(:body_id, 'manage_flow')
 
-%h1 Applications
+%h1 Manage
+%header
+  %h3 My Applications
+%section.applications
+  - @apps.each do | app |
+    %div
+      .name
+        = link_to app.name, application_path(app.id)
+        %b= app.services.length
+        %span= app.service_count_label
+      .actions
+        = link_to 'edit', application_path(app.id), class: 'edit-action', title: 'details'
+        %a.delete-action
+.add-button
+  %button.button-positive
+    Create a New Application

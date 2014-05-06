@@ -1,0 +1,21 @@
+[
+  {
+    "id": 5,
+    "name": "tutum/wordpress",
+    "from": "Image: tutum/wordpress",
+    "errors": null,
+    "services": [
+      {
+        "id": 6,
+        "name": "tutum_wordpress_1",
+        "errors": null,
+        "categories": [
+          {
+            "id": 4,
+            "name": "Web Tier"
+          }
+        ]
+      }
+    ]
+  }
+]

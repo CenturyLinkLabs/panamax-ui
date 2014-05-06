@@ -16,7 +16,7 @@ class ApplicationsController < ApplicationController
   end
 
   def index
-
+    @apps = applications_service.all()
   end
 
   private
