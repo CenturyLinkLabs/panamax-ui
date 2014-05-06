@@ -16,7 +16,8 @@ describe('$.fn.categoryActions', function() {
         modal: true,
         resizable: false,
         draggable: true,
-        width: 800,
+        width: 860,
+        position: ["top", 50],
         title: 'Search Images',
         buttons: [
           {
@@ -40,6 +41,10 @@ describe('$.fn.categoryActions', function() {
       addServiceButton.click();
       expect(modalContents.dialog).toHaveBeenCalledWith('open');
     });
+
+  });
+
+  describe('clicking the search button displays results', function() {
 
   });
 
