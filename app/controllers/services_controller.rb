@@ -2,7 +2,7 @@ class ServicesController < ApplicationController
 
   def show
     @app = applications_service.find_by_id(params[:application_id])
-    @service = services_service.find_by_id(params[:application_id], params[:id])
+    @service = retrieve_service
   end
 
   def destroy
@@ -15,6 +15,10 @@ class ServicesController < ApplicationController
   end
 
   private
+
+  def retrieve_service
+    Service.find(params[:id], params: {app_id: params[:application_id]})
+  end
 
   def applications_service
     @applications_service ||= ApplicationsService.new

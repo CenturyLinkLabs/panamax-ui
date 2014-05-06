@@ -25,6 +25,6 @@
 .environment-variables
   %h3 Environment Variables
   %dl
-    - @service.environment.each do |var|
-      %dt= var.name
-      %dd= var.value
+    - @service.environment.attributes.each do |name,value|
+      %dt= name
+      %dd= value

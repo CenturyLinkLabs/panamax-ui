@@ -11,7 +11,7 @@ describe ServicesController do
     ApplicationsService.stub(:new).and_return(fake_applications_service)
     ServicesService.stub(:new).and_return(fake_services_service)
     fake_applications_service.stub(:find_by_id).and_return(valid_app)
-    fake_services_service.stub(:find_by_id).and_return(valid_service)
+    Service.stub(:find).and_return(valid_service)
     fake_services_service.stub(:destroy).and_return(fake_delete_response)
   end
 
@@ -21,14 +21,15 @@ describe ServicesController do
       get :show, { application_id: 77, id: 89 }
     end
 
+    it 'retrieves the service' do
+      expect(Service).to receive(:find).with('3', {params: {app_id: '2'}})
+
+      get :show, { application_id: 2, id: 3 }
+    end
+
     it 'assigns app' do
       get :show, { application_id: 77, id: 89 }
       expect(assigns(:app)).to eq valid_app
-    end
-
-    it 'uses the services service to retrieve the service' do
-      expect(fake_services_service).to receive(:find_by_id).with('77', '89')
-      get :show, { application_id: 77, id: 89 }
     end
 
     it 'assigns service' do
