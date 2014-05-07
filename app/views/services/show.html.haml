@@ -7,16 +7,18 @@
     @service.name
   )
 
-= form_for [@app, @service] do |f|
+= form_for [@app, @service], html: { class: 'service-edit-form' } do |f|
   = render '/shared/breadcrumbs', breadcrumbs: crumbs
 
   .service-links
     %h3 Service Links
     %ul
       = f.fields_for :links do |link|
+        - checkbox_id = "select_link_#{link.options[:child_index]}"
         %li
+          %a{data: { checkbox: { selector: "##{checkbox_id}" } }, class: 'remove-link', title: 'remove link'} remove
           = link.object.service_name
-          = link.check_box :service_id, { title: "delete #{link.object.service_name}" }, link.object.service_id, nil
+          = link.check_box :service_id, { id: checkbox_id }, link.object.service_id, nil
           = link.hidden_field :alias
 
   .port-detail

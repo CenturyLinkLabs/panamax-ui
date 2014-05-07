@@ -24,7 +24,7 @@ describe 'managing a service' do
     it 'can delete a link' do
       visit '/applications/2/services/3'
 
-      uncheck 'service_links_attributes_0_service_id'
+      uncheck 'select_link_0'
 
       click_on 'Update Service'
 
