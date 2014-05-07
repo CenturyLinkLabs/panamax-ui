@@ -1,5 +1,5 @@
-class Service < BaseViewModel
-  attr_reader :name, :id, :categories, :ports, :links, :environment
+class Service < BaseResource
+  self.prefix = '/apps/:app_id/'
 
   def category_names
     categories.map(&:name)
@@ -9,18 +9,26 @@ class Service < BaseViewModel
     id
   end
 
-  def self.build_from_response(response)
-    attributes = JSON.parse(response)
-    build_with_sub_resources(attributes)
+  def environment_attributes=(attributes)
+    self.environment = attributes.except('id')
   end
 
-  private
+  def ports_attributes=(attributes)
+    self.ports = attributes.each_with_object([]) do |(index, port), memo|
+      memo << port.except('id') if port['container_port'].present?
+    end
+  end
 
-  def self.build_with_sub_resources(attributes)
-    attributes['categories'] = ServiceCategory.instantiate_collection(attributes['categories'])
-    attributes['ports'] = PortMapping.instantiate_collection(attributes['ports'])
-    attributes['environment'] = EnvironmentVariable.instantiate_collection(attributes['environment'])
-    attributes['links'] = Link.instantiate_collection(attributes['links'])
+  def links_attributes=(attributes)
+    self.links = attributes.each_with_object([]) do |(index, link), memo|
+      # exclude link ID for now. May need this later if we decide to
+      # expose link ID in API.
+      memo << link.except('id') if link['service_id'].present?
+    end
+  end
+
+  def self.build_from_response(response)
+    attributes = JSON.parse(response)
     self.new(attributes)
   end
 

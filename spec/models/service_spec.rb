@@ -21,14 +21,7 @@ describe Service do
     }
   end
 
-  it_behaves_like 'a view model', {
-    'name' => 'Wordpress',
-    'id' => 77,
-    'categories' => [],
-    'ports' => [],
-    'environment' => {},
-    'links' => []
-  }
+  it_behaves_like 'an active resource model'
 
   let(:fake_json_response) { attributes.to_json }
 
@@ -43,21 +36,17 @@ describe Service do
     it 'instantiates a ServiceCategory for each nested category' do
       result = described_class.build_from_response(fake_json_response)
       expect(result.categories.map(&:name)).to match_array(['foo', 'baz'])
-      expect(result.categories.map(&:class).uniq).to match_array([ServiceCategory])
     end
 
     it 'instantiates a PortMapping for each nested port' do
       result = described_class.build_from_response(fake_json_response)
       expect(result.ports.map(&:host_port)).to match_array([8080, 7000])
       expect(result.ports.map(&:container_port)).to match_array([80, 77])
-      expect(result.ports.map(&:class).uniq).to match_array([PortMapping])
     end
 
     it 'instantiates an environment variable for each nested variable' do
       result = described_class.build_from_response(fake_json_response)
-      expect(result.environment.map(&:name)).to eq ['DB_PASS', 'WP_PASS']
-      expect(result.environment.map(&:value)).to eq ['pazz', 'abc123']
-      expect(result.environment.map(&:class).uniq).to match_array([EnvironmentVariable])
+      expect(result.environment.attributes).to eq attributes['environment']
     end
 
     it 'instantiates a link for each link' do
@@ -81,13 +70,61 @@ describe Service do
     end
   end
 
-  describe '#as_json' do
-    subject { Service.new(attributes) }
+  describe '#links_attributes=' do
+    let(:attributes) do
+      {
+        '0' => { 'service_id' => 99, 'alias' => 'foo' },
+        '1' => { 'service_id' => nil, 'alias' => 'bar' }
+      }
+    end
 
-    it 'provides the attributes to be converted to JSON' do
-      expected = attributes
-      expect(subject.as_json).to eq expected
+    it 'assigns to links when service_id is non nil' do
+      subject.links_attributes = attributes
+      expect(subject.links).to include attributes['0']
+    end
+
+    it 'does not assign to links when service_id is nil' do
+      subject.links_attributes = attributes
+      expect(subject.links).to_not include attributes['1']
     end
   end
 
+  describe '#ports_attributes=' do
+    let(:attributes) do
+      {
+        '0' => { 'host_port' => 9090, 'container_port' => 90 },
+        '1' => { 'host_port' => 8080, 'container_port' => nil },
+        '2' => { 'host_port' => 6060, 'container_port' => 60, 'id' => nil }
+      }
+    end
+
+    it 'assigns to ports when container port is non nil' do
+      subject.ports_attributes = attributes
+      expect(subject.ports).to include attributes['0']
+    end
+
+    it 'does not assign to links when container port is nil' do
+      subject.ports_attributes = attributes
+      expect(subject.ports).to_not include attributes['1']
+    end
+
+    it 'excludes the id' do
+      subject.ports_attributes = attributes
+      expect(subject.ports.last.keys).to_not include 'id'
+    end
+  end
+
+  describe '#environment_attributes=' do
+    let(:attributes) do
+      {
+        'PASSWORD' => 'abc123',
+        'id' => nil
+      }
+    end
+
+    it 'assigns the attributes to environment' do
+      subject.environment_attributes = attributes
+      expect(subject.environment).to eq({ 'PASSWORD' => 'abc123' })
+    end
+  end
 end

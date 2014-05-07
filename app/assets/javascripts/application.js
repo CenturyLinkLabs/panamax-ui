@@ -29,4 +29,5 @@ $(document).ready(function() {
 
   $('.category-panel').categoryActions();
 
+  $('.service-edit-form').progressiveForm();
 });
