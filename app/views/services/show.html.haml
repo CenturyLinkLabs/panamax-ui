@@ -6,25 +6,32 @@
     link_to(@app.name, application_path(@app.to_param)),
     @service.name
   )
-= render '/shared/breadcrumbs', breadcrumbs: crumbs
 
-.service-links
-  %h3 Service Links
-  %ul
-    - @service.links.each do |link|
-      %li= link.service_name
+= form_for [@app, @service] do |f|
+  = render '/shared/breadcrumbs', breadcrumbs: crumbs
 
-.port-detail
-  %h3 Ports
-  %ul
-    - @service.ports.each do |port|
-      %li{title: "container: #{port.container_port}, host: #{port.host_port}"}
-        %strong= port.host_port
-        = "/tcp"
+  .service-links
+    %h3 Service Links
+    %ul
+      = f.fields_for :links do |link|
+        %li
+          = link.object.service_name
+          = link.check_box :service_id, { title: "delete #{link.object.service_name}" }, link.object.service_id, nil
+          = link.hidden_field :alias
 
-.environment-variables
-  %h3 Environment Variables
-  %dl
-    - @service.environment.attributes.each do |name,value|
-      %dt= name
-      %dd= value
+  .port-detail
+    %h3 Ports
+    %ul
+      - @service.ports.each do |port|
+        %li{title: "container: #{port.container_port}, host: #{port.host_port}"}
+          %strong= port.host_port
+          = "/tcp"
+
+  .environment-variables
+    %h3 Environment Variables
+    %dl
+      - @service.environment.attributes.each do |name,value|
+        %dt= name
+        %dd= value
+
+  = f.submit

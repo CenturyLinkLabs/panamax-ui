@@ -3,6 +3,10 @@ require 'active_model'
 class App < BaseViewModel
   include ActiveModel::Validations
 
+  def self.model_name
+    ActiveModel::Name.new(self, nil, 'Application')
+  end
+
   attr_reader :name, :id, :services, :categories
 
   def initialize(attributes={}, persisted=false)

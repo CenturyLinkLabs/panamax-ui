@@ -21,6 +21,16 @@ describe 'managing a service' do
       end
     end
 
+    it 'can delete a link' do
+      visit '/applications/2/services/3'
+
+      uncheck 'service_links_attributes_0_service_id'
+
+      click_on 'Update Service'
+
+      expect(page).to have_css 'h1', text: 'tutum/wordpress'
+    end
+
     it 'can navigate back to the application via the crumbs' do
       visit '/applications/2/services/3'
 

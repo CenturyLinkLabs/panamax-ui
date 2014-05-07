@@ -4,7 +4,7 @@ describe ServicesController do
   let(:fake_applications_service) { double(:fake_applications_service) }
   let(:fake_services_service) { double(:fake_services_service) }
   let(:valid_app) { double(:valid_app) }
-  let(:valid_service) { double(:valid_service) }
+  let(:valid_service) { double(:valid_service, id: 3) }
   let(:fake_delete_response) { double(:fake_delete_response, body: 'test', status: 200)}
 
   before do
@@ -35,6 +35,46 @@ describe ServicesController do
     it 'assigns service' do
       get :show, { application_id: 77, id: 89 }
       expect(assigns(:service)).to eq valid_service
+    end
+  end
+
+  describe 'PATCH #update' do
+    let(:attributes) {
+      {
+        'name' => 'DB_1',
+        'links_attributes' => {
+          '0' => {
+            'service_id' => '4',
+            'alias' => 'database'
+          }
+        }
+      }
+    }
+
+    before do
+      valid_service.stub(:write_attributes)
+      valid_service.stub(:save)
+    end
+
+    it 'retrieves the service to be updated' do
+      expect(Service).to receive(:find).with('3', {params: {app_id: '2'}})
+
+      patch :update, { application_id: 2, id: 3 }
+    end
+
+    it 'writes the attributes' do
+      expect(valid_service).to receive(:write_attributes).with(attributes)
+      patch :update, { application_id: 2, id: 3, service: attributes }
+    end
+
+    it 'saves the record' do
+      expect(valid_service).to receive(:save)
+      patch :update, { application_id: 2, id: 3, service: attributes }
+    end
+
+    it 'redirects to the show page' do
+      patch :update, { application_id: 2, id: 3, service: attributes }
+      expect(response).to redirect_to application_service_path(2, 3)
     end
   end
 

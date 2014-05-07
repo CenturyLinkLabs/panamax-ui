@@ -69,4 +69,23 @@ describe Service do
       expect(subject.to_param).to eq 77
     end
   end
+
+  describe '#link_attributes=' do
+    let(:attributes) do
+      {
+        '0' => { 'service_id' => 99, 'alias' => 'foo' },
+        '1' => { 'service_id' => nil, 'alias' => 'bar' }
+      }
+    end
+
+    it 'assigns to links when service_id is non nil' do
+      subject.links_attributes = attributes
+      expect(subject.links).to include attributes['0']
+    end
+
+    it 'does not assign to links when service_id is nil' do
+      subject.links_attributes = attributes
+      expect(subject.links).to_not include attributes['1']
+    end
+  end
 end

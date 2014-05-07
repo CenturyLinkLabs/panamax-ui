@@ -11,7 +11,13 @@ class ServicesController < ApplicationController
       format.html { redirect_to application_path params[:application_id] }
       format.json { render(json: service.to_json, status: status) }
     end
+  end
 
+  def update
+    @service = retrieve_service
+    @service.write_attributes(params[:service])
+    @service.save
+    redirect_to application_service_path(params[:application_id], @service.id)
   end
 
   private
