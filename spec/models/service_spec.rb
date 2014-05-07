@@ -113,4 +113,18 @@ describe Service do
       expect(subject.ports.last.keys).to_not include 'id'
     end
   end
+
+  describe '#environment_attributes=' do
+    let(:attributes) do
+      {
+        'PASSWORD' => 'abc123',
+        'id' => nil
+      }
+    end
+
+    it 'assigns the attributes to environment' do
+      subject.environment_attributes = attributes
+      expect(subject.environment).to eq({ 'PASSWORD' => 'abc123' })
+    end
+  end
 end

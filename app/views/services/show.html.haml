@@ -37,8 +37,14 @@
   .environment-variables
     %h3 Environment Variables
     %dl
-      - @service.environment.attributes.each do |name,value|
-        %dt= name
-        %dd= value
+      = f.fields_for :environment, @service.environment do |environment|
+        - environment.object.attributes.each_with_index do |(name, value), index|
+          - checkbox_id = "select_environment_variable_#{index}"
+          %dt= name
+          %dd= value
+          %dd.actions
+            = environment.check_box name, { id: checkbox_id }, value, nil
+            %a{class: 'delete-action', title: 'remove', data: { checkbox: { selector: "##{checkbox_id}" } } } remove
+
 
   = f.submit
