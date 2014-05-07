@@ -116,6 +116,12 @@ section.applications {
     position: relative;
     padding-left: 30px;
     text-align: left;
+    text-decoration: none;
+
+    &:hover {
+      padding-left: 30px;
+    }
+
     &:after {
       @include icon-white;
       @extend .icon-plus;

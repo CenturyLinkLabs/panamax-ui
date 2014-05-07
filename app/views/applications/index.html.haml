@@ -4,7 +4,7 @@
 %header
   %h3 My Applications
 %section.applications
-  - @apps.each do | app |
+  - @apps.each do |app|
     %div
       .name
         = link_to app.name, application_path(app.id)
@@ -14,5 +14,4 @@
         = link_to 'edit', application_path(app.id), class: 'edit-action', title: 'details'
         %a.delete-action
 .add-button
-  %button.button-positive
-    Create a New Application
+  = link_to 'Create a New Application', root_path, class: 'button-positive'
