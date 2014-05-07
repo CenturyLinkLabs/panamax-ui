@@ -5,6 +5,7 @@ describe ApplicationsService do
   let(:fake_req) { double(:fake_request) }
   let(:fake_app) { double(:fake_app, valid?: true, id: 77) }
   let(:fake_response) { double(:fake_response, body: nil, status: 200) }
+  let(:fake_apps_response) { double(:fake_apps_response, body: '[]', status: 200)}
 
   subject { ApplicationsService.new(fake_connection) }
 
@@ -39,6 +40,26 @@ describe ApplicationsService do
         result = subject.find_by_id(3456)
         expect(result).to be_nil
       end
+    end
+  end
+
+  describe '#all' do
+    it 'issues a get request to the proper URL' do
+      expect(fake_connection).to receive(:get).with('/apps').and_return(fake_apps_response)
+      subject.all
+    end
+
+    it 'sends the instantiate_collection message to App' do
+      fake_connection.stub(:get).and_return(fake_apps_response)
+      expect(App).to receive(:instantiate_collection)
+      subject.all
+    end
+
+    it 'returns a list of app instances' do
+      fake_connection.stub(:get).and_return(fake_apps_response)
+      App.stub(:instantiate_collection).and_return([fake_app])
+      result = subject.all
+      expect(result).to match_array [fake_app]
     end
   end
 
