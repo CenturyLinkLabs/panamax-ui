@@ -35,7 +35,7 @@ class App < BaseViewModel
   end
 
   def service_count_label
-    'Service'.pluralize(self.services.length)
+    'Service'.pluralize(services.length)
   end
 
   concerning :ServiceCategories do
