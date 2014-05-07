@@ -9,6 +9,12 @@ class Service < BaseResource
     id
   end
 
+  def ports_attributes=(attributes)
+    self.ports = attributes.each_with_object([]) do |(index, port), memo|
+      memo << port.except('id') if port['container_port'].present?
+    end
+  end
+
   def links_attributes=(attributes)
     self.links = attributes.each_with_object([]) do |(index, link), memo|
       # exclude link ID for now. May need this later if we decide to

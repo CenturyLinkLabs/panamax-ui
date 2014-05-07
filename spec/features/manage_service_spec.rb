@@ -31,6 +31,16 @@ describe 'managing a service' do
       expect(page).to have_css 'h1', text: 'tutum/wordpress'
     end
 
+    it 'can delete a port' do
+      visit '/applications/2/services/3'
+
+      uncheck 'select_port_0'
+
+      click_on 'Update Service'
+
+      expect(page).to have_css 'h1', text: 'tutum/wordpress'
+    end
+
     it 'can navigate back to the application via the crumbs' do
       visit '/applications/2/services/3'
 

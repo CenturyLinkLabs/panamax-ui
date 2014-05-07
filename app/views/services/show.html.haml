@@ -24,10 +24,15 @@
   .port-detail
     %h3 Ports
     %ul
-      - @service.ports.each do |port|
-        %li{title: "container: #{port.container_port}, host: #{port.host_port}"}
-          %strong= port.host_port
+      = f.fields_for :ports do |port|
+        - checkbox_id = "select_port_#{port.options[:child_index]}"
+        %li{title: "container: #{port.object.container_port}, host: #{port.object.host_port}"}
+          %strong= port.object.host_port
           = "/tcp"
+          .actions
+            = port.check_box :container_port, { id: checkbox_id }, port.object.container_port, nil
+            = port.hidden_field :host_port
+            %a{class: 'delete-action', title: 'remove', data: { checkbox: { selector: "##{checkbox_id}" } } } remove
 
   .environment-variables
     %h3 Environment Variables

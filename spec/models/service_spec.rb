@@ -70,7 +70,7 @@ describe Service do
     end
   end
 
-  describe '#link_attributes=' do
+  describe '#links_attributes=' do
     let(:attributes) do
       {
         '0' => { 'service_id' => 99, 'alias' => 'foo' },
@@ -86,6 +86,31 @@ describe Service do
     it 'does not assign to links when service_id is nil' do
       subject.links_attributes = attributes
       expect(subject.links).to_not include attributes['1']
+    end
+  end
+
+  describe '#ports_attributes=' do
+    let(:attributes) do
+      {
+        '0' => { 'host_port' => 9090, 'container_port' => 90 },
+        '1' => { 'host_port' => 8080, 'container_port' => nil },
+        '2' => { 'host_port' => 6060, 'container_port' => 60, 'id' => nil }
+      }
+    end
+
+    it 'assigns to ports when container port is non nil' do
+      subject.ports_attributes = attributes
+      expect(subject.ports).to include attributes['0']
+    end
+
+    it 'does not assign to links when container port is nil' do
+      subject.ports_attributes = attributes
+      expect(subject.ports).to_not include attributes['1']
+    end
+
+    it 'excludes the id' do
+      subject.ports_attributes = attributes
+      expect(subject.ports.last.keys).to_not include 'id'
     end
   end
 end
