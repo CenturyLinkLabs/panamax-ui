@@ -11,6 +11,15 @@ class ServicesService
     Service.build_from_response(response.body) unless response.status == 404
   end
 
+  def create(params)
+    response = connection.post do |req|
+      req.url "/apps/#{params['application']['application_id']}/services/"
+      req.headers['Content-Type'] = 'application/json'
+      req.body = params.to_json
+    end
+    App.build_from_response(response.body)
+  end
+
   def destroy(app_id, service_id)
     response = connection.delete "/apps/#{app_id}/services/#{service_id}"
     [response.body, response.status]

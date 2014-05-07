@@ -5,6 +5,17 @@ class ServicesController < ApplicationController
     @service = retrieve_service
   end
 
+  def create
+    @service = services_service.create(params[:application_id])
+
+    # if @service.valid?
+    #   redirect_to application_url(@app.to_param)
+    # else
+    #   redirect_to application_url(@app.to_param)
+    # end
+
+  end
+
   def destroy
     service, status = services_service.destroy(params[:application_id], params[:id])
     respond_to do |format|

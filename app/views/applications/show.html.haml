@@ -18,7 +18,7 @@
     - @app.categorized_services.each do |group, services|
       .category-panel
         %header
-          = group
+          = group.name
         - unless services.empty?
           %ul.services
             - services.each do |service|
@@ -36,6 +36,6 @@
                             class: 'delete-action',
                             title: 'delete',
                             method: :delete
-        = link_to 'Add a Service', '#', class: 'button-positive add-service', title: 'add'
+        = link_to 'Add a Service', '#', class: 'button-positive add-service', title: 'add', data: {:category => group.id}
 
 = render 'services/add_service'
