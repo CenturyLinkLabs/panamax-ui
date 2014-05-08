@@ -120,3 +120,44 @@ h1.breadcrumbs {
     }
   }
 }
+
+.actions {
+  a.delete-action,
+  a.edit-action {
+    @include hide-text;
+    float: left;
+    width: 20px;
+    height: 100%;
+    position: relative;
+
+    &:after {
+      left: 5px;
+      top: 16px;
+      position: absolute;
+      content: '';
+    }
+  }
+
+  a.delete-action {
+    &:after {
+      @extend .icon-x;
+      @include icon-light-grey;
+    }
+
+    &:hover:after {
+      @include icon-red;
+    }
+  }
+
+  a.edit-action {
+    &:after {
+      @extend .icon-magnifying-glass;
+      @include icon-light-grey;
+    }
+
+    &:hover:after {
+      @include icon-grey;
+    }
+  }
+}
+

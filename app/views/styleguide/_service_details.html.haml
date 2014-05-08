@@ -4,19 +4,31 @@
     %li
       %strong 8888
       = "/tcp"
+      .actions
+        = link_to 'remove', '#', class: 'delete-action', title: 'remove'
     %li
       %strong 2020
       = "/tcp"
+      .actions
+        = link_to 'remove', '#', class: 'delete-action', title: 'remove'
 .environment-variables
   %h3 Environment Variables
   %dl
     %dt DATABASE_NAME
     %dd myapp_development
+    %dd.actions
+      = link_to 'remove', '#', class: 'delete-action', title: 'remove'
     %dt DB_PASSWORD
     %dd abc12378987
+    %dd.actions
+      = link_to 'remove', '#', class: 'delete-action', title: 'remove'
 
 .service-links
   %h3 Service Links
   %ul
-    %li panamax-wordpress
-    %li panamax-mysql
+    %li
+      = link_to 'remove', '#', class: 'remove-link', title: 'remove link'
+      panamax-wordpress
+    %li
+      panamax-mysql
+      = link_to 'remove', '#', class: 'remove-link', title: 'remove link'

@@ -1,5 +1,6 @@
 @import 'ctl_base_ui/mixins';
 @import 'ctl_base_ui/colors';
+@import 'ctl_base_ui/icons';
 
 .service-detail {
   float: left;
@@ -20,8 +21,18 @@
   ul li,
   dl dt,
   dl dd {
-    padding: 15px 0 20px;
+    line-height: 42px;
     border-bottom: $light_grey 1px solid;
+
+  }
+
+  ul li:hover .actions,
+  dl dt:hover + dd + .actions,
+  dl dd:hover + .actions,
+  dl dd.actions:hover {
+    > * {
+      visibility: visible;
+    }
   }
 
   dl {
@@ -39,6 +50,13 @@
     }
   }
 
+  .actions {
+    float: right;
+    width: 20px;
+    > * {
+      visibility: hidden;
+    }
+  }
 }
 
 .port-detail {
@@ -54,7 +72,11 @@
     width: 220px;
   }
   dl dd {
-    width: 250px;
+    width: 230px;
+
+    &.actions {
+      width: 20px;
+    }
   }
 }
 
@@ -78,6 +100,37 @@
       width: 20px;
       top: -27px;
       left: 0;
+    }
+
+    &:hover .remove-link {
+      visibility: visible;
+    }
+
+    .remove-link {
+      visibility: hidden;
+      @include hide-text;
+      @include border-radius(11px);
+      position: absolute;
+      left: -11px;
+      top: 13px;
+      width: 22px;
+      height: 22px;
+      display: block;
+      background-color: $sky_blue;
+
+      &:hover {
+        background-color: $dark_red;
+      }
+
+      &:before {
+        position: absolute;
+        left: 6px;
+        top: 6px;
+        content: '';
+        @extend .icon-x;
+        @include icon-white;
+      }
+
     }
   }
 }

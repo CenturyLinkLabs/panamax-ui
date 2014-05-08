@@ -171,42 +171,6 @@ section.application-services {
           float: right;
           height: 40px;
           padding-right: 5px;
-
-          a {
-            @include hide-text;
-            float: left;
-            width: 20px;
-            height: 100%;
-            position: relative;
-            &:after {
-              left: 5px;
-              top: 16px;
-              position: absolute;
-              content: '';
-            }
-          }
-
-          a.delete-action {
-            &:after {
-              @extend .icon-x;
-              @include icon-light-grey;
-            }
-
-            &:hover:after {
-              @include icon-red;
-            }
-          }
-
-          a.edit-action {
-            &:after {
-              @extend .icon-magnifying-glass;
-              @include icon-light-grey;
-            }
-
-            &:hover:after {
-              @include icon-grey;
-            }
-          }
         }
 
         .service-icon {

@@ -9,7 +9,7 @@ class BaseViewModel
     @attributes
   end
 
-  def initialize(attributes={})
+  def initialize(attributes={}, persisted=false)
     attributes.each do |key, val|
       instance_variable_set("@#{key}", val) if self.class.attributes.include?(key.to_sym)
     end

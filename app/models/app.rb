@@ -3,10 +3,14 @@ require 'active_model'
 class App < BaseViewModel
   include ActiveModel::Validations
 
+  def self.model_name
+    ActiveModel::Name.new(self, nil, 'Application')
+  end
+
   attr_reader :name, :id, :services, :categories
 
-  def initialize(attributes={})
-    super
+  def initialize(attributes={}, persisted=false)
+    super(attributes)
     add_errors(attributes['errors'])
   end
 
@@ -16,7 +20,7 @@ class App < BaseViewModel
   end
 
   def self.build_with_sub_resources(attributes)
-    attributes['services'].map! { |service_hash| Service.build_with_sub_resources(service_hash) }
+    attributes['services'].map! { |service_hash| Service.new(service_hash) }
     attributes['categories'] = AppCategory.instantiate_collection(attributes['categories'])
     self.new(attributes)
   end

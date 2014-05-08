@@ -10,6 +10,7 @@ gem 'jquery-ui-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'ctl_base_ui', path: '../ctl-base-ui'
 gem 'faraday'
+gem 'activeresource'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
