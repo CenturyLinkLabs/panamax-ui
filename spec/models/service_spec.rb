@@ -25,6 +25,23 @@ describe Service do
 
   let(:fake_json_response) { attributes.to_json }
 
+  describe '#disabled?' do
+    it 'is false when the sub_state is running' do
+      subject.sub_state = 'running'
+      expect(subject.disabled?).to be_false
+    end
+
+    it 'is false when the sub_state is nil' do
+      subject.sub_state = nil
+      expect(subject.disabled?).to be_false
+    end
+
+    it 'is true if the run_state is anything else' do
+      subject.sub_state = 'something_else'
+      expect(subject.disabled?).to be_true
+    end
+  end
+
   describe '.build_from_response' do
     it 'instantiates itself with the parsed json attributes' do
       result = described_class.build_from_response(fake_json_response)

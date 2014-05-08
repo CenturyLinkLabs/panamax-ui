@@ -7,44 +7,45 @@
     @service.name
   )
 
-= form_for [@app, @service], html: { class: 'service-edit-form' } do |f|
-  = render '/shared/breadcrumbs', breadcrumbs: crumbs
+.service-details{class: service_details_class(@service.disabled?)}
+  = form_for [@app, @service], html: { class: 'service-edit-form' } do |f|
+    = render '/shared/breadcrumbs', breadcrumbs: crumbs
 
-  .service-links
-    %h3 Service Links
-    %ul
-      = f.fields_for :links do |link|
-        - checkbox_id = "select_link_#{link.options[:child_index]}"
-        %li
-          %a{data: { checkbox: { selector: "##{checkbox_id}" } }, class: 'remove-link', title: 'remove link'} remove
-          = link.object.service_name
-          = link.check_box :service_id, { id: checkbox_id }, link.object.service_id, nil
-          = link.hidden_field :alias
+    .service-links
+      %h3 Service Links
+      %ul
+        = f.fields_for :links do |link|
+          - checkbox_id = "select_link_#{link.options[:child_index]}"
+          %li
+            %a{data: { checkbox: { selector: "##{checkbox_id}" } }, class: 'remove-link', title: 'remove link'} remove
+            = link.object.service_name
+            = link.check_box :service_id, { id: checkbox_id }, link.object.service_id, nil
+            = link.hidden_field :alias
 
-  .port-detail
-    %h3 Ports
-    %ul
-      = f.fields_for :ports do |port|
-        - checkbox_id = "select_port_#{port.options[:child_index]}"
-        %li{title: "container: #{port.object.container_port}, host: #{port.object.host_port}"}
-          %strong= port.object.host_port
-          = "/tcp"
-          .actions
-            = port.check_box :container_port, { id: checkbox_id }, port.object.container_port, nil
-            = port.hidden_field :host_port
-            %a{class: 'delete-action', title: 'remove', data: { checkbox: { selector: "##{checkbox_id}" } } } remove
+    .port-detail
+      %h3 Ports
+      %ul
+        = f.fields_for :ports do |port|
+          - checkbox_id = "select_port_#{port.options[:child_index]}"
+          %li{title: "container: #{port.object.container_port}, host: #{port.object.host_port}"}
+            %strong= port.object.host_port
+            = "/tcp"
+            .actions
+              = port.check_box :container_port, { id: checkbox_id }, port.object.container_port, nil
+              = port.hidden_field :host_port
+              %a{class: 'delete-action', title: 'remove', data: { checkbox: { selector: "##{checkbox_id}" } } } remove
 
-  .environment-variables
-    %h3 Environment Variables
-    %dl
-      = f.fields_for :environment, @service.environment do |environment|
-        - environment.object.attributes.each_with_index do |(name, value), index|
-          - checkbox_id = "select_environment_variable_#{index}"
-          %dt= name
-          %dd= value
-          %dd.actions
-            = environment.check_box name, { id: checkbox_id }, value, nil
-            %a{class: 'delete-action', title: 'remove', data: { checkbox: { selector: "##{checkbox_id}" } } } remove
+    .environment-variables
+      %h3 Environment Variables
+      %dl
+        = f.fields_for :environment, @service.environment do |environment|
+          - environment.object.attributes.each_with_index do |(name, value), index|
+            - checkbox_id = "select_environment_variable_#{index}"
+            %dt= name
+            %dd= value
+            %dd.actions
+              = environment.check_box name, { id: checkbox_id }, value, nil
+              %a{class: 'delete-action', title: 'remove', data: { checkbox: { selector: "##{checkbox_id}" } } } remove
 
 
-  = f.submit
+    = f.submit

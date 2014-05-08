@@ -2,6 +2,28 @@
 @import 'ctl_base_ui/colors';
 @import 'ctl_base_ui/icons';
 
+.service-details.loading {
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 200px;
+    background: image-url('icon_loading_blue.gif') no-repeat center center;
+    display: block;
+    height: 40px;
+    width: 100%;
+  }
+
+  .service-detail > :not(h3) {
+    opacity: .3;
+  }
+  .actions,
+  .remove-link {
+    display: none;
+  }
+}
+
 .service-detail {
   float: left;
   font-size: 13px;
