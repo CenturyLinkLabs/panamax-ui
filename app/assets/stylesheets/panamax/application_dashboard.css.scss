@@ -1,0 +1,136 @@
+@import 'ctl_base_ui/colors';
+@import 'ctl_base_ui/mixins';
+@import 'ctl_base_ui/icons';
+
+h1 + header {
+  border-bottom: 1px solid $grey;
+}
+
+section.applications {
+  display: table;
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin-bottom: 20px;
+  width: 100%;
+
+  > div {
+    display: table-row;
+    border-bottom: 1px solid $light_grey;
+    width: 100%;
+    height: 75px;
+    color: $grey;
+    &:hover {
+      color: $dark_grey;
+
+      .actions{
+        div {
+          display: block;
+        }
+      }
+    }
+
+    > div {
+      display: table-cell;
+    }
+  }
+
+  .name {
+    font-size: 0.8em;
+    vertical-align: middle;
+
+    * {
+      vertical-align: middle;
+    }
+
+    a {
+      font-size: 2.2em;
+      text-decoration: none;
+
+      &:hover {
+        border-bottom: 1px solid $sky_blue;
+        color: $sky_blue;
+      }
+    }
+
+    b {
+      font-size: 1.8em;
+      margin: 0 5px 0 20px;
+    }
+  }
+
+  .actions {
+    width: 100px;
+
+    div {
+      display: none;
+      width: 100%;
+      float: left;
+      height: 40px;
+      margin-top: 20px;
+      border-left: 1px solid $grey;
+
+      a {
+        @include hide-text;
+        width: 30px;
+        margin: 5px 5px;
+        height: 100%;
+        position: relative;
+        &:after {
+          left: 5px;
+          top: 5px;
+          position: absolute;
+          content: '';
+        }
+      }
+
+      a.delete-action {
+        &:after {
+          @extend .icon-x-large;
+          @include icon-light-grey;
+        }
+
+        &:hover:after {
+          @include icon-red;
+        }
+      }
+
+      a.edit-action {
+        &:after {
+          @extend .icon-magnifying-glass-large;
+          @include icon-light-grey;
+        }
+
+        &:hover:after {
+          @include icon-grey;
+        }
+      }
+    }
+  }
+}
+
+.add-button {
+  width: 230px;
+  .button-positive {
+    width: 100%;
+    position: relative;
+    padding-left: 30px;
+    text-align: left;
+    text-decoration: none;
+
+    &:hover {
+      padding-left: 30px;
+    }
+
+    &:after {
+      @include icon-white;
+      @extend .icon-plus;
+      content: '';
+      position: absolute;
+      left: 11px;
+      top: 19px;
+      display: block;
+      height: 10px;
+      width: 10px;
+    }
+  }
+}

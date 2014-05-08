@@ -92,6 +92,7 @@ section.application-services {
         top: 6px;
         display: block;
         @include icon-light-grey;
+        @extend .icon-link-large;
         width: 20px;
         height: 20px;
       }
