@@ -1,5 +1,7 @@
 class ServicesController < ApplicationController
 
+  respond_to :json, only: [:journal]
+
   def show
     @app = applications_service.find_by_id(params[:application_id])
     @service = retrieve_service
@@ -32,6 +34,13 @@ class ServicesController < ApplicationController
     @service.write_attributes(params[:service])
     @service.save
     redirect_to application_service_path(params[:application_id], @service.id)
+  end
+
+  def journal
+    # We don't need to retrieve an actual service, just new one up with
+    # the appropriate IDs.
+    service = Service.new(id: params[:id], app_id: params[:application_id])
+    respond_with service.get(:journal, cursor: params[:cursor])
   end
 
   private
