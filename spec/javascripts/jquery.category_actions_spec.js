@@ -1,12 +1,13 @@
 describe('$.fn.categoryActions', function() {
-  var modalContents, addServiceButton;
+  var modalContents, addServiceButton, subject;
 
   beforeEach(function() {
     fixture.load('add-service.html');
     modalContents = $('#add-service-form');
     addServiceButton = $('a.add-service');
     spyOn($.fn, "dialog");
-    $('.category-panel').categoryActions();
+    subject = new $.PMX.AddService($('.category-panel'));
+    subject.init();
   });
 
   describe('the dialog is initialized', function() {
@@ -16,8 +17,10 @@ describe('$.fn.categoryActions', function() {
         modal: true,
         resizable: false,
         draggable: true,
-        width: 800,
+        width: 860,
+        position: ["top", 50],
         title: 'Search Images',
+        close: jasmine.any(Function),
         buttons: [
           {
             text: "Cancel",
@@ -39,6 +42,21 @@ describe('$.fn.categoryActions', function() {
     it('displays the add service form in a modal window', function() {
       addServiceButton.click();
       expect(modalContents.dialog).toHaveBeenCalledWith('open');
+    });
+
+  });
+
+  describe('closing dialog', function() {
+    it('removes previous search input', function(){
+      $('#search_form_query').val('testing');
+      subject.handleClose();
+      expect($('#search_form_query').val()).toBe('');
+    });
+
+    it('removes previous search results', function() {
+      $('<div>test</div>').appendTo('.image-results');
+      subject.handleClose();
+      expect($('.image-results').children().length).toBe(0);
     });
 
   });

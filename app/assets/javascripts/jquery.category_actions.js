@@ -9,7 +9,10 @@
 
     base.defaultOptions = {
       $addServiceButton: $('a.add-service'),
-      $modalContents: $('#add-service-form')
+      $modalContents: $('#add-service-form'),
+      $dialogBox: $('.ui-dialog'),
+      $titlebarCloseButton: $('button.ui-dialog-titlebar-close')
+
     };
 
     base.init = function(){
@@ -25,23 +28,31 @@
     base.showDialogForm = function (e) {
       base.defaultOptions.$modalContents.dialog("open");
       e.preventDefault();
+      $('body').css('overflow', 'hidden')
+    };
+
+    base.handleClose = function() {
+      $(this).dialog("close");
+      $('.image-results').empty();
+      $('#search_form_query').val('');
+      $('body').css('overflow', 'auto');
     };
 
     base.initiateDialog = function() {
-      $("#add-service-form").dialog({
+      base.defaultOptions.$modalContents.dialog({
         autoOpen: false,
         modal: true,
         resizable: false,
         draggable: true,
-        width: 800,
+        width: 860,
+        position: ["top", 50],
         title: 'Search Images',
+        close: base.handleClose,
         buttons: [
           {
             text: "Cancel",
             class: 'button-secondary',
-            click: function () {
-              $(this).dialog("close");
-            }
+            click: base.handleClose
           }
         ]
       })
