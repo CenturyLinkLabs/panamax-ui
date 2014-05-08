@@ -9,7 +9,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'ctl_base_ui', path: '../ctl-base-ui'
-gem 'faraday'
+gem 'faraday', '0.8.9'
 gem 'activeresource'
 
 group :doc do
