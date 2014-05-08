@@ -30,7 +30,7 @@ describe('$.fn.filterableList', function() {
   });
 
   describe('changing the text in the query field', function() {
-    it('does not request results if fewer than 3 charectors exist', function() {
+    it('does not request results if fewer than 3 characters exist', function() {
       $('input#search_query').val('my').keyup();
 
       var request = mostRecentAjaxRequest();
