@@ -11,7 +11,8 @@
         %b= app.services.length
         %span= app.service_count_label
       .actions
-        = link_to 'edit', application_path(app.id), class: 'edit-action', title: 'details'
-        %a.delete-action
+        %div
+          = link_to 'edit', application_path(app.id), class: 'edit-action', title: 'details'
+          %a.delete-action
 .add-button
   = link_to 'Create a New Application', root_path, class: 'button-positive'

@@ -17,35 +17,26 @@ section.applications {
     display: table-row;
     border-bottom: 1px solid $light_grey;
     width: 100%;
+    height: 75px;
     color: $grey;
     &:hover {
       color: $dark_grey;
 
       .actions{
-        &:before {
-          content: ' ';
-          display: inline-block;
-          position: relative;
-          top: -10px;
-          vertical-align: middle;
-          height: 150%;
-          padding-right: 15px;
-          border-left: 1px solid $grey;
-        }
-        a{
-          display: inline-block;
+        div {
+          display: block;
         }
       }
     }
 
     > div {
       display: table-cell;
-      padding: 20px 0;
     }
   }
 
   .name {
     font-size: 0.8em;
+    vertical-align: middle;
 
     * {
       vertical-align: middle;
@@ -70,40 +61,48 @@ section.applications {
   .actions {
     width: 100px;
 
-    a {
-      @include hide-text;
+    div {
       display: none;
-      width: 30px;
-      margin: 0 5px;
-      height: 100%;
-      position: relative;
-      &:after {
-        left: 5px;
-        top: 5px;
-        position: absolute;
-        content: '';
-      }
-    }
+      width: 100%;
+      float: left;
+      height: 40px;
+      margin-top: 20px;
+      border-left: 1px solid $grey;
 
-    a.delete-action {
-      &:after {
-        @extend .icon-x-large;
-        @include icon-light-grey;
-      }
-
-      &:hover:after {
-        @include icon-red;
-      }
-    }
-
-    a.edit-action {
-      &:after {
-        @extend .icon-magnifying-glass-large;
-        @include icon-light-grey;
+      a {
+        @include hide-text;
+        width: 30px;
+        margin: 5px 5px;
+        height: 100%;
+        position: relative;
+        &:after {
+          left: 5px;
+          top: 5px;
+          position: absolute;
+          content: '';
+        }
       }
 
-      &:hover:after {
-        @include icon-grey;
+      a.delete-action {
+        &:after {
+          @extend .icon-x-large;
+          @include icon-light-grey;
+        }
+
+        &:hover:after {
+          @include icon-red;
+        }
+      }
+
+      a.edit-action {
+        &:after {
+          @extend .icon-magnifying-glass-large;
+          @include icon-light-grey;
+        }
+
+        &:hover:after {
+          @include icon-grey;
+        }
       }
     }
   }
