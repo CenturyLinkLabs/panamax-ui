@@ -22,6 +22,12 @@
     %dd abc12378987
     %dd.actions
       = link_to 'remove', '#', class: 'delete-action', title: 'remove'
+    %dt.editing
+      %input{type: 'text', placeholder: 'Label'}
+    %dd.editing
+      %input{type: 'text', placeholder: 'Value'}
+      %a Cancel
+  %button.button-add Add an Environment Variable
 
 .service-links
   %h3 Service Links

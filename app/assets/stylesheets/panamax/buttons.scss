@@ -1,0 +1,27 @@
+@import 'ctl_base_ui/colors';
+@import 'ctl_base_ui/buttons';
+
+.button-add {
+  @extend .button-primary;
+  border: transparent 1px solid;
+  background-color: transparent;
+  color: $lime;
+  position: relative;
+  padding-left: 45px;
+  padding-right: 20px;
+
+  &:after {
+    position: absolute;
+    left: 20px;
+    top: 18px;
+    content: '';
+    @extend .icon-plus;
+    @include icon-light-green;
+  }
+
+  &:hover {
+    background-color: transparent;
+    @include box-shadow(0, 0, 0, 0);
+    border: $lime 1px solid;
+  }
+}

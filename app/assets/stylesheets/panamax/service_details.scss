@@ -65,6 +65,10 @@
       @include border-box;
       float: left;
       padding-left: 0;
+
+      input[type='text'] {
+        @include border-box;
+      }
     }
 
     dt {
@@ -92,12 +96,29 @@
 
   dl dt {
     width: 220px;
+
+    input[type='text'] {
+      font-weight: bold;
+      width: 210px;
+    }
   }
   dl dd {
     width: 230px;
 
     &.actions {
       width: 20px;
+    }
+
+    &.editing {
+      width: 250px;
+
+      input[type='text'] {
+        width: 200px;
+      }
+
+      a {
+        text-decoration: underline;
+      }
     }
   }
 }
@@ -156,3 +177,5 @@
     }
   }
 }
+
+
