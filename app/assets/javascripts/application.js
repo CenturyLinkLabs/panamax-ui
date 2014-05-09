@@ -30,4 +30,9 @@ $(document).ready(function() {
   $('.category-panel').categoryActions();
 
   $('.service-edit-form').progressiveForm();
+
+  var $environmentVarAdditionalEntries = $('.environment-variables .additional-entries')
+  $environmentVarAdditionalEntries.appendable({
+    $elementToAppend: $environmentVarAdditionalEntries.find('dl:first-of-type')
+  });
 });
