@@ -9,10 +9,10 @@ describe('$.fn.progressiveForm', function() {
   });
 
   describe('instantiation', function() {
-    it('hides all form elements', function() {
+    it('hides all checkbox elements', function() {
       expect($form.find('input:hidden').length).toBe(0);
       subject.init();
-      expect($form.find('input:hidden').length).toBe(2);
+      expect($form.find('input:hidden').length).toBe(1);
     });
   });
 
@@ -28,11 +28,11 @@ describe('$.fn.progressiveForm', function() {
       expect(clickEvent.isDefaultPrevented()).toBeTruthy();
     });
 
-    it('unchecks the linked checkbox', function() {
+    it('checks the linked checkbox', function() {
       var $checkbox = $form.find('input#linked_checkbox')
-      expect($checkbox.prop('checked')).toEqual(true)
-      $form.find('a').click()
       expect($checkbox.prop('checked')).toEqual(false)
+      $form.find('a').click()
+      expect($checkbox.prop('checked')).toEqual(true)
     });
 
     it('submits the form', function() {

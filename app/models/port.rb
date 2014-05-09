@@ -1,0 +1,2 @@
+class Port < BaseResource
+end

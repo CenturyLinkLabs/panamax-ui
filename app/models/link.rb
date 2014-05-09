@@ -1,0 +1,2 @@
+class Link < BaseResource
+end

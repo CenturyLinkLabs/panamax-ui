@@ -1,8 +1,8 @@
 (function($){
-  $.PMX.Row = function(el, options) {
+  $.PMX.AdditionalItem = function($el, options) {
     var base = this;
 
-    base.$el = el;
+    base.$el = $el;
 
     base.defaultOptions = {
       cancelSelector: '.cancel'
@@ -23,14 +23,15 @@
     };
   };
 
-  $.PMX.Appendable = function(el, options){
+  $.PMX.Appendable = function($el, options){
     var base = this;
 
-    base.$el = el;
+    base.$el = $el;
 
     base.defaultOptions = {
       $trigger: $('.button-add'),
-      $elementToAppend: $('#row_template')
+      $elementToAppend: $('#row_template'),
+      addCallback: function() { return null }
     }
 
     base.init = function() {
@@ -48,9 +49,10 @@
     };
 
     base.appendItem = function() {
-      var newItem = new $.PMX.Row(base.options.$elementToAppend.clone());
+      var newItem = new $.PMX.AdditionalItem(base.options.$elementToAppend.clone());
       base.$el.append(newItem.$el);
       newItem.init();
+      base.options.addCallback(newItem);
     };
   };
 
