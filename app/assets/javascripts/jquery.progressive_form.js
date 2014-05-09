@@ -24,7 +24,6 @@
     };
 
     base.handleRemove = function(e) {
-      console.log('handle it');
       e.preventDefault();
       base.uncheckRelatedBox($(e.currentTarget));
       base.$el.submit();
