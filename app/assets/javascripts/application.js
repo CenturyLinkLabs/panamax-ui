@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require handlebars
+//= require moment
 //= require pmx_namespace
 //= require_tree .
 //= require init
