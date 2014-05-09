@@ -1,14 +1,24 @@
 describe('$.fn.appendable', function() {
   var $trigger,
       $list,
+      $rowTemplate,
+      addCallback,
+      callbackReturnVal,
       subject;
 
   beforeEach(function() {
     fixture.load('appendable.html');
     $list = $('#teaspoon-fixtures').find('ol');
     $trigger = $('.add-button');
+    $rowTemplate = $('#row_template');
+    addCallback = function(returnVal) {
+      callbackReturnVal = returnVal;
+    }
+
     subject = new $.PMX.Appendable($list, {
-      $trigger: $trigger
+      $trigger: $trigger,
+      $elementToAppend: $rowTemplate,
+      addCallback: addCallback
     });
     subject.init();
   });
@@ -25,6 +35,11 @@ describe('$.fn.appendable', function() {
       $trigger.click();
       expect($list.find('li').length).toEqual(3)
       expect($list.find('li:last-child').text()).toMatch('a new thing')
+    });
+
+    it('calls the supplied callback with the added element', function() {
+      $trigger.click();
+      expect(callbackReturnVal.$el.html()).toEqual($('#row_template').html());
     });
   });
 

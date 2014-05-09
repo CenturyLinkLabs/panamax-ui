@@ -9,4 +9,8 @@ class BaseResource < ActiveResource::Base
       self.public_send(setter, val) if self.respond_to?(setter)
     end
   end
+
+  def _deleted
+    false
+  end
 end
