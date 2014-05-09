@@ -17,4 +17,3 @@
 //= require pmx_namespace
 //= require_tree .
 //= require init
-

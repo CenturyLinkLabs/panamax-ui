@@ -44,4 +44,6 @@ $.PMX.init = function() {
       });
     }
   });
+
+  $('.journal-output').journalLoader();
 };
