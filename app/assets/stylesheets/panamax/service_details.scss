@@ -178,4 +178,8 @@
   }
 }
 
-
+.additional-entries {
+  dl:first-child {
+    display: none;
+  }
+}

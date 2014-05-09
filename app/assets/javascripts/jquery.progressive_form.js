@@ -16,7 +16,7 @@
     };
 
     base.hideInputs = function() {
-      base.$el.find('input').hide();
+      base.$el.find('input[type="checkbox"], input[type="submit"]').hide();
     };
 
     base.bindEvents = function() {
