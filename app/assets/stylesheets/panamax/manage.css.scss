@@ -153,18 +153,20 @@ section.application-services {
       margin-bottom: 19px;
 
       li {
+        position: relative;
         margin-bottom: 10px;
-        line-height: 20px;
         height: 40px;
         border-radius: 4px;
 
         span {
           display: inline-block;
-          position: relative;
-          line-height: 40px;
+          margin-left: 4px;
+          position: absolute;
+          top: 14px;
           width: 210px;
           overflow: hidden;
           text-overflow: ellipsis;
+          line-height: 16px;
         }
 
         .actions {
