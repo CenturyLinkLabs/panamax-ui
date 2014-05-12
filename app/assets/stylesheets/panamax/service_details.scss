@@ -24,6 +24,10 @@
   }
 }
 
+.service-attributes {
+  overflow: auto;
+}
+
 .service-detail {
   float: left;
   font-size: 13px;
@@ -88,6 +92,13 @@
 .port-detail {
   @extend .service-detail;
   width: 140px;
+
+
+  input[type='number'],
+  button {
+    @include border-box;
+    width: 140px;
+  }
 }
 
 .environment-variables {
@@ -179,7 +190,8 @@
 }
 
 .additional-entries {
-  dl:first-child {
+  dl:first-child,
+  li:first-child {
     display: none;
   }
 }

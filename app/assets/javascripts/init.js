@@ -18,11 +18,26 @@ $.PMX.init = function() {
 
   $('.service-edit-form').progressiveForm();
 
-  var $environmentVarAdditionalEntries = $('.environment-variables .additional-entries')
+  var $environmentVarAdditionalEntries = $('.environment-variables .additional-entries');
   $environmentVarAdditionalEntries.appendable({
+    $trigger: $('.environment-variables .button-add'),
     $elementToAppend: $environmentVarAdditionalEntries.find('dl:first-of-type'),
     addCallback: function(addedItem) {
       addedItem.$el.find('input').each(function() {
+        var name = $(this).attr('name');
+        var newName = name.replace('_replaceme_', (new Date).getTime());
+        $(this).attr('name', newName);
+      });
+    }
+  });
+
+  var $portAdditionalEntries = $('.port-detail .additional-entries');
+  $portAdditionalEntries.appendable({
+    $trigger: $('.port-detail .button-add'),
+    $elementToAppend: $portAdditionalEntries.find('li:first-of-type'),
+    addCallback: function(addedItem) {
+      addedItem.$el.find('input').each(function() {
+        $(this).prop('disabled', false);
         var name = $(this).attr('name');
         var newName = name.replace('_replaceme_', (new Date).getTime());
         $(this).attr('name', newName);
