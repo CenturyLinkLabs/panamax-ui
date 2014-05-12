@@ -16,7 +16,7 @@
     };
 
     base.hideInputs = function() {
-      base.$el.find('input').hide();
+      base.$el.find('input[type="checkbox"]').hide();
     };
 
     base.bindEvents = function() {
@@ -25,14 +25,14 @@
 
     base.handleRemove = function(e) {
       e.preventDefault();
-      base.uncheckRelatedBox($(e.currentTarget));
+      base.checkRelated($(e.currentTarget));
       base.$el.submit();
     };
 
-    base.uncheckRelatedBox = function($source) {
+    base.checkRelated = function($source) {
       var selector = $source.data(base.options.removeCheckboxSelectorReference);
       var $checkbox = base.$el.find(selector)
-      $checkbox.prop('checked', false);
+      $checkbox.prop('checked', true);
     };
   };
 

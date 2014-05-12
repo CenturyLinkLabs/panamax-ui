@@ -8,15 +8,15 @@ describe 'managing a service' do
       expect(page).to have_css 'h1', text: 'tutum/wordpress'
       expect(page).to have_css 'h1', text: 'WP_1'
 
-      within 'div', text: 'Ports' do
+      within '.port-detail', text: 'Ports' do
         expect(page).to have_content '8080 /tcp'
       end
 
-      within 'div', text: 'Environment Variables' do
+      within '.environment-variables', text: 'Environment Variables' do
         expect(page).to have_content 'DB_PASSWORD pass@word01'
       end
 
-      within 'div', text: 'Service Links' do
+      within '.service-links', text: 'Service Links' do
         expect(page).to have_content 'DB_1'
       end
     end
@@ -26,7 +26,7 @@ describe 'managing a service' do
 
       uncheck 'select_link_0'
 
-      click_on 'Update Service'
+      click_on 'Save all changes'
 
       expect(page).to have_css 'h1', text: 'tutum/wordpress'
     end
@@ -36,7 +36,7 @@ describe 'managing a service' do
 
       uncheck 'select_port_0'
 
-      click_on 'Update Service'
+      click_on 'Save all changes'
 
       expect(page).to have_css 'h1', text: 'tutum/wordpress'
     end
@@ -46,7 +46,7 @@ describe 'managing a service' do
 
       uncheck 'select_port_0'
 
-      click_on 'Update Service'
+      click_on 'Save all changes'
 
       expect(page).to have_css 'h1', text: 'tutum/wordpress'
     end

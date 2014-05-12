@@ -1,7 +1,8 @@
 CtlBaseUi.configure do |config|
   config.additional_entries = [
-    'search',
+    'panamax_buttons',
     'breadcrumbs',
+    'search',
     'service_details'
   ]
 

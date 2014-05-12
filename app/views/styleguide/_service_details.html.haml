@@ -11,6 +11,11 @@
       = "/tcp"
       .actions
         = link_to 'remove', '#', class: 'delete-action', title: 'remove'
+    %li.editing
+      %input{type: 'text', placeholder: '8888'}
+
+  %button.button-add Add a Port
+
 .environment-variables
   %h3 Environment Variables
   %dl
@@ -22,6 +27,12 @@
     %dd abc12378987
     %dd.actions
       = link_to 'remove', '#', class: 'delete-action', title: 'remove'
+    %dt.editing
+      %input{type: 'text', placeholder: 'Label'}
+    %dd.editing
+      %input{type: 'text', placeholder: 'Value'}
+      %a Cancel
+  %button.button-add Add an Environment Variable
 
 .service-links
   %h3 Service Links
