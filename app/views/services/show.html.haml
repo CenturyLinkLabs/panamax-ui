@@ -10,49 +10,55 @@
 = form_for [@app, @service], html: { class: 'service-edit-form' } do |f|
   = render '/shared/breadcrumbs', breadcrumbs: crumbs
 
-  .service-links
-    %h3 Service Links
-    %ul
-      = f.fields_for :links do |link|
-        - checkbox_id = "select_link_#{link.options[:child_index]}"
-        %li
-          %a{data: { checkbox: { selector: "##{checkbox_id}" } }, class: 'remove-link', title: 'remove link'} remove
-          = link.object.service_name
-          = link.check_box :_deleted, { id: checkbox_id }
-          = link.hidden_field :service_id
-          = link.hidden_field :alias
+  .service-attributes
+    .service-links
+      %h3 Service Links
+      %ul
+        = f.fields_for :links do |link|
+          - checkbox_id = "select_link_#{link.options[:child_index]}"
+          %li
+            %a{data: { checkbox: { selector: "##{checkbox_id}" } }, class: 'remove-link', title: 'remove link'} remove
+            = link.object.service_name
+            = link.check_box :_deleted, { id: checkbox_id }
+            = link.hidden_field :service_id
+            = link.hidden_field :alias
 
-  .port-detail
-    %h3 Ports
-    %ul
-      = f.fields_for :ports do |port|
-        - checkbox_id = "select_port_#{port.options[:child_index]}"
-        %li{title: "container: #{port.object.container_port}, host: #{port.object.host_port}"}
-          %strong= port.object.host_port
-          = "/tcp"
-          .actions
-            = port.check_box :_deleted, { id: checkbox_id }
-            = port.hidden_field :container_port
-            = port.hidden_field :host_port
+    .port-detail
+      %h3 Ports
+      %ul
+        = f.fields_for :ports do |port|
+          - checkbox_id = "select_port_#{port.options[:child_index]}"
+          %li{title: "container: #{port.object.container_port}, host: #{port.object.host_port}"}
+            %strong= port.object.host_port
+            = "/tcp"
+            .actions
+              = port.check_box :_deleted, { id: checkbox_id }
+              = port.hidden_field :container_port
+              = port.hidden_field :host_port
+              %a{class: 'delete-action', title: 'remove', data: { checkbox: { selector: "##{checkbox_id}" } } } remove
+      %ul.additional-entries
+        %li.editing
+          = add_fields_for(:ports, f, { child_index: '_replaceme_' })
+
+      %button.button-add Add a Port
+
+    .environment-variables
+      %h3 Environment Variables
+      = f.fields_for :environment, @service.environment_vars do |environment|
+        - index = environment.options[:child_index]
+        %dl
+          %dt= environment.object.name
+          %dd= environment.object.value
+          %dd.actions
+            - checkbox_id = "select_environment_variable_#{index}"
+            = environment.check_box :_deleted, { id: checkbox_id }
+            = environment.hidden_field :name
+            = environment.hidden_field :value
             %a{class: 'delete-action', title: 'remove', data: { checkbox: { selector: "##{checkbox_id}" } } } remove
 
-  .environment-variables
-    %h3 Environment Variables
-    = f.fields_for :environment, @service.environment_vars do |environment|
-      - index = environment.options[:child_index]
-      %dl
-        %dt= environment.object.name
-        %dd= environment.object.value
-        %dd.actions
-          - checkbox_id = "select_environment_variable_#{index}"
-          = environment.check_box :_deleted, { id: checkbox_id }
-          = environment.hidden_field :name
-          = environment.hidden_field :value
-          %a{class: 'delete-action', title: 'remove', data: { checkbox: { selector: "##{checkbox_id}" } } } remove
+      .additional-entries
+        = add_fields_for(:environment, f, { index: '_replaceme_' })
 
-    .additional-entries
-      = add_fields_for(:environment, f)
-
-    %button.button-add Add an Environment Variable
+      %button.button-add Add an Environment Variable
 
   = f.submit 'Save all changes', class: 'button-primary'
