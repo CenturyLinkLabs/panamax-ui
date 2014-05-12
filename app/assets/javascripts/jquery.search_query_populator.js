@@ -24,6 +24,7 @@
       var query = $(e.currentTarget).data('query');
       base.updateSearchFieldWith(query);
       base.options.$searchField.focus();
+      base.options.$searchField.closest("form").submit();
     };
 
     base.updateSearchFieldWith = function(query) {

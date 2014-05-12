@@ -24,4 +24,11 @@ describe('$.fn.searchQueryPopulator', function() {
     $('a[data-query="java"]').click();
     expect($('input#search_query').val()).toEqual('java');
   });
+
+  it('submits the search form', function() {
+    var submitSpy = spyOn($.fn, 'submit');
+
+    $('a[data-query="java"]').click();
+    expect(submitSpy).toHaveBeenCalled();
+  });
 });

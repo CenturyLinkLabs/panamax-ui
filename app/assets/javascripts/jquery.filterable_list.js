@@ -62,6 +62,7 @@
     base.handleSubmit = function(e) {
       e.preventDefault();
       base.fetchResults(base.queryField.getTerm());
+      $('.search-title').css('display', 'block');
     };
 
     base.handleQueryChange = function(e) {
