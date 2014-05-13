@@ -24,6 +24,10 @@
   }
 }
 
+.service-attributes {
+  overflow: auto;
+}
+
 .service-detail {
   float: left;
   font-size: 13px;
@@ -65,6 +69,10 @@
       @include border-box;
       float: left;
       padding-left: 0;
+
+      input[type='text'] {
+        @include border-box;
+      }
     }
 
     dt {
@@ -84,6 +92,13 @@
 .port-detail {
   @extend .service-detail;
   width: 140px;
+
+
+  input[type='number'],
+  button {
+    @include border-box;
+    width: 140px;
+  }
 }
 
 .environment-variables {
@@ -92,12 +107,29 @@
 
   dl dt {
     width: 220px;
+
+    input[type='text'] {
+      font-weight: bold;
+      width: 210px;
+    }
   }
   dl dd {
     width: 230px;
 
     &.actions {
       width: 20px;
+    }
+
+    &.editing {
+      width: 250px;
+
+      input[type='text'] {
+        width: 200px;
+      }
+
+      a {
+        text-decoration: underline;
+      }
     }
   }
 }
@@ -154,5 +186,12 @@
       }
 
     }
+  }
+}
+
+.additional-entries {
+  dl:first-child,
+  li:first-child {
+    display: none;
   }
 }

@@ -35,7 +35,7 @@ describe 'managing a service' do
       it 'can delete a link' do
         uncheck 'select_link_0'
 
-        click_on 'Update Service'
+        click_on 'Save all changes'
 
         expect(page).to have_css 'h1', text: 'tutum/wordpress'
       end
@@ -43,7 +43,7 @@ describe 'managing a service' do
       it 'can delete a port' do
         uncheck 'select_port_0'
 
-        click_on 'Update Service'
+        click_on 'Save all changes'
 
         expect(page).to have_css 'h1', text: 'tutum/wordpress'
       end
@@ -51,7 +51,7 @@ describe 'managing a service' do
       it 'can delete a port' do
         uncheck 'select_port_0'
 
-        click_on 'Update Service'
+        click_on 'Save all changes'
 
         expect(page).to have_css 'h1', text: 'tutum/wordpress'
       end

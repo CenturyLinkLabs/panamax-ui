@@ -90,17 +90,17 @@ describe Service do
   describe '#links_attributes=' do
     let(:attributes) do
       {
-        '0' => { 'service_id' => 99, 'alias' => 'foo' },
-        '1' => { 'service_id' => nil, 'alias' => 'bar' }
+        '0' => { 'service_id' => 99, 'alias' => 'foo', '_deleted' => false },
+        '1' => { 'service_id' => nil, 'alias' => 'bar', '_deleted' => 1 }
       }
     end
 
-    it 'assigns to links when service_id is non nil' do
+    it 'assigns to links when not deleted' do
       subject.links_attributes = attributes
       expect(subject.links).to include attributes['0']
     end
 
-    it 'does not assign to links when service_id is nil' do
+    it 'does not assign to links when _deleted is 1' do
       subject.links_attributes = attributes
       expect(subject.links).to_not include attributes['1']
     end
@@ -109,9 +109,9 @@ describe Service do
   describe '#ports_attributes=' do
     let(:attributes) do
       {
-        '0' => { 'host_port' => 9090, 'container_port' => 90 },
-        '1' => { 'host_port' => 8080, 'container_port' => nil },
-        '2' => { 'host_port' => 6060, 'container_port' => 60, 'id' => nil }
+        '0' => { 'host_port' => 9090, 'container_port' => 90, '_deleted' => false },
+        '1' => { 'host_port' => 8080, 'container_port' => 70, '_deleted' => 1 },
+        '2' => { 'host_port' => 6060, 'container_port' => 60, 'id' => nil, '_deleted' => false }
       }
     end
 
@@ -120,7 +120,7 @@ describe Service do
       expect(subject.ports).to include attributes['0']
     end
 
-    it 'does not assign to links when container port is nil' do
+    it 'does not assign to links when _deleted is 1' do
       subject.ports_attributes = attributes
       expect(subject.ports).to_not include attributes['1']
     end
@@ -131,11 +131,19 @@ describe Service do
     end
   end
 
+  describe '#environment_vars' do
+    subject { described_class.new(environment: { boo: 'yah' }) }
+
+    it 'returns a struct for the form to consume' do
+      expected = OpenStruct.new(name: 'boo', value: 'yah', _deleted: false)
+      expect(subject.environment_vars).to eq [expected]
+    end
+  end
+
   describe '#environment_attributes=' do
     let(:attributes) do
       {
-        'PASSWORD' => 'abc123',
-        'id' => nil
+        '0' => { 'name' => 'PASSWORD', 'value' => 'abc123' }
       }
     end
 

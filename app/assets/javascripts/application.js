@@ -15,19 +15,5 @@
 //= require handlebars
 //= require pmx_namespace
 //= require_tree .
+//= require init
 
-$(document).ready(function() {
-  $('.example-searches').searchQueryPopulator({
-    $searchField: $('input#search_form_query')
-  });
-
-  $('.filterable-list').filterableList({
-    $queryField: $('input#search_form_query')
-  });
-
-  $('ul.services li').serviceActions();
-
-  $('.category-panel').categoryActions();
-
-  $('.service-edit-form').progressiveForm();
-});
