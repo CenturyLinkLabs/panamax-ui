@@ -17,8 +17,8 @@ class FakePanamaxApi < Sinatra::Base
     json_response 200, 'app_representation.json'
   end
 
-  get "/apps/:app_id/services/:id" do
-    json_response 200, 'service_representation.json'
+  get "/apps/:app_id/services/:id.?:format" do |app_id, id, format|
+    json_response 200, "service_representation_#{id}.json"
   end
 
   put "/apps/:app_id/services/:id" do

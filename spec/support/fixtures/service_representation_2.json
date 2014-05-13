@@ -1,5 +1,5 @@
 {
-  "id": 7,
+  "id": 2,
   "name": "WP_1",
   "description": "Wordpress",
   "from": "panamax/panamax-docker-wordpress:latest",
@@ -25,7 +25,7 @@
   "volumes": [],
   "load_state": null,
   "active_state": null,
-  "sub_state": null,
+  "sub_state": "restarting",
   "app": {
     "id": 4,
     "name": "Wordpress"

@@ -9,6 +9,10 @@ class Service < BaseResource
     id
   end
 
+  def disabled?
+    !['running', nil].include?(sub_state)
+  end
+
   def environment_attributes=(attributes)
     self.environment = attributes.except('id')
   end
