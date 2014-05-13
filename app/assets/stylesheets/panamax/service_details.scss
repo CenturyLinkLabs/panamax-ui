@@ -94,7 +94,11 @@
   width: 140px;
 
 
-  input[type='number'],
+  input[type='number'] {
+    @include border-box;
+    width: 67px;
+  }
+
   button {
     @include border-box;
     width: 140px;

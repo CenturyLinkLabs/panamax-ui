@@ -20,7 +20,7 @@ describe 'managing a service' do
         expect(page).to have_css 'h1', text: 'WP_1'
 
         within '.port-detail', text: 'Ports' do
-          expect(page).to have_content '8080 /tcp'
+          expect(page).to have_content '8080 : 80'
         end
 
         within '.environment-variables', text: 'Environment Variables' do
