@@ -57,10 +57,10 @@
               = environment.hidden_field :value
               %a{class: 'delete-action', title: 'remove', data: { checkbox: { selector: "##{checkbox_id}" } } } remove
 
-      .additional-entries
-        = add_fields_for(:environment, f, { index: '_replaceme_' })
+        .additional-entries
+          = add_fields_for(:environment, f, { index: '_replaceme_' })
 
-      %button.button-add Add an Environment Variable
+        %button.button-add Add an Environment Variable
 
     = f.submit 'Save all changes', class: 'button-primary'
 
