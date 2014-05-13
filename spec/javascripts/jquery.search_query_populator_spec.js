@@ -1,5 +1,6 @@
 describe('$.fn.searchQueryPopulator', function() {
   beforeEach(function() {
+    spyOn($.fn, 'submit');
     fixture.load('search.html');
     $('.example-searches').searchQueryPopulator({
       $searchField: $('input#search_query')
@@ -23,5 +24,10 @@ describe('$.fn.searchQueryPopulator', function() {
     $('input#search_query').val('old term')
     $('a[data-query="java"]').click();
     expect($('input#search_query').val()).toEqual('java');
+  });
+
+  it('submits the search form', function() {
+    $('a[data-query="java"]').click();
+    expect($.fn.submit).toHaveBeenCalled();
   });
 });
