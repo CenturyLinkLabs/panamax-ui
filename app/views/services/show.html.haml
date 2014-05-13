@@ -29,9 +29,9 @@
         %ul
           = f.fields_for :ports do |port|
             - checkbox_id = "select_port_#{port.options[:child_index]}"
-            %li{title: "container: #{port.object.container_port}, host: #{port.object.host_port}"}
+            %li{title: "host: #{port.object.host_port}, container: #{port.object.container_port}"}
               %strong= port.object.host_port
-              = "/tcp"
+              = ": #{port.object.container_port}"
               .actions
                 = port.check_box :_deleted, { id: checkbox_id }
                 = port.hidden_field :container_port

@@ -3,16 +3,17 @@
   %ul
     %li
       %strong 8888
-      = "/tcp"
+      = ": 80"
       .actions
         = link_to 'remove', '#', class: 'delete-action', title: 'remove'
     %li
       %strong 2020
-      = "/tcp"
+      = ": 20"
       .actions
         = link_to 'remove', '#', class: 'delete-action', title: 'remove'
     %li.editing
-      %input{type: 'number', placeholder: '8888'}
+      %input{type: 'number', placeholder: 'host'}
+      %input{type: 'number', placeholder: 'container'}
 
   %button.button-add Add a Port
 
