@@ -27,6 +27,12 @@ describe('$.fn.filterableList', function() {
       expect(request.url).toBe('/search.json?search_form%5Bquery%5D=mys');
       expect(request.method).toBe('GET');
     });
+
+    it('displays the search headings', function() {
+      $('h3.search-title').hide();
+      $('.filterable-list form').submit();
+      expect($('h3.search-title:visible').length).toEqual(2);
+    });
   });
 
   describe('changing the text in the query field', function() {

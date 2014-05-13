@@ -39,6 +39,7 @@
       $queryForm: base.$el.find('form.search-form'),
       $imageResults: base.$el.find('.image-results'),
       $templateResults: base.$el.find('.template-results'),
+      $resultHeadings: base.$el.find('.search-title'),
       remoteImageResultTemplate: Handlebars.compile($('#remote_image_result_template').html()),
       localImageResultTemplate: Handlebars.compile($('#local_image_result_template').html()),
       templateResultTemplate: Handlebars.compile($('#template_result_template').html()),
@@ -62,7 +63,7 @@
     base.handleSubmit = function(e) {
       e.preventDefault();
       base.fetchResults(base.queryField.getTerm());
-      $('.search-title').css('display', 'block');
+      base.options.$resultHeadings.css('display', 'block');
     };
 
     base.handleQueryChange = function(e) {
