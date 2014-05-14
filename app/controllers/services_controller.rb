@@ -5,6 +5,20 @@ class ServicesController < ApplicationController
     @service = retrieve_service
   end
 
+  def create
+    params['categories'] = build_category_param(params[:application])
+    service, status = services_service.create(params)
+
+    respond_to do |format|
+      format.html { redirect_to application_url(params[:application_id]) }
+      format.json { render(json: service.to_json, status: status) }
+    end
+  end
+
+  def build_category_param(application)
+    [{:id => application[:category]}] unless application[:category] == 'null'
+  end
+
   def destroy
     service, status = services_service.destroy(params[:application_id], params[:id])
     respond_to do |format|

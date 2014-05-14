@@ -157,6 +157,7 @@ section.application-services {
         margin-bottom: 10px;
         height: 40px;
         border-radius: 4px;
+        position: relative;
 
         span {
           display: inline-block;
@@ -167,6 +168,7 @@ section.application-services {
           overflow: hidden;
           text-overflow: ellipsis;
           line-height: 16px;
+          white-space: nowrap;
         }
 
         .actions {
@@ -177,7 +179,7 @@ section.application-services {
         }
 
         .service-icon {
-          display: inline-block;
+          float: left;
           position: relative;
           background-color: $light_grey;
           width: 40px;
@@ -211,16 +213,17 @@ section.application-services {
     overflow: hidden;
 
     input#search_form_query {
-      width: 620px;
+      width: 600px;
     }
 
     .filterable-list {
       .basic-info {
-        width: 350px;
+        width: 335px;
       }
     }
-
   }
 }
 
-
+.archetype {
+  display: none;
+}
