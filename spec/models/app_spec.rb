@@ -11,10 +11,10 @@ describe App do
           {'id' => '3', 'name' => 'bar'}
       ],
       'services' => [
-          {'name' => 'blah', 'categories' => [ {'name' => 'foo'}, {'name' => 'baz'}]},
-          {'name' => 'barf', 'categories' => [ {'name' => 'foo'} ]},
-          {'name' => 'bark', 'categories' => [ {'name' => 'bar'} ]},
-          {'name' => 'bard', 'categories' => []}
+          {'id' => '3', 'name' => 'blah', 'categories' => [ {'name' => 'foo'}, {'name' => 'baz'}]},
+          {'id' => '4', 'name' => 'barf', 'categories' => [ {'name' => 'foo'} ]},
+          {'id' => '5', 'name' => 'bark', 'categories' => [ {'name' => 'bar'} ]},
+          {'id' => '6', 'name' => 'bard', 'categories' => []}
       ]
     }
   end
@@ -100,7 +100,7 @@ describe App do
       end
 
       it 'does not include Uncategorized service group if there are only categorized services' do
-        attributes['services'].delete({'name' => 'bard', 'categories' => []})
+        subject.services.delete_if { |service| service.categories.empty? }
         groups = subject.categorized_services
         expect(groups.keys).to_not include({:id => nil, :name => 'Uncategorized'})
       end

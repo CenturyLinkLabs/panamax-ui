@@ -6,8 +6,8 @@
     "errors": null,
     "services": [
       {
-        "id": 6,
-        "name": "tutum_wordpress_1",
+        "id": 1,
+        "name": "WP_1",
         "errors": null,
         "categories": [
           {
