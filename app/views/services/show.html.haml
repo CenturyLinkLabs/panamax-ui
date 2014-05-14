@@ -6,11 +6,15 @@
     link_to(@app.name, application_path(@app.to_param)),
     @service.name
   )
+= render '/shared/breadcrumbs', breadcrumbs: crumbs
+.base-image-detail
+  %h6 Base Image:
+  %span
+    = @service.service_source_name
+  = link_to 'View on Docker Index', @service.docker_index_url, { target: 'blank' }
 
 .service-details{class: service_details_class(@service.disabled?)}
   = form_for [@app, @service], html: { class: 'service-edit-form' } do |f|
-    = render '/shared/breadcrumbs', breadcrumbs: crumbs
-
     .service-attributes
       .service-links
         %h3 Service Links
@@ -63,4 +67,3 @@
         %button.button-add Add an Environment Variable
 
     = f.submit 'Save all changes', class: 'button-primary'
-

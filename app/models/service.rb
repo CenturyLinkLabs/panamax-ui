@@ -1,4 +1,7 @@
 class Service < BaseResource
+
+  DOCKER_INDEX_BASE_URL = 'https://index.docker.io/'
+
   self.prefix = '/apps/:app_id/'
 
   has_many :ports
@@ -40,6 +43,15 @@ class Service < BaseResource
       # expose link ID in API.
       memo << link.except('id') unless link['_deleted'].to_s == '1'
     end
+  end
+
+  def service_source_name
+    self.from.gsub(/:+\S*/, '')
+  end
+
+  def docker_index_url
+    path_part = "u/#{self.service_source_name}"
+    "#{DOCKER_INDEX_BASE_URL}#{path_part}"
   end
 
   def self.build_from_response(response)
