@@ -25,11 +25,11 @@
   }
 }
 
-section.application-urls {
+section.deployment-details {
   margin-bottom: 10px;
   font-size: 0.8em;
 
-  span.service-url {
+  span.deployment-env, span.service-url {
     display: inline-block;
     height: 20px;
     padding-right: 15px;

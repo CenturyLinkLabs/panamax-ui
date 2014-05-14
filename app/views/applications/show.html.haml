@@ -7,8 +7,10 @@
   )
 = render '/shared/breadcrumbs', breadcrumbs: crumbs
 
-- unless @app.host_ports.blank?
-  %section.application-urls
+%section.deployment-details
+  %span.deployment-env
+    Deployed to: CoreOS Local
+  - unless @app.host_ports.blank?
     - @app.host_ports.each do |service_name, ports|
       %span.service-url
         = "#{service_name} URL: "
