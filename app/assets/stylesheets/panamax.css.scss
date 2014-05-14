@@ -16,23 +16,27 @@ body > header {
 
     a {
       @include border-box;
-      @include hide-text;
-      display: block;
-      height: 50px;
     }
   }
   h1.panamax-logo a {
+    @include hide-text;
     background: image-url('pmx_logo.svg') no-repeat;
     @include background-size(148px, 19px);
     background-position: center left;
     width: 168px;
     border-right: $grey 1px solid;
+    display: block;
+    height: 50px;
   }
-  h1.ctl-labs-logo a {
-    background: image-url('ctl_labs_logo.svg') no-repeat;
-    @include background-size(100px, 40px);
-    background-position: center left;
-    width: 100px;
+
+  h1.ctl-labs {
+    font-size: 16px;
+    color: $dark_grey;
+    font-weight: bold;
+    margin-top: 27px;
+    a {
+      color: $dark_grey;
+    }
   }
 
   nav {
