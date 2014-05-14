@@ -25,20 +25,40 @@ describe Service do
 
   let(:fake_json_response) { attributes.to_json }
 
-  describe '#disabled?' do
-    it 'is false when the sub_state is running' do
+  describe '#status' do
+    it 'is :running when sub state is running' do
       subject.sub_state = 'running'
-      expect(subject.disabled?).to be_false
+      expect(subject.status).to eq :running
     end
 
-    it 'is false when the sub_state is nil' do
+    it 'is :loading when sub state is dead' do
+      subject.sub_state = 'dead'
+      expect(subject.status).to eq :loading
+    end
+
+    it 'is :loading when sub state is start-pre' do
+      subject.sub_state = 'start-pre'
+      expect(subject.status).to eq :loading
+    end
+
+    it 'is :loading when sub state is auto-restart' do
+      subject.sub_state = 'auto-restart'
+      expect(subject.status).to eq :loading
+    end
+
+    it 'is :loading when sub state is stop-post' do
+      subject.sub_state = 'stop-post'
+      expect(subject.status).to eq :loading
+    end
+
+    it 'is :stopped when sub state is nil' do
       subject.sub_state = nil
-      expect(subject.disabled?).to be_false
+      expect(subject.status).to eq :stopped
     end
 
-    it 'is true if the run_state is anything else' do
-      subject.sub_state = 'something_else'
-      expect(subject.disabled?).to be_true
+    it 'is :stopped when sub state is something else' do
+      subject.sub_state = 'somethingelse'
+      expect(subject.status).to eq :stopped
     end
   end
 
