@@ -82,4 +82,6 @@
 
   %header
     %h3 CoreOS Journal - Service Activity Log
+    %a.journal-toggle{ data: { alt: { text: 'Hide Full Activity Log' } } }
+      Show Full Activity Log
   %code.journal-output.truncated{ data: { source: journal_application_service_path(@app.id, @service.id) } }
