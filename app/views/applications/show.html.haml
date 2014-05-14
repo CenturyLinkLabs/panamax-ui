@@ -25,7 +25,8 @@
               = render 'application_service_row', :app_id => @app.id,
                                                   :name => service.name,
                                                   :service_id => service.id,
-                                                  :status => service.status
+                                                  :status => service.status,
+                                                  :icon => service.icon
         = link_to 'Add a Service', '#', class: 'button-positive add-service', title: 'add', data: {:category => group.id}
 
 = render 'services/add_service'
@@ -34,4 +35,5 @@
   = render 'application_service_row', :app_id => @app.id,
                                       :name => 'REPLACE',
                                       :service_id => 'REPLACE',
-                                      :status => nil
+                                      :status => nil,
+                                      :icon => nil

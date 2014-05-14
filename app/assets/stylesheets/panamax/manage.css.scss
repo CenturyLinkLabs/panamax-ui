@@ -189,24 +189,15 @@ section.application-services {
         }
 
         .service-icon {
+          display: inline-block;
           float: left;
-          position: relative;
           background-color: $light_grey;
           width: 40px;
           height: 40px;
           margin-right: 6px;
           border-radius: 4px;
-
-          &:before {
-            content: '';
-            position: absolute;
-            left: 10px;
-            top: 10px;
-            display: block;
-            @include icon-grey;
-            @extend .icon-docker-blocks-large;
-            width: 31px;
-            height: 31px;
+          img {
+            margin: 10px 0 0 10px;
           }
         }
       }
@@ -231,6 +222,7 @@ section.application-services {
         width: 335px;
       }
     }
+
   }
 }
 
