@@ -25,3 +25,30 @@
     border: $lime 1px solid;
   }
 }
+
+.button-minor {
+  @include border-radius(0.3em);
+  min-width: 80px;
+  border: 0;
+  padding: 2px 10px;
+  background-color: $grey;
+  color: $dark_grey;
+  font-size: 0.8em;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+
+
+  &:hover {
+    background-color: lighten( $dark_grey, 20% );
+    transition: background-color 0.25s ease;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+a.button-minor {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
