@@ -18,3 +18,20 @@
   %p baz
   %input{ :type => 'text', :id => 'search_form_query' }
   .image-results
+    .search-result-item.image-result
+      .actions
+        = form_tag '/applications/77/services' do
+          = hidden_field_tag 'application[name]', 'Wordpress'
+          = hidden_field_tag 'application[category]', 'null'
+          = hidden_field_tag 'name', 'Wordpress'
+          = hidden_field_tag 'from', 'Wordpress'
+          = button_tag 'Add to App', class: 'button-positive'
+
+.archetype
+  %li
+    .service-icon
+    %span
+      Wordpress
+    .actions
+      %a.edit-action{:href => '/applications/1/services/1'}
+      %a.delete-action{:href => '/applications/1/services/1'}

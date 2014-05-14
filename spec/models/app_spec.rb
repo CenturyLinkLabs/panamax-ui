@@ -6,9 +6,9 @@ describe App do
       'name' => 'App Daddy',
       'id' => 77,
       'categories' => [
-          {'name' => 'foo'},
-          {'name' => 'baz'},
-          {'name' => 'bar'}
+          {'id' => '1', 'name' => 'foo'},
+          {'id' => '2', 'name' => 'baz'},
+          {'id' => '3', 'name' => 'bar'}
       ],
       'services' => [
           {'name' => 'blah', 'categories' => [ {'name' => 'foo'}, {'name' => 'baz'}]},
@@ -86,28 +86,30 @@ describe App do
     subject { described_class.build_from_response(fake_json_response) }
 
     describe '#categorized_services' do
-      it 'returns a hash of services grouped by category name' do
+      it 'returns a hash of services grouped by category' do
         groups = subject.categorized_services
-        expect(groups.keys).to include('foo', 'baz', 'bar')
+        expect(groups.keys).to include({:id => '1', :name => 'foo'},
+                                       {:id => '2', :name => 'baz'},
+                                       {:id => '3', :name => 'bar'})
         expect(groups.values.flatten.map { |s| s.name }).to include('blah', 'barf', 'bark')
       end
 
       it 'includes an Uncategorized service group if there are categorized and uncategorized services' do
         groups = subject.categorized_services
-        expect(groups.keys).to include('Uncategorized')
+        expect(groups.keys).to include({:id => nil, :name => 'Uncategorized'})
       end
 
       it 'does not include Uncategorized service group if there are only categorized services' do
         attributes['services'].delete({'name' => 'bard', 'categories' => []})
         groups = subject.categorized_services
-        expect(groups.keys).to_not include('Uncategorized')
+        expect(groups.keys).to_not include({:id => nil, :name => 'Uncategorized'})
       end
 
       it 'groups all services under a "Services" group if there are no categories' do
         attributes['services'].each { |s| s['categories'] = [] }
         attributes['categories'] = []
         groups = subject.categorized_services
-        expect(groups.keys).to match_array(['Services'])
+        expect(groups.keys).to match_array([{:id => nil, :name => 'Services'}])
       end
     end
 

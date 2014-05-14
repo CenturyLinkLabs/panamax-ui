@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ServicesService do
   let(:fake_connection) { double(:fake_connection) }
-  let(:fake_req) { double(:fake_request) }
+  let(:fake_request) { double(:fake_request) }
   let(:fake_service) { double(:fake_service, valid?: true, id: 77) }
   let(:fake_response) { double(:fake_response, body: nil, status: 200) }
 
@@ -10,6 +10,43 @@ describe ServicesService do
 
   before do
     Service.stub(:build_from_response).and_return(fake_service)
+  end
+
+  describe '#create' do
+    it 'posts a json representation of the params' do
+      headers_hash = {}
+      fake_request.stub(:headers).and_return(headers_hash)
+      expect(headers_hash).to receive(:[]=).with("Content-Type", "application/json")
+      expect(fake_connection).to receive(:post).and_yield(fake_request).and_return(fake_response)
+      expect(fake_request).to receive(:url).with('/apps/77/services/')
+      expect(fake_request).to receive(:body=).with("{\"application_id\":\"77\"}")
+
+      subject.create({application_id: '77'})
+    end
+
+    context 'when successful' do
+      let(:fake_faraday_response) do
+        double(:fake_faraday_response, {
+            success?: true,
+            body: '{}'
+        })
+      end
+
+      before do
+        fake_connection.stub(:post).and_return(fake_faraday_response)
+      end
+
+      it 'returns a valid service object' do
+        service = subject.create({application_id: '77'})
+        expect(service.valid?).to be_true
+      end
+
+      it 'includes the service in the response object' do
+        service = subject.create({application_id: '77'})
+        expect(service).to eq fake_service
+      end
+    end
+
   end
 
   describe '#find_by_id' do

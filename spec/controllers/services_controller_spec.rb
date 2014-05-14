@@ -5,6 +5,7 @@ describe ServicesController do
   let(:fake_services_service) { double(:fake_services_service) }
   let(:valid_app) { double(:valid_app) }
   let(:valid_service) { double(:valid_service, id: 3) }
+  let(:fake_create_response) { double(:fake_create_response, body: 'test', status: 200)}
   let(:fake_delete_response) { double(:fake_delete_response, body: 'test', status: 200)}
 
   before do
@@ -12,6 +13,7 @@ describe ServicesController do
     ServicesService.stub(:new).and_return(fake_services_service)
     fake_applications_service.stub(:find_by_id).and_return(valid_app)
     Service.stub(:find).and_return(valid_service)
+    fake_services_service.stub(:create).and_return(fake_create_response)
     fake_services_service.stub(:destroy).and_return(fake_delete_response)
   end
 
@@ -35,6 +37,62 @@ describe ServicesController do
     it 'assigns service' do
       get :show, { application_id: 77, id: 89 }
       expect(assigns(:service)).to eq valid_service
+    end
+  end
+
+  describe 'category param builder' do
+
+    context 'in Uncategorized or Services category' do
+      let(:application_params){
+        { :category => 'null' }
+      }
+
+      it 'does not assign a category' do
+        expect(subject.build_category_param(application_params)).to eq nil
+      end
+    end
+
+    context 'in a defined Category' do
+      let(:application_params){
+        { :category => 77 }
+      }
+
+      it 'puts category information into an array with an id hash' do
+        expect(subject.build_category_param(application_params)).to eq [{:id => 77}]
+      end
+    end
+  end
+
+  describe 'POST #create' do
+    let(:service_form_params){
+      {
+        'application' =>
+            {
+                'name' =>'Rails',
+                'category' =>'1'
+            },
+        'name'=>'some image',
+        'from' => 'some image',
+        'application_id' => '77',
+        'controller' => 'services',
+        'action' => 'create',
+        'categories' => [{'id'=>'1'}]
+        }
+    }
+    it 'creates the service' do
+      expect(fake_services_service).to receive(:create).with(service_form_params)
+      post :create, service_form_params, {application_id: '77'}
+    end
+
+    it 'redirected to application management view when format is html' do
+      post :create, {application_id: '77', application: {category: 'null'}}
+      expect(response).to redirect_to application_path 77
+    end
+
+    it 'renders json response when format is json' do
+      post :create, {application_id: '77', application: {category: '1'}, format: :json}
+      expect(response.status).to eq 200
+      expect(response.body).to eql fake_create_response.to_json
     end
   end
 

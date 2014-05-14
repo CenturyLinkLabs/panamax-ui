@@ -41,13 +41,13 @@ class App < BaseViewModel
   concerning :ServiceCategories do
     def categorized_services
       groups = categories.each_with_object({}) do |category, hash|
-        hash[category.name] = services_with_category_name(category.name)
+        hash[category] = services_with_category_name(category.name)
       end
 
       if groups.present?
-        groups = groups.merge('Uncategorized' => uncategorized_services) if uncategorized_services.present?
+        groups[AppCategory.new({name: 'Uncategorized'})] = uncategorized_services if uncategorized_services.present?
       else
-        groups['Services'] = services
+        groups[AppCategory.new({name: 'Services'})] = services
       end
 
       return groups
