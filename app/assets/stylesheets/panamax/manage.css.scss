@@ -167,6 +167,16 @@ section.application-services {
           overflow: hidden;
           text-overflow: ellipsis;
           line-height: 16px;
+
+          &.status-stopped {
+            font-style: italic;
+            color: $lipstick_red;
+          }
+
+          &.status-loading {
+            font-style: italic;
+            color: $medium_grey;
+          }
         }
 
         .actions {

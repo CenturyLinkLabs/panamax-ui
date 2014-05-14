@@ -1,0 +1,5 @@
+{
+  "id":"3",
+  "name":"blah",
+  "categories":[{"name":"foo"},{"name":"baz"}]
+}

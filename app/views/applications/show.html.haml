@@ -24,7 +24,7 @@
             - services.each do |service|
               %li
                 .service-icon
-                %span
+                %span{class: "status-#{service.status}"}
                   = service.name
                 .actions
                   = link_to 'edit',

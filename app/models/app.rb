@@ -21,7 +21,9 @@ class App < BaseViewModel
   end
 
   def self.build_with_sub_resources(attributes)
-    attributes['services'].map! { |service_hash| Service.new(service_hash) }
+    attributes['services'].map! do |service_hash|
+      Service.find(service_hash['id'], params: {app_id: attributes['id']})
+    end
     attributes['categories'] = AppCategory.instantiate_collection(attributes['categories'])
     self.new(attributes)
   end
