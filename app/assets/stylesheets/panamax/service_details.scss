@@ -28,6 +28,21 @@
   overflow: auto;
 }
 
+.base-image-detail {
+  * {
+    display: inline-block;
+  }
+  h6 {
+    color: $dark_grey;
+    font-weight: bold;
+  }
+  a {
+    padding-left: 10px;
+    border-left: 1px solid $dark_grey;
+    margin-left: 6px;
+  }
+}
+
 .service-detail {
   float: left;
   font-size: 13px;

@@ -152,4 +152,18 @@ describe Service do
       expect(subject.environment).to eq({ 'PASSWORD' => 'abc123' })
     end
   end
+
+  describe '#service_source_name' do
+    it 'returns the base image name without any tag information' do
+      subject.from = 'supercool/repository:foobar'
+      expect(subject.service_source_name).to eq 'supercool/repository'
+    end
+  end
+
+  describe '#docker_index_url' do
+    it 'composes a docker index URL' do
+      subject.from = 'supercool/repository'
+      expect(subject.docker_index_url).to eq 'https://index.docker.io/u/supercool/repository'
+    end
+  end
 end
