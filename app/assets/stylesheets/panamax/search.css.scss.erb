@@ -1,6 +1,7 @@
 @import 'ctl_base_ui/colors';
 @import 'ctl_base_ui/mixins';
 @import 'ctl_base_ui/icons';
+@import 'panamax/buttons';
 
 .search-form {
   input#search_form_query {
@@ -14,6 +15,12 @@
     @extend .icon-magnifying-glass-for-button;
     float: right;
     width: 200px;
+  }
+}
+
+.example-searches {
+  a {
+    @extend .button-minor;
   }
 }
 

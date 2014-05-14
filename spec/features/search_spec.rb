@@ -8,7 +8,7 @@ describe "searching for templates and images" do
       fill_in "search_form_query", with: "wordpress"
 
       expect(find_field("search_form_query").value).to eq "wordpress"
-      expect(page).to have_content "Examples: wordpress, apache, rails, ubuntu, java"
+      expect(page).to have_content "Examples: wordpress  apache  rails  ubuntu  java"
 
       within 'form' do
         click_on "Search"
