@@ -74,6 +74,12 @@ describe 'managing a service' do
           expect(page).to have_content 'Stopped (restarting)'
         end
       end
+
+      it 'can attempt to restart the service' do
+        click_on 'Restart'
+
+        expect(page).to have_css 'h1', text: 'WP_1'
+      end
     end
   end
 end

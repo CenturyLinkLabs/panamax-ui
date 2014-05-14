@@ -9,6 +9,8 @@
 = render '/shared/breadcrumbs', breadcrumbs: crumbs
 
 %section.service-details
+  = button_to 'Restart', start_application_service_path(@app.to_param, @service.to_param), method: :post, class: 'restart-action'
+
   %span.service-status{class: @service.status}
     = @service.status.to_s.humanize
     %em{title: 'Docker sub state'}= "(#{@service.sub_state || ' - '})"

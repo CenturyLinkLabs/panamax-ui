@@ -43,6 +43,12 @@ class ServicesController < ApplicationController
     respond_with service.get(:journal, cursor: params[:cursor])
   end
 
+  def start
+    @service = retrieve_service
+    @service.post(:start)
+    redirect_to application_service_path(params[:application_id], @service.id)
+  end
+
   private
 
   def retrieve_service

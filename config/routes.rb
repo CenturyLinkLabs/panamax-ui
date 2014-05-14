@@ -5,7 +5,10 @@ Rails.application.routes.draw do
 
   resources :applications, only: [:index, :create, :show] do
     resources :services, only: [:update, :create, :show, :destroy] do
-      get 'journal', on: :member
+      member do
+        post :start
+        get :journal
+      end
     end
   end
 

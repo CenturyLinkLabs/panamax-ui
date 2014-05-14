@@ -25,6 +25,10 @@ class FakePanamaxApi < Sinatra::Base
     status 204
   end
 
+  post "/apps/:app_id/services/:id/start.?:format" do |app_id, id, format|
+    json_response 200, "service_representation_#{id}.json"
+  end
+
   private
 
   def json_response(response_code, file_name)

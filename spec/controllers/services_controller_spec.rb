@@ -4,7 +4,7 @@ describe ServicesController do
   let(:fake_applications_service) { double(:fake_applications_service) }
   let(:fake_services_service) { double(:fake_services_service) }
   let(:valid_app) { double(:valid_app) }
-  let(:valid_service) { double(:valid_service, id: 3) }
+  let(:valid_service) { double(:valid_service, id: 3, post: nil) }
   let(:fake_create_response) { double(:fake_create_response, body: 'test', status: 200)}
   let(:fake_delete_response) { double(:fake_delete_response, body: 'test', status: 200)}
 
@@ -189,6 +189,18 @@ describe ServicesController do
       get :journal, { application_id: 77, id: 89, format: :json}
       expect(response.status).to eq 200
       expect(response.body).to eql journal_lines.to_json
+    end
+  end
+
+  describe '#start' do
+    it 'posts attempts to start the service' do
+      expect(valid_service).to receive(:post).with(:start)
+      post :start, { application_id: 77, id: 89 }
+    end
+
+    it 'redirects back to the show page' do
+      post :start, { application_id: 77, id: 3 }
+      expect(response).to redirect_to application_service_path(77, 3)
     end
   end
 end
