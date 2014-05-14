@@ -12,8 +12,15 @@ class Service < BaseResource
     id
   end
 
-  def disabled?
-    !['running', nil].include?(sub_state)
+  def status
+    case sub_state
+    when 'running'
+      :running
+    when 'dead', 'start-pre', 'auto-restart', 'stop-post'
+      :loading
+    else
+      :stopped
+    end
   end
 
   def environment_vars

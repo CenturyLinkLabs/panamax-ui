@@ -2,30 +2,44 @@
 @import 'ctl_base_ui/colors';
 @import 'ctl_base_ui/icons';
 
-.service-details.loading {
-  position: relative;
+.service-status {
+  float: right;
+  padding-left: 25px;
+  font-style: italic;
+  font-size: 0.8em;
+  color: $medium_grey;
+  white-space: nowrap;
+  height: 20px;
+  line-height: 20px;
+  background-repeat: no-repeat;
+  background-position: left center;
 
-  &:before {
-    content: '';
-    position: absolute;
-    top: 200px;
-    background: image-url('icon_loading_blue.gif') no-repeat center center;
-    display: block;
-    height: 40px;
-    width: 100%;
+  em {
+    text-decoration: underline;
+    cursor: help;
   }
 
-  .service-detail > :not(h3) {
-    opacity: .3;
+  &.stopped {
+    background-image: image-url('icon_status_stopped.png');
   }
-  .actions,
-  .remove-link {
-    display: none;
+
+  &.running {
+    background-image: image-url('icon_status_running.png');
+
+    em {
+      display: none;
+    }
+  }
+
+  &.loading {
+    background-image: image-url('icon_loading_green.gif');
   }
 }
 
 .service-attributes {
   overflow: auto;
+  clear: both;
+  padding-top: 25px;
 }
 
 .service-detail {

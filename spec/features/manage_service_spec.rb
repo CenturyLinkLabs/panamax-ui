@@ -56,8 +56,10 @@ describe 'managing a service' do
         expect(page).to have_css 'h1', text: 'tutum/wordpress'
       end
 
-      it 'activates the service details' do
-        expect(page.find('.service-details')['class']).to_not include 'loading'
+      it 'displays the service status' do
+        within '.service-status' do
+          expect(page).to have_content 'Running'
+        end
       end
 
     end
@@ -67,8 +69,10 @@ describe 'managing a service' do
         visit '/applications/2/services/2'
       end
 
-      it 'does not activate the service details' do
-        expect(page.find('.service-details')['class']).to include 'loading'
+      it 'displays the service status' do
+        within '.service-status' do
+          expect(page).to have_content 'Stopped (restarting)'
+        end
       end
     end
   end
