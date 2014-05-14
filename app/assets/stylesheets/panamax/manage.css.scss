@@ -237,3 +237,29 @@ section.application-services {
 .archetype {
   display: none;
 }
+
+/* Metrics */
+section.metrics {
+  margin-bottom: 20px;
+
+  header {
+    background-color: $dark_blue;
+    color: $white;
+    padding: 15px;
+    overflow: hidden;
+
+    h3 {
+      float: left;
+      color: $white;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    span {
+      float: right;
+      margin-top: 2px;
+      font-size: 14px;
+    }
+  }
+}
+
