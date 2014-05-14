@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ApplicationsService do
   let(:fake_connection) { double(:fake_connection) }
-  let(:fake_req) { double(:fake_request) }
+  let(:fake_request) { double(:fake_request) }
   let(:fake_app) { double(:fake_app, valid?: true, id: 77) }
   let(:fake_response) { double(:fake_response, body: nil, status: 200) }
   let(:fake_apps_response) { double(:fake_apps_response, body: '[]', status: 200)}
@@ -67,11 +67,11 @@ describe ApplicationsService do
 
     it 'posts a json representation of the params' do
       headers_hash = {}
-      fake_req.stub(:headers).and_return(headers_hash)
+      fake_request.stub(:headers).and_return(headers_hash)
       expect(headers_hash).to receive(:[]=).with("Content-Type", "application/json")
-      expect(fake_connection).to receive(:post).and_yield(fake_req).and_return(fake_response)
-      expect(fake_req).to receive(:url).with('/apps')
-      expect(fake_req).to receive(:body=).with("{\"image\":\"some/image\"}")
+      expect(fake_connection).to receive(:post).and_yield(fake_request).and_return(fake_response)
+      expect(fake_request).to receive(:url).with('/apps')
+      expect(fake_request).to receive(:body=).with("{\"image\":\"some/image\"}")
 
       subject.create({image: 'some/image'})
     end

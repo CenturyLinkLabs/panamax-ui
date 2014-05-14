@@ -20,6 +20,22 @@
       base.$el.on('click', base.options.deleteSelector.selector, base.options.deleteHandler);
     };
 
+    base.cleanList = function() {
+      var $services = base.$el.parent();
+
+      base.$el.remove();
+      if ($services.find('li').length === 0) {
+        $services.remove();
+      }
+
+    };
+
+    base.postDelete = function() {
+      $(base.$el).css('opacity', '0.5')
+        .delay(1000)
+        .fadeOut('slow', base.cleanList);
+    };
+
     base.handleDelete = function(event) {
       event.preventDefault();
       event.stopPropagation();
@@ -32,9 +48,7 @@
         type: 'DELETE'
       })
       .done(function() {
-        $(base.$el).css('opacity', '0.5')
-          .delay(1000)
-          .fadeOut('slow')
+        base.postDelete();
       })
       .fail(function(){
         alert('Unable to delete service.');

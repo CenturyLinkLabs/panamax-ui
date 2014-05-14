@@ -45,9 +45,9 @@ class App < BaseViewModel
       end
 
       if groups.present?
-        groups = groups.merge(AppCategory.new({name: 'Uncategorized'}) => uncategorized_services) if uncategorized_services.present?
+        groups[AppCategory.new({name: 'Uncategorized'})] = uncategorized_services if uncategorized_services.present?
       else
-        groups['Services'] = services
+        groups[AppCategory.new({name: 'Services'})] = services
       end
 
       return groups

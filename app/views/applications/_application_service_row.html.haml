@@ -1,0 +1,14 @@
+%li
+  .service-icon
+  %span
+    = name
+  .actions
+    = link_to 'edit',
+               application_service_path(app_id, service_id),
+               class: 'edit-action',
+               title: 'details'
+    = link_to 'delete',
+              application_service_path(app_id, service_id),
+              class: 'delete-action',
+              title: 'delete',
+              method: :delete

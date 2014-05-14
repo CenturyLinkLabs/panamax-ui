@@ -22,20 +22,14 @@
         - unless services.empty?
           %ul.services
             - services.each do |service|
-              %li
-                .service-icon
-                %span
-                  = service.name
-                .actions
-                  = link_to 'edit',
-                             application_service_path(@app.to_param, service.id),
-                             class: 'edit-action',
-                             title: 'details'
-                  = link_to 'delete',
-                            application_service_path(@app.to_param, service.id),
-                            class: 'delete-action',
-                            title: 'delete',
-                            method: :delete
+              = render 'application_service_row', :app_id => @app.id,
+                                                  :name => service.name,
+                                                  :service_id => service.id
         = link_to 'Add a Service', '#', class: 'button-positive add-service', title: 'add', data: {:category => group.id}
 
 = render 'services/add_service'
+
+.archetype
+  = render 'application_service_row', :app_id => @app.id,
+                                      :name => 'REPLACE',
+                                      :service_id => 'REPLACE'

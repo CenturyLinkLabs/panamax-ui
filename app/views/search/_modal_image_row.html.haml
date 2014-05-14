@@ -12,8 +12,10 @@
     %p= presenter.short_description
   .actions
     = form_tag application_services_path(@app.id) do
-      = hidden_field_tag 'application[name]', presenter.title
-      = hidden_field_tag 'application[category]', '2'
+      = hidden_field_tag 'application[name]', @app.name
+      = hidden_field_tag 'application[category]', 'null'
+      = hidden_field_tag 'name', presenter.title
+      = hidden_field_tag 'from', presenter.title
       = button_tag 'Add to App', class: 'button-positive'
   - if remote
     .community-data

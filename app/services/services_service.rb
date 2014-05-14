@@ -13,11 +13,11 @@ class ServicesService
 
   def create(params)
     response = connection.post do |req|
-      req.url "/apps/#{params['application']['application_id']}/services/"
+      req.url "/apps/#{params[:application_id]}/services/"
       req.headers['Content-Type'] = 'application/json'
       req.body = params.to_json
     end
-    App.build_from_response(response.body)
+    Service.build_from_response(response.body)
   end
 
   def destroy(app_id, service_id)
