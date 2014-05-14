@@ -153,4 +153,42 @@ describe ServicesController do
       expect(response.body).to eql fake_delete_response.to_json
     end
   end
+
+  describe '#journal' do
+    let(:journal_lines) do
+      [
+        { date: '1974-02-12', message: 'sparky' },
+        { date: '1973-10-25', message: 'katie' }
+      ]
+    end
+
+    before do
+      Service.stub(:new).and_return(valid_service)
+      valid_service.stub(:get).and_return(journal_lines)
+    end
+
+    context 'when the cursor param is nil' do
+
+      it 'retrieves the journal from the API with a nil cursor' do
+        expect(valid_service).to receive(:get).with(:journal, cursor: nil)
+        get :journal, { application_id: 77, id: 89, format: :json}
+      end
+    end
+
+    context 'when the cursor param is not nil' do
+
+      let(:cursor) { 'cursor1' }
+
+      it 'retrieves the journal from the API with a cursor' do
+        expect(valid_service).to receive(:get).with(:journal, cursor: cursor)
+        get :journal, { application_id: 77, id: 89, cursor: cursor, format: :json}
+      end
+    end
+
+    it 'returns journal response in JSON format' do
+      get :journal, { application_id: 77, id: 89, format: :json}
+      expect(response.status).to eq 200
+      expect(response.body).to eql journal_lines.to_json
+    end
+  end
 end

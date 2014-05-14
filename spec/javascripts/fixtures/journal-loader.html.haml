@@ -1,0 +1,7 @@
+%a.journal-toggle{ data: { alt: { text: 'Hide Full Activity Log' } } } Show Full Activity Log
+%code.journal-output{ data: { source: '/journal' } }
+
+%script#journal_line_template{type: 'text/x-handlebars-template'}
+  %p
+    %span.timestamp {{timestamp}}
+    {{message}}
