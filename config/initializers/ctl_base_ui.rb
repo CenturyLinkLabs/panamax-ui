@@ -3,7 +3,8 @@ CtlBaseUi.configure do |config|
     'panamax_buttons',
     'breadcrumbs',
     'search',
-    'service_details'
+    'service_details',
+    'service_journal'
   ]
 
   config.view_helpers = [
