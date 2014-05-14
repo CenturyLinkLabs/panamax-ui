@@ -6,6 +6,14 @@
     @app.name
   )
 = render '/shared/breadcrumbs', breadcrumbs: crumbs
+%section.metrics
+  %header
+    %h3
+      Application Metrics
+    %span
+      4 Services
+
+  %img{src:'/assets/data_visualization/app_data.png'}
 
 %section.application-services
   %header
