@@ -1,13 +1,15 @@
 %li
   .service-icon
     %img{src: icon}
-  %span{class: "status-#{status}"}
-    = name
+  = link_to name,
+            application_service_path(app_id, service_id),
+            title: 'service-details',
+            class: "status-#{status}"
   .actions
     = link_to 'edit',
-               application_service_path(app_id, service_id),
-               class: 'edit-action',
-               title: 'details'
+              application_service_path(app_id, service_id),
+              class: 'edit-action',
+              title: 'details'
     = link_to 'delete',
               application_service_path(app_id, service_id),
               class: 'delete-action',
