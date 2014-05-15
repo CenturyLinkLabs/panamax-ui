@@ -3,10 +3,12 @@ require 'spec_helper'
 describe ApplicationsController do
   let(:fake_applications_service) { double(:fake_applications_service) }
   let(:valid_app) { double(:valid_app, valid?: true, to_param: 77) }
+  let(:fake_delete_response) { double(:fake_delete_response, body: 'test', status: 200)}
 
   before do
     controller.stub(:show_url)
     fake_applications_service.stub(:create).and_return(valid_app)
+    fake_applications_service.stub(:destroy).and_return(fake_delete_response)
     ApplicationsService.stub(:new).and_return(fake_applications_service)
   end
 
@@ -45,6 +47,24 @@ describe ApplicationsController do
         post :create, {application: {image: 'some/image'}}
         expect(response).to render_template(:show)
       end
+    end
+  end
+
+  describe '#destroy' do
+    it 'uses the applications service to destroy the application' do
+      expect(fake_applications_service).to receive(:destroy).with('77')
+      delete :destroy, { id: 77}
+    end
+
+    it 'redirects to applications index view when format is html' do
+      delete :destroy, { id: 77 }
+      expect(response).to redirect_to applications_path
+    end
+
+    it 'renders json response when format is json' do
+      delete :destroy, { id: 77, format: :json}
+      expect(response.status).to eq 200
+      expect(response.body).to eql fake_delete_response.to_json
     end
   end
 

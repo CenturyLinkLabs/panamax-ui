@@ -99,4 +99,16 @@ describe ApplicationsService do
       end
     end
   end
+
+  describe '#destroy' do
+    it 'issues a delete request to the proper URL' do
+      expect(fake_connection).to receive(:delete).with('/apps/1').and_return(fake_response)
+      subject.destroy(1)
+    end
+
+    it 'returns an array of the response body and response status' do
+      expect(fake_connection).to receive(:delete).with('/apps/1').and_return(fake_response)
+      expect(subject.destroy(1)).to match_array [nil, 200]
+    end
+  end
 end

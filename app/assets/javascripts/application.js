@@ -15,5 +15,6 @@
 //= require handlebars
 //= require moment
 //= require pmx_namespace
+//= require pmx_actions.js
 //= require_tree .
 //= require init
