@@ -3,7 +3,7 @@ class ApplicationsController < ApplicationController
     @app = applications_service.create(params[:application])
 
     if @app.valid?
-      redirect_to application_url(@app.to_param)
+      redirect_to application_url(@app.to_param), notice: {post_run: true}
     else
       render :show
     end
