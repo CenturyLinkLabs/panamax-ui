@@ -25,6 +25,12 @@
   }
 }
 
+section.notice {
+  .post-run-html {
+    display: none;
+  }
+}
+
 section.deployment-details {
   margin-bottom: 10px;
   font-size: 0.8em;
