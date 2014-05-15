@@ -7,6 +7,8 @@ class Service < BaseResource
   has_many :ports
   has_many :links
 
+  DEFAULT_ICON_URL = 'http://panamax.ca.tier3.io/service_icons/icon_service_docker_grey.png'
+
   def category_names
     categories.map(&:name)
   end
@@ -24,6 +26,10 @@ class Service < BaseResource
     else
       :stopped
     end
+  end
+
+  def icon
+    self.attributes[:icon].blank? ? DEFAULT_ICON_URL : self.attributes[:icon]
   end
 
   def environment_vars

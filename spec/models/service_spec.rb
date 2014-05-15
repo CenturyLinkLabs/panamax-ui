@@ -107,6 +107,23 @@ describe Service do
     end
   end
 
+  describe '#icon' do
+    context 'an icon was provided by the image' do
+      it 'returns the URL of the image icon' do
+        subject.icon = 'http://foo.com/bar.png'
+        expect(subject.icon).to eq 'http://foo.com/bar.png'
+      end
+    end
+
+    context 'no icon is specified' do
+      it 'returns the URL of the default icon' do
+        subject.icon = ''
+        expect(subject.icon).to eq 'http://panamax.ca.tier3.io/service_icons/icon_service_docker_grey.png'
+      end
+    end
+
+  end
+
   describe '#links_attributes=' do
     let(:attributes) do
       {
