@@ -10,6 +10,7 @@ describe App do
           {'id' => '2', 'name' => 'baz'},
           {'id' => '3', 'name' => 'bar'}
       ],
+      'documentation' => '# Title\r\nsome markdown doc',
       'services' => [
           {'id' => '3', 'name' => 'blah', 'categories' => [ {'name' => 'foo'}, {'name' => 'baz'}]},
           {'id' => '4', 'name' => 'barf', 'categories' => [ {'name' => 'foo'} ]},
@@ -79,6 +80,14 @@ describe App do
     it 'provides the attributes to be converted to JSON' do
       expected = attributes
       expect(subject.as_json).to eq expected
+    end
+  end
+
+  describe '#documentation_to_html' do
+    it 'attempts to parse the #documentation as markdown' do
+      app = described_class.build_from_response(fake_json_response)
+      expect(Kramdown::Document).to receive(:new).with(app.documentation).and_return(double(to_html: true))
+      app.documentation_to_html
     end
   end
 
