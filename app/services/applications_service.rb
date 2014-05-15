@@ -16,6 +16,11 @@ class ApplicationsService
     App.build_from_response(response.body) unless response.status == 404
   end
 
+  def destroy(id)
+    response = connection.delete "/apps/#{id}"
+    [response.body, response.status]
+  end
+
   def create(params)
     response = connection.post do |req|
       req.url '/apps'

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resource :search, only: [:new, :show], controller: 'search'
 
-  resources :applications, only: [:index, :create, :show] do
+  resources :applications, only: [:index, :create, :show, :destroy] do
     resources :services, only: [:update, :create, :show, :destroy] do
       get 'journal', on: :member
     end

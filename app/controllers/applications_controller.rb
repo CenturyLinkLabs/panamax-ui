@@ -15,6 +15,14 @@ class ApplicationsController < ApplicationController
     render status: :not_found unless @app.present?
   end
 
+  def destroy
+    application, status = applications_service.destroy(params[:id])
+    respond_to do |format|
+      format.html { redirect_to applications_path }
+      format.json { render(json: application.to_json, status: status) }
+    end
+  end
+
   def index
     @apps = applications_service.all
   end

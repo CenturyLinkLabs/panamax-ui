@@ -1,0 +1,23 @@
+(function($){
+  $.PMX.ApplicationDestroyer = function(el, options) {
+    var base = this;
+
+    base.$el = $(el);
+    base.xhr = null;
+
+    base.defaultOptions = {
+    };
+
+    base.init = function(){
+      base.options = $.extend({}, base.defaultOptions, options);
+
+      (new $.PMX.destroyLink(base.$el ,{ removeAt: 'div.application'})).init();
+    };
+  };
+
+  $.fn.applicationActions = function(options){
+    return this.each(function(){
+      (new $.PMX.ApplicationDestroyer(this, options)).init();
+    });
+  };
+})(jQuery);

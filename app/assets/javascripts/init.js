@@ -14,6 +14,8 @@ $.PMX.init = function() {
 
   $('ul.services li').serviceActions();
 
+  $('section.applications').applicationActions();
+
   $('.category-panel').categoryActions();
 
   $('.service-edit-form').progressiveForm();
