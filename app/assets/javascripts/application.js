@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require handlebars
+//= require chosen.jquery
 //= require moment
 //= require pmx_namespace
 //= require pmx_config

@@ -37,9 +37,10 @@ $.PMX.init = function() {
     $elementToAppend: $environmentVarAdditionalEntries.find('dl:first-of-type'),
     addCallback: function(addedItem) {
       addedItem.$el.find('input').each(function() {
-        var name = $(this).attr('name');
+        var $el = $(this);
+        var name = $el.attr('name');
         var newName = name.replace('_replaceme_', (new Date).getTime());
-        $(this).attr('name', newName);
+        $el.attr('name', newName);
       });
     }
   });
@@ -50,15 +51,28 @@ $.PMX.init = function() {
     $elementToAppend: $portAdditionalEntries.find('li:first-of-type'),
     addCallback: function(addedItem) {
       addedItem.$el.find('input').each(function() {
-        $(this).prop('disabled', false);
-        var name = $(this).attr('name');
+        var $el = $(this);
+        $el.prop('disabled', false);
+        var name = $el.attr('name');
         var newName = name.replace('_replaceme_', (new Date).getTime());
-        $(this).attr('name', newName);
+        $el.attr('name', newName);
       });
     }
   });
 
-  $('.journal-output').journalLoader();
-
-  $('.journal-toggle').journalToggle();
+  var $linksAdditionalEntries = $('.service-links .additional-entries');
+  $linksAdditionalEntries.appendable({
+    $trigger: $('.service-links .button-add'),
+    $elementToAppend: $linksAdditionalEntries.find('li:first-of-type'),
+    addCallback: function(addedItem) {
+      addedItem.$el.find('select').each(function() {
+        var $el = $(this);
+        $el.prop('disabled', false);
+        var name = $el.attr('name');
+        var newName = name.replace('_replaceme_', (new Date).getTime());
+        $el.attr('name', newName);
+        $el.chosen({disable_search: true});
+      });
+    }
+  });
 };

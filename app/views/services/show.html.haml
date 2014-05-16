@@ -32,6 +32,12 @@
               = link.check_box :_deleted, { id: checkbox_id }
               = link.hidden_field :service_id
               = link.hidden_field :alias
+        %ul.additional-entries
+          %li.editing
+            = add_fields_for(:links, f, { child_index: '_replaceme_' }) do |builder|
+              = render("new_links_fields", f: builder, services: @app.services, service_id: @service.id)
+
+        %button.button-add Add a Linked Service
 
       .port-detail
         %h3 Ports
