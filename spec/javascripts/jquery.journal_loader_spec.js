@@ -5,6 +5,7 @@ describe('$.fn.journalLoader', function() {
   var journalResponse = [
     {
       'MESSAGE': 'some message',
+      'SYSLOG_IDENTIFIER': 'docker',
       '__REALTIME_TIMESTAMP': '1397167308398403',
       '__CURSOR': 'cursor1'
     }
@@ -36,6 +37,7 @@ describe('$.fn.journalLoader', function() {
       });
 
       expect($('.journal-output').text()).toContain(journalResponse[0]['MESSAGE']);
+      expect($('.journal-output').text()).toContain(journalResponse[0]['SYSLOG_IDENTIFIER']);
 
       seconds = Math.floor(parseInt(journalResponse[0]['__REALTIME_TIMESTAMP']) / 1000);
       expect($('.journal-output').text()).toContain(moment(seconds).format("MMM DD HH:mm:ss"));
