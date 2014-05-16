@@ -48,7 +48,11 @@
 }
 
 .service-attributes {
-  overflow: auto;
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
   clear: both;
   padding-top: 10px;
 }
@@ -182,7 +186,7 @@
   @extend .service-detail;
   width: 310px;
 
-  ul li {
+  > ul > li {
     margin-left: 20px;
     padding-left: 40px;
     position: relative;
@@ -198,6 +202,18 @@
       width: 20px;
       top: -27px;
       left: 0;
+    }
+
+    &.editing {
+      padding-top: 10px;
+
+      &:before {
+        height: 63px;
+      }
+
+      select {
+        width: 245px;
+      }
     }
 
     &:hover .remove-link {
