@@ -15,8 +15,8 @@
       %span.service-url
         = "#{service_name} URL: "
         - ports.each do |port|
-          %a{href: "http://#{request.env['REMOTE_HOST']}:#{port}/"}<>
-            = "#{request.env['REMOTE_HOST']}:#{port}"
+          %a{href: "http://127.0.0.1:#{port}/"}<>
+            = "127.0.0.1:#{port}"
 
 %section.application-services
   %header
