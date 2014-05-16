@@ -64,6 +64,7 @@
     base.formatJournalLine = function(journal_line) {
       var attrs = {
         timestamp: base.formatTimestamp(journal_line['__REALTIME_TIMESTAMP']),
+        source: journal_line['SYSLOG_IDENTIFIER'],
         message: journal_line['MESSAGE']
       }
 

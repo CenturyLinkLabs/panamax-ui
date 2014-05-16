@@ -289,7 +289,7 @@ a.journal-toggle {
     line-height: 16px;
     padding: 0 0 0 10px;
 
-    .timestamp {
+    .timestamp, .source {
       display: inline-block;
       color: $medium_grey;
     }
@@ -299,7 +299,7 @@ a.journal-toggle {
       color: white;
       padding: 2px 0 2px 10px;
 
-      .timestamp {
+      .timestamp, .source {
         color: white;
       }
     }
@@ -313,12 +313,18 @@ a.journal-toggle {
   p {
     padding: 2px 0 2px 10px;
 
-    .timestamp {
+    .timestamp, .source {
       color: $dark_grey;
     }
 
     &:nth-last-of-type(5) {
       margin-top: 10px;
+    }
+
+    &:last-of-type {
+      .timestamp, .source {
+        color: white;
+      }
     }
   }
 }
