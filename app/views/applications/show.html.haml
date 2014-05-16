@@ -14,8 +14,10 @@
       The application has been created.
     - if @app.documentation_to_html.present?
       %br
-      Click here to read the additional instructions provided by the author of the template used to create this application.
-      .post-run-html
+      Click
+      %a{href:"#", class: "instructions-dialog"} here
+      to read the additional instructions provided by the author of the template used to create this application.
+      #post-run-html
         != @app.documentation_to_html
 
 %section.deployment-details
