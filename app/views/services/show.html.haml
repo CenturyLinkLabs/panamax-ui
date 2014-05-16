@@ -48,7 +48,8 @@
                 %a{class: 'delete-action', title: 'remove', data: { checkbox: { selector: "##{checkbox_id}" } } } remove
         %ul.additional-entries
           %li.editing
-            = add_fields_for(:ports, f, { child_index: '_replaceme_' })
+            = add_fields_for(:ports, f, { child_index: '_replaceme_' }) do |builder|
+              = render("new_ports_fields", f: builder)
 
         %button.button-add Add a Port
 
@@ -67,7 +68,8 @@
               %a{class: 'delete-action', title: 'remove', data: { checkbox: { selector: "##{checkbox_id}" } } } remove
 
         .additional-entries
-          = add_fields_for(:environment, f, { index: '_replaceme_' })
+          = add_fields_for(:environment, f, { index: '_replaceme_' }) do |builder|
+            = render("new_environment_fields", f: builder)
 
         %button.button-add Add an Environment Variable
 
