@@ -112,6 +112,7 @@
 
       $('body').css('overflow', 'hidden');
       base.defaultOptions.$modalContents.dialog("open");
+      $('.ui-dialog-content').css('height', '');
     };
 
     base.handleClose = function() {
