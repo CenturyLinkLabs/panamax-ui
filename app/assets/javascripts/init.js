@@ -25,6 +25,8 @@ $.PMX.init = function() {
 
   $('.category-panel').categoryActions();
 
+  $('.instructions-dialog').appInstructionsDialog();
+
   $('.service-edit-form').progressiveForm();
 
   var $environmentVarAdditionalEntries = $('.environment-variables .additional-entries');
