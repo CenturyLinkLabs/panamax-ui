@@ -1,0 +1,13 @@
+- flash.keys.each do |key|
+  %section.notice
+    %div{class: notification_class(key)}
+      %a.dismiss
+      %strong
+        = flash[key]
+      - if key == 'success' && @app.documentation_to_html.present?
+        %br
+        Click
+        %a{href:"#", class: "instructions-dialog", "data-doc-url" => documentation_application_url} here
+        to read the additional instructions provided by the author of the template used to create this application.
+        #post-run-html
+          = @app.documentation_to_html.html_safe
