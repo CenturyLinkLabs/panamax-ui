@@ -11,8 +11,7 @@ class ApplicationsController < ApplicationController
 
   def show
     @search_form = SearchForm.new
-    @app = applications_service.find_by_id(params[:id])
-    render status: :not_found unless @app.present?
+    render status: :not_found unless application.present?
   end
 
   def destroy
@@ -27,7 +26,19 @@ class ApplicationsController < ApplicationController
     @apps = applications_service.all
   end
 
+  def documentation
+    if application.documentation_to_html
+      render html: application.documentation_to_html.html_safe, layout:'documentation'
+    else
+      render status: :not_found
+    end
+  end
+
   private
+
+  def application
+    @app ||= applications_service.find_by_id(params[:id])
+  end
 
   def applications_service
     @applications_service ||= ApplicationsService.new

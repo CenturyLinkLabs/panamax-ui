@@ -1,7 +1,7 @@
 //= require jquery.ui.dialog
 
 (function($) {
-  $.PMX.AppInstructions = function(el, options) {
+  $.PMX.AppInstructions = function (el, options) {
     var base = this;
 
     base.$el = $(el);
@@ -35,7 +35,7 @@
       base.defaultOptions.$modalContents.dialog("open");
     };
 
-    base.initiateDialog = function() {
+    base.initiateDialog = function () {
       base.defaultOptions.$modalContents.dialog({
         autoOpen: false,
         modal: true,
@@ -60,19 +60,22 @@
       })
     };
 
-    base.handleClose = function() {
+    base.handleClose = function () {
       base.defaultOptions.$modalContents.dialog("close");
       $('body').css('overflow', 'auto');
     };
 
-    base.handleNewWindowOpen = function() {
+    base.handleNewWindowOpen = function () {
       base.defaultOptions.$modalContents.dialog("close");
-      $('body').css('overflow', 'auto');
-    }
+      window.open(base.documentationEndpoint(), "_blank");
+    };
 
+    base.documentationEndpoint = function () {
+      return base.$el.data('doc-url');
+    };
   };
 
-  $.fn.appInstructionsDialog = function(options){
+  $.fn.appInstructionsDialog = function (options) {
     return this.each(function(){
       (new $.PMX.AppInstructionsDialog(this, options)).init();
     });
