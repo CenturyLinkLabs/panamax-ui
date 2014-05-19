@@ -25,6 +25,27 @@
   }
 }
 
+.service-detail {
+  float: left;
+  font-size: 13px;
+
+  & + & {
+    margin-left: 20px;
+  }
+
+  header {
+    @include border-radius(3px);
+    background: $sky_blue;
+    color: $white;
+    font-weight: normal;
+    padding: 13px 15px;
+  }
+
+  ul li {
+    line-height: 42px;
+  }
+}
+
 section.deployment-details {
   margin-bottom: 10px;
   font-size: 0.8em;
@@ -47,6 +68,9 @@ section.deployment-details {
 }
 
 section.application-services {
+  width: 100%;
+  overflow: hidden;
+
   header {
     border-bottom: 1px solid $grey;
     line-height: 30px;
@@ -97,7 +121,8 @@ section.application-services {
       }
     }
 
-    a.link {
+
+    a.relationship {
       &.selected {
         background: $grey;
       }
@@ -120,107 +145,175 @@ section.application-services {
     }
   }
 
-  .category-panel {
-    @extend .panel;
-    width: 263px;
-    float: left;
+  .relationships {
+    float: right;
+    width: 50%;
+    .relationship-panel {
+      @extend .service-detail;
+      width: 263px;
+      float: left;
 
-    &:hover {
-      ul.services {
-        li {
-          &:hover {
-            background-color: $white;
-            color: $dark_blue;
-            > a {
-              width: 168px;
-            }
-            .actions {
-              display: inline-block;
-            }
-            .service-icon:before {
-              @include icon-light-blue;
-            }
-          }
-        }
-        .service-icon {
-          background-color: $white;
-        }
-      }
-    }
-
-    a.button-positive {
-      @include border-box;
-      width: 100%;
-      position: relative;
-      padding-left: 30px;
-      text-align: left;
-      text-decoration: none;
-      &:after {
-        @include icon-white;
-        @extend .icon-plus;
-        content: '';
-        position: absolute;
-        left: 11px;
-        top: 19px;
-        display: block;
-        height: 10px;
-        width: 10px;
-      }
-    }
-
-    ul.services {
-      padding-bottom: 6px;
-      border-bottom: 1px solid $grey;
-      margin-bottom: 19px;
-
-      li {
+      ul.links {
+        margin-left: 20px;
+        padding-left: 40px;
         position: relative;
-        margin-bottom: 10px;
-        height: 40px;
-        border-radius: 4px;
-        position: relative;
+        border: 0;
 
-        > a {
-          display: inline-block;
-          margin-left: 4px;
-          padding-left: 2px;
+        &:before {
+          z-index: -1;
           position: absolute;
-          top: 14px;
-          width: 210px;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          line-height: 16px;
-          white-space: nowrap;
+          content: '';
+          border: $sky_blue 1px solid;
+          border-width: 0 0 1px 1px;
+          height: 50px;
+          width: 20px;
+          top: -27px;
+          left: 0;
+        }
+      }
+    }
+  }
+  .views {
+    position: relative;
+    right: 100%;
+    width: 200%;
+
+    .categories {
+      float: right;
+      width: 50%;
+
+      .category-panel {
+        @extend .panel;
+        width: 263px;
+        float: left;
+
+        &:hover {
+          ul.services {
+            li {
+              &:hover {
+                background-color: $white;
+                color: $dark_blue;
+                > a {
+                  width: 168px;
+                }
+                .actions {
+                  display: inline-block;
+                }
+                .service-icon:before {
+                  @include icon-light-blue;
+                }
+              }
+            }
+            .service-icon {
+              background-color: $white;
+            }
+          }
+        }
+
+        a.button-positive {
+          @include border-box;
+          width: 100%;
+          position: relative;
+          padding-left: 30px;
+          text-align: left;
           text-decoration: none;
-
-          &.status-stopped {
-            font-style: italic;
-            color: $lipstick_red;
-          }
-
-          &.status-loading {
-            font-style: italic;
-            color: $medium_grey;
+          &:after {
+            @include icon-white;
+            @extend .icon-plus;
+            content: '';
+            position: absolute;
+            left: 11px;
+            top: 19px;
+            display: block;
+            height: 10px;
+            width: 10px;
           }
         }
 
-        .actions {
-          display: none;
-          float: right;
-          height: 40px;
-          padding-right: 5px;
-        }
+        ul.services {
+          padding-bottom: 6px;
+          border-bottom: 1px solid $grey;
+          margin-bottom: 19px;
 
-        .service-icon {
-          display: inline-block;
-          float: left;
-          background-color: $light_grey;
-          width: 40px;
-          height: 40px;
-          margin-right: 6px;
-          border-radius: 4px;
-          img {
-            margin: 10px 0 0 10px;
+          li {
+            position: relative;
+            margin-bottom: 10px;
+            height: 40px;
+            border-radius: 4px;
+            position: relative;
+
+            > a {
+              display: inline-block;
+              margin-left: 4px;
+              padding-left: 2px;
+              position: absolute;
+              top: 14px;
+              width: 210px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              line-height: 16px;
+              white-space: nowrap;
+              text-decoration: none;
+
+              &.status-stopped {
+                font-style: italic;
+                color: $lipstick_red;
+              }
+
+              &.status-loading {
+                font-style: italic;
+                color: $medium_grey;
+              }
+            }
+
+            .actions {
+              display: none;
+              float: right;
+              height: 40px;
+              padding-right: 5px;
+            }
+
+            .service-icon {
+              display: inline-block;
+              float: left;
+              background-color: $light_grey;
+              width: 40px;
+              height: 40px;
+              margin-right: 6px;
+              border-radius: 4px;
+              img {
+                margin: 10px 0 0 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .relationships {
+      float: right;
+      width: 50%;
+      .relationship-panel {
+        @extend .service-detail;
+        width: 263px;
+        float: left;
+
+        ul.links {
+          margin-left: 20px;
+          padding-left: 40px;
+          position: relative;
+          border: 0;
+
+          &:before {
+            z-index: -1;
+            position: absolute;
+            content: '';
+            border: $sky_blue 1px solid;
+            border-width: 0 0 1px 1px;
+            height: 50px;
+            width: 20px;
+            top: -27px;
+            left: 0;
           }
         }
       }
