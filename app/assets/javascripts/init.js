@@ -18,6 +18,8 @@ $.PMX.init = function() {
 
   $('.category-panel').categoryActions();
 
+  $('main').noticeActions();
+
   $('.instructions-dialog').appInstructionsDialog();
 
   $('.service-edit-form').progressiveForm();
