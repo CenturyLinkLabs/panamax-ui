@@ -24,21 +24,32 @@
       Application Services
     %nav
       %a.list.selected= ''
-      %a.link= ''
-  .categories
-    - @app.categorized_services.each do |group, services|
-      .category-panel
-        %header
-          = group.name
-        - unless services.empty?
-          %ul.services
-            - services.each do |service|
-              = render 'application_service_row', :app_id => @app.id,
-                                                  :name => service.name,
-                                                  :service_id => service.id,
-                                                  :status => service.status,
-                                                  :icon => service.icon
-        = link_to 'Add a Service', '#', class: 'button-positive add-service', title: 'add', data: {:category => group.id}
+      %a.relationship= ''
+  .views
+    .categories
+      - @app.categorized_services.each do |group, services|
+        .category-panel
+          %header
+            = group.name
+          - unless services.empty?
+            %ul.services
+              - services.each do |service|
+                = render 'application_service_row', :app_id => @app.id,
+                                                    :name => service.name,
+                                                    :service_id => service.id,
+                                                    :status => service.status,
+                                                    :icon => service.icon
+          = link_to 'Add a Service', '#', class: 'button-positive add-service', title: 'add', data: {:category => group.id}
+    .relationships
+      - @app.services.each do |service|
+        .relationship-panel
+          %header
+            = service.name
+          - unless service.links.empty?
+            %ul.links
+              - service.links.each do |link|
+                %li
+                  = link.service_name
 
 = render 'services/add_service'
 
