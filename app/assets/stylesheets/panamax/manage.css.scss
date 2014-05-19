@@ -207,22 +207,14 @@ section.application-services {
 
 // Add Service Form in modal window
 #manage_flow .ui-dialog {
-  max-height: 600px;
-  overflow-y: scroll;
+  input#search_form_query {
+    width: 600px;
+  }
 
-  #add-service-form {
-    overflow: hidden;
-
-    input#search_form_query {
-      width: 600px;
+  .filterable-list {
+    .basic-info {
+      width: 335px;
     }
-
-    .filterable-list {
-      .basic-info {
-        width: 335px;
-      }
-    }
-
   }
 }
 
