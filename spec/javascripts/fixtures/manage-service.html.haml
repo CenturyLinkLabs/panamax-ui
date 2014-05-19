@@ -1,8 +1,11 @@
 %ul.services
   %li
     .service-icon
-    %span
-      Wordpress
+      %img{src:''}
+    = link_to 'Wordpress',
+              '/applications/1/services/1',
+              class: 'status-running',
+              title: 'details'
     .actions
       = link_to 'edit',
                  '/applications/1/services/1',
