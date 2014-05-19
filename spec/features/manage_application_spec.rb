@@ -32,6 +32,14 @@ describe 'managing an application' do
           expect(page).to have_css 'a.add-service', text: 'Add a Service'
         end
       end
+
+      it 'shows the deployment environment' do
+        visit '/applications/2'
+
+        within '.deployment-details' do
+          expect(page).to have_css '.deployment-env', text: 'Deployed to: CoreOS Local'
+        end
+      end
     end
   end
 end

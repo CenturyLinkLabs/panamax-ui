@@ -7,6 +7,17 @@
   )
 = render '/shared/breadcrumbs', breadcrumbs: crumbs
 
+%section.deployment-details
+  %span.deployment-env
+    Deployed to: CoreOS Local
+  - unless @app.host_ports.blank?
+    - @app.host_ports.each do |service_name, ports|
+      %span.service-url
+        = "#{service_name} URL: "
+        - ports.each do |port|
+          %a{href: "http://127.0.0.1:#{port}/"}<>
+            = "127.0.0.1:#{port}"
+
 %section.application-services
   %header
     %h3

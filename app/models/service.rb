@@ -38,6 +38,10 @@ class Service < BaseResource
     end
   end
 
+  def running?
+    self.sub_state == 'running'
+  end
+
   def environment_attributes=(attributes)
     self.environment = attributes.each_with_object({}) do |(index, attribute), hash|
       hash[attribute['name']] = attribute['value'] unless attribute['_deleted'].to_s == '1'
