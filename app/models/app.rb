@@ -40,6 +40,17 @@ class App < BaseViewModel
     'Service'.pluralize(services.length)
   end
 
+  def host_ports
+    running_services.each_with_object({}) do |service, hash|
+      ports = service.ports.map { |port_binding| port_binding.host_port }.flatten.compact
+      hash[service.name] = ports unless ports.empty?
+    end
+  end
+
+  def running_services
+    services.select(&:running?)
+  end
+
   concerning :ServiceCategories do
     def categorized_services
       groups = categories.each_with_object({}) do |category, hash|

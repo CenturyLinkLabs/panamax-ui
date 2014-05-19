@@ -1,5 +1,7 @@
 {
   "id":"6",
   "name":"bard",
-  "categories":[]
+  "categories":[],
+  "sub_state": null,
+  "ports": []
 }

@@ -25,6 +25,27 @@
   }
 }
 
+section.deployment-details {
+  margin-bottom: 10px;
+  font-size: 0.8em;
+
+  span.deployment-env, span.service-url {
+    display: inline-block;
+    height: 20px;
+    padding-right: 15px;
+    line-height: 20px;
+
+    &:not(:first-child) {
+      padding-left: 15px;
+      border-left: 2px solid $grey;
+    }
+
+    a {
+      margin-left: 5px;
+    }
+  }
+}
+
 section.application-services {
   header {
     border-bottom: 1px solid $grey;

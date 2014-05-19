@@ -82,6 +82,28 @@ describe App do
     end
   end
 
+  describe '#host_ports' do
+    subject { described_class.build_from_response(fake_json_response) }
+    it 'returns a hash' do
+      expect(subject.host_ports).to be_a Hash
+    end
+
+    it 'returns a hash with keys matching the names of services with port bindings' do
+      expect(subject.host_ports.keys).to match_array ["blah"]
+    end
+
+    it 'returns a hash with values containing an array of bound host ports for services with port bindings' do
+      expect(subject.host_ports.values).to match_array [[8080]]
+    end
+  end
+
+  describe '#running_services' do
+    it 'returns an array of running services' do
+      app = described_class.build_from_response(fake_json_response)
+      expect(app.running_services.map(&:id)).to match_array ["3"]
+    end
+  end
+
   context 'when dealing with application categories' do
     subject { described_class.build_from_response(fake_json_response) }
 
