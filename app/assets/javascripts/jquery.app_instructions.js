@@ -1,12 +1,6 @@
 //= require jquery.ui.dialog
 
 (function($) {
-  $.PMX.AppInstructions = function (el, options) {
-    var base = this;
-
-    base.$el = $(el);
-
-  };
 
   $.PMX.AppInstructionsDialog = function (el, options) {
     var base = this;
