@@ -60,19 +60,7 @@ $.PMX.init = function() {
     }
   });
 
-  var $linksAdditionalEntries = $('.service-links .additional-entries');
-  $linksAdditionalEntries.appendable({
-    $trigger: $('.service-links .button-add'),
-    $elementToAppend: $linksAdditionalEntries.find('li:first-of-type'),
-    addCallback: function(addedItem) {
-      addedItem.$el.find('select').each(function() {
-        var $el = $(this);
-        $el.prop('disabled', false);
-        var name = $el.attr('name');
-        var newName = name.replace('_replaceme_', (new Date).getTime());
-        $el.attr('name', newName);
-        $el.chosen({disable_search: true});
-      });
-    }
-  });
+  $('.service-links').appendableServiceLinks();
+
 };
+
