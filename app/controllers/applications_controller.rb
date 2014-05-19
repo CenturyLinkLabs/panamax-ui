@@ -3,7 +3,8 @@ class ApplicationsController < ApplicationController
     @app = applications_service.create(params[:application])
 
     if @app.valid?
-      redirect_to application_url(@app.to_param), success: "The application was successfully created."
+      flash[:success] = "The application was successfully created."
+      redirect_to application_url(@app.to_param)
     else
       render :show
     end
