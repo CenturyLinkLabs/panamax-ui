@@ -50,7 +50,7 @@ class Service < BaseResource
 
   def ports_attributes=(attributes)
     self.ports = attributes.each_with_object([]) do |(index, port), memo|
-      memo << port.except('id') unless port['_deleted'].to_s == '1'
+      memo << port.except('id', '_deleted') unless port['_deleted'].to_s == '1'
     end
   end
 
@@ -58,7 +58,7 @@ class Service < BaseResource
     self.links = attributes.each_with_object([]) do |(index, link), memo|
       # exclude link ID for now. May need this later if we decide to
       # expose link ID in API.
-      memo << link.except('id') unless link['_deleted'].to_s == '1'
+      memo << link.except('id', '_deleted') unless link['_deleted'].to_s == '1'
     end
   end
 
