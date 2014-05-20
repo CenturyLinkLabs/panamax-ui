@@ -31,11 +31,15 @@ body > header {
 
   h1.ctl-labs {
     font-size: 16px;
-    color: $dark_grey;
+    color: $medium_grey;
     font-weight: bold;
     margin-top: 27px;
     a {
-      color: $dark_grey;
+      color: $medium_grey;
+      &:hover {
+        color: $dark_grey;
+        text-decoration: none;
+      }
     }
   }
 
