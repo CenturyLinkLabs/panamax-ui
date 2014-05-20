@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ApplicationsController do
   let(:fake_applications_service) { double(:fake_applications_service) }
-  let(:valid_app) { double(:valid_app, valid?: true, to_param: 77) }
+  let(:valid_app) { double(:valid_app, valid?: true, to_param: 77, documentation_to_html: 'adsf') }
   let(:fake_delete_response) { double(:fake_delete_response, body: 'test', status: 200)}
 
   before do
@@ -83,6 +83,23 @@ describe ApplicationsController do
     it 'returns a 404 if the app is not found' do
       fake_applications_service.stub(:find_by_id).and_return(nil)
       get :show, id: 77
+      expect(response.status).to eq 404
+    end
+  end
+
+  describe 'GET #documentation' do
+    render_views
+
+    it 'renders the apps documentation with the documentation layout' do
+      fake_applications_service.stub(:find_by_id).and_return(valid_app)
+      get :documentation, id: 77
+      expect(response.body).to_not match /<header>/m
+      expect(response.body).to match /post-run-html/m
+    end
+
+    it 'returns 404 if there is no documentation for the app' do
+      fake_applications_service.stub(:find_by_id).and_return(nil)
+      get :documentation, id: 77
       expect(response.status).to eq 404
     end
   end
