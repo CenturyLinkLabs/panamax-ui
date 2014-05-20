@@ -18,6 +18,8 @@ describe "searching for templates and images" do
       click_on "Run Template"
 
       expect(page).to have_css 'h1', text: 'tutum/wordpress'
+      expect(page).to have_content 'The application was successfully created.'
+      expect(page).to have_css '#post-run-html'
     end
   end
 end

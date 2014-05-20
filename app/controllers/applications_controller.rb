@@ -28,10 +28,10 @@ class ApplicationsController < ApplicationController
   end
 
   def documentation
-    if application.documentation_to_html
-      render html: application.documentation_to_html.html_safe, layout:'documentation'
+    if application && application.documentation_to_html
+      return render html: application.documentation_to_html.html_safe, layout:'documentation'
     else
-      render status: :not_found
+      head status: :not_found
     end
   end
 
