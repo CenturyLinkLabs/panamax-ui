@@ -31,5 +31,9 @@
   m.parentNode.insertBefore(a, m)
 })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'gaTracker');
 
-gaTracker('create', 'UA-49491413-1', 'none'); // Creates the tracker with default parameters.
+gaTracker('create', 'UA-49491413-1', {
+  'cookieDomain': 'none',
+  'userId': PMX.guid
+
+}); // Creates the tracker.
 gaTracker('send', 'pageview');            // Sends a pageview hit.
