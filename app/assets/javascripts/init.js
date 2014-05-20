@@ -13,6 +13,7 @@ $.PMX.init = function() {
   });
 
   $('ul.services li').serviceActions();
+  $('section.application-services').serviceViews();
 
   $('section.applications').applicationActions();
 
