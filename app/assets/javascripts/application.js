@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require handlebars
 //= require moment
+//= require google_analytics
 //= require pmx_namespace
 //= require pmx_actions.js
 //= require_tree .

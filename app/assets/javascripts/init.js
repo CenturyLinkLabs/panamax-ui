@@ -4,6 +4,8 @@ $(document).ready(function() {
 
 $.PMX.init = function() {
 
+  $('body').analyticsClickTracker();
+
   $('.example-searches').searchQueryPopulator({
     $searchField: $('input#search_form_query')
   });
