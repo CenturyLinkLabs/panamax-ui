@@ -3,6 +3,8 @@ PATH
   specs:
     ctl_base_ui (0.0.1)
       haml (~> 4.0.0)
+      jquery-rails (~> 3.1.0)
+      jquery-ui-rails (~> 4.2.1)
       rails (~> 4.1.0)
       sass (~> 3.3.2)
 
@@ -190,8 +192,6 @@ DEPENDENCIES
   dotenv-rails
   faraday (= 0.8.9)
   haml
-  jquery-rails
-  jquery-ui-rails
   kramdown
   phantomjs (>= 1.8.1.1)
   rails (= 4.1.0)
