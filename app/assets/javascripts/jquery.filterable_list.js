@@ -34,7 +34,7 @@
     base.xhr = null;
 
     base.defaultOptions = {
-      $queryField: base.$el.find('input#search_query'),
+      $queryField: base.$el.find('input#search_form_query'),
       queryFormSelector: 'form.search-form',
       $queryForm: base.$el.find('form.search-form'),
       $imageResults: base.$el.find('.image-results'),
@@ -44,7 +44,8 @@
       localImageResultTemplate: Handlebars.compile($('#local_image_result_template').html()),
       templateResultTemplate: Handlebars.compile($('#template_result_template').html()),
       loadingTemplate: Handlebars.compile($('#loading_row_template').html()),
-      noResultsTemplate: Handlebars.compile($('#no_results_row_template').html())
+      noResultsTemplate: Handlebars.compile($('#no_results_row_template').html()),
+      trackingAction: 'not-given'
     }
 
     base.init = function(){
@@ -72,6 +73,7 @@
 
     base.fetchResults = function(term) {
       base.displayLoadingIndicators();
+      PMX.Tracker.trackEvent('search', base.options.trackingAction, term);
 
       if (base.xhr) {
         base.xhr.abort();

@@ -4,12 +4,18 @@ $(document).ready(function() {
 
 $.PMX.init = function() {
 
+  $('body').analyticsClickTracker();
+
   $('.example-searches').searchQueryPopulator({
     $searchField: $('input#search_form_query')
   });
 
-  $('.filterable-list').filterableList({
-    $queryField: $('input#search_form_query')
+  $('#search_flow .filterable-list').filterableList({
+    trackingAction: 'create'
+  });
+
+  $('#add-service-form .filterable-list').filterableList({
+    trackingAction: 'add'
   });
 
   $('ul.services li').serviceActions();

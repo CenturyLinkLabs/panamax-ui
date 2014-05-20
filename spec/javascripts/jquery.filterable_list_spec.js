@@ -3,12 +3,13 @@ describe('$.fn.filterableList', function() {
     fixture.load('search.html');
     $('.filterable-list').filterableList();
     jasmine.Ajax.useMock();
+    spyOn(PMX.Tracker, 'trackEvent');
   });
 
   describe('submitting the form', function() {
     it('displays the loading indicator', function() {
       expect($('.in-progress').length).toEqual(0);
-      $('input#search_query').val('mys');
+      $('input#search_form_query').val('mys');
       $('.filterable-list form').submit();
       expect($('.in-progress').length).toEqual(2);
     });
@@ -20,7 +21,7 @@ describe('$.fn.filterableList', function() {
     });
 
     it('requests results', function() {
-      $('input#search_query').val('mys');
+      $('input#search_form_query').val('mys');
       $('.filterable-list form').submit();
 
       var request = mostRecentAjaxRequest();
@@ -33,19 +34,25 @@ describe('$.fn.filterableList', function() {
       $('.filterable-list form').submit();
       expect($('h3.search-title:visible').length).toEqual(2);
     });
+
+    it('records the term search for and sends to the NSA', function() {
+      $('input#search_form_query').val('mysql');
+      $('.filterable-list form').submit();
+      expect(PMX.Tracker.trackEvent).toHaveBeenCalledWith('search', 'not-given', 'mysql');
+    });
   });
 
   describe('changing the text in the query field', function() {
     it('does not request results if fewer than 3 characters exist', function() {
-      $('input#search_query').val('my').keyup();
+      $('input#search_form_query').val('my').keyup();
 
       var request = mostRecentAjaxRequest();
       expect(request.url).not.toBe('/search.json?search_form%5Bquery%5D=my');
     });
 
     it('does not re-request results if the value has not actually changed', function() {
-      $('input#search_query').val('word').keyup();
-      $('input#search_query').val('word').keyup();
+      $('input#search_form_query').val('word').keyup();
+      $('input#search_form_query').val('word').keyup();
 
       var request = mostRecentAjaxRequest();
       var secondToLastAjaxRequest = ajaxRequests[ajaxRequests.length - 2]
@@ -61,14 +68,14 @@ describe('$.fn.filterableList', function() {
       spyOn($, 'ajax').andReturn(fakeXhr)
       spyOn(fakeXhr, 'abort');
 
-      $('input#search_query').val('word').keyup();
-      $('input#search_query').val('apac').keyup();
+      $('input#search_form_query').val('word').keyup();
+      $('input#search_form_query').val('apac').keyup();
 
       expect(fakeXhr.abort.calls.length).toEqual(1);
     });
 
     it('requests results when the searchfield is changed', function() {
-      $('input#search_query').val('mys').keyup();
+      $('input#search_form_query').val('mys').keyup();
 
       var request = mostRecentAjaxRequest();
       expect(request.url).toBe('/search.json?search_form%5Bquery%5D=mys');
@@ -76,7 +83,7 @@ describe('$.fn.filterableList', function() {
     });
 
     it('places the results on the page', function() {
-      $('input#search_query').val('apache').keyup();
+      $('input#search_form_query').val('apache').keyup();
 
       var request = mostRecentAjaxRequest();
 
@@ -118,7 +125,7 @@ describe('$.fn.filterableList', function() {
     });
 
     it('says sorry if it cannot find a template', function() {
-      $('input#search_query').val('apache').keyup();
+      $('input#search_form_query').val('apache').keyup();
 
       var request = mostRecentAjaxRequest();
 
