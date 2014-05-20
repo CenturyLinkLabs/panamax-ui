@@ -10,7 +10,6 @@ describe('$.fn.serviceViews', function () {
     it('adds .selected class', function() {
       expect($listView.hasClass('selected')).toBeFalsy();
       $listView.click();
-      console.log("a: ", $listView);
       expect($listView.hasClass('selected')).toBeTruthy();
     });
 
