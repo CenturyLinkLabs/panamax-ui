@@ -3,6 +3,8 @@ PATH
   specs:
     ctl_base_ui (0.0.1)
       haml (~> 4.0.0)
+      jquery-rails (~> 3.1.0)
+      jquery-ui-rails (~> 4.2.1)
       rails (~> 4.1.0)
       sass (~> 3.3.2)
 
@@ -83,8 +85,8 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.25.1)
     mini_portile (0.5.3)
-    minitest (5.3.3)
-    multi_json (1.10.0)
+    minitest (5.3.4)
+    multi_json (1.10.1)
     multipart-post (1.2.0)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
@@ -112,7 +114,7 @@ GEM
       activesupport (= 4.1.0)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (10.3.1)
+    rake (10.3.2)
     rdoc (4.1.1)
       json (~> 1.4)
     ref (1.0.5)
@@ -189,8 +191,6 @@ DEPENDENCIES
   dotenv-rails
   faraday (= 0.8.9)
   haml
-  jquery-rails
-  jquery-ui-rails
   phantomjs (>= 1.8.1.1)
   rails (= 4.1.0)
   rspec-rails
