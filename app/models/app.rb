@@ -1,4 +1,5 @@
 require 'active_model'
+require 'kramdown'
 
 class App < BaseViewModel
   include CollectionBuilder
@@ -8,7 +9,7 @@ class App < BaseViewModel
     ActiveModel::Name.new(self, nil, 'Application')
   end
 
-  attr_reader :name, :id, :services, :categories
+  attr_reader :name, :id, :services, :categories, :documentation
 
   def initialize(attributes={}, persisted=false)
     super(attributes)
@@ -38,6 +39,10 @@ class App < BaseViewModel
 
   def service_count_label
     'Service'.pluralize(services.length)
+  end
+
+  def documentation_to_html
+    Kramdown::Document.new(self.documentation).to_html if self.documentation.present?
   end
 
   def host_ports

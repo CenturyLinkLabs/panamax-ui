@@ -3,6 +3,7 @@
   "name": "tutum/wordpress",
   "from": "Image: tutum/wordpress",
   "errors": null,
+  "documentation": "blah",
   "categories": [
     {
       "id": 4,

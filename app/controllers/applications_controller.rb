@@ -3,6 +3,7 @@ class ApplicationsController < ApplicationController
     @app = applications_service.create(params[:application])
 
     if @app.valid?
+      flash[:success] = "The application was successfully created."
       redirect_to application_url(@app.to_param)
     else
       render :show
@@ -11,8 +12,7 @@ class ApplicationsController < ApplicationController
 
   def show
     @search_form = SearchForm.new
-    @app = applications_service.find_by_id(params[:id])
-    render status: :not_found unless @app.present?
+    render status: :not_found unless application.present?
   end
 
   def destroy
@@ -27,7 +27,19 @@ class ApplicationsController < ApplicationController
     @apps = applications_service.all
   end
 
+  def documentation
+    if application && application.documentation_to_html
+      return render html: application.documentation_to_html.html_safe, layout:'documentation'
+    else
+      head status: :not_found
+    end
+  end
+
   private
+
+  def application
+    @app ||= applications_service.find_by_id(params[:id])
+  end
 
   def applications_service
     @applications_service ||= ApplicationsService.new

@@ -25,6 +25,14 @@
   }
 }
 
+section.notice {
+  margin-bottom: 20px;
+
+  #post-run-html {
+    display: none;
+  }
+}
+
 .service-detail {
   float: left;
   font-size: 13px;
