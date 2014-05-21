@@ -110,9 +110,20 @@ describe('$.fn.categoryActions', function() {
         status: 200,
         responseText: '{}'
       });
-
       var newServiceCount = $('.services li').length;
       expect(newServiceCount).toEqual(serviceCount +1);
+    });
+
+    it('displays an icon in the new service li', function() {
+      $('.image-results form').submit();
+      var request = mostRecentAjaxRequest();
+
+      request.response({
+        status: 200,
+        responseText: '{}'
+      });
+      var newElementIcon = $('.services li:last-child .service-icon img').attr('src');
+      expect(newElementIcon).toNotBe(undefined);
     });
 
     it('calls complete callback', function() {

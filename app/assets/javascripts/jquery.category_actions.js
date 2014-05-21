@@ -25,13 +25,14 @@
       });
     };
 
-    base.createNewElement = function($parent, name, id) {
+    base.createNewElement = function($parent, name, id, icon) {
       var $clone = base.defaultOptions.$template.clone(),
           link = $clone.find('.actions a').attr('href');
 
       link = link.substring(0, link.lastIndexOf('/')+1);
-      $clone.find('span').text(name);
+      $clone.find('a[class^=status]').text(name);
       $clone.find('.actions a').attr('href',  link + id);
+      $clone.find('.service-icon img').attr('src',  icon);
       $clone.serviceActions();
 
       return $clone;
@@ -44,9 +45,9 @@
       return base.options.$target.find('.services')
     };
 
-    base.handleAddSuccess = function(name, id) {
+    base.handleAddSuccess = function(name, id, icon) {
       var $services = base.locateServices(),
-        $service = base.createNewElement($services, name, id);
+        $service = base.createNewElement($services, name, id, icon);
 
       $services.append($service);
       base.options.complete($service);
@@ -63,7 +64,9 @@
         data: $form.serialize()
       })
         .done(function(response) {
-          base.handleAddSuccess(response.name, response.id);
+          var baseIconUrl = 'http://panamax.ca.tier3.io/service_icons/icon_service_docker_grey.png';
+          var icon = response.icon || baseIconUrl;
+          base.handleAddSuccess(response.name, response.id, icon);
         })
         .fail(function(){
           alert('Unable to add service.');
