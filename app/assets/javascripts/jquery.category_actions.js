@@ -14,7 +14,6 @@
     base.init = function() {
       base.options = $.extend({}, base.defaultOptions, options);
       base.bindEvents();
-
     };
 
     base.bindEvents= function() {
@@ -75,6 +74,35 @@
 
   };
 
+  $.PMX.EditCategory = function(el, options) {
+    var base = this;
+
+    base.$el = $(el);
+    base.defaultOptions = {
+      content: 'span.title'
+    };
+
+    base.init = function() {
+      base.options = $.extend({}, base.defaultOptions, options);
+      base.editableName = (new $.PMX.ContentEditable(base.options.content,
+        {
+          editorPromise: base.completeEdit
+        })).init();
+    };
+
+    base.completeEdit = function(data) {
+      var defer = $.Deferred();
+
+      defer.done(function(data) {
+        console.log('trying: ', data);
+      });
+
+      defer.reject(data);
+
+      return defer.promise();
+    };
+  };
+
   $.PMX.AddServiceDialog = function(el) {
     var base = this;
 
@@ -88,7 +116,7 @@
       $titlebarCloseButton: $('button.ui-dialog-titlebar-close')
     };
 
-    base.init = function(){
+    base.init = function() {
       base.bindEvents();
       base.initiateDialog();
     };
@@ -149,6 +177,7 @@
   $.fn.categoryActions = function(){
     return this.each(function(){
       (new $.PMX.AddServiceDialog(this)).init();
+      (new $.PMX.EditCategory(this)).init();
     });
   };
 })(jQuery);

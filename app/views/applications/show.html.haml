@@ -7,8 +7,6 @@
   )
 = render '/shared/breadcrumbs', breadcrumbs: crumbs
 
-= render 'shared/notifications'
-
 %section.deployment-details
   %span.deployment-env
     Deployed to: CoreOS Local
@@ -32,7 +30,10 @@
       - @app.categorized_services.each do |group, services|
         .category-panel
           %header
-            = group.name
+            %span.title
+              = group.name
+              .actions
+                %a{href: "/application-category/#{group.id}", class: 'edit-action'}
           - unless services.empty?
             %ul.services
               - services.each do |service|

@@ -94,7 +94,7 @@ section.applications {
         }
       }
 
-      a.edit-action {
+      a.view-action {
         &:after {
           @extend .icon-magnifying-glass-large;
           @include icon-light-grey;

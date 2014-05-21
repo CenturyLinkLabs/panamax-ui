@@ -12,7 +12,7 @@
         %span= app.service_count_label
       .actions
         %div
-          = link_to 'edit', application_path(app.id), class: 'edit-action', title: 'details'
+          = link_to 'edit', application_path(app.id), class: 'view-action', title: 'details'
           = link_to 'delete', application_path(app.id), class: 'delete-action', title: 'delete'
 
 .add-button
