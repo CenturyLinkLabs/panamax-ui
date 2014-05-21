@@ -1,0 +1,17 @@
+%h3 Service Links
+%ul
+  = f.fields_for :links do |link|
+    - checkbox_id = "select_link_#{link.options[:child_index]}"
+    %li
+      %a{data: { checkbox: { selector: "##{checkbox_id}" } }, class: 'remove-link', title: 'remove link'} remove
+      = link.object.service_name
+      = link.check_box :_deleted, { id: checkbox_id }
+      = link.hidden_field :service_id
+      = link.hidden_field :alias
+%ul.additional-entries
+  %li.editing
+    = add_fields_for(:links, f, { child_index: '_replaceme_' }) do |builder|
+      = builder.select :service_id, linkable_service_options(services, service_id), {}, disabled: true
+      = builder.hidden_field :alias, disabled: true
+
+%button.button-add Add a Linked Service
