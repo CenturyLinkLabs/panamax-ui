@@ -15,9 +15,9 @@
   = add_fields_for(:environment, f, { index: '_replaceme_' }) do |builder|
     %dl
       %dt.editing
-        = builder.text_field :name, placeholder: 'Label'
+        = builder.text_field :name, disabled: true, placeholder: 'Label'
       %dd.editing
-        = builder.text_field :value, placeholder: 'Value'
+        = builder.text_field :value, disabled: true, placeholder: 'Value'
         %a.cancel Cancel
 
 %button.button-add Add an Environment Variable
