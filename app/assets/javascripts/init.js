@@ -31,31 +31,25 @@ $.PMX.init = function() {
 
   $('.service-edit-form').progressiveForm();
 
-  var $environmentVarAdditionalEntries = $('.environment-variables .additional-entries');
-  $environmentVarAdditionalEntries.appendable({
+  var enableNewItem = function(addedItem) {
+    addedItem.$el.find('input').each(function() {
+      $(this).prop('disabled', false);
+      var name = $(this).attr('name');
+      var newName = name.replace('_replaceme_', (new Date).getTime());
+      $(this).attr('name', newName);
+    });
+  };
+
+  $('.environment-variables .additional-entries').appendable({
     $trigger: $('.environment-variables .button-add'),
-    $elementToAppend: $environmentVarAdditionalEntries.find('dl:first-of-type'),
-    addCallback: function(addedItem) {
-      addedItem.$el.find('input').each(function() {
-        var name = $(this).attr('name');
-        var newName = name.replace('_replaceme_', (new Date).getTime());
-        $(this).attr('name', newName);
-      });
-    }
+    $elementToAppend: $('.environment-variables .additional-entries dl:first-of-type'),
+    addCallback: enableNewItem
   });
 
-  var $portAdditionalEntries = $('.port-detail .additional-entries');
-  $portAdditionalEntries.appendable({
+  $('.port-detail .additional-entries').appendable({
     $trigger: $('.port-detail .button-add'),
-    $elementToAppend: $portAdditionalEntries.find('li:first-of-type'),
-    addCallback: function(addedItem) {
-      addedItem.$el.find('input').each(function() {
-        $(this).prop('disabled', false);
-        var name = $(this).attr('name');
-        var newName = name.replace('_replaceme_', (new Date).getTime());
-        $(this).attr('name', newName);
-      });
-    }
+    $elementToAppend: $('.port-detail .additional-entries li:first-of-type'),
+    addCallback: enableNewItem
   });
 
   $('.journal-output').journalLoader();

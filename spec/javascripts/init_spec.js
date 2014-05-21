@@ -27,6 +27,10 @@ describe('$.PMX.init', function() {
       it('replaces the _replaceme_ value in the inputs', function() {
         expect($('#row_template input').attr('name')).not.toMatch('replaceme');
       });
+
+      it('re-enables disabled fields', function() {
+        expect($('#row_template input').prop('disabled')).toBe(false)
+      });
     });
   });
 
