@@ -54,5 +54,8 @@ $.PMX.init = function() {
 
   $('.service-links').appendableServiceLinks();
 
+  $('.journal-output').journalLoader();
+
+  $('.journal-toggle').journalToggle();
 };
 
