@@ -12,9 +12,9 @@ describe App do
       ],
       'documentation' => '# Title\r\nsome markdown doc',
       'services' => [
-          {'id' => '3', 'name' => 'blah', 'categories' => [ {'name' => 'foo'}, {'name' => 'baz'}]},
-          {'id' => '4', 'name' => 'barf', 'categories' => [ {'name' => 'foo'} ]},
-          {'id' => '5', 'name' => 'bark', 'categories' => [ {'name' => 'bar'} ]},
+          {'id' => '3', 'name' => 'blah', 'categories' => [ {'name' => 'foo', 'id' => 3}, {'name' => 'baz', 'id' => 3}]},
+          {'id' => '4', 'name' => 'barf', 'categories' => [ {'name' => 'foo', 'id' => 2} ]},
+          {'id' => '5', 'name' => 'bark', 'categories' => [ {'name' => 'bar', 'id' => 1} ]},
           {'id' => '6', 'name' => 'bard', 'categories' => []}
       ]
     }
@@ -162,6 +162,13 @@ describe App do
         subject.uncategorized_services.each do |service|
           expect(service.categories).to eq []
         end
+      end
+    end
+
+    describe '#ordered_services' do
+      it 'returns an array of services in minimum category order' do
+        services = subject.ordered_services
+        expect(services.map { |s| s.name }).to match_array(['bark', 'barf', 'blah', 'bard'])
       end
     end
   end

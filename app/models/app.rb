@@ -78,6 +78,21 @@ class App < BaseViewModel
     def uncategorized_services
       services.select { |service| service.categories.blank? }
     end
+
+    def ordered_services
+      sorted_categorized_services.concat(uncategorized_services)
+    end
+
+    private
+
+    def sorted_categorized_services
+      categorized = services.select { |service| service.categories.present? }
+      categorized.sort do |a,b|
+        a_value = a.category_priority
+        b_value = b.category_priority
+        (a_value == b_value) ? -1 : a_value - b_value
+      end
+    end
   end
 
 
