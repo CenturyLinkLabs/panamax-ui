@@ -124,6 +124,43 @@ describe('$.fn.filterableList', function() {
       expect($('.template-results').html()).toContain('this template will change your life')
     });
 
+    it('calls chosen on the tags dropdown once the element is added to the page', function() {
+      $('input#search_form_query').val('apache').keyup();
+
+      var request = mostRecentAjaxRequest();
+
+      var successResponseText = {
+        q:"asd",
+        remote_images: [
+          {
+            description:"some description",
+            title:"some/name",
+            id:"dlacewell/asdf"
+          }
+        ],
+        local_images: [
+          {
+            description:"a local image",
+            title:"local/image",
+            id:"dlacewell/local"
+          }
+        ],
+        templates: [
+          {
+            title: 'some template',
+            description: 'this template will change your life'
+          }
+        ]
+      };
+
+      request.response({
+        status: 200,
+        responseText: JSON.stringify(successResponseText)
+      });
+
+      expect($('.image-results').html()).toContain('chosen-container');
+    });
+
     it('says sorry if it cannot find a template', function() {
       $('input#search_form_query').val('apache').keyup();
 

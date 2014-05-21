@@ -13,6 +13,8 @@
   .actions
     = form_tag applications_path do
       = hidden_field_tag 'application[image]', presenter.title
+      = label :tags, 'Tags:'
+      = select_tag :tags, options_for_select(['Latest','Super Old'])
       = button_tag 'Run Image', class: 'button-positive'
   - if remote
     .community-data

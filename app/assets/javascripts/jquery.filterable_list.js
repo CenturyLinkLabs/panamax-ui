@@ -87,6 +87,7 @@
       base.xhr.done(function(response, status) {
         base.updateImageResults(response.remote_images, response.local_images);
         base.updateTemplateResults(response.templates);
+        base.displayTagDropdown();
       });
     };
 
@@ -112,6 +113,11 @@
       }
       base.options.$templateResults.html(resultsHtml);
     };
+
+    base.displayTagDropdown = function () {
+      var $tagDropdown = $('select#tags')
+      $tagDropdown.chosen({disable_search: true});
+    }
 
     base.displayLoadingIndicators = function() {
       var forTemplates = base.options.loadingTemplate({loading_copy: 'Finding Templates'}),

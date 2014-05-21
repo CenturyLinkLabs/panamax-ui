@@ -6,8 +6,8 @@
 .search-form {
   input#search_form_query {
     @include border-box;
-    padding: 15px;
-    width: 740px;
+    width: 745px;
+    margin-bottom: 5px;
   }
 
   button.button-primary {
@@ -63,7 +63,7 @@
     margin: 10px 20px 10px 10px;
     padding: 0 20px;
     @include border-box;
-    width: 460px;
+    width: 430px;
     height: 90px;
     overflow: auto;
     border-left: darken( $light_grey, 10% ) 1px solid;
@@ -89,25 +89,42 @@
     min-height: 90px;
     border-left: darken( $light_grey, 10% ) 1px solid;
     padding: 0 20px;
-    margin: 10px 0;
+    margin: 10px 0 0;
+
+    label {
+      font-size: 12px;
+    }
+
+    .chosen-container {
+      width: 132px !important;
+      .chosen-results {
+        max-height: 55px; /* for now */
+      }
+    }
 
     .button-positive {
       @include border-box;
       padding-right: 30px;
-      width: 145px;
+      width: 165px;
       position: relative;
+      margin: 10px 0 0;
+      display: block;
 
       &:before {
         content: '';
         position: absolute;
         right: 10px;
-        top: 20px;
+        top: 14px;
         display: block;
         @extend .icon-thick-arrow-right;
         @include icon-white;
         width: 10px;
         height: 10px;
       }
+    }
+
+    select {
+      display: block;
     }
   }
 }
