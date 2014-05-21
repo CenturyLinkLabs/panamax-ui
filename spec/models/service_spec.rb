@@ -134,12 +134,22 @@ describe Service do
 
     it 'assigns to links when not deleted' do
       subject.links_attributes = attributes
-      expect(subject.links).to include attributes['0']
+      expect(subject.links).to include attributes['0'].except('_deleted')
     end
 
     it 'does not assign to links when _deleted is 1' do
       subject.links_attributes = attributes
-      expect(subject.links).to_not include attributes['1']
+      expect(subject.links).to_not include({ 'service_id' => nil, 'alias' => 'bar', '_deleted' => 1 })
+    end
+
+    it 'excludes the id' do
+      subject.links_attributes = attributes
+      expect(subject.links.last.keys).to_not include 'id'
+    end
+
+    it 'excludes the _deleted flag' do
+      subject.links_attributes = attributes
+      expect(subject.links.last.keys).to_not include '_deleted'
     end
   end
 
@@ -154,17 +164,22 @@ describe Service do
 
     it 'assigns to ports when container port is non nil' do
       subject.ports_attributes = attributes
-      expect(subject.ports).to include attributes['0']
+      expect(subject.ports).to include attributes['0'].except('_deleted')
     end
 
     it 'does not assign to links when _deleted is 1' do
       subject.ports_attributes = attributes
-      expect(subject.ports).to_not include attributes['1']
+      expect(subject.ports).to_not include({ 'host_port' => 9090, 'container_port' => 70 })
     end
 
     it 'excludes the id' do
       subject.ports_attributes = attributes
       expect(subject.ports.last.keys).to_not include 'id'
+    end
+
+    it 'excludes the _deleted flag' do
+      subject.ports_attributes = attributes
+      expect(subject.ports.last.keys).to_not include '_deleted'
     end
   end
 
