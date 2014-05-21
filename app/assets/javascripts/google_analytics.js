@@ -34,6 +34,8 @@
 gaTracker('create', 'UA-49491413-1', {
   'cookieDomain': 'none',
   'userId': PMX.guid
-
 }); // Creates the tracker.
+
+gaTracker('set', '&uid', PMX.guid);       // Set the unique guid.
+
 gaTracker('send', 'pageview');            // Sends a pageview hit.
