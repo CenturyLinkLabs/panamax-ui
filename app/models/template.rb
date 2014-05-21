@@ -14,7 +14,7 @@ class Template < BaseViewModel
   end
 
   def short_description
-    truncate(description, length: 165)
+    truncate(description, length: 165, escape: false, separator: ' ')
   end
 
   def image_count_label
