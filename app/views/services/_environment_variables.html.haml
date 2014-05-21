@@ -1,0 +1,24 @@
+%h3 Environment Variables
+= f.fields_for :environment, @service.environment_vars do |environment|
+  - index = environment.options[:child_index]
+  %dl
+    %dt= environment.object.name
+    %dd= environment.object.value
+    %dd.actions
+      - checkbox_id = "select_environment_variable_#{index}"
+      = environment.check_box :_deleted, { id: checkbox_id }
+      = environment.hidden_field :name
+      = environment.hidden_field :value
+      %a{class: 'delete-action', title: 'remove', data: { checkbox: { selector: "##{checkbox_id}" } } } remove
+
+.additional-entries
+  = add_fields_for(:environment, f, { index: '_replaceme_' }) do |builder|
+    %dl
+      %dt.editing
+        = builder.text_field :name, placeholder: 'Label'
+      %dd.editing
+        = builder.text_field :value, placeholder: 'Value'
+        %a.cancel Cancel
+
+%button.button-add Add an Environment Variable
+

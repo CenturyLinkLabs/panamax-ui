@@ -52,7 +52,7 @@ $.PMX.init = function() {
     addCallback: enableNewItem
   });
 
-  $('.journal-output').journalLoader();
+  $('.service-links').appendableServiceLinks();
 
-  $('.journal-toggle').journalToggle();
 };
+
