@@ -66,6 +66,10 @@ class Service < BaseResource
     self.from.gsub(/:+\S*/, '')
   end
 
+  def category_priority
+    categories.min_by { |category| category.id }.id
+  end
+
   def docker_index_url
     path_part = "u/#{self.service_source_name}"
     "#{DOCKER_INDEX_BASE_URL}#{path_part}"

@@ -5,7 +5,7 @@ describe Service do
     {
       'name' => 'Wordpress',
       'id' => 77,
-      'categories' => [{'name' => 'foo'}, {'name' => 'baz'}],
+      'categories' => [{'name' => 'foo', 'id' => 20}, {'name' => 'baz', 'id' => 10}],
       'ports' => [
         {'host_port' => 8080, 'container_port' => 80},
         {'host_port' => 7000, 'container_port' => 77}
@@ -201,6 +201,13 @@ describe Service do
     it 'composes a docker index URL' do
       subject.from = 'supercool/repository'
       expect(subject.docker_index_url).to eq 'https://index.docker.io/u/supercool/repository'
+    end
+  end
+
+  describe '#category_priority' do
+    it 'returns the category with the lowest id' do
+      result = described_class.build_from_response(fake_json_response)
+      expect(result.category_priority).to eq 10
     end
   end
 end
