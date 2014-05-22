@@ -1,0 +1,64 @@
+@import 'ctl_base_ui/colors';
+
+#post-run-html {
+
+  padding: 20px;
+  background-color: $light_grey;
+  font-size: 1rem;
+
+  h2 {
+    color: $sky_blue;
+  }
+
+  h3, h4, h5, h6 {
+    color: $dark_grey;
+  }
+
+  blockquote {
+    border-left: 11px solid $grey;
+    font-style: italic;
+    font-size: 1.2rem;
+    background-color: $white;
+    padding: 11px 11px 11px 20px;
+    margin-bottom: 20px;
+  }
+
+  ul, ol {
+    margin-left: 20px;
+    margin-bottom: 20px;
+    list-style-position: outside;
+    li {
+      line-height: 1.6rem;
+    }
+  }
+
+  ul {
+    list-style-type: disc;
+  }
+
+  ol {
+    list-style-type: decimal;
+  }
+
+  code {
+    display: block;
+    font-family: monospace;
+    font-style: italic;
+    color: $dark_blue;
+    background-color: $white;
+    border: 1px solid $grey;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  hr {
+    border: 0;
+    height: 2px;
+    background-color: $grey;
+  }
+
+  img {
+    background-color: $white;
+    padding: 11px;
+  }
+}
