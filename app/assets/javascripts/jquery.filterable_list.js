@@ -45,7 +45,9 @@
       templateResultTemplate: Handlebars.compile($('#template_result_template').html()),
       loadingTemplate: Handlebars.compile($('#loading_row_template').html()),
       noResultsTemplate: Handlebars.compile($('#no_results_row_template').html()),
-      trackingAction: 'not-given'
+      trackingAction: 'not-given',
+      tagDropdownSelector: 'select#tags'
+
     }
 
     base.init = function(){
@@ -115,8 +117,7 @@
     };
 
     base.displayTagDropdown = function () {
-      var $tagDropdown = $('select#tags')
-      $tagDropdown.chosen({disable_search: true});
+      $(base.options.tagDropdownSelector).chosen({disable_search: true});
     }
 
     base.displayLoadingIndicators = function() {
