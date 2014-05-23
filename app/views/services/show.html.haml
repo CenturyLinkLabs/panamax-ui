@@ -27,7 +27,7 @@
         = render 'port_detail', f: f
       .environment-variables
         = render 'environment_variables', f: f
-    = f.submit 'Save all changes', class: 'button-primary'
+    = f.submit 'Save all changes', class: 'button-primary', data: {disable_with: 'Saving...'}
 
 %section.journal
 

@@ -16,7 +16,7 @@
       = hidden_field_tag 'application[category]', 'null'
       = hidden_field_tag 'name', presenter.title
       = hidden_field_tag 'from', presenter.title
-      = button_tag 'Add to App', class: 'button-positive'
+      = button_tag 'Add to App', class: 'button-positive', data: {disable_with: 'Adding...'}
   - if remote
     .community-data
       = link_to presenter.docker_index_url + "/stars/", target: '_blank' do

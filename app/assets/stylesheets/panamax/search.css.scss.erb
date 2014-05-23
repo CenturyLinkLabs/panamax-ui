@@ -121,6 +121,12 @@
         width: 10px;
         height: 10px;
       }
+
+      &[disabled],
+      &[disabled]:hover {
+        background-color: darken( $lime, 30% );
+        color: $light_grey;
+      }
     }
 
     select {
