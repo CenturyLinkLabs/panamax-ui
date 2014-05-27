@@ -191,7 +191,7 @@ describe Service do
 
     it 'assigns the attributes to environment' do
       subject.environment_attributes = attributes
-      expect(subject.environment.attributes).to eq({ 'PASSWORD' => 'abc123' })
+      expect(subject.environment.attributes).to eq('PASSWORD' => 'abc123')
     end
   end
 
