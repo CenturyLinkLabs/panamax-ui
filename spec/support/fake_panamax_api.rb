@@ -21,6 +21,18 @@ class FakePanamaxApi < Sinatra::Base
     json_response 200, "service_representation_#{id}.json"
   end
 
+  get "/apps/:app_id/categories/:id.?:format" do |app_id, id, format|
+    categories = [
+        {'id' => '1', 'name' => 'foo'},
+        {'id' => '2', 'name' => 'baz'},
+        {'id' => '3', 'name' => 'bar'},
+        {'id' => '4', 'name' => 'Web Tier'}
+    ]
+    content_type :json
+    status 200
+    categories.find { |cat| cat['id'] == id.to_s }.to_json
+  end
+
   put "/apps/:app_id/services/:id" do
     status 204
   end

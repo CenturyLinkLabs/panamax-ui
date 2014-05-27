@@ -25,7 +25,9 @@ class App < BaseViewModel
     attributes['services'].map! do |service_hash|
       Service.find(service_hash['id'], params: {app_id: attributes['id']})
     end
-    attributes['categories'] = AppCategory.instantiate_collection(attributes['categories'])
+    attributes['categories'].map! do |category_hash|
+      Category.find(category_hash['id'], params: {app_id: attributes['id']})
+    end
     self.new(attributes)
   end
 
@@ -63,9 +65,9 @@ class App < BaseViewModel
       end
 
       if groups.present?
-        groups[AppCategory.new({name: 'Uncategorized'})] = uncategorized_services if uncategorized_services.present?
+        groups[Category.new({name: 'Uncategorized'})] = uncategorized_services if uncategorized_services.present?
       else
-        groups[AppCategory.new({name: 'Services'})] = services
+        groups[Category.new({name: 'Services'})] = services
       end
 
       return groups

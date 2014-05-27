@@ -119,15 +119,13 @@ describe App do
     describe '#categorized_services' do
       it 'returns a hash of services grouped by category' do
         groups = subject.categorized_services
-        expect(groups.keys).to include({:id => '1', :name => 'foo'},
-                                       {:id => '2', :name => 'baz'},
-                                       {:id => '3', :name => 'bar'})
+        expect(groups.keys.map(&:id)).to include('1', '2', '3')
         expect(groups.values.flatten.map { |s| s.name }).to include('blah', 'barf', 'bark')
       end
 
       it 'includes an Uncategorized service group if there are categorized and uncategorized services' do
         groups = subject.categorized_services
-        expect(groups.keys).to include({:id => nil, :name => 'Uncategorized'})
+        expect(groups.keys.map(&:name)).to include('Uncategorized')
       end
 
       it 'does not include Uncategorized service group if there are only categorized services' do
@@ -140,7 +138,7 @@ describe App do
         attributes['services'].each { |s| s['categories'] = [] }
         attributes['categories'] = []
         groups = subject.categorized_services
-        expect(groups.keys).to match_array([{:id => nil, :name => 'Services'}])
+        expect(groups.keys.map(&:name)).to match_array(['Services'])
       end
     end
 
