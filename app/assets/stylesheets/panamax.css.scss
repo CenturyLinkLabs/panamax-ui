@@ -189,7 +189,6 @@ h1.breadcrumbs {
   padding: 10px 5px;
   width: 100%;
   box-sizing: border-box;
-  white-space:nowrap;
   outline: 0px solid transparent;
 
   &:focus {
@@ -220,6 +219,18 @@ h1.breadcrumbs {
     height: 30px;
     @extend .icon-checkmark-large;
     @include icon-light-green;
+  }
+
+  .loading {
+    position: absolute;
+    top: 14px;
+    right: 8px;
+    width: 16px;
+    height: 16px;
+    background-image: image-url('icon_loading_green.gif');
+    background-position: top left;
+    background-repeat: no-repeat;
+
   }
 }
 

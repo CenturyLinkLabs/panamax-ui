@@ -32,8 +32,8 @@
           %header
             %span.title
               = group.name
-              .actions
-                %a{href: "/application-category/#{group.id}", class: 'edit-action'}
+            .actions
+              %a{href: "/application-category/#{group.id}", class: 'edit-action'}
           - unless services.empty?
             %ul.services
               - services.each do |service|

@@ -77,18 +77,40 @@
   $.PMX.EditCategory = function(el, options) {
     var base = this;
 
-    base.$el = $(el);
+    base.$el = el;
     base.defaultOptions = {
-      content: 'span.title'
+      content: 'span.title',
+      editSelector: '.actions a.edit-action'
     };
 
     base.init = function() {
       base.options = $.extend({}, base.defaultOptions, options);
-      base.editableName = (new $.PMX.ContentEditable(base.options.content,
+      base.bindEvents();
+
+    };
+
+    base.bindEvents = function() {
+      base.$el.find(base.options.editSelector).on('click', base.handleEdit);
+    };
+
+    base.handleEdit = function(e) {
+      var $target = $(e.currentTarget),
+          $parent = $target.parent();
+
+      e.preventDefault();
+      $parent.css('display', 'none');
+      base.editableName = (new $.PMX.ContentEditable(base.$el.find(base.options.content),
         {
+          identifier: $target.attr('href'),
+          onRevert: base.handleRevert,
           editorPromise: base.completeEdit
         })).init();
     };
+
+    base.handleRevert = function(id) {
+      var $link = base.$el.find('a[href="'+id+'"]');
+      $link.closest('.actions').css('display','auto');
+    }
 
     base.completeEdit = function(data) {
       var defer = $.Deferred();
@@ -97,7 +119,7 @@
         console.log('trying: ', data);
       });
 
-      defer.reject(data);
+      setTimeout(function() {defer.resolve(data);}, 3000);
 
       return defer.promise();
     };
@@ -106,7 +128,7 @@
   $.PMX.AddServiceDialog = function(el) {
     var base = this;
 
-    base.$el = $(el);
+    base.$el = el;
     base.xhr = null;
 
     base.defaultOptions = {
@@ -176,8 +198,8 @@
 
   $.fn.categoryActions = function(){
     return this.each(function(){
-      (new $.PMX.AddServiceDialog(this)).init();
-      (new $.PMX.EditCategory(this)).init();
+      (new $.PMX.AddServiceDialog($(this))).init();
+      (new $.PMX.EditCategory($(this))).init();
     });
   };
 })(jQuery);
