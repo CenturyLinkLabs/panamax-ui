@@ -103,4 +103,33 @@ describe ApplicationsController do
       expect(response.status).to eq 404
     end
   end
+
+  describe '#journal' do
+
+    let(:journal_lines) do
+      [
+        { id: 1, message: 'foo' }
+      ]
+    end
+
+    before do
+      fake_applications_service.stub(:journal).and_return(journal_lines)
+    end
+
+    it 'uses the service to retrieve the journal' do
+      expect(fake_applications_service).to receive(:journal)
+        .with('1', 'cursor' => 'c1')
+      get :journal, id: 1, cursor: 'c1', format: :json
+    end
+
+    it 'returns the journal lines' do
+      get :journal, id: 1, cursor: 'c1', format: :json
+      expect(response.body).to eq journal_lines.to_json
+    end
+
+    it 'returns a 200 status code' do
+      get :journal, id: 1, cursor: 'c1', format: :json
+      expect(response.status).to eq 200
+    end
+  end
 end
