@@ -50,7 +50,6 @@
 
       $services.append($service);
       base.options.complete($service);
-
     };
 
     base.processForm = function($form) {
@@ -160,6 +159,7 @@
             base.handleClose();
             $clone.append($indicateNew);
             $indicateNew.fadeOut(2000);
+            base.$el.trigger('service-event');
           }
         }).init();
 

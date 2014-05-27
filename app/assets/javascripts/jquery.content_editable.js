@@ -21,7 +21,7 @@
     base.$el = $(el);
 
     base.defaultOptions = {
-       confirmSelector: '.checkmark',
+       confirmSelector: '.checkmark'
     };
 
     base.prepareForEdit = function($content) {

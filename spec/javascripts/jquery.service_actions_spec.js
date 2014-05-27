@@ -1,7 +1,12 @@
 describe('$.fn.serviceActions', function () {
+  var serviceEventCalled = true;
+
   beforeEach(function () {
     fixture.load('manage-service.html');
     $('ul.services li').serviceActions();
+    $('ul.services').on('service-event', function() {
+      serviceEventCalled = true;
+    });
     jasmine.Ajax.useMock();
   });
 
@@ -30,6 +35,18 @@ describe('$.fn.serviceActions', function () {
 
       expect($('ul.services li').css('opacity')).toBe('0.5');
       // Testing opacity because animations have been turned off
+    });
+
+    it ('triggers service-event ', function() {
+      var request = mostRecentAjaxRequest();
+
+      request.response({
+        status: 200,
+        responseText: '{}'
+      });
+      $('ul.services li .actions .delete-action').click();
+
+      expect(serviceEventCalled).toBeTruthy();
     });
   });
 

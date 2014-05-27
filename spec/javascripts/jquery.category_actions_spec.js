@@ -1,5 +1,9 @@
 describe('$.fn.categoryActions', function() {
-  var modalContents, addServiceButton, subject;
+  var modalContents,
+      addServiceButton,
+      subject,
+      category_subject,
+      edit_category_button;
 
   beforeEach(function() {
     fixture.load('add-service.html');
@@ -8,11 +12,35 @@ describe('$.fn.categoryActions', function() {
     spyOn($.fn, "dialog");
     subject = new $.PMX.AddServiceDialog($('.category-panel'));
     subject.init();
+    category_subject = new $.PMX.EditCategory($('.category-panel'));
+    category_subject.init();
+    edit_category_button = $('.actions a.edit-action');
   });
 
   afterEach(function() {
     $('body').css('overflow', 'inherit');
   });
+
+  describe('the category edit icon was clicked', function() {
+    it('prevents default behavior', function () {
+      var clickEvent = $.Event('click');
+      edit_category_button.trigger(clickEvent);
+      expect(clickEvent.isDefaultPrevented()).toBeTruthy();
+    });
+
+    it('hides the parent element', function() {
+      var $parent = edit_category_button.parent();
+
+      edit_category_button.trigger('click');
+      expect($parent.css('display')).toEqual('none');
+    });
+
+    it('creates a content editable element', function() {
+      edit_category_button.trigger('click');
+      expect($('.content-editable').length).toEqual(1);
+    });
+  });
+
   describe('the dialog is initialized', function() {
     it('calls .dialog on the add service form', function() {
       expect(modalContents.dialog).toHaveBeenCalledWith({

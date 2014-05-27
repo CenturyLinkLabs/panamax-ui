@@ -44,15 +44,7 @@
                                                     :icon => service.icon
           = link_to 'Add a Service', '#', class: 'button-positive add-service', title: 'add', data: {:category => group.id}
     .relationships
-      - @app.ordered_services.each do |service|
-        .relationship-panel
-          %header
-            = service.name
-          - unless service.links.empty?
-            %ul.links
-              - service.links.each do |link|
-                %li
-                  = link.service_name
+      = render 'relationship_view', :app => @app
 
 = render 'shared/journal', 
   title: 'CoreOS Journal - Application Activity Log',

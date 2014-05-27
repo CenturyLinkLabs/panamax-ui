@@ -17,6 +17,10 @@ class ApplicationsController < ApplicationController
     render status: :not_found unless application.present?
   end
 
+  def relations
+    render :partial => "relationship_view", :locals => {:app => application}, :formats => [:html]
+  end
+
   def destroy
     application, status = applications_service.destroy(params[:id])
     respond_to do |format|
