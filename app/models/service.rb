@@ -6,6 +6,7 @@ class Service < BaseResource
 
   has_many :ports
   has_many :links
+  has_one :environment
 
   DEFAULT_ICON_URL = 'http://panamax.ca.tier3.io/service_icons/icon_service_docker_grey.png'
 
@@ -43,14 +44,15 @@ class Service < BaseResource
   end
 
   def environment_attributes=(attributes)
-    self.environment = attributes.each_with_object({}) do |(index, attribute), hash|
+    attrs = attributes.each_with_object({}) do |(index, attribute), hash|
       hash[attribute['name']] = attribute['value'] unless attribute['_deleted'].to_s == '1'
     end
+    self.environment = Environment.new(attrs)
   end
 
   def ports_attributes=(attributes)
     self.ports = attributes.each_with_object([]) do |(index, port), memo|
-      memo << port.except('id', '_deleted') unless port['_deleted'].to_s == '1'
+      memo << Port.new(port.except('id')) unless port['_deleted'].to_s == '1'
     end
   end
 
@@ -58,7 +60,7 @@ class Service < BaseResource
     self.links = attributes.each_with_object([]) do |(index, link), memo|
       # exclude link ID for now. May need this later if we decide to
       # expose link ID in API.
-      memo << link.except('id', '_deleted') unless link['_deleted'].to_s == '1'
+      memo << Link.new(link.except('id')) unless link['_deleted'].to_s == '1'
     end
   end
 
