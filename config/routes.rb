@@ -6,9 +6,11 @@ Rails.application.routes.draw do
   resources :applications, only: [:index, :create, :show, :destroy] do
     get 'documentation', on: :member
     get 'journal', on: :member
+    get 'relations', on: :member
     resources :services, only: [:update, :create, :show, :destroy] do
       get 'journal', on: :member
     end
+    resources :categories, only: [:update, :create]
   end
 
   mount CtlBaseUi::Engine => "/ctl-base-ui"

@@ -50,7 +50,6 @@
 
       $services.append($service);
       base.options.complete($service);
-
     };
 
     base.processForm = function($form) {
@@ -110,18 +109,87 @@
     base.handleRevert = function(id) {
       var $link = base.$el.find('a[href="'+id+'"]');
       $link.closest('.actions').css('display','auto');
-    }
+    };
+
+    base.updateCategory = function(path, data) {
+      return $.ajax({
+        type: "PUT",
+        headers: {
+          'Accept': 'application/json'
+        },
+        url: path + data.id,
+        data: {
+          category: {
+            name: data.text
+          }
+        }
+      })
+      .fail(function(){
+        alert('Unable to edit category.');
+      });
+    };
+
+    base.moveServicesToNamedCategory = function(path, data) {
+      var transaction = $.Deferred(),
+          update = function(serviceUrl, category) {
+            return $.ajax({
+              type: 'PUT',
+              headers: {
+                'Accept': 'application/json'
+              },
+              url: serviceUrl,
+              data: {
+                service: {
+                  category: category.id
+                }
+              }
+            });
+          },
+          create = function() {
+            return $.ajax({
+              type: "POST",
+              headers: {
+                'Accept': 'application/json'
+              },
+              url: path + "/categories",
+              data: {
+                category: {
+                  name: data.text
+                }
+              }
+            });
+          },
+          assign = function(category) {
+            var $addData = base.$el.find('a[data-category="null"]'),
+                $uncategorized = $addData.closest('.category-panel').find('ul.services li a.view-action'),
+                serviceList = [];
+
+            $addData.attr('data-category', ''+category.id);
+
+            $uncategorized.each(function(idx) {
+                serviceList.push( update($(this).attr('href'), category));
+            });
+
+            $.when.apply($, serviceList).done(function() {
+              transaction.resolve();
+            });
+          };
+
+          create()
+            .success(assign)
+            .fail(function() {
+              transaction.reject();
+            });
+
+      return transaction.promise();
+    };
 
     base.completeEdit = function(data) {
-      var defer = $.Deferred();
+      var path = window.location.pathname;
 
-      defer.done(function(data) {
-        console.log('trying: ', data);
-      });
-
-      setTimeout(function() {defer.resolve(data);}, 3000);
-
-      return defer.promise();
+      return (data.id.lastIndexOf('/') === data.id.length-1)
+        ? base.moveServicesToNamedCategory(path, data)
+        : base.updateCategory(path, data);
     };
   };
 
@@ -160,6 +228,7 @@
             base.handleClose();
             $clone.append($indicateNew);
             $indicateNew.fadeOut(2000);
+            base.$el.trigger('category-change');
           }
         }).init();
 

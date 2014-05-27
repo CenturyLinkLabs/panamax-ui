@@ -256,10 +256,12 @@ section.application-services {
 
         header {
           position: relative;
+          min-height: 25px;
         }
 
         header span.content-editable {
           color: $dark_grey;
+          min-height: 50px;
         }
 
         header .actions {

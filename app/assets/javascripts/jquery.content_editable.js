@@ -1,62 +1,77 @@
 (function($) {
   $.PMX.ContentEditable = function(el, options) {
-    var base = this,
-        textOnly = function($elem) {
-          return $elem
-                  .contents()
-                  .filter(function() {
-                    return this.nodeType === 3; //Node.TEXT_NODE
-                  })[0].data.replace(/[\n\r]/g, '').replace(/ /g,'');
-        },
-        specialKey = function(code) {
-          switch(code) {
-            case 9:
-            case 13:
-              return true;
-            default:
-              return false;
-          }
-        };
+    var base = this;
 
     base.$el = $(el);
 
     base.defaultOptions = {
-       confirmSelector: '.checkmark',
+      confirmSelector: '.checkmark'
+    };
+
+    base.init = function(){
+      base.options = $.extend({}, base.defaultOptions, options);
+      base.prepareForEdit(base.$el);
+    };
+
+    base.textOnly = function($elem) {
+      var node = $elem
+        .contents()
+        .filter(function() {
+          return this.nodeType === 3; //Node.TEXT_NODE
+        });
+      return (node[0] !== undefined) ? node[0].data.replace(/[\n\r]/g, '').replace(/ /g,'') : ' '
+    };
+
+    base.specialKey = function(code) {
+      switch(code) {
+        case 9: // KEY CODE FOR TAB
+        case 13: // KEY CODE FOR ENTER
+          return true;
+        default:
+          return false;
+      }
     };
 
     base.prepareForEdit = function($content) {
-      var checkmark = '<div class="checkmark" contenteditable="false" data-identifier="' + base.options.identifier +'"></div>';
+      var checkmark = '<div class="checkmark" contenteditable="false" data-identifier="' + base.options.identifier +'"></div>',
+          data = base.textOnly($content),
+          editable = '<span class="edit-field" contenteditable="true">' + data + '</span>';
 
-      $(checkmark).appendTo($content);
-      $content.attr('data-original', textOnly($content))
+      $content.attr('data-original', base.textOnly($content))
               .addClass('content-editable')
-              .attr('data-identifier', base.options.identifier)
-              .attr('contenteditable', 'true');
+              .attr('data-identifier', base.options.identifier);
+      $content.empty();
+      $(editable).appendTo($content);
+      $(checkmark).appendTo($content);
       base.bindEvents($content);
     };
 
     base.bindEvents = function($content) {
       $content.unbind('keydown').on('keydown', base.handleContent)
-              .unbind('keyup').on('keyup', base.dirtyCheck)
+              .unbind('keyup').on('keyup',base.dirtyCheck)
               .find(base.options.confirmSelector).unbind('click').on('click', base.handleCheckmark );
     };
 
     base.revert = function($content) {
       var $child = ($content.find('.checkmark').length !== 0) ? $content.find('.checkmark') : $content.find('.loading'),
+          data = base.textOnly($content.find('.edit-field')),
           identifier =  $child.attr('data-identifier');
 
       $content.attr('contenteditable', 'false')
               .css('outline', 'none')
               .unbind('keydown')
               .removeClass('content-editable')
-              .find(base.options.editSelector).css('display', 'block');
+              .empty()
+              .text(data);
 
-      $child.remove();
       if (base.options.onRevert) base.options.onRevert(identifier);
     };
 
     base.commitChange = function(to) {
-      var editor = base.options.editorPromise(base.options.editorPromise(textOnly(to)));
+      var $child = (to.find('.checkmark').length !== 0) ? to.find('.checkmark') : to.find('.loading'),
+          identifier =  $child.attr('data-identifier'),
+          data = to.find('.edit-field'),
+          editor = base.options.editorPromise({text: base.textOnly(data), id: identifier, original: to.attr('data-original')});
 
       to.find('.checkmark')
         .addClass('loading')
@@ -66,21 +81,17 @@
         base.revert(to);
       }, function() {
         base.revert(to);
-        to.contents()
-          .filter(function() {
-            return this.nodeType === 3; //Node.TEXT_NODE
-          })[0].data = to.attr('data-original');
       });
     };
 
     base.dirtyCheck = function(e) {
       var $content = $(e.currentTarget),
-        contentText = textOnly($content),
-        original = $content.attr('data-original');
-        $parent = $content.closest(base.$el);
+        contentText = base.textOnly($content.find('.edit-field')),
+        $parent = $content.closest(base.$el),
+        original = $parent.attr('data-original');
 
       (contentText !== original) ? $parent.find(base.options.confirmSelector).addClass('dirty')
-                                             : $parent.find(base.options.confirmSelector).removeClass('dirty');
+                                 : $parent.find(base.options.confirmSelector).removeClass('dirty');
     };
 
     base.handleContent = function(e) {
@@ -88,12 +99,11 @@
           $parent = $content.closest(base.$el),
           keyCode = e.which || e.keyCode;
 
-      if (specialKey(keyCode)) {
+      base.dirtyCheck(e);
+      if (base.specialKey(keyCode)) {
         e.preventDefault();
         ($parent.find(base.options.confirmSelector).hasClass('dirty')) ? base.commitChange($content)
                                                                        : base.revert($content);
-      } else {
-        base.dirtyCheck(e);
       }
     };
 
@@ -110,11 +120,6 @@
           $content = $target.closest(base.$el);
 
       ($target.hasClass('dirty')) ? base.commitChange($content) : base.revert($content);
-    };
-
-    base.init = function(){
-      base.options = $.extend({}, base.defaultOptions, options);
-      base.prepareForEdit(base.$el);
     };
   };
 

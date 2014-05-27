@@ -19,6 +19,7 @@
     base.bindEvents = function() {
       base.$el.on('click', base.options.listViewSelector, base.handleListView);
       base.$el.on('click', base.options.relationshipViewSelector, base.handleRelationshipView);
+      base.watchCategories();
     };
 
     base.clearSelection = function(){
@@ -34,6 +35,21 @@
           .stop()
           .animate(properties, 800);
       }
+    };
+
+    base.watchCategories = function() {
+      base.$el.unbind('category-change').on('category-change', function(e) {
+        $.ajax({
+          type: "GET",
+          headers: {
+            'Accept': 'application/json'
+          },
+          url: window.location.pathname + "/relations"
+        })
+          .done(function(response) {
+            $('.relationships').empty().html(response);
+          });
+      });
     };
 
     base.handleListView = function(e){

@@ -4,7 +4,7 @@ describe ServicesController do
   let(:fake_applications_service) { double(:fake_applications_service) }
   let(:fake_services_service) { double(:fake_services_service) }
   let(:valid_app) { double(:valid_app) }
-  let(:valid_service) { double(:valid_service, id: 3) }
+  let(:valid_service) { double(:valid_service, id: 3, categories: []) }
   let(:fake_create_response) { double(:fake_create_response, body: 'test', status: 200)}
   let(:fake_delete_response) { double(:fake_delete_response, body: 'test', status: 200)}
 
@@ -124,9 +124,8 @@ describe ServicesController do
     end
 
     it 'retrieves the service to be updated' do
-      expect(Service).to receive(:find).with('3', {params: {app_id: '2'}})
-
-      patch :update, { application_id: 2, id: 3 }
+      expect(Service).to receive(:find).with('3', params: { app_id: '2' })
+      patch :update, service: {}, application_id: 2, id: 3
     end
 
     it 'writes the attributes' do
@@ -154,6 +153,12 @@ describe ServicesController do
         expect(response).to render_template :show
       end
 
+    end
+
+    it 'updates the service category when present' do
+      attributes['category'] = '1'
+      expect(valid_service).to receive(:categories)
+      patch :update, application_id: 2, id: 3, service: attributes
     end
   end
 

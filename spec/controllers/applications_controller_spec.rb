@@ -104,6 +104,14 @@ describe ApplicationsController do
     end
   end
 
+  describe 'GET #relations' do
+    it 'renders the partial for the relationship view for the app' do
+      fake_applications_service.stub(:find_by_id).and_return(valid_app)
+      get :relations, id: 77
+      expect(response.body).to_not match /<body>/m
+    end
+  end
+
   describe '#journal' do
 
     let(:journal_lines) do
