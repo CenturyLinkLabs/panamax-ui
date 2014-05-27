@@ -29,16 +29,6 @@
         = render 'environment_variables', f: f
     = f.submit 'Save all changes', class: 'button-primary', data: {disable_with: 'Saving...'}
 
-%section.journal
-
-  %script#journal_line_template{type: 'text/x-handlebars-template'}
-    %p
-      %span.timestamp {{timestamp}}
-      %span.source {{source}}
-      {{message}}
-
-  %header
-    %h3 CoreOS Journal - Service Activity Log
-    %a.journal-toggle{ data: { alt: { text: 'Hide Full Activity Log' } } }
-      Show Full Activity Log
-  %code.journal-output.truncated{ data: { source: journal_application_service_path(@app.id, @service.id) } }
+= render 'shared/journal', 
+  title: 'CoreOS Journal - Service Activity Log',
+  journal_path: journal_application_service_path(@app.id, @service.id)
