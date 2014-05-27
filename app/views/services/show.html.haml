@@ -20,6 +20,7 @@
     = link_to 'View on Docker Index', @service.docker_index_url, { target: 'blank' }
 
   = form_for [@app, @service], html: { class: 'service-edit-form' } do |f|
+    = render 'shared/errors', errors: f.object.errors
     .service-attributes
       .service-links
         = render 'service_links', f: f, services: @app.services, service_id: @service.id

@@ -111,7 +111,7 @@ describe ServicesController do
 
     before do
       valid_service.stub(:write_attributes)
-      valid_service.stub(:save)
+      valid_service.stub(:save).and_return(true)
     end
 
     it 'retrieves the service to be updated' do
@@ -133,6 +133,18 @@ describe ServicesController do
     it 'redirects to the show page' do
       patch :update, { application_id: 2, id: 3, service: attributes }
       expect(response).to redirect_to application_service_path(2, 3)
+    end
+
+    context 'when saving fails' do
+      before do
+        valid_service.stub(:save).and_return(false)
+      end
+
+      it 're-renders the show page' do
+        patch :update, application_id: 2, id: 3, service: attributes
+        expect(response).to render_template :show
+      end
+
     end
   end
 

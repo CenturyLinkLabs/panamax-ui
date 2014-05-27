@@ -30,10 +30,14 @@ class ServicesController < ApplicationController
   end
 
   def update
+    @app = applications_service.find_by_id(params[:application_id])
     @service = retrieve_service
     @service.write_attributes(params[:service])
-    @service.save
-    redirect_to application_service_path(params[:application_id], @service.id)
+    if @service.save
+      redirect_to application_service_path(params[:application_id], @service.id)
+    else
+      render :show
+    end
   end
 
   def journal
