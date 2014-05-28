@@ -13,3 +13,6 @@ AlignParameters:
 
 DotPosition:
   EnforcedStyle: leading
+
+EmptyLinesAroundBody:
+  Enabled: false
