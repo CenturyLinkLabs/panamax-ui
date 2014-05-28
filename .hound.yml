@@ -10,3 +10,6 @@ SpaceAroundEqualsInParameterDefault:
 
 AlignParameters:
   EnforcedStyle: with_fixed_indentation
+
+DotPosition:
+  EnforcedStyle: leading
