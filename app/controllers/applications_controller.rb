@@ -18,7 +18,7 @@ class ApplicationsController < ApplicationController
   end
 
   def relations
-    render :partial => "relationship_view", :locals => {:app => application}, :formats => [:html]
+    render partial: 'relationship_view', locals:  { app: application }, formats: [:html]
   end
 
   def destroy

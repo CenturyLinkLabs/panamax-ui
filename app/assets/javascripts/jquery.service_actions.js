@@ -17,7 +17,7 @@
     base.cleanList = function (){
       var $services = base.$el.parent();
 
-      base.$el.trigger('service-event');
+      base.$el.trigger('category-change');
 
       base.$el.remove();
       if ($services.find('li').length === 0) {

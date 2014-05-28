@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :services, only: [:update, :create, :show, :destroy] do
       get 'journal', on: :member
     end
-    resources :categories, only: [:update]
+    resources :categories, only: [:update, :create]
   end
 
   mount CtlBaseUi::Engine => "/ctl-base-ui"

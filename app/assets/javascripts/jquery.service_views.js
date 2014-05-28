@@ -38,7 +38,7 @@
     };
 
     base.watchCategories = function() {
-      base.$el.unbind('service-event').on('service-event', function(e) {
+      base.$el.unbind('category-change').on('category-change', function(e) {
         $.ajax({
           type: "GET",
           headers: {

@@ -195,6 +195,10 @@ h1.breadcrumbs {
     outline: 0px solid transparent;
   }
 
+  *[contenteditable=true] {
+    outline: 0px solid transparent;
+  }
+
   .checkmark {
     content: '';
     position: absolute;

@@ -4,7 +4,7 @@ describe('$.fn.serviceActions', function () {
   beforeEach(function () {
     fixture.load('manage-service.html');
     $('ul.services li').serviceActions();
-    $('ul.services').on('service-event', function() {
+    $('ul.services').on('category-change', function() {
       serviceEventCalled = true;
     });
     jasmine.Ajax.useMock();
@@ -37,7 +37,7 @@ describe('$.fn.serviceActions', function () {
       // Testing opacity because animations have been turned off
     });
 
-    it ('triggers service-event ', function() {
+    it ('triggers category-change event ', function() {
       var request = mostRecentAjaxRequest();
 
       request.response({

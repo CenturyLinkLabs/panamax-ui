@@ -15,6 +15,7 @@ describe('$.fn.categoryActions', function() {
     category_subject = new $.PMX.EditCategory($('.category-panel'));
     category_subject.init();
     edit_category_button = $('.actions a.edit-action');
+    jasmine.Ajax.useMock();
   });
 
   afterEach(function() {
@@ -24,6 +25,7 @@ describe('$.fn.categoryActions', function() {
   describe('the category edit icon was clicked', function() {
     it('prevents default behavior', function () {
       var clickEvent = $.Event('click');
+
       edit_category_button.trigger(clickEvent);
       expect(clickEvent.isDefaultPrevented()).toBeTruthy();
     });
@@ -38,6 +40,44 @@ describe('$.fn.categoryActions', function() {
     it('creates a content editable element', function() {
       edit_category_button.trigger('click');
       expect($('.content-editable').length).toEqual(1);
+    });
+  });
+
+  describe('when changing a category name', function() {
+    describe('and the category id is null', function() {
+
+      it('POST new category', function() {
+        category_subject.completeEdit({id: '/apps/3/categories/', text: 'WORKIE'})
+        var request = ajaxRequests[ajaxRequests.length - 1]
+
+        expect(request.method).toBe('POST');
+        expect(request.params).toEqual('category%5Bname%5D=WORKIE');
+      });
+
+      it('adds uncategorized services to new category', function() {
+        category_subject.completeEdit({id: '/apps/3/categories/'});
+        var request = mostRecentAjaxRequest();
+        request.response({
+          status: 200,
+          responseText: '{id: 77}'
+        });
+       
+        expect(request.method).toBe('POST');
+      });
+    });
+
+    describe('and the category has an id', function() {
+      it('PUT the category', function() {
+        category_subject.completeEdit({id: '/apps/3/categories/77'})
+        var request = mostRecentAjaxRequest();
+
+        request.response({
+          status: 200,
+          responseText: '{}'
+        });
+
+        expect(request.method).toBe('PUT');
+      });
     });
   });
 
