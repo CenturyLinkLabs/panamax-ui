@@ -4,19 +4,22 @@
     .basic-info
       %p= '{{loading_copy}}'
 %script#template_result_template{type: 'text/x-handlebars-template'}
-  %h4= '{{title}}'
-  %p= '{{description}}'
-  %p= '{{updated_at}}'
+  .search-result-item
+    %h4= '{{title}}'
+    %p= '{{description}}'
+    %p= '{{updated_at}}'
 %script#remote_image_result_template{type: 'text/x-handlebars-template'}
-  %h4= '{{title}}'
-  %p= '{{description}}'
-  %p= '{{updated_at}}'
-  %select#tags
+  .search-result-item
+    %h4= '{{title}}'
+    %p= '{{description}}'
+    %p= '{{updated_at}}'
+    %select#tags
 %script#local_image_result_template{type: 'text/x-handlebars-template'}
-  %h4= '{{title}}'
-  %p= '{{description}}'
-  %p= '{{updated_at}}'
-  %select#tags
+  .search-result-item
+    %h4= '{{title}}'
+    %p= '{{description}}'
+    %p= '{{updated_at}}'
+    %select#tags
 %script#no_results_row_template{type: 'text/x-handlebars-template'}
   %p sorry, nothin here
 

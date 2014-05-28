@@ -14,8 +14,7 @@ class SearchController < ApplicationController
 
   def load_tags
     search_service = SearchService.new
-    tags = search_service.tags_for(params[:repo], params[:local])
+    tags = search_service.tags_for(params[:repo], params[:local_image])
     respond_with tags
   end
-
 end

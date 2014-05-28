@@ -187,4 +187,64 @@ describe('$.fn.filterableList', function() {
       expect($('.template-results').html()).toContain('sorry, nothin here');
     });
   });
+
+
+  describe('clicking on the tags dropdown', function() {
+    var imageSuccessResponseText = {
+      q:"asd",
+      remote_images: [
+        {
+          description:"some description",
+          title:"some/name",
+          id:"dlacewell/asdf"
+        }
+      ],
+      local_images: [
+        {
+          description:"a local image",
+          title:"local/image",
+          id:"dlacewell/local"
+        }
+      ]
+    };
+
+    it('ajax loads tags if they are not already loaded', function () {
+      var request;
+
+      $('input#search_form_query').val('apache').keyup();
+
+      request = mostRecentAjaxRequest();
+      request.response({
+        status: 200,
+        responseText: JSON.stringify(imageSuccessResponseText)
+      });
+
+      $('.chosen-container').click();
+
+      request = mostRecentAjaxRequest();
+      request.response({
+        status: 200,
+        responseText: JSON.stringify(['foo', 'bar'])
+      });
+
+      expect($('select#tags').children().length).toNotEqual(0);
+    });
+
+    it('does not ajax load tags if they are already loaded', function () {
+      var request;
+
+      $('input#search_form_query').val('apache').keyup();
+
+      request = mostRecentAjaxRequest();
+      request.response({
+        status: 200,
+        responseText: JSON.stringify(imageSuccessResponseText)
+      });
+
+      $('select#tags').first().append('<option value="latest">latest</option>');
+      $('.chosen-container').first().click();
+
+      expect($('select#tags').first().children().length).toEqual(1);
+    });
+  });
 });

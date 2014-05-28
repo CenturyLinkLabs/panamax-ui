@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root 'search#new'
 
-  resource :search, only: [:new, :show], controller: 'search'
+  resource :search, only: [:new, :show], controller: 'search' do
+    get 'load_tags', on: :collection
+  end
 
   resources :applications, only: [:index, :create, :show, :destroy] do
     get 'documentation', on: :member
@@ -12,8 +14,6 @@ Rails.application.routes.draw do
     end
     resources :categories, only: [:update, :create]
   end
-
-  get 'search/load_tags', to: 'search#load_tags'
 
   mount CtlBaseUi::Engine => "/ctl-base-ui"
 end

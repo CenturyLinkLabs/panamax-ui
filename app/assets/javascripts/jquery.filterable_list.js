@@ -122,7 +122,7 @@
     };
 
     base.fetchTags = function (e) {
-      var $elem = $(e.target),
+      var $elem = $(e.currentTarget),
           $resultRow = $elem.closest('.search-result-item'),
           $selectBox = $resultRow.find(base.options.tagDropdownSelector),
           noOpts = $selectBox.children().length == 0,
@@ -145,7 +145,6 @@
         });
       };
     };
->>>>>>> Ajaxy image tag load and dropdown population
 
     base.displayLoadingIndicators = function() {
       var forTemplates = base.options.loadingTemplate({loading_copy: 'Finding Templates'}),
