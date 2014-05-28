@@ -1,5 +1,6 @@
 class SearchController < ApplicationController
-  respond_to :html, :json
+  respond_to :html, except: :load_tags
+  respond_to :json
 
   def new
     @search_form = SearchForm.new

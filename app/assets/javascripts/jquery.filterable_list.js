@@ -46,7 +46,8 @@
       loadingTemplate: Handlebars.compile($('#loading_row_template').html()),
       noResultsTemplate: Handlebars.compile($('#no_results_row_template').html()),
       trackingAction: 'not-given',
-      tagDropdownSelector: 'select#tags'
+      tagDropdownSelector: 'select#tags',
+      chosenDropdownSelector: '.chosen-container'
     };
 
     base.init = function(){
@@ -60,6 +61,7 @@
     base.bindEvents = function() {
       base.queryField.onChange(base.fetchResults);
       base.$el.on('submit', base.options.queryFormSelector, base.handleSubmit);
+      base.$el.on('click', base.options.chosenDropdownSelector, base.fetchTags);
     };
 
     base.handleSubmit = function(e) {
@@ -118,6 +120,32 @@
     base.displayTagDropdown = function () {
       $(base.options.tagDropdownSelector).chosen({disable_search: true});
     };
+
+    base.fetchTags = function (e) {
+      var $elem = $(e.target),
+          $resultRow = $elem.closest('.search-result-item'),
+          $selectBox = $resultRow.find(base.options.tagDropdownSelector),
+          noOpts = $selectBox.children().length == 0,
+          local_image = $resultRow.data('status-label') == 'Local';
+
+      if (noOpts) {
+        var tagsXhr = $.get(
+          $(base.options.tagDropdownSelector).data('load-tags-endpoint'),
+          { 'repo': $resultRow.data('title'), 'local_image': local_image }
+        );
+
+        tagsXhr.done(function (response) {
+          response.forEach(function (tag) {
+            $selectBox.append('<option value="' + tag + '">' + tag + '</option>');
+          });
+          $selectBox.trigger("chosen:updated");
+        });
+        tagsXhr.fail(function () {
+          $selectBox.append('<option value="latest">latest</option>');
+        });
+      };
+    };
+>>>>>>> Ajaxy image tag load and dropdown population
 
     base.displayLoadingIndicators = function() {
       var forTemplates = base.options.loadingTemplate({loading_copy: 'Finding Templates'}),
