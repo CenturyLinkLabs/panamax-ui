@@ -6,12 +6,14 @@
 
     base.defaultOptions = {
       removeLinkSelector: 'a[data-checkbox-selector]',
-      removeCheckboxSelectorReference: 'checkbox-selector'
+      removeCheckboxSelectorReference: 'checkbox-selector',
+      $submitButton: base.$el.find('input[type="submit"]')
     }
 
     base.init = function(){
       base.options = $.extend({}, base.defaultOptions, options);
       base.hideInputs();
+      base.disableSubmit();
       base.bindEvents();
     };
 
@@ -19,8 +21,18 @@
       base.$el.find('input[type="checkbox"]').hide();
     };
 
+    base.disableSubmit = function() {
+      base.options.$submitButton.prop('disabled', true);
+    };
+
     base.bindEvents = function() {
       base.$el.on('click', base.options.removeLinkSelector, base.handleRemove);
+      base.$el.on('change', 'select', base.handleFormChange);
+      base.$el.on('keyup', 'input, textarea', base.handleFormChange);
+    };
+
+    base.handleFormChange = function(e) {
+      base.options.$submitButton.prop('disabled', false);
     };
 
     base.handleRemove = function(e) {

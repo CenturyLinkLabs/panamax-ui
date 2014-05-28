@@ -14,6 +14,36 @@ describe('$.fn.progressiveForm', function() {
       subject.init();
       expect($form.find('input:hidden').length).toBe(1);
     });
+
+    it('disables the submit button', function() {
+      expect($form.find('input[type="submit"]').prop('disabled')).toBe(false);
+      subject.init();
+      expect($form.find('input[type="submit"]').prop('disabled')).toBe(true);
+    });
+  });
+
+  describe('changing a value in the form', function() {
+    beforeEach(function() {
+      subject.init();
+    });
+
+    it('enables the submit button when changing a select', function() {
+      expect($form.find('input[type="submit"]').prop('disabled')).toBe(true);
+      $form.find('select').change();
+      expect($form.find('input[type="submit"]').prop('disabled')).toBe(false);
+    });
+
+    it('enables the submit button when entering text in an input', function() {
+      expect($form.find('input[type="submit"]').prop('disabled')).toBe(true);
+      $form.find('input[type="number"]').keyup();
+      expect($form.find('input[type="submit"]').prop('disabled')).toBe(false);
+    });
+
+    it('enables the submit button when entering text in a text area', function() {
+      expect($form.find('input[type="submit"]').prop('disabled')).toBe(true);
+      $form.find('textarea').keyup();
+      expect($form.find('input[type="submit"]').prop('disabled')).toBe(false);
+    });
   });
 
   describe('clicking a delete link', function() {
