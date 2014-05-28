@@ -3,7 +3,7 @@
 @import 'ctl_base_ui/icons';
 
 body > header {
-  background: $light_grey;
+  background: $dark_red;
   width: 100%;
   overflow: hidden;
   margin-bottom: 35px;
@@ -12,72 +12,45 @@ body > header {
     border: none;
     float: left;
     padding: 0;
-    margin: 10px;
-
-    a {
-      @include border-box;
-    }
+    margin: 0;
   }
+
   h1.panamax-logo a {
+    @include border-box;
     @include hide-text;
-    background: image-url('pmx_logo.svg') no-repeat;
+    background: image-url('pmx_logo.svg') no-repeat center center $light_grey;
     @include background-size(148px, 19px);
-    background-position: center left;
-    width: 168px;
-    border-right: $grey 1px solid;
+    width: 178px;
     display: block;
-    height: 50px;
-  }
-
-  h1.ctl-labs {
-    font-size: 16px;
-    color: $medium_grey;
-    font-weight: bold;
-    margin-top: 27px;
-    a {
-      color: $medium_grey;
-      &:hover {
-        color: $dark_grey;
-        text-decoration: none;
-      }
-    }
+    height: 70px;
   }
 
   nav {
-    float: right;
-    margin-right: 20px;
+    float: left;
 
     ul li {
       float: left;
 
       a {
         @include border-box;
-        @include border-radius(3px);
+        color: $white;
         display: block;
-        margin: 10px;
-        padding: 0 20px 0 35px;
-        height: 50px;
+        padding: 10px 40px 10px 55px;
         line-height: 50px;
         text-decoration: none;
         position: relative;
         font-size: 0.9em;
 
         &:before {
-          @include icon-light-grey;
           display: block;
           content: '';
           position: absolute;
-          left: 10px;
-          top: 15px;
+          left: 20px;
+          top: 25px;
         }
 
         &:hover {
-          background-color: $dark_blue;
-          color: $white;
-
-          &:before {
-            @include icon-light-blue;
-          }
+          background-color: $lipstick_red;
         }
       }
     }
@@ -87,21 +60,18 @@ body > header {
 body > header nav ul li {
   &.search-link a:before {
     @extend .icon-magnifying-glass-large;
+    @include icon-white;
   }
   &.manage-link a:before {
     @extend .icon-sprocket-large;
+    @include icon-white;
   }
 }
 
 /* active states */
 #search_flow .search-link a,
 #manage_flow .manage-link a {
-  background-color: $grey;
-  color: $dark_grey;
-
-  &:before {
-    @include icon-grey;
-  }
+  background-color: $lipstick_red;
 }
 
 
