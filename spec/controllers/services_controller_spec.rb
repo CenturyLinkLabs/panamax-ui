@@ -64,6 +64,8 @@ describe ServicesController do
   end
 
   describe 'POST #create' do
+    let(:dummy_category) { double(:category) }
+    let(:dummy_service) { Service.new(name: 'test', from: 'Image: test') }
     let(:service_form_params){
       {
         'application' =>
@@ -77,22 +79,29 @@ describe ServicesController do
         'controller' => 'services',
         'action' => 'create',
         'categories' => [{'id'=>'1'}]
-        }
+      }
     }
+
+    before do
+      Category.stub(:find).and_return(dummy_category)
+      Service.any_instance.stub(:save)
+    end
+
     it 'creates the service' do
-      expect(fake_services_service).to receive(:create).with(service_form_params)
+      expect_any_instance_of(Service).to receive(:save)
       post :create, service_form_params, {application_id: '77'}
     end
 
     it 'redirected to application management view when format is html' do
-      post :create, {application_id: '77', application: {category: 'null'}}
+      post :create, application_id: '77', application: { category: '1' }
       expect(response).to redirect_to application_path 77
     end
 
     it 'renders json response when format is json' do
-      post :create, {application_id: '77', application: {category: '1'}, format: :json}
+      post :create, name: 'test', from: 'test', application_id: '77',
+                    application: { category: 'null' }, format: :json 
       expect(response.status).to eq 200
-      expect(response.body).to eql fake_create_response.to_json
+      expect(response.body).to eql dummy_service.to_json
     end
   end
 

@@ -8,8 +8,11 @@ class ServicesController < ApplicationController
   end
 
   def create
-    params['categories'] = build_category_param(params[:application])
-    service, status = services_service.create(params)
+    service = Service.new(name: params[:name], from: "Image: #{params[:from]}", app_id: params[:application_id])
+    unless params[:application][:category] == 'null'
+      service.categories = [Category.find(params[:application][:category], params: { app_id: params[:application_id] })]
+    end
+    service.save
 
     respond_to do |format|
       format.html { redirect_to application_url(params[:application_id]) }
