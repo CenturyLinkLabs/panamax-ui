@@ -66,7 +66,6 @@
     base.handleSubmit = function(e) {
       e.preventDefault();
       base.fetchResults(base.queryField.getTerm());
-      base.options.$resultHeadings.css('display', 'block');
     };
 
     base.handleQueryChange = function(e) {
@@ -75,6 +74,7 @@
 
     base.fetchResults = function(term) {
       base.displayLoadingIndicators();
+      base.options.$resultHeadings.css('display', 'block');
       PMX.Tracker.trackEvent('search', base.options.trackingAction, term);
 
       if (base.xhr) {
