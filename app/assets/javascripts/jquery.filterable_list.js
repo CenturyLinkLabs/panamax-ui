@@ -46,7 +46,7 @@
       loadingTemplate: Handlebars.compile($('#loading_row_template').html()),
       noResultsTemplate: Handlebars.compile($('#no_results_row_template').html()),
       trackingAction: 'not-given',
-      tagDropdownSelector: 'select#tags',
+      tagDropdownSelector: 'select#application_tag',
       chosenDropdownSelector: '.chosen-container'
     };
 
