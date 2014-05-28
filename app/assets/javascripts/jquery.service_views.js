@@ -32,7 +32,7 @@
         $view.addClass('selected');
         base.options.$panel
           .stop()
-          .animate(properties, 800)
+          .animate(properties, 800);
       }
     };
 
@@ -43,7 +43,7 @@
       base.applyAnimation($view,
         {
           'right': '100%'
-        })
+        });
     };
 
     base.handleRelationshipView = function(e){
@@ -53,7 +53,7 @@
       base.applyAnimation($view,
         {
           'right': '0'
-        })
+        });
     };
 
   };

@@ -66,7 +66,7 @@
         timestamp: base.formatTimestamp(journal_line['__REALTIME_TIMESTAMP']),
         source: journal_line['SYSLOG_IDENTIFIER'],
         message: journal_line['MESSAGE']
-      }
+      };
 
       return base.options.journalLineTemplate(attrs);
     };
@@ -77,7 +77,7 @@
     };
 
     base.scrolledToBottom = function() {
-      var div = base.$el[0]
+      var div = base.$el[0];
       return (div.scrollHeight - div.clientHeight) <= (div.scrollTop + 1);
     };
   };

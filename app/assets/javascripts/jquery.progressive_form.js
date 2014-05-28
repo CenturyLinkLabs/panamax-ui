@@ -8,7 +8,7 @@
       removeLinkSelector: 'a[data-checkbox-selector]',
       removeCheckboxSelectorReference: 'checkbox-selector',
       $submitButton: base.$el.find('input[type="submit"]')
-    }
+    };
 
     base.init = function(){
       base.options = $.extend({}, base.defaultOptions, options);
@@ -43,7 +43,7 @@
 
     base.checkRelated = function($source) {
       var selector = $source.data(base.options.removeCheckboxSelectorReference);
-      var $checkbox = base.$el.find(selector)
+      var $checkbox = base.$el.find(selector);
       $checkbox.prop('checked', true);
     };
   };
