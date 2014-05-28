@@ -13,5 +13,7 @@ Rails.application.routes.draw do
     resources :categories, only: [:update, :create]
   end
 
+  get 'search/load_tags', to: 'search#load_tags'
+
   mount CtlBaseUi::Engine => "/ctl-base-ui"
 end

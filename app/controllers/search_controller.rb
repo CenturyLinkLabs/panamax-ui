@@ -10,4 +10,11 @@ class SearchController < ApplicationController
     @search_results = @search_form.submit(params[:search_form])
     respond_with @search_results
   end
+
+  def load_tags
+    search_service = SearchService.new
+    tags = search_service.tags_for(params[:repo], params[:local])
+    respond_with tags
+  end
+
 end
