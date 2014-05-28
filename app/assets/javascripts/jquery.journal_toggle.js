@@ -9,7 +9,7 @@
       journalOutputSelector: '.journal-output',
       journalTruncatedHeight: '118px',
       journalFullHeight: '300px'
-    }
+    };
 
     base.init = function(){
       base.options = $.extend({}, base.defaultOptions, options);

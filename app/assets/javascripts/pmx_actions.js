@@ -21,7 +21,7 @@
     };
 
     base.done = function() {
-       if (base.options.success) base.options.success();
+       if (base.options.success) { base.options.success(); }
     };
 
     base.fail = function(response){

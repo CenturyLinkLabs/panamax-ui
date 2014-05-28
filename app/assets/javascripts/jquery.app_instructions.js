@@ -51,7 +51,7 @@
             click: base.handleClose
           }
         ]
-      })
+      });
     };
 
     base.handleClose = function () {

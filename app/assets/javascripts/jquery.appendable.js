@@ -6,7 +6,7 @@
 
     base.defaultOptions = {
       cancelSelector: '.cancel'
-    }
+    };
 
     base.init = function() {
       base.options = $.extend({}, base.defaultOptions, options);
@@ -31,8 +31,8 @@
     base.defaultOptions = {
       $trigger: $('.button-add'),
       $elementToAppend: $('#row_template'),
-      addCallback: function() { return null }
-    }
+      addCallback: function() { return null; }
+    };
 
     base.init = function() {
       base.options = $.extend({}, base.defaultOptions, options);

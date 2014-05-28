@@ -25,7 +25,7 @@
       $noticeDiv.css('opacity', '0.5')
                 .delay(1000)
                 .fadeOut('slow', function () {
-                  $(this).remove()
+                  $(this).remove();
                 });
     };
   };

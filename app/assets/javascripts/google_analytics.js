@@ -16,7 +16,7 @@
 
   // Creates an initial ga() function.  The queued commands will be executed once analytics.js loads.
   i[r] = i[r] || function() {
-    (i[r].q = i[r].q || []).push(arguments)
+    (i[r].q = i[r].q || []).push(arguments);
   },
 
   // Sets the time (as an integer) this tag was executed.  Used for timing hits.
@@ -28,7 +28,7 @@
   m = s.getElementsByTagName(o)[0];
   a.async = 1;
   a.src = g;
-  m.parentNode.insertBefore(a, m)
+  m.parentNode.insertBefore(a, m);
 })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'gaTracker');
 
 gaTracker('create', 'UA-49491413-1', {

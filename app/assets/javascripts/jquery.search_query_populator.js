@@ -8,7 +8,7 @@
     base.defaultOptions = {
       $searchField: $('input#search_query'),
       queryLinkSelector: 'a[data-query]'
-    }
+    };
 
     base.init = function(){
       base.options = $.extend({}, base.defaultOptions, options);

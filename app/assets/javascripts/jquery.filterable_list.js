@@ -11,7 +11,7 @@
     };
 
     base.handleChange = function() {
-      if (base.getTerm().length > 2 && base.getTerm() != base.previousTerm) {
+      if (base.getTerm().length > 2 && base.getTerm() !== base.previousTerm) {
         base.changeCallback.call(base, base.getTerm());
         base.previousTerm = base.getTerm();
       }
@@ -47,8 +47,7 @@
       noResultsTemplate: Handlebars.compile($('#no_results_row_template').html()),
       trackingAction: 'not-given',
       tagDropdownSelector: 'select#tags'
-
-    }
+    };
 
     base.init = function(){
       base.options = $.extend({}, base.defaultOptions, options);
@@ -118,7 +117,7 @@
 
     base.displayTagDropdown = function () {
       $(base.options.tagDropdownSelector).chosen({disable_search: true});
-    }
+    };
 
     base.displayLoadingIndicators = function() {
       var forTemplates = base.options.loadingTemplate({loading_copy: 'Finding Templates'}),

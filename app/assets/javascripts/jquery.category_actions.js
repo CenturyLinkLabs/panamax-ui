@@ -42,7 +42,7 @@
       if (base.options.$target.find('.services').length === 0) {
         base.options.$target.find( "header" ).after('<ul class="services"></ul>');
       }
-      return base.options.$target.find('.services')
+      return base.options.$target.find('.services');
     };
 
     base.handleAddSuccess = function(name, id, icon) {
@@ -142,8 +142,8 @@
             click: base.handleClose
           }
         ]
-      })
-    }
+      });
+    };
   };
 
   $.fn.categoryActions = function(){
