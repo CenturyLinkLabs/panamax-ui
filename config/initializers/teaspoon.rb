@@ -1,4 +1,4 @@
-Teaspoon.setup do |config|
+Teaspoon.configure do |config|
 
   # This determines where the Teaspoon routes will be mounted. Changing this to "/jasmine" would allow you to browse to
   # http://localhost:3000/jasmine to run your specs.
@@ -14,7 +14,7 @@ Teaspoon.setup do |config|
 
   # Fixtures are rendered through a standard controller. This means you can use things like HAML or RABL/JBuilder, etc.
   # to generate fixtures within this path.
-  config.fixture_path = "spec/javascripts/fixtures"
+  config.fixture_paths = ['spec/javascripts/fixtures']
 
   # You can modify the default suite configuration and create new suites here. Suites can be isolated from one another.
   # When defining a suite you can provide a name and a block. If the name is left blank, :default is assumed. You can
