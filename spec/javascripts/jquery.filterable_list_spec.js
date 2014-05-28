@@ -60,6 +60,12 @@ describe('$.fn.filterableList', function() {
       expect(secondToLastAjaxRequest.url).not.toBe('/search.json?search_form%5Bquery%5D=word');
     });
 
+    it('displays the search headings', function() {
+      $('h3.search-title').hide();
+      $('input#search_form_query').val('word').keyup();
+      expect($('h3.search-title:visible').length).toEqual(2);
+    });
+
     it('aborts the previous xhr request when sending a new one', function() {
       fakeXhr = {
         abort: function() {},
