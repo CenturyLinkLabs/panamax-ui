@@ -4,7 +4,7 @@
 
 .panel {
   border-top: 10px solid $grey;
-  margin: 10px 10px 10px 0;
+  margin: 12px 12px 12px 0;
   padding: 10px;
   font-size: 0.9em;
 
@@ -197,8 +197,16 @@ section.application-services {
 
       .category-panel {
         @extend .panel;
-        width: 263px;
+        width: 292px;
         float: left;
+
+        &:nth-child(3n+0) {
+          margin-right: 0;
+        }
+
+        &:nth-child(3n+4) {
+          clear: both;
+        }
 
         &:hover {
           ul.services {
