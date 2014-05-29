@@ -16,6 +16,8 @@
       = hidden_field_tag 'application[category]', 'null'
       = hidden_field_tag 'name', presenter.title
       = hidden_field_tag 'from', presenter.title
+      = label :tags, 'Tags:'
+      = select_tag :tags, nil
       = button_tag 'Add to App', class: 'button-positive', data: {disable_with: 'Adding...'}
   - if remote
     .community-data

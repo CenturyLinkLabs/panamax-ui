@@ -341,20 +341,3 @@ section.application-services {
     }
   }
 }
-
-// Add Service Form in modal window
-#manage_flow .ui-dialog {
-  input#search_form_query {
-    width: 600px;
-  }
-
-  .filterable-list {
-    .basic-info {
-      width: 335px;
-    }
-  }
-}
-
-.archetype {
-  display: none;
-}
