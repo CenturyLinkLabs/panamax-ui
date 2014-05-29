@@ -1,0 +1,2 @@
+class Environment < BaseResource
+end
