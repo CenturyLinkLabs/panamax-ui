@@ -25,3 +25,10 @@ export PMX_API_PORT_3000_TCP_PORT=8888
 rails s
 ```
 now visit localhost:3000 and see if it works
+
+### Running tests, etc.
+```
+rspec spec # ruby specs
+rake teaspoon # js specs, can also be accessed in UI at /teaspoon/default
+rake jslint # catch those missing semicolons!
+```
