@@ -1,4 +1,6 @@
 class ApplicationsController < ApplicationController
+  respond_to :json, only: [:journal]
+
   def create
     @app = applications_service.create(params[:application])
 
@@ -35,6 +37,10 @@ class ApplicationsController < ApplicationController
     end
   end
 
+  def journal
+    respond_with applications_service.journal(params[:id], journal_params)
+  end
+
   private
 
   def application
@@ -43,5 +49,9 @@ class ApplicationsController < ApplicationController
 
   def applications_service
     @applications_service ||= ApplicationsService.new
+  end
+
+  def journal_params
+    params.permit(:cursor)
   end
 end

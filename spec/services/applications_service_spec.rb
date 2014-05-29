@@ -111,4 +111,37 @@ describe ApplicationsService do
       expect(subject.destroy(1)).to match_array [nil, 200]
     end
   end
+
+  describe '#journal' do
+
+    let(:fake_journal_response) do
+      double(:response, body: [{ id: 1, message: 'foo' }], status: 200)
+    end
+
+    before do
+      fake_connection.stub(:get).and_return(fake_journal_response)
+    end
+
+    it 'issues a GET request to the proper URL' do
+      params = { cursor: 'c1' }
+      headers_hash = {}
+      fake_request.stub(:headers).and_return(headers_hash)
+
+      expect(fake_connection).to receive(:get)
+        .and_yield(fake_request)
+        .and_return(fake_response)
+
+      expect(headers_hash).to receive(:[]=)
+        .with('Content-Type', 'application/json')
+      expect(fake_request).to receive(:url).with('/apps/1/journal')
+      expect(fake_request).to receive(:params=).with(params)
+
+      subject.journal(1, params)
+    end
+
+    it 'returns the response body' do
+      journal = subject.journal(1)
+      expect(journal).to eq fake_journal_response.body
+    end
+  end
 end

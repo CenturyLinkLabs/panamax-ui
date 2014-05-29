@@ -30,8 +30,17 @@ class ApplicationsService
     App.build_from_response(response.body)
   end
 
+  def journal(id, params=nil)
+    response = connection.get do |req|
+      req.url "/apps/#{id}/journal"
+      req.headers['Content-Type'] = 'application/json'
+      req.params = params
+    end
+
+    response.body
+  end
+
   def self.default_connection
     Faraday.new(url: PanamaxApi::URL)
   end
 end
-

@@ -53,6 +53,10 @@
                 %li
                   = link.service_name
 
+= render 'shared/journal', 
+  title: 'CoreOS Journal - Application Activity Log',
+  journal_path: journal_application_path(@app.id)
+
 = render 'services/add_service'
 
 .archetype
