@@ -42,6 +42,10 @@
                                                     :status => service.status,
                                                     :icon => service.icon
           = link_to 'Add a Service', '#', class: 'button-positive add-service', title: 'add', data: {:category => group.id}
+      .category-panel.new
+        %header
+          Add a Category
+        %button.button-positive
     .relationships
       - @app.ordered_services.each do |service|
         .relationship-panel

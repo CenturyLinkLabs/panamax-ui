@@ -6,7 +6,7 @@ describe 'managing an application' do
       it 'can navigate to a running service' do
         visit '/applications/2'
 
-        within '.category-panel li', text: 'WP_1' do
+        within '.category-panel:first-child li', text: 'WP_1' do
           click_on 'details'
         end
 
@@ -28,7 +28,7 @@ describe 'managing an application' do
       it 'shows a button to add a service to the app' do
         visit '/applications/2'
 
-        within '.category-panel' do
+        within '.category-panel:first-child' do
           expect(page).to have_css 'a.add-service', text: 'Add a Service'
         end
       end
