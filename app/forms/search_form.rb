@@ -10,6 +10,6 @@ class SearchForm
   end
 
   def submit(params)
-    search_service.search_for(params[:query])
+    search_service.search_for(params[:query], params[:type])
   end
 end

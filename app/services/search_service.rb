@@ -6,8 +6,8 @@ class SearchService
     @connection = connection
   end
 
-  def search_for(query)
-    response = connection.get '/search', {q: query}
+  def search_for(query, type=nil)
+    response = connection.get '/search', q: query, type: type
     SearchResultSet.build_from_response(response.body)
   end
 
