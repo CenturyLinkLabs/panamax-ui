@@ -6,7 +6,7 @@ body > header {
   background: $dark_red;
   width: 100%;
   overflow: hidden;
-  margin-bottom: 35px;
+  margin-bottom: 10px;
 
   h1 {
     border: none;
@@ -74,8 +74,32 @@ body > header nav ul li {
   background-color: $lipstick_red;
 }
 
+cite.built-by {
+  float: right;
+  margin-right: 15px;
+
+  span {
+    float: left;
+    line-height: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+
+  h2 {
+    float: left;
+    height: 30px;
+    width: 140px;
+    margin: 0;
+    padding: 0;
+    @include hide-text;
+    background: image-url('ctl_base_ui/ctl_logo_base.svg') no-repeat;
+    @include background-size(140px, 30px);
+    background-position: center left;
+  }
+}
 
 main {
+  clear: both;
   width: 960px;
   margin: 0 auto;
 }
