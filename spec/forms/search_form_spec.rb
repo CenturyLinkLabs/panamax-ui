@@ -9,9 +9,9 @@ describe SearchForm do
 
   describe '#submit' do
     it 'queries via the search service' do
-      expect(fake_search_service).to receive(:search_for).with('apache')
+      expect(fake_search_service).to receive(:search_for).with('apache', 'template')
 
-      subject.submit({query: 'apache'})
+      subject.submit(query: 'apache', type: 'template')
     end
   end
 end
