@@ -65,10 +65,12 @@
     color: $dark_grey;
     font-weight: bold;
   }
+  span {
+    margin-right: 6px;
+  }
   a {
     padding-left: 10px;
     border-left: 1px solid $dark_grey;
-    margin-left: 6px;
   }
 }
 

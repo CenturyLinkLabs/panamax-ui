@@ -13,14 +13,24 @@ describe ApplicationsController do
   end
 
   describe 'POST #create' do
-    it 'creates an application via the service' do
-      expect(fake_applications_service).to receive(:create).with({'image'=>'some/image'})
+    context 'if a tag is selected' do
+      it 'creates an application via the service' do
+        expect(fake_applications_service).to receive(:create).with({ 'image' => 'some/image', 'tag' => ':latest' })
 
-      post :create, {application: {image: 'some/image'}}
+        post :create, { application: { image: 'some/image', tag: ':latest' } }
+      end
+    end
+
+    context 'if no tag is selected' do
+      it 'creates an application via the service' do
+        expect(fake_applications_service).to receive(:create).with({ 'image' => 'some/image', 'tag' => '' })
+
+        post :create, { application: { image: 'some/image', tag: '' } }
+      end
     end
 
     it 'assigns app' do
-      post :create, {application: {image: 'some/image'}}
+      post :create, { application: { image: 'some/image', tag: '' } }
       expect(assigns(:app)).to eq valid_app
     end
 
@@ -30,7 +40,7 @@ describe ApplicationsController do
       end
 
       it 'redirects to the show page' do
-        post :create, {application: {image: 'some/image'}}
+        post :create, {application: {image: 'some/image', tag: ''}}
 
         expect(response).to redirect_to application_url(77)
       end
@@ -44,7 +54,7 @@ describe ApplicationsController do
       end
 
       it 'renders the show template' do
-        post :create, {application: {image: 'some/image'}}
+        post :create, { application: { image: 'some/image', tag: '' } }
         expect(response).to render_template(:show)
       end
     end

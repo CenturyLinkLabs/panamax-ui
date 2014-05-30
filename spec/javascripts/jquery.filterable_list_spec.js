@@ -227,7 +227,7 @@ describe('$.fn.filterableList', function() {
         responseText: JSON.stringify(['foo', 'bar'])
       });
 
-      expect($('select#tags').children().length).toNotEqual(0);
+      expect($('select#application_tag').children().length).toNotEqual(0);
     });
 
     it('does not ajax load tags if they are already loaded', function () {
@@ -241,10 +241,10 @@ describe('$.fn.filterableList', function() {
         responseText: JSON.stringify(imageSuccessResponseText)
       });
 
-      $('select#tags').first().append('<option value="latest">latest</option>');
+      $('select#application_tag').first().append('<option value="latest">latest</option>');
       $('.chosen-container').first().click();
 
-      expect($('select#tags').first().children().length).toEqual(1);
+      expect($('select#application_tag').first().children().length).toEqual(1);
     });
   });
 });

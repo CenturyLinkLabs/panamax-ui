@@ -16,7 +16,10 @@
   .base-image-detail
     %h6 Base Image:
     %span
-      = @service.service_source_name
+      = @service.base_image_name
+    %h6 Tag:
+    %span
+      = @service.image_tag_name
     = link_to 'View on Docker Index', @service.docker_index_url, { target: 'blank' }
 
   = form_for [@app, @service], html: { class: 'service-edit-form' } do |f|
