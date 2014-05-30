@@ -20,9 +20,12 @@
     });
 
     $('ul.services li').serviceActions();
+
     $('section.application-services').serviceViews();
 
     $('section.applications').applicationActions();
+
+    $('header.application').applicationMenuActions();
 
     $('.category-panel').categoryActions();
 

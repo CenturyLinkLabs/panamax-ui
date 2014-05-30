@@ -5,7 +5,10 @@
     link_to("Manage", applications_path),
     @app.name
   )
-= render '/shared/breadcrumbs', breadcrumbs: crumbs
+
+%header.application
+  = render '/shared/breadcrumbs', breadcrumbs: crumbs
+  = render 'application_menu', app: @app
 
 = render 'shared/notifications'
 

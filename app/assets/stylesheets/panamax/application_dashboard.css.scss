@@ -108,6 +108,122 @@ section.applications {
   }
 }
 
+header.application {
+  position: relative;
+  border-bottom: 1px solid $grey;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+
+  h1.breadcrumbs {
+    display: inline-block;
+    width: 900px;
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+
+a.options {
+  position: relative;
+  top: 8px;
+  display: inline-block;
+  width: 56px;
+  background: $light_grey;
+  height: 38px;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    display: block;
+    @extend .icon-sprocket-large;
+    @include icon-grey;
+    width: 20px;
+    height: 20px;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    right: 0px;
+    top: 16px;
+    display: block;
+    @extend .icon-thick-arrow-down;
+    @include icon-grey;
+    width: 20px;
+    height: 20px;
+  }
+
+  &:hover:before, &:hover:after {
+    @include icon-blue;
+  }
+
+  + ul.menu {
+    display: none;
+    background-color: $light_grey;
+    position: absolute;
+    right: 0;
+    z-index: 999;
+    padding: 15px;
+    top: 46px;
+
+    li {
+      margin-bottom: 10px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      a {
+        color: $dark_grey;
+        padding-left: 22px;
+
+        &:hover {
+          color: $dark_blue;
+          text-decoration: underline;
+        }
+      }
+      &.save a, &.restart a, &.delete a {
+        position: relative;
+
+        &:before {
+          content: '';
+          position: absolute;
+          left: 2px;
+          top: 5px;
+          display: block;
+          @include icon-grey;
+          width: 10px;
+          height: 10px;
+        }
+
+        &:hover:before {
+          @include icon-blue;
+        }
+      }
+
+      &.save a:before {
+        top: 3px;
+        @extend .icon-star;
+      }
+
+      &.restart a:before {
+        @extend .icon-arrowloop;
+      }
+
+      &.delete {
+        border-top: 1px solid $grey;
+        padding-top: 6px;
+
+        a:before {
+          @extend .icon-x;
+        }
+      }
+    }
+  }
+}
+
 .add-button {
   margin-top: 20px;
   width: 230px;

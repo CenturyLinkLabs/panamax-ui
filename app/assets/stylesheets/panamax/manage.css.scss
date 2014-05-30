@@ -59,7 +59,7 @@ section.notice {
 }
 
 section.deployment-details {
-  margin-bottom: 10px;
+  margin-bottom: 30px;
   font-size: 0.8em;
 
   span.deployment-env, span.service-url {
@@ -213,7 +213,7 @@ section.application-services {
             height: 45px;
             min-width: 45px;
             position: relative;
-            margin: 3px 0 15px 109px;
+            margin: 3px 0 15px 123px;
             &:after {
               @include icon-white;
               @extend .icon-plus-large;
