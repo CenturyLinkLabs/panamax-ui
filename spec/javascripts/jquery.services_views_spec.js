@@ -4,6 +4,7 @@ describe('$.fn.serviceViews', function () {
     $('section.application-services').serviceViews();
     $listView = $('#teaspoon-fixtures').find('.list');
     $relationshipView = $('#teaspoon-fixtures').find('.relationship');
+    jasmine.Ajax.useMock();
   });
 
   describe('clicking list view', function() {
@@ -33,5 +34,4 @@ describe('$.fn.serviceViews', function () {
       expect($listView.hasClass('selected')).toBeFalsy();
     });
   });
-
 });

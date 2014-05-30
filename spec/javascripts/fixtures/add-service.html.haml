@@ -1,15 +1,18 @@
 .category-panel
   %header
-    Category Name
+    %span.title
+      Category
+    .actions
+      %a{href: "/application-category/1", class: 'edit-action'}
   %ul.services
     %li
       .service-icon
         %img{src:''}
       =link_to 'Wordpress', '/applications/77/services/77', class: 'status-started'
       .actions
-        %a.edit-action
+        =link_to 'edit', '/applications/77/services/77', class: 'view-action'
         %a.delete-action
-  %a.add-service
+  %a.add-service{:data => {:category => 'null'}}
     Add a Service
 
 #add-service-form
@@ -33,5 +36,5 @@
       %img{src:''}
     = link_to '', '', class: 'status-started'
     .actions
-      %a.edit-action{:href => '/applications/1/services/1'}
+      %a.view-action{:href => '/applications/1/services/1'}
       %a.delete-action{:href => '/applications/1/services/1'}

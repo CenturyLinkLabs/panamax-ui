@@ -36,8 +36,16 @@ class ServicesController < ApplicationController
     @app = applications_service.find_by_id(params[:application_id])
     @service = retrieve_service
     @service.write_attributes(params[:service])
+    if params[:service][:category]
+      @service.categories << { id: params[:service][:category] }
+    end
+    @service.save
+
     if @service.save
-      redirect_to application_service_path(params[:application_id], @service.id)
+      respond_to do |format|
+        format.html { redirect_to application_service_path(params[:application_id], @service.id) }
+        format.json { render(json: @service.to_json, status: status) }
+      end
     else
       render :show
     end

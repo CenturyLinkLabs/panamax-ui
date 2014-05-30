@@ -125,7 +125,7 @@ h1.breadcrumbs {
 
 .actions {
   a.delete-action,
-  a.edit-action {
+  a.view-action {
     @include hide-text;
     float: left;
     width: 20px;
@@ -151,7 +151,7 @@ h1.breadcrumbs {
     }
   }
 
-  a.edit-action {
+  a.view-action {
     &:after {
       @extend .icon-magnifying-glass;
       @include icon-light-grey;
@@ -171,5 +171,64 @@ h1.breadcrumbs {
   z-index: 1000;
   top: 0;
   left: 0;
+}
+
+.content-editable {
+  @include border-radius('5px');
+  position: relative;
+  margin: 0;
+  border: 2px solid $medium_grey;
+  background: $white;
+  display: block;
+  padding: 10px 5px;
+  width: 100%;
+  box-sizing: border-box;
+  outline: 0px solid transparent;
+
+  &:focus {
+    outline: 0px solid transparent;
+  }
+
+  *[contenteditable=true] {
+    outline: 0px solid transparent;
+  }
+
+  .checkmark {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 10px;
+    width: 30px;
+    height: 30px;
+    @extend .icon-checkmark-large;
+    @include icon-light-grey;
+
+    &:hover {
+      @include icon-grey;
+      cursor: pointer;
+    }
+  }
+
+  .checkmark.dirty {
+    position: absolute;
+    right: 0;
+    top: 10px;
+    width: 30px;
+    height: 30px;
+    @extend .icon-checkmark-large;
+    @include icon-light-green;
+  }
+
+  .loading {
+    position: absolute;
+    top: 14px;
+    right: 8px;
+    width: 16px;
+    height: 16px;
+    background-image: image-url('icon_loading_green.gif');
+    background-position: top left;
+    background-repeat: no-repeat;
+
+  }
 }
 
