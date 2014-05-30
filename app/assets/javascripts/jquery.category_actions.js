@@ -173,8 +173,6 @@
             $.when.apply($, serviceList).done(function() {
               transaction.resolve();
             });
-
-
           };
 
           create()
