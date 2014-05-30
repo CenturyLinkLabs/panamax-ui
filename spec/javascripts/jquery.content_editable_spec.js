@@ -46,6 +46,12 @@ describe('$.fn.contentEditable', function() {
       $('span.title').text('Category');
       expect($('checkmark').hasClass('dirty')).toBeFalsy
     });
+
+    it('clears invalid characters', function() {
+      $('span.title').text('Dirty Stuff With\r\n');
+      $('.checkmark').click();
+      expect(subject.textOnly($('span.title'))).toEqual('Dirty Stuff With');
+    })
   });
 
   describe('user clicks on checkmark', function() {

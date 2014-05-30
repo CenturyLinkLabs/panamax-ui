@@ -19,7 +19,7 @@
         .filter(function() {
           return this.nodeType === 3; //Node.TEXT_NODE
         });
-      return (node[0] !== undefined) ? node[0].data.replace(/[\n\r]/g, '').replace(/ /g,'') : ' '
+      return (node[0] !== undefined) ? node[0].data.replace(/[\n\r]/g, '') : ' '
     };
 
     base.specialKey = function(code) {
