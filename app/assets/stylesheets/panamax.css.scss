@@ -3,7 +3,7 @@
 @import 'ctl_base_ui/icons';
 
 body > header {
-  background: $dark_red;
+  background: $lipstick_red;
   width: 100%;
   overflow: hidden;
   margin-bottom: 10px;
@@ -50,7 +50,7 @@ body > header {
         }
 
         &:hover {
-          background-color: $lipstick_red;
+          background-color: #FF1441;
         }
       }
     }
@@ -71,7 +71,7 @@ body > header nav ul li {
 /* active states */
 #search_flow .search-link a,
 #manage_flow .manage-link a {
-  background-color: $lipstick_red;
+  background-color: #FF1441;
 }
 
 cite.built-by {
