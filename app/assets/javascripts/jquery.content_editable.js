@@ -43,6 +43,7 @@
       $content.empty();
       $(editable).appendTo($content);
       $(checkmark).appendTo($content);
+      $content.find('.edit-field').focus();
       base.bindEvents($content);
     };
 
