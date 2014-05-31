@@ -17,6 +17,7 @@
 //= require moment
 //= require pmx_namespace
 //= require pmx_config
+//= require pmx_helpers
 //= require google_analytics
 //= require pmx_actions.js
 //= require_tree .

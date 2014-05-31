@@ -8,7 +8,7 @@
     base.xhr = null;
 
     base.defaultOptions = {
-      $template: $('.archetype li')
+      template: Handlebars.compile($('#service_template').html())
     };
 
     base.init = function() {
@@ -25,15 +25,17 @@
     };
 
     base.createNewElement = function($parent, name, id, icon) {
-      var $clone = base.defaultOptions.$template.clone(),
-          link = $clone.find('.actions a').attr('href');
+      var path = window.location.pathname,
+          app_id = path.substring(path.lastIndexOf("/")+1),
+          $clone = $(base.options.template(
+            { 'service_id': id,
+              'app_id': app_id,
+              'service_url': '/applications/' + app_id + '/services/' + id,
+              'icon': icon,
+              'name': name
+            }));
 
-      link = link.substring(0, link.lastIndexOf('/')+1);
-      $clone.find('a[class^=status]').text(name);
-      $clone.find('.actions a').attr('href',  link + id);
-      $clone.find('.service-icon img').attr('src',  icon);
       $clone.serviceActions();
-
       return $clone;
     };
 
@@ -223,11 +225,9 @@
           category: category,
           $target: base.$el,
           complete: function($clone){
-            var $indicateNew = $('<div class="indicate-new"></div>');
 
             base.handleClose();
-            $clone.append($indicateNew);
-            $indicateNew.fadeOut(2000);
+            $.PMX.addedAnimation($clone);
             base.$el.trigger('category-change');
           }
         }).init();
@@ -265,10 +265,96 @@
     };
   };
 
+  $.PMX.AddCategory = function(el, options) {
+    var base = this;
+
+    base.$el = $(el);
+
+    base.defaultOptions = {
+      addCategorySelector: '.button-positive.add-category',
+      panelSelector: '.category-panel',
+      cancelSelector: 'a.cancel.text',
+      newCategoryTemplate: Handlebars.compile($('#new_category_template').html()),
+      archetype: Handlebars.compile($('#category_archetype').html())
+    };
+
+    base.init = function () {
+      base.options = $.extend({}, base.defaultOptions, options);
+      base.bindEvents();
+    };
+
+    base.bindEvents = function () {
+      base.$el.on('click', base.options.addCategorySelector, base.handleAddCategory);
+    };
+
+    base.bindTemplateEvents = function($template) {
+      $template.on('click', base.options.cancelSelector, base.handleCancel)
+    }
+
+    base.handleAddCategory = function(e) {
+      var $target = $(e.currentTarget),
+          $panel = $target.closest(base.options.panelSelector),
+          $template = $(base.options.newCategoryTemplate({}));
+
+      (new $.PMX.ContentEditable($template.find('span.title'),{
+          identifier: $.PMX.Helpers.guid(),
+          onRevert: base.handleRevert,
+          editorPromise: base.handleCommit
+      })).init();
+
+      $panel.before($template);
+      base.bindTemplateEvents($template);
+    };
+
+    base.handleRevert = function(id) {
+      var $target = $('*[data-identifier=' + id +']');
+      $target.closest(base.options.panelSelector).remove();
+    };
+
+    base.handleCancel = function(e) {
+      var $target = $(e.currentTarget);
+
+      e.preventDefault();
+      $target.closest(base.options.panelSelector).remove();
+    }
+
+    base.handleCommit = function(data) {
+      var path = window.location.pathname;
+
+      return $.ajax({
+          type: "POST",
+          headers: {
+            'Accept': 'application/json'
+          },
+          url: path + "/categories",
+          data: {
+            category: {
+              name: data.text
+            }
+          }
+        })
+        .done(function(response) {
+          var $target = $('*[data-identifier=' + data.id +']'),
+              $panel = $target.closest(base.options.panelSelector),
+              $template = $(base.options.archetype(
+                {
+                  id: response.id,
+                  name: response.name
+                }));
+
+          $panel.before($template);
+          $template.categoryActions();
+          $panel.remove();
+          $.PMX.addedAnimation($template);
+        });
+    }
+  };
+
   $.fn.categoryActions = function(){
     return this.each(function(){
       (new $.PMX.AddServiceDialog($(this))).init();
       (new $.PMX.EditCategory($(this))).init();
+      (new $.PMX.AddCategory($(this))).init();
     });
   };
 })(jQuery);
