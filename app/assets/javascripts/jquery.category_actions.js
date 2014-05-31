@@ -36,6 +36,7 @@
             }));
 
       $clone.serviceActions();
+
       return $clone;
     };
 
