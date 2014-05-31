@@ -1,3 +1,32 @@
+%script#service_template{type: 'text/x-handlebars-template'}
+  %li
+    .service-icon
+      %img{src: 'icon.svg'}
+    = link_to 'service',
+              '/service/77',
+              title: 'service-details',
+              class: "status-loading"
+    .actions
+      = link_to 'edit',
+                '/service/77',
+                class: 'view-action',
+                title: 'details'
+      = link_to 'delete',
+                '/service/77',
+                class: 'delete-action',
+                title: 'delete',
+                method: :delete
+
+%script#category_archetype{type: 'text/x-handlebars-template'}
+  .category-panel
+    %header
+      %span.title
+        {{name}}
+      .actions
+        %a{href: "/categories/{{id}}", class: 'edit-action'}
+        %a{href: "/categories/{{id}}", class: 'delete-action'}
+    = link_to 'Add a Service', '#', class: 'button-positive add-service', title: 'add', data: {:category => '{{id}}'}
+
 .category-panel
   %header
     %span.title
@@ -29,12 +58,3 @@
           = hidden_field_tag 'name', 'Wordpress'
           = hidden_field_tag 'from', 'Wordpress'
           = button_tag 'Add to App', class: 'button-positive'
-
-.archetype
-  %li
-    .service-icon
-      %img{src:''}
-    = link_to '', '', class: 'status-started'
-    .actions
-      %a.view-action{:href => '/applications/1/services/1'}
-      %a.delete-action{:href => '/applications/1/services/1'}
