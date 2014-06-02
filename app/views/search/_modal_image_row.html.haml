@@ -1,5 +1,5 @@
 - remote ||= false
-.search-result-item.image-result
+.search-result-item.image-result{data: {'title' => presenter.title, 'status-label' => presenter.status_label}}
   .badge= presenter.status_label
   .authority
     %div{:class => presenter.recommended_class}
@@ -17,7 +17,7 @@
       = hidden_field_tag 'name', presenter.title
       = hidden_field_tag 'from', presenter.title
       = label :tags, 'Tags:'
-      = select_tag :tags, nil
+      = select_tag :tags, nil, data: {'load-tags-endpoint' => load_tags_search_path}
       = button_tag 'Add to App', class: 'button-positive', data: {disable_with: 'Adding...'}
   - if remote
     .community-data

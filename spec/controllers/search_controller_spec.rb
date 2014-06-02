@@ -48,4 +48,12 @@ describe SearchController do
       end
     end
   end
+
+  describe 'GET #load_tags' do
+    it 'does something' do
+      get :load_tags, { repo: 'foo', local: true, format: :json }
+      expect(response.body).to eql ['foo', 'bar'].to_json
+    end
+
+  end
 end

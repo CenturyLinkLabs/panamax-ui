@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root 'search#new'
 
-  resource :search, only: [:new, :show], controller: 'search'
+  resource :search, only: [:new, :show], controller: 'search' do
+    get 'load_tags', on: :collection
+  end
 
   resources :applications, only: [:index, :create, :show, :destroy] do
     get 'documentation', on: :member

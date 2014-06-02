@@ -11,6 +11,11 @@ class SearchService
     SearchResultSet.build_from_response(response.body)
   end
 
+  def tags_for(repo, local=false)
+    response = connection.get "/repositories/#{repo}/tags", { local_image: local }
+    JSON.parse(response.body)
+  end
+
   def self.default_connection
     Faraday.new(url: PanamaxApi::URL)
   end
