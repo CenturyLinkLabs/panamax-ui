@@ -269,7 +269,7 @@ section.application-services {
           right:0;
           top: 0;
           display: none;
-          width: 20px;
+          width: 40px;
           height: 40px;
 
           a.edit-action {
@@ -293,6 +293,29 @@ section.application-services {
             &:hover:before {
               @include icon-grey;
               @extend .icon-pencil;
+            }
+          }
+
+          a.delete-action {
+            float: left;
+            display: block;
+            width: 20px;
+            height: 20px;
+
+            &:after {
+              content: '';
+              position: absolute;
+              left: 6px;
+              top: 7px;
+              display: block;
+              @include icon-light-grey;
+              @extend .icon-x;
+              width: 20px;
+              height: 20px;
+            }
+
+            &:hover:after {
+              @include icon-red;
             }
           }
         }

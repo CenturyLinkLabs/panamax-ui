@@ -39,6 +39,7 @@
               = group.name
             .actions
               %a{href: "/categories/#{group.id}", class: 'edit-action'}
+              %a{href: "/categories/#{group.id}", class: 'delete-action'}
           - unless services.empty?
             %ul.services
               - services.each do |service|
