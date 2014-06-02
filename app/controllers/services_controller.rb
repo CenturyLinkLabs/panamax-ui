@@ -39,7 +39,6 @@ class ServicesController < ApplicationController
     if params[:service][:category]
       @service.categories << { id: params[:service][:category] }
     end
-    @service.save
 
     if @service.save
       respond_to do |format|
