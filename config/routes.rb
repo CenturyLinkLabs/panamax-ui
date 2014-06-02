@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     get 'load_tags', on: :collection
   end
 
+  resources :templates, only: [:new]
+
   resources :applications, only: [:index, :create, :show, :destroy] do
     get 'documentation', on: :member
     get 'journal', on: :member
