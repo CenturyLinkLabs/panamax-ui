@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   resource :search, only: [:new, :show], controller: 'search'
 
+  resources :templates, only: [:new]
+
   resources :applications, only: [:index, :create, :show, :destroy] do
     get 'documentation', on: :member
     get 'journal', on: :member
