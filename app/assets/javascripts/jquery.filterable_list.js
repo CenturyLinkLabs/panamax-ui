@@ -27,17 +27,62 @@
   };
 
 
-  $.PMX.FilterableList = function(el, options){
+  $.PMX.SearchResults = function(url) {
+    var base = this;
+
+    base.url = url;
+    base.templatesXhr = null;
+    base.localImagesXhr = null;
+    base.remoteImagesXhr = null;
+
+    base.fetch = function(term) {
+      if (base.templatesXhr) { base.templatesXhr.abort(); }
+      if (base.localImagesXhr) { base.localImagesXhr.abort(); }
+      if (base.remoteImagesXhr) { base.remoteImagesXhr.abort(); }
+
+      base.templatesXhr = base.fetchForType(term, 'template');
+      base.localImagesXhr = base.fetchForType(term, 'local_image');
+      base.remoteImagesXhr = base.fetchForType(term, 'remote_image');
+    };
+
+    base.templates = function(callback) {
+      base.templatesXhr.done(function(response, status) {
+        callback.call(this, response.templates);
+      });
+    };
+
+    base.localImages = function(callback) {
+      base.localImagesXhr.done(function(response, status) {
+        callback.call(this, response.local_images);
+      });
+    };
+
+    base.remoteImages = function(callback) {
+      base.remoteImagesXhr.done(function(response, status) {
+        callback.call(this, response.remote_images);
+      });
+    };
+
+    base.fetchForType = function(term, type) {
+      return $.ajax({
+        url: base.url,
+        data: {'search_form[query]': term, 'search_form[type]': type}
+      });
+    };
+  };
+
+
+  $.PMX.FilterableList = function(el, options) {
     var base = this;
 
     base.$el = $(el);
-    base.xhr = null;
 
     base.defaultOptions = {
       $queryField: base.$el.find('input#search_form_query'),
       queryFormSelector: 'form.search-form',
       $queryForm: base.$el.find('form.search-form'),
-      $imageResults: base.$el.find('.image-results'),
+      $localImageResults: base.$el.find('.local-image-results'),
+      $remoteImageResults: base.$el.find('.remote-image-results'),
       $templateResults: base.$el.find('.template-results'),
       $resultHeadings: base.$el.find('.search-title'),
       remoteImageResultTemplate: Handlebars.compile($('#remote_image_result_template').html()),
@@ -54,6 +99,7 @@
       base.options = $.extend({}, base.defaultOptions, options);
       base.queryField = new $.PMX.QueryField(base.options.$queryField);
       base.queryField.bindEvents();
+      base.searchResults = new $.PMX.SearchResults(base.resultsEndpoint());
 
       base.bindEvents();
     };
@@ -78,34 +124,31 @@
       base.options.$resultHeadings.css('display', 'block');
       PMX.Tracker.trackEvent('search', base.options.trackingAction, term);
 
-      if (base.xhr) {
-        base.xhr.abort();
-      }
-
-      base.xhr = $.ajax({
-        url: base.resultsEndpoint(),
-        data: {'search_form[query]': term}
-      });
-
-      base.xhr.done(function(response, status) {
-        base.updateImageResults(response.remote_images, response.local_images);
-        base.updateTemplateResults(response.templates);
-        base.displayTagDropdown();
-      });
+      base.searchResults.fetch(term);
+      base.searchResults.templates(base.loadTemplateResults);
+      base.searchResults.localImages(base.loadLocalImageResults);
+      base.searchResults.remoteImages(base.loadRemoteImageResults);
     };
 
-    base.updateImageResults = function(remoteImages, localImages) {
+    base.loadRemoteImageResults = function(images) {
       var resultsHtml = '';
-      $.each(localImages, function(i, image) {
-        resultsHtml += base.options.localImageResultTemplate(image);
-      });
-      $.each(remoteImages, function(i, image) {
+      $.each(images, function(i, image) {
         resultsHtml += base.options.remoteImageResultTemplate(image);
       });
-      base.options.$imageResults.html(resultsHtml);
+      base.options.$remoteImageResults.html(resultsHtml);
+      base.displayTagDropdown();
     };
 
-    base.updateTemplateResults = function(templates) {
+    base.loadLocalImageResults = function(images) {
+      var resultsHtml = '';
+      $.each(images, function(i, image) {
+        resultsHtml += base.options.localImageResultTemplate(image);
+      });
+      base.options.$localImageResults.html(resultsHtml);
+      base.displayTagDropdown();
+    };
+
+    base.loadTemplateResults = function(templates) {
       var resultsHtml = '';
       if (templates && templates.length) {
         $.each(templates, function(i, template) {
@@ -148,9 +191,11 @@
 
     base.displayLoadingIndicators = function() {
       var forTemplates = base.options.loadingTemplate({loading_copy: 'Finding Templates'}),
-          forImages = base.options.loadingTemplate({loading_copy: 'Finding Images'});
+          forLocalImages = base.options.loadingTemplate({loading_copy: 'Finding Images'}),
+          forRemoteImages = base.options.loadingTemplate({loading_copy: 'Searching Docker Index'});
       base.options.$templateResults.html(forTemplates);
-      base.options.$imageResults.html(forImages);
+      base.options.$localImageResults.html(forLocalImages);
+      base.options.$remoteImageResults.html(forRemoteImages);
     };
 
     base.resultsEndpoint = function() {
