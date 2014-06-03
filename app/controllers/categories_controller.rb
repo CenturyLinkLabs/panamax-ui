@@ -10,13 +10,13 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    category = Category.new(name: params[:category][:name], app_id: params[:application_id])
-    category.save
+    category = Category.create(name: params[:category][:name], app_id: params[:application_id])
+    render json: category.to_json, status: 201
+  end
 
-    respond_to do |format|
-      format.html { redirect_to application_url(params[:application_id]) }
-      format.json { render(json: category.to_json, status: status) }
-    end
+  def destroy
+    category = retrieve_category.destroy
+    render json: category.to_json, status: 200
   end
 
   private

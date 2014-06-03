@@ -57,4 +57,52 @@ describe('$.fn.destroyLink', function () {
     })
   });
 
+  describe('Confirming a delete', function() {
+    var subject, confirmed;
+
+    beforeEach(function () {
+      fixture.load('confirm-delete.html');
+      subject = new $.PMX.ConfirmDelete($('header'),
+        {
+          confirm: function() {
+            confirmed = true;
+          }
+        });
+      subject.init();
+    });
+
+    it('injects confirm delete markup', function() {
+      expect($('.confirm-delete').length).toBe(1);
+    });
+
+    it('wraps original markup in a hideaway class', function() {
+      expect($('.hideaway').length).toBe(1);
+    });
+
+    describe('and clicking cancel', function() {
+      beforeEach(function() {
+        $('.no').click();
+      });
+
+      it('removes the hideaway class', function() {
+        expect($('.hideaway').length).toBe(0)
+      });
+    });
+
+    describe('and clicking confirm', function() {
+      beforeEach(function() {
+        $('.yes').click();
+      });
+
+      it('removes the hideaway class', function() {
+        expect($('.hideaway').length).toBe(0)
+      });
+
+      it('calls the confirm callback', function() {
+        expect(confirmed).toBeTruthy();
+      });
+    });
+  });
+
+
 });

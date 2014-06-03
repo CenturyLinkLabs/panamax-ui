@@ -61,7 +61,7 @@ describe('$.fn.categoryActions', function() {
           status: 200,
           responseText: '{id: 77}'
         });
-       
+
         expect(request.method).toBe('POST');
       });
     });
@@ -255,5 +255,43 @@ describe('$.fn.categoryActions', function() {
 
       $mock.remove();
     })
-  })
+  });
+
+  describe('Concerning Delete a Category', function() {
+    beforeEach(function() {
+      fixture.load('delete-category.html');
+      subject = new $.PMX.DeleteCategory($('.category-panel.no-services'));
+      subject.init();
+    });
+
+    it('disables delete if category has services', function() {
+      var subject_disabled = new $.PMX.DeleteCategory($('.category-panel.services')),
+          hover = new $.Event('mouseenter');
+      subject_disabled.init();
+      $('.category-panel.services .delete-action').trigger(hover);
+      expect($('.category-panel.services .delete-action').hasClass('disabled')).toBeTruthy();
+    });
+
+    describe('clicking delete link', function() {
+      it('prevents default behavior', function() {
+        var click = new $.Event('click');
+        $('.no-services .delete-action').trigger(click);
+        expect(click.isDefaultPrevented).toBeTruthy();
+      });
+
+      it('presents the confirm options', function() {
+        $('.no-services  header .delete-action').click();
+        expect($('.no-services .confirm-delete').length).toEqual(1);
+      });
+
+      it('removes the category when delete is confirmed', function() {
+        $('.no-services  header .delete-action').click();
+        $('.confirm-delete button.yes').click();
+
+        expect($('.no-services').length).toEqual(1);
+      });
+    });
+
+
+  });
 });

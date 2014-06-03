@@ -318,7 +318,12 @@
     };
 
     base.buildPanel = function(data) {
-      var $template = (new $.PMX.TrueCategoryPanel(data)).hydrate();
+      var path = window.location.pathname,
+          app = path.substring(path.lastIndexOf('/')+1),
+          $template;
+
+      data.app_id = app;
+      $template = (new $.PMX.TrueCategoryPanel(data)).hydrate();
 
       base.$el.before($template);
       base.$el.remove();
@@ -341,6 +346,7 @@
         }
       })
       .done(function(response) {
+        console.log('data: ', response);
         base.buildPanel(response);
       });
     };
@@ -374,11 +380,91 @@
     };
   };
 
+  $.PMX.DeleteCategory = function($el, options) {
+    var base = this;
+
+    base.$el = $el;
+
+    base.defaultOptions = {
+      removeSelector: '.category-panel',
+      deleteCategorySelector: 'header .delete-action'
+    };
+
+    base.init = function () {
+      base.options = $.extend({}, base.defaultOptions, options);
+      base.bindEvents();
+    };
+
+    base.bindEvents = function () {
+      base.$el.on('mouseenter mouseleave', base.options.deleteCategorySelector, base.handleHover);
+      base.$el.on('click', base.options.deleteCategorySelector, base.handleDelete);
+    };
+
+    base.hoverOver = function($target) {
+      if (base.$el.find(".services li").length > 0) {
+        $('<span class="tooltip">Categories must be empty.</span>').appendTo(base.$el);
+        $target.addClass('disabled');
+      }
+    };
+
+    base.hoverOut = function($target) {
+      $target.removeClass('disabled');
+      $('.category-panel .tooltip').remove();
+    };
+
+    base.handleHover = function(e) {
+      var $target = $(e.currentTarget),
+          type = e.type;
+
+      switch(type) {
+        case 'mouseenter':
+          base.hoverOver($target);
+          break;
+        case 'mouseleave':
+          base.hoverOut($target);
+          break;
+      }
+    };
+
+    base.confirmDelete = function(e) {
+      var destroyer = new $.PMX.destroyLink(base.$el,
+          {
+            linkSelector: base.options.deleteCategorySelector,
+            removeAt: base.options.removeSelector,
+            success: function() {
+              base.$el.remove();
+            }
+          });
+
+      destroyer.init();
+      destroyer.handleDelete(e);
+    };
+
+    base.handleDelete = function(e) {
+      var $target = $(e.currentTarget);
+
+      e.preventDefault();
+      if ( !($target.hasClass('disabled')) ) {
+        (new $.PMX.ConfirmDelete($target.closest('header'),
+          {
+            message: 'Delete this category from your app?',
+            confirm: function() {
+              var fakeEvent = $.Event('click');
+              fakeEvent.currentTarget = base.$el.find(base.options.deleteCategorySelector);
+              base.confirmDelete(fakeEvent);
+            }
+          }
+        )).init();
+      }
+    };
+  };
+
   $.fn.categoryActions = function(){
     return this.each(function(){
       (new $.PMX.AddServiceDialog($(this))).init();
       (new $.PMX.EditCategory($(this))).init();
       (new $.PMX.AddCategory($(this))).init();
+      (new $.PMX.DeleteCategory($(this))).init();
     });
   };
 })(jQuery);

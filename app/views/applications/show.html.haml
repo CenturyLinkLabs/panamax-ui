@@ -39,7 +39,7 @@
   .views
     .categories
       - @app.categorized_services.each do |group, services|
-        = render 'category_panel', { presenter: CategoryPresenter.new(group, services) }
+        = render 'category_panel', { presenter: CategoryPresenter.new(@app, group, services) }
       .category-panel.add
         %header
           %span.title
