@@ -16,8 +16,10 @@ describe SearchService do
       end
 
       it 'makes a request to the external API to get the results' do
-        expect(fake_connection).to receive('get').with('/search', {q: 'apache'}).and_return(fake_response)
-        subject.search_for('apache')
+        expect(fake_connection).to receive('get')
+          .with('/search', {q: 'apache', type: 'template'})
+          .and_return(fake_response)
+        subject.search_for('apache', 'template')
       end
 
       it 'returns a search result set object' do

@@ -15,11 +15,11 @@ class SearchResultSet < BaseViewModel
   private
 
   def self.build_with_sub_resources(attributes)
-    attributes['remote_images'].each do |image|
+    Array(attributes['remote_images']).each do |image|
       image['location'] = Image.locations[:remote]
     end
     attributes['remote_images'] = Image.instantiate_collection(attributes['remote_images'])
-    attributes['local_images'].each do |image|
+    Array(attributes['local_images']).each do |image|
       image['location'] = Image.locations[:local]
     end
     attributes['local_images'] = Image.instantiate_collection(attributes['local_images'])
