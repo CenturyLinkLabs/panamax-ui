@@ -35,20 +35,21 @@
       (base.options.fail) ? base.options.fail(response) : alert("Unable to complete delete operation");
     };
 
-    base.handleDelete = function(event){
+    base.handleDelete = function(event) {
+      var $target = $(event.currentTarget);
       event.preventDefault();
       event.stopPropagation();
 
       $.ajax({
-        url: $(this).attr('href'),
+        url: $target.attr('href'),
         headers: {
           'Accept': 'application/json'
         },
         type: 'DELETE'
       })
       .done(function() {
-        var $target = $(event.currentTarget).closest(base.options.removeAt);
-        $target.css('opacity', '0.5')
+        var $remove = $target.closest(base.options.removeAt);
+          $remove.css('opacity', '0.5')
           .delay(1000)
           .fadeOut('slow', base.done);
       })
@@ -58,4 +59,71 @@
     };
   };
 
+  $.PMX.ConfirmDelete = function(el, options) {
+    var base = this;
+
+    base.$el = $(el);
+
+    base.defaultOptions = {
+      message: "Delete this item?",
+      confirmSelector: '.confirm-delete button.yes',
+      cancelSelector: '.confirm-delete button.no'
+    };
+
+    base.init = function() {
+      base.options = $.extend({}, base.defaultOptions, options);
+      base.injectMarkup();
+      base.bindEvents();
+    };
+
+    base.injectMarkup = function() {
+      var markup = '<section class="confirm-delete"><span>' + base.options.message + '</span>' +
+                   '<aside><button class="no">Cancel</button><button class="yes">Yes, Delete!</button></aside></section>',
+          $hideaway, $confirm;
+
+      base.wrapElements();
+      base.$el.append(markup);
+      $confirm = base.$el.find('section.confirm-delete');
+      $confirm.css(
+        {
+          'position': 'absolute'
+        });
+    };
+
+    base.bindEvents = function() {
+      base.$el.on('click', base.options.confirmSelector, base.handleConfirm);
+      base.$el.on('click', base.options.cancelSelector, base.handleCancel);
+    };
+
+    base.wrapElements = function() {
+      base.$el.wrapInner('<div class="hideaway"></div>');
+      base.$el.find('.hideaway').css('display', 'none');
+    };
+
+    base.unWrapElements = function($target) {
+      var $parent = $target.closest('.confirm-delete').parent();
+
+      $parent.find('.confirm-delete').remove();
+      $parent.find('.hideaway')
+        .css('display', 'auto')
+        .children().each(function() {
+          $(this).clone(true, true).appendTo($parent);
+        })
+      $parent.find('.hideaway').remove();
+    };
+
+    base.handleConfirm = function(e) {
+      var $target = $(e.currentTarget);
+
+      base.unWrapElements($target);
+      if (base.options.confirm) base.options.confirm();
+    };
+
+    base.handleCancel = function(e) {
+      var $target = $(e.currentTarget)
+
+      base.unWrapElements($target);
+      if (base.options.cancel) base.options.cancel();
+    }
+  }
 })(jQuery);

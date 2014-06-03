@@ -7,6 +7,10 @@ class JsonCategoryPresenter
     '{{id}}'
   end
 
+  def app_id
+    '{{app_id}}'
+  end
+
   def services
     []
   end

@@ -197,6 +197,7 @@ section.application-services {
         @extend .panel;
         width: 292px;
         float: left;
+        position: relative;
 
         &:nth-child(3n+0) {
           margin-right: 0;
@@ -277,6 +278,53 @@ section.application-services {
         header {
           position: relative;
           min-height: 25px;
+
+          .confirm-delete {
+            position: absolute;
+            top: -10px;
+            left: 0;
+            width: 100%;
+            height: 100%;
+
+            span {
+              color: $medium_grey;
+              font-weight: normal;
+              font-size: 0.9em;
+            }
+
+            aside {
+              padding: 0;
+              margin-top: -8px;
+
+              button {
+                padding: 3px 15px;
+                border-radius: 3px;
+                box-shadow: none;
+                border: none;
+                outline: none;
+
+                &.yes {
+                  color: $white;
+                  background: $dark_red;
+
+                  &:hover {
+                    cursor: pointer;
+                    background: darken($dark_red, 5%);
+                  }
+                }
+
+                &.no {
+                  background: $medium_grey;
+                  color: $dark_grey;
+
+                  &:hover {
+                    cursor: pointer;
+                    background: darken($medium_grey, 5%);
+                  }
+                }
+              }
+            }
+          }
         }
 
         header span.content-editable {
@@ -336,6 +384,11 @@ section.application-services {
 
             &:hover:after {
               @include icon-red;
+            }
+          }
+          a.delete-action.disabled {
+            &:hover:after {
+              @include icon-light-grey;
             }
           }
         }
@@ -417,6 +470,20 @@ section.application-services {
               }
             }
           }
+        }
+
+        span.tooltip {
+          display: block;
+          position: absolute;
+          top: 38px;
+          right: 10px;
+          z-index: 9002;
+          color: $medium_grey;
+          background: $yellow;
+          font-weight: normal;
+          font-size: 0.85em;
+          padding: 5px;
+          border-radius: 3px;
         }
       }
     }

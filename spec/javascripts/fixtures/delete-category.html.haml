@@ -1,0 +1,27 @@
+.category-panel.services
+  %header
+    %span.title
+      Category
+    .actions
+      %a{href: "/application-category/1", class: 'edit-action'}
+      %a{href: "/application-category/1", class: 'delete-action'}
+  %ul.services
+    %li
+      .service-icon
+        %img{src:''}
+      =link_to 'Wordpress', '/applications/77/services/77', class: 'status-started'
+      .actions
+        =link_to 'edit', '/applications/77/services/77', class: 'view-action'
+        %a.delete-action
+  %a.add-service{:data => {:category => 'null'}}
+    Add a Service
+
+.category-panel.no-services
+  %header
+    %span.title
+      Category
+    .actions
+      %a{href: "/application-category/2", class: 'edit-action'}
+      %a{href: "/application-category/1", class: 'delete-action'}
+  %a.add-service{:data => {:category => 'null'}}
+    Add a Service

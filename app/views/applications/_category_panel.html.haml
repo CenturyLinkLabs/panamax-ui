@@ -3,8 +3,8 @@
     %span.title
       = presenter.name
     .actions
-      %a{href: "/categories/#{presenter.id}", class: 'edit-action'}
-      %a{href: "/categories/#{presenter.id}", class: 'delete-action'}
+      %a{href: "/applications/#{presenter.app_id}/categories/#{presenter.id}", class: 'edit-action'}
+      %a{href: "/applications/#{presenter.app_id}/categories/#{presenter.id}", class: 'delete-action'}
   - unless presenter.services.empty?
     %ul.services
       - presenter.services.each do |service|
