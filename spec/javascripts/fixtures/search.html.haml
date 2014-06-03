@@ -13,13 +13,17 @@
     %h4= '{{title}}'
     %p= '{{description}}'
     %p= '{{updated_at}}'
-    %select#application_tag
+    = select_tag 'application[tag]',
+      options_for_select(['latest']),
+      data: {'loaded' => false}
 %script#local_image_result_template{type: 'text/x-handlebars-template'}
   .search-result-item
     %h4= '{{title}}'
     %p= '{{description}}'
     %p= '{{updated_at}}'
-    %select#application_tag
+    = select_tag 'application[tag]',
+      options_for_select(['latest']),
+      data: {'loaded' => false}
 %script#no_results_row_template{type: 'text/x-handlebars-template'}
   %p sorry, nothin here
 

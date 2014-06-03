@@ -14,7 +14,9 @@
     = form_tag applications_path do
       = hidden_field_tag 'application[image]', presenter.title
       = label 'application[tag]', 'Tag:'
-      = select_tag 'application[tag]', nil, data: {'load-tags-endpoint' => load_tags_search_path}
+      = select_tag 'application[tag]',
+        options_for_select(['latest']),
+        data: {'load-tags-endpoint' => load_tags_search_path, 'loaded' => false}
       = button_tag 'Run Image', class: 'button-positive', data: {disable_with: 'Starting App...'}
   - if remote
     .community-data

@@ -125,23 +125,21 @@
       var $elem = $(e.currentTarget),
           $resultRow = $elem.closest('.search-result-item'),
           $selectBox = $resultRow.find(base.options.tagDropdownSelector),
-          noOpts = $selectBox.children().length == 0,
+          loaded = $selectBox.data('loaded'),
           local_image = $resultRow.data('status-label') == 'Local';
-
-      if (noOpts) {
+      if (!loaded) {
         var tagsXhr = $.get(
           $(base.options.tagDropdownSelector).data('load-tags-endpoint'),
           { 'repo': $resultRow.data('title'), 'local_image': local_image }
         );
 
         tagsXhr.done(function (response) {
+          $selectBox.empty();
           response.forEach(function (tag) {
             $selectBox.append('<option value="' + tag + '">' + tag + '</option>');
           });
+          $selectBox.data('loaded', true);
           $selectBox.trigger("chosen:updated");
-        });
-        tagsXhr.fail(function () {
-          $selectBox.append('<option value="latest">latest</option>');
         });
       };
     };

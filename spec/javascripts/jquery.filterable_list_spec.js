@@ -219,7 +219,7 @@ describe('$.fn.filterableList', function() {
         responseText: JSON.stringify(imageSuccessResponseText)
       });
 
-      $('.chosen-container').click();
+      $('.chosen-container').first().click();
 
       request = mostRecentAjaxRequest();
       request.response({
@@ -227,7 +227,9 @@ describe('$.fn.filterableList', function() {
         responseText: JSON.stringify(['foo', 'bar'])
       });
 
-      expect($('select#application_tag').children().length).toNotEqual(0);
+      expect($('select#application_tag').first().data('loaded')).toBe(true);
+      expect($('select#application_tag').first().children().length).toNotEqual(0);
+
     });
 
     it('does not ajax load tags if they are already loaded', function () {
@@ -241,7 +243,8 @@ describe('$.fn.filterableList', function() {
         responseText: JSON.stringify(imageSuccessResponseText)
       });
 
-      $('select#application_tag').first().append('<option value="latest">latest</option>');
+      $('select#application_tag').attr('data-loaded', true);
+
       $('.chosen-container').first().click();
 
       expect($('select#application_tag').first().children().length).toEqual(1);
