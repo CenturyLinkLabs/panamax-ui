@@ -1,1 +1,8 @@
 %h1 Save as Template
+- if @user.github_access_token_present?
+  %p
+    We haz your Github access token!
+- else
+  %p
+    Visit
+    = link_to 'Generate a Github access token', 'https://github.com/settings/tokens/new?scope=repo,user:email', target: '_blank'
