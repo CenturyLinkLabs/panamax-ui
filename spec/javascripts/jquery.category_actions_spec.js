@@ -288,7 +288,7 @@ describe('$.fn.categoryActions', function() {
         $('.no-services  header .delete-action').click();
         $('.confirm-delete button.yes').click();
 
-        expect($('.no-services').length).toEqual(0);
+        expect($('.no-services').length).toEqual(1);
       });
     });
 
