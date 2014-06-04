@@ -48,7 +48,7 @@
 
     base.handleAddSuccess = function(name, id, icon) {
       var $services = base.locateServices(),
-        $service = base.createNewElement($services, name, id, icon);
+          $service = base.createNewElement($services, name, id, icon);
 
       $services.append($service);
       base.options.complete($service);
@@ -72,7 +72,6 @@
           alert('Unable to add service.');
         });
     };
-
   };
 
   $.PMX.EditCategory = function(el, options) {
@@ -265,17 +264,99 @@
     };
   };
 
+  $.PMX.TrueCategoryPanel = function(options) {
+    var base = this;
+
+    base.defaultOptions = {
+      archetype: Handlebars.compile($('#category_archetype').html())
+    };
+
+    base.init = function () {
+      base.options = $.extend({}, base.defaultOptions, options);
+      base.$el = $(base.options.archetype(options));
+    };
+
+    base.hydrate = function() {
+      base.init();
+      base.$el.categoryActions();
+
+      return base.$el;
+    }
+  };
+
+  $.PMX.NewCategoryPanel = function(options) {
+    var base = this;
+
+    base.defaultOptions = {
+      cancelSelector: 'a.cancel.text',
+      newCategoryTemplate: Handlebars.compile($('#new_category_template').html())
+    };
+
+    base.init = function () {
+      base.options = $.extend({}, base.defaultOptions, options);
+      base.$el = $(base.options.newCategoryTemplate({}));
+      base.bindEvents();
+      (new $.PMX.ContentEditable(base.$el.find('span.title'),{
+        identifier: $.PMX.Helpers.guid(),
+        onRevert: base.handleRevert,
+        editorPromise: base.handleCommit
+      })).init();
+    };
+
+    base.bindEvents = function() {
+      base.$el.on('click', base.options.cancelSelector, base.handleCancel);
+    };
+
+    base.handleCancel = function(e) {
+      e.preventDefault();
+      base.$el.remove();
+    };
+
+    base.handleRevert = function(id) {
+      base.$el.remove();
+    };
+
+    base.buildPanel = function(data) {
+      var $template = (new $.PMX.TrueCategoryPanel(data)).hydrate();
+
+      base.$el.before($template);
+      base.$el.remove();
+      $.PMX.addedAnimation($template);
+    };
+
+    base.handleCommit = function(data) {
+      var path = window.location.pathname;
+
+      return $.ajax({
+        type: "POST",
+        headers: {
+          'Accept': 'application/json'
+        },
+        url: path + "/categories",
+        data: {
+          category: {
+            name: data.text
+          }
+        }
+      })
+      .done(function(response) {
+        base.buildPanel(response);
+      });
+    };
+
+    base.hydrate = function() {
+      base.init();
+      return base.$el;
+    };
+  };
+
   $.PMX.AddCategory = function(el, options) {
     var base = this;
 
-    base.$el = $(el);
+    base.$el = el;
 
     base.defaultOptions = {
-      addCategorySelector: '.button-positive.add-category',
-      panelSelector: '.category-panel',
-      cancelSelector: 'a.cancel.text',
-      newCategoryTemplate: Handlebars.compile($('#new_category_template').html()),
-      archetype: Handlebars.compile($('#category_archetype').html())
+      addCategorySelector: '.button-positive.add-category'
     };
 
     base.init = function () {
@@ -287,67 +368,9 @@
       base.$el.on('click', base.options.addCategorySelector, base.handleAddCategory);
     };
 
-    base.bindTemplateEvents = function($template) {
-      $template.on('click', base.options.cancelSelector, base.handleCancel)
-    }
-
     base.handleAddCategory = function(e) {
-      var $target = $(e.currentTarget),
-          $panel = $target.closest(base.options.panelSelector),
-          $template = $(base.options.newCategoryTemplate({}));
-
-      (new $.PMX.ContentEditable($template.find('span.title'),{
-          identifier: $.PMX.Helpers.guid(),
-          onRevert: base.handleRevert,
-          editorPromise: base.handleCommit
-      })).init();
-
-      $panel.before($template);
-      base.bindTemplateEvents($template);
+      base.$el.before((new $.PMX.NewCategoryPanel()).hydrate());
     };
-
-    base.handleRevert = function(id) {
-      var $target = $('*[data-identifier=' + id +']');
-      $target.closest(base.options.panelSelector).remove();
-    };
-
-    base.handleCancel = function(e) {
-      var $target = $(e.currentTarget);
-
-      e.preventDefault();
-      $target.closest(base.options.panelSelector).remove();
-    }
-
-    base.handleCommit = function(data) {
-      var path = window.location.pathname;
-
-      return $.ajax({
-          type: "POST",
-          headers: {
-            'Accept': 'application/json'
-          },
-          url: path + "/categories",
-          data: {
-            category: {
-              name: data.text
-            }
-          }
-        })
-        .done(function(response) {
-          var $target = $('*[data-identifier=' + data.id +']'),
-              $panel = $target.closest(base.options.panelSelector),
-              $template = $(base.options.archetype(
-                {
-                  id: response.id,
-                  name: response.name
-                }));
-
-          $panel.before($template);
-          $template.categoryActions();
-          $panel.remove();
-          $.PMX.addedAnimation($template);
-        });
-    }
   };
 
   $.fn.categoryActions = function(){
