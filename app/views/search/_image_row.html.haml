@@ -17,7 +17,7 @@
       = select_tag 'application[tag]',
         options_for_select(['latest']),
         data: {'load-tags-endpoint' => load_tags_search_path, 'loaded' => false}
-      = button_tag 'Run Image', class: 'button-positive', data: {disable_with: 'Starting App...'}
+      %button.button-positive{ data: { disable_with: 'Starting App...', tracking: { method: 'click', action: 'Create Application', category: 'Run Image', label: presenter.title }}} Run Image
   - if remote
     .community-data
       = link_to presenter.docker_index_url + "/stars/", target: '_blank' do
