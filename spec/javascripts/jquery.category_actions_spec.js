@@ -205,7 +205,55 @@ describe('$.fn.categoryActions', function() {
       });
       expect(callbackReturnVal).toNotBe(null);
     });
-});
+  });
 
+  describe('Concerning Add a Category', function() {
+    beforeEach(function() {
+      fixture.load('add-category.html');
+      subject = new $.PMX.AddCategory($('.category-panel'));
+      subject.init();
+      $('.add-category').click();
+      jasmine.Ajax.useMock();
+    });
 
+    it('creates new category panel', function() {
+      expect($('.category-panel.new').length).toBe(1);
+    });
+
+    it('removes the category panel on cancel', function() {
+      $('.cancel').click();
+      expect($('.category-panel.new').length).toBe(0);
+    });
+
+    it('posts the new category on commit', function() {
+      var subject = new $.PMX.NewCategoryPanel({id: '5555', name: 'test'});
+      subject.handleCommit({text: 'test', id: '55555'});
+
+      var request = mostRecentAjaxRequest();
+      request.response({
+        status: 200,
+        responseText: '{ id: "77", name: "Boom"}'
+      });
+
+      expect(request.url).toBe('/teaspoon/default/categories');
+    });
+
+    it('adds the new category', function() {
+      var subject = new $.PMX.NewCategoryPanel({id: '5555', name: 'test'}),
+          $mock = $(subject.hydrate());
+
+      $mock.appendTo($('body'));
+      subject.handleCommit({text: 'test', id: '5555'});
+
+      var request = mostRecentAjaxRequest();
+      request.response({
+        status: 200,
+        responseText: '{ id: "77", name: "Boom"}'
+      });
+
+      expect($('a.delete-action').attr('href')).toEqual('/categories/77');
+
+      $mock.remove();
+    })
+  })
 });

@@ -1,4 +1,11 @@
-(function($){
+(function($) {
+
+  $.PMX.addedAnimation = function($element) {
+    var $indicateNew = $('<div class="indicate-new"></div>');
+
+    $element.append($indicateNew);
+    $indicateNew.fadeOut(2000);
+  };
 
   $.PMX.destroyLink = function(el, options){
     var base = this;

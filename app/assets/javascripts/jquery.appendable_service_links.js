@@ -37,7 +37,7 @@
 
     base.makeNameUnique = function($input) {
       var name = $input.attr('name');
-      var newName = name.replace('_replaceme_', (new Date()).getTime());
+      var newName = name.replace('_replaceme_', $.PMX.Helpers.guid());
       $input.attr('name', newName);
     };
 

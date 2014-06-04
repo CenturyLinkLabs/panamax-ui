@@ -1,5 +1,11 @@
 - content_for(:body_id, 'manage_flow')
 
+%script#new_category_template{type: 'text/x-handlebars-template'}
+  = render 'new_category'
+%script#service_template{type: 'text/x-handlebars-template'}
+  = render 'application_service_row', { presenter: JsonServiceRowPresenter.new() }
+%script#category_archetype{type: 'text/x-handlebars-template'}
+  = render 'category_panel', { presenter: JsonCategoryPresenter.new() }
 :ruby
   crumbs = breadcrumbs_for(
     link_to("Manage", applications_path),
@@ -33,26 +39,12 @@
   .views
     .categories
       - @app.categorized_services.each do |group, services|
-        .category-panel
-          %header
-            %span.title
-              = group.name
-            .actions
-              %a{href: "/categories/#{group.id}", class: 'edit-action'}
-              %a{href: "/categories/#{group.id}", class: 'delete-action'}
-          - unless services.empty?
-            %ul.services
-              - services.each do |service|
-                = render 'application_service_row', :app_id => @app.id,
-                                                    :name => service.name,
-                                                    :service_id => service.id,
-                                                    :status => service.status,
-                                                    :icon => service.icon
-          = link_to 'Add a Service', '#', class: 'button-positive add-service', title: 'add', data: {:category => group.id}
-      .category-panel.new
+        = render 'category_panel', { presenter: CategoryPresenter.new(group, services) }
+      .category-panel.add
         %header
-          Add a Category
-        %button.button-positive
+          %span.title
+            Add a Category
+        %button.button-positive.add-category
     .relationships
       = render 'relationship_view', :app => @app
 
@@ -61,10 +53,3 @@
   journal_path: journal_application_path(@app.id)
 
 = render 'services/add_service'
-
-.archetype
-  = render 'application_service_row', :app_id => @app.id,
-                                      :name => 'REPLACE',
-                                      :service_id => 'REPLACE',
-                                      :status => nil,
-                                      :icon => nil

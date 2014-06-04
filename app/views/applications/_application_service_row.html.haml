@@ -1,17 +1,17 @@
 %li
   .service-icon
-    %img{src: icon}
-  = link_to name,
-            application_service_path(app_id, service_id),
+    %img{src: presenter.icon}
+  = link_to presenter.name,
+            presenter.service_url,
             title: 'service-details',
-            class: "status-#{status}"
+            class: "status-#{presenter.status}"
   .actions
     = link_to 'edit',
-              application_service_path(app_id, service_id),
+              presenter.service_url,
               class: 'view-action',
               title: 'details'
     = link_to 'delete',
-              application_service_path(app_id, service_id),
+              presenter.service_url,
               class: 'delete-action',
               title: 'delete',
               method: :delete

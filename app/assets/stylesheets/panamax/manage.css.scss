@@ -7,6 +7,7 @@
   margin: 12px 12px 12px 0;
   padding: 10px;
   font-size: 0.9em;
+  position: relative;
 
   &:hover {
     border-top-color: $sky_blue;
@@ -40,10 +41,7 @@ section.notice {
 .service-detail {
   float: left;
   font-size: 13px;
-
-  & + & {
-    margin-left: 20px;
-  }
+  margin-right: 20px;
 
   header {
     @include border-radius(3px);
@@ -208,7 +206,7 @@ section.application-services {
           clear: both;
         }
 
-        &.new {
+        &.add {
           button {
             height: 45px;
             min-width: 45px;
@@ -224,6 +222,28 @@ section.application-services {
               display: block;
               height: 20px;
               width: 20px;
+            }
+          }
+        }
+
+        &.new {
+          .name {
+            width: 80%;
+          }
+          .actions {
+            width: 20%;
+            display: block;
+
+            a.text {
+              display: block;
+              margin-top: 10px;
+              margin-left: 10px;
+              color: $sky_blue;
+              font-weight: normal;
+
+              &:hover {
+                color: $dark_blue;
+              }
             }
           }
         }
@@ -408,6 +428,14 @@ section.application-services {
         @extend .service-detail;
         width: 263px;
         float: left;
+
+        &:nth-child(3n+0) {
+          margin-right: 0;
+        }
+
+        &:nth-child(3n+4) {
+          clear: both;
+        }
 
         ul.links {
           margin-left: 20px;
