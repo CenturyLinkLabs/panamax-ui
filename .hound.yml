@@ -16,3 +16,6 @@ DotPosition:
 
 EmptyLinesAroundBody:
   Enabled: false
+
+NumericLiterals:
+  Enabled: false

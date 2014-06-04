@@ -1,1 +1,10 @@
 inherit_from: ./.hound.yml
+
+AllCops:
+  Exclude:
+    - config/**/*
+    - db/**/*
+
+Documentation:
+  Enabled: false
+
