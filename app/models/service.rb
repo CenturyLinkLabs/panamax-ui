@@ -8,6 +8,17 @@ class Service < BaseResource
   has_many :links
   has_one :environment
 
+  schema do
+    integer :id
+    string :name
+    string :description
+    string :from
+    string :load_state
+    string :active_state
+    string :sub_state
+    string :icon
+  end
+
   DEFAULT_ICON_URL = 'http://panamax.ca.tier3.io/service_icons/icon_service_docker_grey.png'
 
   def category_names

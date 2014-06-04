@@ -21,9 +21,22 @@ describe Service do
     }
   end
 
+  let(:fake_json_response) { attributes.to_json }
+
   it_behaves_like 'an active resource model'
 
-  let(:fake_json_response) { attributes.to_json }
+  it { should respond_to :id }
+  it { should respond_to :name }
+  it { should respond_to :description }
+  it { should respond_to :from }
+  it { should respond_to :load_state }
+  it { should respond_to :active_state }
+  it { should respond_to :sub_state }
+  it { should respond_to :icon }
+
+  it { should respond_to :ports }
+  it { should respond_to :links }
+  it { should respond_to :environment }
 
   describe '#status' do
     it 'is :running when sub state is running' do
