@@ -8,7 +8,7 @@
     base.xhr = null;
 
     base.defaultOptions = {
-      $template: $('.archetype li')
+      template: Handlebars.compile($('#service_template').html())
     };
 
     base.init = function() {
@@ -25,15 +25,17 @@
     };
 
     base.createNewElement = function($parent, name, id, icon) {
-      var $clone = base.defaultOptions.$template.clone(),
-          link = $clone.find('.actions a').attr('href');
+      var path = window.location.pathname,
+          app_id = path.substring(path.lastIndexOf("/")+1),
+          $clone = $(base.options.template(
+            { 'service_id': id,
+              'app_id': app_id,
+              'service_url': '/applications/' + app_id + '/services/' + id,
+              'icon': icon,
+              'name': name
+            }));
 
-      link = link.substring(0, link.lastIndexOf('/')+1);
-      $clone.find('a[class^=status]').text(name);
-      $clone.find('.actions a').attr('href',  link + id);
-      $clone.find('.service-icon img').attr('src',  icon);
       $clone.serviceActions();
-
       return $clone;
     };
 
@@ -46,7 +48,7 @@
 
     base.handleAddSuccess = function(name, id, icon) {
       var $services = base.locateServices(),
-        $service = base.createNewElement($services, name, id, icon);
+          $service = base.createNewElement($services, name, id, icon);
 
       $services.append($service);
       base.options.complete($service);
@@ -70,7 +72,6 @@
           alert('Unable to add service.');
         });
     };
-
   };
 
   $.PMX.EditCategory = function(el, options) {
@@ -223,11 +224,9 @@
           category: category,
           $target: base.$el,
           complete: function($clone){
-            var $indicateNew = $('<div class="indicate-new"></div>');
 
             base.handleClose();
-            $clone.append($indicateNew);
-            $indicateNew.fadeOut(2000);
+            $.PMX.addedAnimation($clone);
             base.$el.trigger('category-change');
           }
         }).init();
@@ -265,10 +264,120 @@
     };
   };
 
+  $.PMX.TrueCategoryPanel = function(options) {
+    var base = this;
+
+    base.defaultOptions = {
+      archetype: Handlebars.compile($('#category_archetype').html())
+    };
+
+    base.init = function () {
+      base.options = $.extend({}, base.defaultOptions, options);
+      base.$el = $(base.options.archetype(options));
+    };
+
+    base.hydrate = function() {
+      base.init();
+      base.$el.categoryActions();
+
+      return base.$el;
+    }
+  };
+
+  $.PMX.NewCategoryPanel = function(options) {
+    var base = this;
+
+    base.defaultOptions = {
+      cancelSelector: 'a.cancel.text',
+      newCategoryTemplate: Handlebars.compile($('#new_category_template').html())
+    };
+
+    base.init = function () {
+      base.options = $.extend({}, base.defaultOptions, options);
+      base.$el = $(base.options.newCategoryTemplate({}));
+      base.bindEvents();
+      (new $.PMX.ContentEditable(base.$el.find('span.title'),{
+        identifier: $.PMX.Helpers.guid(),
+        onRevert: base.handleRevert,
+        editorPromise: base.handleCommit
+      })).init();
+    };
+
+    base.bindEvents = function() {
+      base.$el.on('click', base.options.cancelSelector, base.handleCancel);
+    };
+
+    base.handleCancel = function(e) {
+      e.preventDefault();
+      base.$el.remove();
+    };
+
+    base.handleRevert = function(id) {
+      base.$el.remove();
+    };
+
+    base.buildPanel = function(data) {
+      var $template = (new $.PMX.TrueCategoryPanel(data)).hydrate();
+
+      base.$el.before($template);
+      base.$el.remove();
+      $.PMX.addedAnimation($template);
+    };
+
+    base.handleCommit = function(data) {
+      var path = window.location.pathname;
+
+      return $.ajax({
+        type: "POST",
+        headers: {
+          'Accept': 'application/json'
+        },
+        url: path + "/categories",
+        data: {
+          category: {
+            name: data.text
+          }
+        }
+      })
+      .done(function(response) {
+        base.buildPanel(response);
+      });
+    };
+
+    base.hydrate = function() {
+      base.init();
+      return base.$el;
+    };
+  };
+
+  $.PMX.AddCategory = function(el, options) {
+    var base = this;
+
+    base.$el = el;
+
+    base.defaultOptions = {
+      addCategorySelector: '.button-positive.add-category'
+    };
+
+    base.init = function () {
+      base.options = $.extend({}, base.defaultOptions, options);
+      base.bindEvents();
+    };
+
+    base.bindEvents = function () {
+      base.$el.on('click', base.options.addCategorySelector, base.handleAddCategory);
+    };
+
+    base.handleAddCategory = function(e) {
+      base.$el.before((new $.PMX.NewCategoryPanel()).hydrate());
+    };
+  };
+
   $.fn.categoryActions = function(){
     return this.each(function(){
       (new $.PMX.AddServiceDialog($(this))).init();
       (new $.PMX.EditCategory($(this))).init();
+      (new $.PMX.AddCategory($(this))).init();
     });
   };
 })(jQuery);
