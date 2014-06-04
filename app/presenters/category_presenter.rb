@@ -1,7 +1,5 @@
 class CategoryPresenter
 
-  attr_reader :service_list, :category
-
   delegate :name, :id, to: :category
 
   def initialize(category, services)
@@ -12,4 +10,8 @@ class CategoryPresenter
   def services
     @service_list
   end
+
+  private
+
+  attr_reader :service_list, :category
 end
