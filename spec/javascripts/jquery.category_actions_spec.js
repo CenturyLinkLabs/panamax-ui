@@ -226,7 +226,8 @@ describe('$.fn.categoryActions', function() {
     });
 
     it('posts the new category on commit', function() {
-      subject.handleCommit({data: 'test'});
+      var subject = new $.PMX.NewCategoryPanel({id: '5555', name: 'test'});
+      subject.handleCommit({text: 'test', id: '55555'});
 
       var request = mostRecentAjaxRequest();
       request.response({
@@ -238,8 +239,8 @@ describe('$.fn.categoryActions', function() {
     });
 
     it('adds the new category', function() {
-      var tmp = Handlebars.compile($('#new_category_template').html()),
-          $mock = $(tmp({id: '5555', name: 'test'}));
+      var subject = new $.PMX.NewCategoryPanel({id: '5555', name: 'test'}),
+          $mock = $(subject.hydrate());
 
       $mock.appendTo($('body'));
       subject.handleCommit({text: 'test', id: '5555'});
