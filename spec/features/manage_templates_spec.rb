@@ -15,7 +15,8 @@ describe 'managing a template' do
 
         expect(page).not_to have_content 'Generate a Github access token'
 
-        expect(page).to have_content 'We haz your Github access token!'
+        expect(page).to have_content 'Username: githubuser'
+        expect(page).to have_content 'Email Address: testuser@example.com'
       end
 
       context 'when user does not have a github access token' do
