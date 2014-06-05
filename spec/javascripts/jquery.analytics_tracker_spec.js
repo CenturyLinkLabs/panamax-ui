@@ -17,6 +17,12 @@ describe('$.fn.analyticsClickTracker', function() {
       $trigger.click();
       expect(window.gaTracker).toHaveBeenCalledWith('send', 'event', 'search', 'take search action', 'perform search label');
     });
+
+    it('does not prevent default', function() {
+      var clickEvent = $.Event('click');
+      $trigger.trigger(clickEvent);
+      expect(clickEvent.isDefaultPrevented()).toBe(false);
+    });
   });
 
 });

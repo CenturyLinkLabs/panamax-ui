@@ -10,7 +10,6 @@ PMX.Tracker = {
 (function($){
   $.fn.analyticsClickTracker = function() {
     $(this).on('click', '[data-tracking-method="click"]', function(e) {
-      e.preventDefault();
       var $el = $(e.currentTarget),
       category = $el.data('tracking-category'),
       action = $el.data('tracking-action'),
