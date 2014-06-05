@@ -11,7 +11,11 @@
     base.init = function(){
       base.options = $.extend({}, base.defaultOptions, options);
 
-      (new $.PMX.destroyLink(base.$el ,{ removeAt: 'div.application'})).init();
+      (new $.PMX.destroyLink(base.$el ,
+        {
+          linkSelector: 'ul.application-button-menu a.delete',
+          removeAt: 'div.application'
+        })).init();
     };
   };
 

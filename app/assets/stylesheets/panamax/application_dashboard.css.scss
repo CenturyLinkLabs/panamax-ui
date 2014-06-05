@@ -59,52 +59,9 @@ section.applications {
   }
 
   .actions {
-    width: 100px;
-
-    div {
-      display: none;
-      width: 100%;
-      float: left;
-      height: 40px;
-      margin-top: 20px;
-      border-left: 1px solid $grey;
-
-      a {
-        @include hide-text;
-        width: 30px;
-        margin: 5px 5px;
-        height: 100%;
-        position: relative;
-        &:after {
-          left: 5px;
-          top: 5px;
-          position: absolute;
-          content: '';
-        }
-      }
-
-      a.delete-action {
-        &:after {
-          @extend .icon-x-large;
-          @include icon-light-grey;
-        }
-
-        &:hover:after {
-          @include icon-red;
-        }
-      }
-
-      a.view-action {
-        &:after {
-          @extend .icon-magnifying-glass-large;
-          @include icon-light-grey;
-        }
-
-        &:hover:after {
-          @include icon-grey;
-        }
-      }
-    }
+    width: 420px;
+    padding-top: 20px;
+    position: relative;
   }
 }
 
@@ -164,6 +121,7 @@ header.application {
     }
 
     a {
+      font-size: 14px;
       color: $white;
       display: inline-block;
       position: relative;
@@ -205,7 +163,7 @@ header.application {
           content: '';
           position: absolute;
           left: 10px;
-          top: 11px;
+          top: 12px;
           display: block;
           height: 10px;
           width: 10px;
@@ -225,7 +183,7 @@ header.application {
           content: '';
           position: absolute;
           left: 10px;
-          top: 11px;
+          top: 12px;
           display: block;
           height: 10px;
           width: 10px;
