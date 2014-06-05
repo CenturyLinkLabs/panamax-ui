@@ -2,13 +2,16 @@
 
 %h1 Save as Template
 - if @user.github_access_token_present?
-  %header
-    %h3 Information retreived from GitHub
+  %h3 Information retrieved from GitHub
   %dl
     %dt Username:
     %dd= @user.github_username
     %dt Email Address:
     %dd= @user.email
+
+  %h3 Select a repository for your application template
+  = select_tag :repos, options_for_select(@user.repositories), class: 'fancy'
+
 
 - else
   %header

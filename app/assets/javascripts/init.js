@@ -7,6 +7,8 @@
 
     $('body').analyticsClickTracker();
 
+    $('select.fancy').chosen({disable_search: true});
+
     $('.example-searches').searchQueryPopulator({
       $searchField: $('input#search_form_query')
     });

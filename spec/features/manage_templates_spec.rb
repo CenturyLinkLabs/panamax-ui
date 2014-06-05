@@ -17,9 +17,12 @@ describe 'managing a template' do
 
         expect(page).to have_content 'Username: githubuser'
         expect(page).to have_content 'Email Address: testuser@example.com'
+
+        expect(page).to have_select 'repos', options: ['ctlc/docker-mysql', 'ctlc/docker-apache']
       end
 
       context 'when user does not have a github access token' do
+
         before do
           user = User.new(github_access_token_present: false)
           User.stub(:find).and_return(user)
