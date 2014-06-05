@@ -3,5 +3,6 @@ class TemplatesController < ApplicationController
 
   def new
     @user = User.find
+    @template_form = TemplateForm.new
   end
 end
