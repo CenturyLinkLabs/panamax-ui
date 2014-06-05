@@ -24,7 +24,7 @@
     star_count: 72,
     recommended_class: 'not-recommended'
   })
-= render '/search/image_row', {presenter: dummy_image_presenter}
+= render '/search/image_row', {presenter: dummy_image_presenter, load_tags_search_path: nil}
 
 %h5 Remote Image Row
 :ruby
@@ -37,7 +37,7 @@
     recommended_class: 'not-recommended',
     docker_index_url: '/docker.io/foo'
   })
-= render '/search/image_row', {presenter: dummy_image_presenter, remote: true}
+= render '/search/image_row', {presenter: dummy_image_presenter, remote: true, load_tags_search_path: nil}
 
 %h5 Template Row
 :ruby

@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   resources :templates, only: [:new]
 
+  resource :user, only: [:update]
+
   resources :applications, only: [:index, :create, :show, :destroy] do
     get 'documentation', on: :member
     get 'journal', on: :member

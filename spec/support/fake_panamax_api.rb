@@ -43,6 +43,10 @@ class FakePanamaxApi < Sinatra::Base
     status 204
   end
 
+  get '/user.json' do
+    json_response 200, 'user_representation.json'
+  end
+
   private
 
   def json_response(response_code, file_name)
