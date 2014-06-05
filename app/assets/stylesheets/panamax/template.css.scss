@@ -1,9 +1,11 @@
 @import 'ctl_base_ui/colors';
 
 #template_flow {
-  header {
+  h3 {
     padding-top: 20px;
     margin-bottom: 20px;
+    border-bottom: $grey 1px solid;
+    clear: both;
   }
 
   dl {
