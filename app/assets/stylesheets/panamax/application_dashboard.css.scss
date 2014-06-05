@@ -252,3 +252,87 @@ a.options {
     }
   }
 }
+
+.application-button-menu {
+  float: right;
+
+  li {
+    display: block;
+    float: left;
+    margin-left: 5px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    a {
+      color: $white;
+      display: inline-block;
+      position: relative;
+      padding: 10px 10px 10px 25px;
+      text-align: left;
+      text-decoration: none;
+      border-radius: 3px;
+
+      &.template {
+        background: $green;
+
+        &:hover {
+          background: $ctl_light_green;
+        }
+
+        &:after {
+          @include icon-white;
+          @extend .icon-star;
+          content: '';
+          position: absolute;
+          left: 10px;
+          top: 10px;
+          display: block;
+          height: 10px;
+          width: 10px;
+        }
+      }
+
+      &.reload {
+        background: $dark_grey;
+
+        &:hover {
+          background: $medium_grey;
+        }
+
+        &:after {
+          @include icon-white;
+          @extend .icon-arrowloop;
+          content: '';
+          position: absolute;
+          left: 10px;
+          top: 11px;
+          display: block;
+          height: 10px;
+          width: 10px;
+        }
+      }
+
+      &.delete {
+        background: $dark_red;
+
+        &:hover {
+          background: lighten($dark_red, 10%);
+        }
+
+        &:after {
+          @include icon-white;
+          @extend .icon-x;
+          content: '';
+          position: absolute;
+          left: 10px;
+          top: 11px;
+          display: block;
+          height: 10px;
+          width: 10px;
+        }
+      }
+    }
+  }
+}
