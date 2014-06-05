@@ -25,8 +25,6 @@
 
     $('section.applications').applicationActions();
 
-    $('header.application').applicationMenuActions();
-
     $('.category-panel').categoryActions();
 
     $('main').noticeActions();
