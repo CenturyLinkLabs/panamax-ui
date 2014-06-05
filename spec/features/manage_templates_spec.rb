@@ -19,9 +19,13 @@ describe 'managing a template' do
       end
 
       context 'when user does not have a github access token' do
+        before do
+          user = User.new(github_access_token_present: false)
+          User.stub(:find).and_return(user)
+          user.stub(:update_attributes).and_return(true)
+        end
 
-        it 'has a link to generate a new github token' do
-          User.stub(:find).and_return(double(:user, github_access_token_present?: false))
+        it 'allows the user to request and enter a token' do
 
           visit '/templates/new'
 
@@ -29,6 +33,11 @@ describe 'managing a template' do
             'Generate a Github access token',
             href: 'https://github.com/settings/tokens/new?scope=repo,user:email'
           )
+
+          fill_in 'Github Token', with: 'abc123'
+          click_on 'Save Token'
+
+          expect(page).to have_content 'Save as Template'
         end
       end
     end

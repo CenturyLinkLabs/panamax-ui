@@ -14,7 +14,7 @@ describe TemplatesController do
       expect(response).to render_template :new
     end
 
-    it 'should lookup and assign the user' do
+    it 'looks up and assign the user' do
       get :new
       expect(assigns(:user)).to eq user
     end

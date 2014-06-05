@@ -1,5 +1,19 @@
 @import 'ctl_base_ui/colors';
 
+#template_flow {
+  form {
+    border-top: $light_grey 1px solid;
+    margin-top: 30px;
+    padding-top: 30px;
+
+    input[type='text'] {
+      margin-left: 100px;
+      width: 500px;
+    }
+  }
+}
+
+
 #post-run-html {
 
   padding: 20px;
