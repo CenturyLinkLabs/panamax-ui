@@ -22,7 +22,20 @@
     }
   }
 
-  form {
+  form dl {
+    dt {
+      width: 170px;
+      margin-right: 10px;
+      color: $medium_grey;
+      line-height: 38px;
+    }
+    input[type='text'],
+    textarea {
+      width: 460px;
+    }
+  }
+
+  form.update-github-token {
     border-top: $light_grey 1px solid;
     margin-top: 30px;
     padding-top: 30px;

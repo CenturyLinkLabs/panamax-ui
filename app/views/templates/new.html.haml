@@ -9,18 +9,24 @@
     %dt Email Address:
     %dd= @user.email
 
-  %h3 Select a repository for your application template
-  = select_tag :repos, options_for_select(@user.repositories), class: 'fancy'
+  = form_for @template_form, url: '/' do |f|
+    %h3 Select a repository for your application template
+    = f.select :repos, options_for_select(@user.repositories), {}, class: 'fancy'
+
+    %h3 Add some information about your template to help others find it in search results
+
+    %dl
+      %dt= f.label :name, 'Template Name'
+      %dd= f.text_field :name, placeholder: 'Give your template a name'
 
 
 - else
-  %header
-    %h3 First, you'll need to create a github token
+  %h3 First, you'll need to create a github token
   %p
     Visit
     = link_to 'Generate a Github access token', 'https://github.com/settings/tokens/new?scope=repo,user:email', target: '_blank'
 
-  = form_for @user, url: user_path, method: :put do |f|
+  = form_for @user, url: user_path, method: :put, html: { class: 'update-github-token' } do |f|
     %strong
       = f.label :github_access_token, 'Github Token'
     = f.text_field :github_access_token, placeholder: 'Paste your GitHub token here'

@@ -18,7 +18,7 @@ describe 'managing a template' do
         expect(page).to have_content 'Username: githubuser'
         expect(page).to have_content 'Email Address: testuser@example.com'
 
-        expect(page).to have_select 'repos', options: ['ctlc/docker-mysql', 'ctlc/docker-apache']
+        expect(page).to have_select 'template_form_repos', options: ['ctlc/docker-mysql', 'ctlc/docker-apache']
       end
 
       context 'when user does not have a github access token' do
