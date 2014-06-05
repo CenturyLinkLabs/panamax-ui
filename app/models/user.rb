@@ -8,5 +8,6 @@ class User < BaseResource
   schema do
     string :email
     boolean :github_access_token_present
+    string :github_access_token
   end
 end
