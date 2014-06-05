@@ -13,17 +13,6 @@ describe 'applications dashboard' do
         expect(page).to have_css 'h1', text: 'Manage'
         expect(page).to have_css 'h1', text: 'tutum/wordpress'
       end
-
-      it 'can navigate to application details via icon' do
-        visit '/applications'
-
-        within 'section.applications .actions' do
-          click_on 'edit'
-        end
-
-        expect(page).to have_css 'h1', text: 'Manage'
-        expect(page).to have_css 'h1', text: 'tutum/wordpress'
-      end
     end
   end
 end
