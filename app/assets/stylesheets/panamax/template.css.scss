@@ -1,6 +1,25 @@
 @import 'ctl_base_ui/colors';
 
 #template_flow {
+  header {
+    padding-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  dl {
+    font-size: 0.9em;
+
+    dt, dd {
+      float: left;
+      line-height: 30px;
+    }
+    dt {
+      clear: left;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+  }
+
   form {
     border-top: $light_grey 1px solid;
     margin-top: 30px;

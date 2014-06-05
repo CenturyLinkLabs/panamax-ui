@@ -2,8 +2,14 @@
 
 %h1 Save as Template
 - if @user.github_access_token_present?
-  %p
-    We haz your Github access token!
+  %header
+    %h3 Information retreived from GitHub
+  %dl
+    %dt Username:
+    %dd= @user.github_username
+    %dt Email Address:
+    %dd= @user.email
+
 - else
   %header
     %h3 First, you'll need to create a github token
