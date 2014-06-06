@@ -66,7 +66,7 @@
     base.fetchForType = function(term, type) {
       return $.ajax({
         url: base.url,
-        data: {'search_form[query]': term, 'search_form[type]': type}
+        data: {'search_result_set[q]': term, 'search_result_set[type]': type}
       });
     };
   };
@@ -78,7 +78,7 @@
     base.$el = $(el);
 
     base.defaultOptions = {
-      $queryField: base.$el.find('input#search_form_query'),
+      $queryField: base.$el.find('input.query-field'),
       queryFormSelector: 'form.search-form',
       $queryForm: base.$el.find('form.search-form'),
       $localImageResults: base.$el.find('.local-image-results'),
