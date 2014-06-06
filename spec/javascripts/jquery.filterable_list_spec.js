@@ -48,7 +48,7 @@ describe('$.fn.filterableList', function() {
       spyOn(fakeSearchResults, 'remoteImages');
 
       expect($('.in-progress').length).toEqual(0);
-      $('input#search_form_query').val('mys');
+      $('input.query-field').val('mys');
       $('.filterable-list form').submit();
       expect($('.in-progress').length).toEqual(3);
     });
@@ -60,7 +60,7 @@ describe('$.fn.filterableList', function() {
     });
 
     it('requests results', function() {
-      $('input#search_form_query').val('mys');
+      $('input.query-field').val('mys');
       $('.filterable-list form').submit();
 
       expect(fakeSearchResults.fetch).toHaveBeenCalledWith('mys');
@@ -73,7 +73,7 @@ describe('$.fn.filterableList', function() {
     });
 
     it('records the term search for and sends to the NSA', function() {
-      $('input#search_form_query').val('mysql');
+      $('input.query-field').val('mysql');
       $('.filterable-list form').submit();
       expect(PMX.Tracker.trackEvent).toHaveBeenCalledWith('search', 'not-given', 'mysql');
     });
@@ -82,33 +82,33 @@ describe('$.fn.filterableList', function() {
   describe('changing the text in the query field', function() {
 
     it('does not request results if fewer than 3 characters exist', function() {
-      $('input#search_form_query').val('my').keyup();
+      $('input.query-field').val('my').keyup();
 
       expect(fakeSearchResults.fetch).not.toHaveBeenCalled();
     });
 
     it('does not re-request results if the value has not actually changed', function() {
-      $('input#search_form_query').val('word').keyup();
-      $('input#search_form_query').val('word').keyup();
+      $('input.query-field').val('word').keyup();
+      $('input.query-field').val('word').keyup();
 
       expect(fakeSearchResults.fetch.calls.length).toEqual(1);
     });
 
     it('displays the search headings', function() {
       $('h3.search-title').hide();
-      $('input#search_form_query').val('word').keyup();
+      $('input.query-field').val('word').keyup();
       expect($('h3.search-title:visible').length).toEqual(2);
     });
 
     it('requests results when the searchfield is changed', function() {
-      $('input#search_form_query').val('mys').keyup();
+      $('input.query-field').val('mys').keyup();
 
       var request = mostRecentAjaxRequest();
       expect(fakeSearchResults.fetch).toHaveBeenCalledWith('mys');
     });
 
     it('places the results on the page', function() {
-      $('input#search_form_query').val('apache').keyup();
+      $('input.query-field').val('apache').keyup();
 
       expect($('.remote-image-results').html()).toContain('some/name');
       expect($('.remote-image-results').html()).toContain('some description');
@@ -119,7 +119,7 @@ describe('$.fn.filterableList', function() {
     });
 
     it('calls chosen on the tags dropdown once the element is added to the page', function() {
-      $('input#search_form_query').val('apache').keyup();
+      $('input.query-field').val('apache').keyup();
 
       expect($('.local-image-results').html()).toContain('chosen-container');
     });
@@ -129,7 +129,7 @@ describe('$.fn.filterableList', function() {
         callback.call(this, []);
       });
 
-      $('input#search_form_query').val('apache').keyup();
+      $('input.query-field').val('apache').keyup();
 
       expect($('.template-results').html()).toContain('sorry, nothin here');
     });
@@ -140,7 +140,7 @@ describe('$.fn.filterableList', function() {
       });
 
       it('ajax loads tags if they are not already loaded', function () {
-        $('input#search_form_query').val('apache').keyup();
+        $('input.query-field').val('apache').keyup();
 
         $('.chosen-container').first().click();
 
@@ -155,7 +155,7 @@ describe('$.fn.filterableList', function() {
       });
 
       it('does not ajax load tags if they are already loaded', function () {
-        $('input#search_form_query').val('apache').keyup();
+        $('input.query-field').val('apache').keyup();
         var $tagsSelect = $('select#application_tag').first();
         $tagsSelect.attr('data-loaded', true);
         $('.chosen-container').first().click();
@@ -177,19 +177,19 @@ describe('$.PMX.SearchResults', function() {
     it('fetches templates for the supplied term', function() {
       subject.fetch('apache');
       var request = ajaxRequests[ajaxRequests.length-3];
-      expect(request.url).toBe('some/url?search_form%5Bquery%5D=apache&search_form%5Btype%5D=template');
+      expect(request.url).toBe('some/url?search_result_set%5Bq%5D=apache&search_result_set%5Btype%5D=template');
     });
 
     it('fetches local images for the supplied term', function() {
       subject.fetch('apache');
       var request = ajaxRequests[ajaxRequests.length-2];
-      expect(request.url).toBe('some/url?search_form%5Bquery%5D=apache&search_form%5Btype%5D=local_image');
+      expect(request.url).toBe('some/url?search_result_set%5Bq%5D=apache&search_result_set%5Btype%5D=local_image');
     });
 
     it('fetches remote images for the supplied term', function() {
       subject.fetch('apache');
       var request = mostRecentAjaxRequest();
-      expect(request.url).toBe('some/url?search_form%5Bquery%5D=apache&search_form%5Btype%5D=remote_image');
+      expect(request.url).toBe('some/url?search_result_set%5Bq%5D=apache&search_result_set%5Btype%5D=remote_image');
     });
 
     it('aborts the previous requests', function() {

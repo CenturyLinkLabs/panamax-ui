@@ -31,7 +31,7 @@
 .filterable-list
   %form.search-form{action: '/search'}
     %label{for: 'query'} Command
-    %input#search_form_query{type: 'text', name: 'query'}
+    %input.query-field{type: 'text', name: 'query'}
 
   %section.example-searches
     %a.example.wordpress{data: {query: "wordpress"}} wordpress,

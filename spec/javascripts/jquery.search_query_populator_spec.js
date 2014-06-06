@@ -3,13 +3,13 @@ describe('$.fn.searchQueryPopulator', function() {
     spyOn($.fn, 'submit');
     fixture.load('search.html');
     $('.example-searches').searchQueryPopulator({
-      $searchField: $('input#search_form_query')
+      $searchField: $('input.query-field')
     });
   });
 
   it('populates the search box with the clicked term', function() {
     $('a[data-query="apache"]').click();
-    expect($('input#search_form_query').val()).toEqual('apache');
+    expect($('input.query-field').val()).toEqual('apache');
   });
 
   it('gives the search box focus after clicking a term', function() {
@@ -17,13 +17,13 @@ describe('$.fn.searchQueryPopulator', function() {
     $('a[data-query="apache"]').click();
     expect(focusSpy).toHaveBeenCalled();
     // unfortanetely the below assertion does not work headlessly
-    // expect($('input#search_form_query').is(':focus')).toBeTruthy();
+    // expect($('input.query-field').is(':focus')).toBeTruthy();
   });
 
   it('re-populates the search box with the next clicked term', function() {
-    $('input#search_form_query').val('old term')
+    $('input.query-field').val('old term')
     $('a[data-query="java"]').click();
-    expect($('input#search_form_query').val()).toEqual('java');
+    expect($('input.query-field').val()).toEqual('java');
   });
 
   it('submits the search form', function() {

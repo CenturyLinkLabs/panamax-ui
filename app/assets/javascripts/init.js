@@ -10,7 +10,7 @@
     $('select.fancy').chosen({disable_search: true});
 
     $('.example-searches').searchQueryPopulator({
-      $searchField: $('input#search_form_query')
+      $searchField: $('input.query-field')
     });
 
     $('#search_flow .filterable-list').filterableList({

@@ -124,9 +124,9 @@ describe('$.fn.categoryActions', function() {
 
   describe('closing dialog', function() {
     it('removes previous search input', function(){
-      $('#search_form_query').val('testing');
+      $('.query-field').val('testing');
       subject.handleClose();
-      expect($('#search_form_query').val()).toBe('');
+      expect($('.query-field').val()).toBe('');
     });
 
     it('removes previous search results', function() {

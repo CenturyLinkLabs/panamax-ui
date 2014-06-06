@@ -251,7 +251,7 @@
       base.defaultOptions.$modalContents.dialog("close");
       $(base.defaultOptions.localImageSelector).empty();
       $(base.defaultOptions.remoteImageSelector).empty();
-      $('#search_form_query').val('');
+      $('.query-field').val('');
       $('body').css('overflow', 'auto');
     };
 
