@@ -8,7 +8,10 @@
     base.xhr = null;
 
     base.defaultOptions = {
-      template: Handlebars.compile($('#service_template').html())
+      template: Handlebars.compile($('#service_template').html()),
+      localImageSelector: '.local-image-results',
+      remoteImageSelector: '.remote-image-results',
+      categorySelector: '#application_category'
     };
 
     base.init = function() {
@@ -17,12 +20,17 @@
     };
 
     base.bindEvents= function() {
-      base.$el.find('.image-results').unbind('submit').on('submit', 'form', function(e) {
+      base.interceptForm(base.options.localImageSelector);
+      base.interceptForm(base.options.remoteImageSelector);
+    };
+
+    base.interceptForm = function(formSelector) {
+      base.$el.find(formSelector).unbind('submit').on('submit', 'form', function(e) {
         e.preventDefault();
-        $(e.currentTarget).find('#application_category').val(base.options.category);
+        $(e.currentTarget).find(base.options.categorySelector).val(base.options.category);
         base.processForm($(e.currentTarget));
       });
-    };
+    }
 
     base.createNewElement = function($parent, name, id, icon) {
       var path = window.location.pathname,
@@ -205,7 +213,9 @@
       $addServiceButton: $('a.add-service'),
       $modalContents: $('#add-service-form'),
       $dialogBox: $('.ui-dialog'),
-      $titlebarCloseButton: $('button.ui-dialog-titlebar-close')
+      $titlebarCloseButton: $('button.ui-dialog-titlebar-close'),
+      localImageSelector: '.local-image-results',
+      remoteImageSelector: '.remote-image-results'
     };
 
     base.init = function() {
@@ -239,7 +249,8 @@
 
     base.handleClose = function() {
       base.defaultOptions.$modalContents.dialog("close");
-      $('.image-results').empty();
+      $(base.defaultOptions.localImageSelector).empty();
+      $(base.defaultOptions.remoteImageSelector).empty();
       $('#search_form_query').val('');
       $('body').css('overflow', 'auto');
     };
@@ -386,7 +397,9 @@
 
     base.defaultOptions = {
       removeSelector: '.category-panel',
-      deleteCategorySelector: 'header .delete-action'
+      deleteCategorySelector: 'header .delete-action',
+      tooltipSelector: '.services li',
+      panelIdentifier: '[data-category]'
     };
 
     base.init = function () {
@@ -395,52 +408,44 @@
     };
 
     base.bindEvents = function () {
-      base.$el.on('mouseenter mouseleave', base.options.deleteCategorySelector, base.handleHover);
+      base.$el.on('mouseenter', base.options.deleteCategorySelector, base.hoverOver);
+      base.$el.on('mouseleave', base.options.deleteCategorySelector, base.hoverOut);
       base.$el.on('click', base.options.deleteCategorySelector, base.handleDelete);
     };
 
-    base.hoverOver = function($target) {
-      if (base.$el.find(".services li").length > 0) {
+    base.hoverOver = function(e) {
+      var $target = $(e.currentTarget);
+
+      if (base.$el.find(base.options.tooltipSelector).length > 0 ) {
         $('<span class="tooltip">Categories must be empty.</span>').appendTo(base.$el);
         $target.addClass('disabled');
       }
     };
 
-    base.hoverOut = function($target) {
+    base.hoverOut = function(e) {
+      var $target = $(e.currentTarget);
+
       $target.removeClass('disabled');
       $('.category-panel .tooltip').remove();
     };
 
-    base.handleHover = function(e) {
-      var $target = $(e.currentTarget),
-          type = e.type;
-
-      switch(type) {
-        case 'mouseenter':
-          base.hoverOver($target);
-          break;
-        case 'mouseleave':
-          base.hoverOut($target);
-          break;
-      }
-    };
-
     base.confirmDelete = function(e) {
       var destroyer = new $.PMX.destroyLink(base.$el,
-          {
-            linkSelector: base.options.deleteCategorySelector,
-            removeAt: base.options.removeSelector,
-            success: function() {
-              base.$el.remove();
-            }
-          });
+        {
+          linkSelector: base.options.deleteCategorySelector,
+          removeAt: base.options.removeSelector,
+          success: function() {
+            base.$el.remove();
+          }
+        });
 
       destroyer.init();
       destroyer.handleDelete(e);
     };
 
     base.handleDelete = function(e) {
-      var $target = $(e.currentTarget);
+      var $target = $(e.currentTarget),
+        identifier = base.$el.find(base.options.panelIdentifier);
 
       e.preventDefault();
       if ( !($target.hasClass('disabled')) ) {
@@ -448,9 +453,13 @@
           {
             message: 'Delete this category from your app?',
             confirm: function() {
-              var fakeEvent = $.Event('click');
-              fakeEvent.currentTarget = base.$el.find(base.options.deleteCategorySelector);
-              base.confirmDelete(fakeEvent);
+              if (identifier.attr('data-category') === 'null') {
+                base.$el.remove();
+              } else {
+                var fakeEvent = $.Event('click');
+                fakeEvent.currentTarget = base.$el.find(base.options.deleteCategorySelector);
+                base.confirmDelete(fakeEvent);
+              }
             }
           }
         )).init();

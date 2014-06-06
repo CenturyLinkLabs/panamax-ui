@@ -130,9 +130,9 @@ describe('$.fn.categoryActions', function() {
     });
 
     it('removes previous search results', function() {
-      $('<div>test</div>').appendTo('.image-results');
+      $('<div>test</div>').appendTo('.local-image-results');
       subject.handleClose();
-      expect($('.image-results').children().length).toBe(0);
+      expect($('.local-image-results').children().length).toBe(0);
     });
 
   });
@@ -156,13 +156,13 @@ describe('$.fn.categoryActions', function() {
     });
 
     it('adds category to form data', function() {
-      $('.image-results form').submit();
+      $('.local-image-results form').submit();
       var category = modalContents.find('#application_category').val();
       expect(category).toEqual('77');
     });
 
     it('calls backend service', function(){
-      $('.image-results form').submit();
+      $('.local-image-results form').submit();
 
       var request = mostRecentAjaxRequest();
       expect(request.url).toBe('/applications/77/services');
@@ -171,7 +171,7 @@ describe('$.fn.categoryActions', function() {
 
     it('adds element to services', function(){
       var serviceCount = $('.services li').length;
-      $('.image-results form').submit();
+      $('.local-image-results form').submit();
       var request = mostRecentAjaxRequest();
 
       request.response({
@@ -288,7 +288,7 @@ describe('$.fn.categoryActions', function() {
         $('.no-services  header .delete-action').click();
         $('.confirm-delete button.yes').click();
 
-        expect($('.no-services').length).toEqual(1);
+        expect($('.no-services').length).toEqual(0);
       });
     });
 
