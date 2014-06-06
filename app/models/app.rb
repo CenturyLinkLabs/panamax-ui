@@ -9,7 +9,7 @@ class App < BaseViewModel
     ActiveModel::Name.new(self, nil, 'Application')
   end
 
-  attr_reader :name, :id, :services, :categories, :documentation
+  attr_reader :name, :id, :services, :categories, :documentation, :from
 
   def initialize(attributes={}, persisted=false)
     super(attributes)

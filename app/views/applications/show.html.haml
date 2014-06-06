@@ -21,7 +21,7 @@
   %span.deployment-env
     Deployed to: CoreOS Local
   - unless @app.host_ports.blank?
-    - @app.host_ports.each do |service_name, ports|
+    - application_url_for(@app).each do |service_name, ports|
       %span.service-url
         = "#{service_name} URL: "
         - ports.each do |port|
@@ -49,7 +49,7 @@
     .relationships
       = render 'relationship_view', :app => @app
 
-= render 'shared/journal', 
+= render 'shared/journal',
   title: 'CoreOS Journal - Application Activity Log',
   journal_path: journal_application_path(@app.id)
 

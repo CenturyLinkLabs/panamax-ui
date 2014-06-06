@@ -10,6 +10,7 @@ describe App do
           {'id' => '2', 'name' => 'baz'},
           {'id' => '3', 'name' => 'bar'}
       ],
+      'from' => 'nowhere',
       'documentation' => '# Title\r\nsome markdown doc',
       'services' => [
           {'id' => '3', 'name' => 'blah', 'categories' => [ {'name' => 'foo', 'id' => 3}, {'name' => 'baz', 'id' => 3}]},
