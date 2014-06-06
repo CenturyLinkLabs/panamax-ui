@@ -11,12 +11,12 @@ class CategoriesController < ApplicationController
 
   def create
     category = Category.create(name: params[:category][:name], app_id: params[:application_id])
-    render json: category.to_json, status: 201
+    respond_with category, location: nil
   end
 
   def destroy
     category = retrieve_category.destroy
-    render json: category.to_json, status: 200
+    respond_with category
   end
 
   private

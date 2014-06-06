@@ -21,7 +21,7 @@ describe CategoriesController do
     end
 
     it 'creates the category' do
-      expect(Category).to receive(:create)
+      expect(Category).to receive(:create).with(app_id: '77', name: 'Web')
       post :create, category_form_params
     end
 
