@@ -1,10 +1,15 @@
 require 'spec_helper'
 
 describe CategoryPresenter do
-  let(:fake_group) do
-    double(:fake_group,
+  let(:fake_category) do
+    double(:fake_category,
       name: 'shaka',
       id: 77
+    )
+  end
+  let(:fake_app) do
+    double(:fake_app,
+      id: 1
     )
   end
   let(:fake_service) do
@@ -18,7 +23,7 @@ describe CategoryPresenter do
     )
   end
 
-  subject { CategoryPresenter.new(fake_group, fake_services) }
+  subject { CategoryPresenter.new(fake_app, fake_category, fake_services) }
 
   describe '#name' do
     it 'exposes the category name' do
@@ -29,6 +34,12 @@ describe CategoryPresenter do
   describe '#id' do
     it 'exposes the category id' do
       expect(subject.id).to eq 77
+    end
+  end
+
+  describe '#app_id' do
+    it 'exposed the application id' do
+      expect(subject.app_id).to eq 1
     end
   end
 
