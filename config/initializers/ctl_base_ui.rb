@@ -5,7 +5,8 @@ CtlBaseUi.configure do |config|
     'breadcrumbs',
     'search',
     'service_details',
-    'service_journal'
+    'service_journal',
+    'example_searches'
   ]
 
   config.view_helpers = [
