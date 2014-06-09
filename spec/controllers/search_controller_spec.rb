@@ -1,47 +1,47 @@
 require 'spec_helper'
 
 describe SearchController do
-  let(:fake_search_form) { double(:fake_search_form) }
-
   let(:fake_result_set) do
     double(:fake_result_set)
   end
 
   describe 'GET #new' do
-    it 'creates and assigns a search object' do
-      expect(SearchForm).to receive(:new).and_return(fake_search_form)
+    it 'creates and assigns a search result set object' do
+      expect(SearchResultSet).to receive(:new).and_return(fake_result_set)
 
       get :new
 
-      expect(assigns(:search_form)).to eq fake_search_form
+      expect(assigns(:search_result_set)).to eq fake_result_set
     end
   end
 
   describe 'GET #show' do
     before do
-      SearchForm.stub(:new).and_return(fake_search_form)
+      SearchResultSet.stub(:new).and_return(fake_result_set)
     end
 
     it 'searches for the supplied query' do
-      expect(fake_search_form).to receive(:submit).with({'query' => 'apache'}).and_return(fake_result_set)
+      expect(SearchResultSet).to receive(:find).with(params: { 'q' => 'apache' }).and_return(fake_result_set)
 
-      get :show, {search_form: {query: 'apache'}}
+      get :show, search_result_set: { q: 'apache' }
     end
 
     context 'when successful' do
+      before do
+        SearchResultSet.stub(:find).and_return(fake_result_set)
+      end
+
       context 'when an html request' do
         it 'assigns the results' do
-          fake_search_form.stub(:submit).and_return(fake_result_set)
-          get :show, {search_form: {query: 'apache'}}
+          get :show, search_result_set: { q: 'apache' }
 
-          expect(assigns(:search_results)).to eql fake_result_set
+          expect(assigns(:search_result_set)).to eql fake_result_set
         end
       end
 
       context 'when a json request' do
         it 'returns the json representation of the results' do
-          fake_search_form.stub(:submit).and_return(fake_result_set)
-          get :show, {search_form: {query: 'apache'}, format: :json}
+          get :show, search_result_set: { q: 'apache' }, format: :json
 
           expect(response.body).to eql fake_result_set.to_json
         end

@@ -5,9 +5,9 @@ describe "searching for templates and images" do
     it "can navigate to the search page and see examples" do
       visit "/"
 
-      fill_in "search_form_query", with: "wordpress"
+      fill_in 'search_result_set_q', with: "wordpress"
 
-      expect(find_field("search_form_query").value).to eq "wordpress"
+      expect(find_field('search_result_set_q').value).to eq "wordpress"
       expect(page).to have_content "Or, try one of these example searches"
 
       within 'form' do

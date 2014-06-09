@@ -15,8 +15,8 @@ class JsonTemplatePresenter
     '{{description}}'
   end
 
-  def updated_at
-    '{{updated_at}}'
+  def last_updated_on
+    '{{last_updated_on}}'
   end
 
   def image_count
@@ -36,6 +36,6 @@ class JsonTemplatePresenter
   end
 
   def icon_src
-    '{{icon}}'
+    '{{icon_src}}'
   end
 end

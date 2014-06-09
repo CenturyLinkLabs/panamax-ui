@@ -3,13 +3,12 @@ class SearchController < ApplicationController
   respond_to :json
 
   def new
-    @search_form = SearchForm.new
+    @search_result_set = SearchResultSet.new
   end
 
   def show
-    @search_form = SearchForm.new
-    @search_results = @search_form.submit(params[:search_form])
-    respond_with @search_results
+    @search_result_set = SearchResultSet.find(params: params[:search_result_set])
+    respond_with @search_result_set
   end
 
   def load_tags

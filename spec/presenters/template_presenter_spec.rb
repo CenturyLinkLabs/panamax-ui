@@ -7,11 +7,11 @@ describe TemplatePresenter do
       name: 'boom shaka',
       description: 'goes boom shaka laka',
       short_description: 'goes boom',
-      updated_at: 'Mon',
+      last_updated_on: 'Mon',
       image_count: 5,
       image_count_label: 'Images',
       recommended_class: 'not-recommended',
-      icon: '/icons/icon.png'
+      icon_src: '/icons/icon.png'
     })
   end
 
@@ -41,9 +41,9 @@ describe TemplatePresenter do
     end
   end
 
-  describe '#updated_at' do
-    it 'exposes the template updated_at' do
-      expect(subject.updated_at).to eq 'Mon'
+  describe '#last_updated_on' do
+    it 'exposes the template last_updated_on' do
+      expect(subject.last_updated_on).to eq 'Mon'
     end
   end
 
@@ -66,7 +66,7 @@ describe TemplatePresenter do
   end
 
   describe '#icon_src' do
-    it 'exposes the icon src' do
+    it 'exposes the icon_src src' do
       expect(subject.icon_src).to eq '/icons/icon.png'
     end
   end

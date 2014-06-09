@@ -5,32 +5,6 @@ describe SearchService do
 
   subject { SearchService.new(fake_connection) }
 
-  describe '#search_for' do
-
-    context 'when successful' do
-      let(:fake_response) { double(:fake_response, body: '{}') }
-      let(:fake_search_result_set) { double(:fake_search_result_set) }
-
-      before do
-        SearchResultSet.stub(:build_from_response).and_return(fake_search_result_set)
-      end
-
-      it 'makes a request to the external API to get the results' do
-        expect(fake_connection).to receive('get')
-          .with('/search', {q: 'apache', type: 'template'})
-          .and_return(fake_response)
-        subject.search_for('apache', 'template')
-      end
-
-      it 'returns a search result set object' do
-        fake_connection.stub(:get).and_return(fake_response)
-        result = subject.search_for('apache')
-
-        expect(result).to eql fake_search_result_set
-      end
-    end
-  end
-
   describe '#tags_for' do
 
     let(:repository_name) { 'foo' }

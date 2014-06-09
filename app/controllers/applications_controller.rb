@@ -13,7 +13,7 @@ class ApplicationsController < ApplicationController
   end
 
   def show
-    @search_form = SearchForm.new
+    @search_result_set = SearchResultSet.new
     render status: :not_found unless application.present?
   end
 

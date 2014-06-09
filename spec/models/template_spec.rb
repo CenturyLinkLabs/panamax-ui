@@ -12,25 +12,55 @@ describe Template do
     }
   end
 
-  it_behaves_like 'a view model', {
-    'id' => 77,
-    'name' => 'boom/shaka',
-    'description' => 'this thing goes boom shaka laka',
-    'image_count' => 4
-  }
+  subject { described_class.new(attributes) }
 
-  it_behaves_like 'a collection builder', [
-    {
-      'id' => 77,
-      'name' => 'boom/shaka'
-    },
-    {
-      'id' => 87,
-      'name' => 'foo/bar'
-    }
-  ]
+  describe '#id' do
+    it { should respond_to :id }
+  end
 
-  subject { Template.new(attributes) }
+  describe '#description' do
+    it { should respond_to :description }
+  end
+
+  describe '#updated_at' do
+    it { should respond_to :updated_at }
+  end
+
+  describe '#name' do
+    it { should respond_to :name }
+  end
+
+  describe '#image_count' do
+    it { should respond_to :image_count }
+  end
+
+  describe '#recommended' do
+    it { should respond_to :recommended }
+  end
+
+  describe '#icon_src' do
+    it { should respond_to :icon_src }
+  end
+
+  describe '#icon' do
+    it { should respond_to :icon }
+  end
+
+  describe '#keywords' do
+    it { should respond_to :keywords }
+  end
+
+  describe '#authors' do
+    it { should respond_to :authors }
+  end
+
+  describe '#from' do
+    it { should respond_to :from }
+  end
+
+  describe '#documentation' do
+    it { should respond_to :documentation }
+  end
 
   describe '#short_description' do
     subject do
@@ -44,9 +74,9 @@ describe Template do
       expect(subject.short_description).to eq 'w'*162 + '...'
     end
   end
-  describe '#updated_at' do
-    it 'exposes updated_at' do
-      expect(subject.updated_at).to eq 'January 13th, 2012 00:00'
+  describe '#last_updated_on' do
+    it 'exposes last_updated_on' do
+      expect(subject.last_updated_on).to eq 'January 13th, 2012 00:00'
     end
   end
 
@@ -69,33 +99,29 @@ describe Template do
     end
   end
 
-  describe '#icon' do
+  describe '#icon_src' do
     it 'exposes the icon url' do
-      expect(subject.icon).to eq 'http://iconwarehouse.io/myicon.png'
+      expect(subject.icon_src).to eq 'http://iconwarehouse.io/myicon.png'
     end
 
     context 'when no image exists' do
       subject { described_class.new(attributes.merge('icon' => nil)) }
 
       it 'returns the default image url if no image exists' do
-        expect(subject.icon).to eq '/assets/template_logos/default.png'
+        expect(subject.icon_src).to eq '/assets/template_logos/default.png'
       end
     end
   end
 
   describe '#as_json' do
     it 'provides the attributes to be converted to JSON' do
-      expected = {
-        'id' => 77,
-        'name' => 'boom/shaka',
-        'description' => 'this thing goes boom shaka laka',
+      expected = attributes.merge({
         'short_description' => 'this thing goes boom shaka laka',
-        'updated_at' => 'January 13th, 2012 00:00',
-        'image_count' => 4,
+        'last_updated_on' => 'January 13th, 2012 00:00',
         'image_count_label' => 'Images',
         'recommended_class' => 'not-recommended',
-        'icon' => 'http://iconwarehouse.io/myicon.png'
-      }
+        'icon_src' => 'http://iconwarehouse.io/myicon.png'
+      })
       expect(subject.as_json).to eq expected
     end
   end

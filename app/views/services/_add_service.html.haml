@@ -11,8 +11,8 @@
 
 #add-service-form
   .filterable-list
-    = form_for @search_form, url: search_path, method: :get, html: {class: 'search-form'} do |f|
-      = f.text_field :query, placeholder: 'enter your command / query', accesskey: 's', class: 'query-field'
+    = form_for @search_result_set, url: search_path, method: :get, html: {class: 'search-form'} do |f|
+      = f.text_field :q, placeholder: 'enter your command / query', accesskey: 's', class: 'query-field'
       = f.button 'Search', class: 'button-primary'
 
     %h3.search-title Images
