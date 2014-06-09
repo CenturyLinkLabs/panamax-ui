@@ -7,11 +7,11 @@
   .basic-info
     %h3= presenter.title
     %p= presenter.short_description
-    %p.microcopy= "Last Updated: #{presenter.updated_at}"
+    %p.microcopy= "Last Updated: #{presenter.last_updated_on}"
   .actions
     = form_tag applications_path do
       = hidden_field_tag 'application[template_id]', presenter.id
-      %button.button-positive{ data: { disable_with: 'Starting App...', tracking: { method: 'click', action: 'Create Application', category: 'Run Template', label: presenter.title }}} Run Template 
+      %button.button-positive{ data: { disable_with: 'Starting App...', tracking: { method: 'click', action: 'Create Application', category: 'Run Template', label: presenter.title }}} Run Template
   .community-data
     .image-count
       %em= presenter.image_count

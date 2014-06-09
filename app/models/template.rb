@@ -1,16 +1,24 @@
-class Template < BaseViewModel
-  include CollectionBuilder
+class Template < BaseResource
   include ActionView::Helpers::TextHelper
 
-  attr_reader :id, :description, :name, :image_count
-
-  def initialize(attributes)
-    super
-    @attributes = attributes
+  schema do
+    integer :id
+    string :description
+    date :updated_at
+    date :created_at
+    string :name
+    string :keywords
+    string :authors
+    string :from
+    string :documentation
+    integer :image_count
+    boolean :recommended
+    string :icon_src
+    string :icon
   end
 
-  def updated_at
-    @attributes['updated_at'].try(:to_time).try(:to_s, :long_ordinal)
+  def last_updated_on
+    updated_at.try(:to_time).try(:to_s, :long_ordinal)
   end
 
   def short_description
@@ -22,14 +30,14 @@ class Template < BaseViewModel
   end
 
   def recommended_class
-    @attributes['recommended'] ? 'recommended' : 'not-recommended'
+    recommended ? 'recommended' : 'not-recommended'
   end
 
-  def icon
-    if @attributes['icon'].blank?
+  def icon_src
+    if icon.blank?
       ActionController::Base.helpers.asset_path('template_logos/default.png')
     else
-      @attributes['icon']
+      icon
     end
   end
 
@@ -38,10 +46,10 @@ class Template < BaseViewModel
       except('attributes').
       merge({
         'short_description' => short_description,
-        'updated_at' => updated_at,
+        'last_updated_on' => last_updated_on,
         'image_count_label' => image_count_label,
         'recommended_class' => recommended_class,
-        'icon' => icon
+        'icon_src' => icon_src
       })
   end
 end

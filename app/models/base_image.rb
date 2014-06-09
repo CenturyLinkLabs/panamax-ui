@@ -1,20 +1,21 @@
-class Image < BaseViewModel
-  include CollectionBuilder
+class BaseImage < BaseResource
   include ActionView::Helpers::TextHelper
-
-  attr_reader :id, :description, :repository, :star_count, :location
 
   DOCKER_INDEX_BASE_URL = 'https://index.docker.io/'
 
-  def initialize(attributes)
-    super
-    @attributes = attributes
+  schema do
+    integer :id
+    string :description
+    string :repository
+    string :star_count
+    string :location
+    boolean :recommended
   end
 
   def status_label
-    if @attributes['recommended']
+    if recommended
       'Recommended'
-    elsif @attributes['is_trusted']
+    elsif is_trusted
       'Trusted'
     elsif local?
       'Local'
@@ -24,7 +25,7 @@ class Image < BaseViewModel
   end
 
   def recommended_class
-    @attributes['recommended'] ? 'recommended' : 'not-recommended'
+    recommended ? 'recommended' : 'not-recommended'
   end
 
   def docker_index_url
@@ -40,7 +41,6 @@ class Image < BaseViewModel
 
   def as_json(options={})
     super.
-      except('attributes').
       merge({
         'status_label' => status_label,
         'short_description' => short_description,
@@ -50,17 +50,10 @@ class Image < BaseViewModel
   end
 
   def local?
-    location == self.class.locations[:local]
+    false
   end
 
   def remote?
-    location == self.class.locations[:remote]
-  end
-
-  def self.locations
-    {
-      remote: :remote,
-      local: :local
-    }
+    false
   end
 end

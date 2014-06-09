@@ -1,9 +1,14 @@
 - content_for(:body_id, 'search_flow')
 
-%h2= "Results for #{@search_results.query}"
-- @search_results.local_images.each do |image|
-  = render 'image_row', {presenter: ImagePresenter.new(image)}
-- @search_results.remote_images.each do |image|
-  = render 'image_row', {presenter: ImagePresenter.new(image), remote: true}
-- @search_results.templates.each do |image|
-  = render 'template_row', {presenter: TemplatePresenter.new(image)}
+%h2= "Results for #{@search_result_set.q}"
+%h3.search-title Templates
+.template-results
+  - @search_result_set.templates.each do |template|
+    = render 'template_row', {presenter: TemplatePresenter.new(template)}
+%h3.search-title Images
+.local-image-results
+  - @search_result_set.local_images.each do |image|
+    = render 'image_row', {presenter: ImagePresenter.new(image)}
+.remote-image-results
+  - @search_result_set.remote_images.each do |image|
+    = render 'image_row', {presenter: ImagePresenter.new(image), remote: true}

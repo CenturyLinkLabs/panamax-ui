@@ -1,29 +1,14 @@
-class SearchResultSet < BaseViewModel
+class SearchResultSet < BaseResource
+  include ActiveResource::Singleton
 
-  attr_reader :query, :remote_images, :local_images, :templates
+  self.singleton_name = 'search'
 
-  def initialize(attributes)
-    super
-    @query = attributes['q']
+  has_many :remote_images
+  has_many :local_images
+  has_many :templates
+
+  schema do
+    string :q
   end
 
-  def self.build_from_response(response)
-    attributes = JSON.parse(response)
-    build_with_sub_resources(attributes)
-  end
-
-  private
-
-  def self.build_with_sub_resources(attributes)
-    Array(attributes['remote_images']).each do |image|
-      image['location'] = Image.locations[:remote]
-    end
-    attributes['remote_images'] = Image.instantiate_collection(attributes['remote_images'])
-    Array(attributes['local_images']).each do |image|
-      image['location'] = Image.locations[:local]
-    end
-    attributes['local_images'] = Image.instantiate_collection(attributes['local_images'])
-    attributes['templates'] = Template.instantiate_collection(attributes['templates'])
-    self.new(attributes)
-  end
 end

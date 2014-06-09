@@ -25,9 +25,9 @@ describe JsonTemplatePresenter do
     end
   end
 
-  describe '#updated_at' do
+  describe '#last_updated_on' do
     it 'exposes the handlebar template tag for updated at' do
-      expect(subject.updated_at).to eq '{{updated_at}}'
+      expect(subject.last_updated_on).to eq '{{last_updated_on}}'
     end
   end
 
@@ -51,7 +51,7 @@ describe JsonTemplatePresenter do
 
   describe '#icon_src' do
     it 'exposes the handlebar template tag for icon src' do
-      expect(subject.icon_src).to eq '{{icon}}'
+      expect(subject.icon_src).to eq '{{icon_src}}'
     end
   end
 end
