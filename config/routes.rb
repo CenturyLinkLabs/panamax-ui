@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     get 'load_tags', on: :collection
   end
 
-  resources :templates, only: [:new]
+  resources :templates, only: [:new, :create]
 
   resource :user, only: [:update]
 

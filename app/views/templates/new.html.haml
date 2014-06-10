@@ -9,7 +9,8 @@
     %dt Email Address:
     %dd= @user.email
 
-  = form_for @template_form, url: '/' do |f|
+  = form_for @template_form, url: templates_path do |f|
+    = render 'shared/errors', errors: f.object.errors
     %h3 Select a repository for your application template
     = f.select :repos, options_for_select(@user.repositories), {}, class: 'fancy'
 
@@ -19,6 +20,7 @@
       %dt= f.label :name, 'Template Name'
       %dd= f.text_field :name, placeholder: 'Give your template a name'
 
+    = button_tag 'Publish Your Template', class: 'button-positive'
 
 - else
   %h3 First, you'll need to create a github token

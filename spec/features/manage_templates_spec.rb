@@ -6,7 +6,7 @@ describe 'managing a template' do
 
     context 'from a running application' do
 
-      it 'creates a template' do
+      it 'allows template creation' do
         visit '/applications/2'
 
         click_on 'Save as Template'
@@ -19,6 +19,12 @@ describe 'managing a template' do
         expect(page).to have_content 'Email Address: testuser@example.com'
 
         expect(page).to have_select 'template_form_repos', options: ['ctlc/docker-mysql', 'ctlc/docker-apache']
+
+        fill_in 'Template Name', with: 'My Template'
+
+        click_on 'Publish Your Template'
+
+        expect(page).to have_content 'Template successfully created.'
       end
 
       context 'when user does not have a github access token' do
