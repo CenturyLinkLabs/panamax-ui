@@ -33,14 +33,12 @@
     %label{for: 'query'} Command
     %input#search_form_query{type: 'text', name: 'query'}
 
-  %p.example-searches
-    %strong
-      Examples:
-    %a{data: {query: "wordpress"}} wordpress,
-    %a{data: {query: "apache"}} apache,
-    %a{data: {query: "rails"}} rails,
-    %a{data: {query: "ubuntu"}} ubuntu,
-    %a{data: {query: "java"}} java
+  %section.example-searches
+    %a.example.wordpress{data: {query: "wordpress"}} wordpress,
+    %a.example.apache{data: {query: "apache"}} apache,
+    %a.example.wordpress{data: {query: "rails"}} rails,
+    %a.example.ubuntu{data: {query: "ubuntu"}} ubuntu,
+    %a.example.java{data: {query: "java"}} java
 
   %h3.search-title Templates
   .template-results

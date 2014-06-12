@@ -17,14 +17,13 @@
     = f.text_field :query, placeholder: 'enter your command / query', accesskey: 's'
     = f.button 'Search', class: 'button-primary'
 
-  %p.example-searches
-    %strong
-      Examples:
-    %a{data: {query: 'wordpress'}} wordpress
-    %a{data: {query: 'apache'}} apache
-    %a{data: {query: 'rails'}} rails
-    %a{data: {query: 'ubuntu'}} ubuntu
-    %a{data: {query: 'java'}} java
+  %section.example-searches
+    %h3
+      Or, try one of these example searches:
+    %a.example.wordpress{data: {query: 'wordpress'}} Wordpress
+    %a.example.drupal{data: {query: 'drupal'}} Drupal
+    %a.example.rails{data: {query: 'rails'}} Rails
+    %a.example.ubuntu{data: {query: 'ubuntu'}} Ubuntu
 
   %h3.search-title Templates
   .template-results

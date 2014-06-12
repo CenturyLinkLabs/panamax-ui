@@ -30,4 +30,10 @@ describe('$.fn.searchQueryPopulator', function() {
     $('a[data-query="java"]').click();
     expect($.fn.submit).toHaveBeenCalled();
   });
+
+  it('hides the example section', function() {
+    expect($('.example-searches').css('display')).toEqual('block');
+    $('a[data-query="java"]').click();
+    expect($('.example-searches').css('display')).toEqual('none');
+  });
 });

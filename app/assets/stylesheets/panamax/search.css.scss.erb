@@ -4,6 +4,8 @@
 @import 'panamax/buttons';
 
 .search-form {
+  margin-bottom: 20px;
+
   input#search_form_query {
     @include border-box;
     width: 745px;
@@ -19,8 +21,72 @@
 }
 
 .example-searches {
-  a {
-    @extend .button-minor;
+  padding: 1em 0;
+  overflow: auto;
+
+  h3 {
+    color: $dark_grey;
+    padding-bottom: 16px;
+    border-bottom: 1px solid $medium_grey;
+    margin-bottom: 16px;
+  }
+
+  a.example {
+    display: block;
+    float: left;
+    position: relative;
+    width: 142px;
+    height: 80px;
+    font-size: 0.8em;
+    line-height: 80px;
+    color: $dark_grey;
+    background-color: $light_grey;
+    padding-left: 80px;
+    border-radius: 3px;
+    margin: 0 24px 24px 0;
+
+    &:nth-of-type(4) {
+      margin-right: 0;
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      width: 50px;
+      height: 40px;
+      background-repeat: no-repeat;
+      background-position: left top;
+      border-right: 1px solid $medium_grey;
+    }
+
+    &:hover {
+      text-decoration: underline;
+      color: white;
+      background-color: $sky_blue;
+
+      &:before {
+        background-position: left bottom;
+        border-right: 1px solid white;
+      }
+    }
+  }
+
+  a.example.wordpress:before {
+    background-image: asset-url('service_icons/icon_service_wordpress.png');
+  }
+
+  a.example.drupal:before {
+    background-image: asset-url('service_icons/icon_service_drupal.png');
+  }
+
+  a.example.rails:before {
+    background-image: asset-url('service_icons/icon_service_rails.png');
+  }
+
+  a.example.ubuntu:before {
+    background-image: asset-url('service_icons/icon_service_ubuntu.png');
   }
 }
 
