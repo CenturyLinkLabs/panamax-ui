@@ -6,7 +6,7 @@ deployment:
   QA:
     branch: master
     commands:
-      - ./bin/deploy_qa.sh
+      - ./bin/deploy_qa.sh: {timeout: 300}
   #Feature_Branch:
     #branch: /feature_.*/
     #commands:
