@@ -1,0 +1,17 @@
+%script#host_health_template{type: 'text/x-handlebars-template'}
+  %section.details
+    %ul
+      %li.cpu
+        .health
+        %span
+          Load Average:
+        {{cpu}}
+      %li.memory
+        .health
+        %span
+          Memory Usage:
+        {{memory}}
+    %footer
+      Last Updated: {{time_stamp}}
+
+%section.health

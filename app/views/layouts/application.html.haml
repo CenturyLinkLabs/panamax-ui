@@ -6,6 +6,8 @@
     = javascript_include_tag 'application'
     = csrf_meta_tags
     = favicon_link_tag 'http://www.centurylinklabs.com/images/favicon.ico'
+    %script#host_health_template{type: 'text/x-handlebars-template'}
+      = render '/shared/host_health'
   %body{id: yield(:body_id)}
     :javascript
       var _kiq = _kiq || [];
@@ -22,6 +24,9 @@
         %ul
           %li.search-link= link_to 'Search', new_search_path
           %li.manage-link= link_to 'Manage', applications_path
+    %aside.host
+      %span CoreOS Host:
+      .health
     %cite.built-by
       %span Built by
       %h2 Century Link
