@@ -19,6 +19,7 @@
     dt, dd {
       float: left;
       line-height: 30px;
+      margin-bottom: 15px;
     }
     dt {
       clear: left;
@@ -38,6 +39,10 @@
     textarea {
       width: 460px;
     }
+  }
+
+  textarea {
+    height: 140px;
   }
 
   form.update-github-token {

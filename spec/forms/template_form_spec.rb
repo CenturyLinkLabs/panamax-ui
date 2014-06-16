@@ -4,7 +4,8 @@ describe TemplateForm do
 
   let(:attributes) do
     {
-      name: 'My template'
+      name: 'My template',
+      description: 'generic wordpress installation'
     }
   end
 
