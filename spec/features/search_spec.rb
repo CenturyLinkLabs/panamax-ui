@@ -10,7 +10,7 @@ describe "searching for templates and images" do
       expect(find_field('search_result_set_q').value).to eq "wordpress"
       expect(page).to have_content "Or, try one of these example searches"
 
-      within 'form' do
+      within 'form.search-form' do
         click_on "Search"
       end
 
