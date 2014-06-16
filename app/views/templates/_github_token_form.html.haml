@@ -1,0 +1,10 @@
+%h3 First, you'll need to create a github token
+%p
+  Visit
+  = link_to 'Generate a Github access token', 'https://github.com/settings/tokens/new?scope=repo,user:email', target: '_blank'
+
+= form_for user, url: user_path, method: :put, html: { class: 'update-github-token' } do |f|
+  %strong
+    = f.label :github_access_token, 'Github Token'
+  = f.text_field :github_access_token, placeholder: 'Paste your GitHub token here'
+  = f.button 'Save Token', class: 'button-positive'
