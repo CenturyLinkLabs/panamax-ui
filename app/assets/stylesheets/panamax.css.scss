@@ -102,6 +102,10 @@ aside.host {
   float: left;
   margin-left: 30px;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   span {
     float: left;
     height: 20px;
@@ -119,10 +123,6 @@ aside.host {
     height: 12px;
     border-radius: 4px;
     background: darken($ctl_light_green, 10%);
-
-    &:hover {
-      cursor: pointer;
-    }
 
     section.details {
       box-sizing: border-box;

@@ -6,7 +6,7 @@
     base.data = {
       cpu: 0,
       memory: 0,
-      time_stamp: 'now',
+      time_stamp: 'NA',
       cpu_percent: 0,
       mem_percent: 0
     };
@@ -17,6 +17,7 @@
       goodColor: '#74A432',
       warningColor: '#F5D04C',
       dangerColor: '#D90000',
+      healthSelector: 'aside.host > .health',
       cpuSelector: '.cpu .health',
       memSelector: '.memory .health',
       detailTemplate: Handlebars.compile($('#host_health_template').html())
@@ -29,35 +30,31 @@
     };
 
     base.bindEvents = function() {
-      base.$el.click(base.toggleDetails);
-    };
-
-    base.toggleDetails = function(e) {
-      if (base.$el.hasClass('showing')) {
-        base.hideHealthDetails();
-      } else {
-        base.showHealthDetails();
-      }
+      base.$el.on('mouseenter', base.showHealthDetails);
+      base.$el.on('mouseleave', base.hideHealthDetails);
     };
 
     base.showHealthDetails = function() {
       var details = $(base.options.detailTemplate(base.data));
-      base.$el.addClass('showing');
-      base.$el.append(details);
 
+      base.$el.addClass('showing');
+      $(base.options.healthSelector).append(details);
       base.healthColors();
     };
 
     base.hideHealthDetails = function() {
       base.$el.removeClass('showing');
-      base.$el.empty();
+      $(base.options.healthSelector).empty();
     };
 
     base.initiateRequest = function() {
       var oneMegabyte = 1024 * 1024;
-      $.ajax({
-        url: '/metrics/overall'
 
+      $.ajax({
+        url: '/metrics/overall',
+        headers: {
+          'Accept': 'application/json'
+        }
       }).success(function(response){
         base.data.cpu = response.overall_cpu.usage;
         base.data.memory = (response.overall_mem.usage / oneMegabyte).toFixed(2) + ' MB';
@@ -76,7 +73,7 @@
       base.data.cpu_percent = cpuPercentage;
       base.data.mem_percent = memoryPercentage;
       if (base.$el.hasClass('showing')) {
-        base.$el.empty().append($(base.options.detailTemplate(base.data)));
+        $(base.options.healthSelector).empty().append($(base.options.detailTemplate(base.data)));
       }
       base.healthColors();
     };
@@ -86,7 +83,7 @@
           memoryPercentage = base.data.mem_percent;
 
       // overall health is max of cpu and memory
-      base.$el.css('background-color', base.colorLevel(Math.max(cpuPercentage, memoryPercentage)));
+      $(base.options.healthSelector).css('background-color', base.colorLevel(Math.max(cpuPercentage, memoryPercentage)));
       base.$el.find(base.options.cpuSelector).css('background-color', base.colorLevel(cpuPercentage));
       base.$el.find(base.options.memSelector).css('background-color', base.colorLevel(memoryPercentage));
     };

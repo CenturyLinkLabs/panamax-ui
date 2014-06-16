@@ -37,18 +37,20 @@ describe('$.fn.hostHealth', function() {
     });
   });
 
-  describe('clicking on root element', function() {
+  describe('hovering on root element', function() {
     it('adds the "showing" class', function() {
+      var event = $.Event('mouseenter');
       subject.init();
-      $('.health').click();
+      $('.health').trigger(event);
       expect($('.health').hasClass('showing')).toBeTruthy
     });
 
-    it('removes "showing" if element has class', function() {
-      var $elem = $('.health');
+    it('removes "showing" when hover off', function() {
+      var $elem = $('.health'),
+          event = $.Event('mouseleave');
       subject.init();
       $elem.addClass('showing');
-      $elem.click();
+      $elem.trigger(event);
       expect($elem.hasClass('showing')).toBeFalsy
     });
 
@@ -72,13 +74,15 @@ describe('$.fn.hostHealth', function() {
     });
 
     it('sets color level of the cpu details', function() {
-      $('.health').click();
+      var event = $.Event('mouseenter');
+      $('.health').trigger(event);
       expect(subject.colorLevel).toHaveBeenCalled();
       expect($('.cpu .health').css('background-color')).toEqual('rgb(255, 255, 255)');
     });
 
     it('sets color level of the memory details', function() {
-      $('.health').click();
+      var event = $.Event('mouseenter');
+      $('.health').trigger(event);
       expect(subject.colorLevel).toHaveBeenCalled();
       expect($('.memory .health').css('background-color')).toEqual('rgb(255, 255, 255)');
     });
