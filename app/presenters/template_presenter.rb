@@ -6,19 +6,15 @@ class TemplatePresenter
   delegate :id, :description, :last_updated_on, :short_description,
            :image_count, :image_count_label, :recommended_class,
            :icon_src,
-           to: :template
+           to: :@template
 
   def title
-    template.name
+    @template.name
   end
 
   def status_label
     'Template'
   end
-
-  private
-
-  attr_reader :template
 end
 
 

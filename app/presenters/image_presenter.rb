@@ -5,15 +5,11 @@ class ImagePresenter
 
   delegate :description, :status_label, :short_description,
            :star_count, :docker_index_url, :recommended_class,
-           to: :image
+           to: :@image
 
   def title
     @image.repository
   end
-
-  private
-
-  attr_reader :image
 end
 
 
