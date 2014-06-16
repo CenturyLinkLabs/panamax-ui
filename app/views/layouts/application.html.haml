@@ -30,3 +30,28 @@
         - flash.each do |flash_type, notice|
           %div{ class: "notice-#{flash_type}" }= notice
       = yield
+    %footer
+      .content
+        #email_newsletter
+          %h4 Sign Up for Our Newsletter
+          %p Get all the latest news, tips & tricks for Panamax, Docker, etc.
+          %form{ action: '#', method: 'get', name: 'input' }
+            %input.email-form{ name: 'user', type: 'text', value: 'Email Address' }/
+            %input.button-secondary{ type: 'submit', value: 'Submit' }/
+        %p
+          Panamax is an open-source product from CenturyLink Labs.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          In sodales metus gravida tortor adipiscing vehicula.
+        %ul
+          %li
+            %a{ href: 'http://www.centurylinklabs.com/' } CenturyLink Labs Blog
+          %li.github-link
+            %a{ href: 'https://github.com/CenturyLinkLabs', target: '_blank', title: 'Fork Us on GitHub' } Fork Us on GitHub
+          %li.twitter-link
+            %a{ href: 'https://twitter.com/centurylinklabs', target: '_blank', title: 'Follow Us on Twitter' } Follow Us on Twitter
+          %li
+            %a{ href: '#' } Terms & Conditions
+          %li
+            %a{ href: '#' } Privacy Policy
+      .ctl-copyright
+        %p.microcopy © 2014 Century Link Labs

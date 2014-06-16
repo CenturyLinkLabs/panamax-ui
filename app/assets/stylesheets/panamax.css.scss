@@ -235,3 +235,84 @@ h1.breadcrumbs {
 
   }
 }
+
+footer {
+
+  .content {
+    background: $light_grey;
+    padding: 20px;
+    overflow: auto;
+  }
+
+  h4 {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .content > p:first-of-type {
+    margin-bottom: 20px;
+    width: 60%;
+  }
+
+
+  ul li {
+    display: inline-block;
+
+    a {
+      display: inline-block;
+      font-size: 14px;
+      margin: 0px 10px 0px 0px;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    &.github-link a {
+      @extend .icon-github-large;
+    }
+
+    &.twitter-link {
+      a {
+        @extend .icon-twitter-large;
+      }
+
+      &:after {
+        content: '|';
+        font-weight: 100;
+        color: $medium_grey;
+        margin-right: 5px;
+      }
+    }
+
+    &.github-link a,
+    &.twitter-link a {
+      margin-bottom: -5px;
+      width: 20px;
+      @include hide-text;
+      @include icon-light-grey;
+
+      &:hover {
+        @include icon-grey;
+      }
+    }
+  }
+
+  #email_newsletter {
+    width: 35%;
+    float: right;
+  }
+
+  .ctl-copyright {
+    min-height: 70px;
+    padding: 20px 20px 0px 40px;
+    background: image-url('ctl_base_ui/ctl_logo_base.svg') no-repeat 20px 20px;
+    @include background-size(140px, 30px);
+
+    .microcopy {
+      margin: 6px 0px 0px 140px;
+      font-size: 12px;
+    }
+  }
+}
