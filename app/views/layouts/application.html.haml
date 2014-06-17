@@ -26,9 +26,7 @@
       %span Built by
       %h2 Century Link
     %main
-      - unless flash.empty?
-        - flash.each do |flash_type, notice|
-          %div{ class: "notice-#{flash_type}" }= notice
+      = render 'shared/notifications'
       = yield
     %footer
       .content

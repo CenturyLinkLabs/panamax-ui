@@ -4,7 +4,7 @@
       %a.dismiss
       %strong
         = flash[key]
-      - if key == 'success' && @app.documentation_to_html.present?
+      - if key == 'success' && @app && @app.documentation_to_html.present?
         %br
         Click
         %a{href:"#", class: "instructions-dialog", "data-doc-url" => documentation_application_url} here
