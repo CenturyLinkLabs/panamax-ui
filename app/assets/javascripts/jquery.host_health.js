@@ -51,7 +51,7 @@
       var oneMegabyte = 1024 * 1024;
 
       $.ajax({
-        url: '/metrics/overall',
+        url: '/host_health',
         headers: {
           'Accept': 'application/json'
         }
