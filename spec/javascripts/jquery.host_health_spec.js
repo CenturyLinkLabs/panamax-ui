@@ -22,7 +22,7 @@ describe('$.fn.hostHealth', function() {
     it('queries for the overall metrics', function() {
       subject.init();
       var request = mostRecentAjaxRequest();
-      expect(request.url).toBe('/metrics/overall');
+      expect(request.url).toBe('/host_health');
     });
 
     it('initiates setTimeout', function() {
