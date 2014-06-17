@@ -16,20 +16,20 @@ describe ServicesService do
     it 'posts a json representation of the params' do
       headers_hash = {}
       fake_request.stub(:headers).and_return(headers_hash)
-      expect(headers_hash).to receive(:[]=).with("Content-Type", "application/json")
+      expect(headers_hash).to receive(:[]=).with('Content-Type', 'application/json')
       expect(fake_connection).to receive(:post).and_yield(fake_request).and_return(fake_response)
       expect(fake_request).to receive(:url).with('/apps/77/services/')
       expect(fake_request).to receive(:body=).with("{\"application_id\":\"77\"}")
 
-      subject.create({application_id: '77'})
+      subject.create(application_id: '77')
     end
 
     context 'when successful' do
       let(:fake_faraday_response) do
-        double(:fake_faraday_response, {
-            success?: true,
-            body: '{}'
-        })
+        double(:fake_faraday_response,
+          success?: true,
+          body: '{}'
+        )
       end
 
       before do
@@ -37,12 +37,12 @@ describe ServicesService do
       end
 
       it 'returns a valid service object' do
-        service = subject.create({application_id: '77'})
+        service = subject.create(application_id: '77')
         expect(service.valid?).to be_true
       end
 
       it 'includes the service in the response object' do
-        service = subject.create({application_id: '77'})
+        service = subject.create(application_id: '77')
         expect(service).to eq fake_service
       end
     end
@@ -82,12 +82,12 @@ describe ServicesService do
   describe '#destroy' do
     it 'issues a delete request to the proper URL' do
       expect(fake_connection).to receive(:delete).with('/apps/1/services/1').and_return(fake_response)
-      subject.destroy(1,1)
+      subject.destroy(1, 1)
     end
 
     it 'returns an array of the response body and response status' do
       expect(fake_connection).to receive(:delete).with('/apps/1/services/1').and_return(fake_response)
-      expect(subject.destroy(1,1)).to match_array [nil, 200]
+      expect(subject.destroy(1, 1)).to match_array [nil, 200]
     end
   end
 end

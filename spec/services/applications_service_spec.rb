@@ -5,7 +5,7 @@ describe ApplicationsService do
   let(:fake_request) { double(:fake_request) }
   let(:fake_app) { double(:fake_app, valid?: true, id: 77) }
   let(:fake_response) { double(:fake_response, body: nil, status: 200) }
-  let(:fake_apps_response) { double(:fake_apps_response, body: '[]', status: 200)}
+  let(:fake_apps_response) { double(:fake_apps_response, body: '[]', status: 200) }
 
   subject { ApplicationsService.new(fake_connection) }
 
@@ -68,20 +68,20 @@ describe ApplicationsService do
     it 'posts a json representation of the params' do
       headers_hash = {}
       fake_request.stub(:headers).and_return(headers_hash)
-      expect(headers_hash).to receive(:[]=).with("Content-Type", "application/json")
+      expect(headers_hash).to receive(:[]=).with('Content-Type', 'application/json')
       expect(fake_connection).to receive(:post).and_yield(fake_request).and_return(fake_response)
       expect(fake_request).to receive(:url).with('/apps')
       expect(fake_request).to receive(:body=).with("{\"image\":\"some/image\"}")
 
-      subject.create({image: 'some/image'})
+      subject.create(image: 'some/image')
     end
 
     context 'when successful' do
       let(:fake_faraday_response) do
-        double(:fake_faraday_response, {
+        double(:fake_faraday_response,
           success?: true,
           body: '{}'
-        })
+        )
       end
 
       before do
@@ -89,12 +89,12 @@ describe ApplicationsService do
       end
 
       it 'returns a valid app object' do
-        app = subject.create({image: 'some/image'})
+        app = subject.create(image: 'some/image')
         expect(app.valid?).to be_true
       end
 
       it 'includes the application in the response object' do
-        app = subject.create({image: 'some/image'})
+        app = subject.create(image: 'some/image')
         expect(app).to eq fake_app
       end
     end

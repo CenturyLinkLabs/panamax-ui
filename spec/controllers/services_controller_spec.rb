@@ -5,8 +5,8 @@ describe ServicesController do
   let(:fake_services_service) { double(:fake_services_service) }
   let(:valid_app) { double(:valid_app) }
   let(:valid_service) { double(:valid_service, id: 3, categories: []) }
-  let(:fake_create_response) { double(:fake_create_response, body: 'test', status: 200)}
-  let(:fake_delete_response) { double(:fake_delete_response, body: 'test', status: 200)}
+  let(:fake_create_response) { double(:fake_create_response, body: 'test', status: 200) }
+  let(:fake_delete_response) { double(:fake_delete_response, body: 'test', status: 200) }
 
   before do
     ApplicationsService.stub(:new).and_return(fake_applications_service)
@@ -20,22 +20,22 @@ describe ServicesController do
   describe 'GET #show' do
     it 'uses the application service to retrieve the application' do
       expect(fake_applications_service).to receive(:find_by_id).with('77')
-      get :show, { application_id: 77, id: 89 }
+      get :show, application_id: 77, id: 89
     end
 
     it 'retrieves the service' do
-      expect(Service).to receive(:find).with('3', {params: {app_id: '2'}})
+      expect(Service).to receive(:find).with('3', params: { app_id: '2' })
 
-      get :show, { application_id: 2, id: 3 }
+      get :show, application_id: 2, id: 3
     end
 
     it 'assigns app' do
-      get :show, { application_id: 77, id: 89 }
+      get :show, application_id: 77, id: 89
       expect(assigns(:app)).to eq valid_app
     end
 
     it 'assigns service' do
-      get :show, { application_id: 77, id: 89 }
+      get :show, application_id: 77, id: 89
       expect(assigns(:service)).to eq valid_service
     end
   end
@@ -43,9 +43,9 @@ describe ServicesController do
   describe 'category param builder' do
 
     context 'in Uncategorized or Services category' do
-      let(:application_params){
-        { :category => 'null' }
-      }
+      let(:application_params) do
+        { category: 'null' }
+      end
 
       it 'does not assign a category' do
         expect(subject.build_category_param(application_params)).to eq nil
@@ -53,12 +53,12 @@ describe ServicesController do
     end
 
     context 'in a defined Category' do
-      let(:application_params){
-        { :category => 77 }
-      }
+      let(:application_params) do
+        { category: 77 }
+      end
 
       it 'puts category information into an array with an id hash' do
-        expect(subject.build_category_param(application_params)).to eq [{:id => 77}]
+        expect(subject.build_category_param(application_params)).to eq [{ id: 77 }]
       end
     end
   end
@@ -66,21 +66,21 @@ describe ServicesController do
   describe 'POST #create' do
     let(:dummy_category) { double(:category) }
     let(:dummy_service) { Service.new(name: 'test', from: 'Image: test') }
-    let(:service_form_params){
+    let(:service_form_params) do
       {
         'application' =>
-            {
-                'name' =>'Rails',
-                'category' =>'1'
-            },
-        'name'=>'some image',
+          {
+            'name' => 'Rails',
+            'category' => '1'
+          },
+        'name' => 'some image',
         'from' => 'some image',
         'application_id' => '77',
         'controller' => 'services',
         'action' => 'create',
-        'categories' => [{'id'=>'1'}]
+        'categories' => [{ 'id' => '1' }]
       }
-    }
+    end
 
     before do
       Category.stub(:find).and_return(dummy_category)
@@ -89,7 +89,7 @@ describe ServicesController do
 
     it 'creates the service' do
       expect_any_instance_of(Service).to receive(:save)
-      post :create, service_form_params, {application_id: '77'}
+      post :create, service_form_params, application_id: '77'
     end
 
     it 'redirected to application management view when format is html' do
@@ -98,15 +98,19 @@ describe ServicesController do
     end
 
     it 'renders json response when format is json' do
-      post :create, name: 'test', from: 'test', application_id: '77',
-                    application: { category: 'null' }, format: :json 
+      post :create,
+        name: 'test',
+        from: 'test',
+        application_id: '77',
+        application: { category: 'null' },
+        format: :json
       expect(response.status).to eq 200
       expect(response.body).to eql dummy_service.to_json
     end
   end
 
   describe 'PATCH #update' do
-    let(:attributes) {
+    let(:attributes) do
       {
         'name' => 'DB_1',
         'links_attributes' => {
@@ -116,7 +120,7 @@ describe ServicesController do
           }
         }
       }
-    }
+    end
 
     before do
       valid_service.stub(:write_attributes)
@@ -130,16 +134,16 @@ describe ServicesController do
 
     it 'writes the attributes' do
       expect(valid_service).to receive(:write_attributes).with(attributes)
-      patch :update, { application_id: 2, id: 3, service: attributes }
+      patch :update, application_id: 2, id: 3, service: attributes
     end
 
     it 'saves the record' do
       expect(valid_service).to receive(:save)
-      patch :update, { application_id: 2, id: 3, service: attributes }
+      patch :update, application_id: 2, id: 3, service: attributes
     end
 
     it 'redirects to the show page' do
-      patch :update, { application_id: 2, id: 3, service: attributes }
+      patch :update, application_id: 2, id: 3, service: attributes
       expect(response).to redirect_to application_service_path(2, 3)
     end
 
@@ -164,17 +168,17 @@ describe ServicesController do
 
   describe '#destroy' do
     it 'uses the services service to destroy the service' do
-      expect(fake_services_service).to receive(:destroy).with('77','89')
-      delete :destroy, { application_id: 77, id: 89 }
+      expect(fake_services_service).to receive(:destroy).with('77', '89')
+      delete :destroy, application_id: 77, id: 89
     end
 
     it 'redirects to application management view when format is html' do
-      delete :destroy, { application_id: 77, id: 89 }
+      delete :destroy, application_id: 77, id: 89
       expect(response).to redirect_to application_path 77
     end
 
     it 'renders json response when format is json' do
-      delete :destroy, { application_id: 77, id: 89, format: :json}
+      delete :destroy, application_id: 77, id: 89, format: :json
       expect(response.status).to eq 200
       expect(response.body).to eql fake_delete_response.to_json
     end
@@ -197,7 +201,7 @@ describe ServicesController do
 
       it 'retrieves the journal from the API with a nil cursor' do
         expect(valid_service).to receive(:get).with(:journal, cursor: nil)
-        get :journal, { application_id: 77, id: 89, format: :json}
+        get :journal, application_id: 77, id: 89, format: :json
       end
     end
 
@@ -207,12 +211,12 @@ describe ServicesController do
 
       it 'retrieves the journal from the API with a cursor' do
         expect(valid_service).to receive(:get).with(:journal, cursor: cursor)
-        get :journal, { application_id: 77, id: 89, cursor: cursor, format: :json}
+        get :journal, application_id: 77, id: 89, cursor: cursor, format: :json
       end
     end
 
     it 'returns journal response in JSON format' do
-      get :journal, { application_id: 77, id: 89, format: :json}
+      get :journal, application_id: 77, id: 89, format: :json
       expect(response.status).to eq 200
       expect(response.body).to eql journal_lines.to_json
     end

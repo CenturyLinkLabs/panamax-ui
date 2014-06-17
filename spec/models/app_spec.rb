@@ -6,27 +6,27 @@ describe App do
       'name' => 'App Daddy',
       'id' => 77,
       'categories' => [
-          {'id' => '1', 'name' => 'foo'},
-          {'id' => '2', 'name' => 'baz'},
-          {'id' => '3', 'name' => 'bar'}
+        { 'id' => '1', 'name' => 'foo' },
+        { 'id' => '2', 'name' => 'baz' },
+        { 'id' => '3', 'name' => 'bar' }
       ],
       'from' => 'nowhere',
       'documentation' => '# Title\r\nsome markdown doc',
       'services' => [
-          {'id' => '3', 'name' => 'blah', 'categories' => [ {'name' => 'foo', 'id' => 3}, {'name' => 'baz', 'id' => 3}]},
-          {'id' => '4', 'name' => 'barf', 'categories' => [ {'name' => 'foo', 'id' => 2} ]},
-          {'id' => '5', 'name' => 'bark', 'categories' => [ {'name' => 'bar', 'id' => 1} ]},
-          {'id' => '6', 'name' => 'bard', 'categories' => []}
+        { 'id' => '3', 'name' => 'blah', 'categories' =>
+          [{ 'name' => 'foo', 'id' => 3 }, { 'name' => 'baz', 'id' => 3 }] },
+        { 'id' => '4', 'name' => 'barf', 'categories' => [{ 'name' => 'foo', 'id' => 2 }] },
+        { 'id' => '5', 'name' => 'bark', 'categories' => [{ 'name' => 'bar', 'id' => 1 }] },
+        { 'id' => '6', 'name' => 'bard', 'categories' => [] }
       ]
     }
   end
 
-  it_behaves_like 'a view model', {
+  it_behaves_like 'a view model',
     'name' => 'App Daddy',
     'id' => 77,
     'categories' => [],
     'services' => []
-  }
 
   let(:fake_json_response) { attributes.to_json }
 
@@ -41,13 +41,13 @@ describe App do
 
     it 'instantiates a Service for each nested service' do
       result = described_class.build_from_response(fake_json_response)
-      expect(result.services.map(&:name)).to match_array(['blah', 'barf', 'bark', 'bard'])
+      expect(result.services.map(&:name)).to match_array(%w(blah barf bark bard))
       expect(result.services.map(&:class).uniq).to match_array([Service])
     end
 
     it 'instantiates an AppCategory for each nested category' do
       result = described_class.build_from_response(fake_json_response)
-      expect(result.categories.map(&:name)).to match_array(['foo','baz','bar'])
+      expect(result.categories.map(&:name)).to match_array(%w(foo baz bar))
     end
   end
 
@@ -59,7 +59,7 @@ describe App do
     end
 
     context 'when errors are present' do
-      subject { described_class.new('errors' => {'base' => ['you messed up']}) }
+      subject { described_class.new('errors' => { 'base' => ['you messed up'] }) }
 
       it 'is not valid' do
         expect(subject.valid?).to be_false
@@ -99,7 +99,7 @@ describe App do
     end
 
     it 'returns a hash with keys matching the names of services with port bindings' do
-      expect(subject.host_ports.keys).to match_array ["blah"]
+      expect(subject.host_ports.keys).to match_array ['blah']
     end
 
     it 'returns a hash with values containing an array of bound host ports for services with port bindings' do
@@ -110,7 +110,7 @@ describe App do
   describe '#running_services' do
     it 'returns an array of running services' do
       app = described_class.build_from_response(fake_json_response)
-      expect(app.running_services.map(&:id)).to match_array ["3"]
+      expect(app.running_services.map(&:id)).to match_array ['3']
     end
   end
 
@@ -132,7 +132,7 @@ describe App do
       it 'does not include Uncategorized service group if there are only categorized services' do
         subject.services.delete_if { |service| service.categories.empty? }
         groups = subject.categorized_services
-        expect(groups.keys).to_not include({:id => nil, :name => 'Uncategorized'})
+        expect(groups.keys).to_not include(id: nil, name: 'Uncategorized')
       end
 
       it 'groups all services under a "Services" group if there are no categories' do
@@ -167,7 +167,7 @@ describe App do
     describe '#ordered_services' do
       it 'returns an array of services in minimum category order' do
         services = subject.ordered_services
-        expect(services.map { |s| s.name }).to match_array(['bark', 'barf', 'blah', 'bard'])
+        expect(services.map { |s| s.name }).to match_array(%w(bark barf blah bard))
       end
     end
   end

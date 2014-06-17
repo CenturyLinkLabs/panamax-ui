@@ -64,14 +64,14 @@ describe Template do
 
   describe '#short_description' do
     subject do
-      long_description_attributes = attributes.merge({
-        'description' => 'w'*300
-      })
+      long_description_attributes = attributes.merge(
+        'description' => 'w' * 300
+      )
       Template.new(long_description_attributes)
     end
 
     it 'truncates the description to 165 charectors' do
-      expect(subject.short_description).to eq 'w'*162 + '...'
+      expect(subject.short_description).to eq 'w' * 162 + '...'
     end
   end
   describe '#last_updated_on' do
@@ -87,9 +87,7 @@ describe Template do
 
     context 'with just a single image' do
       subject do
-        single_image_attributes = attributes.merge({
-          'image_count' => 1
-        })
+        single_image_attributes = attributes.merge('image_count' => 1)
         Template.new(single_image_attributes)
       end
 
@@ -115,13 +113,13 @@ describe Template do
 
   describe '#as_json' do
     it 'provides the attributes to be converted to JSON' do
-      expected = attributes.merge({
+      expected = attributes.merge(
         'short_description' => 'this thing goes boom shaka laka',
         'last_updated_on' => 'January 13th, 2012 00:00',
         'image_count_label' => 'Images',
         'recommended_class' => 'not-recommended',
         'icon_src' => 'http://iconwarehouse.io/myicon.png'
-      })
+      )
       expect(subject.as_json).to eq expected
     end
   end

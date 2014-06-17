@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ImagePresenter do
   let(:fake_image) do
-    double(:fake_image, {
+    double(:fake_image,
       repository: 'boom/shaka',
       description: 'goes boom shaka laka',
       short_description: 'goes boom',
@@ -10,7 +10,7 @@ describe ImagePresenter do
       star_count: 123,
       recommended_class: 'not-recommended',
       docker_index_url: 'index.docker/boom/shaka'
-    })
+    )
   end
 
   subject { ImagePresenter.new(fake_image) }

@@ -1,4 +1,4 @@
-shared_examples "a view model" do |attributes|
+shared_examples 'a view model' do |attributes|
 
   describe 'attribute readers' do
     subject { described_class.new(attributes) }
@@ -15,7 +15,7 @@ shared_examples "a view model" do |attributes|
   describe 'comparison' do
     let(:thing_1) { described_class.new(attributes) }
     let(:thing_2) { described_class.new(attributes) }
-    let(:not_a_thing) { double(:not_a_thing, {to_hash: {go: 'away'}}) }
+    let(:not_a_thing) { double(:not_a_thing, to_hash: { go: 'away' }) }
 
     describe '#eql?' do
       it 'compares value equality' do

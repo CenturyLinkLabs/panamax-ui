@@ -21,7 +21,7 @@ class ServicesController < ApplicationController
   end
 
   def build_category_param(application)
-    [{:id => application[:category]}] unless application[:category] == 'null'
+    [{ id: application[:category] }] unless application[:category] == 'null'
   end
 
   def destroy
@@ -60,7 +60,7 @@ class ServicesController < ApplicationController
   private
 
   def retrieve_service
-    Service.find(params[:id], params: {app_id: params[:application_id]})
+    Service.find(params[:id], params: { app_id: params[:application_id] })
   end
 
   def applications_service

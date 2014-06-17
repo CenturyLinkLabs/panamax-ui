@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe TemplatePresenter do
   let(:fake_template) do
-    double(:fake_template, {
+    double(:fake_template,
       id: 99,
       name: 'boom shaka',
       description: 'goes boom shaka laka',
@@ -12,7 +12,7 @@ describe TemplatePresenter do
       image_count_label: 'Images',
       recommended_class: 'not-recommended',
       icon_src: '/icons/icon.png'
-    })
+    )
   end
 
   subject { TemplatePresenter.new(fake_template) }

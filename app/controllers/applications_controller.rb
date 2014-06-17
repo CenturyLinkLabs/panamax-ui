@@ -5,7 +5,7 @@ class ApplicationsController < ApplicationController
     @app = applications_service.create(params[:application])
 
     if @app.valid?
-      flash[:success] = "The application was successfully created."
+      flash[:success] = 'The application was successfully created.'
       redirect_to application_url(@app.to_param)
     else
       render :show
@@ -35,7 +35,7 @@ class ApplicationsController < ApplicationController
 
   def documentation
     if application && application.documentation_to_html
-      return render html: application.documentation_to_html.html_safe, layout:'documentation'
+      return render html: application.documentation_to_html.html_safe, layout: 'documentation'
     else
       head status: :not_found
     end

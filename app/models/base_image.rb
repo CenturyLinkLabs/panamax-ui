@@ -40,13 +40,13 @@ class BaseImage < BaseResource
   end
 
   def as_json(options={})
-    super.
-      merge({
+    super
+      .merge(
         'status_label' => status_label,
         'short_description' => short_description,
         'recommended_class' => recommended_class,
         'docker_index_url' => docker_index_url
-      })
+      )
   end
 
   def local?

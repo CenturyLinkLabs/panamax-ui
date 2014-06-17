@@ -2,11 +2,11 @@ shared_examples 'an image' do
 
   describe '#short_description' do
     before do
-      subject.description = 'w'*300
+      subject.description = 'w' * 300
     end
 
     it 'truncates the description to 165 charectors' do
-      expect(subject.short_description).to eq 'w'*162 + '...'
+      expect(subject.short_description).to eq 'w' * 162 + '...'
     end
   end
 
@@ -48,6 +48,5 @@ shared_examples 'an image' do
       end
     end
   end
-
 
 end

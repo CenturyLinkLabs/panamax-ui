@@ -2,12 +2,12 @@ class ApplicationsService
 
   attr_accessor :connection
 
-  def initialize(connection = ApplicationsService.default_connection)
+  def initialize(connection=ApplicationsService.default_connection)
     @connection = connection
   end
 
   def all
-    response = connection.get "/apps"
+    response = connection.get '/apps'
     App.instantiate_collection(JSON.parse(response.body))
   end
 

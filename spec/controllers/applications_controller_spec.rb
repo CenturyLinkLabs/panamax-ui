@@ -3,7 +3,7 @@ require 'spec_helper'
 describe ApplicationsController do
   let(:fake_applications_service) { double(:fake_applications_service) }
   let(:valid_app) { double(:valid_app, valid?: true, to_param: 77, documentation_to_html: 'adsf') }
-  let(:fake_delete_response) { double(:fake_delete_response, body: 'test', status: 200)}
+  let(:fake_delete_response) { double(:fake_delete_response, body: 'test', status: 200) }
 
   before do
     controller.stub(:show_url)
@@ -14,13 +14,13 @@ describe ApplicationsController do
 
   describe 'POST #create' do
     it 'creates an application via the service' do
-      expect(fake_applications_service).to receive(:create).with({ 'image' => 'some/image', 'tag' => ':latest' })
+      expect(fake_applications_service).to receive(:create).with('image' => 'some/image', 'tag' => ':latest')
 
-      post :create, { application: { image: 'some/image', tag: ':latest' } }
+      post :create, application: { image: 'some/image', tag: ':latest' }
     end
 
     it 'assigns app' do
-      post :create, { application: { image: 'some/image', tag: ':latest' } }
+      post :create, application: { image: 'some/image', tag: ':latest' }
       expect(assigns(:app)).to eq valid_app
     end
 
@@ -30,7 +30,7 @@ describe ApplicationsController do
       end
 
       it 'redirects to the show page' do
-        post :create, { application: { image: 'some/image', tag: ':latest' } }
+        post :create, application: { image: 'some/image', tag: ':latest' }
 
         expect(response).to redirect_to application_url(77)
       end
@@ -44,7 +44,7 @@ describe ApplicationsController do
       end
 
       it 'renders the show template' do
-        post :create, { application: { image: 'some/image', tag: ':latest' } }
+        post :create, application: { image: 'some/image', tag: ':latest' }
         expect(response).to render_template(:show)
       end
     end
@@ -53,16 +53,16 @@ describe ApplicationsController do
   describe '#destroy' do
     it 'uses the applications service to destroy the application' do
       expect(fake_applications_service).to receive(:destroy).with('77')
-      delete :destroy, { id: 77}
+      delete :destroy, id: 77
     end
 
     it 'redirects to applications index view when format is html' do
-      delete :destroy, { id: 77 }
+      delete :destroy, id: 77
       expect(response).to redirect_to applications_path
     end
 
     it 'renders json response when format is json' do
-      delete :destroy, { id: 77, format: :json}
+      delete :destroy, id: 77, format: :json
       expect(response.status).to eq 200
       expect(response.body).to eql fake_delete_response.to_json
     end
@@ -93,8 +93,8 @@ describe ApplicationsController do
     it 'renders the apps documentation with the documentation layout' do
       fake_applications_service.stub(:find_by_id).and_return(valid_app)
       get :documentation, id: 77
-      expect(response.body).to_not match /<header>/m
-      expect(response.body).to match /post-run-html/m
+      expect(response.body).to_not match(/<header>/m)
+      expect(response.body).to match(/post-run-html/m)
     end
 
     it 'returns 404 if there is no documentation for the app' do
@@ -108,7 +108,7 @@ describe ApplicationsController do
     it 'renders the partial for the relationship view for the app' do
       fake_applications_service.stub(:find_by_id).and_return(valid_app)
       get :relations, id: 77
-      expect(response.body).to_not match /<body>/m
+      expect(response.body).to_not match(/<body>/m)
     end
   end
 

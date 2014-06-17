@@ -7,5 +7,4 @@ describe SearchResultSet do
   it { should respond_to :local_images }
   it { should respond_to :templates }
 
-
 end

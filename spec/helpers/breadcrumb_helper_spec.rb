@@ -3,8 +3,8 @@ require 'spec_helper'
 describe BreadcrumbHelper do
   describe '#breadcrumbs_for' do
     it 'accumulates the crumbs that are passed in' do
-      result = breadcrumbs_for(1,2,3)
-      expect(result).to eql [1,2,3]
+      result = breadcrumbs_for(1, 2, 3)
+      expect(result).to eql [1, 2, 3]
     end
 
     it 'truncates the second to last item if the crumbs are too long' do

@@ -46,7 +46,7 @@ class Service < BaseResource
 
   def environment_vars
     environment.attributes.map do |name, value|
-      OpenStruct.new({ name: name, value: value, _deleted: false })
+      OpenStruct.new(name: name, value: value, _deleted: false)
     end
   end
 
@@ -55,20 +55,20 @@ class Service < BaseResource
   end
 
   def environment_attributes=(attributes)
-    attrs = attributes.each_with_object({}) do |(index, attribute), hash|
+    attrs = attributes.each_with_object({}) do |(_, attribute), hash|
       hash[attribute['name']] = attribute['value'] unless attribute['_deleted'].to_s == '1'
     end
     self.environment = Environment.new(attrs)
   end
 
   def ports_attributes=(attributes)
-    self.ports = attributes.each_with_object([]) do |(index, port), memo|
+    self.ports = attributes.each_with_object([]) do |(_, port), memo|
       memo << Port.new(port.except('id')) unless port['_deleted'].to_s == '1'
     end
   end
 
   def links_attributes=(attributes)
-    self.links = attributes.each_with_object([]) do |(index, link), memo|
+    self.links = attributes.each_with_object([]) do |(_, link), memo|
       # exclude link ID for now. May need this later if we decide to
       # expose link ID in API.
       memo << Link.new(link.except('id')) unless link['_deleted'].to_s == '1'

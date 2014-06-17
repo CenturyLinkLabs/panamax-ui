@@ -16,5 +16,3 @@ class TemplatePresenter
     'Template'
   end
 end
-
-

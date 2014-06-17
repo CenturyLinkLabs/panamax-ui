@@ -37,12 +37,12 @@ describe LocalImage do
 
   describe '#as_json' do
     it 'provides the attributes to be converted to JSON' do
-      expected = attributes.merge({
+      expected = attributes.merge(
         'short_description' => 'this thing goes boom shaka laka',
         'status_label' => 'Local',
         'recommended_class' => 'not-recommended',
         'docker_index_url' => nil
-      })
+      )
       expect(subject.as_json).to eq expected
     end
   end

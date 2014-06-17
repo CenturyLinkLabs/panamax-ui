@@ -22,7 +22,7 @@ describe 'managing an application' do
         end
 
         expect(page).to have_css 'h1', text: 'tutum/wordpress'
-        #TODO: assert flash message
+        # TODO: assert flash message
       end
 
       it 'shows a button to add a service to the app' do

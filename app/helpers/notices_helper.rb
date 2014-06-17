@@ -1,10 +1,10 @@
 module NoticesHelper
 
   NOTICE_CLASSES = {
-      'success' => 'notice-success',
-      'notice' => 'notice-default',
-      'warning' => 'notice-success',
-      'alert' => 'notice-danger'
+    'success' => 'notice-success',
+    'notice' => 'notice-default',
+    'warning' => 'notice-success',
+    'alert' => 'notice-danger'
   }
 
   def notification_class(key)

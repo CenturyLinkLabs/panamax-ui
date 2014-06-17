@@ -1,11 +1,13 @@
 class CategoryPresenter
 
+  attr_reader :services
+
   delegate :name, :id, to: :@category
 
   def initialize(app, category, services)
     @app = app
     @category = category
-    @service_list = services
+    @services = services
   end
 
   def name
@@ -18,9 +20,5 @@ class CategoryPresenter
 
   def app_id
     @app.id
-  end
-
-  def services
-    @service_list
   end
 end

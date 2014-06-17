@@ -5,18 +5,18 @@ describe Service do
     {
       'name' => 'Wordpress',
       'id' => 77,
-      'categories' => [{'name' => 'foo', 'id' => 20}, {'name' => 'baz', 'id' => 10}],
+      'categories' => [{ 'name' => 'foo', 'id' => 20 }, { 'name' => 'baz', 'id' => 10 }],
       'ports' => [
-        {'host_port' => 8080, 'container_port' => 80},
-        {'host_port' => 7000, 'container_port' => 77}
+        { 'host_port' => 8080, 'container_port' => 80 },
+        { 'host_port' => 7000, 'container_port' => 77 }
       ],
       'environment' => {
         'DB_PASS' => 'pazz',
         'WP_PASS' => 'abc123'
       },
       'links' => [
-        {'service_name' => 'DB'},
-        {'service_name' => 'Wordpress'}
+        { 'service_name' => 'DB' },
+        { 'service_name' => 'Wordpress' }
       ]
     }
   end
@@ -85,7 +85,7 @@ describe Service do
 
     it 'instantiates a ServiceCategory for each nested category' do
       result = described_class.build_from_response(fake_json_response)
-      expect(result.categories.map(&:name)).to match_array(['foo', 'baz'])
+      expect(result.categories.map(&:name)).to match_array(%w(foo baz))
     end
 
     it 'instantiates a PortMapping for each nested port' do
@@ -101,14 +101,14 @@ describe Service do
 
     it 'instantiates a link for each link' do
       result = described_class.build_from_response(fake_json_response)
-      expect(result.links.map(&:service_name)).to match_array(['DB', 'Wordpress'])
+      expect(result.links.map(&:service_name)).to match_array(%w(DB Wordpress))
     end
   end
 
   describe '#category_names' do
     it 'returns an array containing the names of its categories' do
       result = described_class.build_from_response(fake_json_response)
-      expect(result.category_names).to match_array(['foo', 'baz'])
+      expect(result.category_names).to match_array(%w(foo baz))
     end
   end
 

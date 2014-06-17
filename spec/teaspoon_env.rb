@@ -1,10 +1,11 @@
-# This file allows you to override various Teaspoon configuration directives when running from the command line. It is not
-# required from within the Rails environment, so overriding directives that have been defined within the initializer
-# is not possible.
+# This file allows you to override various Teaspoon configuration directives
+# when running from the command line. It is not required from within the Rails
+# environment, so overriding directives that have been defined within the
+# initializer is not possible.
 #
 # Set RAILS_ROOT and load the environment.
-ENV["RAILS_ROOT"] = File.expand_path("../../", __FILE__)
-require File.expand_path("../../config/environment", __FILE__)
+ENV['RAILS_ROOT'] = File.expand_path('../../', __FILE__)
+require File.expand_path('../../config/environment', __FILE__)
 
 # Provide default configuration.
 #
@@ -14,25 +15,25 @@ require File.expand_path("../../config/environment", __FILE__)
 # rake teaspoon DRIVER=selenium SUPPRESS_LOG=false
 Teaspoon.setup do |config|
   # Driver / Server
-  #config.driver              = "phantomjs" # available: phantomjs, selenium
-  #config.server              = nil # defaults to Rack::Server
+  # config.driver              = "phantomjs" # available: phantomjs, selenium
+  # config.server              = nil # defaults to Rack::Server
 
   # Behaviors
-  #config.server_timeout      = 20 # timeout for starting the server
-  #config.server_port         = nil # defaults to any open port unless specified
-  #config.fail_fast           = true # abort after the first failing suite
+  # config.server_timeout      = 20 # timeout for starting the server
+  # config.server_port         = nil # defaults to any open port unless specified
+  # config.fail_fast           = true # abort after the first failing suite
 
   # Output
-  #config.formatters          = "dot" # available: dot, tap, tap_y, swayze_or_oprah
-  #config.suppress_log        = false # suppress logs coming from console[log/error/debug]
-  #config.color               = true
+  # config.formatters          = "dot" # available: dot, tap, tap_y, swayze_or_oprah
+  # config.suppress_log        = false # suppress logs coming from console[log/error/debug]
+  config.color               = true
 
   # Coverage (requires istanbul -- https://github.com/gotwarlost/istanbul)
-  #config.coverage                      = true
-  #config.coverage_reports              = "text,html,cobertura"
-  #config.coverage_output_dir           = "coverage"
-  #config.statements_coverage_threshold = 50
-  #config.functions_coverage_threshold  = 50
-  #config.branches_coverage_threshold   = 50
-  #config.lines_coverage_threshold      = 50
+  # config.coverage                      = true
+  # config.coverage_reports              = "text,html,cobertura"
+  # config.coverage_output_dir           = "coverage"
+  # config.statements_coverage_threshold = 50
+  # config.functions_coverage_threshold  = 50
+  # config.branches_coverage_threshold   = 50
+  # config.lines_coverage_threshold      = 50
 end

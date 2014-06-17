@@ -7,10 +7,7 @@ class TemplateForm
 
   def save
     if valid?
-      Template.create(
-        name: name,
-        description: description
-      )
+      Template.create(name: name, description: description)
     end
   end
 end

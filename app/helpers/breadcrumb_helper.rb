@@ -26,7 +26,7 @@ module BreadcrumbHelper
   end
 
   def determine_length(crumbs)
-    no_html = crumbs.map {|crumb| text_only_for(crumb.to_s)}
+    no_html = crumbs.map { |crumb| text_only_for(crumb.to_s) }
     no_html.join('/').length
   end
 end

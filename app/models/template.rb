@@ -42,14 +42,14 @@ class Template < BaseResource
   end
 
   def as_json(options={})
-    super.
-      except('attributes').
-      merge({
+    super
+      .except('attributes')
+      .merge(
         'short_description' => short_description,
         'last_updated_on' => last_updated_on,
         'image_count_label' => image_count_label,
         'recommended_class' => recommended_class,
         'icon_src' => icon_src
-      })
+      )
   end
 end

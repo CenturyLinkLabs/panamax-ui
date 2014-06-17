@@ -11,5 +11,3 @@ class ImagePresenter
     @image.repository
   end
 end
-
-
