@@ -7,7 +7,6 @@ class ServiceRowPresenter
   end
 
   def service_url
-    #todo: use url helper
-    "/apps/#{@service.app.id}/services/#{@service.id}"
+    Rails.application.routes.url_helpers.app_service_path(@service.app.id, @service.id)
   end
 end
