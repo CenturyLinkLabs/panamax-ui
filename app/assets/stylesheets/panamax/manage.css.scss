@@ -426,6 +426,10 @@ section.application-services {
             border-radius: 4px;
             position: relative;
 
+            &:hover {
+              cursor: move;
+            }
+
             > a {
               display: inline-block;
               margin-left: 4px;
