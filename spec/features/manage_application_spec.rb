@@ -4,7 +4,7 @@ describe 'managing an application' do
   context 'as a user' do
     context 'from an application' do
       it 'can navigate to a running service' do
-        visit '/applications/2'
+        visit '/apps/2'
 
         within '.category-panel:first-child li', text: 'WP_1' do
           click_on 'details'
@@ -15,7 +15,7 @@ describe 'managing an application' do
       end
 
       it 'can destroy a running service' do
-        visit '/applications/2'
+        visit '/apps/2'
 
         within 'ul.services li .actions' do
           click_on 'delete'
@@ -26,7 +26,7 @@ describe 'managing an application' do
       end
 
       it 'shows a button to add a service to the app' do
-        visit '/applications/2'
+        visit '/apps/2'
 
         within '.category-panel:first-child' do
           expect(page).to have_css 'a.add-service', text: 'Add a Service'
@@ -34,7 +34,7 @@ describe 'managing an application' do
       end
 
       it 'shows the deployment environment' do
-        visit '/applications/2'
+        visit '/apps/2'
 
         within '.deployment-details' do
           expect(page).to have_css '.deployment-env', text: 'Deployed to: CoreOS Local'

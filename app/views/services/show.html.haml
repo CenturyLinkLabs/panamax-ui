@@ -2,15 +2,15 @@
 
 :ruby
   crumbs = breadcrumbs_for(
-    link_to("Manage", applications_path),
-    link_to(@app.name, application_path(@app.to_param)),
+    link_to("Manage", apps_path),
+    link_to(@app.name, app_path(@app.to_param)),
     @service.name
   )
 = render '/shared/breadcrumbs', breadcrumbs: crumbs
 
 %section.service-details
   %span.service-status{ class: @service.status,
-      data: { source: application_service_path(@app.id, @service.id, format: :json) } }
+      data: { source: app_service_path(@app.id, @service.id, format: :json) } }
     %span.panamax-state= @service.status.to_s.humanize
     %em.fleet-state{title: 'Fleet sub state'}= "(#{@service.sub_state || ' - '})"
 
@@ -34,6 +34,6 @@
         = render 'environment_variables', f: f
     = f.submit 'Save all changes', class: 'button-primary', data: {disable_with: 'Saving...'}
 
-= render 'shared/journal', 
+= render 'shared/journal',
   title: 'CoreOS Journal - Service Activity Log',
-  journal_path: journal_application_service_path(@app.id, @service.id)
+  journal_path: journal_app_service_path(@app.id, @service.id)

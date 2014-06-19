@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ApplicationsController do
+describe AppsController do
   let(:fake_applications_service) { double(:fake_applications_service) }
   let(:valid_app) { double(:valid_app, valid?: true, to_param: 77, documentation_to_html: 'adsf') }
   let(:fake_delete_response) { double(:fake_delete_response, body: 'test', status: 200) }
@@ -16,7 +16,7 @@ describe ApplicationsController do
     it 'creates an application via the service' do
       expect(fake_applications_service).to receive(:create).with('image' => 'some/image', 'tag' => ':latest')
 
-      post :create, application: { image: 'some/image', tag: ':latest' }
+      post :create, app: { image: 'some/image', tag: ':latest' }
     end
 
     it 'assigns app' do
@@ -30,9 +30,9 @@ describe ApplicationsController do
       end
 
       it 'redirects to the show page' do
-        post :create, application: { image: 'some/image', tag: ':latest' }
+        post :create, app: { image: 'some/image', tag: ':latest' }
 
-        expect(response).to redirect_to application_url(77)
+        expect(response).to redirect_to app_url(77)
       end
     end
 
@@ -44,7 +44,7 @@ describe ApplicationsController do
       end
 
       it 'renders the show template' do
-        post :create, application: { image: 'some/image', tag: ':latest' }
+        post :create, app: { image: 'some/image', tag: ':latest' }
         expect(response).to render_template(:show)
       end
     end
@@ -58,7 +58,7 @@ describe ApplicationsController do
 
     it 'redirects to applications index view when format is html' do
       delete :destroy, id: 77
-      expect(response).to redirect_to applications_path
+      expect(response).to redirect_to apps_path
     end
 
     it 'renders json response when format is json' do

@@ -7,7 +7,7 @@ describe 'managing a template' do
     context 'from a running application' do
 
       it 'allows template creation' do
-        visit '/applications/2'
+        visit '/apps/2'
 
         click_on 'Save as Template'
 

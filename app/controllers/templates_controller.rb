@@ -12,6 +12,6 @@ class TemplatesController < ApplicationController
     if @template_form.save
       flash[:success] = 'Template successfully created.'
     end
-    respond_with @template_form, location: applications_path
+    respond_with @template_form, location: apps_path
   end
 end

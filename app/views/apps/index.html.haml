@@ -7,7 +7,7 @@
   - @apps.each do |app|
     %div.application
       .name
-        = link_to app.name, application_path(app.id)
+        = link_to app.name, app_path(app.id)
         %b= app.services.length
         %span= app.service_count_label
       .actions

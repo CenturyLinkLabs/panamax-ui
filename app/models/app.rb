@@ -5,13 +5,9 @@ class App < BaseViewModel
   include CollectionBuilder
   include ActiveModel::Validations
 
-  def self.model_name
-    ActiveModel::Name.new(self, nil, 'Application')
-  end
-
   attr_reader :name, :id, :services, :categories, :documentation, :from
 
-  def initialize(attributes={}, _persisted=false)
+  def initialize(attributes={}, persisted=false)
     super(attributes)
     add_errors(attributes['errors'])
   end
@@ -23,10 +19,10 @@ class App < BaseViewModel
 
   def self.build_with_sub_resources(attributes)
     attributes['services'].map! do |service_hash|
-      Service.find(service_hash['id'], params: { app_id: attributes['id'] })
+      Service.find(service_hash['id'], params: {app_id: attributes['id']})
     end
     attributes['categories'].map! do |category_hash|
-      Category.find(category_hash['id'], params: { app_id: attributes['id'] })
+      Category.find(category_hash['id'], params: {app_id: attributes['id']})
     end
     self.new(attributes)
   end
@@ -65,16 +61,16 @@ class App < BaseViewModel
       end
 
       if groups.present?
-        groups[Category.new(name: 'Uncategorized')] = uncategorized_services if uncategorized_services.present?
+        groups[Category.new({name: 'Uncategorized'})] = uncategorized_services if uncategorized_services.present?
       else
-        groups[Category.new(name: 'Services')] = services
+        groups[Category.new({name: 'Services'})] = services
       end
 
-      groups
+      return groups
     end
 
     def services_with_category_name(name)
-      services.select { |service| service.categories.any? { |cat| cat.name == name } }
+      services.select { |service| service.categories.any?{ |cat| cat.name == name } }
     end
 
     def uncategorized_services
@@ -89,7 +85,7 @@ class App < BaseViewModel
 
     def sorted_categorized_services
       categorized = services.select { |service| service.categories.present? }
-      categorized.sort do |a, b|
+      categorized.sort do |a,b|
         a_value = a.category_priority
         b_value = b.category_priority
         (a_value == b_value) ? -1 : a_value - b_value
@@ -97,11 +93,12 @@ class App < BaseViewModel
     end
   end
 
+
   private
 
   def add_errors(errors_hash)
-    (errors_hash || {}).each do |k, v|
-      errors.add(k, v)
+    (errors_hash || {}).each do |k,v|
+      errors.add(k,v)
     end
   end
 

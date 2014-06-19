@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resource :user, only: [:update]
 
-  resources :applications, only: [:index, :create, :show, :destroy] do
+  resources :apps, only: [:index, :create, :show, :destroy] do
     get 'documentation', on: :member
     get 'journal', on: :member
     get 'relations', on: :member

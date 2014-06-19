@@ -8,7 +8,7 @@
   = render 'category_panel', { presenter: JsonCategoryPresenter.new() }
 :ruby
   crumbs = breadcrumbs_for(
-    link_to("Manage", applications_path),
+    link_to("Manage", apps_path),
     @app.name
   )
 
@@ -19,7 +19,7 @@
   %span.deployment-env
     Deployed to: CoreOS Local
   - unless @app.host_ports.blank?
-    - application_url_for(@app).each do |service_name, ports|
+    - app_url_for(@app).each do |service_name, ports|
       %span.service-url
         = "#{service_name} URL: "
         - ports.each do |port|
@@ -49,6 +49,6 @@
 
 = render 'shared/journal',
   title: 'CoreOS Journal - Application Activity Log',
-  journal_path: journal_application_path(@app.id)
+  journal_path: journal_app_path(@app.id)
 
 = render 'services/add_service'

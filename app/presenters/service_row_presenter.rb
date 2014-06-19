@@ -7,6 +7,7 @@ class ServiceRowPresenter
   end
 
   def service_url
-    "/applications/#{@service.app.id}/services/#{@service.id}"
+    #todo: use url helper
+    "/apps/#{@service.app.id}/services/#{@service.id}"
   end
 end

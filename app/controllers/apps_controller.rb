@@ -1,12 +1,12 @@
-class ApplicationsController < ApplicationController
+class AppsController < ApplicationController
   respond_to :json, only: [:journal]
 
   def create
-    @app = applications_service.create(params[:application])
+    @app = applications_service.create(params[:app])
 
     if @app.valid?
       flash[:success] = 'The application was successfully created.'
-      redirect_to application_url(@app.to_param)
+      redirect_to app_url(@app.to_param)
     else
       render :show
     end
@@ -24,7 +24,7 @@ class ApplicationsController < ApplicationController
   def destroy
     application, status = applications_service.destroy(params[:id])
     respond_to do |format|
-      format.html { redirect_to applications_path }
+      format.html { redirect_to apps_path }
       format.json { render(json: application.to_json, status: status) }
     end
   end

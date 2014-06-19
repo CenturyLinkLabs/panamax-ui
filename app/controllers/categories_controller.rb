@@ -10,7 +10,7 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    category = Category.create(name: params[:category][:name], app_id: params[:application_id])
+    category = Category.create(name: params[:category][:name], app_id: params[:app_id])
     respond_with category, location: nil
   end
 
@@ -22,6 +22,6 @@ class CategoriesController < ApplicationController
   private
 
   def retrieve_category
-    Category.find(params[:id], params: { app_id: params[:application_id] })
+    Category.find(params[:id], params: { app_id: params[:app_id] })
   end
 end
