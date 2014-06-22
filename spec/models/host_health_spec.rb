@@ -12,17 +12,17 @@ describe HostHealth do
             }
           },
           memory: {
-            usage: 0
+            usage: 1024
           }
         },
         {
           cpu: {
             usage: {
-              total: 0
+              total: 10000000
             }
           },
           memory: {
-            usage: 0
+            usage: 1024
           }
         }
       ],
@@ -39,8 +39,15 @@ describe HostHealth do
 
   let(:overall) do
     {
-      'usage' => 0,
-      'percent' => 0
+      'usage' => 0.01,
+      'percent' => 10.0
+    }
+  end
+
+  let(:overall_mem) do
+    {
+      'usage' => 1024,
+      'percent' => 1024
     }
   end
 
@@ -50,7 +57,7 @@ describe HostHealth do
 
   describe '#overall' do
     it 'returns overall_mem result' do
-      expect(subject.overall.overall_mem).to eq overall
+      expect(subject.overall.overall_mem).to eq overall_mem
     end
 
     it 'returns overall_cpu result' do

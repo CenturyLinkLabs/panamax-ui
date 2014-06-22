@@ -2,6 +2,8 @@
   $.PMX.HostHealth = function(el, options) {
     var base = this;
 
+    base.timer = null;
+
     base.$el = $(el);
     base.data = {
       cpu: 0,
@@ -14,9 +16,6 @@
     base.defaultOptions = {
       timeFormat: 'YYYY/MM/DD, hh:mm:ss',
       interval: 3 * 1000,
-      goodColor: '#74A432',
-      warningColor: '#F5D04C',
-      dangerColor: '#D90000',
       healthSelector: 'aside.host > .health',
       cpuSelector: '.cpu .health',
       memSelector: '.memory .health',
@@ -61,7 +60,8 @@
         base.data.time_stamp = moment(response.timestamp).format(base.options.timeFormat);
         base.calculateHealth(response);
       }).always(function() {
-        setTimeout(base.initiateRequest, base.options.interval);
+        if (base.timer !== null) base.timer.clearTimeout;
+        base.timer = setTimeout(base.initiateRequest, base.options.interval);
       })
     };
 
@@ -83,21 +83,21 @@
           memoryPercentage = base.data.mem_percent;
 
       // overall health is max of cpu and memory
-      $(base.options.healthSelector).css('background-color', base.colorLevel(Math.max(cpuPercentage, memoryPercentage)));
-      base.$el.find(base.options.cpuSelector).css('background-color', base.colorLevel(cpuPercentage));
-      base.$el.find(base.options.memSelector).css('background-color', base.colorLevel(memoryPercentage));
+      $(base.options.healthSelector).removeClass('good warning danger').addClass(base.colorLevel(Math.max(cpuPercentage, memoryPercentage)));
+      base.$el.find(base.options.cpuSelector).removeClass('good warning danger').addClass(base.colorLevel(cpuPercentage));
+      base.$el.find(base.options.memSelector).removeClass('good warning danger').addClass(base.colorLevel(memoryPercentage));
     };
 
     base.colorLevel = function(percentage) {
       if (percentage >= 90) {
-        return base.options.dangerColor;
+        return 'danger';
       }
 
       if (percentage >= 80) {
-        return base.options.warningColor;
+        return 'warning';
       }
 
-      return base.options.goodColor;
+      return 'good';
     }
   };
 

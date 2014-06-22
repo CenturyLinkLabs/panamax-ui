@@ -9,12 +9,7 @@ describe('$.fn.hostHealth', function() {
   beforeEach(function() {
     jasmine.Ajax.useMock();
     fixture.load('host_health.html');
-    subject = new $.PMX.HostHealth($('.health'),
-      {
-        'goodColor': 'good',
-        'warningColor': 'warning',
-        'dangerColor': 'danger'
-      });
+    subject = new $.PMX.HostHealth($('.health'));
     spyOn(window, 'setTimeout');
   });
 
@@ -70,21 +65,21 @@ describe('$.fn.hostHealth', function() {
 
     it('sets color level of the root element', function() {
       expect(subject.colorLevel).toHaveBeenCalled();
-      expect($('.health').css('background-color')).toEqual('rgb(255, 255, 255)');
+      expect($('.health').hasClass('white')).toBeTruthy();
     });
 
     it('sets color level of the cpu details', function() {
       var event = $.Event('mouseenter');
       $('.health').trigger(event);
       expect(subject.colorLevel).toHaveBeenCalled();
-      expect($('.cpu .health').css('background-color')).toEqual('rgb(255, 255, 255)');
+      expect($('.cpu .health').hasClass('white')).toBeTruthy();
     });
 
     it('sets color level of the memory details', function() {
       var event = $.Event('mouseenter');
       $('.health').trigger(event);
       expect(subject.colorLevel).toHaveBeenCalled();
-      expect($('.memory .health').css('background-color')).toEqual('rgb(255, 255, 255)');
+      expect($('.memory .health').hasClass('white')).toBeTruthy();
     });
   });
 

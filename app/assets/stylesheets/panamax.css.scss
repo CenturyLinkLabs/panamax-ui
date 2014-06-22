@@ -150,6 +150,18 @@ aside.host {
       }
     }
 
+    &.danger {
+      background-color: $dark_red;
+    }
+
+    &.warning {
+      background: #F5D04C;
+    }
+
+    &.good {
+      background: darken($ctl_light_green, 10%);
+    }
+
     li {
       clear:both;
       height: 25px;
