@@ -98,6 +98,91 @@ cite.built-by {
   }
 }
 
+aside.host {
+  float: left;
+  margin-left: 30px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  span {
+    float: left;
+    height: 20px;
+    line-height: 20px;
+    margin-right: 8px;
+    color: $dark_grey;
+    font-weight: 400;
+  }
+
+  .health {
+    margin-top: 5px;
+    position: relative;
+    float: left;
+    width: 12px;
+    height: 12px;
+    border-radius: 4px;
+    background: darken($ctl_light_green, 10%);
+
+    section.details {
+      box-sizing: border-box;
+      padding: 10px;
+      width: 220px;
+      position: absolute;
+      top: 24px;
+      left: -30px;
+      background: $yellow;
+      font-size: 0.8em;
+      z-index: 100;
+
+      &:before {
+        box-sizing: content-box;
+        content: ' ';
+        width: 0;
+        height: 0;
+        display: block;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 10px solid $yellow;
+        position: absolute;
+        left: 30px;
+        top: -10px;
+      }
+    }
+
+    &.danger {
+      background-color: $dark_red;
+    }
+
+    &.warning {
+      background: #F5D04C;
+    }
+
+    &.good {
+      background: darken($ctl_light_green, 10%);
+    }
+
+    li {
+      clear:both;
+      height: 25px;
+      line-height: 25px;
+
+      span {
+        line-height: inherit;
+        margin: -1px 0 0 4px;
+        padding-right: 2px;
+        font-weight: bold;
+      }
+    }
+
+    footer {
+      margin-top: 15px;
+      font-style: italic;
+      font-size: 0.9em;
+    }
+  }
+}
+
 main {
   clear: both;
   width: 960px;

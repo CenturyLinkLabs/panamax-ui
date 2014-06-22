@@ -19,5 +19,7 @@ Rails.application.routes.draw do
     resources :categories, only: [:update, :create, :destroy]
   end
 
+  resources :host_health, only: [:index]
+
   mount CtlBaseUi::Engine => "/ctl-base-ui"
 end

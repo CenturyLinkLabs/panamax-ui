@@ -35,6 +35,8 @@
 
     $('.service-edit-form').progressiveForm();
 
+    $('aside.host').hostHealth();
+
     var enableNewItem = function(addedItem) {
       addedItem.$el.find('input').each(function() {
         $(this).prop('disabled', false);
