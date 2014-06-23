@@ -63,5 +63,7 @@
     $('.journal-output').journalLoader();
 
     $('.journal-toggle').journalToggle();
+
+    $('.blog-feed-items').rssReader();
   };
 })(jQuery);

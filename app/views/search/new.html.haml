@@ -10,6 +10,8 @@
   = render 'loading_row'
 %script#no_results_row_template{type: 'text/x-handlebars-template'}
   = render 'no_results_row'
+%script#blog_item_template{type: 'text/x-handlebars-template'}
+  = render 'blog_item'
 
 .filterable-list
   %h1 Search Templates &amp; Images
@@ -31,3 +33,9 @@
   %h3.search-title Images
   .local-image-results
   .remote-image-results
+
+%section.blog-feed
+  %h3 From the CenturyLink Labs Blog
+  %ul.blog-feed-items{ data: { source: 'http://centurylinklabs.com/feed' } }
+  %a.blog-link{href: 'http://centurylinklabs.com'}
+    View more at CenturyLinkLabs.com
