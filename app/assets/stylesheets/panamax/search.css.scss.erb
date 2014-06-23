@@ -336,3 +336,46 @@
 .chosen-container-active.chosen-with-drop .chosen-single {
   box-shadow: 1px 0 0px $white;
 }
+
+.blog-feed {
+  display: block;
+  width: 468px;
+
+  h3 {
+    padding-bottom: 16px;
+    border-bottom: 1px solid $medium_grey;
+  }
+}
+
+.blog-feed-items {
+
+  li {
+    padding: 0 0 20px 0;
+    border-bottom: 1px solid $light_grey;
+    margin: 20px 0 0 0;
+    font-size: 1.1em;
+
+    .timestamp {
+      display: inline-block;
+      width: 158px;
+      padding: 0 10px 0 0;
+      vertical-align: top;
+      color: $medium_grey;
+      font-weight: 100;
+    }
+
+    a {
+      display: inline-block;
+      width: 290px;
+      padding: 0;
+      margin: 0;
+      color: $dark_blue;
+      text-decoration: none;
+
+      &:hover {
+        color: $sky_blue;
+        text-decoration: underline;
+      }
+    }
+  }
+}
