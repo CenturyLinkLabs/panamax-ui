@@ -17,5 +17,7 @@
     %dd= f.text_field :name, placeholder: 'Give your template a name'
     %dt= f.label :description, 'Template Description'
     %dd= f.text_area :description, placeholder: 'Give your template a description'
+    %dt= f.label :keywords, class: 'optional'
+    %dd= f.text_field :keywords, placeholder: 'Add some keywords, seperated by commas'
 
   = button_tag 'Publish Your Template', class: 'button-positive'
