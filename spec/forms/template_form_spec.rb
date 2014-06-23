@@ -5,7 +5,8 @@ describe TemplateForm do
   let(:attributes) do
     {
       name: 'My template',
-      description: 'generic wordpress installation'
+      description: 'generic wordpress installation',
+      keywords: 'fast, simple, elegant'
     }
   end
 
@@ -13,6 +14,7 @@ describe TemplateForm do
 
   it { should respond_to :repos }
   it { should respond_to :name }
+  it { should respond_to :keywords }
 
   describe '#save' do
 
