@@ -7,6 +7,7 @@ class Service < BaseResource
   has_many :ports
   has_many :links
   has_one :environment
+  has_one :docker_status
 
   schema do
     integer :id
