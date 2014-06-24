@@ -21,6 +21,7 @@ describe 'managing a template' do
         expect(page).to have_select 'template_form_repos', options: ['ctlc/docker-mysql', 'ctlc/docker-apache']
 
         fill_in 'Template Name', with: 'My Template'
+        fill_in 'Template Author', with: 'test@example.com'
         fill_in 'Template Description', with: 'generic wordpress installation'
         fill_in 'Keywords', with: 'wordpress, mysql, blog'
 

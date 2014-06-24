@@ -15,6 +15,8 @@
   %dl
     %dt= f.label :name, 'Template Name'
     %dd= f.text_field :name, placeholder: 'Give your template a name'
+    %dt= f.label :author, 'Template Author'
+    %dd= f.text_field :author
     %dt= f.label :description, 'Template Description'
     %dd= f.text_area :description, placeholder: 'Give your template a description'
     %dt= f.label :keywords, class: 'optional'
