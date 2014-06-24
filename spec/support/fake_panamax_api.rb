@@ -55,6 +55,10 @@ class FakePanamaxApi < Sinatra::Base
     json_response 200, 'user_representation.json'
   end
 
+  delete '/apps/:app_id/services/:id.?:format' do
+    json_response 200, "service_representation_1.json"
+  end
+
   private
 
   def json_response(response_code, file_name)

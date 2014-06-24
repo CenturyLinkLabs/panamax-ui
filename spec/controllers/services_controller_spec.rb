@@ -1,18 +1,13 @@
 require 'spec_helper'
 
 describe ServicesController do
-  let(:fake_services_service) { double(:fake_services_service) }
   let(:valid_app) { double(:valid_app) }
   let(:valid_service) { double(:valid_service, id: 3, categories: []) }
   let(:fake_create_response) { double(:fake_create_response, body: 'test', status: 200) }
-  let(:fake_delete_response) { double(:fake_delete_response, body: 'test', status: 200) }
 
   before do
-    ServicesService.stub(:new).and_return(fake_services_service)
     App.stub(:find).and_return(valid_app)
     Service.stub(:find).and_return(valid_service)
-    fake_services_service.stub(:create).and_return(fake_create_response)
-    fake_services_service.stub(:destroy).and_return(fake_delete_response)
   end
 
   describe 'GET #show' do
@@ -172,8 +167,12 @@ describe ServicesController do
   end
 
   describe '#destroy' do
+    before do
+      valid_service.stub(:destroy)
+    end
+
     it 'uses the services service to destroy the service' do
-      expect(fake_services_service).to receive(:destroy).with('77', '89')
+      expect(valid_service).to receive(:destroy)
       delete :destroy, app_id: 77, id: 89
     end
 
@@ -185,7 +184,7 @@ describe ServicesController do
     it 'renders json response when format is json' do
       delete :destroy, app_id: 77, id: 89, format: :json
       expect(response.status).to eq 200
-      expect(response.body).to eql fake_delete_response.to_json
+      expect(response.body).to eql valid_service.to_json
     end
   end
 

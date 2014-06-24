@@ -27,10 +27,11 @@ class ServicesController < ApplicationController
   end
 
   def destroy
-    service, status = services_service.destroy(params[:app_id], params[:id])
-    respond_to do |format|
+    service = retrieve_service
+    service.destroy
+    respond_with service do |format|
       format.html { redirect_to app_path params[:app_id] }
-      format.json { render(json: service.to_json, status: status) }
+      format.json { render(json: service.to_json) }
     end
   end
 
@@ -64,9 +65,4 @@ class ServicesController < ApplicationController
   def retrieve_service
     Service.find(params[:id], params: { app_id: params[:app_id] })
   end
-
-  def services_service
-    @services_service ||= ServicesService.new
-  end
-
 end
