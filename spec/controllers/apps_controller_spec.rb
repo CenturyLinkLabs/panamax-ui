@@ -1,32 +1,37 @@
 require 'spec_helper'
 
 describe AppsController do
-  let(:fake_applications_service) { double(:fake_applications_service) }
-  let(:valid_app) { double(:valid_app, valid?: true, to_param: 77, documentation_to_html: 'adsf') }
+  let(:dummy_app) do
+    App.new
+  end
+
   let(:fake_delete_response) { double(:fake_delete_response, body: 'test', status: 200) }
 
   before do
     controller.stub(:show_url)
-    fake_applications_service.stub(:create).and_return(valid_app)
-    fake_applications_service.stub(:destroy).and_return(fake_delete_response)
-    ApplicationsService.stub(:new).and_return(fake_applications_service)
+    App.stub(:find).and_return(dummy_app)
+    dummy_app.stub(:id).and_return(77)
   end
 
   describe 'POST #create' do
-    it 'creates an application via the service' do
-      expect(fake_applications_service).to receive(:create).with('image' => 'some/image', 'tag' => ':latest')
+    before do
+      App.stub(:create).and_return(dummy_app)
+    end
+
+    it 'creates an application' do
+      expect(App).to receive(:create).with('image' => 'some/image', 'tag' => ':latest').and_return(dummy_app)
 
       post :create, app: { image: 'some/image', tag: ':latest' }
     end
 
     it 'assigns app' do
-      post :create, application: { image: 'some/image', tag: ':latest' }
-      expect(assigns(:app)).to eq valid_app
+      post :create, app: { image: 'some/image', tag: ':latest' }
+      expect(assigns(:app)).to eq dummy_app
     end
 
     context 'when the created app is valid' do
       before do
-        fake_applications_service.stub(:create).and_return(valid_app)
+        dummy_app.stub(:valid?).and_return(true)
       end
 
       it 'redirects to the show page' do
@@ -37,10 +42,8 @@ describe AppsController do
     end
 
     context 'when app is not valid' do
-      let(:invalid_app) { double(:invalid_app, valid?: false, to_param: 13) }
-
       before do
-        fake_applications_service.stub(:create).and_return(invalid_app)
+        App.stub(:create).and_return(false)
       end
 
       it 'renders the show template' do
@@ -51,54 +54,68 @@ describe AppsController do
   end
 
   describe '#destroy' do
+    before do
+      dummy_app.stub(:destroy)
+    end
+
     it 'uses the applications service to destroy the application' do
-      expect(fake_applications_service).to receive(:destroy).with('77')
-      delete :destroy, id: 77
+      expect(dummy_app).to receive(:destroy)
+      delete :destroy, id: 77, format: :html
     end
 
     it 'redirects to applications index view when format is html' do
-      delete :destroy, id: 77
+      delete :destroy, id: 77, format: :html
       expect(response).to redirect_to apps_path
     end
 
     it 'renders json response when format is json' do
       delete :destroy, id: 77, format: :json
-      expect(response.status).to eq 200
-      expect(response.body).to eql fake_delete_response.to_json
+      expect(response.status).to eq 204
+    end
+  end
+
+  describe 'GET #index' do
+    let(:apps) { [App.new] }
+    before do
+      App.stub(:all).and_return(apps)
+    end
+
+    it 'retrieves all the applications' do
+      get :index
+      expect(assigns(:apps)).to eq apps
     end
   end
 
   describe 'GET #show' do
-    it 'uses the service to retrieve the application' do
-      expect(fake_applications_service).to receive(:find_by_id).with('77')
+
+    it 'retrieves the application' do
+      expect(App).to receive(:find).with('77')
       get :show, id: 77
     end
 
     it 'assigns app' do
-      fake_applications_service.stub(:find_by_id).and_return(valid_app)
       get :show, id: 77
-      expect(assigns(:app)).to eq valid_app
+      expect(assigns(:app)).to eq dummy_app
     end
 
     it 'returns a 404 if the app is not found' do
-      fake_applications_service.stub(:find_by_id).and_return(nil)
+      App.stub(:find).and_raise(ActiveResource::ResourceNotFound.new(double('err', code: '404')))
       get :show, id: 77
       expect(response.status).to eq 404
     end
   end
 
   describe 'GET #documentation' do
-    render_views
 
     it 'renders the apps documentation with the documentation layout' do
-      fake_applications_service.stub(:find_by_id).and_return(valid_app)
+      dummy_app.stub(:documentation_to_html).and_return('<p>some instructions</a>')
       get :documentation, id: 77
-      expect(response.body).to_not match(/<header>/m)
-      expect(response.body).to match(/post-run-html/m)
+      expect(response).to render_template(layout: 'documentation')
+      # expect(response.body).to_not match(/<header>/m)
+      # expect(response.body).to match(/post-run-html/m)
     end
 
     it 'returns 404 if there is no documentation for the app' do
-      fake_applications_service.stub(:find_by_id).and_return(nil)
       get :documentation, id: 77
       expect(response.status).to eq 404
     end
@@ -106,8 +123,8 @@ describe AppsController do
 
   describe 'GET #relations' do
     it 'renders the partial for the relationship view for the app' do
-      fake_applications_service.stub(:find_by_id).and_return(valid_app)
       get :relations, id: 77
+      expect(response).to render_template(partial: '_relationship_view')
       expect(response.body).to_not match(/<body>/m)
     end
   end
@@ -121,12 +138,12 @@ describe AppsController do
     end
 
     before do
-      fake_applications_service.stub(:journal).and_return(journal_lines)
+      dummy_app.stub(:get).and_return(journal_lines)
     end
 
-    it 'uses the service to retrieve the journal' do
-      expect(fake_applications_service).to receive(:journal)
-        .with('1', 'cursor' => 'c1')
+    it 'retrieve the journal' do
+      expect(dummy_app).to receive(:get)
+        .with(:journal, 'cursor' => 'c1')
       get :journal, id: 1, cursor: 'c1', format: :json
     end
 

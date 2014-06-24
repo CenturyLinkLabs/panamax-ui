@@ -1,10 +1,9 @@
 class AppsController < ApplicationController
-  respond_to :json, only: [:journal]
+  respond_to :html
+  respond_to :json, only: [:journal, :destroy]
 
   def create
-    @app = applications_service.create(params[:app])
-
-    if @app.valid?
+    if @app = App.create(params[:app])
       flash[:success] = 'The application was successfully created.'
       redirect_to app_url(@app.to_param)
     else
@@ -13,46 +12,44 @@ class AppsController < ApplicationController
   end
 
   def show
+    @app = retrieve_app
     @search_result_set = SearchResultSet.new
-    render status: :not_found unless application.present?
   end
 
   def relations
-    render partial: 'relationship_view', locals:  { app: application }, formats: [:html]
+    render partial: 'relationship_view', locals:  { app: retrieve_app }, formats: [:html]
   end
 
   def destroy
-    application, status = applications_service.destroy(params[:id])
-    respond_to do |format|
-      format.html { redirect_to apps_path }
-      format.json { render(json: application.to_json, status: status) }
-    end
+    app = retrieve_app
+    app.destroy
+    respond_with(app)
   end
 
   def index
-    @apps = applications_service.all
+    @apps = App.all
   end
 
   def documentation
-    if application && application.documentation_to_html
-      return render html: application.documentation_to_html.html_safe, layout: 'documentation'
+    app = retrieve_app
+    if app && app.documentation_to_html
+      return render html: app.documentation_to_html.html_safe, layout: 'documentation'
     else
       head status: :not_found
     end
   end
 
   def journal
-    respond_with applications_service.journal(params[:id], journal_params)
+    app = retrieve_app
+    respond_with app.get(:journal, journal_params)
   end
 
   private
 
-  def application
-    @app ||= applications_service.find_by_id(params[:id])
-  end
-
-  def applications_service
-    @applications_service ||= ApplicationsService.new
+  def retrieve_app
+    App.find(params[:id])
+  rescue ActiveResource::ResourceNotFound
+    render status: :not_found
   end
 
   def journal_params

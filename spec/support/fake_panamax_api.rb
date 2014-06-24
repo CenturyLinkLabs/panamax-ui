@@ -15,16 +15,20 @@ class FakePanamaxApi < Sinatra::Base
     %w(foo bar).to_json
   end
 
-  get '/apps' do
+  get '/apps.json' do
     json_response 200, 'app_list_representation.json'
   end
 
-  post '/apps' do
+  post '/apps.json' do
     json_response 200, 'app_representation.json'
   end
 
-  get '/apps/:id' do
+  get '/apps/:id.:format' do |id, _format|
     json_response 200, 'app_representation.json'
+  end
+
+  get '/apps/:app_id/services.json' do
+    json_response 200, "services_representation.json"
   end
 
   get '/apps/:app_id/services/:id.?:format' do |_app_id, id, _format|

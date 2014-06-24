@@ -1,38 +1,25 @@
-require 'active_model'
 require 'kramdown'
 
-class App < BaseViewModel
-  include CollectionBuilder
-  include ActiveModel::Validations
+class App < BaseResource
 
-  attr_reader :name, :id, :services, :categories, :documentation, :from
+  has_many :lite_services, class_name: Service
 
-  def initialize(attributes={}, persisted=false)
-    super(attributes)
-    add_errors(attributes['errors'])
-  end
-
-  def self.build_from_response(response)
-    attributes = JSON.parse(response)
-    build_with_sub_resources(attributes)
-  end
-
-  def self.build_with_sub_resources(attributes)
-    attributes['services'].map! do |service_hash|
-      Service.find(service_hash['id'], params: {app_id: attributes['id']})
-    end
-    attributes['categories'].map! do |category_hash|
-      Category.find(category_hash['id'], params: {app_id: attributes['id']})
-    end
-    self.new(attributes)
+  schema do
+    text :documentation
+    text :documentation_to_html
+    text :name
+    text :from
+    text :documentation
   end
 
   def to_param
-    id
+    self.id
   end
 
-  def valid?
-    errors.empty?
+  def services
+    Array(lite_services).map do |service|
+      Service.find service.id, params: { app_id: self.id }
+    end
   end
 
   def service_count_label
@@ -61,16 +48,16 @@ class App < BaseViewModel
       end
 
       if groups.present?
-        groups[Category.new({name: 'Uncategorized'})] = uncategorized_services if uncategorized_services.present?
+        groups[Category.new(name: 'Uncategorized')] = uncategorized_services if uncategorized_services.present?
       else
-        groups[Category.new({name: 'Services'})] = services
+        groups[Category.new(name: 'Services')] = services
       end
 
-      return groups
+      groups
     end
 
     def services_with_category_name(name)
-      services.select { |service| service.categories.any?{ |cat| cat.name == name } }
+      services.select { |service| service.categories.any? { |cat| cat.name == name } }
     end
 
     def uncategorized_services
@@ -85,21 +72,11 @@ class App < BaseViewModel
 
     def sorted_categorized_services
       categorized = services.select { |service| service.categories.present? }
-      categorized.sort do |a,b|
+      categorized.sort do |a, b|
         a_value = a.category_priority
         b_value = b.category_priority
         (a_value == b_value) ? -1 : a_value - b_value
       end
     end
   end
-
-
-  private
-
-  def add_errors(errors_hash)
-    (errors_hash || {}).each do |k,v|
-      errors.add(k,v)
-    end
-  end
-
 end

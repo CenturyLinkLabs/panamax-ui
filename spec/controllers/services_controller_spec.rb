@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe ServicesController do
-  let(:fake_applications_service) { double(:fake_applications_service) }
   let(:fake_services_service) { double(:fake_services_service) }
   let(:valid_app) { double(:valid_app) }
   let(:valid_service) { double(:valid_service, id: 3, categories: []) }
@@ -9,9 +8,8 @@ describe ServicesController do
   let(:fake_delete_response) { double(:fake_delete_response, body: 'test', status: 200) }
 
   before do
-    ApplicationsService.stub(:new).and_return(fake_applications_service)
     ServicesService.stub(:new).and_return(fake_services_service)
-    fake_applications_service.stub(:find_by_id).and_return(valid_app)
+    App.stub(:find).and_return(valid_app)
     Service.stub(:find).and_return(valid_service)
     fake_services_service.stub(:create).and_return(fake_create_response)
     fake_services_service.stub(:destroy).and_return(fake_delete_response)
@@ -19,7 +17,7 @@ describe ServicesController do
 
   describe 'GET #show' do
     it 'uses the application service to retrieve the application' do
-      expect(fake_applications_service).to receive(:find_by_id).with('77')
+      expect(App).to receive(:find).with('77')
       get :show, app_id: 77, id: 89
     end
 

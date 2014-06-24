@@ -4,7 +4,7 @@ class ServicesController < ApplicationController
   respond_to :json, only: [:show, :journal]
 
   def show
-    @app = applications_service.find_by_id(params[:app_id])
+    @app = App.find(params[:app_id])
     @service = retrieve_service
     respond_with @app, @service
   end
@@ -35,7 +35,7 @@ class ServicesController < ApplicationController
   end
 
   def update
-    @app = applications_service.find_by_id(params[:app_id])
+    @app = App.find(params[:app_id])
     @service = retrieve_service
     @service.write_attributes(params[:service])
     if params[:service][:category]
@@ -63,10 +63,6 @@ class ServicesController < ApplicationController
 
   def retrieve_service
     Service.find(params[:id], params: { app_id: params[:app_id] })
-  end
-
-  def applications_service
-    @applications_service ||= ApplicationsService.new
   end
 
   def services_service
