@@ -230,17 +230,17 @@ describe Service do
     end
   end
 
-  describe '#base_image_name' do
+  describe '#image_name' do
     it 'returns the base image name without any tag information' do
       subject.from = 'supercool/repository:foobar'
-      expect(subject.base_image_name).to eq 'supercool/repository'
+      expect(subject.image_name).to eq 'supercool/repository'
     end
   end
 
-  describe '#image_tag_name' do
+  describe '#image_tag' do
     it 'returns the tag of the image' do
       subject.from = 'supercool/repository:foobar'
-      expect(subject.image_tag_name).to eq 'foobar'
+      expect(subject.image_tag).to eq 'foobar'
     end
   end
 
