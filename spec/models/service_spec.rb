@@ -236,4 +236,10 @@ describe Service do
       expect(result.category_priority).to eq 10
     end
   end
+
+  describe '#as_json' do
+    it 'returns the status attribute' do
+      expect(subject.as_json).to include('status' => :stopped)
+    end
+  end
 end

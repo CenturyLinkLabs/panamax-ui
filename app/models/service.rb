@@ -93,6 +93,10 @@ class Service < BaseResource
     "#{DOCKER_INDEX_BASE_URL}#{path_part}"
   end
 
+  def as_json(options={})
+    super.merge('status' => status)
+  end
+
   def self.build_from_response(response)
     attributes = JSON.parse(response)
     self.new(attributes)
