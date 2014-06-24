@@ -1,5 +1,5 @@
 class AppsController < ApplicationController
-  respond_to :html
+  respond_to :html, except: [:journal]
   respond_to :json, only: [:journal, :destroy]
 
   def create

@@ -49,6 +49,6 @@
 
 = render 'shared/journal',
   title: 'CoreOS Journal - Application Activity Log',
-  journal_path: journal_app_path(@app.id)
+  journal_path: journal_app_path(@app.id, format: :json)
 
 = render 'services/add_service'
