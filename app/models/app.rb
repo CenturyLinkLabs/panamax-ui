@@ -51,7 +51,7 @@ class App < BaseResource
     end
 
     def services_with_category_name(name)
-      services.select { |service| service.categories.any? { |cat| cat.name == name } }
+      sort_by_position services.select { |service| service.categories.any? { |cat| cat.name == name } }
     end
 
     def uncategorized_services
@@ -71,6 +71,10 @@ class App < BaseResource
         b_value = b.category_priority
         (a_value == b_value) ? -1 : a_value - b_value
       end
+    end
+
+    def sort_by_position(list)
+      list.sort_by { |s| s.categories.first.position }
     end
   end
 end

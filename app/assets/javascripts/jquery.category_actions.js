@@ -1,6 +1,93 @@
 //= require jquery.ui.dialog
+//= require jquery.ui.sortable
 
-(function($){
+(function($) {
+  $.PMX.SortServices = function($el, options) {
+    var base = this;
+
+    base.$el = $el;
+
+    base.defaultOptions = {
+      connectWith: 'ul.services',
+      dragHelper: '.dragging-service'
+    };
+
+    base.init = function() {
+      base.options = $.extend({},base.defaultOptions, options);
+      base.$sortable = $el.find(base.options.connectWith);
+      base.bindSortable();
+    };
+
+    base.bindSortable = function() {
+      $(base.$sortable).sortable(
+        {
+          appendTo: 'body',
+          revert: true,
+          connectWith: base.options.connectWith,
+          placeholder: base.customPlaceholder(),
+          helper: base.customHelper,
+          start: base.startDrag,
+          stop: base.stopDrag,
+          update: base.drop
+        });
+    };
+
+    base.customHelper = function(event, elem) {
+      return $('<ul class="dragging-service"></ul>').append($(elem).clone());
+    };
+
+    base.customPlaceholder = function() {
+      return {
+        element: function () {
+          return $('<li id="dragging"></li>')[0];
+        },
+        update: function (container, p) {
+          // required to complete object interface
+        }
+      };
+    };
+
+    base.startDrag = function(event, ui) {
+      var category = base.$el.find('[data-category]').attr('data-category');
+
+      ui.placeholder.attr('data-category', category);
+      ui.placeholder.html(ui.item.html());
+    };
+
+    base.stopDrag = function(event, ui) {
+      $(base.options.dragHelper).remove();
+    };
+
+    base.drop = function(event, ui) {
+      var targetPanel = ui.item.closest('.category-panel'),
+          targetCategory = targetPanel.find('[data-category]').attr('data-category'),
+          services = targetPanel.find('ul.services li'),
+          path = window.location.pathname;
+
+      services.each(function (idx, service) {
+        var $elem = $(service),
+            service_id = $elem.attr('data-id'),
+            service = { id: service_id };
+
+        if (targetCategory != 'null') {
+          service.category = targetCategory;
+          service.position = idx;
+        };
+
+        $.ajax({
+          type: 'PUT',
+          headers: {
+            'Accept': 'application/json'
+          },
+          url: path + '/services/' + $elem.attr('data-id'),
+          data: {
+            service: service
+          }
+        });
+      });
+    };
+  };
+
   $.PMX.AddService = function(el, options) {
     var base = this;
 
@@ -474,6 +561,7 @@
       (new $.PMX.EditCategory($(this))).init();
       (new $.PMX.AddCategory($(this))).init();
       (new $.PMX.DeleteCategory($(this))).init();
+      (new $.PMX.SortServices($(this))).init();
     });
   };
 })(jQuery);

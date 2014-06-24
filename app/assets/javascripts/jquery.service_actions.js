@@ -1,4 +1,4 @@
-(function($){
+(function($) {
   $.PMX.ServiceDestroyer = function(el, options){
     var base = this;
 
@@ -8,13 +8,13 @@
     base.defaultOptions = {
     };
 
-    base.init = function (){
+    base.init = function () {
       base.options = $.extend({}, base.defaultOptions, options);
 
       (new $.PMX.destroyLink(base.$el, {success: base.cleanList })).init();
     };
 
-    base.cleanList = function (){
+    base.cleanList = function () {
       var $services = base.$el.parent();
 
       base.$el.trigger('category-change');
@@ -26,8 +26,8 @@
     };
   };
 
-  $.fn.serviceActions = function(options){
-    return this.each(function(){
+  $.fn.serviceActions = function(options) {
+    return this.each(function() {
       (new $.PMX.ServiceDestroyer(this, options)).init();
     });
   };

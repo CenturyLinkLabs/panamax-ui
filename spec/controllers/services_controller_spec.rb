@@ -2,12 +2,13 @@ require 'spec_helper'
 
 describe ServicesController do
   let(:valid_app) { double(:valid_app) }
-  let(:valid_service) { double(:valid_service, id: 3, categories: []) }
+  let(:valid_service) { double(:valid_service, id: 3) }
   let(:fake_create_response) { double(:fake_create_response, body: 'test', status: 200) }
 
   before do
     App.stub(:find).and_return(valid_app)
     Service.stub(:find).and_return(valid_service)
+    valid_service.stub(:categories=)
   end
 
   describe 'GET #show' do
@@ -161,7 +162,7 @@ describe ServicesController do
 
     it 'updates the service category when present' do
       attributes['category'] = '1'
-      expect(valid_service).to receive(:categories)
+      expect(valid_service).to receive(:categories=).with([{ id: '1', position: nil }])
       patch :update, app_id: 2, id: 3, service: attributes
     end
   end

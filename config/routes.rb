@@ -16,7 +16,10 @@ Rails.application.routes.draw do
     resources :services, only: [:update, :create, :show, :destroy] do
       get 'journal', on: :member
     end
-    resources :categories, only: [:update, :create, :destroy]
+    resources :categories, only: [:update, :create, :destroy] do
+      put 'remove_service', on: :member
+      post 'add_service', on: :member
+    end
   end
 
   resources :host_health, only: [:index]
