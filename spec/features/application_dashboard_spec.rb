@@ -13,6 +13,14 @@ describe 'applications dashboard' do
         expect(page).to have_css 'h1', text: 'Manage'
         expect(page).to have_css 'h1', text: 'tutum/wordpress'
       end
+
+      it 'can rebuild the application' do
+        visit '/apps'
+
+        click_on 'rebuild'
+
+        expect(page).to have_css 'div.notice-success', text: 'The application was successfully rebuilt.'
+      end
     end
   end
 end

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     get 'documentation', on: :member
     get 'journal', on: :member
     get 'relations', on: :member
+    put 'rebuild', on: :member
     resources :services, only: [:update, :create, :show, :destroy] do
       get 'journal', on: :member
     end

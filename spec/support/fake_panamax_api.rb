@@ -28,7 +28,7 @@ class FakePanamaxApi < Sinatra::Base
   end
 
   get '/apps/:app_id/services.json' do
-    json_response 200, "services_representation.json"
+    json_response 200, 'services_representation.json'
   end
 
   get '/apps/:app_id/services/:id.?:format' do |_app_id, id, _format|
@@ -51,12 +51,16 @@ class FakePanamaxApi < Sinatra::Base
     status 204
   end
 
+  put '/apps/:app_id/rebuild.:format' do
+    status 204
+  end
+
   get '/user.json' do
     json_response 200, 'user_representation.json'
   end
 
   delete '/apps/:app_id/services/:id.?:format' do
-    json_response 200, "service_representation_1.json"
+    json_response 200, 'service_representation_1.json'
   end
 
   get '/types.json' do

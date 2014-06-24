@@ -1,6 +1,6 @@
 class AppsController < ApplicationController
   respond_to :html, except: [:journal]
-  respond_to :json, only: [:journal, :destroy]
+  respond_to :json, only: [:journal, :destroy, :rebuild]
 
   def create
     if @app = App.create(params[:app])
@@ -44,6 +44,17 @@ class AppsController < ApplicationController
     respond_with app.get(:journal, journal_params)
   end
 
+  def rebuild
+    app = retrieve_app
+    resp = app.put(:rebuild)
+    if resp.code == '204'
+      flash[:success] = 'The application was successfully rebuilt.'
+    else
+      flash[:alert] = 'The application could not be rebuilt.'
+    end
+    respond_with app, location: request.referer || apps_path
+  end
+
   private
 
   def retrieve_app
@@ -55,4 +66,5 @@ class AppsController < ApplicationController
   def journal_params
     params.permit(:cursor)
   end
+
 end

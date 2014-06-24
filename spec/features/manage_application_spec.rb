@@ -40,6 +40,19 @@ describe 'managing an application' do
           expect(page).to have_css '.deployment-env', text: 'Deployed to: CoreOS Local'
         end
       end
+
     end
+
+    context 'perform actions' do
+      it 'can rebuild an application' do
+        visit '/apps/2'
+
+        click_on 'rebuild'
+
+        expect(page).to have_css 'div.notice-success', text: 'The application was successfully rebuilt.'
+      end
+
+    end
+
   end
 end
