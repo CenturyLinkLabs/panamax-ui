@@ -24,6 +24,7 @@ describe 'managing a template' do
         fill_in 'Template Author', with: 'test@example.com'
         fill_in 'Template Description', with: 'generic wordpress installation'
         fill_in 'Keywords', with: 'wordpress, mysql, blog'
+        choose 'Java'
 
         click_on 'Publish Your Template'
 

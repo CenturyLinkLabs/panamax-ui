@@ -6,7 +6,8 @@ describe TemplateForm do
     {
       name: 'My template',
       description: 'generic wordpress installation',
-      keywords: 'fast, simple, elegant'
+      keywords: 'fast, simple, elegant',
+      icon: 'http://icons.com/icon.png'
     }
   end
 
@@ -37,11 +38,29 @@ describe TemplateForm do
     end
   end
 
-  describe '#save' do
+  describe '#icon' do
+    it 'is the icon if set' do
+      expect(subject.icon).to eq 'http://icons.com/icon.png'
+    end
 
+    it 'defaults to the value for Icon Blocks when icon is falsey' do
+      subject.icon = nil
+      expect(subject.icon).to eq 'http://panamax.ca.tier3.io/template_logos/default.png'
+    end
+  end
+
+  describe '#save' do
     it 'creates a template' do
-      expect(Template).to receive(:create).with(attributes.merge(authors: [nil]))
+      expect(Template).to receive(:create).with(
+        attributes.merge(authors: [nil])
+      )
       subject.save
+    end
+  end
+
+  describe '.icon_options' do
+    it 'returns a hash' do
+      expect(described_class.icon_options).to be_a Hash
     end
   end
 end
