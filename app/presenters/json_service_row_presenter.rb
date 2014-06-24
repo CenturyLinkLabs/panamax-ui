@@ -1,4 +1,8 @@
 class JsonServiceRowPresenter
+  def id
+    '{{service_id}}'
+  end
+
   def name
     '{{name}}'
   end

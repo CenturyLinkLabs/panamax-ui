@@ -26,6 +26,51 @@
   }
 }
 
+ul.dragging-service {
+  width: 292px;
+  padding-bottom: 6px;
+
+  li {
+    position: relative;
+    margin-bottom: 10px;
+    height: 40px;
+    border-radius: 4px;
+    background: $light_grey;
+    opacity: 0.7;
+
+    > a {
+      display: inline-block;
+      margin-left: 4px;
+      padding-left: 2px;
+      position: absolute;
+      top: 14px;
+      width: 210px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 16px;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+
+    .service-icon {
+      display: inline-block;
+      float: left;
+      background-color: $light_grey;
+      width: 40px;
+      height: 40px;
+      margin-right: 6px;
+      border-radius: 4px;
+      img {
+        margin: 10px 0 0 10px;
+      }
+    }
+
+    .actions {
+      display: none;
+    }
+  }
+}
+
 section.notice {
   margin-bottom: 20px;
 
@@ -425,6 +470,11 @@ section.application-services {
             height: 40px;
             border-radius: 4px;
             position: relative;
+
+            &#dragging {
+              border: 1px dashed $medium_grey;
+              opacity: 0.4;
+            }
 
             &:hover {
               cursor: move;

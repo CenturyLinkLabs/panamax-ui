@@ -14,8 +14,8 @@ describe App do
       'documentation' => '# Title\r\nsome markdown doc',
       'services' => [
         { 'id' => '3', 'name' => 'blah', 'sub_state' => 'running', 'ports' => [{host_port: 8080}], 'categories' =>
-          [{ 'name' => 'foo', 'id' => 3 }, { 'name' => 'baz', 'id' => 3 }] },
-        { 'id' => '4', 'name' => 'barf', 'categories' => [{ 'name' => 'foo', 'id' => 2 }] },
+          [{ 'name' => 'foo', 'id' => 3, 'position' => 3  }, { 'name' => 'baz', 'id' => 3 }] },
+        { 'id' => '4', 'name' => 'barf', 'categories' => [{ 'name' => 'foo', 'id' => 2, 'position' => 2 }] },
         { 'id' => '5', 'name' => 'bark', 'categories' => [{ 'name' => 'bar', 'id' => 1 }] },
         { 'id' => '6', 'name' => 'bard', 'categories' => [] }
       ]

@@ -39,8 +39,11 @@ class ServicesController < ApplicationController
     @app = App.find(params[:app_id])
     @service = retrieve_service
     @service.write_attributes(params[:service])
+
     if params[:service][:category]
-      @service.categories << { id: params[:service][:category] }
+      @service.categories = [{ id: params[:service][:category], position: params[:service][:position] }]
+    else
+      @service.categories = []
     end
 
     if @service.save
