@@ -13,8 +13,11 @@ describe TemplateForm do
   subject { described_class.new(attributes) }
 
   it { should respond_to :repos }
+  it { should respond_to :repos= }
   it { should respond_to :name }
+  it { should respond_to :name= }
   it { should respond_to :keywords }
+  it { should respond_to :keywords= }
 
   describe '#save' do
 
