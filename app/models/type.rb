@@ -1,0 +1,2 @@
+class Type < BaseResource
+end

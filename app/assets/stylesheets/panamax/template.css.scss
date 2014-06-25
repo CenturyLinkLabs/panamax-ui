@@ -47,9 +47,6 @@
     }
 
     .template-icons {
-      background: $medium_grey;
-      @include border-radius(3px);
-
       label {
         @include border-box;
         @include border-radius(3px);
@@ -58,7 +55,6 @@
         line-height: 50px;
         width: 195px;
         padding-left: 10px;
-        color: $white;
         border: transparent 1px solid;
 
         &:hover {

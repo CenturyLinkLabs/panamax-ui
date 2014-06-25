@@ -8,7 +8,7 @@ describe Template do
       'description' => 'this thing goes boom shaka laka',
       'updated_at' => Time.parse('2012-1-13').to_s,
       'image_count' => 4,
-      'icon' => 'http://iconwarehouse.io/myicon.png'
+      'type' => 'wordpress'
     }
   end
 
@@ -42,8 +42,8 @@ describe Template do
     it { should respond_to :icon_src }
   end
 
-  describe '#icon' do
-    it { should respond_to :icon }
+  describe '#type' do
+    it { should respond_to :type }
   end
 
   describe '#keywords' do
@@ -99,14 +99,14 @@ describe Template do
 
   describe '#icon_src' do
     it 'exposes the icon url' do
-      expect(subject.icon_src).to eq 'http://iconwarehouse.io/myicon.png'
+      expect(subject.icon_src).to eq '/assets/type_icons/wordpress.svg'
     end
 
     context 'when no image exists' do
-      subject { described_class.new(attributes.merge('icon' => nil)) }
+      subject { described_class.new(attributes.merge('type' => nil)) }
 
       it 'returns the default image url if no image exists' do
-        expect(subject.icon_src).to eq '/assets/template_logos/default.png'
+        expect(subject.icon_src).to eq '/assets/type_icons/default.svg'
       end
     end
   end
@@ -118,7 +118,7 @@ describe Template do
         'last_updated_on' => 'January 13th, 2012 00:00',
         'image_count_label' => 'Images',
         'recommended_class' => 'not-recommended',
-        'icon_src' => 'http://iconwarehouse.io/myicon.png'
+        'icon_src' => '/assets/type_icons/wordpress.svg'
       )
       expect(subject.as_json).to eq expected
     end

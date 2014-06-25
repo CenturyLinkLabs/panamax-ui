@@ -22,7 +22,7 @@ describe 'searching for templates and images' do
       # template result
       expect(page).to have_content 'a wordpress template'
       expect(page).to have_css '.image-count', text: '2 Images'
-      expect(page).to have_css 'img[src="/icons/icon.png"]'
+      expect(page).to have_css 'img[src="/assets/type_icons/wordpress.svg"]'
     end
   end
 end

@@ -21,12 +21,12 @@
     %dd= f.text_area :description, placeholder: 'Give your template a description'
     %dt= f.label :keywords, class: 'optional'
     %dd= f.text_field :keywords, placeholder: 'Add some keywords, seperated by commas'
-    %dt Template Icon
+    %dt Template Type
     %dd.template-icons
-      - TemplateForm.icon_options.each do |text, value|
+      - f.object.types.each do |type|
         = label_tag do
-          = f.radio_button :icon, value
-          = image_tag value
-          %span= text
+          = f.radio_button :type, type.name
+          = image_tag icon_source_for(type.name)
+          %span= type.name
 
   = button_tag 'Publish Your Template', class: 'button-positive'

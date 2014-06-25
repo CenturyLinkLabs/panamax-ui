@@ -7,7 +7,7 @@ describe TemplateForm do
       name: 'My template',
       description: 'generic wordpress installation',
       keywords: 'fast, simple, elegant',
-      icon: 'http://icons.com/icon.png'
+      type: 'wordpress'
     }
   end
 
@@ -38,14 +38,22 @@ describe TemplateForm do
     end
   end
 
-  describe '#icon' do
-    it 'is the icon if set' do
-      expect(subject.icon).to eq 'http://icons.com/icon.png'
+  describe '#type' do
+    let(:fake_types) { double(:types) }
+
+    subject { described_class.new(attributes.merge(types: fake_types)) }
+
+    before do
+      fake_types.stub(:first).and_return(double(:type, name: 'Generic'))
     end
 
-    it 'defaults to the value for Icon Blocks when icon is falsey' do
-      subject.icon = nil
-      expect(subject.icon).to eq 'http://panamax.ca.tier3.io/template_logos/default.png'
+    it 'is the type if set' do
+      expect(subject.type).to eq 'wordpress'
+    end
+
+    it 'defaults to the value when type is falsey' do
+      subject.type = nil
+      expect(subject.type).to eq 'Generic'
     end
   end
 
@@ -58,9 +66,4 @@ describe TemplateForm do
     end
   end
 
-  describe '.icon_options' do
-    it 'returns a hash' do
-      expect(described_class.icon_options).to be_a Hash
-    end
-  end
 end
