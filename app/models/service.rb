@@ -1,4 +1,5 @@
 class Service < BaseResource
+  include ApplicationHelper
 
   DOCKER_INDEX_BASE_URL = 'https://index.docker.io/'
 
@@ -17,10 +18,8 @@ class Service < BaseResource
     string :load_state
     string :active_state
     string :sub_state
-    string :icon
+    string :type
   end
-
-  DEFAULT_ICON_URL = 'http://panamax.ca.tier3.io/service_icons/icon_service_docker_grey.png'
 
   def category_names
     categories.map(&:name)
@@ -44,7 +43,7 @@ class Service < BaseResource
   end
 
   def icon
-    self.attributes[:icon].blank? ? DEFAULT_ICON_URL : self.attributes[:icon]
+    type.blank? ? icon_source_for('default') : icon_source_for(type)
   end
 
   def environment_vars

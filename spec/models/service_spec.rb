@@ -145,15 +145,15 @@ describe Service do
   describe '#icon' do
     context 'an icon was provided by the image' do
       it 'returns the URL of the image icon' do
-        subject.icon = 'http://foo.com/bar.png'
-        expect(subject.icon).to eq 'http://foo.com/bar.png'
+        subject.type = 'wordpress'
+        expect(subject.icon).to eq '/assets/type_icons/wordpress.svg'
       end
     end
 
     context 'no icon is specified' do
       it 'returns the URL of the default icon' do
-        subject.icon = ''
-        expect(subject.icon).to eq 'http://panamax.ca.tier3.io/service_icons/icon_service_docker_grey.png'
+        subject.type = nil
+        expect(subject.icon).to eq '/assets/type_icons/default.svg'
       end
     end
 

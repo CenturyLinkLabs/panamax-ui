@@ -1,5 +1,6 @@
 class Template < BaseResource
   include ActionView::Helpers::TextHelper
+  include ApplicationHelper
 
   schema do
     integer :id
@@ -14,7 +15,7 @@ class Template < BaseResource
     integer :image_count
     boolean :recommended
     string :icon_src
-    string :icon
+    string :type
   end
 
   def last_updated_on
@@ -34,10 +35,10 @@ class Template < BaseResource
   end
 
   def icon_src
-    if icon.blank?
-      ActionController::Base.helpers.asset_path('template_logos/default.png')
+    if type.blank?
+      icon_source_for('default')
     else
-      icon
+      icon_source_for(type)
     end
   end
 

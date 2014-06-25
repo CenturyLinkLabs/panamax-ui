@@ -3,7 +3,7 @@ class TemplatesController < ApplicationController
 
   def new
     @user = User.find
-    @template_form = TemplateForm.new(user: @user)
+    @template_form = TemplateForm.new(types: Type.all, user: @user)
   end
 
   def create
