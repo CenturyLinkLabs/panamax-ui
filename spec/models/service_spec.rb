@@ -40,6 +40,11 @@ describe Service do
   it { should respond_to :docker_status }
 
   describe '#status' do
+
+    before do
+      subject.load_state = nil
+    end
+
     it 'is :running when sub state is running' do
       subject.sub_state = 'running'
       expect(subject.status).to eq :running
@@ -72,6 +77,12 @@ describe Service do
 
     it 'is :stopped when sub state is something else' do
       subject.sub_state = 'somethingelse'
+      expect(subject.status).to eq :stopped
+    end
+
+    it 'is :stopped when not-found and dead' do
+      subject.sub_state = 'dead'
+      subject.load_state = 'not-found'
       expect(subject.status).to eq :stopped
     end
   end

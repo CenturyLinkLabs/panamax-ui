@@ -31,10 +31,11 @@ class Service < BaseResource
   end
 
   def status
-    case sub_state
-    when 'running'
+    if running?
       :running
-    when 'dead', 'start-pre', 'auto-restart', 'stop-post'
+    elsif stopped?
+      :stopped
+    elsif loading?
       :loading
     else
       :stopped
@@ -53,6 +54,16 @@ class Service < BaseResource
 
   def running?
     self.sub_state == 'running'
+  end
+
+  def loading?
+    if self.load_state != 'not-found'
+      ['dead', 'start-pre', 'auto-restart', 'stop-post'].include? sub_state
+    end
+  end
+
+  def stopped?
+    !loading? && !running?
   end
 
   def environment_attributes=(attributes)
