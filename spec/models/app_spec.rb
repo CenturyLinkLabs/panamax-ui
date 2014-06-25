@@ -12,8 +12,8 @@ describe App do
       ],
       'from' => 'nowhere',
       'documentation' => '# Title\r\nsome markdown doc',
-      'lite_services' => [
-        { 'id' => '3', 'name' => 'blah', 'sub_state' => 'running', 'ports' => [], 'categories' =>
+      'services' => [
+        { 'id' => '3', 'name' => 'blah', 'sub_state' => 'running', 'ports' => [{host_port: 8080}], 'categories' =>
           [{ 'name' => 'foo', 'id' => 3 }, { 'name' => 'baz', 'id' => 3 }] },
         { 'id' => '4', 'name' => 'barf', 'categories' => [{ 'name' => 'foo', 'id' => 2 }] },
         { 'id' => '5', 'name' => 'bark', 'categories' => [{ 'name' => 'bar', 'id' => 1 }] },
@@ -86,7 +86,7 @@ describe App do
       end
 
       it 'groups all services under a "Services" group if there are no categories' do
-        attributes['lite_services'].each { |s| s['categories'] = [] }
+        attributes['services'].each { |s| s['categories'] = [] }
         attributes['categories'] = []
         groups = subject.categorized_services
         expect(groups.keys.map(&:name)).to match_array(['Services'])

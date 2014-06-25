@@ -9,18 +9,5 @@
       "id": 4,
       "name": "Web Tier"
     }
-  ],
-  "services": [
-    {
-      "id": 1,
-      "name": "tutum_wordpress_1",
-      "errors": null,
-      "categories": [
-        {
-          "id": 4,
-          "name": "Web Tier"
-        }
-      ]
-    }
   ]
 }

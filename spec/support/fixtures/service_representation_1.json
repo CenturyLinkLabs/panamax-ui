@@ -22,6 +22,10 @@
   "environment": {
     "DB_PASSWORD": "pass@word01"
   },
+  "app": {
+    "id": 5,
+    "name": "tutum/wordpress"
+  },
   "volumes": [],
   "load_state": null,
   "active_state": null,

@@ -5,7 +5,7 @@
     .actions
       %a{href: "/apps/#{presenter.app_id}/categories/#{presenter.id}", class: 'edit-action'}
       %a{href: "/apps/#{presenter.app_id}/categories/#{presenter.id}", class: 'delete-action'}
-  - unless presenter.services.empty?
+  - unless presenter.services.blank?
     %ul.services
       - presenter.services.each do |service|
         = render 'application_service_row', {presenter: ServiceRowPresenter.new(service)}

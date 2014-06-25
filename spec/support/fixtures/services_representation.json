@@ -8,6 +8,10 @@
         "id": 4,
         "name": "Web Tier"
       }
-    ]
+    ],
+    "app": {
+      "id": 5,
+      "name": "tutum/wordpress"
+    }
   }
 ]

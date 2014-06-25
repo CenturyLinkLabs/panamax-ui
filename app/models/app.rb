@@ -2,7 +2,7 @@ require 'kramdown'
 
 class App < BaseResource
 
-  has_many :lite_services, class_name: Service
+  has_many :services
 
   schema do
     text :documentation
@@ -14,12 +14,6 @@ class App < BaseResource
 
   def to_param
     self.id
-  end
-
-  def services
-    Array(lite_services).map do |service|
-      Service.find service.id, params: { app_id: self.id }
-    end
   end
 
   def service_count_label

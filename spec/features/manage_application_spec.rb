@@ -6,7 +6,7 @@ describe 'managing an application' do
       it 'can navigate to a running service' do
         visit '/apps/2'
 
-        within '.category-panel:first-child li', text: 'WP_1' do
+        within '.category-panel:first-child li', text: 'tutum_wordpress_1' do
           click_on 'details'
         end
 
