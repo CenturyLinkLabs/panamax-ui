@@ -9,9 +9,10 @@
 = render '/shared/breadcrumbs', breadcrumbs: crumbs
 
 %section.service-details
-  %span.service-status{class: @service.status}
-    = @service.status.to_s.humanize
-    %em{title: 'Docker sub state'}= "(#{@service.sub_state || ' - '})"
+  %span.service-status{ class: @service.status,
+      data: { source: application_service_path(@app.id, @service.id, format: :json) } }
+    %span.panamax-state= @service.status.to_s.humanize
+    %em.fleet-state{title: 'Fleet sub state'}= "(#{@service.sub_state || ' - '})"
 
   .base-image-detail
     %h6 Base Image:

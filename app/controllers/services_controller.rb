@@ -1,10 +1,12 @@
 class ServicesController < ApplicationController
 
-  respond_to :json, only: [:journal]
+  respond_to :html, only: [:show]
+  respond_to :json, only: [:show, :journal]
 
   def show
     @app = applications_service.find_by_id(params[:application_id])
     @service = retrieve_service
+    respond_with @app, @service
   end
 
   def create

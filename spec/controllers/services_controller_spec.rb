@@ -38,6 +38,13 @@ describe ServicesController do
       get :show, application_id: 77, id: 89
       expect(assigns(:service)).to eq valid_service
     end
+
+    context 'when format is JSON' do
+      it 'returns the JSON-serialized service' do
+        get :show, application_id: 77, id: 89, format: :json
+        expect(response.body).to eq valid_service.to_json
+      end
+    end
   end
 
   describe 'category param builder' do
