@@ -1,3 +1,4 @@
+= check_box_tag :boom
 %h3 Information retrieved from GitHub
 %dl
   %dt Username:
@@ -15,9 +16,18 @@
   %dl
     %dt= f.label :name, 'Template Name'
     %dd= f.text_field :name, placeholder: 'Give your template a name'
+    %dt= f.label :author, 'Template Author'
+    %dd= f.text_field :author
     %dt= f.label :description, 'Template Description'
     %dd= f.text_area :description, placeholder: 'Give your template a description'
     %dt= f.label :keywords, class: 'optional'
     %dd= f.text_field :keywords, placeholder: 'Add some keywords, seperated by commas'
+    %dt Template Icon
+    %dd.template-icons
+      - TemplateForm.icon_options.each do |text, value|
+        = label_tag do
+          = f.radio_button :icon, value
+          = image_tag value
+          %span= text
 
   = button_tag 'Publish Your Template', class: 'button-positive'

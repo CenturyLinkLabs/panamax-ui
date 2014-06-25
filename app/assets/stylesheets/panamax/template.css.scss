@@ -1,4 +1,5 @@
 @import 'ctl_base_ui/colors';
+@import 'ctl_base_ui/mixins';
 
 #template_flow {
   h3 {
@@ -35,9 +36,46 @@
       color: $medium_grey;
       line-height: 38px;
     }
+
+    dd {
+      width: 780px;
+    }
+
     input[type='text'],
     textarea {
       width: 460px;
+    }
+
+    .template-icons {
+      background: $medium_grey;
+      @include border-radius(3px);
+
+      label {
+        @include border-box;
+        @include border-radius(3px);
+        float: left;
+        height: 50px;
+        line-height: 50px;
+        width: 195px;
+        padding-left: 10px;
+        color: $white;
+        border: transparent 1px solid;
+
+        &:hover {
+          border: $dark_grey 1px solid;
+        }
+
+        input:checked + img +span {
+          color: $dark_grey;
+          font-weight: bold;
+        }
+
+        img {
+          margin-bottom: -5px;
+          width: 20px;
+          height: 20px;
+        }
+      }
     }
   }
 
