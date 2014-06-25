@@ -45,7 +45,27 @@ describe Service do
       expect(subject.status).to eq :running
     end
 
-    it 'is :loading when sub state is dead' do
+    it 'is :stopped when sub state is failed and loading state is not-found' do
+      subject.sub_state = 'failed'
+      subject.load_state = 'not-found'
+      expect(subject.status).to eq :stopped
+    end
+
+    it 'is :stopped when sub state is dead but active state is active' do
+      subject.sub_state = 'dead'
+      subject.active_state = 'active'
+      expect(subject.status).to eq :stopped
+    end
+
+    it 'is :stopped when sub state is dead and load state is not-found' do
+      subject.sub_state = 'dead'
+      subject.load_state = 'not-found'
+      expect(subject.status).to eq :stopped
+    end
+
+    it 'is :loading when states are loaded, inactive, and dead' do
+      subject.load_state = 'loaded'
+      subject.active_state = 'inactive'
       subject.sub_state = 'dead'
       expect(subject.status).to eq :loading
     end
@@ -67,13 +87,14 @@ describe Service do
 
     it 'is :stopped when sub state is nil' do
       subject.sub_state = nil
-      expect(subject.status).to eq :stopped
+      expect(subject.status).to eq :loading
     end
 
-    it 'is :stopped when sub state is something else' do
+    it 'is :loading when sub state is something else' do
       subject.sub_state = 'somethingelse'
-      expect(subject.status).to eq :stopped
+      expect(subject.status).to eq :loading
     end
+
   end
 
   describe '.build_from_response' do
@@ -239,7 +260,7 @@ describe Service do
 
   describe '#as_json' do
     it 'returns the status attribute' do
-      expect(subject.as_json).to include('status' => :stopped)
+      expect(subject.as_json).to include('status' => :loading)
     end
   end
 end

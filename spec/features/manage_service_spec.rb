@@ -71,7 +71,7 @@ describe 'managing a service' do
 
       it 'displays the service status' do
         within '.service-status' do
-          expect(page).to have_content 'Stopped (restarting)'
+          expect(page).to have_content 'Loading (restarting)'
         end
       end
     end

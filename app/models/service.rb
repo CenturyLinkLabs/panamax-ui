@@ -34,10 +34,12 @@ class Service < BaseResource
     case sub_state
     when 'running'
       :running
-    when 'dead', 'start-pre', 'auto-restart', 'stop-post'
-      :loading
+    when 'failed' # one case where it's not loading
+      load_state == 'not-found' ? :stopped : :loading
+    when 'dead' # should always be stopped except for one case
+      load_state == 'loaded' && active_state == 'inactive' ? :loading : :stopped
     else
-      :stopped
+      :loading
     end
   end
 
