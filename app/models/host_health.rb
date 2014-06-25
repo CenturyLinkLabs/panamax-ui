@@ -12,19 +12,20 @@ class HostHealth < BaseResource
   def overall
     self.attributes[:stats].last.tap do |results|
       results.attributes[:overall_mem] = overall_memory(self.attributes[:stats], self.attributes[:spec])
-      results.attributes[:overall_cpu] = overall_cpu(self.attributes[:stats], self.attributes[:spec])
+      results.attributes[:overall_cpu] = overall_cpu(self.attributes[:stats])
     end
   end
 
   private
 
-  def overall_cpu(stats, spec)
+  def overall_cpu(stats)
     if stats.count > 1
       sample = stats.pop(2)
       raw = sample[1].attributes[:cpu].attributes[:usage].attributes[:total] -
             sample[0].attributes[:cpu].attributes[:usage].attributes[:total]
+      spec = sample[1].attributes[:cpu].attributes[:usage].attributes[:per_cpu].length
       usage = (raw / 1000000000.0).round(3)
-      percent = (((raw / 1000000.0) / spec.attributes[:cpu].attributes[:limit]) * 100).round(2)
+      percent = ((usage / spec) * 100).round(2)
     end
     {
       'usage' => usage || 0,

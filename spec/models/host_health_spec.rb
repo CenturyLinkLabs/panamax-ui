@@ -8,7 +8,8 @@ describe HostHealth do
         {
           cpu: {
             usage: {
-              total: 0
+              total: 0,
+              per_cpu: [100]
             }
           },
           memory: {
@@ -18,7 +19,8 @@ describe HostHealth do
         {
           cpu: {
             usage: {
-              total: 10000000
+              total: 10000000,
+              per_cpu: [100]
             }
           },
           memory: {
@@ -40,7 +42,7 @@ describe HostHealth do
   let(:overall) do
     {
       'usage' => 0.01,
-      'percent' => 10.0
+      'percent' => 1.0
     }
   end
 
