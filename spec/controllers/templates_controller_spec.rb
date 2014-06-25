@@ -57,7 +57,7 @@ describe TemplatesController do
 
       it 'redirects to the applications path' do
         post :create, 'template_form' => create_params
-        expect(response).to redirect_to applications_path
+        expect(response).to redirect_to apps_path
       end
     end
 

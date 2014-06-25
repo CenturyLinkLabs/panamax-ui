@@ -4,7 +4,7 @@ describe 'applications dashboard' do
   context 'as a user' do
     context 'from an application' do
       it 'can navigate to application details' do
-        visit '/applications'
+        visit '/apps'
 
         within 'section.applications .name' do
           click_on 'tutum/wordpress'

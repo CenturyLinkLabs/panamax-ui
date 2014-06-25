@@ -38,7 +38,7 @@ describe ServiceRowPresenter do
 
   describe '#service_url' do
     it 'exposes the service_url' do
-      expect(subject.service_url).to eq '/applications/77/services/99'
+      expect(subject.service_url).to eq '/apps/77/services/99'
     end
   end
 end

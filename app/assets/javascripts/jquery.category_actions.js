@@ -33,12 +33,13 @@
     }
 
     base.createNewElement = function($parent, name, id, icon) {
+      // TODO: if possible we may want to generate this URL in ruby
       var path = window.location.pathname,
           app_id = path.substring(path.lastIndexOf("/")+1),
           $clone = $(base.options.template(
             { 'service_id': id,
               'app_id': app_id,
-              'service_url': '/applications/' + app_id + '/services/' + id,
+              'service_url': '/apps/' + app_id + '/services/' + id,
               'icon': icon,
               'name': name
             }));

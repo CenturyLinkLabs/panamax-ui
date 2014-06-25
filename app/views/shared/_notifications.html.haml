@@ -7,7 +7,7 @@
       - if key == 'success' && @app && @app.documentation_to_html.present?
         %br
         Click
-        %a{href:"#", class: "instructions-dialog", "data-doc-url" => documentation_application_url} here
+        %a{href:"#", class: "instructions-dialog", "data-doc-url" => documentation_app_url} here
         to read the additional instructions provided by the author of the template used to create this application.
         #post-run-html
           = @app.documentation_to_html.html_safe

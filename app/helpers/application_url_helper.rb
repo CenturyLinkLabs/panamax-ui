@@ -1,5 +1,5 @@
 module ApplicationUrlHelper
-  def application_url_for(app)
+  def app_url_for(app)
     # TODO: This is a static hack for demo purpose
     if app.from.include? 'Rails'
       { 'App' => ['8667'] }

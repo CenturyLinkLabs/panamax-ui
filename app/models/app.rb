@@ -1,42 +1,19 @@
-require 'active_model'
 require 'kramdown'
 
-class App < BaseViewModel
-  include CollectionBuilder
-  include ActiveModel::Validations
+class App < BaseResource
 
-  def self.model_name
-    ActiveModel::Name.new(self, nil, 'Application')
-  end
+  has_many :services
 
-  attr_reader :name, :id, :services, :categories, :documentation, :from
-
-  def initialize(attributes={}, _persisted=false)
-    super(attributes)
-    add_errors(attributes['errors'])
-  end
-
-  def self.build_from_response(response)
-    attributes = JSON.parse(response)
-    build_with_sub_resources(attributes)
-  end
-
-  def self.build_with_sub_resources(attributes)
-    attributes['services'].map! do |service_hash|
-      Service.find(service_hash['id'], params: { app_id: attributes['id'] })
-    end
-    attributes['categories'].map! do |category_hash|
-      Category.find(category_hash['id'], params: { app_id: attributes['id'] })
-    end
-    self.new(attributes)
+  schema do
+    text :documentation
+    text :documentation_to_html
+    text :name
+    text :from
+    text :documentation
   end
 
   def to_param
-    id
-  end
-
-  def valid?
-    errors.empty?
+    self.id
   end
 
   def service_count_label
@@ -96,13 +73,4 @@ class App < BaseViewModel
       end
     end
   end
-
-  private
-
-  def add_errors(errors_hash)
-    (errors_hash || {}).each do |k, v|
-      errors.add(k, v)
-    end
-  end
-
 end

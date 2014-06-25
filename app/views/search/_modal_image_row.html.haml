@@ -11,13 +11,13 @@
         = presenter.title
     %p= presenter.short_description
   .actions
-    = form_tag application_services_path(@app.id) do
-      = hidden_field_tag 'application[name]', @app.name
-      = hidden_field_tag 'application[category]', 'null'
+    = form_tag app_services_path(@app.id) do
+      = hidden_field_tag 'app[name]', @app.name
+      = hidden_field_tag 'app[category]', 'null'
       = hidden_field_tag 'name', presenter.title
       = hidden_field_tag 'from', presenter.title
-      = label 'application[tag]', 'Tag:'
-      = select_tag 'application[tag]',
+      = label 'app[tag]', 'Tag:'
+      = select_tag 'app[tag]',
       options_for_select(['latest']),
       data: {'load-tags-endpoint' => load_tags_search_path, 'loaded' => false}
       %button.button-positive{ data: { disable_with: 'Adding...', tracking: { method: 'click', action: 'Add to Application', category: 'Run Image', label: presenter.title }}} Add to App

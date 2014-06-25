@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'managing a service' do
   context 'as a user' do
     it 'can navigate back to the application via the crumbs' do
-      visit '/applications/2/services/1'
+      visit '/apps/2/services/1'
 
       click_on 'tutum/wordpress'
 
@@ -12,7 +12,7 @@ describe 'managing a service' do
 
     context 'when the service is running' do
       before do
-        visit '/applications/2/services/1'
+        visit '/apps/2/services/1'
       end
 
       it 'can view a service for a running application' do
@@ -66,7 +66,7 @@ describe 'managing a service' do
 
     context 'when the service is not running' do
       before do
-        visit '/applications/2/services/2'
+        visit '/apps/2/services/2'
       end
 
       it 'displays the service status' do

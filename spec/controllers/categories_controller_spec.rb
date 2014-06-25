@@ -7,7 +7,7 @@ describe CategoriesController do
     let(:category_form_params) do
       {
         format: :json,
-        'application_id' => 77,
+        'app_id' => 77,
         'category' =>
           {
             'name' => 'Web'
@@ -49,17 +49,17 @@ describe CategoriesController do
 
     it 'retrieves the category to be updated' do
       expect(Category).to receive(:find).with('77', params: { app_id: '2' })
-      patch :update, category: attributes, application_id: '2', id: '77', format: :json
+      patch :update, category: attributes, app_id: '2', id: '77', format: :json
     end
 
     it 'writes the attributes' do
       expect(dummy_category).to receive(:write_attributes).with(attributes)
-      patch :update, application_id: '2', id: '77', category: attributes, format: :json
+      patch :update, app_id: '2', id: '77', category: attributes, format: :json
     end
 
     it 'saves the record' do
       expect(dummy_category).to receive(:save)
-      patch :update, application_id: '2', id: '77', category: attributes, format: :json
+      patch :update, app_id: '2', id: '77', category: attributes, format: :json
     end
   end
 
@@ -71,12 +71,12 @@ describe CategoriesController do
 
     it 'retrieves the category to be updated' do
       expect(Category).to receive(:find).with('77', params: { app_id: '2' })
-      delete :destroy, application_id: '2', id: '77', format: :json
+      delete :destroy, app_id: '2', id: '77', format: :json
     end
 
     it 'destroys the record' do
       expect(dummy_category).to receive(:destroy)
-      delete :destroy, application_id: '2', id: '77', format: :json
+      delete :destroy, app_id: '2', id: '77', format: :json
 
     end
   end

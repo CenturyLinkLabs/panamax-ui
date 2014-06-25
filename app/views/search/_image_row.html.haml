@@ -11,10 +11,10 @@
         = presenter.title
     %p= presenter.short_description
   .actions
-    = form_tag applications_path do
-      = hidden_field_tag 'application[image]', presenter.title
-      = label 'application[tag]', 'Tag:'
-      = select_tag 'application[tag]',
+    = form_tag apps_path do
+      = hidden_field_tag 'app[image]', presenter.title
+      = label 'app[tag]', 'Tag:'
+      = select_tag 'app[tag]',
         options_for_select(['latest']),
         data: {'load-tags-endpoint' => load_tags_search_path, 'loaded' => false}
       %button.button-positive{ data: { disable_with: 'Starting App...', tracking: { method: 'click', action: 'Create Application', category: 'Run Image', label: presenter.title }}} Run Image

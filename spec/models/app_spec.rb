@@ -13,7 +13,7 @@ describe App do
       'from' => 'nowhere',
       'documentation' => '# Title\r\nsome markdown doc',
       'services' => [
-        { 'id' => '3', 'name' => 'blah', 'categories' =>
+        { 'id' => '3', 'name' => 'blah', 'sub_state' => 'running', 'ports' => [{host_port: 8080}], 'categories' =>
           [{ 'name' => 'foo', 'id' => 3 }, { 'name' => 'baz', 'id' => 3 }] },
         { 'id' => '4', 'name' => 'barf', 'categories' => [{ 'name' => 'foo', 'id' => 2 }] },
         { 'id' => '5', 'name' => 'bark', 'categories' => [{ 'name' => 'bar', 'id' => 1 }] },
@@ -22,50 +22,9 @@ describe App do
     }
   end
 
-  it_behaves_like 'a view model',
-    'name' => 'App Daddy',
-    'id' => 77,
-    'categories' => [],
-    'services' => []
+  it_behaves_like 'an active resource model'
 
-  let(:fake_json_response) { attributes.to_json }
-
-  describe '.build_from_response' do
-
-    it 'instantiates itself with the parsed json attributes' do
-      result = described_class.build_from_response(fake_json_response)
-      expect(result).to be_an App
-      expect(result.name).to eq 'App Daddy'
-      expect(result.id).to eq 77
-    end
-
-    it 'instantiates a Service for each nested service' do
-      result = described_class.build_from_response(fake_json_response)
-      expect(result.services.map(&:name)).to match_array(%w(blah barf bark bard))
-      expect(result.services.map(&:class).uniq).to match_array([Service])
-    end
-
-    it 'instantiates an AppCategory for each nested category' do
-      result = described_class.build_from_response(fake_json_response)
-      expect(result.categories.map(&:name)).to match_array(%w(foo baz bar))
-    end
-  end
-
-  describe '#valid?' do
-    context 'when errors are empty' do
-      it 'is valid' do
-        expect(subject.valid?).to be_true
-      end
-    end
-
-    context 'when errors are present' do
-      subject { described_class.new('errors' => { 'base' => ['you messed up'] }) }
-
-      it 'is not valid' do
-        expect(subject.valid?).to be_false
-      end
-    end
-  end
+  it { should respond_to :services }
 
   describe '#to_param' do
     subject { described_class.new('id' => 77) }
@@ -75,25 +34,16 @@ describe App do
     end
   end
 
-  describe '#as_json' do
-    subject { App.new(attributes) }
-
-    it 'provides the attributes to be converted to JSON' do
-      expected = attributes
-      expect(subject.as_json).to eq expected
-    end
-  end
-
   describe '#documentation_to_html' do
     it 'attempts to parse the #documentation as markdown' do
-      app = described_class.build_from_response(fake_json_response)
+      app = described_class.new(attributes)
       expect(Kramdown::Document).to receive(:new).with(app.documentation).and_return(double(to_html: true))
       app.documentation_to_html
     end
   end
 
   describe '#host_ports' do
-    subject { described_class.build_from_response(fake_json_response) }
+    subject { described_class.new(attributes) }
     it 'returns a hash' do
       expect(subject.host_ports).to be_a Hash
     end
@@ -109,13 +59,13 @@ describe App do
 
   describe '#running_services' do
     it 'returns an array of running services' do
-      app = described_class.build_from_response(fake_json_response)
+      app = described_class.new(attributes)
       expect(app.running_services.map(&:id)).to match_array ['3']
     end
   end
 
   context 'when dealing with application categories' do
-    subject { described_class.build_from_response(fake_json_response) }
+    subject { described_class.new(attributes) }
 
     describe '#categorized_services' do
       it 'returns a hash of services grouped by category' do

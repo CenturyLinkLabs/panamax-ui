@@ -2,7 +2,7 @@
   .relationship-panel
     %header
       = service.name
-    - unless service.links.empty?
+    - unless service.links.blank?
       %ul.links
         - service.links.each do |link|
           %li
