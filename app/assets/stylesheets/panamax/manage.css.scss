@@ -461,7 +461,6 @@ section.application-services {
 
         ul.services {
           padding-bottom: 6px;
-          border-bottom: 1px solid $grey;
           margin-bottom: 19px;
 
           li {
@@ -469,7 +468,15 @@ section.application-services {
             margin-bottom: 10px;
             height: 40px;
             border-radius: 4px;
-            position: relative;
+
+            &:last-of-type:after {
+              content: ' ';
+              clear: both;
+              display: block;
+              width: 100%;
+              height: 15px;
+              border-bottom: 1px solid $grey;
+            }
 
             &#dragging {
               border: 1px dashed $medium_grey;
