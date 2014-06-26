@@ -1,5 +1,6 @@
 @import 'ctl_base_ui/colors';
 @import 'ctl_base_ui/mixins';
+@import 'ctl_base_ui/icons';
 
 #template_flow {
   h3 {
@@ -79,6 +80,22 @@
     height: 140px;
   }
 
+  .documentation {
+    font-size: 13px;
+
+    > strong {
+      display: block;
+      margin-bottom: 0.6em;
+    }
+
+    textarea {
+      @include border-box;
+      margin-top: 1.6em;
+      width: 100%;
+      height: 300px;
+    }
+  }
+
   form.update-github-token {
     border-top: $light_grey 1px solid;
     margin-top: 30px;
@@ -87,6 +104,24 @@
     input[type='text'] {
       margin-left: 100px;
       width: 500px;
+    }
+  }
+
+  .button-positive {
+    margin-top: 20px;
+    float: right;
+    position: relative;
+    padding-right: 40px;
+
+    &:after {
+      position: absolute;
+      top: 15px;
+      right: 10px;
+      content: '';
+      @extend .icon-thick-arrow-right;
+      @include icon-white;
+      width: 15px;
+      height: 15px;
     }
   }
 }
