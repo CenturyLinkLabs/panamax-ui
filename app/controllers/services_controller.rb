@@ -1,7 +1,7 @@
 class ServicesController < ApplicationController
 
-  respond_to :html, only: [:show]
-  respond_to :json, only: [:show, :journal]
+  respond_to :html, only: [:show, :destroy]
+  respond_to :json
 
   def show
     @app = App.find(params[:app_id])
@@ -29,10 +29,7 @@ class ServicesController < ApplicationController
   def destroy
     service = retrieve_service
     service.destroy
-    respond_with service do |format|
-      format.html { redirect_to app_path params[:app_id] }
-      format.json { render(json: service.to_json) }
-    end
+    respond_with service, location: app_path(params[:app_id])
   end
 
   def update

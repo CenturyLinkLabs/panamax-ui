@@ -184,8 +184,7 @@ describe ServicesController do
 
     it 'renders json response when format is json' do
       delete :destroy, app_id: 77, id: 89, format: :json
-      expect(response.status).to eq 200
-      expect(response.body).to eql valid_service.to_json
+      expect(response.status).to eq 204
     end
   end
 

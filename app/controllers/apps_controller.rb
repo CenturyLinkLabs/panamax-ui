@@ -23,7 +23,7 @@ class AppsController < ApplicationController
   def destroy
     app = retrieve_app
     app.destroy
-    respond_with(app)
+    respond_with app, location: apps_path
   end
 
   def index
