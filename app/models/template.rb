@@ -12,6 +12,7 @@ class Template < BaseResource
     string :authors
     string :from
     string :documentation
+    integer :app_id
     integer :image_count
     boolean :recommended
     string :icon_src

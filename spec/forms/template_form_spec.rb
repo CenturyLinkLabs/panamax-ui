@@ -8,7 +8,8 @@ describe TemplateForm do
       description: 'generic wordpress installation',
       keywords: 'fast, simple, elegant',
       type: 'wordpress',
-      repo: 'some/repo'
+      repo: 'some/repo',
+      app_id: 7
     }
   end
 
@@ -21,6 +22,8 @@ describe TemplateForm do
   it { should respond_to :keywords }
   it { should respond_to :keywords= }
   it { should respond_to :author= }
+  it { should respond_to :app_id }
+  it { should respond_to :app_id= }
 
   describe '#author' do
     it 'defaults to the users email address' do
@@ -65,7 +68,8 @@ describe TemplateForm do
         description: 'generic wordpress installation',
         keywords: 'fast, simple, elegant',
         authors: [nil],
-        type: 'wordpress'
+        type: 'wordpress',
+        app_id: 7
       )
       subject.save
     end

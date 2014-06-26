@@ -4,13 +4,24 @@ describe TemplatesController do
 
   let(:fake_user) { double(:fake_user) }
   let(:fake_template_form) { double(:fake_template_form, save: true) }
+  let(:fake_types) { double(:fake_types) }
 
   before do
     User.stub(:find).and_return(fake_user)
     TemplateForm.stub(:new).and_return(fake_template_form)
+    Type.stub(:all).and_return(fake_types)
   end
 
   describe 'GET #new' do
+    it 'hydrates the template form with a user, types, and app_id' do
+      expect(TemplateForm).to receive(:new).with(
+        types: fake_types,
+        user: fake_user,
+        app_id: '7'
+      )
+      get :new, app_id: 7
+    end
+
     it 'renders the new view' do
       get :new
       expect(response).to render_template :new

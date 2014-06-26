@@ -6,6 +6,7 @@
   %dd= user.email
 
 = form_for template_form, url: templates_path do |f|
+  = f.hidden_field :app_id
   = render 'shared/errors', errors: f.object.errors
   %h3 Select a repository for your application template
   = f.select :repo, options_for_select(user.repositories), {}, class: 'fancy'
