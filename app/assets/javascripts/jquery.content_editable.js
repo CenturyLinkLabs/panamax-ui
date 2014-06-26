@@ -43,8 +43,22 @@
       $content.empty();
       $(editable).appendTo($content);
       $(checkmark).appendTo($content);
+      base.selectionRange($content);
       $content.find('.edit-field').focus();
       base.bindEvents($content);
+    };
+
+    base.selectionRange = function($content) {
+      var edit = $content.find('.edit-field'),
+          range = document.createRange(),
+          sel   = window.getSelection(),
+          t = edit[0];
+
+      range.setStartBefore(t);
+      range.collapse(true);
+      sel.removeAllRanges();
+      sel.addRange(range);
+      edit.focus();
     };
 
     base.bindEvents = function($content) {

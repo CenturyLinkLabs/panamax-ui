@@ -299,7 +299,7 @@ describe('$.fn.categoryActions', function() {
     beforeEach(function() {
       fixture.load('sorting-services.html');
       dragUI = {
-        item: $('li').first(),
+        item: $('.category-panel li').first(),
         placeholder: $('<div></div>')
       };
 
@@ -327,6 +327,5 @@ describe('$.fn.categoryActions', function() {
       var request = mostRecentAjaxRequest();
       expect(request.params.lastIndexOf('category')).toBeGreaterThan(0);
     });
-
   });
 });

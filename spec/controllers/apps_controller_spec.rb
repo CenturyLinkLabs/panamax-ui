@@ -11,6 +11,10 @@ describe AppsController do
     controller.stub(:show_url)
     App.stub(:find).and_return(dummy_app)
     dummy_app.stub(:id).and_return(77)
+    dummy_app.stub(:categories).and_return([Category.new(id: 33, name: 'Test3', position: 3),
+                                            Category.new(id: 22, name: 'Test2', position: 2),
+                                            Category.new(id: 11, name: 'Test1', position: 1)
+                                           ])
   end
 
   describe 'POST #create' do
@@ -127,6 +131,11 @@ describe AppsController do
       expect(assigns(:app)).to eq dummy_app
     end
 
+    it 'sorts the categories by position' do
+      get :show, id: 77
+      expect(dummy_app.categories.first.position).to eq 1
+    end
+
     it 'returns a 404 if the app is not found' do
       App.stub(:find).and_raise(ActiveResource::ResourceNotFound.new(double('err', code: '404')))
       get :show, id: 77
@@ -140,8 +149,6 @@ describe AppsController do
       dummy_app.stub(:documentation_to_html).and_return('<p>some instructions</a>')
       get :documentation, id: 77
       expect(response).to render_template(layout: 'documentation')
-      # expect(response.body).to_not match(/<header>/m)
-      # expect(response.body).to match(/post-run-html/m)
     end
 
     it 'returns 404 if there is no documentation for the app' do

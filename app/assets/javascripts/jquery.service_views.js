@@ -1,8 +1,88 @@
 (function($){
-  $.PMX.ServiceViewToggle = function(el, options){
+  $.PMX.SortCategories = function($el, options) {
     var base = this;
 
-    base.$el = $(el);
+    base.$el = $el;
+
+    base.defaultOptions = {
+      container: 'div.categories',
+      items: '> .category-panel:not(.add):not(.new):not(.edit)'
+    };
+
+    base.init = function() {
+      base.options = $.extend({},base.defaultOptions, options);
+      base.$sortable = base.$el.find(base.options.container);
+      base.bindSortable();
+    };
+
+    base.bindSortable = function() {
+      $(base.$sortable).sortable(
+        {
+          revert: true,
+          helper: 'clone',
+          items: base.options.items,
+          placeholder: base.customPlaceholder(),
+          start: base.startDrag,
+          stop: base.stopDrag,
+          update: base.drop,
+          appendTo: 'body'
+        });
+    };
+
+    base.customPlaceholder = function() {
+      return {
+        element: function () {
+          return $('<div id="dragging" class="category-panel"></div>')[0];
+        },
+        update: function (container, p) {
+          // required to complete object interface
+        }
+      };
+    };
+
+    base.startDrag = function(event, ui) {
+      ui.item.removeClass('category-panel').wrap('<span class="cat-wrapper" style="display:none;"></span>')
+      ui.placeholder.html(ui.item.html());
+    };
+
+    base.stopDrag = function(event, ui) {
+      ui.item.addClass('category-panel');
+      $('.cat-wrapper').remove();
+    };
+
+    base.drop = function(event, ui) {
+      var categories = null,
+          path = window.location.pathname;
+
+      ui.item.addClass('category-panel');
+      categories = base.$sortable.find(base.options.items),
+
+      categories.each(function (idx, category) {
+        var $elem = $(category),
+          category_id = $elem.find('[data-category]').attr('data-category');
+        if (category_id != 'null') {
+
+          $.ajax({
+            type: 'PUT',
+            headers: {
+              'Accept': 'application/json'
+            },
+            url: path + '/categories/' + category_id,
+            data: {
+              category: {
+                position: idx
+              }
+            }
+          });
+        }
+      });
+    };
+  };
+
+  $.PMX.ServiceViewToggle = function($el, options){
+    var base = this;
+
+    base.$el = $el;
     base.xhr = null;
 
     base.defaultOptions = {
@@ -76,7 +156,8 @@
 
   $.fn.serviceViews = function(options){
     return this.each(function(){
-      (new $.PMX.ServiceViewToggle(this, options)).init();
+      (new $.PMX.ServiceViewToggle($(this), options)).init();
+      (new $.PMX.SortCategories($(this),options)).init();
     });
   };
 })(jQuery);

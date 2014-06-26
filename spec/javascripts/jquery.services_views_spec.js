@@ -34,4 +34,42 @@ describe('$.fn.serviceViews', function () {
       expect($listView.hasClass('selected')).toBeFalsy();
     });
   });
+
+  describe('sorting categories', function() {
+    var dragUI, subject;
+
+    beforeEach(function() {
+      fixture.load('sorting-categories.html');
+      dragUI = {
+        item: $('div').first(),
+        placeholder: $('<div></div>')
+      };
+
+      subject = new $.PMX.SortCategories($('.views'));
+      subject.init();
+      jasmine.Ajax.useMock();
+    });
+
+    it('custom placeholder will not have category-panel', function() {
+      subject.startDrag($.Event(), dragUI);
+      expect(dragUI.placeholder.hasClass('category-panel')).toBeFalsy();
+    });
+
+    it('sends  PUT request to proper url', function() {
+      var evt = $.Event('drop');
+
+      subject.drop(evt,dragUI);
+      var request = mostRecentAjaxRequest();
+      expect(request.url).toEqual('/teaspoon/default/categories/2');
+      expect(request.method).toEqual('PUT');
+    });
+
+    it('put category-panel back after dropping', function() {
+      var evt = $.Event('drop');
+
+      subject.drop(evt,dragUI);
+      expect(dragUI.item.hasClass('category-panel')).toBeTruthy();
+    });
+  });
+
 });

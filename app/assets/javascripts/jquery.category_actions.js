@@ -14,7 +14,7 @@
 
     base.init = function() {
       base.options = $.extend({},base.defaultOptions, options);
-      base.$sortable = $el.find(base.options.connectWith);
+      base.$sortable = base.$el.find(base.options.connectWith);
       base.bindSortable();
     };
 
@@ -190,11 +190,17 @@
       base.$el.find(base.options.editSelector).on('click', base.handleEdit);
     };
 
+    base.sortable = function(enabled) {
+      var categories = base.$el.closest('.categories');
+      (enabled)? categories.sortable('enable') : categories.sortable('disable');
+    }
+
     base.handleEdit = function(e) {
       var $target = $(e.currentTarget),
           $parent = $target.parent();
 
       e.preventDefault();
+      base.sortable(false);
       $parent.css('display', 'none');
       base.editableName = (new $.PMX.ContentEditable(base.$el.find(base.options.content),
         {
@@ -207,6 +213,7 @@
     base.handleRevert = function(id) {
       var $link = base.$el.find('a[href="'+id+'"]');
       $link.closest('.actions').css('display','auto');
+      base.sortable(true);
     };
 
     base.updateCategory = function(path, data) {
@@ -284,6 +291,8 @@
 
     base.completeEdit = function(data) {
       var path = window.location.pathname;
+
+      base.sortable(true);
 
       return (data.id.lastIndexOf('/') === data.id.length-1)
         ? base.moveServicesToNamedCategory(path, data)
