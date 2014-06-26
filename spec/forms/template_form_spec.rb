@@ -7,7 +7,8 @@ describe TemplateForm do
       name: 'My template',
       description: 'generic wordpress installation',
       keywords: 'fast, simple, elegant',
-      type: 'wordpress'
+      type: 'wordpress',
+      app_id: 7
     }
   end
 
@@ -20,6 +21,8 @@ describe TemplateForm do
   it { should respond_to :keywords }
   it { should respond_to :keywords= }
   it { should respond_to :author= }
+  it { should respond_to :app_id }
+  it { should respond_to :app_id= }
 
   describe '#author' do
     it 'defaults to the users email address' do

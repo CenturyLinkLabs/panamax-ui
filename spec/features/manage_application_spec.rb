@@ -14,6 +14,14 @@ describe 'managing an application' do
         expect(page).to have_css 'h1', text: 'WP_1'
       end
 
+      it 'can create a template from an app' do
+        visit '/apps/2'
+
+        click_on 'Save as Template'
+
+        expect(page.find('#template_form_app_id', visible: false).value).to eq '2'
+      end
+
       it 'can destroy a running service' do
         visit '/apps/2'
 
