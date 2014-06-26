@@ -7,14 +7,15 @@ describe TemplateForm do
       name: 'My template',
       description: 'generic wordpress installation',
       keywords: 'fast, simple, elegant',
-      type: 'wordpress'
+      type: 'wordpress',
+      repo: 'some/repo'
     }
   end
 
   subject { described_class.new(attributes) }
 
-  it { should respond_to :repos }
-  it { should respond_to :repos= }
+  it { should respond_to :repo }
+  it { should respond_to :repo= }
   it { should respond_to :name }
   it { should respond_to :name= }
   it { should respond_to :keywords }
@@ -60,9 +61,41 @@ describe TemplateForm do
   describe '#save' do
     it 'creates a template' do
       expect(Template).to receive(:create).with(
-        attributes.merge(authors: [nil])
+        name: 'My template',
+        description: 'generic wordpress installation',
+        keywords: 'fast, simple, elegant',
+        authors: [nil],
+        type: 'wordpress'
       )
       subject.save
+    end
+
+    context 'when template creation is successful' do
+      let(:fake_template) { double(:fake_template) }
+
+      before do
+        Template.stub(:create).and_return(fake_template)
+      end
+
+      it 'saves the template to the supplied repo' do
+        expect(fake_template).to receive(:post).with(
+          :save,
+          repo: 'some/repo',
+          file_name: 'my_template'
+        )
+        subject.save
+      end
+    end
+
+    context 'when template creation is not successful' do
+      before do
+        Template.stub(:create).and_return(nil)
+      end
+
+      it 'does not save the template to a repo' do
+        expect(Template.any_instance).to_not receive(:post)
+        subject.save
+      end
     end
   end
 
