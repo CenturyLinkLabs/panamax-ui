@@ -6,7 +6,8 @@
     "categories": [
       {
         "id": 4,
-        "name": "Web Tier"
+        "name": "Web Tier",
+        "position": 1
       }
     ],
     "app": {
