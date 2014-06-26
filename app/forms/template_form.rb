@@ -3,8 +3,8 @@ require 'active_model'
 class TemplateForm
   include ActiveModel::Model
 
-  attr_accessor :repo, :name, :description, :keywords, :types, :app_id, :documentation
-  attr_writer :author, :user, :type
+  attr_accessor :repo, :name, :description, :keywords, :types, :app, :documentation, :user
+  attr_writer :author, :type, :documentation, :app_id
 
   def author
     @author || @user.try(:email)
@@ -12,6 +12,14 @@ class TemplateForm
 
   def type
     @type || types.first.name
+  end
+
+  def app_id
+    @app_id || @app.try(:id)
+  end
+
+  def documentation
+    @documentation || @app.try(:documentation)
   end
 
   def save

@@ -43,7 +43,7 @@ describe 'managing a template' do
 
         it 'allows the user to request and enter a token' do
 
-          visit '/templates/new'
+          visit '/templates/new?app_id=1'
 
           expect(page).to have_link(
             'Generate a Github access token',

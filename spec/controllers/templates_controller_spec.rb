@@ -4,11 +4,13 @@ describe TemplatesController do
 
   let(:fake_user) { double(:fake_user) }
   let(:fake_template_form) { double(:fake_template_form, save: true) }
+  let(:fake_app) { double(:fake_app, id: 7) }
   let(:fake_types) { double(:fake_types) }
 
   before do
     User.stub(:find).and_return(fake_user)
     TemplateForm.stub(:new).and_return(fake_template_form)
+    App.stub(:find).and_return(fake_app)
     Type.stub(:all).and_return(fake_types)
   end
 
@@ -17,7 +19,7 @@ describe TemplatesController do
       expect(TemplateForm).to receive(:new).with(
         types: fake_types,
         user: fake_user,
-        app_id: '7'
+        app: fake_app
       )
       get :new, app_id: 7
     end
@@ -35,6 +37,18 @@ describe TemplatesController do
     it 'assigns a template form' do
       get :new
       expect(assigns(:template_form)).to eq fake_template_form
+    end
+  end
+
+  context 'when an app cannot be found' do
+    before do
+      App.stub(:find).and_raise(ActiveResource::ResourceNotFound.new(double('err', code: '404')))
+    end
+
+    it 'redirects to the apps page with a flash message' do
+      get :new
+      expect(flash[:alert]).to eq 'could not find application'
+      expect(response).to redirect_to(apps_path)
     end
   end
 
