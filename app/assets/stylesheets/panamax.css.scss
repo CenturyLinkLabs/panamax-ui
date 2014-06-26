@@ -3,7 +3,7 @@
 @import 'ctl_base_ui/icons';
 
 body > header {
-  background: $lipstick_red;
+  background: $ctl_light_green;
   width: 100%;
   overflow: hidden;
   margin-bottom: 10px;
@@ -18,11 +18,11 @@ body > header {
   h1.panamax-logo a {
     @include border-box;
     @include hide-text;
-    background: image-url('pmx_logo.svg') no-repeat center center $light_grey;
+    background: image-url('pmx_logo.svg') no-repeat center center $dark_grey;
     @include background-size(148px, 19px);
     width: 178px;
     display: block;
-    height: 70px;
+    height: 60px;
   }
 
   nav {
@@ -36,21 +36,24 @@ body > header {
         color: $white;
         display: block;
         padding: 10px 40px 10px 55px;
-        line-height: 50px;
+        line-height: 40px;
         text-decoration: none;
         position: relative;
-        font-size: 0.9em;
+        font-size: 0.8em;
+        text-transform: uppercase;
+        font-weight: 400;
+        letter-spacing: 2px;
 
         &:before {
           display: block;
           content: '';
           position: absolute;
           left: 20px;
-          top: 25px;
+          top: 20px;
         }
 
         &:hover {
-          background-color: #FF1441;
+          background-color: $lime;
         }
       }
     }
@@ -71,7 +74,7 @@ body > header nav ul li {
 /* active states */
 #search_flow .search-link a,
 #manage_flow .manage-link a {
-  background-color: #FF1441;
+  background-color: $lime;
 }
 
 cite.built-by {
@@ -194,7 +197,7 @@ h1.breadcrumbs {
     display: inline;
 
     a {
-      color: $lipstick_red;
+      color: $blue_grey;
     }
 
     &:not(:last-child):after {
@@ -203,7 +206,7 @@ h1.breadcrumbs {
     }
 
     &:last-child {
-      color: $sky_blue;
+      color: $orange;
     }
   }
 }

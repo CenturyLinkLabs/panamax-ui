@@ -10,16 +10,16 @@
   position: relative;
 
   &:hover {
-    border-top-color: $sky_blue;
+    border-top-color: $blue_grey;
     background-color: $light_grey;
     header {
-      color: $sky_blue;
+      color: $blue_grey;
     }
   }
 
   header {
     border-bottom: 1px solid $grey;
-    color: $dark_blue;
+    color: $blue_grey;
     font-weight: bold;
     line-height: 25px;
     padding-bottom: 10px;
@@ -90,7 +90,7 @@ section.notice {
 
   header {
     @include border-radius(3px);
-    background: $sky_blue;
+    background: $blue_grey;
     color: $white;
     font-weight: normal;
     padding: 13px 15px;
@@ -219,7 +219,7 @@ section.application-services {
           z-index: -1;
           position: absolute;
           content: '';
-          border: $sky_blue 1px solid;
+          border: $blue_grey 1px solid;
           border-width: 0 0 1px 1px;
           height: 50px;
           width: 20px;
@@ -284,11 +284,11 @@ section.application-services {
               display: block;
               margin-top: 10px;
               margin-left: 10px;
-              color: $sky_blue;
+              color: $blue_grey;
               font-weight: normal;
 
               &:hover {
-                color: $dark_blue;
+                color: $blue_grey_dark;
               }
             }
           }
@@ -299,7 +299,7 @@ section.application-services {
             li {
               &:hover {
                 background-color: $white;
-                color: $dark_blue;
+                color: $blue_grey_dark;
                 > a {
                   width: 168px;
                 }
@@ -577,7 +577,7 @@ section.application-services {
             z-index: -1;
             position: absolute;
             content: '';
-            border: $sky_blue 1px solid;
+            border: $blue_grey 1px solid;
             border-width: 0 0 1px 1px;
             height: 50px;
             width: 20px;

@@ -84,7 +84,7 @@
 
   h3 {
     @include border-radius(3px);
-    background: $sky_blue;
+    background: $blue_grey;
     color: $white;
     font-weight: normal;
     padding: 13px 15px;
@@ -198,7 +198,7 @@
       z-index: -1;
       position: absolute;
       content: '';
-      border: $sky_blue 1px solid;
+      border: $blue_grey 1px solid;
       border-width: 0 0 1px 1px;
       height: 50px;
       width: 20px;
@@ -232,7 +232,7 @@
       width: 22px;
       height: 22px;
       display: block;
-      background-color: $sky_blue;
+      background-color: $blue_grey;
 
       &:hover {
         background-color: $dark_red;
@@ -304,7 +304,7 @@ a.journal-toggle {
     }
 
     &:last-of-type {
-      background-color: $sky_blue;
+      background-color: $blue_grey;
       color: white;
       padding: 2px 0 2px 10px;
 
