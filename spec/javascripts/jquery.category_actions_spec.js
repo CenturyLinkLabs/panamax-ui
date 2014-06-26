@@ -291,7 +291,42 @@ describe('$.fn.categoryActions', function() {
         expect($('.no-services').length).toEqual(0);
       });
     });
+  });
 
+  describe('Concerning Sorting Services', function() {
+    var dragUI;
+
+    beforeEach(function() {
+      fixture.load('sorting-services.html');
+      dragUI = {
+        item: $('li').first(),
+        placeholder: $('<div></div>')
+      };
+
+      subject = new $.PMX.SortServices($('.category-panel'));
+    });
+
+    it('custom placeholder will have category id on start', function() {
+      subject.startDrag($.Event(), dragUI);
+      expect(dragUI.placeholder.attr('data-category')).toEqual('1');
+    });
+
+    it('sends  PUT request to proper url onDrop', function() {
+      var evt = $.Event('drop');
+
+      subject.drop(evt,dragUI);
+      var request = mostRecentAjaxRequest();
+      expect(request.url).toEqual('/teaspoon/default/services/99');
+      expect(request.method).toEqual('PUT');
+    });
+
+    it('provides a category id when not null', function() {
+      var evt = $.Event('drop');
+
+      subject.drop(evt,dragUI);
+      var request = mostRecentAjaxRequest();
+      expect(request.params.lastIndexOf('category')).toBeGreaterThan(0);
+    });
 
   });
 });

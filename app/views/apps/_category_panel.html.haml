@@ -3,10 +3,9 @@
     %span.title
       = presenter.name
     .actions
-      %a{href: "/apps/#{presenter.app_id}/categories/#{presenter.id}", class: 'edit-action'}
-      %a{href: "/apps/#{presenter.app_id}/categories/#{presenter.id}", class: 'delete-action'}
-  - unless presenter.services.blank?
-    %ul.services
-      - presenter.services.each do |service|
-        = render 'application_service_row', {presenter: ServiceRowPresenter.new(service)}
+      %a{href: "/applications/#{presenter.app_id}/categories/#{presenter.id}", class: 'edit-action'}
+      %a{href: "/applications/#{presenter.app_id}/categories/#{presenter.id}", class: 'delete-action'}
+  %ul.services
+    - presenter.services.each do |service|
+      = render 'application_service_row', {presenter: ServiceRowPresenter.new(service)}
   = link_to 'Add a Service', '#', class: 'button-positive add-service', title: 'add', data: {:category => presenter.id}
