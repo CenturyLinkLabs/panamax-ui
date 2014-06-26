@@ -30,4 +30,11 @@
           = image_tag icon_source_for(type.name)
           %span= type.name
 
+  %h3 Template Documentation
+  %label.documentation
+    %strong Add some instructions to help people use your template.
+    Confused about the syntax?
+    = link_to 'See the markdown guide here', 'http://kramdown.gettalong.org/syntax.html'
+    = f.text_area :documentation
+
   = button_tag 'Publish Your Template', class: 'button-positive'
