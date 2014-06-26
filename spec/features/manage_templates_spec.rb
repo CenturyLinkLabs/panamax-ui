@@ -18,7 +18,7 @@ describe 'managing a template' do
         expect(page).to have_content 'Username: githubuser'
         expect(page).to have_content 'Email Address: testuser@example.com'
 
-        expect(page).to have_select 'template_form_repos', options: ['ctlc/docker-mysql', 'ctlc/docker-apache']
+        expect(page).to have_select 'template_form_repo', options: ['ctlc/docker-mysql', 'ctlc/docker-apache']
 
         fill_in 'Template Name', with: 'My Template'
         fill_in 'Template Author', with: 'test@example.com'
