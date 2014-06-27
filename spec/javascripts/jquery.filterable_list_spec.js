@@ -133,35 +133,35 @@ describe('$.fn.filterableList', function() {
 
       expect($('.template-results').html()).toContain('sorry, nothin here');
     });
+  });
 
-    describe('clicking on the tags dropdown', function() {
-      beforeEach(function() {
-        jasmine.Ajax.useMock();
+  describe('clicking on the tags dropdown', function() {
+    beforeEach(function() {
+      jasmine.Ajax.useMock();
+    });
+
+    it('ajax loads tags if they are not already loaded', function() {
+      $('input.query-field').val('apache').keyup();
+
+      $('.chosen-container').first().click();
+
+      request = mostRecentAjaxRequest();
+      request.response({
+        status: 200,
+        responseText: JSON.stringify(['foo', 'bar'])
       });
 
-      it('ajax loads tags if they are not already loaded', function () {
-        $('input.query-field').val('apache').keyup();
+      expect($('select#app_tag').first().data('loaded')).toBe(true);
+      expect($('select#app_tag').first().children().length).toNotEqual(0);
+    });
 
-        $('.chosen-container').first().click();
+    it('does not ajax load tags if they are already loaded', function() {
+      $('input.query-field').val('apache').keyup();
+      var $tagsSelect = $('select#app_tag').first();
+      $tagsSelect.attr('data-loaded', true);
+      $('.chosen-container').first().click();
 
-        request = mostRecentAjaxRequest();
-        request.response({
-          status: 200,
-          responseText: JSON.stringify(['foo', 'bar'])
-        });
-
-        expect($('select#application_tag').first().data('loaded')).toBe(true);
-        expect($('select#application_tag').first().children().length).toNotEqual(0);
-      });
-
-      it('does not ajax load tags if they are already loaded', function () {
-        $('input.query-field').val('apache').keyup();
-        var $tagsSelect = $('select#application_tag').first();
-        $tagsSelect.attr('data-loaded', true);
-        $('.chosen-container').first().click();
-
-        expect($tagsSelect.children().length).toEqual(1);
-      });
+      expect($tagsSelect.children().length).toEqual(1);
     });
   });
 });

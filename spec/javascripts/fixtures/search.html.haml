@@ -13,7 +13,7 @@
     %h4= '{{title}}'
     %p= '{{description}}'
     %p= '{{last_updated_on}}'
-    = select_tag 'application[tag]',
+    = select_tag 'app[tag]',
       options_for_select(['latest']),
       data: {'loaded' => false}
 %script#local_image_result_template{type: 'text/x-handlebars-template'}
@@ -21,7 +21,7 @@
     %h4= '{{title}}'
     %p= '{{description}}'
     %p= '{{last_updated_on}}'
-    = select_tag 'application[tag]',
+    = select_tag 'app[tag]',
       options_for_select(['latest']),
       data: {'loaded' => false}
 %script#no_results_row_template{type: 'text/x-handlebars-template'}
