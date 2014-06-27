@@ -88,17 +88,17 @@
     };
   };
 
-  $.PMX.AddService = function(el, options) {
+  $.PMX.AddService = function($el, options) {
     var base = this;
 
-    base.$el = $(el);
+    base.$el = $el;
     base.xhr = null;
 
     base.defaultOptions = {
       template: Handlebars.compile($('#service_template').html()),
       localImageSelector: '.local-image-results',
       remoteImageSelector: '.remote-image-results',
-      categorySelector: '#application_category'
+      categorySelector: '.category-form-field'
     };
 
     base.init = function() {

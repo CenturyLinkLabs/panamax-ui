@@ -13,7 +13,7 @@
   .actions
     = form_tag app_services_path(@app.id) do
       = hidden_field_tag 'app[name]', @app.name
-      = hidden_field_tag 'app[category]', 'null'
+      = hidden_field_tag 'app[category]', 'null', class: 'category-form-field'
       = hidden_field_tag 'name', presenter.title
       = hidden_field_tag 'from', presenter.title
       = label 'app[tag]', 'Tag:'
