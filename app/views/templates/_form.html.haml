@@ -8,7 +8,7 @@
 = form_for template_form, url: templates_path do |f|
   = render 'shared/errors', errors: f.object.errors
   %h3 Select a repository for your application template
-  = f.select :repos, options_for_select(user.repositories), {}, class: 'fancy'
+  = f.select :repo, options_for_select(user.repositories), {}, class: 'fancy'
 
   %h3 Add some information about your template to help others find it in search results
 
