@@ -3,8 +3,8 @@
     %span.title
       = presenter.name
     .actions
-      %a{href: "/apps/#{presenter.app_id}/categories/#{presenter.id}", class: 'edit-action'}
-      %a{href: "/apps/#{presenter.app_id}/categories/#{presenter.id}", class: 'delete-action'}
+      = link_to '', category_show_or_index_path(presenter.app_id, presenter.id), class: 'edit-action'
+      = link_to '', category_show_or_index_path(presenter.app_id, presenter.id), class: 'delete-action'
   %ul.services
     - presenter.services.each do |service|
       = render 'application_service_row', {presenter: ServiceRowPresenter.new(service)}

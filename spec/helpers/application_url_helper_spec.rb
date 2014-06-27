@@ -20,4 +20,14 @@ describe ApplicationUrlHelper do
       app_url_for(app)
     end
   end
+
+  describe '#category_show_or_index_path' do
+    it 'links to the cateries index path when no category id is supplied' do
+      expect(category_show_or_index_path(2, nil)).to eq app_categories_path(2)
+    end
+
+    it 'links to the cateries show path when a category id is supplied' do
+      expect(category_show_or_index_path(2, 5)).to eq app_category_path(2, 5)
+    end
+  end
 end

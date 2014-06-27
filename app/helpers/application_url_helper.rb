@@ -9,4 +9,12 @@ module ApplicationUrlHelper
       app.host_ports
     end
   end
+
+  def category_show_or_index_path(app_id, category_id)
+    if category_id.present?
+      app_category_path(app_id, category_id)
+    else
+      app_categories_path(app_id)
+    end
+  end
 end
