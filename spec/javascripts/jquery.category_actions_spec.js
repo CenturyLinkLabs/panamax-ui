@@ -157,7 +157,7 @@ describe('$.fn.categoryActions', function() {
 
     it('adds category to form data', function() {
       $('.local-image-results form').submit();
-      var category = modalContents.find('#application_category').val();
+      var category = modalContents.find('#app_category').val();
       expect(category).toEqual('77');
     });
 

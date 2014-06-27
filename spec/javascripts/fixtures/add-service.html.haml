@@ -53,8 +53,8 @@
     .search-result-item.image-result
       .actions
         = form_tag '/applications/77/services' do
-          = hidden_field_tag 'application[name]', 'Wordpress'
-          = hidden_field_tag 'application[category]', 'null'
+          = hidden_field_tag 'app[name]', 'Wordpress'
+          = hidden_field_tag 'app[category]', 'null', class: 'category-form-field'
           = hidden_field_tag 'name', 'Wordpress'
           = hidden_field_tag 'from', 'Wordpress'
           = select_tag 'app[tag]',

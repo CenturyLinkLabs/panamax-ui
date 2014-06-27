@@ -14,7 +14,7 @@ describe('$.fn.serviceActions', function () {
     it('issues the delete', function() {
       $('ul.services li .actions .delete-action').click();
       var request = mostRecentAjaxRequest();
-      expect(request.url).toBe('/applications/1/services/1');
+      expect(request.url).toBe('/apps/1/services/1');
       expect(request.method).toBe('DELETE');
     });
 
