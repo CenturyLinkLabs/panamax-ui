@@ -37,6 +37,8 @@
 
     $('aside.host').hostHealth();
 
+    $('#manage_flow h1 li:last-of-type').editApplicationName();
+
     var enableNewItem = function(addedItem) {
       addedItem.$el.find('input').each(function() {
         $(this).prop('disabled', false);

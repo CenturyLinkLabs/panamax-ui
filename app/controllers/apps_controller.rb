@@ -1,6 +1,6 @@
 class AppsController < ApplicationController
   respond_to :html, except: [:journal]
-  respond_to :json, only: [:journal, :destroy, :rebuild]
+  respond_to :json, except: [:create]
 
   def create
     if @app = App.create(params[:app])
@@ -14,6 +14,13 @@ class AppsController < ApplicationController
   def show
     @app = retrieve_app
     @search_result_set = SearchResultSet.new
+  end
+
+  def update
+    @app = retrieve_app
+    @app.write_attributes(params[:app])
+    @app.save
+    respond_with @app
   end
 
   def relations
