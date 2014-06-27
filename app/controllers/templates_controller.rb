@@ -2,8 +2,16 @@ class TemplatesController < ApplicationController
   respond_to :html
 
   def new
-    @user = User.find
-    @template_form = TemplateForm.new(types: Type.all, user: @user)
+    if app = App.find_by_id(params[:app_id])
+      @user = User.find
+      @template_form = TemplateForm.new(
+        types: Type.all,
+        user: @user,
+        app: app
+      )
+    else
+      redirect_to apps_path, alert: 'could not find application'
+    end
   end
 
   def create

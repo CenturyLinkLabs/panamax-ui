@@ -26,6 +26,8 @@ describe 'managing a template' do
         fill_in 'Keywords', with: 'wordpress, mysql, blog'
         choose 'Java'
 
+        fill_in 'Add some instructions to help people use your template.', with: '##Markdown##'
+
         click_on 'Publish Your Template'
 
         expect(page).to have_content 'Template successfully created.'
@@ -41,7 +43,7 @@ describe 'managing a template' do
 
         it 'allows the user to request and enter a token' do
 
-          visit '/templates/new'
+          visit '/templates/new?app_id=1'
 
           expect(page).to have_link(
             'Generate a Github access token',

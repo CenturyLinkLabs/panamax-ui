@@ -18,6 +18,10 @@ describe Template do
     it { should respond_to :id }
   end
 
+  describe '#app_id' do
+    it { should respond_to :app_id }
+  end
+
   describe '#description' do
     it { should respond_to :description }
   end

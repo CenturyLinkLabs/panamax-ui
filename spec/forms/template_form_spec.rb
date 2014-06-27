@@ -8,7 +8,9 @@ describe TemplateForm do
       description: 'generic wordpress installation',
       keywords: 'fast, simple, elegant',
       type: 'wordpress',
-      repo: 'some/repo'
+      repo: 'some/repo',
+      app_id: 7,
+      documentation: '##some markdown##'
     }
   end
 
@@ -21,6 +23,48 @@ describe TemplateForm do
   it { should respond_to :keywords }
   it { should respond_to :keywords= }
   it { should respond_to :author= }
+  it { should respond_to :app_id }
+  it { should respond_to :app_id= }
+  it { should respond_to :app= }
+  it { should respond_to :app }
+  it { should respond_to :documentation }
+  it { should respond_to :documentation= }
+
+  describe '#app_id' do
+    it 'is app_id if set' do
+      expect(subject.app_id).to eq 7
+    end
+
+    it 'is the apps id when app_id is nil' do
+      subject.app = double(:fake_app, id: 6)
+      subject.app_id = nil
+      expect(subject.app_id).to eq 6
+    end
+
+    it 'returns nil if neither are set' do
+      subject.app = nil
+      subject.app_id = nil
+      expect(subject.app_id).to be_nil
+    end
+  end
+
+  describe '#documentation' do
+    it 'returns documentaton if set' do
+      expect(subject.documentation).to eq '##some markdown##'
+    end
+
+    it 'returns the apps documentation otherwise' do
+      subject.documentation = nil
+      subject.app = double(:fake_app, documentation: 'app doc')
+      expect(subject.documentation).to eq 'app doc'
+    end
+
+    it 'returns nil if neither are set' do
+      subject.documentation = nil
+      subject.app = nil
+      expect(subject.documentation).to be_nil
+    end
+  end
 
   describe '#author' do
     it 'defaults to the users email address' do
@@ -65,7 +109,9 @@ describe TemplateForm do
         description: 'generic wordpress installation',
         keywords: 'fast, simple, elegant',
         authors: [nil],
-        type: 'wordpress'
+        type: 'wordpress',
+        app_id: 7,
+        documentation: '##some markdown##'
       )
       subject.save
     end
