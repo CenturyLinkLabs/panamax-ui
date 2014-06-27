@@ -289,7 +289,8 @@ h1.breadcrumbs {
     content: '';
     position: absolute;
     right: 0;
-    top: 10px;
+    top: 50%;
+    margin-top: -10px;
     width: 30px;
     height: 30px;
     @extend .icon-checkmark-large;
@@ -302,9 +303,6 @@ h1.breadcrumbs {
   }
 
   .checkmark.dirty {
-    position: absolute;
-    right: 0;
-    top: 10px;
     width: 30px;
     height: 30px;
     @extend .icon-checkmark-large;
@@ -313,7 +311,8 @@ h1.breadcrumbs {
 
   .loading {
     position: absolute;
-    top: 14px;
+    top: 50%;
+    margin-top: -8px;
     right: 8px;
     width: 16px;
     height: 16px;

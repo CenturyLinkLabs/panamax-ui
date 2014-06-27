@@ -53,6 +53,35 @@ describe AppsController do
     end
   end
 
+  describe 'PUT #update' do
+    let(:attributes) do
+      {
+        'name' => 'My App',
+        'id' => '77'
+      }
+    end
+
+    before do
+      App.stub(:find).and_return(dummy_app)
+      dummy_app.stub(:save)
+    end
+
+    it 'retrieves the app to be updated' do
+      expect(App).to receive(:find).with('77')
+      patch :update, app: attributes, id: '77', format: :json
+    end
+
+    it 'writes the attributes' do
+      expect(dummy_app).to receive(:write_attributes).with(attributes)
+      patch :update, id: '77', app: attributes, format: :json
+    end
+
+    it 'saves the record' do
+      expect(dummy_app).to receive(:save)
+      patch :update, id: '77', app: attributes, format: :json
+    end
+  end
+
   describe '#destroy' do
     before do
       dummy_app.stub(:destroy)

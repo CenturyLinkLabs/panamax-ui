@@ -71,6 +71,50 @@ ul.dragging-service {
   }
 }
 
+h1 span.application-title {
+  width: auto;
+  padding-right: 30px;
+  display: inline-block;
+
+  .edit-field {
+    margin-right: 15px;
+  }
+}
+
+h1 li:last-of-type:hover .actions {
+  display:inline-block;
+}
+
+h1 .actions {
+  display: none;
+  position:relative;
+  width: 20px;
+  height: 20px;
+
+  a.edit-action {
+    float: left;
+    display: block;
+    width: 40px;
+    height: 40px;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      display: inline-block;
+      @include icon-light-grey;
+      @extend .icon-pencil-large;
+      width: 40px;
+      height: 40px;
+    }
+
+    &:hover:before {
+      @include icon-grey;
+    }
+  }
+}
+
 section.notice {
   margin-bottom: 20px;
 
