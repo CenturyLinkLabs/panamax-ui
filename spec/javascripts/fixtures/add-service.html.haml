@@ -59,5 +59,7 @@
           = hidden_field_tag 'from', 'Wordpress'
           = select_tag 'app[tag]',
             options_for_select(['latest']),
-            data: {'loaded' => false}
+            data: {'loaded' => false},
+            id: nil,
+            class: 'image-tag-select'
           = button_tag 'Add to App', class: 'button-positive'

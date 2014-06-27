@@ -151,13 +151,13 @@ describe('$.fn.filterableList', function() {
         responseText: JSON.stringify(['foo', 'bar'])
       });
 
-      expect($('select#app_tag').first().data('loaded')).toBe(true);
-      expect($('select#app_tag').first().children().length).toNotEqual(0);
+      expect($('select.image-tag-select').first().data('loaded')).toBe(true);
+      expect($('select.image-tag-select').first().children().length).toNotEqual(0);
     });
 
     it('does not ajax load tags if they are already loaded', function() {
       $('input.query-field').val('apache').keyup();
-      var $tagsSelect = $('select#app_tag').first();
+      var $tagsSelect = $('select.image-tag-select').first();
       $tagsSelect.attr('data-loaded', true);
       $('.chosen-container').first().click();
 

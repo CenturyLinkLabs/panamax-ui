@@ -16,6 +16,8 @@
       = label 'app[tag]', 'Tag:'
       = select_tag 'app[tag]',
         options_for_select(['latest']),
+        id: nil,
+        class: 'image-tag-select',
         data: {'load-tags-endpoint' => load_tags_search_path, 'loaded' => false}
       %button.button-positive{ data: { disable_with: 'Starting App...', tracking: { method: 'click', action: 'Create Application', category: 'Run Image', label: presenter.title }}} Run Image
   - if remote

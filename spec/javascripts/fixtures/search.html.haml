@@ -15,6 +15,8 @@
     %p= '{{last_updated_on}}'
     = select_tag 'app[tag]',
       options_for_select(['latest']),
+      id: nil,
+      class: 'image-tag-select',
       data: {'loaded' => false}
 %script#local_image_result_template{type: 'text/x-handlebars-template'}
   .search-result-item
@@ -23,6 +25,8 @@
     %p= '{{last_updated_on}}'
     = select_tag 'app[tag]',
       options_for_select(['latest']),
+      id: nil,
+      class: 'image-tag-select',
       data: {'loaded' => false}
 %script#no_results_row_template{type: 'text/x-handlebars-template'}
   %p sorry, nothin here
