@@ -3,7 +3,7 @@ require 'active_model'
 class TemplateForm
   include ActiveModel::Model
 
-  attr_accessor :repos, :name, :description, :keywords, :types
+  attr_accessor :repos, :name, :description, :keywords, :types, :documentation
   attr_writer :author, :user, :type
 
   def author
@@ -21,7 +21,8 @@ class TemplateForm
         description: description,
         keywords: keywords,
         authors: [author],
-        type: type
+        type: type,
+        documentation: documentation
       )
     end
   end
