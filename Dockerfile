@@ -7,4 +7,4 @@ EXPOSE 3000
 
 WORKDIR /var/app/panamax-ui
 RUN bundle
-CMD bundle exec rails s
+CMD bundle exec rake RAILS_ENV=production assets:precompile && bundle exec rails s -e production
