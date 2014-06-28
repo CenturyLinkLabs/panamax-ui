@@ -69,5 +69,8 @@
     $('.blog-feed-items').rssReader();
 
     $('.service-status').serviceStatus();
+
+    $('.application-services').appServicesStatus();
+
   };
 })(jQuery);
