@@ -3,6 +3,11 @@ class ServicesController < ApplicationController
   respond_to :html, only: [:show, :destroy]
   respond_to :json
 
+  def index
+    @app = App.find(params[:app_id])
+    respond_with @app.services
+  end
+
   def show
     @app = App.find(params[:app_id])
     @service = retrieve_service

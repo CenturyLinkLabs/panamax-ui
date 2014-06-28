@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     get 'journal', on: :member
     get 'relations', on: :member
     put 'rebuild', on: :member
-    resources :services, only: [:update, :create, :show, :destroy] do
+    resources :services, only: [:index, :update, :create, :show, :destroy] do
       get 'journal', on: :member
     end
     resources :categories, only: [:update, :create, :destroy] do
@@ -25,5 +25,5 @@ Rails.application.routes.draw do
 
   resources :host_health, only: [:index]
 
-  mount CtlBaseUi::Engine => "/ctl-base-ui"
+  mount CtlBaseUi::Engine => '/ctl-base-ui'
 end
