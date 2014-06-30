@@ -2,6 +2,9 @@ LineLength:
   Description: 'Limit lines to 120 characters.'
   Max: 120
 
+StringLiterals:
+  EnforcedStyle: single_quotes
+
 RedundantSelf:
   Enabled: false
 
