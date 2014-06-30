@@ -66,7 +66,7 @@ describe ServicesController do
 
   describe 'POST #create' do
     let(:dummy_category) { double(:category) }
-    let(:dummy_service) { Service.new(name: 'test', from: 'Image: test') }
+    let(:dummy_service) { Service.new(name: 'test', from: 'test') }
     let(:service_form_params) do
       {
         'app' =>
