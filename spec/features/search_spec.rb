@@ -15,7 +15,7 @@ describe 'searching for templates and images' do
       end
 
       # remote image result
-      expect(page.find_link('tutum/wordpress')['href']).to eq 'https://index.docker.io/u/tutum/wordpress'
+      expect(page.find_link('tutum/wordpress')['href']).to eq "#{DOCKER_INDEX_BASE_URL}u/tutum/wordpress"
       expect(page).to have_content 'Wordpress Docker image - listens in port 80.'
       expect(page).to have_css '.star-count', text: '7'
 

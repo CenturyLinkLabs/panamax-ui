@@ -29,7 +29,7 @@ describe RemoteImage do
       subject { described_class.new('repository' => 'shaka') }
 
       it 'composes a docker index URL' do
-        expect(subject.docker_index_url).to eq 'https://index.docker.io/_/shaka'
+        expect(subject.docker_index_url).to eq "#{DOCKER_INDEX_BASE_URL}_/shaka"
       end
     end
 
@@ -37,7 +37,7 @@ describe RemoteImage do
       subject { described_class.new('repository' => 'boom/shaka') }
 
       it 'composes a docker index URL' do
-        expect(subject.docker_index_url).to eq 'https://index.docker.io/u/boom/shaka'
+        expect(subject.docker_index_url).to eq "#{DOCKER_INDEX_BASE_URL}u/boom/shaka"
       end
     end
   end
@@ -54,7 +54,7 @@ describe RemoteImage do
         'short_description' => 'this thing goes boom shaka laka',
         'status_label' => 'Repository',
         'recommended_class' => 'not-recommended',
-        'docker_index_url' => 'https://index.docker.io/u/boom/shaka'
+        'docker_index_url' => "#{DOCKER_INDEX_BASE_URL}u/boom/shaka"
       )
       expect(subject.as_json).to eq expected
     end

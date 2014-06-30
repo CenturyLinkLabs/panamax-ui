@@ -1,6 +1,9 @@
 require 'active_resource'
 
 class BaseResource < ActiveResource::Base
+
+  DOCKER_INDEX_BASE_URL = 'https://registry.hub.docker.com/'
+
   self.site = PanamaxApi::URL
 
   def write_attributes(attributes)

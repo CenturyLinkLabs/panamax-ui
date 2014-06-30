@@ -8,6 +8,8 @@ require 'webmock/rspec'
 require 'coveralls'
 require 'simplecov'
 
+DOCKER_INDEX_BASE_URL = 'https://registry.hub.docker.com/'
+
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
     SimpleCov::Formatter::HTMLFormatter,
     Coveralls::SimpleCov::Formatter

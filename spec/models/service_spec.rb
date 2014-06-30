@@ -256,7 +256,7 @@ describe Service do
   describe '#docker_index_url' do
     it 'composes a docker index URL' do
       subject.from = 'supercool/repository'
-      expect(subject.docker_index_url).to eq 'https://index.docker.io/u/supercool/repository'
+      expect(subject.docker_index_url).to eq "#{DOCKER_INDEX_BASE_URL}u/supercool/repository"
     end
   end
 

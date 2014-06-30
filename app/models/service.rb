@@ -1,8 +1,6 @@
 class Service < BaseResource
   include ApplicationHelper
 
-  DOCKER_INDEX_BASE_URL = 'https://index.docker.io/'
-
   self.prefix = '/apps/:app_id/'
 
   has_many :ports

@@ -1,8 +1,6 @@
 class BaseImage < BaseResource
   include ActionView::Helpers::TextHelper
 
-  DOCKER_INDEX_BASE_URL = 'https://index.docker.io/'
-
   schema do
     integer :id
     string :description
