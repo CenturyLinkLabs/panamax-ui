@@ -49,9 +49,10 @@
       })
       .done(function() {
         var $remove = $target.closest(base.options.removeAt);
-          $remove.css('opacity', '0.5')
+        $remove.css('opacity', '0.5')
           .delay(1000)
-          .fadeOut('slow', base.done);
+          .fadeOut('slow', base.done)
+          .find('a').css('cursor', 'not-allowed');
       })
       .fail(function(response){
         base.fail(response);
