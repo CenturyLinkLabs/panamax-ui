@@ -10,7 +10,8 @@ class ServicesController < ApplicationController
   end
 
   def create
-    service = Service.new(name: params[:name], from: "Image: #{params[:from]}", app_id: params[:app_id])
+    image_with_tag = "#{params[:from]}:#{params[:tag]}"
+    service = Service.new(name: params[:name], from: "Image: #{image_with_tag}", app_id: params[:app_id])
     unless params[:app][:category] == 'null'
       service.categories = [Category.find(params[:app][:category], params: { app_id: params[:app_id] })]
     end

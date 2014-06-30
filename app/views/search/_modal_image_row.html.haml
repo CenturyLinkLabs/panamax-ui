@@ -16,8 +16,8 @@
       = hidden_field_tag 'app[category]', 'null', class: 'category-form-field'
       = hidden_field_tag 'name', presenter.title
       = hidden_field_tag 'from', presenter.title
-      = label 'app[tag]', 'Tag:'
-      = select_tag 'app[tag]',
+      = label 'tag', 'Tag:'
+      = select_tag 'tag',
       options_for_select(['latest']),
       id: nil,
       class: 'image-tag-select',

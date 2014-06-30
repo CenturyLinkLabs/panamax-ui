@@ -77,12 +77,16 @@ class Service < BaseResource
     end
   end
 
-  def base_image_name
-    self.from[/(?:(?!:).)*/]
+  def base_image
+    self.from.gsub(/(Image: |Template: )/, '')
   end
 
-  def image_tag_name
-    self.from.gsub(/\S*:/, '')
+  def image_name
+    base_image.split(':').first
+  end
+
+  def image_tag
+    base_image.split(':').last
   end
 
   def category_priority
@@ -90,7 +94,7 @@ class Service < BaseResource
   end
 
   def docker_index_url
-    path_part = "u/#{self.base_image_name}"
+    path_part = "u/#{self.image_name}"
     "#{DOCKER_INDEX_BASE_URL}#{path_part}"
   end
 

@@ -66,17 +66,18 @@ describe ServicesController do
 
   describe 'POST #create' do
     let(:dummy_category) { double(:category) }
-    let(:dummy_service) { Service.new(name: 'test', from: 'Image: test') }
+    let(:dummy_service) { Service.new(name: 'test', from: 'Image: test:latest') }
     let(:service_form_params) do
       {
         'app' =>
           {
             'name' => 'Rails',
-            'category' => '1'
+            'category' => '1',
           },
         'name' => 'some image',
         'from' => 'some image',
         'app_id' => '77',
+        'tag' => 'latest',
         'controller' => 'services',
         'action' => 'create',
         'categories' => [{ 'id' => '1' }]
@@ -104,6 +105,7 @@ describe ServicesController do
         from: 'test',
         app_id: '77',
         app: { category: 'null' },
+        tag: 'latest',
         format: :json
       expect(response.status).to eq 200
       expect(response.body).to eql dummy_service.to_json
