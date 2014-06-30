@@ -78,11 +78,11 @@ class Service < BaseResource
   end
 
   def base_image_name
-    self.from[/(?:(?!:).)*/]
+    self.from.split(':')[0]
   end
 
   def image_tag_name
-    self.from.gsub(/\S*:/, '')
+    self.from.split(':')[1]
   end
 
   def category_priority

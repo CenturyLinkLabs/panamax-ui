@@ -238,9 +238,18 @@ describe Service do
   end
 
   describe '#image_tag_name' do
-    it 'returns the tag of the image' do
-      subject.from = 'supercool/repository:foobar'
-      expect(subject.image_tag_name).to eq 'foobar'
+    context 'when there is a tag on the image' do
+      it 'returns the tag of the image' do
+        subject.from = 'supercool/repository:foobar'
+        expect(subject.image_tag_name).to eq 'foobar'
+      end
+    end
+
+    context 'when there is NO tag on the image' do
+      it 'returns nil' do
+        subject.from = 'supercool/repository'
+        expect(subject.image_tag_name).to be_nil
+      end
     end
   end
 
