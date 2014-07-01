@@ -6,7 +6,7 @@ class BaseImage < BaseResource
   schema do
     integer :id
     string :description
-    string :repository
+    string :source
     string :star_count
     string :location
     boolean :recommended
@@ -30,7 +30,7 @@ class BaseImage < BaseResource
 
   def docker_index_url
     if remote?
-      path_part = (repository =~ /\//) ? "u/#{repository}" : "_/#{repository}"
+      path_part = (source =~ /\//) ? "u/#{source}" : "_/#{source}"
       "#{DOCKER_INDEX_BASE_URL}#{path_part}"
     end
   end

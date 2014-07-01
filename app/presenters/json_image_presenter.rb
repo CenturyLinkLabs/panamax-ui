@@ -1,6 +1,6 @@
 class JsonImagePresenter
   def title
-    '{{repository}}'
+    '{{source}}'
   end
 
   def short_description

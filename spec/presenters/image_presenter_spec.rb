@@ -3,7 +3,7 @@ require 'spec_helper'
 describe ImagePresenter do
   let(:fake_image) do
     double(:fake_image,
-      repository: 'boom/shaka',
+      source: 'boom/shaka',
       description: 'goes boom shaka laka',
       short_description: 'goes boom',
       status_label: 'Repository',
