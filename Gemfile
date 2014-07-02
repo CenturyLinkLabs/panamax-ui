@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.1.0'
-
+gem 'puma', '~> 2.8.2'
 gem 'sass'
 gem 'therubyracer', platforms: :ruby
 gem 'haml'
