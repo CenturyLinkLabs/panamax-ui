@@ -60,9 +60,9 @@
         base.data.time_stamp = moment(response.timestamp).format(base.options.timeFormat);
         base.calculateHealth(response);
       }).always(function() {
-        if (base.timer !== null) base.timer.clearTimeout;
+        if (base.timer !== null) { clearTimeout(base.timer); }
         base.timer = setTimeout(base.initiateRequest, base.options.interval);
-      })
+      });
     };
 
     base.calculateHealth = function(data) {
@@ -98,7 +98,7 @@
       }
 
       return 'good';
-    }
+    };
   };
 
   $.fn.hostHealth = function(options){

@@ -32,7 +32,11 @@
     };
 
     base.fail = function(response){
-      (base.options.fail) ? base.options.fail(response) : alert("Unable to complete delete operation");
+      if (base.options.fail) {
+        base.options.fail(response);
+      } else {
+        alert("Unable to complete delete operation");
+      }
     };
 
     base.handleDelete = function(event) {
@@ -109,7 +113,7 @@
         .css('display', 'auto')
         .children().each(function() {
           $(this).clone(true, true).appendTo($parent);
-        })
+        });
       $parent.find('.hideaway').remove();
     };
 
@@ -117,14 +121,14 @@
       var $target = $(e.currentTarget);
 
       base.unWrapElements($target);
-      if (base.options.confirm) base.options.confirm();
+      if (base.options.confirm) { base.options.confirm(); }
     };
 
     base.handleCancel = function(e) {
-      var $target = $(e.currentTarget)
+      var $target = $(e.currentTarget);
 
       base.unWrapElements($target);
-      if (base.options.cancel) base.options.cancel();
-    }
-  }
+      if (base.options.cancel) { base.options.cancel(); }
+    };
+  };
 })(jQuery);

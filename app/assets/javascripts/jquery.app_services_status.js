@@ -34,10 +34,10 @@
     };
 
     base.updateServicesStatus = function(services) {
-      for (i in services) {
-        var $serviceRow = base.$el.find(base.options.rowSelector + "[data-id='" + services[i].id + "']");
-        base.updateStatus($serviceRow.find('.' + base.options.serviceStatusClass), services[i]);
-      }
+      $.each(services, function(i, service) {
+        var $serviceRow = base.$el.find(base.options.rowSelector + "[data-id='" + service.id + "']");
+        base.updateStatus($serviceRow.find('.' + base.options.serviceStatusClass), service);
+      });
     };
 
     base.updateStatus = function($el, service) {

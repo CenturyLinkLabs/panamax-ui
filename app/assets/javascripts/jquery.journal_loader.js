@@ -34,9 +34,7 @@
     };
 
     base.journalEndpoint = function() {
-      return base.$el.data('source')
-        + '?cursor='
-        + encodeURIComponent(base.cursor);
+      return base.$el.data('source') + '?cursor=' + encodeURIComponent(base.cursor);
     };
 
     base.updateJournal = function(journal_lines) {

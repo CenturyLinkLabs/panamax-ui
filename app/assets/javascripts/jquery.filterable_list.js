@@ -184,7 +184,7 @@
           $selectBox.data('loaded', true);
           $selectBox.trigger("chosen:updated");
         });
-      };
+      }
     };
 
     base.displayLoadingIndicators = function() {
