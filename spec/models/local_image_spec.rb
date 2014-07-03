@@ -7,7 +7,7 @@ describe LocalImage do
   let(:attributes) do
     {
       'id' => 77,
-      'repository' => 'boom/shaka',
+      'source' => 'boom/shaka',
       'description' => 'this thing goes boom shaka laka',
       'star_count' => 127,
       'recommended' => false,

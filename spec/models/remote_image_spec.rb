@@ -7,7 +7,7 @@ describe RemoteImage do
   let(:attributes) do
     {
       'id' => 77,
-      'repository' => 'boom/shaka',
+      'source' => 'boom/shaka',
       'description' => 'this thing goes boom shaka laka',
       'star_count' => 127,
       'recommended' => false,
@@ -26,7 +26,7 @@ describe RemoteImage do
   describe '#docker_index_url' do
 
     context 'for official images' do
-      subject { described_class.new('repository' => 'shaka') }
+      subject { described_class.new('source' => 'shaka') }
 
       it 'composes a docker index URL' do
         expect(subject.docker_index_url).to eq "#{DOCKER_INDEX_BASE_URL}_/shaka"
@@ -34,7 +34,7 @@ describe RemoteImage do
     end
 
     context 'for unofficial images' do
-      subject { described_class.new('repository' => 'boom/shaka') }
+      subject { described_class.new('source' => 'boom/shaka') }
 
       it 'composes a docker index URL' do
         expect(subject.docker_index_url).to eq "#{DOCKER_INDEX_BASE_URL}u/boom/shaka"

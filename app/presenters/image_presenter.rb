@@ -8,6 +8,6 @@ class ImagePresenter
            to: :@image
 
   def title
-    @image.repository
+    @image.source
   end
 end
