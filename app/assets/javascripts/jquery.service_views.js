@@ -41,7 +41,7 @@
     };
 
     base.startDrag = function(event, ui) {
-      ui.item.removeClass('category-panel').wrap('<span class="cat-wrapper" style="display:none;"></span>')
+      ui.item.removeClass('category-panel').wrap('<span class="cat-wrapper" style="display:none;"></span>');
       ui.placeholder.html(ui.item.html());
     };
 

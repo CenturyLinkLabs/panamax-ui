@@ -11,6 +11,7 @@ describe('$.fn.hostHealth', function() {
     fixture.load('host_health.html');
     subject = new $.PMX.HostHealth($('.health'));
     spyOn(window, 'setTimeout');
+    spyOn(window, 'clearTimeout');
   });
 
   describe('#init', function() {
@@ -29,6 +30,19 @@ describe('$.fn.hostHealth', function() {
         responseText: ''
       });
       expect(window.setTimeout).toHaveBeenCalled();
+    });
+
+    it('clears the previously set timeout', function() {
+      var fakeTimer = {fakeTimer: true};
+      subject.timer = fakeTimer;
+      subject.init();
+      var request = mostRecentAjaxRequest();
+
+      request.response({
+        status: 200,
+        responseText: ''
+      });
+      expect(window.clearTimeout).toHaveBeenCalledWith(fakeTimer);
     });
   });
 

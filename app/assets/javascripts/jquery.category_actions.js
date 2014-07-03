@@ -64,15 +64,15 @@
           services = targetPanel.find('ul.services li'),
           path = window.location.pathname;
 
-      services.each(function (idx, service) {
-        var $elem = $(service),
+      services.each(function (idx, serviceEl) {
+        var $elem = $(serviceEl),
             service_id = $elem.attr('data-id'),
             service = { id: service_id };
 
-        if (targetCategory != 'null') {
+        if (targetCategory !== 'null') {
           service.category = targetCategory;
           service.position = idx;
-        };
+        }
 
         $.ajax({
           type: 'PUT',
@@ -117,7 +117,7 @@
         $(e.currentTarget).find(base.options.categorySelector).val(base.options.category);
         base.processForm($(e.currentTarget));
       });
-    }
+    };
 
     base.createNewElement = function($parent, name, id, icon) {
       // TODO: if possible we may want to generate this URL in ruby
@@ -192,8 +192,8 @@
 
     base.sortable = function(enabled) {
       var categories = base.$el.closest('.categories');
-      (enabled)? categories.sortable('enable') : categories.sortable('disable');
-    }
+      (enabled) ? categories.sortable('enable') : categories.sortable('disable');
+    };
 
     base.handleEdit = function(e) {
       var $target = $(e.currentTarget),
@@ -294,9 +294,9 @@
 
       base.sortable(true);
 
-      return (data.id.lastIndexOf('/') === data.id.length-1)
-        ? base.moveServicesToNamedCategory(path, data)
-        : base.updateCategory(path, data);
+      return (data.id.lastIndexOf('/') === data.id.length-1) ?
+        base.moveServicesToNamedCategory(path, data) :
+        base.updateCategory(path, data);
     };
   };
 
@@ -390,7 +390,7 @@
       base.$el.categoryActions();
 
       return base.$el;
-    }
+    };
   };
 
   $.PMX.NewCategoryPanel = function(options) {

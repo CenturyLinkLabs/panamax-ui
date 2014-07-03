@@ -19,7 +19,7 @@
         .filter(function() {
           return this.nodeType === 3; //Node.TEXT_NODE
         });
-      return (node[0] !== undefined) ? node[0].data.replace(/[\n\r]/g, '').replace(/^\s+|\s+$/g,'') : ' '
+      return (node[0] !== undefined) ? node[0].data.replace(/[\n\r]/g, '').replace(/^\s+|\s+$/g,'') : ' ';
     };
 
     base.specialKey = function(code) {
@@ -79,7 +79,7 @@
               .empty()
               .text(data);
 
-      if (base.options.onRevert) base.options.onRevert(identifier);
+      if (base.options.onRevert) { base.options.onRevert(identifier); }
     };
 
     base.commitChange = function(to) {
@@ -105,8 +105,11 @@
         $parent = $content.closest(base.$el),
         original = $parent.attr('data-original');
 
-      (contentText !== original) ? $parent.find(base.options.confirmSelector).addClass('dirty')
-                                 : $parent.find(base.options.confirmSelector).removeClass('dirty');
+      if (contentText !== original) {
+        $parent.find(base.options.confirmSelector).addClass('dirty');
+      } else {
+        $parent.find(base.options.confirmSelector).removeClass('dirty');
+      }
     };
 
     base.handleContent = function(e) {
@@ -117,8 +120,11 @@
       base.dirtyCheck(e);
       if (base.specialKey(keyCode)) {
         e.preventDefault();
-        ($parent.find(base.options.confirmSelector).hasClass('dirty')) ? base.commitChange($content)
-                                                                       : base.revert($content);
+        if ($parent.find(base.options.confirmSelector).hasClass('dirty')) {
+          base.commitChange($content);
+        } else {
+          base.revert($content);
+        }
       }
     };
 
@@ -134,7 +140,11 @@
       var $target = $(e.currentTarget),
           $content = $target.closest(base.$el);
 
-      ($target.hasClass('dirty')) ? base.commitChange($content) : base.revert($content);
+      if ($target.hasClass('dirty')) {
+        base.commitChange($content);
+      } else {
+        base.revert($content);
+      }
     };
   };
 
