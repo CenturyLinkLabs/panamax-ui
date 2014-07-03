@@ -14,7 +14,7 @@
   = render 'blog_item'
 
 .filterable-list
-  %h1 Search Templates &amp; Images
+  %h1 Search Panamax Templates & Docker Repositories
   = form_for @search_result_set, url: search_path, method: :get, html: {class: 'search-form'} do |f|
     = f.text_field :q, placeholder: 'enter your command / query', accesskey: 's', class: 'query-field'
     = f.button 'Search', class: 'button-primary'
