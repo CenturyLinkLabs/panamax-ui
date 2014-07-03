@@ -1,6 +1,8 @@
 require 'kramdown'
 
 class App < BaseResource
+  before_create :source_image,
+    unless: -> { self.attributes[:template_id].present? }
 
   has_many :services
 
@@ -81,6 +83,11 @@ class App < BaseResource
 
     def sort_by_position(list)
       list.sort_by { |s| s.categories.first.position }
+    end
+
+    def source_image
+      self.attributes[:image] =
+        BaseImage.source(self.attributes[:image], self.attributes.delete(:tag))
     end
   end
 end

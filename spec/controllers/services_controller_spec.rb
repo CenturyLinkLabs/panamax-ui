@@ -68,20 +68,15 @@ describe ServicesController do
 
   describe 'POST #create' do
     let(:dummy_category) { double(:category) }
-    let(:dummy_service) { Service.new(name: 'test', from: 'test') }
+    let(:dummy_service) { Service.new(name: 'test', from: 'test:latest') }
     let(:service_form_params) do
       {
         'app' =>
           {
-            'name' => 'Rails',
             'category' => '1'
           },
-        'name' => 'some image',
-        'from' => 'some image',
+        'name' => 'tutum/wordpress',
         'app_id' => '77',
-        'controller' => 'services',
-        'action' => 'create',
-        'categories' => [{ 'id' => '1' }]
       }
     end
 
@@ -91,19 +86,44 @@ describe ServicesController do
     end
 
     it 'creates the service' do
-      expect_any_instance_of(Service).to receive(:save)
+      expect(Service).to receive(:new)
+        .with(
+          name: 'tutum/wordpress',
+          from: 'tutum/wordpress:latest',
+          app_id: '77'
+        )
+        .and_return(dummy_service)
+      expect(dummy_service).to receive(:save)
       post :create, service_form_params, app_id: '77'
     end
 
+    context 'when the tag is supplied' do
+      before do
+        service_form_params['app']['tag'] = 'fizzle'
+      end
+
+      it 'creates the service with the supplied tag' do
+        expect(Service).to receive(:new)
+          .with(
+            name: 'tutum/wordpress',
+            from: 'tutum/wordpress:fizzle',
+            app_id: '77'
+          )
+          .and_return(dummy_service)
+        expect(dummy_service).to receive(:save)
+        post :create, service_form_params, app_id: '77'
+      end
+
+    end
+
     it 'redirected to application management view when format is html' do
-      post :create, app_id: '77', app: { category: '1' }
+      post :create, service_form_params
       expect(response).to redirect_to app_path 77
     end
 
     it 'renders json response when format is json' do
       post :create,
         name: 'test',
-        from: 'test',
         app_id: '77',
         app: { category: 'null' },
         format: :json

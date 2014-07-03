@@ -5,7 +5,7 @@
       "id":null,
       "image_id":null,
       "name":null,
-      "repository":"tutum/wordpress",
+      "source":"tutum/wordpress",
       "tag":null,
       "description":"Wordpress Docker image - listens in port 80.",
       "keywords":null,

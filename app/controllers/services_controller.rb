@@ -15,7 +15,7 @@ class ServicesController < ApplicationController
   end
 
   def create
-    service = Service.new(name: params[:name], from: params[:from], app_id: params[:app_id])
+    service = Service.new(name: params[:name], from: build_from, app_id: params[:app_id])
     unless params[:app][:category] == 'null'
       service.categories = [Category.find(params[:app][:category], params: { app_id: params[:app_id] })]
     end
@@ -66,6 +66,10 @@ class ServicesController < ApplicationController
   end
 
   private
+
+  def build_from
+    BaseImage.source(params[:name], params[:app][:tag])
+  end
 
   def retrieve_service
     Service.find(params[:id], params: { app_id: params[:app_id] })

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe JsonImagePresenter do
   describe '#title' do
     it 'returns the handlebar template tag for repository' do
-      expect(subject.title).to eq '{{repository}}'
+      expect(subject.title).to eq '{{source}}'
     end
   end
 
