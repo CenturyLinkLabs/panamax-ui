@@ -1,10 +1,11 @@
 FROM 74.201.240.198:5000/ruby:alpha
 
-ADD . /var/app/panamax-ui
-RUN mv /var/app/panamax-ui/ctl-base-ui /var/app/ctl-base-ui
+ENV RAILS_ENV production
 
-EXPOSE 3000
+# Need to find a more elegant way to handle this
+RUN mv ctl-base-ui ../ctl-base-ui
 
-WORKDIR /var/app/panamax-ui
-RUN bundle
-CMD bundle exec rake RAILS_ENV=production assets:precompile && bundle exec rails s -e production
+RUN bundle install --without development test
+
+CMD bundle exec rake assets:precompile && \
+  bundle exec rails s -e production
