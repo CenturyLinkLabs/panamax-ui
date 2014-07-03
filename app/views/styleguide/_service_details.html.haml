@@ -40,14 +40,19 @@
   %ul
     %li
       = link_to 'remove', '#', class: 'remove-link', title: 'remove link'
-      panamax-wordpress
+      %span{title: 'Name'} panamax-wordpress-extra-long-title
+      = ':'
+      %span{title: 'Alias'} pmx_wp
     %li
-      panamax-mysql
+      %span{title: 'Name'} panamax-mysql
+      = ':'
+      %span{title: 'Alias'} pmx_mysql
       = link_to 'remove', '#', class: 'remove-link', title: 'remove link'
     %li.editing
       %select
         %option Database Service
         %option App Service
+        %input{type: 'text', placeholder: 'enter alias here'}
   %button.button-add Add a Linked Service
 
 :javascript

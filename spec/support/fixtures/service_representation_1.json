@@ -7,7 +7,7 @@
     {
     "service_id": 999,
     "service_name": "DB_1",
-    "alias": "DB_1"
+    "alias": "DB"
   }
   ],
   "ports": [

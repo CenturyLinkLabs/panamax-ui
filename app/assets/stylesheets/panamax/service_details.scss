@@ -93,9 +93,9 @@
   ul li,
   dl dt,
   dl dd {
-    line-height: 42px;
+    padding-top: 16px;
+    padding-bottom: 16px;
     border-bottom: $light_grey 1px solid;
-
   }
 
   ul li:hover .actions,
@@ -194,15 +194,23 @@
     position: relative;
     border: 0;
 
+    span[title] {
+      cursor: help;
+
+      &:hover {
+        background: $yellow;
+      }
+    }
+
     &:before {
       z-index: -1;
       position: absolute;
       content: '';
       border: $blue_grey 1px solid;
       border-width: 0 0 1px 1px;
-      height: 50px;
+      height: 60px;
       width: 20px;
-      top: -27px;
+      top: -37px;
       left: 0;
     }
 
@@ -213,7 +221,9 @@
         height: 63px;
       }
 
-      select {
+      select,
+      input[type='text'] {
+        @include border-box;
         width: 245px;
       }
     }

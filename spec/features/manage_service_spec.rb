@@ -28,7 +28,7 @@ describe 'managing a service' do
         end
 
         within '.service-links', text: 'Service Links' do
-          expect(page).to have_content 'DB_1'
+          expect(page).to have_content 'DB_1 : DB'
         end
       end
 
