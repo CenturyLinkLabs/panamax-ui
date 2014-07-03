@@ -22,7 +22,7 @@
     %dd= f.text_area :description, placeholder: 'Give your template a description'
     %dt= f.label :keywords, class: 'optional'
     %dd= f.text_field :keywords, placeholder: 'Add some keywords, seperated by commas'
-    %dt Template Type
+    %dt.optional Template Icon
     %dd.template-icons
       - f.object.types.each do |type|
         = label_tag do
