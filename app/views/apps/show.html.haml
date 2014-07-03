@@ -28,7 +28,7 @@
 
   = render 'application_button_menu', app: @app
 
-%section.application-services
+%section.application-services{data: { source: app_services_path(@app.id, format: :json) } }
   %header
     %h3
       Application Services

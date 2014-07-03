@@ -4,11 +4,13 @@ describe ServicesController do
   let(:valid_app) { double(:valid_app) }
   let(:valid_service) { double(:valid_service, id: 3) }
   let(:fake_create_response) { double(:fake_create_response, body: 'test', status: 200) }
+  let(:app_services) { double([Service.new]) }
 
   before do
     App.stub(:find).and_return(valid_app)
     Service.stub(:find).and_return(valid_service)
     valid_service.stub(:categories=)
+    valid_app.stub(:services).and_return(app_services)
   end
 
   describe 'GET #show' do
@@ -223,6 +225,20 @@ describe ServicesController do
       get :journal, app_id: 77, id: 89, format: :json
       expect(response.status).to eq 200
       expect(response.body).to eql journal_lines.to_json
+    end
+  end
+
+  describe 'GET #index' do
+    it 'uses the application service to retrieve the application' do
+      expect(App).to receive(:find).with('77')
+      get :index, app_id: 77, format: :json
+    end
+
+    context 'when format is JSON' do
+      it 'returns the JSON-serialized services for the app' do
+        get :index, app_id: 77, format: :json
+        expect(response.body).to eq app_services.to_json
+      end
     end
   end
 end
