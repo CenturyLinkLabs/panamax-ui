@@ -1,5 +1,5 @@
 PATH
-  remote: ../ctl-base-ui
+  remote: vendor/ctl-base-ui
   specs:
     ctl_base_ui (0.0.1)
       haml (= 4.0.5)

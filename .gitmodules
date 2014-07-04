@@ -1,0 +1,3 @@
+[submodule "vendor/ctl-base-ui"]
+	path = vendor/ctl-base-ui
+	url = git@github.com:CenturyLinkLabs/ctl-base-ui.git
