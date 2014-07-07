@@ -19,9 +19,12 @@
   "expose": [
     80
   ],
-  "environment": {
-    "DB_PASSWORD": "pass@word01"
-  },
+  "environment": [
+    {
+      "variable": "DB_PASSWORD",
+      "value": "pass@word01"
+    }
+  ],
   "app": {
     "id": 5,
     "name": "tutum/wordpress"

@@ -14,7 +14,7 @@
       "links":[],
       "ports":[],
       "expose":[],
-      "environment":{},
+      "environment":[],
       "volumes":[],
       "created_at":null,
       "updated_at":null,
