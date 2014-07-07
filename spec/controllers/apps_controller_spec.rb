@@ -188,34 +188,53 @@ describe AppsController do
   end
 
   describe '#rebuild' do
-    let(:fake_rebuild_response) { double(:fake_rebuild_response, body: '', code: '204') }
-    let(:fake_rebuild_error_response) { double(:fake_rebuild_error_response, body: '', code: '404') }
-
-    before do
-      dummy_app.stub(:put).and_return(fake_rebuild_response)
-    end
-
-    it 'uses the applications service to rebuild the application' do
+    it 'rebuilds the application' do
       expect(dummy_app).to receive(:put)
                            .with(:rebuild)
       put :rebuild, id: 77
     end
 
-    it 'redirects to the applications index view when format is html and no http referrer' do
-      put :rebuild, id: 77
-      expect(response).to redirect_to apps_path
+    context 'when successful' do
+      before do
+        dummy_app.stub(:put).and_return(true)
+      end
+
+      it 'redirects to the applications index view when format is html' do
+        put :rebuild, id: 77
+        expect(response).to redirect_to apps_path
+      end
+
+      it 'sets a flash success message' do
+        put :rebuild, id: 77
+        expect(flash[:success]).to eq 'The application was successfully rebuilt.'
+      end
+
+      it 'returns no content for json' do
+        put :rebuild, id: 77, format: :json
+        expect(response.body).to eq ''
+      end
     end
 
-    it 'returns status 302 when format is html' do
-      put :rebuild, id: 77
-      expect(response.status).to eq 302
-    end
+    context 'when unsuccessful' do
+      before do
+        dummy_app.stub(:put).and_return(false)
+      end
 
-    it 'returns status 204 when format is json' do
-      put :rebuild, id: 77, format: :json
-      expect(response.status).to eq 204
-    end
+      it 'returns status 302 when format is html' do
+        put :rebuild, id: 77
+        expect(response.status).to eq 302
+      end
 
+      it 'sets a flash alert' do
+        put :rebuild, id: 77
+        expect(flash[:alert]).to eq 'The application could not be rebuilt.'
+      end
+
+      it 'returns status 204 when format is json' do
+        put :rebuild, id: 77, format: :json
+        expect(response.status).to eq 204
+      end
+
+    end
   end
-
 end
