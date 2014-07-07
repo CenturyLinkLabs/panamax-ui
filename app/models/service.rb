@@ -5,7 +5,7 @@ class Service < BaseResource
 
   has_many :ports
   has_many :links
-  has_one :environment
+  has_many :environment
   has_one :docker_status
 
   schema do
@@ -44,21 +44,14 @@ class Service < BaseResource
     type.blank? ? icon_source_for('default') : icon_source_for(type)
   end
 
-  def environment_vars
-    environment.attributes.map do |name, value|
-      OpenStruct.new(name: name, value: value, _deleted: false)
-    end
-  end
-
   def running?
     self.sub_state == 'running'
   end
 
   def environment_attributes=(attributes)
-    attrs = attributes.each_with_object({}) do |(_, attribute), hash|
-      hash[attribute['name']] = attribute['value'] unless attribute['_deleted'].to_s == '1'
+    self.environment = attributes.each_with_object([]) do |(_, env), memo|
+      memo << Environment.new(env.except('id')) unless env['_deleted'].to_s == '1'
     end
-    self.environment = Environment.new(attrs)
   end
 
   def ports_attributes=(attributes)

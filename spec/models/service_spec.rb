@@ -10,10 +10,10 @@ describe Service do
         { 'host_port' => 8080, 'container_port' => 80 },
         { 'host_port' => 7000, 'container_port' => 77 }
       ],
-      'environment' => {
-        'DB_PASS' => 'pazz',
-        'WP_PASS' => 'abc123'
-      },
+      'environment' => [
+        { 'variable' => 'DB_PASS', 'value' => 'pazz' },
+        { 'variable' => 'WP_PASS', 'value' => 'abc123' }
+      ],
       'links' => [
         { 'service_name' => 'DB' },
         { 'service_name' => 'Wordpress' }
@@ -118,7 +118,7 @@ describe Service do
 
     it 'instantiates an environment variable for each nested variable' do
       result = described_class.build_from_response(fake_json_response)
-      expect(result.environment.attributes).to eq attributes['environment']
+      expect(result.environment).to match_array((attributes['environment'].map { |attrs| Environment.new(attrs) }))
     end
 
     it 'instantiates a link for each link' do
@@ -197,7 +197,7 @@ describe Service do
       expect(subject.ports).to include Port.new(attributes['0'])
     end
 
-    it 'does not assign to links when _deleted is 1' do
+    it 'does not assign to ports when _deleted is 1' do
       subject.ports_attributes = attributes
       expect(subject.ports.map(&:host_port)).to_not include '8080'
     end
@@ -208,25 +208,31 @@ describe Service do
     end
   end
 
-  describe '#environment_vars' do
-    subject { described_class.new(environment: { boo: 'yah' }) }
-
-    it 'returns a struct for the form to consume' do
-      expected = OpenStruct.new(name: 'boo', value: 'yah', _deleted: false)
-      expect(subject.environment_vars).to eq [expected]
-    end
-  end
-
   describe '#environment_attributes=' do
     let(:attributes) do
       {
-        '0' => { 'name' => 'PASSWORD', 'value' => 'abc123' }
+        '0' => { 'variable' => 'WP_PASS', 'value' => 'abc123', '_deleted' => false },
+        '1' => { 'variable' => 'SPECIAL', 'value' => 'sauce', '_deleted' => 1 },
+        '2' => { 'variable' => 'SECRET', 'value' => 'handshake', 'id' => nil, '_deleted' => false }
       }
     end
 
-    it 'assigns the attributes to environment' do
+    before do
       subject.environment_attributes = attributes
-      expect(subject.environment.attributes).to eq('PASSWORD' => 'abc123')
+    end
+
+    it 'assigns to environments when variable and value are non nil' do
+      expect(subject.environment).to include Environment.new(attributes['0'])
+    end
+
+    it 'does not assign to environment when _deleted is 1' do
+      variables = subject.environment.map(&:variable)
+      expect(variables.length).to eq 2
+      expect(variables).to_not include 'SPECIAL'
+    end
+
+    it 'excludes the id' do
+      expect(subject.environment.last.attributes.keys).to_not include 'id'
     end
   end
 
