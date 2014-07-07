@@ -69,6 +69,10 @@ body > header nav ul li {
     @extend .icon-sprocket-large;
     @include icon-white;
   }
+  &.documentation-link a:before {
+    @extend .icon-document-large;
+    @include icon-white;
+  }
 }
 
 /* active states */

@@ -3,6 +3,27 @@ require 'spec_helper'
 describe 'managing an application' do
   context 'as a user' do
     context 'from an application' do
+
+      it 'can navigate to the search page' do
+        visit '/apps/2'
+
+        within 'nav li.search-link' do
+          click_on 'Search'
+        end
+
+        expect(page).to have_css 'h1', text: 'Search'
+      end
+
+      it 'can navigate to the manage page' do
+        visit '/apps/2'
+
+        within 'nav li.manage-link' do
+          click_on 'Manage'
+        end
+
+        expect(page).to have_css 'h1', text: 'Manage'
+      end
+
       it 'can navigate to a running service' do
         visit '/apps/2'
 
