@@ -53,8 +53,7 @@ class AppsController < ApplicationController
 
   def rebuild
     app = retrieve_app
-    resp = app.put(:rebuild)
-    if resp.code == '204'
+    if app.put(:rebuild)
       flash[:success] = 'The application was successfully rebuilt.'
     else
       flash[:alert] = 'The application could not be rebuilt.'
