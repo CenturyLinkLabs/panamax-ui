@@ -1,8 +1,6 @@
 - remote ||= false
 .search-result-item.image-result{data: {'title' => presenter.title, 'status-label' => presenter.status_label}}
   .badge= presenter.status_label
-  .authority
-    %div{:class => presenter.recommended_class}
   .basic-info
     %h3
       - if remote

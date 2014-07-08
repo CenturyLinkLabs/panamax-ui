@@ -4,7 +4,7 @@ class ImagePresenter
   end
 
   delegate :description, :status_label, :short_description,
-           :star_count, :docker_index_url, :recommended_class,
+           :star_count, :docker_index_url,
            to: :@image
 
   def title

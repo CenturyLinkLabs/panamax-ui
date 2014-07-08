@@ -8,7 +8,6 @@ describe ImagePresenter do
       short_description: 'goes boom',
       status_label: 'Repository',
       star_count: 123,
-      recommended_class: 'not-recommended',
       docker_index_url: 'index.docker/boom/shaka'
     )
   end
@@ -36,12 +35,6 @@ describe ImagePresenter do
   describe '#star_count' do
     it 'exposes the star count' do
       expect(subject.star_count).to eq 123
-    end
-  end
-
-  describe '#recommended_class' do
-    it 'exposes the recommended_class value' do
-      expect(subject.recommended_class).to eq 'not-recommended'
     end
   end
 
