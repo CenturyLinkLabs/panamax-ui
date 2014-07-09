@@ -79,6 +79,14 @@ class FakePanamaxApi < Sinatra::Base
     json_response 200, 'types_representation.json'
   end
 
+  get '/template_repos.json' do
+    json_response 200, 'template_repos_representation.json'
+  end
+
+  post '/template_repos.json' do
+    status 201
+  end
+
   private
 
   def json_response(response_code, file_name)

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe TemplatesController do
 
   let(:fake_user) { double(:fake_user) }
-  let(:fake_template_form) { double(:fake_template_form, save: true) }
+  let(:fake_template_form) { double(:fake_template_form, repo: 'foo/bar', save: true) }
   let(:fake_app) { double(:fake_app, id: 7) }
   let(:fake_types) { double(:fake_types) }
 
@@ -56,7 +56,8 @@ describe TemplatesController do
 
     let(:create_params) do
       {
-        'name' => 'My template'
+        'name' => 'My template',
+        'repo' => 'foo/bar'
       }
     end
 
@@ -85,20 +86,40 @@ describe TemplatesController do
         post :create, 'template_form' => create_params
         expect(response).to redirect_to apps_path
       end
+
+      it 'adds the repo to the template_repo sources' do
+        expect(TemplateRepo).to receive(:find_or_create_by_name).with(create_params['repo'])
+        post :create, 'template_form' => create_params
+      end
+
     end
 
     context 'when saving is not successful' do
       before do
         fake_template_form.stub(:save).and_return(false)
         fake_template_form.stub(:errors).and_return(['some stuff'])
+        fake_template_form.stub(:user=).and_return(true)
+        fake_template_form.stub(:types=).and_return(true)
       end
 
       it 're-renders the templates#new view' do
-        fake_template_form.stub(:user=).and_return(true)
-        fake_template_form.stub(:types=).and_return(true)
         post :create, 'template_form' => create_params
         expect(response).to render_template :new
       end
+
+      it 'does not add the repo to the template_repo sources' do
+        expect(TemplateRepo).to_not receive(:find_or_create_by_name)
+        post :create, 'template_form' => create_params
+      end
+
     end
   end
+
+  context 'for template_repo' do
+    it 'invokes create unless repo already exists' do
+      expect(TemplateRepo).to_not receive(:create).with(name: 'user/publicrepo')
+      post :create, name: 'user/publicrepo'
+    end
+  end
+
 end

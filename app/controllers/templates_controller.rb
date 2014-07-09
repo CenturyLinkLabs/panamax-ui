@@ -19,6 +19,8 @@ class TemplatesController < ApplicationController
     @template_form = TemplateForm.new(params[:template_form])
     if @template_form.save
       flash[:success] = 'Template successfully created.'
+      # add the repo to the source repos list for the user
+      TemplateRepo.find_or_create_by_name(@template_form.repo)
       respond_with @template_form, location: apps_path
     else
       @template_form.user = @user
