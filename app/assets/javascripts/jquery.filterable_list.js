@@ -27,10 +27,11 @@
   };
 
 
-  $.PMX.SearchResults = function(url) {
+  $.PMX.SearchResults = function(url, limit) {
     var base = this;
 
     base.url = url;
+    base.limit = limit;
     base.templatesXhr = null;
     base.localImagesXhr = null;
     base.remoteImagesXhr = null;
@@ -66,7 +67,11 @@
     base.fetchForType = function(term, type) {
       return $.ajax({
         url: base.url,
-        data: {'search_result_set[q]': term, 'search_result_set[type]': type}
+        data: {
+          'search_result_set[q]': term,
+          'search_result_set[type]': type,
+          'search_result_set[limit]': base.limit
+        }
       });
     };
   };
@@ -81,6 +86,7 @@
       $queryField: base.$el.find('input.query-field'),
       queryFormSelector: 'form.search-form',
       $queryForm: base.$el.find('form.search-form'),
+      limit: 40,
       $localImageResults: base.$el.find('.local-image-results'),
       $remoteImageResults: base.$el.find('.remote-image-results'),
       $templateResults: base.$el.find('.template-results'),
@@ -99,7 +105,7 @@
       base.options = $.extend({}, base.defaultOptions, options);
       base.queryField = new $.PMX.QueryField(base.options.$queryField);
       base.queryField.bindEvents();
-      base.searchResults = new $.PMX.SearchResults(base.resultsEndpoint());
+      base.searchResults = new $.PMX.SearchResults(base.resultsEndpoint(), base.options.limit);
 
       base.bindEvents();
     };

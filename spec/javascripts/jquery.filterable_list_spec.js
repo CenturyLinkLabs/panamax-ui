@@ -170,26 +170,26 @@ describe('$.PMX.SearchResults', function() {
   var subject;
   beforeEach(function() {
     jasmine.Ajax.useMock();
-    subject = new $.PMX.SearchResults('some/url');
+    subject = new $.PMX.SearchResults('some/url', 20);
   });
 
   describe('#fetch', function() {
     it('fetches templates for the supplied term', function() {
       subject.fetch('apache');
       var request = ajaxRequests[ajaxRequests.length-3];
-      expect(request.url).toBe('some/url?search_result_set%5Bq%5D=apache&search_result_set%5Btype%5D=template');
+      expect(request.url).toBe('some/url?search_result_set%5Bq%5D=apache&search_result_set%5Btype%5D=template&search_result_set%5Blimit%5D=20');
     });
 
     it('fetches local images for the supplied term', function() {
       subject.fetch('apache');
       var request = ajaxRequests[ajaxRequests.length-2];
-      expect(request.url).toBe('some/url?search_result_set%5Bq%5D=apache&search_result_set%5Btype%5D=local_image');
+      expect(request.url).toBe('some/url?search_result_set%5Bq%5D=apache&search_result_set%5Btype%5D=local_image&search_result_set%5Blimit%5D=20');
     });
 
     it('fetches remote images for the supplied term', function() {
       subject.fetch('apache');
       var request = mostRecentAjaxRequest();
-      expect(request.url).toBe('some/url?search_result_set%5Bq%5D=apache&search_result_set%5Btype%5D=remote_image');
+      expect(request.url).toBe('some/url?search_result_set%5Bq%5D=apache&search_result_set%5Btype%5D=remote_image&search_result_set%5Blimit%5D=20');
     });
 
     it('aborts the previous requests', function() {
