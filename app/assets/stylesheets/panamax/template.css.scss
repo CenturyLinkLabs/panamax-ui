@@ -47,6 +47,20 @@
       width: 460px;
     }
 
+    label.required {
+      position: relative;
+    }
+
+    label.required:after {
+      position: absolute;
+      right: -10px;
+      top: -12px;
+      width: 6px;
+      height: 6px;
+      content: '*';
+      display: inline;
+    }
+
     .template-icons {
       label {
         @include border-box;

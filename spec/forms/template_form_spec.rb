@@ -102,7 +102,30 @@ describe TemplateForm do
     end
   end
 
+  # describe '#errors' do
+  #   context 'when no template is present' do
+  #     it 'returns no errors' do
+  #       expect(subject.errors).to eq nil
+  #     end
+  #   end
+  #
+  #   context 'when a template is present' do
+  #     let(:fake_template) { double(:fake_template, errors: 'some error', valid?: false) }
+  #
+  #     before do
+  #       Template.stub(:create).and_return(fake_template)
+  #       subject.save
+  #     end
+  #
+  #     it 'returns the @template errors' do
+  #       expect(subject.errors).to eq 'some error'
+  #     end
+  #   end
+  # end
+
   describe '#save' do
+    let(:fake_template) { double(:fake_template, valid?: true) }
+
     it 'creates a template' do
       expect(Template).to receive(:create).with(
         name: 'My template',
@@ -112,12 +135,13 @@ describe TemplateForm do
         type: 'wordpress',
         app_id: 7,
         documentation: '##some markdown##'
-      )
+      ).and_return(fake_template)
+      subject.stub(:save_template_to_repo).and_return(true)
       subject.save
     end
 
     context 'when template creation is successful' do
-      let(:fake_template) { double(:fake_template) }
+      let(:fake_template) { double(:fake_template, valid?: true) }
 
       before do
         Template.stub(:create).and_return(fake_template)
@@ -134,13 +158,21 @@ describe TemplateForm do
     end
 
     context 'when template creation is not successful' do
+      let(:errors) { double(:errors, messages: { name: ['is invalid'] }) }
+      let(:fake_template) { double(:fake_template, errors: errors, valid?: false) }
+
       before do
-        Template.stub(:create).and_return(nil)
+        Template.stub(:create).and_return(fake_template)
       end
 
       it 'does not save the template to a repo' do
         expect(Template.any_instance).to_not receive(:post)
         subject.save
+      end
+
+      it 'merges the template errors with the template form errors' do
+        subject.save
+        expect(subject.errors.messages).to include(name: ['is invalid'])
       end
     end
   end

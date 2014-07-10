@@ -53,6 +53,7 @@ describe TemplatesController do
   end
 
   describe 'POST #create' do
+
     let(:create_params) do
       {
         'name' => 'My template'
@@ -93,6 +94,8 @@ describe TemplatesController do
       end
 
       it 're-renders the templates#new view' do
+        fake_template_form.stub(:user=).and_return(true)
+        fake_template_form.stub(:types=).and_return(true)
         post :create, 'template_form' => create_params
         expect(response).to render_template :new
       end

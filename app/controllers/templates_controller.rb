@@ -19,7 +19,11 @@ class TemplatesController < ApplicationController
     @template_form = TemplateForm.new(params[:template_form])
     if @template_form.save
       flash[:success] = 'Template successfully created.'
+      respond_with @template_form, location: apps_path
+    else
+      @template_form.user = @user
+      @template_form.types = Type.all
+      render :new
     end
-    respond_with @template_form, location: apps_path
   end
 end

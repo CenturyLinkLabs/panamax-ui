@@ -23,8 +23,12 @@ class TemplateForm
   end
 
   def save
-    if template = create_template
-      save_template_to_repo(template)
+    @template = create_template
+    if @template.valid?
+      save_template_to_repo(@template)
+    else
+      self.errors.messages.merge!(@template.errors.messages)
+      return false
     end
   end
 
@@ -49,4 +53,5 @@ class TemplateForm
     }
     template.post(:save, body)
   end
+
 end
