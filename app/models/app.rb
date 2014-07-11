@@ -12,6 +12,7 @@ class App < BaseResource
     text :name
     text :from
     text :documentation
+    integer :template_id
   end
 
   def to_param

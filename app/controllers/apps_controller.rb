@@ -3,12 +3,20 @@ class AppsController < ApplicationController
   respond_to :json, except: [:create]
 
   def create
-    if @app = App.create(params[:app])
-      flash[:success] = 'The application was successfully created.'
-      redirect_to app_url(@app.to_param)
-    else
-      render :show
-    end
+    @template = Template.find_by_id(params[:app][:template_id])
+    create_app(params[:app])
+  end
+
+  def new_from_template
+    @template = Template.find(params[:template_id])
+    @form = TemplateCopyForm.new(original_template: @template)
+  end
+
+  def create_from_template
+    original_template = Template.find(params[:template_copy_form].delete(:template_id))
+    form = TemplateCopyForm.new(params[:template_copy_form].merge(original_template: original_template))
+    @template = form.create_new_template
+    create_app(template_id: @template.id)
   end
 
   def show
@@ -65,6 +73,17 @@ class AppsController < ApplicationController
   end
 
   private
+
+  def create_app(attrs)
+    if @template.present? && @template.required_fields_missing?
+      redirect_to new_from_template_apps_path(template_id: @template.id)
+    elsif @app = App.create(attrs)
+      flash[:success] = 'The application was successfully created.'
+      redirect_to app_url(@app.to_param)
+    else
+      render :show
+    end
+  end
 
   def retrieve_app
     App.find(params[:id])

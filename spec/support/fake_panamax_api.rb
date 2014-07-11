@@ -5,12 +5,20 @@ class FakePanamaxApi < Sinatra::Base
     json_response 200, 'search_results.json'
   end
 
+  get '/templates/:id.:format' do |id, _format|
+    json_response 200, "template_representation_#{id}.json"
+  end
+
+  delete '/templates/:id' do
+    status 204
+  end
+
   post '/templates.json' do
-    json_response 201, 'template_representation.json'
+    json_response 201, 'template_representation_1.json'
   end
 
   post '/templates/:id/save.json*' do
-    json_response 200, 'template_representation.json'
+    json_response 200, 'template_representation_1.json'
   end
 
   get '/repositories/:repo/tags' do

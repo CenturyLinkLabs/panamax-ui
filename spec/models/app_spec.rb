@@ -25,6 +25,7 @@ describe App do
   it_behaves_like 'an active resource model'
 
   it { should respond_to :services }
+  it { should respond_to :template_id }
 
   describe '#to_param' do
     subject { described_class.new('id' => 77) }
