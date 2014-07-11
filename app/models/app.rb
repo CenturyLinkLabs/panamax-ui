@@ -37,12 +37,6 @@ class App < BaseResource
     services.select(&:running?)
   end
 
-  def self.find_by_id(id)
-    self.find(id)
-  rescue ActiveResource::ResourceNotFound
-    nil
-  end
-
   concerning :ServiceCategories do
     def categorized_services
       groups = categories.each_with_object({}) do |category, hash|

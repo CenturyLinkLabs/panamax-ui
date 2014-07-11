@@ -13,6 +13,12 @@ class BaseResource < ActiveResource::Base
     end
   end
 
+  def self.find_by_id(id)
+    self.find(id)
+  rescue ActiveResource::ResourceNotFound
+    nil
+  end
+
   def _deleted
     false
   end
