@@ -410,3 +410,17 @@ footer {
     }
   }
 }
+
+.dynamic-form {
+  input {
+    width: 300px;
+  }
+
+  dt {
+    margin-top: 15px;
+  }
+
+  button {
+    float: right;
+  }
+}

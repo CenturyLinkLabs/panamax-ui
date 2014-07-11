@@ -76,6 +76,7 @@ class AppsController < ApplicationController
 
   def create_app(attrs)
     if @template.present? && @template.required_fields_missing?
+      flash[:notice] = 'It looks like you are trying to run a template with some required fields. Please fill in the values below to continue.'
       redirect_to new_from_template_apps_path(template_id: @template.id)
     elsif @app = App.create(attrs)
       flash[:success] = 'The application was successfully created.'

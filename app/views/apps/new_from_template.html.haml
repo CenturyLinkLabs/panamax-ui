@@ -1,17 +1,19 @@
-%p
-  looks like your trying to run a template from:
-  %strong= @template.name
-  please fill out a couple more details to continue
-
-= form_for @form, url: create_from_template_apps_path do |f|
+= form_for @form, url: create_from_template_apps_path, html: { class: 'dynamic-form' } do |f|
   = f.hidden_field :template_id
 
   = f.fields_for :images do |img|
-    %h6= img.object.name
+    %h5
+      Required environment variables for:
+      %strong= img.object.name
 
-    = img.fields_for :environment do |env|
-      = env.hidden_field :variable
-      = env.label :value, env.object.variable
-      = env.text_field :value
+    %dl
+      = img.fields_for :environment do |env|
+        = env.hidden_field :variable
+        = env.hidden_field :required
+        - if env.object.requires_value?
+          %dt= env.label :value, env.object.variable
+          %dd= env.text_field :value
+        - else
+          = env.hidden_field :value
 
-  = f.submit
+    = f.button 'Run App', class: 'button-positive'

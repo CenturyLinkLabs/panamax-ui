@@ -15,7 +15,7 @@ class Image < BaseResource
 
   def required_fields_missing?
     environment.any? do |env|
-      env.required.present? && env.value.blank?
+      env.requires_value?
     end
   end
 

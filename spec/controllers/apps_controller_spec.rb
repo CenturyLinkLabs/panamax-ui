@@ -94,6 +94,11 @@ describe AppsController do
         fake_template_copy.stub(:required_fields_missing?).and_return(true)
       end
 
+      it 'sets a flash notice' do
+        post :create_from_template, template_copy_form: { template_id: 33 }
+        expect(flash[:notice]).to eq 'It looks like you are trying to run a template with some required fields. Please fill in the values below to continue.'
+      end
+
       it 'redirects to the new_from_template action' do
         post :create_from_template, template_copy_form: { template_id: 33 }
         expect(response).to redirect_to new_from_template_apps_path(template_id: 7)
