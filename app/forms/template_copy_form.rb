@@ -18,7 +18,7 @@ class TemplateCopyForm
   end
 
   def create_new_template
-    new_template = @original_template.dup
+    new_template = Template.new(@original_template.attributes)
     new_template.images.each do |img|
       img.environment_attributes = env_attrs_for(img)
       img.id = nil

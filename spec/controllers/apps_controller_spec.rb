@@ -18,8 +18,8 @@ describe AppsController do
   end
 
   describe 'POST #create_from_template' do
-    let(:fake_template) { double(:fake_template) }
-    let(:fake_template_copy) { double(:fake_template_copy, id: 7) }
+    let(:fake_template) { double(:fake_template, id: 33) }
+    let(:fake_template_copy) { double(:fake_template_copy, id: 7, destroy: nil) }
     let(:fake_form) { double(:fake_form, create_new_template: fake_template_copy) }
 
     before do
@@ -31,6 +31,11 @@ describe AppsController do
 
     it 'looks up the original template' do
       expect(Template).to receive(:find).with('33')
+      post :create_from_template, template_copy_form: { template_id: 33 }
+    end
+
+    it 'deletes the new template at the end' do
+      expect(fake_template_copy).to receive(:destroy)
       post :create_from_template, template_copy_form: { template_id: 33 }
     end
 
@@ -52,7 +57,7 @@ describe AppsController do
 
     it 'assigns the copied template' do
       post :create_from_template, template_copy_form: { template_id: 33 }
-      expect(assigns(:template)).to eq fake_template_copy
+      expect(assigns(:new_template)).to eq fake_template_copy
     end
 
     it 'creates an application' do
@@ -101,7 +106,7 @@ describe AppsController do
 
       it 'redirects to the new_from_template action' do
         post :create_from_template, template_copy_form: { template_id: 33 }
-        expect(response).to redirect_to new_from_template_apps_path(template_id: 7)
+        expect(response).to redirect_to new_from_template_apps_path(template_id: 33)
       end
 
     end

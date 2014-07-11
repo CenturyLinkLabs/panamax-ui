@@ -4,7 +4,8 @@ describe TemplateCopyForm do
   let(:fake_template) do
     double(:fake_template,
            id: 7,
-           images: [1, 2]
+           images: [1, 2],
+           attributes: { id: 7, images: [1, 2] }
           )
   end
 
@@ -64,12 +65,12 @@ describe TemplateCopyForm do
     end
 
     before do
-      fake_template.stub(:dup).and_return(fake_new_template)
+      Template.stub(:new).with(fake_template.attributes).and_return(fake_new_template)
       subject.images_attributes = img_attrs
     end
 
     it 'duplicates the original template' do
-      expect(fake_template).to receive(:dup)
+      expect(Template).to receive(:new).with(fake_template.attributes)
       subject.create_new_template
     end
 
