@@ -26,13 +26,15 @@
   = form_for [@app, @service], html: { class: 'service-edit-form' } do |f|
     = render 'shared/errors', errors: f.object.errors
     .service-attributes
-      .service-links
-        = render 'service_links', f: f, services: @app.services, service_id: @service.id
-      .port-detail
-        = render 'port_detail', f: f
-      .environment-variables
-        = render 'environment_variables', f: f
-    = f.submit 'Save all changes', class: 'button-primary', data: {disable_with: 'Saving...'}
+      .column-left
+        .service-links
+          = render 'service_links', f: f, services: @app.services, service_id: @service.id
+        .port-detail
+          = render 'port_detail', f: f
+      .column-right
+        .environment-variables
+          = render 'environment_variables', f: f
+    = f.submit 'Save all changes', class: 'button-positive', data: {disable_with: 'Saving...'}
 
 = render 'shared/journal',
   title: 'CoreOS Journal - Service Activity Log',

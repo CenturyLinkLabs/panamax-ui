@@ -48,13 +48,24 @@
 }
 
 .service-attributes {
+  clear: both;
+  padding-top: 10px;
+
   &:after {
     content: '';
     display: block;
     clear: both;
   }
-  clear: both;
-  padding-top: 10px;
+
+  .column-left {
+    width: 48%;
+    float: left;
+  }
+
+  .column-right {
+    width: 48%;
+    float: right;
+  }
 }
 
 .base-image-detail {
@@ -75,11 +86,12 @@
 }
 
 .service-detail {
-  float: left;
+  width: 100%;
+  margin-bottom: 40px;
   font-size: 13px;
 
-  & + & {
-    margin-left: 20px;
+  > dl {
+    border-bottom: 1px solid $light_grey;
   }
 
   h3 {
@@ -95,6 +107,9 @@
   dl dd {
     padding-top: 16px;
     padding-bottom: 16px;
+  }
+
+  ul li {
     border-bottom: $light_grey 1px solid;
   }
 
@@ -137,12 +152,11 @@
 
 .port-detail {
   @extend .service-detail;
-  width: 140px;
-
+  margin-bottom: 0;
 
   input[type='number'] {
     @include border-box;
-    width: 67px;
+    width: 35%;
   }
 
   button {
@@ -153,28 +167,27 @@
 
 .environment-variables {
   @extend .service-detail;
-  width: 470px;
 
   dl dt {
-    width: 220px;
+    width: 40%;
 
     input[type='text'] {
       font-weight: bold;
-      width: 210px;
+      width: 95%;
     }
   }
   dl dd {
-    width: 230px;
+    width: 55%;
 
     &.actions {
-      width: 20px;
+      width: 5%;
     }
 
     &.editing {
-      width: 250px;
+      width: 60%;
 
       input[type='text'] {
-        width: 200px;
+        width: 84%;
       }
 
       a {
@@ -186,7 +199,6 @@
 
 .service-links {
   @extend .service-detail;
-  width: 310px;
 
   > ul > li {
     margin-left: 20px;
@@ -215,16 +227,23 @@
     }
 
     &.editing {
-      padding-top: 10px;
+      padding: 10px 0 0;
+      margin: 0 0 20px 0;
+      border-top: 1px solid $light_grey;
 
       &:before {
-        height: 63px;
+        display: none;
       }
 
       select,
       input[type='text'] {
         @include border-box;
-        width: 245px;
+        width: 48%;
+      }
+
+      input[type='text'] {
+        position: relative;
+        top: 1px;
       }
     }
 
@@ -268,6 +287,16 @@
   }
 }
 
+form.service-edit-form {
+  overflow: hidden;
+  margin-bottom: 50px;
+  input[type="submit"] {
+    float: right;
+  }
+  .button-primary[disabled]:hover {
+    background-color: $light_grey;
+  }
+}
 .journal {
 
   margin-bottom: 30px;

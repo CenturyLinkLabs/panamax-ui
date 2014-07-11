@@ -5,7 +5,7 @@
   @extend .button-primary;
   border: transparent 1px solid;
   background-color: transparent;
-  color: $lime;
+  color: $orange;
   position: relative;
   padding-left: 45px;
   padding-right: 20px;
@@ -16,13 +16,13 @@
     top: 13px;
     content: '';
     @extend .icon-plus;
-    @include icon-light-green;
+    @include icon-red;
   }
 
   &:hover {
     background-color: transparent;
     @include box-shadow(0, 0, 0, 0);
-    border: $lime 1px solid;
+    border: $orange 1px solid;
   }
 }
 
