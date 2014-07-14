@@ -29,7 +29,12 @@
     "id": 5,
     "name": "tutum/wordpress"
   },
-  "volumes": [],
+  "volumes": [
+    {
+      "host_path": "/foo/bar",
+      "container_path": "/bar/car"
+    }
+  ],
   "load_state": null,
   "active_state": null,
   "sub_state": "running",

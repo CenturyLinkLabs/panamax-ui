@@ -153,6 +153,14 @@
   }
 }
 
+.volumes {
+  @extend .service-detail;
+
+  input[type='text'] {
+    width: 180px;
+  }
+}
+
 .port-detail {
   @extend .service-detail;
   margin-bottom: 0;

@@ -184,6 +184,26 @@ describe Service do
     end
   end
 
+  describe '#volumes_attributes=' do
+    let(:attributes) do
+      {
+        '0' => { 'host_path' => '/bla/bla', 'container_path' => '/also/bla', '_deleted' => false, 'id' => nil },
+        '1' => { 'host_path' => 'path/deleted', 'container_path' => 'path/deleted', '_deleted' => 1 }
+      }
+    end
+
+    it 'only assigns values that are not deleted' do
+      subject.volumes_attributes = attributes
+      expect(subject.volumes.length).to eq 1
+      expect(subject.volumes.first).to eq Volume.new(attributes['0'])
+    end
+
+    it 'excludes the id' do
+      subject.volumes_attributes = attributes
+      expect(subject.volumes.last.attributes.keys).to eq ['host_path', 'container_path', '_deleted']
+    end
+  end
+
   describe '#ports_attributes=' do
     let(:attributes) do
       {

@@ -6,6 +6,7 @@ class Service < BaseResource
   has_many :ports
   has_many :links
   has_many :environment
+  has_many :volumes
   has_one :docker_status
 
   schema do
@@ -58,6 +59,12 @@ class Service < BaseResource
   def ports_attributes=(attributes)
     self.ports = attributes.each_with_object([]) do |(_, port), memo|
       memo << Port.new(port.except('id')) unless port['_deleted'].to_s == '1'
+    end
+  end
+
+  def volumes_attributes=(attributes)
+    self.volumes = attributes.each_with_object([]) do |(_, volume), memo|
+      memo << Volume.new(volume.except('id')) unless volume['_deleted'].to_s == '1'
     end
   end
 

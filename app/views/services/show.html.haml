@@ -30,6 +30,8 @@
           = render 'service_links', f: f, services: @app.services, service_id: @service.id
         .port-detail
           = render 'port_detail', f: f
+        .volumes
+          = render 'volumes', f: f
       .column-right
         .environment-variables
           = render 'environment_variables', f: f

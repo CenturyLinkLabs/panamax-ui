@@ -48,8 +48,16 @@ describe 'managing a service' do
         expect(page).to have_css 'h1', text: 'tutum/wordpress'
       end
 
-      it 'can delete a port' do
-        uncheck 'select_port_0'
+      it 'can delete an environment variable' do
+        uncheck 'select_environment_variable_0'
+
+        click_on 'Save all changes'
+
+        expect(page).to have_css 'h1', text: 'tutum/wordpress'
+      end
+
+      it 'can delete a volume' do
+        uncheck 'select_volume_0'
 
         click_on 'Save all changes'
 
