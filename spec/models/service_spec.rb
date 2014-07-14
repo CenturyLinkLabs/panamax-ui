@@ -164,13 +164,19 @@ describe Service do
     let(:attributes) do
       {
         '0' => { 'service_id' => 99, 'alias' => 'foo', '_deleted' => false, 'id' => 1 },
-        '1' => { 'service_id' => nil, 'alias' => 'bar', '_deleted' => 1, 'id' => 2 }
+        '1' => { 'service_id' => 78, 'alias' => 'bar', '_deleted' => 1, 'id' => 2 },
+        '2' => { 'service_id' => nil, 'alias' => 'bar', '_deleted' => false, 'id' => 2 }
       }
     end
 
     it 'assigns to links when not deleted' do
       subject.links_attributes = attributes
       expect(subject.links).to eq [Link.new(attributes['0'].except('id'))]
+    end
+
+    it 'does not assign to links when service_id is blank' do
+      subject.links_attributes = attributes
+      expect(subject.links.map(&:alias)).to_not include 'bar'
     end
 
     it 'does not assign to links when _deleted is 1' do

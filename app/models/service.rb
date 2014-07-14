@@ -72,7 +72,7 @@ class Service < BaseResource
     self.links = attributes.each_with_object([]) do |(_, link), memo|
       # exclude link ID for now. May need this later if we decide to
       # expose link ID in API.
-      memo << Link.new(link.except('id')) unless link['_deleted'].to_s == '1'
+      memo << Link.new(link.except('id')) unless link['_deleted'].to_s == '1' || link['service_id'].blank?
     end
   end
 
