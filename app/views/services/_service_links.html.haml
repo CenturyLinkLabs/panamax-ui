@@ -17,5 +17,6 @@
       = builder.select :service_id, linkable_service_options(services, service_id), { include_blank: true }, disabled: true, title: 'Name'
       = ':'
       = builder.text_field :alias, disabled: true, placeholder: 'enter link alias', title: 'Alias'
+      %a.cancel Cancel
 
 %button.button-add Add a Linked Service
