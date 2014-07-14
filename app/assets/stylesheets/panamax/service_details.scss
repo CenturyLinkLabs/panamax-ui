@@ -57,16 +57,24 @@
     clear: both;
   }
 
-  .column-left {
+  .column-left,
+  .column-right {
     width: 48%;
+
+    > div:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .column-left {
     float: left;
   }
 
   .column-right {
-    width: 48%;
     float: right;
   }
 }
+
 
 .base-image-detail {
   * {
@@ -163,16 +171,37 @@
 
 .port-detail {
   @extend .service-detail;
-  margin-bottom: 0;
+  overflow: hidden;
 
-  input[type='number'] {
-    @include border-box;
-    width: 35%;
+  h4 {
+    color: #000;
+    font-weight: bold;
+    font-size: 1em;
+  }
+
+  .port-bindings {
+    width: 58%;
+    float: left;
+
+    input[type='number'] {
+      @include border-box;
+      width: 35%;
+    }
+  }
+
+  .exposed-ports {
+    width: 38%;
+    float: right;
+
+    input[type='number'] {
+      @include border-box;
+      width: 60%;
+    }
   }
 
   button {
     @include border-box;
-    width: 140px;
+    width: 150px;
   }
 }
 
