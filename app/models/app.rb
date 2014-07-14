@@ -12,6 +12,7 @@ class App < BaseResource
     text :name
     text :from
     text :documentation
+    integer :template_id
   end
 
   def to_param
@@ -35,12 +36,6 @@ class App < BaseResource
 
   def running_services
     services.select(&:running?)
-  end
-
-  def self.find_by_id(id)
-    self.find(id)
-  rescue ActiveResource::ResourceNotFound
-    nil
   end
 
   concerning :ServiceCategories do

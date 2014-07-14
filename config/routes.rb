@@ -10,10 +10,16 @@ Rails.application.routes.draw do
   resource :user, only: [:update]
 
   resources :apps, only: [:index, :create, :show, :update, :destroy] do
-    get 'documentation', on: :member
-    get 'journal', on: :member
-    get 'relations', on: :member
-    put 'rebuild', on: :member
+    member do
+      get 'documentation'
+      get 'journal'
+      get 'relations'
+      put 'rebuild'
+    end
+    collection do
+      get :new_from_template
+      post :create_from_template
+    end
     resources :services, only: [:index, :update, :create, :show, :destroy] do
       get 'journal', on: :member
     end

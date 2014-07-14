@@ -2,6 +2,8 @@ class Template < BaseResource
   include ActionView::Helpers::TextHelper
   include ApplicationHelper
 
+  has_many :images
+
   schema do
     integer :id
     string :description
@@ -17,6 +19,10 @@ class Template < BaseResource
     boolean :recommended
     string :icon_src
     string :type
+  end
+
+  def required_fields_missing?
+    images.any?(&:required_fields_missing?)
   end
 
   def last_updated_on
