@@ -147,6 +147,9 @@
     > * {
       visibility: hidden;
     }
+    a.delete-action:after {
+      top: 0;
+    }
   }
 }
 
