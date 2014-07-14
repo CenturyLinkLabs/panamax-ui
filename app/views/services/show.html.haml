@@ -29,7 +29,9 @@
         .service-links
           = render 'service_links', f: f, services: @app.services, service_id: @service.id
         .port-detail
-          = render 'port_detail', f: f
+          %h3 Ports
+          = render 'port_bindings', f: f
+          = render 'exposed_ports', f: f
         .volumes
           = render 'volumes', f: f
       .column-right
