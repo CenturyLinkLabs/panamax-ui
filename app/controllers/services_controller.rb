@@ -38,15 +38,11 @@ class ServicesController < ApplicationController
   end
 
   def update
+    build_categories if params[:service][:category]
+
     @app = App.find(params[:app_id])
     @service = retrieve_service
     @service.write_attributes(params[:service])
-
-    if params[:service][:category]
-      @service.categories = [{ id: params[:service][:category], position: params[:service][:position] }]
-    else
-      @service.categories = []
-    end
 
     if @service.save
       respond_to do |format|
@@ -66,6 +62,12 @@ class ServicesController < ApplicationController
   end
 
   private
+
+  def build_categories
+    category = params[:service].delete('category')
+    position = params[:service].delete('position')
+    params[:service][:categories] = [{ id: category, position: position }]
+  end
 
   def build_from
     BaseImage.source(params[:name], params[:app][:tag])

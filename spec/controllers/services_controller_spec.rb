@@ -145,6 +145,24 @@ describe ServicesController do
       }
     end
 
+    let(:category_attributes) do
+      {
+        'name' => 'DB_1',
+        'links_attributes' => {
+          '0' => {
+            'service_id' => '4',
+            'alias' => 'database'
+          }
+        },
+        'categories' => [
+          {
+            'id' => '1',
+            'position' => nil
+          }
+        ]
+      }
+    end
+
     before do
       valid_service.stub(:write_attributes)
       valid_service.stub(:save).and_return(true)
@@ -157,6 +175,12 @@ describe ServicesController do
 
     it 'writes the attributes' do
       expect(valid_service).to receive(:write_attributes).with(attributes)
+      patch :update, app_id: 2, id: 3, service: attributes
+    end
+
+    it 'updates the service categories when present' do
+      attributes['category'] = '1'
+      expect(valid_service).to receive(:write_attributes).with(category_attributes)
       patch :update, app_id: 2, id: 3, service: attributes
     end
 
@@ -179,13 +203,6 @@ describe ServicesController do
         patch :update, app_id: 2, id: 3, service: attributes
         expect(response).to render_template :show
       end
-
-    end
-
-    it 'updates the service category when present' do
-      attributes['category'] = '1'
-      expect(valid_service).to receive(:categories=).with([{ id: '1', position: nil }])
-      patch :update, app_id: 2, id: 3, service: attributes
     end
   end
 

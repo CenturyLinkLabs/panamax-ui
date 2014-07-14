@@ -41,7 +41,7 @@ describe('$.fn.serviceViews', function () {
     beforeEach(function() {
       fixture.load('sorting-categories.html');
       dragUI = {
-        item: $('div').first(),
+        item: $('div.category-panel').first(),
         placeholder: $('<div></div>')
       };
 

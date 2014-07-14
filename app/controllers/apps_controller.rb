@@ -39,7 +39,7 @@ class AppsController < ApplicationController
 
   def show
     @app = retrieve_app
-    @app.categories.sort_by! { |cat| cat.position } if @app.categories
+    @app.categories.sort_by! { |cat| cat.position || @app.categories.length } if @app.categories
     @search_result_set = SearchResultSet.new
     rescue ActiveResource::ResourceNotFound
       render status: :not_found
