@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     end
     resources :services, only: [:index, :update, :create, :show, :destroy] do
       get 'journal', on: :member
+      put 'update_category', on: :member
     end
     resources :categories, only: [:update, :create, :destroy] do
       put 'remove_service', on: :member

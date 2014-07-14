@@ -179,13 +179,34 @@ describe ServicesController do
         patch :update, app_id: 2, id: 3, service: attributes
         expect(response).to render_template :show
       end
+    end
+  end
 
+  describe 'patch #update_category' do
+    let(:attributes) do
+      {
+        'name' => 'DB_1'
+      }
+    end
+
+    before do
+      valid_service.stub(:save).and_return(true)
     end
 
     it 'updates the service category when present' do
       attributes['category'] = '1'
       expect(valid_service).to receive(:categories=).with([{ id: '1', position: nil }])
-      patch :update, app_id: 2, id: 3, service: attributes
+      patch :update_category, app_id: 2, id: 3, service: attributes
+    end
+
+    it 'sets categories to [] if no category present' do
+      expect(valid_service).to receive(:categories=).with([])
+      patch :update_category, app_id: 2, id: 3, service: attributes
+    end
+
+    it 'redirects to the show page' do
+      patch :update_category, app_id: 2, id: 3, service: attributes
+      expect(response).to redirect_to app_service_path(2, 3)
     end
   end
 

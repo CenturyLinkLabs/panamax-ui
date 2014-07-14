@@ -37,10 +37,9 @@ class ServicesController < ApplicationController
     respond_with service, location: app_path(params[:app_id])
   end
 
-  def update
+  def update_category
     @app = App.find(params[:app_id])
     @service = retrieve_service
-    @service.write_attributes(params[:service])
 
     if params[:service][:category]
       @service.categories = [{ id: params[:service][:category], position: params[:service][:position] }]
@@ -48,14 +47,15 @@ class ServicesController < ApplicationController
       @service.categories = []
     end
 
-    if @service.save
-      respond_to do |format|
-        format.html { redirect_to app_service_path(params[:app_id], @service.id) }
-        format.json { render(json: @service.to_json, status: status) }
-      end
-    else
-      render :show
-    end
+    save_changes
+  end
+
+  def update
+    @app = App.find(params[:app_id])
+    @service = retrieve_service
+    @service.write_attributes(params[:service])
+
+    save_changes
   end
 
   def journal
@@ -66,6 +66,17 @@ class ServicesController < ApplicationController
   end
 
   private
+
+  def save_changes
+    if @service.save
+      respond_to do |format|
+        format.html { redirect_to app_service_path(params[:app_id], @service.id) }
+        format.json { render(json: @service.to_json, status: status) }
+      end
+    else
+      render :show
+    end
+  end
 
   def build_from
     BaseImage.source(params[:name], params[:app][:tag])

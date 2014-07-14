@@ -316,7 +316,7 @@ describe('$.fn.categoryActions', function() {
 
       subject.drop(evt,dragUI);
       var request = mostRecentAjaxRequest();
-      expect(request.url).toEqual('/teaspoon/default/services/99');
+      expect(request.url).toEqual('/teaspoon/default/services/99/update_category');
       expect(request.method).toEqual('PUT');
     });
 
