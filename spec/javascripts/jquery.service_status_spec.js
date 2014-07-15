@@ -33,13 +33,6 @@ describe('$.fn.serviceStatus', function() {
         subject.formatPanamaxState(serviceResponse.status));
     });
 
-    it('displays the Fleet state', function() {
-      subject.init();
-      mockAjaxResponse();
-
-      expect($('.fleet-state').text()).toEqual(serviceResponse.sub_state);
-    });
-
     it('adds a CSS class matching the service status', function() {
       subject.init();
       mockAjaxResponse();

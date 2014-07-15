@@ -8,8 +8,7 @@
 
     base.defaultOptions = {
       refreshInterval: 2500,
-      $panamaxState: base.$el.find('.panamax-state'),
-      $fleetState: base.$el.find('.fleet-state'),
+      $panamaxState: base.$el.find('.panamax-state')
     };
 
     base.init = function() {
@@ -36,7 +35,6 @@
     base.updateStatus = function(service) {
       base.$el.removeClass().addClass('service-status').addClass(service.status);
       base.options.$panamaxState.text(base.formatPanamaxState(service.status));
-      base.options.$fleetState.text(service.sub_state);
     };
 
     base.formatPanamaxState = function(state) {
