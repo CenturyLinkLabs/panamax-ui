@@ -3,19 +3,27 @@
   %ul
     = f.fields_for :ports do |port|
       - checkbox_id = "select_port_binding_#{port.options[:child_index]}"
-      %li{title: "host: #{port.object.host_port}, container: #{port.object.container_port}"}
+      %li{title: "host: #{port.object.host_port},
+                  container: #{port.object.container_port},
+                  protocol: #{port.object.proto}"}
         %strong= port.object.host_port
         = ": #{port.object.container_port}"
+        = " / #{port.object.proto}"
         .actions
           = port.check_box :_deleted, { id: checkbox_id }
           = port.hidden_field :container_port
           = port.hidden_field :host_port
+          = port.hidden_field :proto
           %a{class: 'delete-action', title: 'remove', data: { checkbox: { selector: "##{checkbox_id}" } } } remove
   %ul.additional-entries
     %li.editing
       = add_fields_for(:ports, f, { child_index: '_replaceme_' }) do |builder|
-        = builder.number_field :host_port, disabled: true, placeholder: 'host', title: 'host'
-        = builder.number_field :container_port, disabled: true, placeholder: 'container', title: 'container'
+        = builder.number_field :host_port, disabled: true, placeholder: 'host', title: 'host', min: 0
+        = ':'
+        = builder.number_field :container_port, disabled: true, placeholder: 'container', title: 'container', min: 0
+        = '/'
+        = builder.select :proto, options_for_select(['TCP', 'UDP']), {}, disabled: true, title: 'Protocol'
+        %a.cancel Cancel
+        .optional (optional)
 
-  %button.button-add Add a Port
-
+  %button.button-add Bind a Port
