@@ -37,25 +37,21 @@ class ServicesController < ApplicationController
     respond_with service, location: app_path(params[:app_id])
   end
 
-  def update_category
-    @app = App.find(params[:app_id])
-    @service = retrieve_service
-
-    if params[:service][:category]
-      @service.categories = [{ id: params[:service][:category], position: params[:service][:position] }]
-    else
-      @service.categories = []
-    end
-
-    save_changes
-  end
-
   def update
+    build_categories if params[:service][:category]
+
     @app = App.find(params[:app_id])
     @service = retrieve_service
     @service.write_attributes(params[:service])
 
-    save_changes
+    if @service.save
+      respond_to do |format|
+        format.html { redirect_to app_service_path(params[:app_id], @service.id) }
+        format.json { render(json: @service.to_json, status: status) }
+      end
+    else
+      render :show
+    end
   end
 
   def journal
@@ -67,15 +63,10 @@ class ServicesController < ApplicationController
 
   private
 
-  def save_changes
-    if @service.save
-      respond_to do |format|
-        format.html { redirect_to app_service_path(params[:app_id], @service.id) }
-        format.json { render(json: @service.to_json, status: status) }
-      end
-    else
-      render :show
-    end
+  def build_categories
+    category = params[:service].delete('category')
+    position = params[:service].delete('position')
+    params[:service][:categories] = [{ id: category, position: position }]
   end
 
   def build_from

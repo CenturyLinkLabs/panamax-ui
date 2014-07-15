@@ -79,7 +79,7 @@
           headers: {
             'Accept': 'application/json'
           },
-          url: path + '/services/' + $elem.attr('data-id') + "/update_category",
+          url: path + '/services/' + $elem.attr('data-id'),
           data: {
             service: service
           }
