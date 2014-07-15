@@ -58,7 +58,6 @@ describe 'managing a service' do
 
       it 'can delete an environment variable' do
         uncheck 'select_environment_variable_0'
-
         click_on 'Save all changes'
 
         expect(page).to have_css 'h1', text: 'tutum/wordpress'

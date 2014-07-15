@@ -7,8 +7,8 @@ describe Service do
       'id' => 77,
       'categories' => [{ 'name' => 'foo', 'id' => 20 }, { 'name' => 'baz', 'id' => 10 }],
       'ports' => [
-        { 'host_port' => 8080, 'container_port' => 80 },
-        { 'host_port' => 7000, 'container_port' => 77 }
+        { 'host_port' => 8080, 'container_port' => 80, 'proto' => 'TCP' },
+        { 'host_port' => 7000, 'container_port' => 77, 'proto' => 'UDP' }
       ],
       'environment' => [
         { 'variable' => 'DB_PASS', 'value' => 'pazz' },
@@ -213,9 +213,9 @@ describe Service do
   describe '#ports_attributes=' do
     let(:attributes) do
       {
-        '0' => { 'host_port' => 9090, 'container_port' => 90, '_deleted' => false },
-        '1' => { 'host_port' => 8080, 'container_port' => 70, '_deleted' => 1 },
-        '2' => { 'host_port' => 6060, 'container_port' => 60, 'id' => nil, '_deleted' => false }
+        '0' => { 'host_port' => 9090, 'container_port' => 90, 'proto' => 'TCP', '_deleted' => false },
+        '1' => { 'host_port' => 8080, 'container_port' => 70, 'proto' => 'TCP', '_deleted' => 1 },
+        '2' => { 'host_port' => 6060, 'container_port' => 60, 'proto' => 'TCP', 'id' => nil, '_deleted' => false }
       }
     end
 

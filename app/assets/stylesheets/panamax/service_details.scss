@@ -149,6 +149,10 @@
     }
   }
 
+  a.cancel {
+    text-decoration: underline;
+  }
+
   .actions {
     float: right;
     width: 20px;
@@ -173,35 +177,53 @@
   @extend .service-detail;
   overflow: hidden;
 
-  h4 {
-    color: #000;
-    font-weight: bold;
-    font-size: 1em;
-  }
-
   .port-bindings {
-    width: 58%;
     float: left;
+    width: 65%;
+
+    select {
+      width: 80px;
+    }
+
+    .chosen-container {
+      top: -1px;
+      li {
+        border-bottom: 0;
+      }
+      .chosen-single span {
+        margin-right: 20px;
+      }
+    }
 
     input[type='number'] {
       @include border-box;
-      width: 35%;
+      width: 23%;
+      padding-right: 0px;
     }
+
   }
 
   .exposed-ports {
-    width: 38%;
+    width: 32%;
     float: right;
 
     input[type='number'] {
       @include border-box;
-      width: 60%;
+      width: 68px;
     }
   }
 
-  button {
-    @include border-box;
-    width: 150px;
+  h4 {
+    color: #000;
+    font-weight: bold;
+    font-size: 1em;
+    margin: 10px 0 0;
+  }
+
+  .optional {
+    color: $medium_grey;
+    font-style: italic;
+    margin-top: 3px;
   }
 }
 

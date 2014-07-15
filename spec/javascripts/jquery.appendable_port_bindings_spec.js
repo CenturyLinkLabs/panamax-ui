@@ -1,12 +1,12 @@
-describe('$.fn.appendableServiceLinks', function() {
+describe('$.fn.appendablePortBindings', function() {
   var subject;
 
   beforeEach(function() {
-    fixture.load('appendable.html');
+    fixture.load('appendable-port-bindings.html');
   });
 
   beforeEach(function() {
-    $('#row_template select').prop('disabled', true);
+    $('#port_binding select').prop('disabled', true);
     var fakeAdditonalItem = {
       $el: $('#row_template')
     }
@@ -14,7 +14,7 @@ describe('$.fn.appendableServiceLinks', function() {
       options.addCallback.call(this, fakeAdditonalItem);
     });
     spyOn($.fn, 'chosen');
-    subject = new $.PMX.AppendableServiceLinks($('ol'));
+    subject = new $.PMX.AppendablePortBindings($('ol'));
     subject.init();
   });
 
@@ -26,19 +26,17 @@ describe('$.fn.appendableServiceLinks', function() {
     expect(args.addCallback).toEqual(jasmine.any(Function));
   });
 
-  it('replaces the _replaceme_ value in the inputs', function() {
-    expect($('#row_template select').attr('name')).not.toMatch('_replaceme_');
+  it('instantiates chosen on the selects', function() {
+    expect($.fn.chosen).toHaveBeenCalledWith({disable_search: true});
+  });
+
+  it('replaces the _replaceme_ value on the fields', function() {
+    expect($('#row_template input').attr('name')).not.toMatch('replaceme');
+    expect($('#row_template select').attr('name')).not.toMatch('replaceme');
   });
 
   it('re-enables disabled fields', function() {
-    expect($('#row_template select').prop('disabled')).toBe(false);
-  });
-
-  it('updates the alias input to match the value from the select', function() {
-    expect($('#row_template input#alias_input').val()).toEqual('bar');
-  });
-
-  it('instantiates chosen on the selects', function() {
-    expect($.fn.chosen).toHaveBeenCalledWith({disable_search: true});
+    expect($('#row_template input').prop('disabled')).toBe(false)
+    expect($('#row_template select').prop('disabled')).toBe(false)
   });
 });

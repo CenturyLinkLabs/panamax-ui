@@ -54,15 +54,11 @@
       addCallback: enableNewItem
     });
 
-    $('.port-bindings .additional-entries').appendable({
-      $trigger: $('.port-bindings .button-add'),
-      $elementToAppend: $('.port-bindings .additional-entries li:first-of-type'),
-      addCallback: enableNewItem
-    });
-
     $('.exposed-ports').appendableExposePorts();
 
     $('.service-links').appendableServiceLinks();
+
+    $('.port-bindings').appendablePortBindings();
 
     $('.journal-output').journalLoader();
 
