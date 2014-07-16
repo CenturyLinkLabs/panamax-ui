@@ -9,7 +9,7 @@ describe('$.fn.appendable', function() {
   beforeEach(function() {
     fixture.load('appendable.html');
     $list = $('#teaspoon-fixtures').find('ol');
-    $trigger = $('.add-button');
+    $trigger = $('.button-add');
     $rowTemplate = $('#row_template');
     addCallback = function(returnVal) {
       callbackReturnVal = returnVal;
