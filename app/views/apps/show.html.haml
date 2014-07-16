@@ -9,7 +9,7 @@
 :ruby
   crumbs = breadcrumbs_for(
     link_to("Manage", apps_path),
-    "<span class='application-title'>#{@app.name}</span><div class='actions'><a class='edit-action' href='#'></a></div>"
+    @app.name
   )
 
 %header.application
