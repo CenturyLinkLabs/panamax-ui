@@ -38,6 +38,7 @@ describe Service do
   it { should respond_to :links }
   it { should respond_to :environment }
   it { should respond_to :docker_status }
+  it { should respond_to :command }
 
   describe '#status' do
     it 'is :running when sub state is running' do

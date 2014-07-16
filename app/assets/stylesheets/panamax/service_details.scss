@@ -168,6 +168,15 @@
   }
 }
 
+.docker-run-command {
+  @extend .service-detail;
+
+  input[type='text'] {
+    @include border-box;
+    width: 100%;
+  }
+}
+
 .environment-variables {
   @extend .service-detail;
 
