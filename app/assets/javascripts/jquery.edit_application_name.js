@@ -10,8 +10,17 @@
 
     base.init = function() {
       base.options = $.extend({}, base.defaultOptions, options);
+      base.wrapTitle();
       base.bindEvents();
 
+    };
+
+    base.wrapTitle = function() {
+      var wrapper = "<span class='application-title'>_REPLACE_</span><div class='actions'>" +
+          "<a class='edit-action' href='#'></a></div>",
+          title = base.$el.html();
+
+      base.$el.html(wrapper.replace('_REPLACE_', title));
     };
 
     base.bindEvents = function() {
@@ -48,6 +57,9 @@
             name: data.text
           }
         }
+      }).success(function() {
+        // jQuery setting inline style this is better cross browser way to remove that //
+        base.$el.find('.actions')[0].style.cssText = '';
       });
     };
   };

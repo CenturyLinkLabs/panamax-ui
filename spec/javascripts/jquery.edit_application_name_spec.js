@@ -1,9 +1,8 @@
 describe('$.fn.editApplicationName', function() {
-  var subject, edit_button;
+  var subject;
 
   beforeEach(function() {
     fixture.load('edit-application-name.html');
-    edit_button = $('.edit-action');
     subject = new $.PMX.EditApplicationName($('h1 li:last-of-type'));
     jasmine.Ajax.useMock();
     subject.init();
@@ -11,7 +10,8 @@ describe('$.fn.editApplicationName', function() {
 
   describe('on click', function() {
     it('prevents default', function() {
-      var clickEvent = $.Event('click');
+      var edit_button = $('.edit-action'),
+          clickEvent = $.Event('click');
 
       edit_button.trigger(clickEvent);
       expect(clickEvent.isDefaultPrevented()).toBeTruthy();
