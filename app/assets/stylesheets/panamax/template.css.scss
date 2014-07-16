@@ -92,6 +92,10 @@
 
   select {
     width: 450px;
+
+    & + .chosen-container {
+      margin-right: 10px;
+    }
   }
 
   textarea {
