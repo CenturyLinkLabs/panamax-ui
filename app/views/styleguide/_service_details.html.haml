@@ -58,6 +58,9 @@
           %input{type: 'text', placeholder: 'Value'}
           %a Cancel
       %button.button-add Add an Environment Variable
+    .docker-run-command
+      %h3 Docker run command
+      = text_field_tag :command, nil, placeholder: 'enter run command here (optional)'
 :javascript
   $('select').chosen({
     disable_search: true

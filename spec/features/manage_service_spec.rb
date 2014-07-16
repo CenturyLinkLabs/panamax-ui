@@ -56,6 +56,14 @@ describe 'managing a service' do
         expect(page).to have_css 'h1', text: 'tutum/wordpress'
       end
 
+      it 'can edit the docker run command' do
+        fill_in 'service_command', with: 'rails s'
+
+        click_on 'Save all changes'
+
+        expect(page).to have_css 'h1', text: 'tutum/wordpress'
+      end
+
       it 'displays the service status' do
         within '.service-status' do
           expect(page).to have_content 'Running'

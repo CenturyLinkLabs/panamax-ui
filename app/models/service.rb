@@ -17,6 +17,7 @@ class Service < BaseResource
     string :active_state
     string :sub_state
     string :type
+    string :command
   end
 
   def category_names

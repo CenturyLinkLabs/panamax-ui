@@ -34,6 +34,9 @@
       .column-right
         .environment-variables
           = render 'environment_variables', f: f
+        .docker-run-command
+          %h3 Docker run command
+          = f.text_field :command, placeholder: 'enter run command here (optional)'
     = f.submit 'Save all changes', class: 'button-positive', data: {disable_with: 'Saving...'}
 
 = render 'shared/journal',
