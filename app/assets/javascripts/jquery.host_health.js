@@ -15,7 +15,7 @@
 
     base.defaultOptions = {
       timeFormat: 'YYYY/MM/DD, hh:mm:ss',
-      interval: 3 * 1000,
+      interval: 10 * 1000,
       healthSelector: 'aside.host > .health',
       cpuSelector: '.cpu .health',
       memSelector: '.memory .health',

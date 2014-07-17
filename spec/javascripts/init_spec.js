@@ -1,4 +1,12 @@
 describe('$.PMX.init', function() {
+  beforeEach(function() {
+    spyOn($.PMX, 'ErrorInterceptor').andCallFake(function($el, options) {
+      return {
+        init: function() {},
+        handleError: function() {}
+      }
+    });
+  });
 
   describe('.environment-variables .additional-entries', function() {
     describe('#appendable', function() {

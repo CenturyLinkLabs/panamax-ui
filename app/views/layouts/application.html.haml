@@ -8,6 +8,9 @@
     = favicon_link_tag 'http://www.centurylinklabs.com/images/favicon.ico'
     %script#host_health_template{type: 'text/x-handlebars-template'}
       = render '/shared/host_health'
+    %script#ajax_error_template{type: 'text/x-handlebars-template'}
+      = render '/shared/notice'
+
   %body{id: yield(:body_id)}
     :javascript
       var _kiq = _kiq || [];
