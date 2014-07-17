@@ -76,6 +76,12 @@ class Service < BaseResource
     end
   end
 
+  def exposed_ports_attributes=(attributes)
+    self.expose = attributes.each_with_object([]) do |(_, exposed_port), memo|
+      memo << exposed_port['port_number'] unless exposed_port['_deleted'].to_s == '1'
+    end
+  end
+
   def base_image_name
     self.from.split(':')[0]
   end
@@ -97,9 +103,14 @@ class Service < BaseResource
     super.merge('status' => status)
   end
 
+  def exposed_ports
+    self.expose.each_with_object([]) do |port, memo|
+      memo << OpenStruct.new({port_number: port})
+    end
+  end
+
   def self.build_from_response(response)
     attributes = JSON.parse(response)
     self.new(attributes)
   end
-
 end

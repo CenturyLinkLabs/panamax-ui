@@ -54,17 +54,13 @@
       addCallback: enableNewItem
     });
 
-    $('.volumes .additional-entries').appendable({
-      $trigger: $('.volumes .button-add'),
-      $elementToAppend: $('.volumes .additional-entries li:first-of-type'),
+    $('.port-bindings .additional-entries').appendable({
+      $trigger: $('.port-bindings .button-add'),
+      $elementToAppend: $('.port-bindings .additional-entries li:first-of-type'),
       addCallback: enableNewItem
     });
 
-    $('.port-detail .additional-entries').appendable({
-      $trigger: $('.port-detail .button-add'),
-      $elementToAppend: $('.port-detail .additional-entries li:first-of-type'),
-      addCallback: enableNewItem
-    });
+    $('.exposed-ports').appendableExposePorts();
 
     $('.service-links').appendableServiceLinks();
 

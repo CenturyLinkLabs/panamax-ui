@@ -41,7 +41,15 @@ describe 'managing a service' do
       end
 
       it 'can delete a port' do
-        uncheck 'select_port_0'
+        uncheck 'select_port_binding_0'
+
+        click_on 'Save all changes'
+
+        expect(page).to have_css 'h1', text: 'tutum/wordpress'
+      end
+
+      it 'can delete a port' do
+        uncheck 'select_port_binding_0'
 
         click_on 'Save all changes'
 
