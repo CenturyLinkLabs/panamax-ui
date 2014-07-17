@@ -1,12 +1,9 @@
 - content_for(:body_id, 'manage_flow')
 
-:ruby
-  crumbs = breadcrumbs_for(
-    link_to("Manage", apps_path),
-    link_to(@app.name, app_path(@app.to_param)),
-    @service.name
-  )
-= render '/shared/breadcrumbs', breadcrumbs: crumbs
+= render '/shared/breadcrumbs', breadcrumbs: ["Manage",
+                                              link_to("Applications", apps_path),
+                                              link_to(@app.name, app_path(@app.to_param)),
+                                              @service.name]
 
 %section.service-details
   %span.service-status{ class: @service.status,

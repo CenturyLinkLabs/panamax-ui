@@ -396,12 +396,14 @@ h1 span.application-title {
 }
 
 h1 li:last-of-type:hover .actions {
-  display:inline-block;
+  display:block;
 }
 
 h1 .actions {
   display: none;
-  position:relative;
+  position: absolute;
+  top: 30%;
+  right: 0;
   width: 20px;
   height: 20px;
 
