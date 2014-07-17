@@ -1,3 +1,5 @@
+//= require jquery.ui.dialog
+
 (function($){
 
   $.PMX.QueryField = function(el) {
@@ -76,6 +78,69 @@
     };
   };
 
+  $.PMX.TemplateDetailsDialog = function(el, options) {
+    var base = this;
+
+    base.$el = $(el);
+    base.xhr = null;
+
+    base.defaultOptions = {
+      $modalContents: $('#template-details-dialog'),
+      $titlebarCloseButton: $('button.ui-dialog-titlebar-close')
+    };
+
+    base.init = function() {
+      base.options = $.extend({}, base.defaultOptions, options);
+      base.initiateDialog();
+    };
+
+    base.initiateDialog = function () {
+      base.defaultOptions.$modalContents.dialog({
+        dialogClass: 'template-details-dialog',
+        autoOpen: false,
+        modal: true,
+        resizable: false,
+        draggable: true,
+        width: 860,
+        position: ["top", 50],
+        title: 'Template Details',
+        close: base.handleClose,
+        open: base.fetchTemplateDetails,
+        buttons: [
+          {
+            text: "Dismiss",
+            class: 'button-secondary',
+            click: base.handleClose
+          }
+        ]
+      });
+    };
+
+    base.handleClose = function () {
+      base.defaultOptions.$modalContents.dialog("close");
+      $('body').css('overflow', 'auto');
+    };
+
+    base.showTemplateDialog = function() {
+      base.defaultOptions.$modalContents.dialog("open");
+    };
+
+    base.fetchTemplateDetails = function(event, ui) {
+      if (base.xhr) {
+        base.xhr.abort();
+      }
+
+      base.xhr = $.ajax({
+        url: base.options.url,
+        dataType: 'html'
+      });
+
+      base.xhr.done(function(response, status) {
+        base.options.$modalContents.html(response);
+      });
+    }
+
+  };
 
   $.PMX.FilterableList = function(el, options) {
     var base = this;
@@ -98,7 +163,8 @@
       noResultsTemplate: Handlebars.compile($('#no_results_row_template').html()),
       trackingAction: 'not-given',
       tagDropdownSelector: 'select.image-tag-select',
-      chosenDropdownSelector: '.chosen-container'
+      chosenDropdownSelector: '.chosen-container',
+      templateDetailsSelector: '.template-details-link'
     };
 
     base.init = function(){
@@ -114,6 +180,7 @@
       base.queryField.onChange(base.fetchResults);
       base.$el.on('submit', base.options.queryFormSelector, base.handleSubmit);
       base.$el.on('click', base.options.chosenDropdownSelector, base.fetchTags);
+      base.$el.on('click', base.options.templateDetailsSelector, base.handleTemplateDetailsClick)
     };
 
     base.handleSubmit = function(e) {
@@ -123,6 +190,17 @@
 
     base.handleQueryChange = function(e) {
       base.fetchResults();
+    };
+
+    base.handleTemplateDetailsClick = function(e) {
+      e.preventDefault();
+      var origin = window.location.protocol + '//' + window.location.host,
+          $elem = $(e.target),
+          url = origin + '/templates/' + $elem.attr('data-template-id') + '/details',
+          modal = new $.PMX.TemplateDetailsDialog(base.templateDetailsSelector, {url: url});
+
+      modal.init();
+      modal.showTemplateDialog()
     };
 
     base.fetchResults = function(term) {
