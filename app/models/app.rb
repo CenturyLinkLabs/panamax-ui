@@ -1,6 +1,8 @@
 require 'kramdown'
 
 class App < BaseResource
+  include MarkdownRenderable
+
   before_create :source_image,
     unless: -> { self.attributes[:template_id].present? }
 
@@ -21,10 +23,6 @@ class App < BaseResource
 
   def service_count_label
     'Service'.pluralize(services.length)
-  end
-
-  def documentation_to_html
-    Kramdown::Document.new(self.documentation).to_html if self.documentation.present?
   end
 
   def host_ports
