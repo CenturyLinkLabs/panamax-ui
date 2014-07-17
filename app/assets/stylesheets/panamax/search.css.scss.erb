@@ -6,6 +6,44 @@
 .template-details-dialog {
   position: absolute;
   top: 50px;
+
+  #post-run-html {
+    margin: 0;
+  }
+
+  .template-images {
+    ul {
+      li {
+        margin-bottom: 12px;
+        padding-bottom: 12px;
+        &:not(:last-child) {
+          border-bottom: 1px solid $light_grey;
+        }
+
+        .template-image-icon {
+          display: inline-block;
+          background-color: $light_grey;
+          width: 40px;
+          height: 40px;
+          margin-right: 6px;
+          border-radius: 4px;
+          img {
+            margin: 10px 0 0 10px;
+            width: 20px;
+            height: 20px;
+          }
+        }
+
+        .template-image-external {
+          display: inline-block;
+          border-left: 1px solid $medium_grey;
+          margin-left: 12px;
+          padding-left: 12px;
+          line-height: 27px;
+        }
+      }
+    }
+  }
 }
 
 .search-form {

@@ -1,4 +1,6 @@
 class Image < BaseResource
+  include ApplicationHelper
+
   has_many :environment
 
   schema do
@@ -22,4 +24,18 @@ class Image < BaseResource
   def environment_attributes=(attrs)
     self.environment = attrs.values
   end
+
+  def docker_index_url
+    path_part = "u/#{self.base_image_name}"
+    "#{DOCKER_INDEX_BASE_URL}#{path_part}"
+  end
+
+  def base_image_name
+    self.source.split(':')[0]
+  end
+
+  def icon
+    type.blank? ? icon_source_for('default') : icon_source_for(type)
+  end
+
 end
