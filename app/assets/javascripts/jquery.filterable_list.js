@@ -86,7 +86,8 @@
 
     base.defaultOptions = {
       $modalContents: $('#template-details-dialog'),
-      $titlebarCloseButton: $('button.ui-dialog-titlebar-close')
+      $titlebarCloseButton: $('button.ui-dialog-titlebar-close'),
+      loadingTemplate: Handlebars.compile($('#loading_row_template').html())
     };
 
     base.init = function() {
@@ -118,6 +119,7 @@
 
     base.handleClose = function () {
       base.defaultOptions.$modalContents.dialog("close");
+      base.options.$modalContents.html('');
       $('body').css('overflow', 'auto');
     };
 
@@ -126,6 +128,7 @@
     };
 
     base.fetchTemplateDetails = function(event, ui) {
+      base.displayLoadingIndicator();
       if (base.xhr) {
         base.xhr.abort();
       }
@@ -138,8 +141,12 @@
       base.xhr.done(function(response, status) {
         base.options.$modalContents.html(response);
       });
-    }
+    };
 
+    base.displayLoadingIndicator = function() {
+      var forDetails = base.options.loadingTemplate({loading_copy: 'Loading Template Details'});
+      base.options.$modalContents.html(forDetails);
+    };
   };
 
   $.PMX.FilterableList = function(el, options) {
