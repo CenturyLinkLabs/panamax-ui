@@ -42,7 +42,7 @@
     };
 
     base.handleRevert = function() {
-      base.$el.find('.actions').css('display','auto');
+      base.$el.find('.actions')[0].style.cssText = '';
     };
 
     base.completeEdit = function(data) {
