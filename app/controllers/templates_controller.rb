@@ -28,4 +28,9 @@ class TemplatesController < ApplicationController
       render :new
     end
   end
+
+  def details
+    @template = Template.find(params[:id])
+    render :details, layout: nil
+  end
 end
