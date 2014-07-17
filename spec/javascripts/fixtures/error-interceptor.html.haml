@@ -1,0 +1,12 @@
+%script#ajax_error_template{type: 'text/x-handlebars-template'}
+  %section.notice
+    .notice-danger
+      %a.dismiss
+      %strong
+        {{title}}
+      %ul
+        %li
+          {{message}}
+
+.errors
+  %main

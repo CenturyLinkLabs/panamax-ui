@@ -7,6 +7,8 @@
 
     $('body').analyticsClickTracker();
 
+    $(document).errorInterceptor();
+
     $('select.fancy').chosen({disable_search: true});
 
     $('.example-searches').searchQueryPopulator({
@@ -76,6 +78,5 @@
     $('.service-status').serviceStatus();
 
     $('.application-services').appServicesStatus();
-
   };
 })(jQuery);
