@@ -6,14 +6,9 @@
   = render 'application_service_row', { presenter: JsonServiceRowPresenter.new() }
 %script#category_archetype{type: 'text/x-handlebars-template'}
   = render 'category_panel', { presenter: JsonCategoryPresenter.new() }
-:ruby
-  crumbs = breadcrumbs_for(
-    link_to("Manage", apps_path),
-    @app.name
-  )
 
 %header.application
-  = render '/shared/breadcrumbs', breadcrumbs: crumbs
+  = render '/shared/breadcrumbs', breadcrumbs: ["Manage", link_to("Applications", apps_path), @app.name]
 
 %section.deployment-details
   %span.deployment-env

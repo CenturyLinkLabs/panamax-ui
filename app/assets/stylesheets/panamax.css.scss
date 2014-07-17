@@ -199,17 +199,31 @@ main {
 h1.breadcrumbs {
   ul li {
     display: inline;
+    font-size: 0.6em;
+    margin: 0;
+    padding: 0;
+
+    &:not(:last-of-type):after {
+      content: '/';
+      color: $grey;
+      display: inline-block;
+      margin-left: 10px;
+    }
 
     a {
       color: $blue_grey;
     }
 
-    &:not(:last-child):after {
-      content: ' /';
-      color: $grey;
+    &:last-child:before {
+      display: block;
+      margin-top: 10px;
+      content: '';
     }
 
     &:last-child {
+      padding: 0;
+      position: relative;
+      font-size: 1em;
       color: $orange;
     }
   }
