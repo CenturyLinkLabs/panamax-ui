@@ -54,6 +54,12 @@
       addCallback: enableNewItem
     });
 
+    $('.volumes .additional-entries').appendable({
+      $trigger: $('.volumes .button-add'),
+      $elementToAppend: $('.volumes .additional-entries li:first-of-type'),
+      addCallback: enableNewItem
+    });
+
     $('.exposed-ports').appendableExposePorts();
 
     $('.service-links').appendableServiceLinks();

@@ -100,7 +100,7 @@ describe('$.PMX.init', function() {
   describe('.volumes .additional-entries', function() {
     describe('#appendable', function() {
       beforeEach(function() {
-        fixture.load('appendable.html');
+        fixture.load('appendable_volumes.html');
       });
 
       beforeEach(function() {
@@ -108,18 +108,32 @@ describe('$.PMX.init', function() {
         var fakeAdditonalItem = {
           $el: $('#row_template')
         }
-        spyOn($.fn, 'appendable').andCallFake(function(options) {
-          options.addCallback.call(this, fakeAdditonalItem);
+
+        spyOn($.PMX, 'Appendable').andCallFake(function($el, options) {
+          return {
+            init: function() {
+              options.addCallback.call(this, fakeAdditonalItem);
+            }
+          }
         });
         $.PMX.init();
       });
 
-      it('calls the appendable plugin', function() {
-        expect($.fn.appendable).toHaveBeenCalledWith({
-          $trigger: jasmine.any(Object),
-          $elementToAppend: jasmine.any(Object),
-          addCallback: jasmine.any(Function)
-        });
+      it('calls the appendable plugin with the appropriate base element', function() {
+        var nativeDomEl = $.PMX.Appendable.mostRecentCall.args[0][0];
+        expect(nativeDomEl.length).toBe();
+        expect(nativeDomEl).toEqual($('.volumes .additional-entries')[0]);
+      });
+
+      it('calls the appendable plugin with the appropriate trigger', function() {
+        var nativeDomEl = $.PMX.Appendable.mostRecentCall.args[1].$trigger[0];
+        expect(nativeDomEl.length).toBe();
+        expect(nativeDomEl).toEqual($('.volumes .button-add')[0]);
+      });
+
+      it('calls the appendable plugin with the appropriate elementToAppend', function() {
+        var elToAppend = $.PMX.Appendable.mostRecentCall.args[1].$elementToAppend;
+        expect(elToAppend.html()).toEqual('/foo/bar');
       });
 
       it('replaces the _replaceme_ value in the inputs', function() {
