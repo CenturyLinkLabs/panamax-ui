@@ -122,4 +122,19 @@ describe TemplatesController do
     end
   end
 
+  describe 'GET #details' do
+    it 'assigns the template' do
+      get :details, id: 1
+      expect(assigns(:template)).to be_a Template
+      expect(assigns(:template).id).to eq 1
+    end
+    it 'renders the details view' do
+      get :details, id: 1
+      expect(response).to render_template :details
+    end
+    it 'renders without a layout' do
+      get :details, id: 1
+      expect(response).to render_template(layout: nil)
+    end
+  end
 end
