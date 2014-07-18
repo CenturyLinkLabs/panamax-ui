@@ -239,31 +239,43 @@
 .environment-variables {
   @extend .service-detail;
 
-  dl dt {
-    width: 40%;
-
-    input[type='text'] {
-      font-weight: bold;
-      width: 95%;
-    }
-  }
-  dl dd {
-    width: 55%;
-
-    &.actions {
-      width: 5%;
-    }
-
-    &.editing {
-      width: 60%;
-
-      input[type='text'] {
-        width: 84%;
+  dl {
+    dt, dd {
+      &.editing {
+        padding: 5px 0;
+        width: 90%;
       }
 
-      a {
-        text-decoration: underline;
+      input[type="text"] {
+        width: 100%;
       }
+    }
+
+    dt {
+      width: 100%;
+      padding-bottom: 0;
+
+      &.editing {
+        padding: 10px 0 0;
+        input[type='text'] {
+          font-weight: bold;
+        }
+      }
+    }
+    dd {
+      width: 90%;
+      padding-left: 5%;
+
+      &.actions {
+        padding-left: 0;
+        width: 5%;
+      }
+    }
+
+    a.cancel {
+      text-decoration: underline;
+      display: inline-block;
+      margin: 46px 0 0 6px;
     }
   }
 }
