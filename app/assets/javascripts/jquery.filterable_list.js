@@ -109,6 +109,11 @@
         open: base.fetchTemplateDetails,
         buttons: [
           {
+            text: "Run Template",
+            class: 'button-positive',
+            click: base.handleSubmit
+          },
+          {
             text: "Dismiss",
             class: 'button-secondary',
             click: base.handleClose
@@ -147,6 +152,14 @@
       var forDetails = base.options.loadingTemplate({loading_copy: 'Loading Template Details'});
       base.options.$modalContents.html(forDetails);
     };
+
+    base.handleSubmit = function(e) {
+      var $templateRow = base.$el.closest('.template-result'),
+          $actionsFormSubmit = $templateRow.find('form button');
+
+      $actionsFormSubmit.click();
+      base.handleClose();
+    }
   };
 
   $.PMX.FilterableList = function(el, options) {
@@ -204,7 +217,7 @@
       var origin = window.location.protocol + '//' + window.location.host,
           $elem = $(e.target),
           url = origin + '/templates/' + $elem.attr('data-template-id') + '/details',
-          modal = new $.PMX.TemplateDetailsDialog(base.templateDetailsSelector, {url: url});
+          modal = new $.PMX.TemplateDetailsDialog(base.options.templateDetailsSelector, {url: url});
 
       modal.init();
       modal.showTemplateDialog()
