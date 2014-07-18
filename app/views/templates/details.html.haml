@@ -10,10 +10,9 @@
         .template-image-external
           = link_to 'View on Docker Index', image.docker_index_url, { target: 'blank' }
 
+- if @template.documentation
+  %h2
+    Documentation
 
-
-%h2
-  Documentation
-
-#post-run-html
-  = @template.documentation_to_html.html_safe
+  #post-run-html
+    = @template.documentation_to_html.html_safe
