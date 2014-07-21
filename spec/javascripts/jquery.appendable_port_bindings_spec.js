@@ -6,6 +6,7 @@ describe('$.fn.appendablePortBindings', function() {
   });
 
   beforeEach(function() {
+    spyOn($.PMX.Helpers, 'guid').andReturn('abcuid');
     $('#port_binding select').prop('disabled', true);
     var fakeAdditonalItem = {
       $el: $('#row_template')
@@ -31,8 +32,8 @@ describe('$.fn.appendablePortBindings', function() {
   });
 
   it('replaces the _replaceme_ value on the fields', function() {
-    expect($('#row_template input').attr('name')).not.toMatch('replaceme');
-    expect($('#row_template select').attr('name')).not.toMatch('replaceme');
+    expect($('#row_template input').attr('name')).toEqual('[host]abcuid');
+    expect($('#row_template select').attr('name')).toEqual('[proto]abcuid');
   });
 
   it('re-enables disabled fields', function() {

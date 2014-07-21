@@ -6,6 +6,7 @@ describe('$.fn.appendableServiceLinks', function() {
   });
 
   beforeEach(function() {
+    spyOn($.PMX.Helpers, 'guid').andReturn('abcuidxyz');
     $('#row_template select').prop('disabled', true);
     var fakeAdditonalItem = {
       $el: $('#row_template')
@@ -27,7 +28,7 @@ describe('$.fn.appendableServiceLinks', function() {
   });
 
   it('replaces the _replaceme_ value in the inputs', function() {
-    expect($('#row_template select').attr('name')).not.toMatch('_replaceme_');
+    expect($('#row_template select').attr('name')).toEqual('[link]abcuidxyz');
   });
 
   it('re-enables disabled fields', function() {

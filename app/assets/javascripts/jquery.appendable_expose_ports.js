@@ -15,8 +15,9 @@
     };
 
     base.handleAppend = function(addedItem) {
+      var guid = $.PMX.Helpers.guid();
       addedItem.$el.find('input').each(function() {
-        base.makeNameUnique($(this));
+        base.substituteName($(this), guid);
         $(this).prop('disabled', false);
       });
     };
@@ -27,9 +28,9 @@
       $associated.val(text);
     };
 
-    base.makeNameUnique = function($input) {
+    base.substituteName = function($input, guid) {
       var name = $input.attr('name');
-      var newName = name.replace('_replaceme_', $.PMX.Helpers.guid());
+      var newName = name.replace('_replaceme_', guid);
       $input.attr('name', newName);
     };
 

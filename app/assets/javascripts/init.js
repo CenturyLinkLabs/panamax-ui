@@ -40,10 +40,11 @@
     $('header.application h1 li:last-of-type').editApplicationName();
 
     var enableNewItem = function(addedItem) {
+      var uid = $.PMX.Helpers.guid();
       addedItem.$el.find('input').each(function() {
         $(this).prop('disabled', false);
         var name = $(this).attr('name');
-        var newName = name.replace('_replaceme_', (new Date()).getTime());
+        var newName = name.replace('_replaceme_', uid);
         $(this).attr('name', newName);
       });
     };

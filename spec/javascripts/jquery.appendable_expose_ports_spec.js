@@ -6,6 +6,7 @@ describe('$.fn.appendableExposePorts', function() {
   });
 
   beforeEach(function() {
+    spyOn($.PMX.Helpers, 'guid').andReturn('abcuid123');
     $('#row_template select').prop('disabled', true);
     var fakeAdditonalItem = {
       $el: $('#row_template')
@@ -26,7 +27,7 @@ describe('$.fn.appendableExposePorts', function() {
   });
 
   it('replaces the _replaceme_ value in the inputs', function() {
-    expect($('#row_template input').attr('name')).not.toMatch('replaceme');
+    expect($('#row_template input').attr('name')).toEqual('[port]abcuid123');
   });
 
   it('re-enables disabled fields', function() {
