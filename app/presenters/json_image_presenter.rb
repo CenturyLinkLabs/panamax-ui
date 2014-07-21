@@ -22,4 +22,8 @@ class JsonImagePresenter
   def docker_index_url
     '{{docker_index_url}}'
   end
+
+  def badge_class
+    '{{badge_class}}'
+  end
 end

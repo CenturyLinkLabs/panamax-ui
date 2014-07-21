@@ -1,6 +1,6 @@
 - remote ||= false
 .search-result-item.image-result{data: {'title' => presenter.title, 'status-label' => presenter.status_label}}
-  .badge{class: presenter.status_label}
+  .badge{class: presenter.badge_class}
     = presenter.status_label
   .basic-info
     %h3

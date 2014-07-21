@@ -53,6 +53,7 @@ describe RemoteImage do
       expected = attributes.merge(
         'short_description' => 'this thing goes boom shaka laka',
         'status_label' => 'Repository',
+        'badge_class' => 'repository',
         'recommended_class' => 'not-recommended',
         'docker_index_url' => "#{DOCKER_INDEX_BASE_URL}u/boom/shaka"
       )

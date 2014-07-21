@@ -40,6 +40,7 @@ describe LocalImage do
       expected = attributes.merge(
         'short_description' => 'this thing goes boom shaka laka',
         'status_label' => 'Local',
+        'badge_class' => 'local',
         'recommended_class' => 'not-recommended',
         'docker_index_url' => nil
       )
