@@ -132,7 +132,7 @@
       base.defaultOptions.$modalContents.dialog("open");
     };
 
-    base.fetchTemplateDetails = function(event, ui) {
+    base.fetchTemplateDetails = function() {
       base.displayLoadingIndicator();
       if (base.xhr) {
         base.xhr.abort();
@@ -154,6 +154,7 @@
     };
 
     base.handleSubmit = function(e) {
+      e.preventDefault();
       var $templateRow = base.$el.closest('.template-result'),
           $actionsFormSubmit = $templateRow.find('form button');
 
@@ -214,13 +215,19 @@
 
     base.handleTemplateDetailsClick = function(e) {
       e.preventDefault();
+      var $elem = $(e.target),
+          template_id = $elem.attr('data-template-id'),
+          modal = base.initTemplateDetailsDialog(template_id);
+      modal.showTemplateDialog();
+    };
+
+    base.initTemplateDetailsDialog = function(template_id) {
       var origin = window.location.protocol + '//' + window.location.host,
-          $elem = $(e.target),
-          url = origin + '/templates/' + $elem.attr('data-template-id') + '/details',
-          modal = new $.PMX.TemplateDetailsDialog(base.options.templateDetailsSelector, {url: url});
+        url = origin + '/templates/' + template_id + '/details',
+        modal = new $.PMX.TemplateDetailsDialog(base.options.templateDetailsSelector, {url: url});
 
       modal.init();
-      modal.showTemplateDialog()
+      return modal;
     };
 
     base.fetchResults = function(term) {

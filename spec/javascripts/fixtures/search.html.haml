@@ -6,8 +6,12 @@
 %script#template_result_template{type: 'text/x-handlebars-template'}
   .search-result-item
     %h4= '{{title}}'
-    %p= '{{description}}'
+    %p
+      {{description}}
+      %a{href:"#", class: "template-details-link", data: { 'template-id' => 77 }}
+        More Details
     %p= '{{last_updated_on}}'
+
 %script#remote_image_result_template{type: 'text/x-handlebars-template'}
   .search-result-item
     %h4= '{{title}}'
