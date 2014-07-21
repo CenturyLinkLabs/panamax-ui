@@ -36,4 +36,10 @@ describe JsonImagePresenter do
       expect(subject.docker_index_url).to eq '{{docker_index_url}}'
     end
   end
+
+  describe '#badge_class' do
+    it 'exposes handlebar template for badge_class' do
+      expect(subject.badge_class).to eq '{{badge_class}}'
+    end
+  end
 end

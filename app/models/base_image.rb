@@ -26,6 +26,10 @@ class BaseImage < BaseResource
     end
   end
 
+  def badge_class
+    status_label.downcase
+  end
+
   def recommended_class
     recommended ? 'recommended' : 'not-recommended'
   end
@@ -47,7 +51,8 @@ class BaseImage < BaseResource
         'status_label' => status_label,
         'short_description' => short_description,
         'recommended_class' => recommended_class,
-        'docker_index_url' => docker_index_url
+        'docker_index_url' => docker_index_url,
+        'badge_class' => badge_class
       )
   end
 

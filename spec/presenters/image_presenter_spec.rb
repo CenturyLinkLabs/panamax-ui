@@ -6,7 +6,8 @@ describe ImagePresenter do
       source: 'boom/shaka',
       description: 'goes boom shaka laka',
       short_description: 'goes boom',
-      status_label: 'Repository',
+      status_label: 'Local',
+      badge_class: 'local',
       star_count: 123,
       docker_index_url: 'index.docker/boom/shaka'
     )
@@ -28,7 +29,13 @@ describe ImagePresenter do
 
   describe '#status_label' do
     it 'exposes the image status label' do
-      expect(subject.status_label).to eq 'Repository'
+      expect(subject.status_label).to eq 'Local'
+    end
+  end
+
+  describe '#badge_class' do
+    it 'exposes the image badge_class' do
+      expect(subject.badge_class).to eq 'local'
     end
   end
 
