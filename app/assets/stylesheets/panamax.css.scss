@@ -231,6 +231,7 @@ h1.breadcrumbs {
 
 .actions {
   a.delete-action,
+  a.edit-action,
   a.view-action {
     @include hide-text;
     float: left;
@@ -239,6 +240,7 @@ h1.breadcrumbs {
     position: relative;
 
     &:after {
+      @include icon-light-grey;
       left: 5px;
       top: 16px;
       position: absolute;
@@ -246,25 +248,32 @@ h1.breadcrumbs {
     }
   }
 
-  a.delete-action {
-    &:after {
-      @extend .icon-x;
-      @include icon-light-grey;
-    }
-
+  a.edit-action,
+  a.view-action {
     &:hover:after {
-      @include icon-red;
+      @include icon-grey;
+    }
+  }
+
+  a.edit-action {
+    &:after {
+      @extend .icon-pencil;
     }
   }
 
   a.view-action {
     &:after {
       @extend .icon-magnifying-glass;
-      @include icon-light-grey;
+    }
+  }
+
+  a.delete-action {
+    &:after {
+      @extend .icon-x;
     }
 
     &:hover:after {
-      @include icon-grey;
+      @include icon-red;
     }
   }
 }
