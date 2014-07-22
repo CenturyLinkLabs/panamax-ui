@@ -19,7 +19,8 @@ class TemplateForm
   end
 
   def documentation
-    @documentation || @app.try(:documentation)
+    doc = @documentation || @app.try(:documentation)
+    doc.gsub(/\r/, '') if doc
   end
 
   def save

@@ -64,6 +64,18 @@ describe TemplateForm do
       subject.app = nil
       expect(subject.documentation).to be_nil
     end
+
+    context 'when the documentation contains carriage returns' do
+
+      before do
+        subject.documentation = "line1\r\nline2"
+      end
+
+      it 'strips the carriages returns out' do
+        expect(subject.documentation).to eq "line1\nline2"
+      end
+
+    end
   end
 
   describe '#author' do
