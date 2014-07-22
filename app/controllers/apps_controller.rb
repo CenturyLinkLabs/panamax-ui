@@ -88,6 +88,8 @@ class AppsController < ApplicationController
       flash[:alert] = 'The application could not be rebuilt.'
     end
     respond_with app, location: request.referer || apps_path
+  rescue ActiveResource::ServerError => ex
+    handle_exception(ex, redirect: request.referer || apps_path)
   end
 
   private
