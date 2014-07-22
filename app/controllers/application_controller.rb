@@ -3,16 +3,24 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  rescue_from EOFError, with: :handle_api_unavailable
+  rescue_from StandardError, with: :handle_exception
 
-  def handle_api_unavailable(ex)
-    logger.error "#{ex.class} - #{ex.message}"
-    logger.error "\t#{ex.backtrace.join("\n\t")}"
+  # EOFError is what is raised when AR can't communicate with the Panamax API
+  rescue_from EOFError do |ex|
+    handle_exception(ex, message: :panamax_api_connection_error)
+  end
+
+  def handle_exception(ex, message: nil, redirect: root_path)
+    log_message = "\n#{ex.class} (#{ex.message}):\n"
+    log_message << "  " << ex.backtrace.join("\n  ") << "\n\n"
+    logger.error(log_message)
+
+    message = message.nil? ? ex.message : t(message, default: message)
 
     if request.xhr?
-      head :internal_server_error
+      render json: { message: message }, status: :internal_server_error
     else
-      redirect_to root_path, alert: 'Panamax API is not responding'
+      redirect_to redirect, alert: message
     end
   end
 end

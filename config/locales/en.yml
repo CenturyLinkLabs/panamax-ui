@@ -21,3 +21,4 @@
 
 en:
   hello: "Hello world"
+  panamax_api_connection_error: "Panamax API is not responding"
