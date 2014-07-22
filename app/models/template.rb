@@ -1,6 +1,7 @@
 class Template < BaseResource
   include ActionView::Helpers::TextHelper
   include ApplicationHelper
+  include MarkdownRenderable
 
   has_many :images
 

@@ -93,4 +93,35 @@ describe Image do
     end
   end
 
+  describe '#docker_index_url' do
+    it 'composes a docker index URL' do
+      subject.source = 'supercool/repository'
+      expect(subject.docker_index_url).to eq "#{DOCKER_INDEX_BASE_URL}u/supercool/repository"
+    end
+  end
+
+  describe '#base_image_name' do
+    it 'returns the base image name without any tag information' do
+      subject.source = 'supercool/repository:foobar'
+      expect(subject.base_image_name).to eq 'supercool/repository'
+    end
+  end
+
+  describe '#icon' do
+    context 'an icon was provided by the image' do
+      it 'returns the URL of the image icon' do
+        subject.type = 'wordpress'
+        expect(subject.icon).to eq '/assets/type_icons/wordpress.svg'
+      end
+    end
+
+    context 'no icon is specified' do
+      it 'returns the URL of the default icon' do
+        subject.type = nil
+        expect(subject.icon).to eq '/assets/type_icons/default.svg'
+      end
+    end
+
+  end
+
 end

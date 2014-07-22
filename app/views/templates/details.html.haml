@@ -1,0 +1,18 @@
+.template-images
+  %h2
+    Template Images
+  %ul
+    - @template.images.each do |image|
+      %li.template-image-detail
+        .template-image-icon
+          %img{src: image.icon}
+        = image.source
+        .template-image-external
+          = link_to 'View on Docker Index', image.docker_index_url, { target: 'blank' }
+
+- if @template.documentation
+  %h2
+    Documentation
+
+  #post-run-html
+    = @template.documentation_to_html.html_safe

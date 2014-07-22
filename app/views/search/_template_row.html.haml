@@ -4,7 +4,9 @@
     = presenter.status_label
   .basic-info
     %h3= presenter.title
-    %p= presenter.short_description
+    %p
+      = presenter.short_description
+      %a{href:"#", class: "template-details-link", data: { 'template-id' => presenter.id }} More Details
     %p.microcopy= "Last Updated: #{presenter.last_updated_on}"
   .actions
     = form_tag apps_path do
