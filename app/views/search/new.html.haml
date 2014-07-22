@@ -16,12 +16,13 @@
 .filterable-list
   %h1 Search Panamax Templates & Docker Repositories
   = form_for @search_result_set, url: search_path, method: :get, html: {class: 'search-form'} do |f|
-    = f.text_field :q, placeholder: 'enter your command / query', accesskey: 's', class: 'query-field'
+    = f.text_field :q, placeholder: 'enter your query', accesskey: 's', class: 'query-field'
     = f.button 'Search', class: 'button-primary'
+    %p.microcopy Examples: Rails, redis, NGiNX, mongoDB, you get the picture...
 
   %section.example-searches
     %h3
-      Or, try one of these example searches:
+      Or, try one of these popular searches:
     %a.example.buildpack{data: {query: 'buildpack-runner'}} Buildpack
     %a.example.wordpress{data: {query: 'wordpress'}} Wordpress
     %a.example.drupal{data: {query: 'drupal'}} Drupal
