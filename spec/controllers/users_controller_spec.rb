@@ -12,7 +12,7 @@ describe UsersController do
   describe 'put #update' do
     before do
       user.stub(:update_attributes)
-      request.env['HTTP_REFERER'] = 'some/origin'
+      request.env['HTTP_REFERER'] = '/some/origin'
     end
 
     it 'updates the user' do
@@ -22,7 +22,24 @@ describe UsersController do
 
     it 'redirects to the previous page' do
       put :update, user: update_params
-      expect(response).to redirect_to 'some/origin'
+      expect(response).to redirect_to '/some/origin'
+    end
+
+    context 'when an error occurs' do
+
+      before do
+        user.stub(:update_attributes).and_raise('oops')
+      end
+
+      it 'flashes an error message' do
+        put :update, user: update_params
+        expect(flash[:alert]).to eq 'oops'
+      end
+
+      it 'redirects to the previous page' do
+        put :update, user: update_params
+        expect(response).to redirect_to '/some/origin'
+      end
     end
   end
 end

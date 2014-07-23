@@ -380,7 +380,44 @@ describe AppsController do
         put :rebuild, id: 77, format: :json
         expect(response.status).to eq 204
       end
+    end
 
+    context 'when an ActiveResource::ServerError occurs' do
+
+      before do
+        dummy_app.stub(:put).and_raise(
+          ActiveResource::ServerError.new(nil, 'oops'))
+      end
+
+      context 'when a referer is present' do
+
+        before do
+          request.env['HTTP_REFERER'] = '/some/path'
+        end
+
+        it 'flashes the error message' do
+          put :rebuild, id: 77
+          expect(flash[:alert]).to eq 'oops'
+        end
+
+        it 'redirects to the referer' do
+          put :rebuild, id: 77
+          expect(response).to redirect_to('/some/path')
+        end
+      end
+
+      context 'when a referer is not present' do
+
+        it 'flashes the error message' do
+          put :rebuild, id: 77
+          expect(flash[:alert]).to eq 'oops'
+        end
+
+        it 'redirects to the apps_path' do
+          put :rebuild, id: 77
+          expect(response).to redirect_to(apps_path)
+        end
+      end
     end
   end
 end
