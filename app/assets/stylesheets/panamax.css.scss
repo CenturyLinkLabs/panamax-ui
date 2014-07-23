@@ -275,6 +275,12 @@ h1.breadcrumbs {
     &:hover:after {
       @include icon-red;
     }
+
+    &.disabled {
+      &:hover:after {
+        @include icon-light-grey;
+      }
+    }
   }
 }
 
