@@ -28,8 +28,8 @@
     %h3
       Application Services
     %nav
-      %a.list.selected= ''
-      %a.relationship= ''
+      %a.list.selected{ title: 'category view' }
+      %a.relationship{ title: 'relationship view' }
   .views
     .categories
       - @app.categorized_services.each do |group, services|
