@@ -212,7 +212,7 @@
 
     base.handleRevert = function(id) {
       var $link = base.$el.find('a[href="'+id+'"]');
-      $link.closest('.actions').css('display','auto');
+      base.$el.find('.actions')[0].style.cssText = '';
       base.sortable(true);
     };
 
@@ -229,8 +229,8 @@
           }
         }
       })
-      .fail(function(){
-        alert('Unable to edit category.');
+      .success(function(){
+        base.$el.find('.actions')[0].style.cssText = '';
       });
     };
 

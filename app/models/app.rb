@@ -45,7 +45,7 @@ class App < BaseResource
       if groups.present?
         groups[Category.new(name: 'Uncategorized')] = uncategorized_services if uncategorized_services.present?
       else
-        groups[Category.new(name: 'Services')] = services
+        groups[Category.new(name: 'Uncategorized')] = services
       end
 
       groups
