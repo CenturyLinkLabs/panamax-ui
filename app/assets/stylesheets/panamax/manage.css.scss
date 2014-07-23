@@ -172,7 +172,7 @@
       width: 20px;
       height: 20px;
 
-      &:before {
+      &:after {
         content: '';
         position: absolute;
         left: 6px;
@@ -184,7 +184,7 @@
         height: 20px;
       }
 
-      &:hover:before {
+      &:hover:after {
         @include icon-grey;
         @extend .icon-pencil;
       }
@@ -413,7 +413,7 @@ h1 .actions {
     width: 40px;
     height: 40px;
 
-    &:before {
+    &:after {
       content: '';
       position: absolute;
       left: 0px;
@@ -425,7 +425,7 @@ h1 .actions {
       height: 40px;
     }
 
-    &:hover:before {
+    &:hover:after {
       @include icon-grey;
     }
   }
@@ -754,7 +754,7 @@ section.application-services {
             width: 20px;
             height: 20px;
 
-            &:before {
+            &:after {
               content: '';
               position: absolute;
               left: 6px;
@@ -766,7 +766,7 @@ section.application-services {
               height: 20px;
             }
 
-            &:hover:before {
+            &:hover:after {
               @include icon-grey;
               @extend .icon-pencil;
             }

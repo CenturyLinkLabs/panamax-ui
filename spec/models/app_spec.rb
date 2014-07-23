@@ -86,11 +86,11 @@ describe App do
         expect(groups.keys).to_not include(id: nil, name: 'Uncategorized')
       end
 
-      it 'groups all services under a "Services" group if there are no categories' do
+      it 'groups all services under a "Uncategorized" group if there are no categories' do
         attributes['services'].each { |s| s['categories'] = [] }
         attributes['categories'] = []
         groups = subject.categorized_services
-        expect(groups.keys.map(&:name)).to match_array(['Services'])
+        expect(groups.keys.map(&:name)).to match_array(['Uncategorized'])
       end
     end
 
