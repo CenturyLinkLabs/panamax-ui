@@ -40,6 +40,37 @@ describe Service do
   it { should respond_to :docker_status }
   it { should respond_to :command }
 
+  describe '#has_empty_env_values?' do
+    it 'returns true if a value is blank' do
+      subject.environment = [
+        Environment.new('variable' => 'PORT', 'value' => '80'),
+        Environment.new('variable' => 'OPTIONAL', 'value' => '')
+      ]
+      expect(subject.has_empty_env_values?).to be_true
+    end
+
+    it 'returns true if a value is missing' do
+      subject.environment = [
+        Environment.new('variable' => 'PORT', 'value' => '80'),
+        Environment.new('variable' => 'OPTIONAL')
+      ]
+      expect(subject.has_empty_env_values?).to be_true
+    end
+
+    it 'returns false if there are no env vars' do
+      subject.environment = []
+      expect(subject.has_empty_env_values?).to be_false
+    end
+
+    it 'returns false if there are no empty valued env vars' do
+      subject.environment = [
+        Environment.new('variable' => 'PORT', 'value' => '80'),
+        Environment.new('variable' => 'OPTIONAL', 'value' => 'present')
+      ]
+      expect(subject.has_empty_env_values?).to be_false
+    end
+  end
+
   describe '#status' do
     it 'is :running when sub state is running' do
       subject.sub_state = 'running'

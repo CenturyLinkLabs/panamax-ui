@@ -42,6 +42,12 @@ class Service < BaseResource
     end
   end
 
+  def has_empty_env_values?
+    environment.any? do |env|
+      env.value.blank?
+    end
+  end
+
   def icon
     type.blank? ? icon_source_for('default') : icon_source_for(type)
   end

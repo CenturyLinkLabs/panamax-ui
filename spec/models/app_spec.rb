@@ -35,6 +35,25 @@ describe App do
     end
   end
 
+  describe '#has_empty_env_values?' do
+    it 'returns true if any of the services have an empty env value' do
+      fake_service = double(:fake_service, has_empty_env_values?: true)
+      subject.services = [fake_service]
+      expect(subject.has_empty_env_values?).to be_true
+    end
+
+    it 'returns false if there are no services' do
+      subject.services = []
+      expect(subject.has_empty_env_values?).to be_false
+    end
+
+    it 'returns false if none of the services have empty env values' do
+      fake_service = double(:fake_service, has_empty_env_values?: false)
+      subject.services = [fake_service]
+      expect(subject.has_empty_env_values?).to be_false
+    end
+  end
+
   describe '#documentation_to_html' do
     it 'attempts to parse the #documentation as markdown' do
       app = described_class.new(attributes)

@@ -21,6 +21,12 @@ class App < BaseResource
     self.id
   end
 
+  def has_empty_env_values?
+    services.any? do |service|
+      service.has_empty_env_values?
+    end
+  end
+
   def service_count_label
     'Service'.pluralize(services.length)
   end

@@ -5,9 +5,15 @@
       %strong
         = flash[key]
       - if key == 'success' && @app && @app.documentation_to_html.present?
-        %br
-        Click
-        %a{href:"#", class: "instructions-dialog", "data-doc-url" => documentation_app_url} here
-        to read the additional instructions provided by the author of the template used to create this application.
+        %p
+          Click
+          %a{href:"#", class: "instructions-dialog", "data-doc-url" => documentation_app_url} here
+          to read the additional instructions provided by the author of the template used to create this application.
+        - if @app.has_empty_env_values?
+          %p The following services have environment variables with NULL values. Review the documentation for assistance in filling these out.
+          %ul
+            - @app.services.each do |service|
+              - if service.has_empty_env_values?
+                %li= service.name
         #post-run-html
           = @app.documentation_to_html.html_safe
