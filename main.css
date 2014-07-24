@@ -1,0 +1,109 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 100%;
+  color: #777;
+}
+
+header {
+  background: url('logo_panamax.png') 50% 50% no-repeat #8EC643;
+  height: 200px;
+}
+
+header h1 {
+  text-indent: -9999px;
+  margin: 0;
+  padding: 0;
+  height: 0;
+}
+
+
+main {
+  width: 100%;
+  margin: 0 auto;
+}
+#hero, footer {
+  max-width: 700px;
+  padding: 25px;
+}
+
+a {
+  color: #5F7985;
+}
+
+a:hover {
+  color: #293B47;
+}
+
+#hero a {
+  color: #777;
+  text-decoration: none;
+}
+
+#hero a:hover {
+  text-decoration: underline;
+}
+
+h2 {
+  color: #5F7985;
+  font-size: 36px;
+  font-weight: 200;
+  padding-bottom: 30px;
+  margin: 20px 0px;
+}
+
+h3 {
+  font-size: 24px;
+  color: #AAAAAA;
+  padding-bottom: 20px;
+  margin: 20px 0px;
+}
+
+@media screen and (min-width: 480px) {
+  main {
+    height: 100%;
+    min-height: 600px;
+    margin: 0 auto -120px 0;
+    padding: 0;
+  }
+
+  footer {
+    margin: 25px;
+    padding: 0;
+  }
+}
+
+@media screen and (min-width: 768px) {
+
+  header {
+    height: 250px;
+    background: url('logo_panamax.png') 100px 175px no-repeat #8EC643;
+    margin-bottom: 40px;
+  }
+
+  main {
+    height: 100%;
+    min-height: 600px;
+    margin: 0 auto -120px 0;
+    padding: 0;
+  }
+
+  #hero {
+    margin-left: 20%;
+    padding: 0;
+  }
+
+  footer {
+    margin: 0 auto 0 20%;
+  }
+}

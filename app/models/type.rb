@@ -1,2 +1,0 @@
-class Type < BaseResource
-end

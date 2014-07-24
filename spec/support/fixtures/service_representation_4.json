@@ -1,7 +1,0 @@
-{
-  "id":"4",
-  "name":"barf",
-  "categories":[{"name":"foo"}],
-  "sub_state": null,
-  "ports": []
-}

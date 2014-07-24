@@ -1,7 +1,0 @@
-%ul.application-button-menu
-  %li
-    = link_to 'Save as Template', new_template_path(app_id: app.id), class: 'template', title: 'save template'
-  %li
-    = link_to 'Rebuild App', rebuild_app_path(app.id), method: :put, class: 'reload', title: 'rebuild'
-  %li
-    = link_to 'Delete App', app_path(app.id), method: :delete, class: 'delete', title: 'delete'

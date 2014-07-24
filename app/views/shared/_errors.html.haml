@@ -1,6 +1,0 @@
-- if errors.present?
-  .notice-danger
-    %strong The following errors prevented you from saving.
-    %ul
-      - errors.each do |field, message|
-        %li= "#{field} #{message}"

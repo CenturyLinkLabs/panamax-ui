@@ -1,9 +1,0 @@
-- app.ordered_services.each do |service|
-  .relationship-panel
-    %header
-      = service.name
-    - unless service.links.blank?
-      %ul.links
-        - service.links.each do |link|
-          %li
-            = link.service_name
