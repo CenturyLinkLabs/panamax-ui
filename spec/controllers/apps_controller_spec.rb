@@ -17,57 +17,19 @@ describe AppsController do
                                            ])
   end
 
-  describe 'POST #create_from_template' do
-    let(:fake_template) { double(:fake_template, id: 33) }
-    let(:fake_template_copy) { double(:fake_template_copy, id: 7, destroy: nil) }
-    let(:fake_form) { double(:fake_form, create_new_template: fake_template_copy) }
-
+  describe 'POST #create' do
     before do
-      Template.stub(:find).and_return fake_template
-      TemplateCopyForm.stub(:new).and_return fake_form
       App.stub(:create).and_return(dummy_app)
-      fake_template_copy.stub(:required_fields_missing?).and_return(false)
-    end
-
-    it 'looks up the original template' do
-      expect(Template).to receive(:find).with('33')
-      post :create_from_template, template_copy_form: { template_id: 33 }
-    end
-
-    it 'deletes the new template at the end' do
-      expect(fake_template_copy).to receive(:destroy)
-      post :create_from_template, template_copy_form: { template_id: 33 }
-    end
-
-    it 'instantiates the template form with the params and og template' do
-      expect(TemplateCopyForm).to receive(:new).with(
-        'name' => 'buildstepper',
-        'original_template' => fake_template
-      )
-      post :create_from_template, template_copy_form: {
-        template_id: 33,
-        name: 'buildstepper'
-      }
-    end
-
-    it 'calls #create_new_template and assigns it' do
-      expect(fake_form).to receive(:create_new_template)
-      post :create_from_template, template_copy_form: { template_id: 33 }
-    end
-
-    it 'assigns the copied template' do
-      post :create_from_template, template_copy_form: { template_id: 33 }
-      expect(assigns(:new_template)).to eq fake_template_copy
     end
 
     it 'creates an application' do
-      expect(App).to receive(:create).with(template_id: 7)
+      expect(App).to receive(:create).with('image' => 'some/image', 'tag' => ':latest').and_return(dummy_app)
 
-      post :create_from_template, template_copy_form: { template_id: 33 }
+      post :create, app: { image: 'some/image', tag: ':latest' }
     end
 
     it 'assigns app' do
-      post :create_from_template, template_copy_form: { template_id: 33 }
+      post :create, app: { image: 'some/image', tag: ':latest' }
       expect(assigns(:app)).to eq dummy_app
     end
 
@@ -77,7 +39,7 @@ describe AppsController do
       end
 
       it 'redirects to the show page' do
-        post :create_from_template, template_copy_form: { template_id: 33 }
+        post :create, app: { image: 'some/image', tag: ':latest' }
 
         expect(response).to redirect_to app_url(77)
       end
@@ -89,87 +51,8 @@ describe AppsController do
       end
 
       it 'renders the show template' do
-        post :create_from_template, template_copy_form: { template_id: 33 }
+        post :create, app: { image: 'some/image', tag: ':latest' }
         expect(response).to render_template(:show)
-      end
-    end
-
-    context 'when required fields are missing' do
-      before do
-        fake_template_copy.stub(:required_fields_missing?).and_return(true)
-      end
-
-      it 'sets a flash notice' do
-        post :create_from_template, template_copy_form: { template_id: 33 }
-        expect(flash[:notice]).to eq 'It looks like you are trying to run a template with some required fields. Please fill in the values below to continue.'
-      end
-
-      it 'redirects to the new_from_template action' do
-        post :create_from_template, template_copy_form: { template_id: 33 }
-        expect(response).to redirect_to new_from_template_apps_path(template_id: 33)
-      end
-
-    end
-  end
-
-  describe 'POST #create' do
-    before do
-      App.stub(:create).and_return(dummy_app)
-    end
-
-    context 'when a template id is provided and required fields are missing' do
-      let(:fake_template) { double(:fake_template, id: 8) }
-
-      before do
-        Template.stub(:find).and_return(fake_template)
-        fake_template.stub(:required_fields_missing?).and_return(true)
-      end
-
-      it 'redirects to the new_from_template action' do
-        post :create, app: { template_id: '4' }
-        expect(response).to redirect_to new_from_template_apps_path(template_id: 8)
-      end
-
-    end
-
-    context 'when no template id is provided' do
-
-      before do
-        Template.stub(:find_by_id).and_return(nil)
-      end
-
-      it 'creates an application' do
-        expect(App).to receive(:create).with('image' => 'some/image', 'tag' => ':latest').and_return(dummy_app)
-
-        post :create, app: { image: 'some/image', tag: ':latest' }
-      end
-
-      it 'assigns app' do
-        post :create, app: { image: 'some/image', tag: ':latest' }
-        expect(assigns(:app)).to eq dummy_app
-      end
-
-      context 'when the created app is valid' do
-        before do
-          dummy_app.stub(:valid?).and_return(true)
-        end
-
-        it 'redirects to the show page' do
-          post :create, app: { image: 'some/image', tag: ':latest' }
-
-          expect(response).to redirect_to app_url(77)
-        end
-      end
-
-      context 'when app is not valid' do
-        before do
-          App.stub(:create).and_return(false)
-        end
-
-        it 'renders the show template' do
-          post :create, app: { image: 'some/image', tag: ':latest' }
-          expect(response).to render_template(:show)
-        end
       end
     end
   end
@@ -233,28 +116,6 @@ describe AppsController do
     it 'retrieves all the applications' do
       get :index
       expect(assigns(:apps)).to eq apps
-    end
-  end
-
-  describe 'GET #new_from_template' do
-    let(:fake_template) { double(:fake_template) }
-
-    before do
-      Template.stub(:find).with('33').and_return fake_template
-    end
-
-    it 'looks up and assigns template' do
-      get :new_from_template, template_id: 33
-
-      expect(assigns(:template)).to eq fake_template
-    end
-
-    it 'creates and assigns the template form object' do
-      fake_form = double(:fake_form)
-      TemplateCopyForm.stub(:new).with(original_template: fake_template).and_return fake_form
-      get :new_from_template, template_id: 33
-
-      expect(assigns(:form)).to eq fake_form
     end
   end
 

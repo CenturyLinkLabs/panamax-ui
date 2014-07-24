@@ -6,8 +6,10 @@ describe TemplatesController do
   let(:fake_template_form) { double(:fake_template_form, repo: 'foo/bar', save: true) }
   let(:fake_app) { double(:fake_app, id: 7) }
   let(:fake_types) { double(:fake_types) }
+  let(:fake_template) { double(:fake_template, id: 1) }
 
   before do
+    Template.stub(:find).and_return(fake_template)
     User.stub(:find).and_return(fake_user)
     TemplateForm.stub(:new).and_return(fake_template_form)
     App.stub(:find).and_return(fake_app)
@@ -125,7 +127,7 @@ describe TemplatesController do
   describe 'GET #details' do
     it 'assigns the template' do
       get :details, id: 1
-      expect(assigns(:template)).to be_a Template
+      expect(assigns(:template)).to eq fake_template
       expect(assigns(:template).id).to eq 1
     end
     it 'renders the details view' do

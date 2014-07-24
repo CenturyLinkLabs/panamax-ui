@@ -35,48 +35,6 @@
       "created_at":"2014-04-17T16:07:35.690Z",
       "updated_at":"2014-04-17T16:07:35.690Z",
       "image_count":2
-    },
-    {
-      "id": 2,
-      "name": "Rails",
-      "description": "This is a Rails app template",
-      "keywords": null,
-      "from": null,
-      "recommended": true,
-      "type": "rails",
-      "image_count": 2,
-      "created_at": "2014-07-08T21:17:31.191Z",
-      "updated_at": "2014-07-08T21:17:31.191Z",
-      "images": [
-        {
-          "category": null,
-          "name": "APP",
-          "repository": "dharmamike/dc-rails",
-          "tag": "latest",
-          "description": "welcome to rails",
-          "type": "rails",
-          "expose": [],
-          "ports": [
-            {
-              "host_port": 8088,
-              "container_port": 3000
-            }
-          ],
-          "links": [
-            {
-              "service": "DB_2",
-              "alias": "DB_1"
-            }
-          ],
-          "environment": [
-            {
-              "required": true,
-              "variable": "GIT_REPO"
-            }
-          ],
-          "volumes": []
-        }
-      ]
     }
   ]
 }

@@ -20,10 +20,6 @@ Rails.application.routes.draw do
       get 'relations'
       put 'rebuild'
     end
-    collection do
-      get :new_from_template
-      post :create_from_template
-    end
     resources :services, only: [:index, :update, :create, :show, :destroy] do
       get 'journal', on: :member
     end

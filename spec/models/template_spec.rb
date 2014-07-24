@@ -8,13 +8,7 @@ describe Template do
       'description' => 'this thing goes boom shaka laka',
       'updated_at' => Time.parse('2012-1-13').to_s,
       'image_count' => 4,
-      'type' => 'wordpress',
-      'images' => [
-        Image.new(
-          name: 'DB',
-          repository: 'mysql/mysql'
-        )
-      ]
+      'type' => 'wordpress'
     }
   end
 
@@ -68,52 +62,8 @@ describe Template do
     it { should respond_to :from }
   end
 
-  describe '#images' do
-    it { should respond_to :images }
-  end
-
   describe '#documentation' do
     it { should respond_to :documentation }
-  end
-
-  describe '#required_fields_missing?' do
-    subject { described_class.new(attributes) }
-
-    it 'returns true if all required fields are satisfied' do
-      subject.images.first.environment = [
-        Environment.new('variable' => 'PORT', 'value' => '80', 'required' => true),
-        Environment.new('variable' => 'OPTIONAL', 'value' => ''),
-        Environment.new('variable' => 'ANOTHER_OPTIONAL')
-      ]
-
-      expect(subject.required_fields_missing?).to be_false
-    end
-
-    it 'returns true if there are no required fields' do
-      subject.images.first.environment = [
-        Environment.new('variable' => 'OPTIONAL', 'value' => ''),
-        Environment.new('variable' => 'ANOTHER_OPTIONAL')
-      ]
-
-      expect(subject.required_fields_missing?).to be_false
-    end
-
-    it 'returns false if a required field is blank' do
-      subject.images.first.environment = [
-        Environment.new('variable' => 'OPTIONAL', 'value' => ''),
-        Environment.new('variable' => 'PORT', 'value' => '', 'required' => true)
-      ]
-
-      expect(subject.required_fields_missing?).to be_true
-    end
-
-    it 'returns false if a required field is missing' do
-      subject.images.first.environment = [
-        Environment.new('variable' => 'PORT', 'required' => true)
-      ]
-
-      expect(subject.required_fields_missing?).to be_true
-    end
   end
 
   describe '#short_description' do
