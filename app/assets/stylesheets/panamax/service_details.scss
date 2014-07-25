@@ -175,7 +175,10 @@
 
 .port-detail {
   @extend .service-detail;
-  overflow: hidden;
+
+  .port-detail-forms {
+    overflow: hidden;
+  }
 
   .port-bindings {
     float: left;
@@ -371,8 +374,8 @@
 }
 
 form.service-edit-form {
-  overflow: hidden;
-  margin-bottom: 50px;
+  margin-bottom: 70px;
+
   input[type="submit"] {
     float: right;
   }

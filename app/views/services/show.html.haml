@@ -26,9 +26,16 @@
         .service-links
           = render 'service_links', f: f, services: @app.services, service_id: @service.id
         .port-detail
-          %h3 Ports
-          = render 'port_bindings', f: f
-          = render 'exposed_ports', f: f
+          %h3
+            Ports
+            .context-help
+              %section
+                %a{:class=>'dismiss'}
+                %p Panamax currently supports port binding (-p) and port expose (--expose).
+                %p To see if any additional ports were exposed via the EXPOSE command at run time review the Dockerfile of any base image.
+          .port-detail-forms
+            = render 'port_bindings', f: f
+            = render 'exposed_ports', f: f
         .volumes
           = render 'volumes', f: f
       .column-right
