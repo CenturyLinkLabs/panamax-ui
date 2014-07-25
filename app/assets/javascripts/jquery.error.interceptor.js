@@ -1,11 +1,12 @@
 (function($) {
   $.PMX.ErrorInterceptor = function($el, options) {
-    var base = this;
+    var base = this,
+        abortedStatus = 0;
 
     base.$el = $el;
 
     base.defaultOptions = {
-      excludePaths: ['host_health', 'search', 'journal'],
+      excludePaths: ['host_health', 'journal'],
       ajaxErrorTemplate: Handlebars.compile($('#ajax_error_template').html())
     };
 
@@ -16,7 +17,10 @@
     };
 
     base.handleError = function( event, jqxhr, settings, thrownError) {
-      if (base.notExcludedUrl(settings.url)) {
+      if (base.notExcludedUrl(settings.url) && jqxhr.status !== abortedStatus) {
+        console.log(settings);
+        console.log(jqxhr);
+        console.log(thrownError);
         base.renderNotification(thrownError);
       };
     };
