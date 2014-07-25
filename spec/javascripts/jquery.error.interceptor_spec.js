@@ -9,7 +9,7 @@ describe('$.fn.errorInterceptor', function() {
 
   describe('when an error occurs', function() {
     it('a notification is created within main', function() {
-      subject.handleError($.Event(), null, {url: 'http://someplace/with/errors'}, 'Unknown error');
+      subject.handleError($.Event(), {status: 500}, {url: 'http://someplace/with/errors'}, 'Unknown error');
 
       expect($('main .notice-danger').length).toEqual(1);
     });

@@ -18,9 +18,6 @@
 
     base.handleError = function( event, jqxhr, settings, thrownError) {
       if (base.notExcludedUrl(settings.url) && jqxhr.status !== abortedStatus) {
-        console.log(settings);
-        console.log(jqxhr);
-        console.log(thrownError);
         base.renderNotification(thrownError);
       };
     };
