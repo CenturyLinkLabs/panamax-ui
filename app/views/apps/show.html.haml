@@ -21,6 +21,8 @@
           %a{href: "http://127.0.0.1:#{port}/"}<>
             = "127.0.0.1:#{port}"
 
+  =link_to('Documentation', '#', { class: 'documentation instructions-dialog', data: { 'doc-url'=> documentation_app_path(@app.id) } })  if @app.documentation.present?
+
   = render 'application_button_menu', app: @app
 
 %section.application-services{data: { source: app_services_path(@app.id, format: :json) } }
@@ -47,3 +49,5 @@
   journal_path: journal_app_path(@app.id, format: :json)
 
 = render 'services/add_service'
+#post-run-html
+  = @app.documentation_to_html.html_safe if @app.documentation.present?

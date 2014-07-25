@@ -18,6 +18,7 @@
     %span
       = @service.image_tag_name
     = link_to 'View on Docker Index', @service.docker_index_url, { target: 'blank' }
+    =link_to('Documentation', '#', { class: 'documentation instructions-dialog', data: {'doc-url'=> documentation_app_path(@app.id)} })  if @app.documentation_to_html.present?
 
   = form_for [@app, @service], html: { class: 'service-edit-form' } do |f|
     = render 'shared/errors', errors: f.object.errors
@@ -49,3 +50,6 @@
 = render 'shared/journal',
   title: 'CoreOS Journal - Service Activity Log',
   journal_path: journal_app_service_path(@app.id, @service.id, format: :json)
+
+#post-run-html
+  = @app.documentation_to_html.html_safe if @app.documentation.present?

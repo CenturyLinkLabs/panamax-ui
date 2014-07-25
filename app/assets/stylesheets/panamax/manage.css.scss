@@ -413,8 +413,9 @@ section.notice {
 }
 
 section.deployment-details {
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   font-size: 0.8em;
+  position: relative;
 
   span.deployment-env, span.service-url {
     display: inline-block;
@@ -430,6 +431,13 @@ section.deployment-details {
     a {
       margin-left: 5px;
     }
+  }
+
+  a.documentation {
+    position: absolute;
+    display: block;
+    font-size: 1.1em;
+    text-decoration: underline;
   }
 }
 
