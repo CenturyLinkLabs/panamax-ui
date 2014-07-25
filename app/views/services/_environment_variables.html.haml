@@ -2,13 +2,17 @@
 = f.fields_for :environment do |env_var|
   - index = env_var.options[:child_index]
   %dl
-    %dt= env_var.object.variable
-    %dd= env_var.object.value
+    %dt= env_var.label(:value, env_var.object.variable)
+    %dd
+      - if env_var.object.value.blank?
+        = env_var.text_field :value, placeholder: 'enter a value', class: 'empty'
+      - else
+        = env_var.object.value
     %dd.actions
       - checkbox_id = "select_environment_variable_#{index}"
       = env_var.check_box :_deleted, { id: checkbox_id }
       = env_var.hidden_field :variable
-      = env_var.hidden_field :value
+      = env_var.hidden_field :value unless env_var.object.value.blank?
       %a{class: 'delete-action', title: 'remove', data: { checkbox: { selector: "##{checkbox_id}" } } } remove
 
 .additional-entries

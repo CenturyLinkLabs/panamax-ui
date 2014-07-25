@@ -3,5 +3,15 @@
   "name":"bard",
   "categories":[],
   "sub_state": null,
-  "ports": []
+  "ports": [],
+  "environment": [
+    {
+      "variable": "WITHOUT_VALUE"
+    }
+  ],
+  "links": [],
+  "from": "panamax/panamax-docker-wordpress:latest",
+  "expose": [
+    80
+  ]
 }

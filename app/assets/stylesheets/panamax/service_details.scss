@@ -459,3 +459,7 @@ a.journal-toggle {
     }
   }
 }
+
+input.empty {
+  border: $orange 2px solid;
+}

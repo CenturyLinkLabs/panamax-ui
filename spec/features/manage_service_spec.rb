@@ -87,6 +87,20 @@ describe 'managing a service' do
 
     end
 
+    context 'when the service has an env var with no value' do
+      before do
+        visit '/apps/2/services/6'
+      end
+
+      it 'allows the user to fill in the value' do
+        fill_in 'WITHOUT_VALUE', with: 'here is a value'
+
+        click_on 'Save all changes'
+
+        expect(page).to have_css 'h1', text: 'bard'
+      end
+    end
+
     context 'when the service is not running' do
       before do
         visit '/apps/2/services/2'
