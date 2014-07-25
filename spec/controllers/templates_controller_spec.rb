@@ -3,10 +3,12 @@ require 'spec_helper'
 describe TemplatesController do
 
   let(:fake_user) { double(:fake_user) }
-  let(:fake_template_form) { double(:fake_template_form, repo: 'foo/bar', save: true) }
-  let(:fake_app) { double(:fake_app, id: 7) }
+  let(:fake_app) { double(:fake_app, id: 7, write_attributes: true, save: true) }
   let(:fake_types) { double(:fake_types) }
   let(:fake_template) { double(:fake_template, id: 1) }
+  let(:fake_template_form) do
+    double(:fake_template_form, repo: 'foo/bar', save: true, app_id: 7, documentation: 'some docs')
+  end
 
   before do
     Template.stub(:find).and_return(fake_template)
@@ -59,19 +61,25 @@ describe TemplatesController do
     let(:create_params) do
       {
         'name' => 'My template',
-        'repo' => 'foo/bar'
+        'repo' => 'foo/bar',
+        'app_id' => '7',
+        'documentation' => 'some docs'
       }
-    end
-
-    it 'looks up and assign the user' do
-      post :create
-      expect(assigns(:user)).to eq fake_user
     end
 
     it 'assigns a template form with the supplied parameters' do
       expect(TemplateForm).to receive(:new).with(create_params).and_return(fake_template_form)
       post :create, 'template_form' => create_params
       expect(assigns(:template_form)).to eq fake_template_form
+    end
+
+    it 'updates the app with the new documentation' do
+      expect(App).to receive(:find).with(fake_template_form.app_id).and_return(fake_app)
+      expect(fake_app).to receive(:write_attributes)
+                          .with(documentation: fake_template_form.documentation)
+                          .and_return(true)
+      expect(fake_app).to receive(:save).and_return(true)
+      post :create, 'template_form' => create_params
     end
 
     context 'when saving is successful' do
@@ -102,6 +110,11 @@ describe TemplatesController do
         fake_template_form.stub(:errors).and_return(['some stuff'])
         fake_template_form.stub(:user=).and_return(true)
         fake_template_form.stub(:types=).and_return(true)
+      end
+
+      it 'looks up and assigns the user' do
+        post :create
+        expect(assigns(:user)).to eq fake_user
       end
 
       it 're-renders the templates#new view' do

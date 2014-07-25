@@ -59,6 +59,10 @@ class FakePanamaxApi < Sinatra::Base
     status 204
   end
 
+  put '/apps/:app_id.:format' do
+    status 204
+  end
+
   get '/user.json' do
     json_response 200, 'user_representation.json'
   end
