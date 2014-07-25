@@ -1,4 +1,13 @@
-%h3 Service Links
+%h3
+  Service Links
+  .context-help
+    %section
+      %a{:class=>'dismiss'}
+      %p To create a functional link between two services, you will need to specify an Alias of the service you are linking to.
+      %p This Alias may be arbitrary or need to be consistent with information referenced in the Dockerfile of the base image or one of its supporting files.
+      %p
+        To learn more about docker links and the role of the Alias in creating the links,
+        %a{href: 'https://docs.docker.com/userguide/dockerlinks/#container-linking'} click here.
 %ul
   = f.fields_for :links do |link|
     - checkbox_id = "select_link_#{link.options[:child_index]}"

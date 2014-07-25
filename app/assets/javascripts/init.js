@@ -39,6 +39,8 @@
 
     $('aside.host').hostHealth();
 
+    $('.context-help').contextHelp();
+
     $('header.application h1 li:last-of-type').editApplicationName();
 
     var enableNewItem = function(addedItem) {
