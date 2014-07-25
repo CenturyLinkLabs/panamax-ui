@@ -1,0 +1,2222 @@
+.icon-plus {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -0px; }
+
+.icon-plus-medium, .icon-plus-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -0px; }
+
+.icon-plus-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -0px; }
+
+.icon-plus-for-button {
+  position: relative; }
+.icon-plus-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-minus {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -20px; }
+
+.icon-minus-medium, .icon-minus-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -30px; }
+
+.icon-minus-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -40px; }
+
+.icon-minus-for-button {
+  position: relative; }
+.icon-minus-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-x {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -40px; }
+
+.icon-x-medium, .icon-x-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -60px; }
+
+.icon-x-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -80px; }
+
+.icon-x-for-button {
+  position: relative; }
+.icon-x-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-sprocket {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -60px; }
+
+.icon-sprocket-medium, .icon-sprocket-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -90px; }
+
+.icon-sprocket-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -120px; }
+
+.icon-sprocket-for-button {
+  position: relative; }
+.icon-sprocket-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-arrowloop {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -80px; }
+
+.icon-arrowloop-medium, .icon-arrowloop-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -120px; }
+
+.icon-arrowloop-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -160px; }
+
+.icon-arrowloop-for-button {
+  position: relative; }
+.icon-arrowloop-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-checkmark {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -100px; }
+
+.icon-checkmark-medium, .icon-checkmark-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -150px; }
+
+.icon-checkmark-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -200px; }
+
+.icon-checkmark-for-button {
+  position: relative; }
+.icon-checkmark-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-document {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -120px; }
+
+.icon-document-medium, .icon-document-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -180px; }
+
+.icon-document-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -240px; }
+
+.icon-document-for-button {
+  position: relative; }
+.icon-document-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-magnifying-glass {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -140px; }
+
+.icon-magnifying-glass-medium, .icon-magnifying-glass-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -210px; }
+
+.icon-magnifying-glass-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -280px; }
+
+.icon-magnifying-glass-for-button {
+  position: relative; }
+.icon-magnifying-glass-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-pencil {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -160px; }
+
+.icon-pencil-medium, .icon-pencil-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -240px; }
+
+.icon-pencil-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -320px; }
+
+.icon-pencil-for-button {
+  position: relative; }
+.icon-pencil-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-outbox {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -180px; }
+
+.icon-outbox-medium, .icon-outbox-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -270px; }
+
+.icon-outbox-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -360px; }
+
+.icon-outbox-for-button {
+  position: relative; }
+.icon-outbox-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-grid {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -200px; }
+
+.icon-grid-medium, .icon-grid-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -300px; }
+
+.icon-grid-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -400px; }
+
+.icon-grid-for-button {
+  position: relative; }
+.icon-grid-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-envelope {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -220px; }
+
+.icon-envelope-medium, .icon-envelope-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -330px; }
+
+.icon-envelope-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -440px; }
+
+.icon-envelope-for-button {
+  position: relative; }
+.icon-envelope-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-list {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -240px; }
+
+.icon-list-medium, .icon-list-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -360px; }
+
+.icon-list-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -480px; }
+
+.icon-list-for-button {
+  position: relative; }
+.icon-list-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-folder {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -260px; }
+
+.icon-folder-medium, .icon-folder-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -390px; }
+
+.icon-folder-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -520px; }
+
+.icon-folder-for-button {
+  position: relative; }
+.icon-folder-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-menu {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -280px; }
+
+.icon-menu-medium, .icon-menu-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -420px; }
+
+.icon-menu-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -560px; }
+
+.icon-menu-for-button {
+  position: relative; }
+.icon-menu-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-house {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -300px; }
+
+.icon-house-medium, .icon-house-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -450px; }
+
+.icon-house-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -600px; }
+
+.icon-house-for-button {
+  position: relative; }
+.icon-house-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-star {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -320px; }
+
+.icon-star-medium, .icon-star-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -480px; }
+
+.icon-star-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -640px; }
+
+.icon-star-for-button {
+  position: relative; }
+.icon-star-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-thin-arrow-right {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -340px; }
+
+.icon-thin-arrow-right-medium, .icon-thin-arrow-right-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -510px; }
+
+.icon-thin-arrow-right-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -680px; }
+
+.icon-thin-arrow-right-for-button {
+  position: relative; }
+.icon-thin-arrow-right-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-thick-arrow-right {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -360px; }
+
+.icon-thick-arrow-right-medium, .icon-thick-arrow-right-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -540px; }
+
+.icon-thick-arrow-right-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -720px; }
+
+.icon-thick-arrow-right-for-button {
+  position: relative; }
+.icon-thick-arrow-right-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-magnifying-glass-plus {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -380px; }
+
+.icon-magnifying-glass-plus-medium, .icon-magnifying-glass-plus-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -570px; }
+
+.icon-magnifying-glass-plus-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -760px; }
+
+.icon-magnifying-glass-plus-for-button {
+  position: relative; }
+.icon-magnifying-glass-plus-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-magnifying-glass-minus {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -400px; }
+
+.icon-magnifying-glass-minus-medium, .icon-magnifying-glass-minus-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -600px; }
+
+.icon-magnifying-glass-minus-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -800px; }
+
+.icon-magnifying-glass-minus-for-button {
+  position: relative; }
+.icon-magnifying-glass-minus-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-comment-box {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -420px; }
+
+.icon-comment-box-medium, .icon-comment-box-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -630px; }
+
+.icon-comment-box-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -840px; }
+
+.icon-comment-box-for-button {
+  position: relative; }
+.icon-comment-box-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-happy-face {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -440px; }
+
+.icon-happy-face-medium, .icon-happy-face-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -660px; }
+
+.icon-happy-face-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -880px; }
+
+.icon-happy-face-for-button {
+  position: relative; }
+.icon-happy-face-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-sad-face {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -460px; }
+
+.icon-sad-face-medium, .icon-sad-face-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -690px; }
+
+.icon-sad-face-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -920px; }
+
+.icon-sad-face-for-button {
+  position: relative; }
+.icon-sad-face-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-copy {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -480px; }
+
+.icon-copy-medium, .icon-copy-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -720px; }
+
+.icon-copy-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -960px; }
+
+.icon-copy-for-button {
+  position: relative; }
+.icon-copy-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-twitter {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -500px; }
+
+.icon-twitter-medium, .icon-twitter-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -750px; }
+
+.icon-twitter-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -1000px; }
+
+.icon-twitter-for-button {
+  position: relative; }
+.icon-twitter-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-linked-in {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -520px; }
+
+.icon-linked-in-medium, .icon-linked-in-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -780px; }
+
+.icon-linked-in-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -1040px; }
+
+.icon-linked-in-for-button {
+  position: relative; }
+.icon-linked-in-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-facebook {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -540px; }
+
+.icon-facebook-medium, .icon-facebook-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -810px; }
+
+.icon-facebook-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -1080px; }
+
+.icon-facebook-for-button {
+  position: relative; }
+.icon-facebook-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-link {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -560px; }
+
+.icon-link-medium, .icon-link-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -840px; }
+
+.icon-link-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -1120px; }
+
+.icon-link-for-button {
+  position: relative; }
+.icon-link-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-docker-blocks {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -580px; }
+
+.icon-docker-blocks-medium, .icon-docker-blocks-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -870px; }
+
+.icon-docker-blocks-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -1160px; }
+
+.icon-docker-blocks-for-button {
+  position: relative; }
+.icon-docker-blocks-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-disks {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -600px; }
+
+.icon-disks-medium, .icon-disks-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -900px; }
+
+.icon-disks-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -1200px; }
+
+.icon-disks-for-button {
+  position: relative; }
+.icon-disks-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-speedometer {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -620px; }
+
+.icon-speedometer-medium, .icon-speedometer-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -930px; }
+
+.icon-speedometer-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -1240px; }
+
+.icon-speedometer-for-button {
+  position: relative; }
+.icon-speedometer-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-thin-arrow-down {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -640px; }
+
+.icon-thin-arrow-down-medium, .icon-thin-arrow-down-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -960px; }
+
+.icon-thin-arrow-down-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -1280px; }
+
+.icon-thin-arrow-down-for-button {
+  position: relative; }
+.icon-thin-arrow-down-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-thick-arrow-down {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -660px; }
+
+.icon-thick-arrow-down-medium, .icon-thick-arrow-down-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -990px; }
+
+.icon-thick-arrow-down-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -1320px; }
+
+.icon-thick-arrow-down-for-button {
+  position: relative; }
+.icon-thick-arrow-down-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-thin-arrow-left {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -680px; }
+
+.icon-thin-arrow-left-medium, .icon-thin-arrow-left-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -1020px; }
+
+.icon-thin-arrow-left-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -1360px; }
+
+.icon-thin-arrow-left-for-button {
+  position: relative; }
+.icon-thin-arrow-left-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-thick-arrow-left {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -700px; }
+
+.icon-thick-arrow-left-medium, .icon-thick-arrow-left-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -1050px; }
+
+.icon-thick-arrow-left-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -1400px; }
+
+.icon-thick-arrow-left-for-button {
+  position: relative; }
+.icon-thick-arrow-left-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-thin-arrow-up {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -720px; }
+
+.icon-thin-arrow-up-medium, .icon-thin-arrow-up-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -1080px; }
+
+.icon-thin-arrow-up-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -1440px; }
+
+.icon-thin-arrow-up-for-button {
+  position: relative; }
+.icon-thin-arrow-up-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-thick-arrow-up {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -740px; }
+
+.icon-thick-arrow-up-medium, .icon-thick-arrow-up-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -1110px; }
+
+.icon-thick-arrow-up-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -1480px; }
+
+.icon-thick-arrow-up-for-button {
+  position: relative; }
+.icon-thick-arrow-up-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }
+
+.icon-github {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  background-position: 0 -760px; }
+
+.icon-github-medium, .icon-github-for-button:after {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -1140px; }
+
+.icon-github-large {
+  background-image: url(/assets/images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  -webkit-background-size: 10px 1000px;
+  -o-background-size: 10px 1000px;
+  -moz-background-size: 10px 1000px;
+  background-size: 10px 1000px;
+  width: 20px;
+  height: 20px;
+  -webkit-background-size: 20px 2000px;
+  -o-background-size: 20px 2000px;
+  -moz-background-size: 20px 2000px;
+  background-size: 20px 2000px;
+  background-position: 0 -1520px; }
+
+.icon-github-for-button {
+  position: relative; }
+.icon-github-for-button:after {
+  background-image: url(/assets/images/icon_sprite_white.svg);
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: block;
+  height: 15px;
+  width: 15px; }

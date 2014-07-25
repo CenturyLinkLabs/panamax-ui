@@ -1,0 +1,54 @@
+h1 {
+  font-size: 2.5em;
+  font-weight: 200;
+  border-bottom: #CCC 1px solid;
+}
+
+h2 {
+  font-size: 1.3em;
+  font-weight: 800;
+}
+
+h3 {
+  font-size: 1.2em;
+  font-weight: 800;
+}
+
+h4 {
+  font-size: 1.2em;
+  font-weight: 400;
+}
+
+h5 {
+  font-size: 1.125em;
+  font-weight: 400;
+}
+
+h6 {
+  font-size: 0.929em;
+  font-weight: 400;
+}
+
+p {
+  font-size: 0.857em;
+  padding: 0 0 1em 0;
+  line-height: 1.7em;
+}
+
+a {
+  color: #186D95;
+  cursor: pointer;
+}
+
+strong {
+  font-weight: bold;
+}
+
+li {
+  font-size: 0.875em;
+}
+
+.microcopy {
+  color: #aaa;
+  font-style: italic;
+}

@@ -1,0 +1,880 @@
+html, body, h1, h2, h3, h4, h5, h6,
+p, pre, a, cite, img, small,
+dl, dt, dd, ol, ul, li,
+form, label, input,
+table, tbody, tfoot, thead, tr, th, td,
+header, footer, main, menu, nav, section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 100%;
+  color: #777;
+  min-width: 300px;
+  overflow-x: hidden;
+}
+
+.background {
+  display: none;
+}
+
+body.content .background {
+  opacity: .4;
+}
+
+/* Header and Nav*/
+header {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+header h1.panamax-logo {
+  background: #777;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+header h1.panamax-logo:hover {
+  background-color: #333;
+  transition: background-color 0.25s ease;
+}
+
+header h1.panamax-logo + button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+header h1.panamax-logo a {
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: 100%;
+  background: url('../images/pmx_logo.svg') no-repeat center center;
+  background-size: 148px 19px;
+  width: 190px;
+  display: block;
+  height: 52px;
+  margin: 0 auto;
+}
+
+header a.nav-toggle {
+  display: block;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-image: url(../images/icon_sprite_white.svg);
+  background-repeat: no-repeat;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 0 -420px;
+}
+
+header nav {
+  background: #8EC643;
+  width: 100%;
+  margin-bottom: 10px;
+  display: none
+}
+
+header nav ul li {
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+header nav ul li a {
+  color: #FFF;
+  text-decoration: none;
+  padding: 20px 0;
+  font-size: 12px;
+  letter-spacing: 2px;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+header nav ul li a:hover {
+  background-color: rgb(132, 188, 57);
+  transition: background-color 0.25s ease;
+}
+
+#social-icons {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 58px;
+  padding: 20px 10px 20px 0px;
+}
+
+#social-icons a {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
+
+#social-icons a.github {
+  background-image: url("../images/logo_github_grey.svg");
+  margin-right: 2px;
+}
+
+#social-icons a.twitter {
+  background-image: url("../images/logo_twitter_grey.svg");
+}
+
+cite.built-by {
+  display: block;
+  width: 195px;
+  overflow: hidden;
+  margin: 0 10px 0 auto;
+}
+
+cite.built-by span {
+  float: left;
+  line-height: 30px;
+  height: 30px;
+  margin-right: 10px;
+  font-size: 12px;
+  color: #AAA;
+}
+
+cite.built-by h2 {
+  border-bottom: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-indent: 100%;
+  float: left;
+  height: 30px;
+  width: 140px;
+  background: url('../images/ctl_logo_base.svg') no-repeat;
+  background-size: 140px 30px;
+  background-position: center left;
+}
+
+main {
+  width: 100%;
+  margin-top: 20px;
+}
+
+main > section {
+  padding: 20px;
+}
+
+#hero h1 {
+  border-bottom: none;
+  margin-bottom: 20px;
+}
+
+#hero h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #AAA;
+  border-bottom: none;
+  margin-bottom: 30px;
+}
+
+#hero button {
+  width: 100%;
+  margin-bottom: 15px;
+  display: block;
+}
+
+#about-panamax {
+
+}
+
+#about-panamax dl {
+
+}
+
+#about-panamax dl dt {
+  color: #ed6323;
+  font-weight: 200;
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+#about-panamax dl dd {
+  font-size: 16px;
+  line-height: 24px;
+  padding: 20px 0;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+#about-panamax dl dd:last-child {
+  border-bottom: none;
+}
+
+#get-panamax {
+  background-color: #274655;
+  padding: 20px;
+}
+
+#get-panamax h2 {
+  margin: 0 0 15px 0;
+  padding: 0;
+  border-bottom: none;
+  color: white;
+}
+
+#get-panamax button {
+  width: 100%;
+}
+
+#get-panamax button:hover {
+  background: #f1f1f1;
+  color: #5F7A87;
+}
+
+#how-it-works {
+  padding: 0;
+}
+
+#how-it-works h2 {
+  margin-left: 20px;
+  padding: 0;
+  border-bottom: none;
+}
+
+#how-it-works dl {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+#how-it-works dl dt {
+  padding: 20px 20px 0 50px;
+  position: relative;
+}
+
+#how-it-works dl dt:before {
+  display: block;
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-image: url(../images/icon_sprite.svg);
+  background-repeat: no-repeat;
+  width: 15px;
+  height: 15px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  }
+
+#how-it-works dl dt.install:before {
+  background-position: 0 -270px;
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+  top: 23px;
+}
+
+#how-it-works dl dt.build:before {
+  background-position: 0 -210px;
+}
+
+#how-it-works dl dt.manage:before {
+  background-position: 0 -90px;
+}
+
+#how-it-works dl dt.active:before {
+  background-image: url(../images/icon_sprite_white.svg);
+}
+
+#how-it-works dl dd {
+  /*display: none;*/
+  padding: 20px 20px;
+  line-height: 1.4em;
+}
+
+#how-it-works dl dt.active,
+#how-it-works dl dt.active + dd {
+  display: block;
+  background-color: #5F7A87;
+  color: white;
+}
+
+#get-panamax .inner {
+  margin: 0 auto;
+  max-width: 960px;
+}
+
+
+.section-summary {
+  border-bottom: 1px solid #f1f1f1;
+  margin-bottom: 30px;
+}
+
+.section-summary p {
+  font-size: 24px;
+  line-height: 38px;
+  padding: 0px 0px 0px 20px;
+  margin-bottom: 30px;
+  color: #AAA;
+  border-left: 10px solid #E41741;
+}
+
+.section-summary a {
+  color: #777;
+  text-decoration: none;
+}
+
+.section-summary a:hover {
+  color: #AAA;
+  border-bottom: 1px solid #CCC;
+}
+
+/* FOOTER */
+footer {
+  padding: 20px;
+  overflow: hidden;
+  background: #f1f1f1;
+}
+
+#footer-info {
+  margin-bottom: 35px;
+}
+
+#footer-info img {
+  width: 20px;
+  height: 20px;
+  margin-bottom: -5px;
+}
+
+#footer-info p {
+  margin-bottom: 20px;
+}
+
+#footer-info li {
+  display: block;
+  margin: 10px 10px 10px 0px;
+}
+#footer-info li a {
+  text-decoration: none;
+}
+
+#footer-info li a:hover {
+  text-decoration: underline;
+}
+
+#email-newsletter .button-secondary {
+  color: #FFF;
+  background-color: #777;
+  font-size: inherit;
+  padding: 10px;
+}
+
+#email-newsletter .button-secondary:hover {
+  background-color: #AAA;
+}
+
+#email-newsletter input {
+  width: 100%;
+}
+#email-newsletter input[type='text'] {
+  border-radius: 3px;
+  text-align: left;
+  border: 1px solid #aaa;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.copyright #logo {
+  height: 70px;
+  background: url('../images/ctl_logo_base.svg') 20px 20px no-repeat #FFF;
+  background-size: 140px 30px;
+}
+
+.copyright small {
+  margin-left: 20px;
+  font-size: 12px;
+}
+
+hr {
+  border: 4px solid #f1f1f1;
+  margin-bottom: 20px;
+}
+
+/*BUTTONS + ANCHORS*/
+
+.button-primary,
+.button-secondary,
+.button-positive {
+  display: inline-block;
+  border-radius: 3px;
+  border: 0;
+  padding: 20px 40px 20px;
+  font-family: "Helvetica Neue";
+  font-size: 18px;
+  font-weight: 100;
+  letter-spacing: 1px;
+  text-align: center;
+  cursor: pointer;
+}
+  .button-primary:hover,
+  .button-secondary:hover {
+    transition: background-color 0.25s ease;
+  }
+  .button-primary:focus,
+  .button-secondary:focus {
+    outline: none;
+  }
+
+.button-primary {
+  background: #5F7A87;
+  color: #FFF;
+}
+  .button-primary:hover {
+    background: #81b838;
+  }
+
+.button-secondary {
+  color: #229fe5;
+  background: #f1f1f1;
+}
+  .button-secondary:hover {
+    background: #AAA;
+    color: #FFF;
+  }
+
+.button-positive {
+  background: #ed6323;
+  color: #FFF;
+}
+
+  .button-positive:hover {
+    background: #e45513;
+  }
+
+  p a:hover {
+    color: #229fe5;
+  }
+
+/*SPECIAL TYPOGRAPHY*/
+p {
+  font-size: 16px;
+  line-height: 36px;
+}
+
+h2 {
+  color: #5F7A87;
+  font-size: 36px;
+  font-weight: 200;
+  border-bottom: 1px solid #CCC;
+  padding-bottom: 30px;
+  margin: 20px 0px;
+}
+
+h3 {
+  font-size: 24px;
+  color: #ed6323;
+  border-bottom: 1px solid #CCC;
+  padding-bottom: 20px;
+  margin: 20px 0px;
+}
+
+blockquote {
+  color: #1B6C94;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: bold;
+  font-style: italic;
+  margin: 0px 0px 20px 0px;
+  padding-left: 60px;
+}
+
+pre {
+  border: 1px solid #CCC;
+  background: #f1f1f1;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+  pre code {
+    word-wrap: break-word;
+  }
+
+/*FORMS*/
+
+input {
+  padding: 10px;
+  font-size: 13px;
+  border: 1px solid #AAA;
+  color: #AAA;
+}
+
+.content-area ul,
+.content-area ol {
+  margin-bottom: 30px;
+}
+
+  .content-area li {
+    margin-bottom: 10px;
+  }
+  .content-area ul li {
+    list-style: disc;
+    list-style-position: inside;
+  }
+  .content-area ol li {
+    list-style: decimal;
+    list-style-position: inside;
+  }
+.content-area img {
+  background: #f1f1f1;
+  border: 1px solid #CCC;
+  padding: 10px;
+}
+
+
+.two-column {
+  width: 420px;
+  float: left;
+  margin-right: 15px;
+}
+  .two-column:last-child {
+    margin-right: 0px;
+  }
+.three-column {
+  width: 310px;
+  float: left;
+  margin-right: 15px;
+}
+  .three-column:last-child {
+    margin-right: 0px;
+  }
+.four-column {
+
+}
+
+/*BLOG ENTRIES*/
+
+.post-metadata {
+  text-align: right;
+}
+  .post-metadata p {
+    color: #AAA;
+  }
+    .post-metadata a {
+      color: #777;
+      text-decoration: none;
+    }
+      .post-metadata a:hover {
+        color: #AAA;
+        text-decoration: underline;
+      }
+
+.post-tags {
+  width: 140px;
+  float: left;
+}
+  .post-tags li {
+    margin-bottom: 5px;
+  }
+    .post-tags a {
+      color: #AAA;
+      text-decoration: none;
+    }
+      .post-tags a:hover {
+        color: #777;
+      }
+
+.post-comments {
+  margin: 30px 0px 0px 0px;
+}
+  .post-comments ul {
+    border-bottom: 2px solid #f1f1f1;
+    padding: 0px 0px 20px 0px;
+  }
+    .post-comments ul li {
+      display: inline;
+      list-style: none;
+      margin-right: 10px;
+    }
+      .post-comments ul li a {
+        text-decoration: none;
+        color: #AAA;
+        font-weight: bold;
+        font-size: 16px;
+        padding-bottom: 19px;
+      }
+        .post-comments ul li a:hover {
+          color: #777;
+        }
+        .post-comments .comment-active {
+          border-bottom: 2px solid #777;
+          color: #E4173F;
+        }
+      .post-comments .button-secondary {
+        color: #FFF;
+        background-color: #777;
+        font-size: inherit;
+        padding: 10px 40px 10px;
+      }
+        .post-comments .button-secondary:hover {
+          background-color: #AAA;
+        }
+      .comment-form {
+        border-radius: 3px;
+        text-align: left;
+        border: 1px solid #aaa;
+        width: 60%;
+        padding: 10px 20px;
+      }
+      .post-comments-list {
+
+      }
+        .post-comment {
+          border-bottom: 1px solid #f1f1f1;
+          clear: both;
+          padding: 20px 0px 10px 0px;
+        }
+          .post-comment:last-child {
+            border-bottom: none;
+          }
+          .comment-avatar {
+            padding: 0px !important;
+            border: none !important;
+          }
+          .comment-name {
+            font-weight: bold;
+            color: #222;
+            float: left;
+            margin-right: 10px;
+          }
+          .comment-date {
+            color: #AAA;
+          }
+          .comment-content {
+            margin-left: 80px;
+          }
+
+#download-panamax,
+#install-panamax,
+#run-panamax {
+  text-align: center;
+  padding: 20px 0px;
+  height: 180px;
+}
+
+#download-panamax,
+#install-panamax {
+  background: #f1f1f1;
+}
+
+#run-panamax {
+  background: yellow;
+}
+
+/*-----------------------------------------------------------------------------------------------------MEDIA QUERIES--*/
+
+@media all and (max-width: 768px) {
+  #social-icons,
+  #footer-info li.github,
+  #footer-info li.twitter {
+    display: none;
+  }
+
+}
+
+@media all and (min-width: 769px) {
+
+  .background {
+    display: block;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    width: 100%;
+    opacity: .75;
+  }
+  
+  /* HEADER */
+
+  header {
+    overflow: hidden;
+    background: #8EC643;
+    margin-bottom: 10px;
+  }
+
+  header h1.panamax-logo{
+    padding: 0;
+    float: left;
+  }
+
+  header nav {
+    display: block;
+    width: 100%;
+    padding-left: 190px;
+    margin-bottom: 0;
+  }
+
+  header nav ul li {
+    display: inline-block;
+  }
+
+  header nav ul li a {
+    padding: 20px;
+  }
+
+  header nav ul li.twitter,
+  header nav ul li.github {
+    display: none;
+  }
+
+  header a.nav-toggle {
+    display: none;
+  }
+
+  #social-icons {
+    padding: 0;
+    top: 16px;
+  }
+
+  #social-icons a.github {
+    background-image: url("../images/logo_github_white.svg");
+    margin-right: 2px;
+  }
+
+  #social-icons a.twitter {
+    background-image: url("../images/logo_twitter_white.svg");
+  }
+
+  /* HERO */
+
+  #hero {
+    padding-left: 240px;
+    margin: 75px 0;
+  }
+
+  #hero button {
+    width: 45%;
+    display: inline-block;
+  }
+
+  #hero button:first-of-type {
+    margin-right: 10px;
+  }
+
+  /* MAIN INFO SECTIONS */
+
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  main > section {
+    margin-bottom: 20px;
+  }
+  main > section:last-of-type {
+    margin-bottom: 0;
+  }
+
+  #about-panamax dl dt {
+    float: left;
+    width: 15%;
+  }
+
+  #about-panamax dl dd {
+    padding-left: 20%;
+  }
+
+  /* FOOTER */
+
+  #footer-info {
+    margin-bottom: 0;
+    width: 55%;
+    float: left;
+  }
+
+  #footer-info li {
+    display: inline-block;
+  }
+
+  #footer-info li.twitter {
+    padding-right: 15px;
+    border-right: 1px solid #AAA;
+  }
+
+  #email-newsletter {
+    width: 40%;
+    float: right;
+  }
+  
+  .copyright #logo {
+    width: 190px;
+    display: inline-block;
+  }
+
+  .copyright small {
+    margin-left: 0;
+    vertical-align: 30px;
+  }
+}
+
+@media all and (min-width: 481px) and (max-width: 960px) {
+  header nav ul li a {
+    padding: 20px 8px;
+    letter-spacing: 1px;
+  }
+  #social-icons {
+    width: 53px;
+  }
+}
+
+@media all and (min-width: 481px) {
+  #get-panamax h2 {
+    display: inline-block;
+    margin-bottom: 0;
+    position: relative;
+    top: 5px;
+  }
+
+  #get-panamax button {
+    width: 45%;
+    max-width: 400px;
+    margin-left: 3%;
+  }
+
+  #email-newsletter input[type='text'] {
+    width: 60%;
+    float: left;
+  }
+
+  #email-newsletter input[type='submit'] {
+    width: 35%;
+    float: right;
+  }
+
+}
+
+@media all and (min-width: 481px) and (max-width: 768px) {
+  #hero button {
+    width: 48%;
+    display: inline-block;
+  }
+
+  #hero button:first-of-type {
+    margin-right: 2%;
+  }
+}
