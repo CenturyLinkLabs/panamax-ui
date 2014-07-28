@@ -129,6 +129,19 @@ describe Service do
 
   end
 
+  describe '#running?' do
+    it 'is true when sub state is running' do
+      subject.sub_state = 'running'
+      expect(subject.running?).to be_true
+    end
+
+    it 'is false when sub state is something else' do
+      subject.sub_state = 'somethingelse'
+      expect(subject.running?).to be_false
+    end
+
+  end
+
   describe '.build_from_response' do
     it 'instantiates itself with the parsed json attributes' do
       result = described_class.build_from_response(fake_json_response)
