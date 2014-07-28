@@ -405,6 +405,9 @@
       base.options = $.extend({}, base.defaultOptions, options);
       base.$el = $(base.options.newCategoryTemplate({}));
       base.bindEvents();
+    };
+
+    base.editFocus = function() {
       (new $.PMX.ContentEditable(base.$el.find('span.title'),{
         identifier: $.PMX.Helpers.guid(),
         onRevert: base.handleRevert,
@@ -483,7 +486,10 @@
     };
 
     base.handleAddCategory = function(e) {
-      base.$el.before((new $.PMX.NewCategoryPanel()).hydrate());
+      var newCategoryPanel = new $.PMX.NewCategoryPanel();
+
+      base.$el.before(newCategoryPanel.hydrate());
+      newCategoryPanel.editFocus();
     };
   };
 
