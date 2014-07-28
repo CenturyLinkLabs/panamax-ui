@@ -10,19 +10,21 @@ shared_examples 'an image' do
     end
   end
 
-  describe '#recommended_class' do
-    it 'is not-recommended' do
-      expect(subject.recommended_class).to eq 'not-recommended'
+  describe '#official?' do
+    it 'is a proxy to is_official' do
+      subject.is_trusted = true
+      expect(subject.trusted?).to eq true
+      subject.is_trusted = false
+      expect(subject.trusted?).to eq false
     end
+  end
 
-    context 'when recommended' do
-      before do
-        subject.recommended = true
-      end
-
-      it 'is recommended' do
-        expect(subject.recommended_class).to eq 'recommended'
-      end
+  describe '#trusted?' do
+    it 'is a proxy to is_trusted' do
+      subject.is_trusted = true
+      expect(subject.trusted?).to eq true
+      subject.is_trusted = false
+      expect(subject.trusted?).to eq false
     end
   end
 
@@ -37,14 +39,14 @@ shared_examples 'an image' do
       end
     end
 
-    context 'when both trusted and recommended are set' do
+    context 'when both trusted and official are set' do
       before do
         subject.is_trusted = true
-        subject.recommended = true
+        subject.is_official = true
       end
 
-      it 'is recommended if both the trusted and recommended flags are set' do
-        expect(subject.status_label).to eql 'Recommended'
+      it 'is official if both the trusted and official flags are set' do
+        expect(subject.status_label).to eql 'Official'
       end
     end
   end

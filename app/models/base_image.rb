@@ -7,7 +7,7 @@ class BaseImage < BaseResource
     string :source
     string :star_count
     string :location
-    boolean :recommended
+    boolean :is_official
   end
 
   def self.source(repository, tag=nil)
@@ -15,9 +15,9 @@ class BaseImage < BaseResource
   end
 
   def status_label
-    if recommended
-      'Recommended'
-    elsif is_trusted
+    if official?
+      'Official'
+    elsif trusted?
       'Trusted'
     elsif local?
       'Local'
@@ -28,10 +28,6 @@ class BaseImage < BaseResource
 
   def badge_class
     status_label.downcase
-  end
-
-  def recommended_class
-    recommended ? 'recommended' : 'not-recommended'
   end
 
   def docker_index_url
@@ -50,10 +46,17 @@ class BaseImage < BaseResource
       .merge(
         'status_label' => status_label,
         'short_description' => short_description,
-        'recommended_class' => recommended_class,
         'docker_index_url' => docker_index_url,
         'badge_class' => badge_class
       )
+  end
+
+  def official?
+    is_official
+  end
+
+  def trusted?
+    is_trusted
   end
 
   def local?

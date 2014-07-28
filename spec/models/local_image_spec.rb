@@ -10,8 +10,8 @@ describe LocalImage do
       'source' => 'boom/shaka',
       'description' => 'this thing goes boom shaka laka',
       'star_count' => 127,
-      'recommended' => false,
-      'is_trusted' => false
+      'is_trusted' => false,
+      'is_official' => false
     }
   end
 
@@ -41,7 +41,6 @@ describe LocalImage do
         'short_description' => 'this thing goes boom shaka laka',
         'status_label' => 'Local',
         'badge_class' => 'local',
-        'recommended_class' => 'not-recommended',
         'docker_index_url' => nil
       )
       expect(subject.as_json).to eq expected

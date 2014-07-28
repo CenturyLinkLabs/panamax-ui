@@ -38,10 +38,6 @@ describe Template do
     it { should respond_to :image_count }
   end
 
-  describe '#recommended' do
-    it { should respond_to :recommended }
-  end
-
   describe '#icon_src' do
     it { should respond_to :icon_src }
   end
@@ -121,7 +117,6 @@ describe Template do
         'short_description' => 'this thing goes boom shaka laka',
         'last_updated_on' => 'January 13th, 2012 00:00',
         'image_count_label' => 'Images',
-        'recommended_class' => 'not-recommended',
         'icon_src' => '/assets/type_icons/wordpress.svg'
       )
       expect(subject.as_json).to eq expected

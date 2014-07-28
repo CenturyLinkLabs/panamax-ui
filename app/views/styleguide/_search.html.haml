@@ -22,7 +22,6 @@
     status_label: 'Repository',
     short_description: 'This is a short description it should be truncated at 165 characters in the real implementation',
     star_count: 72,
-    recommended_class: 'not-recommended'
   })
 = render '/search/image_row', {presenter: dummy_image_presenter, load_tags_search_path: nil}
 
@@ -34,7 +33,6 @@
     status_label: 'Repository',
     short_description: 'This is a short description it should be truncated at 165 characters in the real implementation',
     star_count: 72,
-    recommended_class: 'not-recommended',
     docker_index_url: '/docker.io/foo'
   })
 = render '/search/image_row', {presenter: dummy_image_presenter, remote: true, load_tags_search_path: nil}
@@ -48,7 +46,6 @@
     image_count: 4,
     image_count_label: 'Images',
     last_updated_on: '4/14/2013 at 12:43',
-    recommended_class: 'recommended',
     icon_src: image_path('type_icons/default.svg')
   })
 = render '/search/template_row', {presenter: fake_template_presenter}

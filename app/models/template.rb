@@ -15,7 +15,6 @@ class Template < BaseResource
     string :documentation
     integer :app_id
     integer :image_count
-    boolean :recommended
     string :icon_src
     string :type
   end
@@ -30,10 +29,6 @@ class Template < BaseResource
 
   def image_count_label
     'Image'.pluralize(image_count)
-  end
-
-  def recommended_class
-    recommended ? 'recommended' : 'not-recommended'
   end
 
   def icon_src
@@ -51,7 +46,6 @@ class Template < BaseResource
         'short_description' => short_description,
         'last_updated_on' => last_updated_on,
         'image_count_label' => image_count_label,
-        'recommended_class' => recommended_class,
         'icon_src' => icon_src
       )
   end

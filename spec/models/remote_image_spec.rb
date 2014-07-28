@@ -10,8 +10,8 @@ describe RemoteImage do
       'source' => 'boom/shaka',
       'description' => 'this thing goes boom shaka laka',
       'star_count' => 127,
-      'recommended' => false,
-      'is_trusted' => false
+      'is_trusted' => false,
+      'is_official' => false
     }
   end
 
@@ -54,7 +54,6 @@ describe RemoteImage do
         'short_description' => 'this thing goes boom shaka laka',
         'status_label' => 'Repository',
         'badge_class' => 'repository',
-        'recommended_class' => 'not-recommended',
         'docker_index_url' => "#{DOCKER_INDEX_BASE_URL}u/boom/shaka"
       )
       expect(subject.as_json).to eq expected
