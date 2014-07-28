@@ -14,6 +14,6 @@
           %ul
             - @app.services.each do |service|
               - if service.has_empty_env_values?
-                %li= service.name
+                %li= link_to service.name, app_service_path(@app.id, service.id)
         #post-run-html
           = @app.documentation_to_html.html_safe
