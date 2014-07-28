@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1>
     <title>Panamax</title>
     <link href="assets/stylesheets/typography.css" media="all" rel="stylesheet" />
     <link href="assets/stylesheets/main.css" media="all" rel="stylesheet" />
     <link href="http://www.centurylinklabs.com/images/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
   </head>
   <body id="home">
+    <div class="cache-warmer">
+      <img src="assets/images/how_install.jpg">
+      <img src="assets/images/how_build.jpg">
+      <img src="assets/images/how_manage.jpg">
+    </div>
     <header>
       <h1 class='panamax-logo'>
         <a href="content.html" title="Home">Panamax</a>
@@ -56,21 +62,21 @@
         </dl>
       </section>
     </main>
-    <section id="how-it-works">
-      <div class="background"><img src="http://placekitten.com/g/1400/459"/></div>
+    <section id="how-it-works" class="install">
+      <div class="background"></div>
       <div class="inner">
         <h2>How It Works</h2>
         <ul>
-          <li class="install active">
-            <h3>Install</h3>
+          <li class="active">
+            <h3 id="install">Install</h3>
             <p>Download and run the Panamax Installer in your (OSX or Ubuntu) environment. From there you will install your Docker Host (CoreOS) along with Panamax.</p>
           </li>
-          <li class="build">
-            <h3>Build</h3>
+          <li>
+            <h3 id="build">Build</h3>
             <p>This is where the magic happens. Start building your application using pre-configured application templates or images from the Docker Index.</p>
           </li>
-          <li class="manage">
-            <h3>Manage</h3>
+          <li>
+            <h3 id="manage">Manage</h3>
             <p>As you construct your application, you can configure links, ports and environment variables, as well as organize your application services into categories.</p>
           </li>
         </ul>
@@ -84,24 +90,27 @@
     </section>
 
     <footer>
-      <div id="footer-info">
-      <p>Panamax is an open-source product from CenturyLink Labs. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales metus gravida tortor adipiscing vehicula. </p>
-      <ul>
-        <li><a href="#">CenturyLink Labs Blog</a></li>
-        <li class="github"><a href="http://github.com" target="_blank" title="Fork Us on GitHub"><img src="assets/images/logo_github_grey.svg" alt="GitHub" id="logo-github"/></a></li>
-        <li class="twitter"><a href="http://twitter.com" target="_blank" title="Follow Us on Twitter"><img src="assets/images/logo_twitter_grey.svg" alt="Twitter" id="logo-twitter"/></a></li>
-        <li><a href="#">Terms &amp; Conditions</a></li>
-        <li><a href="#">Privacy Policy</a></li>
-      </ul>
-      </div>
-      <div id="newsletter">
-        <h4>Sign Up for Our Newsletter</h4>
-        <p>Get all the latest news, tips &amp; tricks for Panamax, Docker, etc.</p>
-        <form name="input" action="#" method="post">
-          <input type="text" name="user" placeholder="Email Address">
-          <input type="submit" value="Submit" class="button-secondary">
-        </form>
-      </div>
+      <div class="inner">
+
+        <div id="footer-info">
+        <p>Panamax is an open-source product from CenturyLink Labs. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales metus gravida tortor adipiscing vehicula. </p>
+        <ul>
+          <li><a href="#">CenturyLink Labs Blog</a></li>
+          <li class="github"><a href="http://github.com" target="_blank" title="Fork Us on GitHub"><img src="assets/images/logo_github_grey.svg" alt="GitHub" id="logo-github"/></a></li>
+          <li class="twitter"><a href="http://twitter.com" target="_blank" title="Follow Us on Twitter"><img src="assets/images/logo_twitter_grey.svg" alt="Twitter" id="logo-twitter"/></a></li>
+          <li><a href="#">Terms &amp; Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+        </div>
+        <div id="newsletter">
+          <h4>Sign Up for Our Newsletter</h4>
+          <p>Get all the latest news, tips &amp; tricks for Panamax, Docker, etc.</p>
+          <form name="input" action="#" method="post">
+            <input type="text" name="user" placeholder="Email Address">
+            <input type="submit" value="Submit" class="button-secondary">
+          </form>
+        </div>
+       </div>
     </footer>
     <section class="copyright">
       <div id="logo"></div>

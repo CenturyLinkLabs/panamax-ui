@@ -30,7 +30,7 @@ body {
   min-width: 300px;
   overflow-x: hidden;
 }
-
+.cache-warmer,
 .background {
   display: none;
 }
@@ -72,7 +72,7 @@ header h1.panamax-logo a {
   background-size: 148px 19px;
   width: 190px;
   display: block;
-  height: 52px;
+  height: 54px;
   margin: 0 auto;
 }
 
@@ -202,14 +202,6 @@ main > section {
   display: block;
 }
 
-#about-panamax {
-
-}
-
-#about-panamax dl {
-
-}
-
 #about-panamax dl dt {
   color: #ed6323;
   font-weight: 200;
@@ -261,7 +253,6 @@ main > section {
 
 #how-it-works ul {
   font-weight: bold;
-  margin-bottom: 20px;
 }
 
 #how-it-works li {
@@ -275,6 +266,7 @@ main > section {
   border-bottom: none;
   font-size: 16px;
   color: #5F7A87;
+  cursor: pointer;
 }
 
 #how-it-works li p {
@@ -317,26 +309,25 @@ main > section {
   background-image: url(../images/icon_sprite_white.svg);
 }
 
-#how-it-works li.install h3:before {
+#how-it-works li h3#install:before {
   background-position: 0 -270px;
   -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
   top: 25px;
 }
 
-#how-it-works li.build h3:before {
+#how-it-works li h3#build:before {
   background-position: 0 -210px;
 }
 
-#how-it-works li.manage h3:before {
+#how-it-works li h3#manage:before {
   background-position: 0 -90px;
 }
 
-#get-panamax .inner {
+.inner {
   margin: 0 auto;
   max-width: 960px;
 }
-
 
 .section-summary {
   border-bottom: 1px solid #f1f1f1;
@@ -409,12 +400,17 @@ footer {
 #newsletter input {
   width: 100%;
 }
+
 #newsletter input[type='text'] {
   border-radius: 3px;
   text-align: left;
   border: 1px solid #aaa;
   padding: 10px;
   margin-bottom: 15px;
+}
+
+.copyright {
+  padding-bottom: 20px;
 }
 
 .copyright #logo {
@@ -672,6 +668,7 @@ input {
   #how-it-works {
     position: relative;
     height: 400px;
+    margin-top: 40px;
   }
 
   #how-it-works .inner {
@@ -685,14 +682,29 @@ input {
     display: inline-block;
     width: 27%;
   }
-  
+
   #how-it-works > .background {
     position: absolute;
     top: 59px;
+    width: 100%;
+    height: 342px;
+    background-size: 100% auto;
+    transition: background-image .5s ease;
   }
 
-  #how-it-works > .background img {
-    width: 100%;
+  #how-it-works.install > .background {
+    background-image: url('../images/how_install.jpg');
+
+  }
+
+  #how-it-works.build > .background {
+    background-image: url('../images/how_build.jpg');
+
+  }
+
+  #how-it-works.manage > .background {
+    background-image: url('../images/how_manage.jpg');
+
   }
 
   #how-it-works ul {
@@ -729,7 +741,11 @@ input {
     width: 40%;
     float: right;
   }
-  
+
+  .copyright {
+    padding-bottom: 0;
+  }
+
   .copyright #logo {
     width: 190px;
     display: inline-block;
