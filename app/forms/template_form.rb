@@ -20,7 +20,7 @@ class TemplateForm
 
   def documentation
     doc = @documentation || @app.try(:documentation)
-    doc.gsub(/\r/, '') if doc
+    doc.gsub(/\r/, '').gsub(/\s*(?=\n)/, '') if doc
   end
 
   def save

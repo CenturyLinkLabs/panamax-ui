@@ -76,6 +76,17 @@ describe TemplateForm do
       end
 
     end
+
+    context 'when the documentation cointains whitespace preceding a newline' do
+
+      before do
+        subject.documentation = "line1  \nline2 \r\nline3"
+      end
+
+      it 'strips out the whitespace' do
+        expect(subject.documentation).to eq "line1\nline2\nline3"
+      end
+    end
   end
 
   describe '#author' do
