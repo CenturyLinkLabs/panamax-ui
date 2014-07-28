@@ -49,7 +49,11 @@ describe TemplateForm do
   end
 
   describe '#documentation' do
-    it 'returns documentaton if set' do
+    before do
+      subject.stub(:default_documentation).and_return('## default markdown ##')
+    end
+
+    it 'returns documentation if set' do
       expect(subject.documentation).to eq '##some markdown##'
     end
 
@@ -59,10 +63,10 @@ describe TemplateForm do
       expect(subject.documentation).to eq 'app doc'
     end
 
-    it 'returns nil if neither are set' do
+    it 'returns the default documentation if neither are set' do
       subject.documentation = nil
       subject.app = nil
-      expect(subject.documentation).to be_nil
+      expect(subject.documentation).to eq '## default markdown ##'
     end
 
     context 'when the documentation contains carriage returns' do

@@ -20,6 +20,7 @@ class TemplateForm
 
   def documentation
     doc = @documentation || @app.try(:documentation)
+    doc = default_documentation if doc.blank?
     doc.gsub(/\r/, '').gsub(/\s*(?=\n)/, '') if doc
   end
 
@@ -55,4 +56,7 @@ class TemplateForm
     template.post(:save, body)
   end
 
+  def default_documentation
+    I18n.t('boilerplate_template_documentation')
+  end
 end
