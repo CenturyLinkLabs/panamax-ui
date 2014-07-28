@@ -8,8 +8,8 @@ $(document).ready(function() {
     var sectionName = e.target.id;
 
     $('#how-it-works li').removeClass('active');
-    $(this).parent().toggleClass('active');
-    $('#how-it-works').attr("class", sectionName);
-
+    $('#how-it-works').attr("class", sectionName).find('p').slideUp();
+    $(this).next().slideDown();
+    $(this).parent().addClass('active');
   });
 });
