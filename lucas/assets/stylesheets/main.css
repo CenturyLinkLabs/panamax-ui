@@ -80,24 +80,33 @@ header a#nav-toggle,
 .sidr-inner a#sidr-id-nav-close{
   display: block;
   position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 54px;
+  height: 54px;
+  cursor: pointer;
+}
+
+header a#nav-toggle:after,
+.sidr-inner a#sidr-id-nav-close:after {
+  content: '';
+  display: block;
+  position : absolute;
   top: 20px;
   right: 20px;
+  height: 15px;
+  width: 15px;
   background-image: url(../images/icon_sprite_white.svg);
   background-repeat: no-repeat;
-  width: 15px;
-  height: 15px;
-  -webkit-background-size: 15px 1500px;
-  -o-background-size: 15px 1500px;
-  -moz-background-size: 15px 1500px;
   background-size: 15px 1500px;
 }
 
-header a#nav-toggle {
+
+header a#nav-toggle:after {
   background-position: 0 -420px;
 }
 
-.sidr-inner a#sidr-id-nav-close {
-  padding: 0;
+.sidr-inner a#sidr-id-nav-close:after {
   background-position: 0 -60px;
 }
 
