@@ -34,7 +34,14 @@
       data: {'loaded' => false}
 %script#no_results_row_template{type: 'text/x-handlebars-template'}
   %p sorry, nothin here
-
+%script#source_blurb_row_template{type: 'text/x-handlebars-template'}
+  .search-result-item.source-repo-blurb
+    .badge
+    .basic-info
+      %p
+        %strong This is some information about how users can create their own templates.
+    .link-actions
+      = link_to 'Learn more about Panamax Templates', '#'
 
 .filterable-list
   %form.search-form{action: '/search'}

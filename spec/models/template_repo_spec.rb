@@ -14,8 +14,30 @@ describe TemplateRepo do
     end
 
     it 'does not add repo if repo already exists' do
-      expect(TemplateRepo).to_not receive(:create).with(name: 'user/publicrepo')
-      described_class.find_or_create_by_name('user/publicrepo')
+      expect(TemplateRepo).to_not receive(:create).with(name: 'ctllabs/canonical')
+      described_class.find_or_create_by_name('ctllabs/canonical')
+    end
+  end
+
+  describe '.has_user_sources?' do
+    context 'when template sources repo has an user repo' do
+      before do
+        TemplateRepo.stub_chain(:all, :count).and_return(2)
+      end
+
+      it 'returns true' do
+        expect(TemplateRepo.has_user_sources?).to be_true
+      end
+    end
+
+    context 'when template sources repo does not have an user repo' do
+      before do
+        TemplateRepo.stub_chain(:all, :count).and_return(1)
+      end
+
+      it 'returns false if ' do
+        expect(TemplateRepo.has_user_sources?).to be_false
+      end
     end
   end
 

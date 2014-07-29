@@ -24,6 +24,12 @@ describe 'searching for templates and images' do
       expect(page).to have_content 'More Details'
       expect(page).to have_css '.image-count', text: '2 Images'
       expect(page).to have_css 'img[src="/assets/type_icons/wordpress.svg"]'
+
+      # source template repo blurb
+      expect(page).to have_css '.source-repo-blurb'
+      expect(page).to have_content 'Did you know you can create your own custom templates to use within Panamax?'
+      expect(page.find_link('Learn more')['href']).to eq 'https://github.com/CenturyLinkLabs/panamax-ui/wiki/How-To:-Make-a-Template'
     end
+
   end
 end
