@@ -1,5 +1,6 @@
 describe('$.fn.serviceActions', function () {
-  var serviceEventCalled = true;
+  var serviceEventCalled = true,
+      disableSorting = false;
 
   beforeEach(function () {
     fixture.load('manage-service.html');
@@ -7,7 +8,83 @@ describe('$.fn.serviceActions', function () {
     $('ul.services').on('category-change', function() {
       serviceEventCalled = true;
     });
+    $(document).on('disable-sorting', function() {
+      disableSorting = true;
+    });
+    $(document).on('enable-sorting', function() {
+      disableSorting = false;
+    });
     jasmine.Ajax.useMock();
+  });
+
+  describe('clicking edit service', function() {
+    it('prevents default behavior', function() {
+      var clickEvent = $.Event('click');
+      $('ul.services li:first-child .actions .edit-action').trigger(clickEvent);
+      expect(clickEvent.isDefaultPrevented()).toBeTruthy();
+    });
+
+    it('initializes content editable', function() {
+      var clickEvent = $.Event('click');
+
+      $('.edit-action').trigger(clickEvent);
+      expect($('.content-editable').length).toEqual(1);
+    });
+
+    it('disables sorting', function() {
+      var clickEvent = $.Event('click');
+
+      $('.edit-action').trigger(clickEvent);
+      expect(disableSorting).toBeTruthy();
+    });
+
+    it('hides the Extras', function() {
+      var clickEvent = $.Event('click');
+
+      $('.edit-action').trigger(clickEvent);
+      expect($('.service-icon').first().css('display')).toBe('none');
+    });
+
+    describe('on edit', function() {
+      it('submits PUT request to proper url', function() {
+        var subject = new $.PMX.EditService($('ul.services li').first());
+        subject.init();
+        subject.completeEdit({text: 'New Name'});
+
+        var request = mostRecentAjaxRequest();
+        request.response({
+          status: 200,
+          responseText: '{id: 1}'
+        });
+
+        expect(request.url).toBe('/apps/1/services/1');
+        expect(request.method).toBe('PUT');
+      });
+
+      it('enables sorting', function() {
+        var subject = new $.PMX.EditService($('ul.services li').first());
+        disableSorting = true;
+
+        subject.init();
+        subject.showExtras();
+
+        expect(disableSorting).toBeFalsy();
+      });
+
+      it('shows the Extras', function() {
+        var subject = new $.PMX.EditService($('ul.services li').first());
+        subject.init();
+        subject.completeEdit({text: 'New Name'});
+
+        var request = mostRecentAjaxRequest();
+        request.response({
+          status: 200,
+          responseText: '{id: 1}'
+        });
+
+        expect($('.service-icon').first().css('display')).toBe('block');
+      });
+    });
   });
 
   describe('clicking remove service', function() {

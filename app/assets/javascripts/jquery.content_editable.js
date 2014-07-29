@@ -1,8 +1,8 @@
 (function($) {
-  $.PMX.ContentEditable = function(el, options) {
+  $.PMX.ContentEditable = function($el, options) {
     var base = this;
 
-    base.$el = $(el);
+    base.$el = $el;
 
     base.defaultOptions = {
       confirmSelector: '.checkmark'
@@ -44,7 +44,6 @@
       $(editable).appendTo($content);
       $(checkmark).appendTo($content);
       base.selectionRange($content);
-      $content.find('.edit-field').focus();
       base.bindEvents($content);
     };
 
