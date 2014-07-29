@@ -1,10 +1,9 @@
-%li{ data: { id: presenter.id } }
+%li{ data: { id: presenter.id }, class: presenter.status }
   .service-icon
     %img{src: presenter.icon}
   = link_to presenter.name,
             presenter.service_url,
-            title: 'service-details',
-            class: "app-service-status #{presenter.status}"
+            title: 'service-details'
   .actions
     = link_to 'view',
               presenter.service_url,

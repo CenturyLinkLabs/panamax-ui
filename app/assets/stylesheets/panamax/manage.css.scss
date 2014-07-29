@@ -215,6 +215,7 @@
         border-bottom: 1px solid $grey;
       }
 
+
       &#dragging {
         border: 1px dashed $medium_grey;
         opacity: 0.4;
@@ -222,37 +223,6 @@
 
       &:hover {
         cursor: move;
-      }
-
-      > a {
-        display: inline-block;
-        margin-left: 4px;
-        padding-left: 2px;
-        position: absolute;
-        top: 14px;
-        width: 210px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        line-height: 16px;
-        white-space: nowrap;
-        text-decoration: none;
-
-        &.status-stopped {
-          font-style: italic;
-          color: $lipstick_red;
-        }
-
-        &.status-loading {
-          font-style: italic;
-          color: $medium_grey;
-        }
-      }
-
-      .actions {
-        display: none;
-        float: right;
-        height: 40px;
-        padding-right: 5px;
       }
 
       .service-icon {
@@ -769,13 +739,47 @@ section.application-services {
               line-height: 16px;
               white-space: nowrap;
               text-decoration: none;
+            }
+            &.status-loading,
+            &.status-stopped {
+              .service-icon {
+                img {
+                  display: none;
+                }
 
-              &.status-stopped {
+                &:after {
+                  content: '';
+                  position: absolute;
+                  left: 13px;
+                  top: 13px;
+                  display: block;
+                  height: 16px;
+                  width: 16px;
+                }
+              }
+            }
+
+            &.status-stopped {
+              .service-icon {
+                &:after {
+                  background-image: url('/assets/icon_status_stopped.png');
+                }
+              }
+
+              > a {
                 font-style: italic;
                 color: $lipstick_red;
               }
+            }
 
-              &.status-loading {
+            &.status-loading {
+              .service-icon {
+                &:after {
+                  background-image: url('/assets/icon_loading_green.gif');
+                }
+              }
+
+              > a {
                 font-style: italic;
                 color: $medium_grey;
               }
@@ -786,21 +790,6 @@ section.application-services {
               float: right;
               height: 40px;
               padding-right: 5px;
-            }
-
-            .service-icon {
-              display: inline-block;
-              float: left;
-              background-color: $light_grey;
-              width: 40px;
-              height: 40px;
-              margin-right: 6px;
-              border-radius: 4px;
-              img {
-                margin: 10px 0 0 10px;
-                width: 20px;
-                height: 20px;
-              }
             }
           }
         }

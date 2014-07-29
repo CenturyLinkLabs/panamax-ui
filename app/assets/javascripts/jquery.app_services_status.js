@@ -9,7 +9,6 @@
     base.defaultOptions = {
       refreshInterval: 2500,
       rowSelector: '.category-panel ul.services li',
-      serviceStatusClass: 'app-service-status'
     };
 
     base.init = function() {
@@ -36,12 +35,12 @@
     base.updateServicesStatus = function(services) {
       $.each(services, function(i, service) {
         var $serviceRow = base.$el.find(base.options.rowSelector + "[data-id='" + service.id + "']");
-        base.updateStatus($serviceRow.find('.' + base.options.serviceStatusClass), service);
+        base.updateStatus($serviceRow, service);
       });
     };
 
     base.updateStatus = function($el, service) {
-      $el.removeClass().addClass(base.options.serviceStatusClass).addClass('status-' + service.status);
+      $el.removeClass().addClass('status-' + service.status);
     };
 
   };

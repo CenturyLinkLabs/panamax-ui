@@ -23,8 +23,8 @@ describe('$.fn.appServicesStatus', function() {
     $appServicesStatus = $('#teaspoon-fixtures').find('.application-services');
 
     $serviceStatus = [
-      $('#teaspoon-fixtures').find(".category-panel ul.services li[data-id='77'] a.app-service-status"),
-      $('#teaspoon-fixtures').find(".category-panel ul.services li[data-id='99'] a.app-service-status")
+      $('#teaspoon-fixtures').find(".category-panel ul.services li[data-id='77']"),
+      $('#teaspoon-fixtures').find(".category-panel ul.services li[data-id='99']")
     ]
 
     subject = new $.PMX.AppServicesStatus($appServicesStatus);
@@ -39,7 +39,7 @@ describe('$.fn.appServicesStatus', function() {
     });
 
     it('adds a CSS class matching each service status', function() {
-      var $statusRows = $('#teaspoon-fixtures').find(".category-panel ul.services li a.app-service-status");
+      var $statusRows = $('#teaspoon-fixtures').find(".category-panel ul.services li");
 
       expect($statusRows.length).toEqual(2);
       expect($statusRows.first().hasClass('status-foo1')).not.toBe(true);
