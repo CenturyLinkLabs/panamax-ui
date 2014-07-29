@@ -1,6 +1,7 @@
 class AppsController < ApplicationController
-  respond_to :html, except: [:journal]
+  respond_to :html, except: [:journal, :template]
   respond_to :json, except: [:create]
+  protect_from_forgery except: :template
 
   def create
     if @app = App.create(params[:app])
@@ -49,6 +50,12 @@ class AppsController < ApplicationController
     end
   end
 
+  def template
+    app = retrieve_app
+    response = app.post(:template, params[:template_form])
+    render json: response.body
+  end
+
   def journal
     app = retrieve_app
     respond_with app.get(:journal, journal_params)
@@ -75,5 +82,4 @@ class AppsController < ApplicationController
   def journal_params
     params.permit(:cursor)
   end
-
 end
