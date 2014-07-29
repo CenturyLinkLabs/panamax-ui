@@ -1,12 +1,13 @@
 %h3
   Environment Variables
-  .context-help
-    %section
-      %a{:class=>'dismiss'}
-      %p
-        You can set any number of environment variables for a container.  If a container is the child of a container via linking, docker generates variables which are pre-pended with the alias string.
-        %a{href: 'https://docs.docker.com/reference/run/#env-environment-variables'}Learn More.
-      %p To see if any additional environment variables were set at run time, review the Dockerfile of any base image.
+  .service-help-icon
+    .context-help
+      %section
+        %span{ class: 'dismiss' }
+        %p
+          You can set any number of environment variables for a container.  If a container is the child of a container via linking, docker generates variables which are pre-pended with the alias string.
+          %a{href: 'https://docs.docker.com/reference/run/#env-environment-variables'}Learn More.
+        %p To see if any additional environment variables were set at run time, review the Dockerfile of any base image.
 
 = f.fields_for :environment do |env_var|
   - index = env_var.options[:child_index]

@@ -29,11 +29,12 @@
         .port-detail
           %h3
             Ports
-            .context-help
-              %section
-                %a{:class=>'dismiss'}
-                %p Panamax currently supports port binding (-p) and port expose (--expose).
-                %p To see if any additional ports were exposed via the EXPOSE command at run time review the Dockerfile of any base image.
+            .service-help-icon
+              .context-help
+                %section
+                  %span{ class: 'dismiss' }
+                  %p Panamax currently supports port binding (-p) and port expose (--expose).
+                  %p To see if any additional ports were exposed via the EXPOSE command at run time review the Dockerfile of any base image.
           .port-detail-forms
             = render 'port_bindings', f: f
             = render 'exposed_ports', f: f
