@@ -39,7 +39,8 @@
 
     $('aside.host').hostHealth();
 
-    $('.context-help').contextHelp();
+    $('.service-help-icon').contextHelp();
+
 
     $('header.application h1 li:last-of-type').editApplicationName();
 
