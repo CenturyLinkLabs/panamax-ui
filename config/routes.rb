@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :images, only: [:index, :destroy]
+
   resource :user, only: [:update]
 
   resources :apps, only: [:index, :create, :show, :update, :destroy] do

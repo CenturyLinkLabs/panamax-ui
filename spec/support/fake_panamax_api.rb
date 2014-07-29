@@ -5,6 +5,10 @@ class FakePanamaxApi < Sinatra::Base
     json_response 200, 'search_results.json'
   end
 
+  get '/local_images.json' do
+    json_response 200, 'images_representation.json'
+  end
+
   post '/templates.json' do
     json_response 201, 'template_representation.json'
   end

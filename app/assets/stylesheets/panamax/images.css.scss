@@ -1,0 +1,51 @@
+@import 'ctl_base_ui/colors';
+@import 'ctl_base_ui/icons';
+
+#images_flow {
+  h1 {
+    margin-bottom: 0;
+  }
+}
+
+section.image {
+  border-bottom: $light_grey 1px solid;
+  overflow: auto;
+  padding-bottom: 22px;
+
+  h3 {
+    margin: 0;
+    padding: 22px 0 0 0;
+  }
+
+  ul {
+    font-size: 0.9em;
+    margin-top: 10px;
+
+    li {
+      float: left;
+      width: 240px;
+    }
+
+    li.actions {
+      text-align: right;
+      float: right;
+
+      .delete-action {
+        margin-top: -5px;
+        float: right;
+        height: 20px;
+
+        &:after {
+          top: 0;
+          left: 0;
+          @extend .icon-x-large;
+          @include icon-light-grey;
+        }
+
+        &:hover:after {
+          @include icon-red;
+        }
+      }
+    }
+  }
+}
