@@ -448,37 +448,12 @@ footer {
 }
 
 .context-help {
-  display: block;
-  position: relative;
-  width: 22px;
-  height: 22px;
-  float: right;
-  border-radius: 11px;
-  margin-top: -4px;
-  background-color: #293b47;
-
-  &:before {
-    content: '?';
-    display: block;
-    position: absolute;
-    top: 5px;
-    font-size: 13px;
-    color: $white;
-    font-weight: normal;
-    left: 7px;
-  }
-
-  &:hover {
-    cursor: pointer;
-  }
-
   section {
     display: none;
     color: $warm_grey;
-    width: 365px;
+    min-width: 265px;
+    max-width: 425px;
     position: absolute;
-    top: 36px;
-    left: -24px;
     background: $yellow;
     padding: 10px 15px 10px 10px;
     z-index: 100;
@@ -503,11 +478,15 @@ footer {
       top: -10px;
     }
 
-    a.dismiss {
+    span.dismiss {
       float: right;
       width: 20px;
       height: 20px;
       position: relative;
+
+      &:hover {
+        cursor: pointer;
+      }
 
       &:after {
         content: '';
