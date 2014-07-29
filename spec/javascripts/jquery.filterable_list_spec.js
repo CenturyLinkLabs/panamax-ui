@@ -136,6 +136,25 @@ describe('$.fn.filterableList', function() {
     });
   });
 
+  describe('searching for anything', function() {
+    it('shows the source repo blurb if it finds a template', function() {
+      $('input.query-field').val('apache').keyup();
+
+      expect($('.template-results').html()).toContain('This is some information about how users can create their own templates');
+    });
+
+    it('shows the source repo blurb if it cannot find a template', function() {
+      spyOn(fakeSearchResults, 'templates').andCallFake(function(callback) {
+        callback.call(this, []);
+      });
+
+      $('input.query-field').val('apache').keyup();
+
+      expect($('.template-results').html()).toContain('This is some information about how users can create their own templates');
+    });
+
+  });
+
   describe('clicking on the tags dropdown', function() {
     beforeEach(function() {
       jasmine.Ajax.useMock();
