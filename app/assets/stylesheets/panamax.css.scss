@@ -451,8 +451,8 @@ footer {
   section {
     display: none;
     color: $warm_grey;
-    min-width: 265px;
-    max-width: 425px;
+    min-width: 345px;
+    max-width: 490px;
     position: absolute;
     background: $yellow;
     padding: 10px 15px 10px 10px;
@@ -502,4 +502,8 @@ footer {
 
     }
   }
+}
+
+em {
+  font-style: italic;
 }
