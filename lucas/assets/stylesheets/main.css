@@ -76,7 +76,8 @@ header h1.panamax-logo a {
   margin: 0 auto;
 }
 
-header a#nav-toggle {
+header a#nav-toggle,
+.sidr-inner a#sidr-id-nav-close{
   display: block;
   position: absolute;
   top: 20px;
@@ -89,7 +90,15 @@ header a#nav-toggle {
   -o-background-size: 15px 1500px;
   -moz-background-size: 15px 1500px;
   background-size: 15px 1500px;
+}
+
+header a#nav-toggle {
   background-position: 0 -420px;
+}
+
+.sidr-inner a#sidr-id-nav-close {
+  padding: 0;
+  background-position: 0 -60px;
 }
 
 header nav {
@@ -622,7 +631,6 @@ input {
   #footer-info li.twitter {
     display: none;
   }
-
 }
 
 @media all and (min-width: 769px) {
@@ -669,7 +677,8 @@ input {
     display: none;
   }
 
-  header a#nav-toggle {
+  header a#nav-toggle,
+  header a#nav-close {
     display: none;
   }
 
