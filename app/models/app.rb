@@ -13,7 +13,6 @@ class App < BaseResource
     text :documentation_to_html
     text :name
     text :from
-    text :documentation
     integer :template_id
   end
 
