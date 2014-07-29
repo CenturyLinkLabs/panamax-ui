@@ -13,6 +13,17 @@
       base.options = $.extend({},base.defaultOptions, options);
       base.$sortable = base.$el.find(base.options.container);
       base.bindSortable();
+      $(document).on('disable-sorting', base.disableSorting);
+      $(document).on('enable-sorting', base.enableSorting);
+    };
+
+    base.disableSorting = function(e) {
+      $(base.$sortable).sortable('disable');
+    };
+
+    base.enableSorting = function(e) {
+      console.log("enable");
+      $(base.$sortable).sortable('enable');
     };
 
     base.bindSortable = function() {

@@ -16,6 +16,16 @@
       base.options = $.extend({},base.defaultOptions, options);
       base.$sortable = base.$el.find(base.options.connectWith);
       base.bindSortable();
+      $(document).on('disable-sorting', base.disableSorting);
+      $(document).on('enable-sorting', base.enableSorting);
+    };
+
+    base.disableSorting = function(e) {
+      $(base.$sortable).sortable('disable');
+    };
+
+    base.enableSorting = function(e) {
+      $(base.$sortable).sortable('enable');
     };
 
     base.bindSortable = function() {
@@ -177,7 +187,7 @@
     base.$el = el;
     base.defaultOptions = {
       content: 'span.title',
-      editSelector: '.actions a.edit-action'
+      editSelector: 'header .actions a.edit-action'
     };
 
     base.init = function() {

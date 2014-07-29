@@ -426,13 +426,17 @@ ul[class*='button-menu'] {
   border: 2px solid $medium_grey;
   background: $white;
   display: block;
-  padding: 10px 5px;
+  padding: 11px 5px;
   width: 100%;
   box-sizing: border-box;
   outline: 0px solid transparent;
 
   &:focus {
     outline: 0px solid transparent;
+  }
+
+  &:hover {
+    cursor: default;
   }
 
   .edit-field {

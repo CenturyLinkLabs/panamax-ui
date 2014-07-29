@@ -8,7 +8,7 @@
 
     base.defaultOptions = {
       refreshInterval: 2500,
-      rowSelector: '.category-panel ul.services li',
+      rowSelector: '.category-panel ul.services li'
     };
 
     base.init = function() {
