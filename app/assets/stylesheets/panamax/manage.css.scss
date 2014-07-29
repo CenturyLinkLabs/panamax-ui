@@ -413,31 +413,27 @@ section.notice {
 }
 
 section.deployment-details {
-  margin-bottom: 40px;
-  font-size: 0.8em;
+  padding-bottom: 40px;
+  font-size: 0.9em;
   position: relative;
 
-  span.deployment-env, span.service-url {
-    display: inline-block;
-    height: 20px;
-    padding-right: 15px;
-    line-height: 20px;
 
-    &:not(:first-child) {
-      padding-left: 15px;
-      border-left: 2px solid $grey;
+  ul.deployment-env {
+    float: left;
+    margin: 0 0 30px 0;
+    padding: 0;
+
+    li {
+      height: 20px;
     }
 
     a {
-      margin-left: 5px;
+      text-decoration: underline;
     }
-  }
 
-  a.documentation {
-    position: absolute;
-    display: block;
-    font-size: 1.1em;
-    text-decoration: underline;
+    a.application-access {
+      position: relative;
+    }
   }
 }
 

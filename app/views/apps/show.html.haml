@@ -11,17 +11,25 @@
   = render '/shared/breadcrumbs', breadcrumbs: ["Manage", link_to("Applications", apps_path), @app.name]
 
 %section.deployment-details
-  %span.deployment-env
-    Deployed to: CoreOS Local
-  - unless @app.host_ports.blank?
-    - app_url_for(@app).each do |service_name, ports|
-      %span.service-url
-        = "#{service_name} URL: "
-        - ports.each do |port|
-          %a{href: "http://127.0.0.1:#{port}/"}<>
-            = "127.0.0.1:#{port}"
-
-  =link_to('Documentation', '#', { class: 'documentation instructions-dialog', data: { 'doc-url'=> documentation_app_path(@app.id) } })  if @app.documentation.present?
+  %ul.deployment-env
+    %li
+      %strong Deployed to:
+      CoreOS Local
+    %li
+      =link_to('Documentation', '#', { class: 'instructions-dialog', data: { 'doc-url'=> documentation_app_path(@app.id) } })  if @app.documentation.present?
+    %li
+      %a{ class: 'application-access' }
+        Access your application
+        .context-help
+          %section
+            %span{ class: 'dismiss' }
+            %p
+              If your application has a GUI, map a port on your local host machine to the port bound to the host. If using Virtual Box, use the following command in your local machine's terminal window to create the port forwarding rule:
+              %pre VboxManage controlvm panamax-vm natpf1 <em>rule</em>,<em>tcp</em>,,8997,,8080
+            %p
+              Where rule is the friendly name and protocol is tcp or udp. Replace port 8997 with any free port on your local machine and replace 8080 to the port bound to the host.
+            %p
+              After you run this command locally, browse to http://localhost:port to see the GUI.
 
   = render 'application_button_menu', app: @app
 
