@@ -11,7 +11,7 @@ class Template < BaseResource
     string :name
     string :keywords
     string :authors
-    string :from
+    string :source
     string :documentation
     integer :app_id
     integer :image_count

@@ -59,7 +59,7 @@ describe Template do
   end
 
   describe '#from' do
-    it { should respond_to :from }
+    it { should respond_to :source }
   end
 
   describe '#documentation' do
