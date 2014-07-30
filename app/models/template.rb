@@ -3,6 +3,8 @@ class Template < BaseResource
   include ApplicationHelper
   include MarkdownRenderable
 
+  has_many :images
+
   schema do
     integer :id
     string :description

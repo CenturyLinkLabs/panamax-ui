@@ -62,6 +62,10 @@ describe Template do
     it { should respond_to :documentation }
   end
 
+  describe '#images' do
+    it { should respond_to :images }
+  end
+
   describe '#short_description' do
     subject do
       long_description_attributes = attributes.merge(
