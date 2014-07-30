@@ -19,4 +19,28 @@ describe ImagesController do
       expect(assigns(:images)).to eq fake_images
     end
   end
+
+  describe 'DELETE #destroy' do
+    let(:fake_image) { double(:fake_image, id: 2, destroy: true) }
+
+    before do
+      LocalImage.stub(:find).and_return(fake_image)
+    end
+
+    it 'redirects to the listing page' do
+      delete :destroy, id: 2
+      expect(response).to redirect_to images_url
+    end
+
+    it 'sets a success notice when successful' do
+      delete :destroy, id: 2
+      expect(flash[:notice]).to eq 'image successfully removed'
+    end
+
+    it 'sets a failure notice when destroy fails' do
+      fake_image.stub(:destroy).and_return false
+      delete :destroy, id: 2
+      expect(flash[:error]).to eq 'unable to remove image'
+    end
+  end
 end

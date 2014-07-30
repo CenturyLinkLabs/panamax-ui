@@ -11,5 +11,5 @@
         %strong Image ID:
         = image.id
       %li.actions
-        = link_to 'Delete', '#todo', class: 'delete-action'
+        = link_to 'Delete', image_path(image.id), method: :delete, class: 'delete-action'
 
