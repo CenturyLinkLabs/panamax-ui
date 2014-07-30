@@ -7,6 +7,32 @@
   padding-bottom: 20px;
 }
 
+.service-help-icon {
+  display: block;
+  position: relative;
+  width: 22px;
+  height: 22px;
+  float: right;
+  border-radius: 11px;
+  margin-top: -4px;
+  background-color: #293b47;
+
+  &:before {
+    content: '?';
+    display: block;
+    position: absolute;
+    top: 5px;
+    font-size: 13px;
+    color: $white;
+    font-weight: normal;
+    left: 7px;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 .service-status {
   float: right;
   padding-left: 25px;

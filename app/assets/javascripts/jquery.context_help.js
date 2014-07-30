@@ -6,11 +6,19 @@
 
     base.defaultOptions = {
       contentSelector: 'section',
-      contentLinks: 'section a'
+      contentLinks: 'section a',
+      dismissSelector: 'span.dismiss',
+      top: '36px',
+      left: '-24px'
     };
 
     base.init = function () {
       base.options = $.extend({}, base.defaultOptions, options);
+      base.$el.find(base.options.contentSelector).css(
+          {
+            'top': base.options.top,
+            'left': base.options.left
+          });
       base.bindEvents();
     };
 
@@ -18,16 +26,14 @@
       base.$el.on('click', base.toggleContent);
       base.$el.on('click', base.options.contentSelector, function(e) { e.preventDefault();e.stopPropagation(); });
       base.$el.on('click', base.options.contentLinks, base.contentClick);
+      base.$el.on('click', base.options.dismissSelector, base.closeContent);
     };
 
     base.contentClick = function(e) {
       var target = $(e.currentTarget);
+
       e.preventDefault();
-      if (target.hasClass('dismiss')) {
-        base.closeContent();
-      } else {
-        window.open(target.attr('href'), "_blank");
-      }
+      window.open(target.attr('href'), "_blank");
     };
 
     base.toggleContent = function (e) {
