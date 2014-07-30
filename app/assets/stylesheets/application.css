@@ -10,5 +10,6 @@
  *
  *= require_self
  *= require ctl_base_ui/application
+ *= require google-code-prettify/prettify
  *= require_tree .
  */

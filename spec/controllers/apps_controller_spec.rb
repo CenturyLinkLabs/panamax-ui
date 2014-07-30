@@ -165,6 +165,30 @@ describe AppsController do
     end
   end
 
+  describe 'POST #template' do
+    let(:template_response) do
+      double(:template_response,
+        body: '{ "template": "My Template String" }',
+        status: 200
+      )
+    end
+
+    before do
+      dummy_app.stub(:post).and_return(template_response)
+    end
+
+    it 'retrieve the template' do
+      expect(dummy_app).to receive(:post)
+        .with(:template, nil)
+      post :template, id: 1, format: :json
+    end
+
+    it 'returns the template string received' do
+      post :template, id: 1, format: :json
+      expect(response.body).to eq template_response.body
+    end
+  end
+
   describe '#journal' do
 
     let(:journal_lines) do
