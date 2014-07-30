@@ -457,8 +457,8 @@ footer {
     background: $yellow;
     padding: 10px 15px 10px 10px;
     z-index: 100;
-    font-size: 1.2em;
-    line-height: 1.15em;
+    font-size: 13px;
+    line-height: 1.0em;
 
     &:hover {
       cursor: auto;
@@ -476,6 +476,10 @@ footer {
       position: absolute;
       left: 30px;
       top: -10px;
+    }
+
+    p {
+      font-size: 13px;
     }
 
     span.dismiss {
