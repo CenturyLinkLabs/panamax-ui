@@ -104,6 +104,14 @@
     position: relative;
     min-height: 30px;
 
+    span.tooltip {
+      right: 0;
+      line-height: 1em;
+      &:before {
+        right: 5px;
+      }
+    }
+
     .confirm-delete {
       position: absolute;
       top: -10px;
@@ -240,20 +248,6 @@
         }
       }
     }
-  }
-
-  span.tooltip {
-    display: block;
-    position: absolute;
-    top: 38px;
-    right: 10px;
-    z-index: 9002;
-    color: $medium_grey;
-    background: $yellow;
-    font-weight: normal;
-    font-size: 0.85em;
-    padding: 5px;
-    border-radius: 3px;
   }
 }
 
@@ -589,7 +583,7 @@ section.application-services {
                 background-color: $white;
                 color: $blue_grey_dark;
                 > a {
-                  width: 168px;
+                  width: 195px;
                 }
                 .actions {
                   display: inline-block;
@@ -729,7 +723,7 @@ section.application-services {
               padding-left: 2px;
               position: absolute;
               top: 14px;
-              width: 210px;
+              width: 225px;
               overflow: hidden;
               text-overflow: ellipsis;
               line-height: 16px;
@@ -781,6 +775,17 @@ section.application-services {
               }
             }
 
+            span.tooltip {
+              left: 43px;
+              top: 36px;
+              max-width: 220px;
+
+              &:before {
+                left: 5px;
+              }
+            }
+
+
             .actions {
               display: none;
               float: right;
@@ -788,20 +793,6 @@ section.application-services {
               padding-right: 5px;
             }
           }
-        }
-
-        span.tooltip {
-          display: block;
-          position: absolute;
-          top: 38px;
-          right: 10px;
-          z-index: 9002;
-          color: $medium_grey;
-          background: $yellow;
-          font-weight: normal;
-          font-size: 0.85em;
-          padding: 5px;
-          border-radius: 3px;
         }
       }
     }

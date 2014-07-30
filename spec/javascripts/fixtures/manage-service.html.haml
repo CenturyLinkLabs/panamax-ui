@@ -16,3 +16,20 @@
                 class: 'delete-action',
                 title: 'delete',
                 method: :delete
+  %li
+    .service-icon
+      %img{src:''}
+    = link_to 'superreallylongverboseimagenamewithatag:latest',
+              '/apps/1/services/2',
+              class: 'status-running',
+              title: 'details'
+    .actions
+      = link_to 'edit',
+                 '/apps/1/services/2',
+                 class: 'view-action',
+                 title: 'details'
+      = link_to 'delete',
+                '/apps/1/services/2',
+                class: 'delete-action',
+                title: 'delete',
+                method: :delete

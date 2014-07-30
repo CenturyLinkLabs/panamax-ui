@@ -132,28 +132,13 @@ aside.host {
     background: darken($ctl_light_green, 10%);
 
     section.details {
-      box-sizing: border-box;
       padding: 10px;
       width: 220px;
-      position: absolute;
       top: 24px;
       left: -30px;
-      background: $yellow;
-      font-size: 0.8em;
-      z-index: 100;
 
       &:before {
-        box-sizing: content-box;
-        content: ' ';
-        width: 0;
-        height: 0;
-        display: block;
-        border-left: 5px solid transparent;
-        border-right: 5px solid transparent;
-        border-bottom: 10px solid $yellow;
-        position: absolute;
         left: 30px;
-        top: -10px;
       }
     }
 
@@ -354,6 +339,30 @@ h1.breadcrumbs {
     background-position: top left;
     background-repeat: no-repeat;
 
+  }
+}
+
+/* Base styles for tooltips */
+.tooltip {
+  display: block;
+  position: absolute;
+  z-index: 9999;
+  color: $medium_grey;
+  background: $yellow;
+  font-weight: normal;
+  font-size: 0.85em;
+  padding: 5px;
+  @include border-radius(5px);
+  word-wrap: break-word;
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    border-bottom: 6px solid $yellow;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    top: -6px;
   }
 }
 

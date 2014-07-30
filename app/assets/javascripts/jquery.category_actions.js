@@ -502,7 +502,8 @@
       removeSelector: '.category-panel',
       deleteCategorySelector: 'header .delete-action',
       tooltipSelector: '.services li',
-      panelIdentifier: '[data-category]'
+      panelIdentifier: '[data-category]',
+      $panelHeader: base.$el.find('header')
     };
 
     base.init = function () {
@@ -520,7 +521,7 @@
       var $target = $(e.currentTarget);
 
       if (base.$el.find(base.options.tooltipSelector).length > 0 ) {
-        $('<span class="tooltip">Categories must be empty.</span>').appendTo(base.$el);
+        $('<span class="tooltip">Categories must be empty.</span>').appendTo(base.options.$panelHeader);
         $target.addClass('disabled');
       }
     };
@@ -529,7 +530,7 @@
       var $target = $(e.currentTarget);
 
       $target.removeClass('disabled');
-      $('.category-panel .tooltip').remove();
+      base.options.$panelHeader.find('.tooltip').remove();
     };
 
     base.confirmDelete = function(e) {
