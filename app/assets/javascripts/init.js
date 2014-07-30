@@ -41,6 +41,8 @@
 
     $('.context-help').contextHelp();
 
+    $('#template_flow button.preview').previewTemplate();
+
     $('header.application h1 li:last-of-type').editApplicationName();
 
     var enableNewItem = function(addedItem) {

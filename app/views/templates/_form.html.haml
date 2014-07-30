@@ -41,3 +41,4 @@
     = f.text_area :documentation
 
   = button_tag 'Publish Your Template', class: 'button-positive'
+  = button_tag 'Preview Template File', type: 'button', class: 'button-secondary preview', data: { previewPath: template_app_path(params[:app_id]) }

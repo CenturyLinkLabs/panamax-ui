@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require handlebars
+//= require google-code-prettify/prettify
 //= require chosen.jquery
 //= require moment
 //= require pmx_namespace
