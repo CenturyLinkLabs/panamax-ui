@@ -196,15 +196,45 @@
     list-style-type: decimal;
   }
 
+  pre > code {
+    margin: 0;
+    padding: 0;
+    white-space: pre;
+    border: none;
+    background: transparent;
+  }
+
+  .highlight pre {
+    background-color: $white;
+    border: 1px solid $grey;
+    font-size: 13px;
+    line-height: 19px;
+    overflow: auto;
+    padding: 6px 10px;
+    border-radius: 3px;
+  }
+
+  pre {
+    background-color: $white;
+    border: 1px solid $grey;
+    font-size: 13px;
+    line-height: 19px;
+    overflow: auto;
+    padding: 6px 10px;
+    border-radius: 3px;
+  }
+
+  /* This is Github style markdown */
   code {
-    display: block;
+    margin: 0 2px;
+    padding: 0 5px;
+    white-space: nowrap;
+    border-radius: 3px;
     font-family: monospace;
     font-style: italic;
     color: $blue_grey;
     background-color: $white;
     border: 1px solid $grey;
-    padding: 20px;
-    margin-bottom: 20px;
   }
 
   hr {
@@ -216,5 +246,9 @@
   img {
     background-color: $white;
     padding: 11px;
+  }
+
+  em {
+    font-style: italic;
   }
 }
