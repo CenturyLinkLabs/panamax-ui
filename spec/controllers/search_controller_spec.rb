@@ -50,10 +50,36 @@ describe SearchController do
   end
 
   describe 'GET #load_tags' do
-    it 'does something' do
-      get :load_tags, repo: 'foo', local: true, format: :json
-      expect(response.body).to eql %w(foo bar).to_json
+
+    let(:repo) { Repository.new(id: 'foo/bar', tags: ['latest']) }
+
+    before do
+      Repository.stub(:find).and_return(repo)
     end
 
+    it 'returns a list of tags' do
+      get :load_tags, repo: repo, format: :json
+      expect(response.body).to eql repo.tags.to_json
+    end
+
+    context 'when the local_image parameter is set to true' do
+
+      it 'passes local=true flag to the API call' do
+        expect(Repository).to receive(:find)
+          .with(repo.id, params: { local: true })
+
+        get :load_tags, repo: repo.id, local_image: true, format: :json
+      end
+    end
+
+    context 'when the local_image parameter is set to false' do
+
+      it 'passes local=false flag to the API call' do
+        expect(Repository).to receive(:find)
+          .with(repo.id, params: { local: false })
+
+        get :load_tags, repo: repo.id, local_image: false, format: :json
+      end
+    end
   end
 end
