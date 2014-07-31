@@ -54,6 +54,7 @@ describe('$.fn.serviceActions', function () {
 
     var mouseenter = new $.Event('mouseenter');
     var mouseleave = new $.Event('mouseleave');
+    var mousedown = new $.Event('mousedown');
 
     it('adds a tooltip if the name is too long for UI display', function () {
       $('ul.services li:last-child a:first-child').trigger(mouseenter);
@@ -71,5 +72,13 @@ describe('$.fn.serviceActions', function () {
       $('ul.services li:last-child a:first-child').trigger(mouseleave);
       expect($('ul.services li:last-child').html()).toNotContain('tooltip');
     });
+
+    it('removes an existing tooltip on mousedown (dragging)', function () {
+      $('ul.services li:last-child a:first-child').trigger(mouseenter);
+      expect($('ul.services li:last-child').html()).toContain('tooltip');
+      $('ul.services li:last-child').trigger(mousedown);
+      expect($('ul.services li:last-child').html()).toNotContain('tooltip');
+    });
+
   });
 });

@@ -42,6 +42,7 @@
       base.options = $.extend({}, base.defaultOptions, options);
       base.$el.on('mouseenter', base.options.$serviceLink, base.showServiceName);
       base.$el.on('mouseleave', base.options.$serviceLink, base.hideServiceName);
+      base.$el.on('mousedown', base.hideServiceName);
     };
 
     base.showServiceName = function () {
