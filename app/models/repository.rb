@@ -5,6 +5,6 @@ class Repository < BaseResource
   end
 
   def image_tags
-    self.respond_to?(:tags) ? tags : []
+    self.try(:tags) || []
   end
 end

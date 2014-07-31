@@ -67,8 +67,6 @@ GEM
       dotenv (= 0.11.1)
     erubis (2.7.0)
     execjs (2.2.1)
-    faraday (0.8.9)
-      multipart-post (~> 1.2.0)
     haml (4.0.5)
       tilt
     hike (1.2.3)
@@ -92,7 +90,6 @@ GEM
     mini_portile (0.6.0)
     minitest (5.3.5)
     multi_json (1.10.1)
-    multipart-post (1.2.0)
     nokogiri (1.6.2.1)
       mini_portile (= 0.6.0)
     phantomjs (1.9.7.1)
@@ -191,7 +188,6 @@ DEPENDENCIES
   coveralls (= 0.7.0)
   ctl_base_ui!
   dotenv-rails (= 0.11.1)
-  faraday (= 0.8.9)
   haml (= 4.0.5)
   jshintrb (= 0.2.4)
   kramdown (= 1.4.0)

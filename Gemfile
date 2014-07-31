@@ -7,7 +7,6 @@ gem 'therubyracer', '0.12.1', platforms: :ruby
 gem 'haml', '4.0.5'
 gem 'uglifier', '2.5.1'
 gem 'ctl_base_ui', path: 'vendor/ctl-base-ui'
-gem 'faraday', '0.8.9'
 gem 'activeresource', '4.0.0'
 gem 'kramdown', '1.4.0'
 
