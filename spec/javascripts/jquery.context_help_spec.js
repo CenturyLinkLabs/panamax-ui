@@ -6,6 +6,7 @@ describe('$.fn.contextHelp', function() {
     spyOn(window,'open');
     toggleElement = $('.context-help');
     subject = new $.PMX.ContextHelp(toggleElement);
+    spyOn(subject, 'calculatePosition');
     subject.init();
   });
 
@@ -19,6 +20,11 @@ describe('$.fn.contextHelp', function() {
       toggleElement.addClass('viewing');
       toggleElement.click();
       expect(toggleElement.hasClass('viewing')).toBeFalsy();
+    });
+
+    it('evaluates the position of the context element', function() {
+      toggleElement.click();
+      expect(subject.calculatePosition).toHaveBeenCalled();
     });
   });
 
@@ -36,6 +42,13 @@ describe('$.fn.contextHelp', function() {
       var link = $('.theLink');
       link.click();
       expect(window.open).toHaveBeenCalledWith('http://theserver/with/info','_blank');
+    });
+  });
+
+  describe('when the browser is resized', function() {
+    it('evaluates the position of the context element', function() {
+      $(window).resize();
+      expect(subject.calculatePosition).toHaveBeenCalled();
     });
   });
 });

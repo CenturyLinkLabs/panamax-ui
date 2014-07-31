@@ -473,13 +473,8 @@ footer {
     font-size: 13px;
     line-height: 1.0em;
 
-    &:hover {
-      cursor: auto;
-    }
-
-    &:before {
+    > aside.arrow {
       box-sizing: content-box;
-      content: ' ';
       width: 0;
       height: 0;
       display: block;
@@ -489,6 +484,10 @@ footer {
       position: absolute;
       left: 30px;
       top: -10px;
+    }
+
+    &:hover {
+      cursor: auto;
     }
 
     p {
