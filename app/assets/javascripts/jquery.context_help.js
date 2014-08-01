@@ -82,7 +82,7 @@
     base.closeContent = function() {
       base.$el.removeClass('viewing');
       base.$el.find(base.options.contentSelector).hide();
-    }
+    };
   };
 
   $.fn.contextHelp = function (options) {

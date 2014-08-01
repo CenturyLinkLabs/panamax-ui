@@ -160,7 +160,7 @@
 
       $actionsFormSubmit.click();
       base.handleClose();
-    }
+    };
   };
 
   $.PMX.FilterableList = function(el, options) {
@@ -201,7 +201,7 @@
       base.queryField.onChange(base.fetchResults);
       base.$el.on('submit', base.options.queryFormSelector, base.handleSubmit);
       base.$el.on('click', base.options.chosenDropdownSelector, base.fetchTags);
-      base.$el.on('click', base.options.templateDetailsSelector, base.handleTemplateDetailsClick)
+      base.$el.on('click', base.options.templateDetailsSelector, base.handleTemplateDetailsClick);
     };
 
     base.handleSubmit = function(e) {

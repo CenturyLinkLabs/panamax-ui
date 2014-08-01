@@ -48,7 +48,7 @@
     base.showServiceName = function () {
       if ($(base.options.$serviceLink).html().length > 24) {
         $('<span class="tooltip">' + base.options.$serviceLink.html() + '</span>').appendTo(base.$el);
-      };
+      }
     };
 
     base.hideServiceName = function () {

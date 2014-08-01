@@ -19,12 +19,12 @@
     base.handleError = function( event, jqxhr, settings, thrownError) {
       if (base.notExcludedUrl(settings.url) && jqxhr.status !== abortedStatus) {
         base.renderNotification(thrownError);
-      };
+      }
     };
 
     base.notExcludedUrl = function(url) {
       for(var i=0; i<base.options.excludePaths.length; i++) {
-        if (url.lastIndexOf(base.options.excludePaths[i]) !== -1) return false;
+        if (url.lastIndexOf(base.options.excludePaths[i]) !== -1) { return false; }
       }
       return true;
     };
