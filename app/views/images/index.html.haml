@@ -1,0 +1,15 @@
+- content_for(:body_id, 'images_flow')
+
+= render '/shared/breadcrumbs', breadcrumbs: [ "Manage", "Images" ]
+
+- @images.each do |image|
+  %section.image
+    %h3= image.tags.first
+    %h6= image.tags[1..-1].try(:join, ', ')
+    %ul
+      %li
+        %strong Image ID:
+        = image.id
+      %li.actions
+        = link_to 'Delete', image_path(image.id), method: :delete, class: 'delete-action'
+
