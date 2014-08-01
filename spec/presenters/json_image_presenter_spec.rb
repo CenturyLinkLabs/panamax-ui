@@ -42,4 +42,10 @@ describe JsonImagePresenter do
       expect(subject.badge_class).to eq '{{badge_class}}'
     end
   end
+
+  describe '#tag_options' do
+    it 'exposes handlebar template for the tag options' do
+      expect(subject.tag_options).to eq '{{{optionsForSelect tags}}}'
+    end
+  end
 end

@@ -15,10 +15,10 @@
       = hidden_field_tag 'name', presenter.title
       = label 'app[tag]', 'Tag:'
       = select_tag 'app[tag]',
-      options_for_select(['latest']),
-      id: nil,
-      class: 'image-tag-select',
-      data: {'load-tags-endpoint' => load_tags_search_path, 'loaded' => false}
+        remote ? options_for_select(['latest']) : presenter.tag_options,
+        id: nil,
+        class: 'image-tag-select',
+        data: {'load-tags-endpoint' => load_tags_search_path, 'loaded' => !remote}
       %button.button-positive{ data: { disable_with: 'Adding...', tracking: { method: 'click', action: 'Add to Application', category: 'Run Image', label: presenter.title }}} Add to App
   - if remote
     .community-data

@@ -1,9 +1,11 @@
 require 'spec_helper'
 
 describe ImagePresenter do
+
   let(:fake_image) do
     double(:fake_image,
       source: 'boom/shaka',
+      tags: ['foo', 'bar'],
       description: 'goes boom shaka laka',
       short_description: 'goes boom',
       status_label: 'Local',
@@ -13,7 +15,9 @@ describe ImagePresenter do
     )
   end
 
-  subject { ImagePresenter.new(fake_image) }
+  let(:view_context) { ActionView::Base.new }
+
+  subject { ImagePresenter.new(fake_image, view_context) }
 
   describe '#title' do
     it 'exposes the image repository' do
@@ -48,6 +52,14 @@ describe ImagePresenter do
   describe '#docker_index_url' do
     it 'exposes the docker index url' do
       expect(subject.docker_index_url).to eq 'index.docker/boom/shaka'
+    end
+  end
+
+  describe '#tag_options' do
+    it 'returns a set of HTML options for each tag' do
+      expected =
+        "<option value=\"foo\">foo</option>\n<option value=\"bar\">bar</option>"
+      expect(subject.tag_options).to eq expected
     end
   end
 end

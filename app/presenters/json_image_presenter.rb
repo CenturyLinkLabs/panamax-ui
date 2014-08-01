@@ -26,4 +26,8 @@ class JsonImagePresenter
   def badge_class
     '{{badge_class}}'
   end
+
+  def tag_options
+    '{{{optionsForSelect tags}}}'
+  end
 end

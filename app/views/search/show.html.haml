@@ -8,7 +8,7 @@
 %h3.search-title Images
 .local-image-results
   - @search_result_set.local_images.each do |image|
-    = render 'image_row', {presenter: ImagePresenter.new(image)}
+    = render 'image_row', {presenter: ImagePresenter.new(image, self)}
 .remote-image-results
   - @search_result_set.remote_images.each do |image|
-    = render 'image_row', {presenter: ImagePresenter.new(image), remote: true}
+    = render 'image_row', {presenter: ImagePresenter.new(image, self), remote: true}
