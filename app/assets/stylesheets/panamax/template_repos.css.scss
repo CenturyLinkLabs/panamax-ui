@@ -33,11 +33,25 @@ section.template_repos {
             color: $blue_grey_dark;
             text-decoration: underline;
           }
+        }
 
-          span.count {
-            display: block;
-            font-size: .75em;
+        span {
+          display: inline-block;
+          font-size: .8em;
+
+          label:hover {
+            cursor: auto;
+          }
+
+          &.count {
+            color: $dark_grey;
+            margin-right: 20px;
+            font-weight: bold;
+          }
+
+          &.updated {
             color: $medium_grey;
+            font-style: italic;
           }
         }
       }
@@ -61,3 +75,4 @@ section.template_repos {
     }
   }
 }
+

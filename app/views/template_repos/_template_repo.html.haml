@@ -4,9 +4,17 @@
     %span.count
       %label Templates:
       = template_repo.template_count
+    %span.updated
+      %label Last Refreshed:
+      = Date.strptime(template_repo.updated_at).strftime("%D")
+
   %ul.template-repo-button-menu
     %li
-      = link_to 'Refresh Source', '#', method: :put, class: 'reload', title: 'reload'
+      = link_to 'Refresh Source',
+                reload_template_repo_path(template_repo.id),
+                method: :post,
+                class: 'reload',
+                title: 'reload'
     %li
       = link_to 'Delete Source',
                 '#',

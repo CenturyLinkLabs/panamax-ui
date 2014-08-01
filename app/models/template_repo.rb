@@ -17,4 +17,5 @@ class TemplateRepo < BaseResource
   def uri
     BASE_REPO_ROUTE + self.name
   end
+
 end

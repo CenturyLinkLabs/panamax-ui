@@ -13,7 +13,11 @@ Rails.application.routes.draw do
 
   resources :images, only: [:index, :destroy]
 
-  resources :template_repos, only: [:index]
+  resources :template_repos, only: [:index] do
+    member do
+      post 'reload'
+    end
+  end
 
   resource :user, only: [:update]
 
