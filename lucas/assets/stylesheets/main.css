@@ -195,6 +195,7 @@ cite.built-by h2 {
 main {
   width: 100%;
   margin-top: 20px;
+  padding-bottom: 20px;
 }
 
 main > section {
@@ -236,6 +237,24 @@ main > section {
 
 #about-panamax dl dd:last-child {
   border-bottom: none;
+}
+
+#view-screens {
+  background-color: #274655;
+  padding: 20px 0 0 0;
+}
+
+#view-screens h2 {
+  margin: 18px 20px 0 0;
+  padding: 0;
+  border-bottom: none;
+  color: white;
+  float: left;
+}
+
+#view-screens img {
+  padding: 0;
+  margin: 0 0 -3px 0;
 }
 
 #get-panamax {
@@ -708,7 +727,7 @@ input {
   /* HERO */
 
   #hero {
-    padding-left: 240px;
+    padding-left: 204px;
     margin: 75px 0;
   }
 

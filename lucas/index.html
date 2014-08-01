@@ -15,18 +15,16 @@
     </div>
     <header>
       <h1 class='panamax-logo'>
-        <a href="content.html" title="Home">Panamax</a>
+        <a href="index.html" title="Home">Panamax</a>
       </h1>
       <a href="#main-nav" id="nav-toggle"></a>
       <nav id="navigation">
         <ul>
-          <li class='welcome'><a href="#">Welcome<a href="#" id="nav-close"></a></a></li>
-          <li class='get-panamax'><a href="#">Get Panamax</a></li>
-          <li class='community'><a href="#">Community</a></li>
-          <li class='documentation'><a href="#">Documentation</a></li>
-          <li class='contact'><a href="#">Contact</a></li>
-          <li class='github'><a href="http://www.github.com">Fork us on Github</a></li>
-          <li class='twitter'><a href="http://www.twitter.com">Follow us on Twitter</a></li>
+          <li class='welcome'><a href="index.html">Welcome<a href="#" id="nav-close"></a></a></li>
+          <li class='get-panamax'><a href="get-panamax.html">Get Panamax</a></li>
+          <li class='documentation'><a href="documentation.html">Documentation &amp; Support</a></li>
+          <li class='github'><a href="https://github.com/CenturyLinkLabs">Fork us on Github</a></li>
+          <li class='twitter'><a href="https://twitter.com/CenturyLinkLabs">Follow us on Twitter</a></li>
         </ul>
       </nav>
       <div id="social-icons">
@@ -42,26 +40,38 @@
     <div class="background"><img src="assets/images/marketing_bg_body.svg"/></div>
     <main>
       <section id="hero">
-        <h1>This is the Panamax Headline.</h1>
-        <h2>This is supporting copy that encouranges users learn more or get Panamax.</h2>
-        <button class="button-secondary">Learn More</button>
-        <button class="button-positive">Get Panamax</button>
+        <h1>A Simple Multi-Server Docker UI</h1>
+        <h2>An open-source project that makes deploying complex containerized apps as easy as Drag-and-Drop.</h2>
+        <a href="#about-panamax"><button class="button-secondary">Learn More</button></a>
+        <a href="get-panamax.html"><button class="button-positive">Get Panamax</button></a>
       </section>
-
+    </main>
+      <section id="view-screens">
+        <div class="inner">
+          <h2 class="get-panamax-heading">Wanna see a few screens?</h2>
+            <img src="assets/images/marketing_screen_01.png"/>
+            <img src="assets/images/marketing_screen_02.png"/>
+            <img src="assets/images/marketing_screen_03.png"/>
+        </div>
+      </section>
+    <main>
       <section id="about-panamax">
         <h2>About Panamax</h2>
         <dl>
-          <dt>Why?</dt>
-          <dd><strong>Let&apos;s face it</strong>, configuring and deploying multi-container applications can be a daunting task. It isn&apos;t made any easier by the fact that best practices for deploying Docker-based applications are still emerging and Docker itself is quickly evolving and improving. We hope Panamax can help increase the usage and meaningful adoption of the tools in the Docker ecosystem.</dd>
-          <dt>Who?</dt>
-          <dd>The team at <strong>CenturyLink Labs</strong> has built Panamax to lower the barrier of entry for Developers to leverage Docker, Fleet &amp; CoreOS. We want to help developers utilize these technologies not by abstracting what they do but by simply providing a friendly interface to them.</dd>
           <dt>What?</dt>
-          <dd><strong>Panamax</strong> provides a friendly interface for users of Docker, Fleet &amp; CoreOS. It facilitates the building and configuration of multi&dash;container based applications and introduces the concept of an &quot;application template&quot; whereby a user can handcraft a template or export a template from a panamax&dash;built application and then shared with others (or migrated to new environment). </dd>
-          <dt>When?</dt>
-          <dd><strong>Right now!</strong> We are actively developing Panamax and have plans to open source it and allow the community to drive its development and evolution.</dd>
+          <dd>Panamax is a containerized app creator with an open-source app marketplace hosted in GitHub. Panamax provides a friendly interface for users of Docker, Fleet &amp; CoreOS. With Panamax, you can easily create, share and deploy any containerized app no matter how complex it might be.</dd>
+          <dt>Why?</dt>
+          <dd>Containers could be the next Virtual Machine. But running multi-container, multi-server apps with containers is very hard. You have to learn 5 new and different technologies and best practices (libswarm, systemd, etcd, ambassadord, fleet, etc) just to get started. Panamax incorporates all the Docker best practices for you and gives you a beautiful UX that does the heavy lifting of deploying complex applications for you.</dd>
+          <dt>Where?</dt>
+          <dd>You can run Panamax on your laptop or any cloud infrastructure that supports CoreOS (CenturyLink Cloud, Google, Amazon, Rackspace, etc.). You can even run Panamax on bare metal.</dd>
+          <dt>Who?</dt>
+          <dd>Panamax is the first open-source project to be incubated out of CenturyLink Labs. Our goal was to help developers utilize cutting-edge technologies not by abstracting what they do but by simply providing a friendly interface to them.</dd>
+          <dt>How Much?</dt>
+          <dd>Free. The Panamax code is open-source and the app template marketplace is open-source. We are committed to building a strong open source community project based on Apache 2 License, you can be certain that we will be good citizens and never build cripple-ware.</dd>
         </dl>
       </section>
     </main>
+    
     <section id="how-it-works" class="install">
       <div class="background"></div>
       <div class="inner">
@@ -69,15 +79,15 @@
         <ul>
           <li class="active">
             <h3 id="install">Install</h3>
-            <p>Download and run the Panamax Installer in your (OSX or Ubuntu) environment. From there you will install your Docker Host (CoreOS) along with Panamax.</p>
+            <p>On a Mac with Homebrew, just run: brew install http://download.panamax.io/installer/brew/panamax.rb &amp;&amp; panamax up. For other platforms, see the installation documentation.</p>
           </li>
           <li>
             <h3 id="build">Build</h3>
-            <p>This is where the magic happens. Start building your application using pre-configured application templates or images from the Docker Index.</p>
+            <p>Use our beautiful Panamax Web UI to stitch together many Docker containers into anything you can dream up. You can configure links, ports and environment variables, as well as organize your application services into categories.</p>
           </li>
           <li>
             <h3 id="manage">Manage</h3>
-            <p>As you construct your application, you can configure links, ports and environment variables, as well as organize your application services into categories.</p>
+            <p>Save your application template to a git repository and share it with your friends. You can source your friends' template repositories or submit a pull request and have your template be canonical and accessible by anyone in the world.</p>
           </li>
         </ul>
       </div>
@@ -86,14 +96,14 @@
     <section id="get-panamax">
       <div class="inner">
         <h2 class="get-panamax-heading">Ready to Go?</h2>
-        <button class="button-primary">Get Panamax</button>
+        <a href="get-panamax.html"><button class="button-primary">Get Panamax</button></a>
       </div>
     </section>
 
     <footer>
       <div class="inner">
         <div id="footer-info">
-        <p>Panamax is an open-source product from CenturyLink Labs. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales metus gravida tortor adipiscing vehicula. </p>
+        <p>Panamax is an open-source product from CenturyLink Labs.</p>
         <ul>
           <li><a href="#">CenturyLink Labs Blog</a></li>
           <li class="github"><a href="http://github.com" target="_blank" title="Fork Us on GitHub"><img src="assets/images/logo_github_grey.svg" alt="GitHub" id="logo-github"/></a></li>
@@ -120,5 +130,6 @@
     <script src="assets/javascripts/jquery.sidr.min.js"></script>
     <script src="assets/javascripts/jquery.touchwipe.min.js"></script>
     <script src="assets/javascripts/index.js"></script>
+    <script src="assets/javascripts/uservoice.js"></script>
   </body>
 </html>
