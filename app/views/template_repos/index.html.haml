@@ -1,0 +1,10 @@
+- content_for(:body_id, 'template_repo_flow')
+
+= render '/shared/breadcrumbs', breadcrumbs: ["Manage", "Sources"]
+
+%section.template_repos
+  - if @template_repos
+    %ul
+      - @template_repos.each do |repo|
+        = render 'template_repo_row', repo: repo
+

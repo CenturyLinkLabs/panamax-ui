@@ -1,0 +1,63 @@
+@import 'ctl_base_ui/colors';
+@import 'ctl_base_ui/mixins';
+@import 'ctl_base_ui/icons';
+
+section.template_repos {
+  min-width: 960px;
+
+  ul {
+
+    li {
+      overflow: hidden;
+      margin-bottom: 20px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .repo-info {
+        float: left;
+        width: 775px;
+
+        a {
+          display: block;
+          width: 100%;
+          margin-bottom: 12px;
+          font-size: 1.2em;
+          font-weight: bold;
+          color: $blue_grey;
+          text-decoration: none;
+          word-wrap: break-word;
+
+          &:hover {
+            color: $blue_grey_dark;
+            text-decoration: underline;
+          }
+
+          span.count {
+            display: block;
+            font-size: .75em;
+            color: $medium_grey;
+          }
+        }
+      }
+
+      .template-repo-button-menu {
+        float: right;
+        width: 175px;
+      }
+
+      .delete-action {
+        @include hide-text;
+        @extend .icon-x-large;
+        @include icon-grey;
+        margin: 8px 0 0 12px;
+        padding: 0;
+
+        &:hover {
+          @include icon-red;
+        }
+      }
+    }
+  }
+}

@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   resources :images, only: [:index, :destroy]
 
+  resources :template_repos, only: [:index]
+
   resource :user, only: [:update]
 
   resources :apps, only: [:index, :create, :show, :update, :destroy] do
