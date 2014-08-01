@@ -40,5 +40,6 @@
     = link_to 'See the markdown guide here', 'http://daringfireball.net/projects/markdown/syntax', target: '_blank'
     = f.text_area :documentation
 
-  = button_tag 'Publish Your Template', class: 'button-positive'
+  - tracking_hash = { tracking_method: 'click', tracking_category: 'Create Template', tracking_action: 'Initiate Save Template', tracking_label: template_form.app.try(:name) }
+  = button_tag 'Publish Your Template', class: 'button-positive', data: tracking_hash
   = button_tag 'Preview Template File', type: 'button', class: 'button-secondary preview', data: { previewPath: template_app_path(template_form.app_id) }
