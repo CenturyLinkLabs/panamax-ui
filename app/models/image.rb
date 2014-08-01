@@ -15,12 +15,6 @@ class Image < BaseResource
     string :command
   end
 
-  def required_fields_missing?
-    environment.any? do |env|
-      env.requires_value?
-    end
-  end
-
   def environment_attributes=(attrs)
     self.environment = attrs.values
   end

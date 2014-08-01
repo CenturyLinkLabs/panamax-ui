@@ -50,7 +50,7 @@ describe TemplateForm do
 
   describe '#documentation' do
     before do
-      subject.stub(:default_documentation).and_return('## default markdown ##')
+      I18n.stub(:t).with('boilerplate_template_documentation').and_return('## default markdown ##')
     end
 
     it 'returns documentation if set' do
