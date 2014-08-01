@@ -55,7 +55,8 @@ class TemplateForm
       authors: [author],
       type: type,
       app_id: app_id,
-      documentation: documentation
+      documentation: documentation,
+      source: repo
     )
   end
 

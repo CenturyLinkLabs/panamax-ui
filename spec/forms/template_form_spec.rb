@@ -158,6 +158,7 @@ describe TemplateForm do
         name: 'My template',
         description: 'generic wordpress installation',
         keywords: 'fast, simple, elegant',
+        source: 'some/repo',
         authors: [nil],
         type: 'wordpress',
         app_id: 7,
