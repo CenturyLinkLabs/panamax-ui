@@ -11,5 +11,7 @@ class ImagesController < ApplicationController
       flash[:error] = 'unable to remove image'
     end
     redirect_to images_url
+  rescue => ex
+    handle_exception(ex, redirect: images_url)
   end
 end

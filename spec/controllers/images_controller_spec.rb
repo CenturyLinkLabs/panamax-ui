@@ -42,5 +42,22 @@ describe ImagesController do
       delete :destroy, id: 2
       expect(flash[:error]).to eq 'unable to remove image'
     end
+
+    context 'when an error occurs' do
+
+      before do
+        LocalImage.stub(:find).and_raise(StandardError, 'oops')
+      end
+
+      it 'redirects the user to the image page' do
+        delete :destroy, id: 2
+        expect(response).to redirect_to images_url
+      end
+
+      it 'flashes the error message' do
+        delete :destroy, id: 2
+        expect(flash[:alert]).to eq 'oops'
+      end
+    end
   end
 end
