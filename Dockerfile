@@ -1,3 +1,3 @@
-FROM 74.201.240.198:5000/ruby:alpha
+FROM centurylink/panamax-ruby-base:latest
 
 CMD bundle exec rails s
