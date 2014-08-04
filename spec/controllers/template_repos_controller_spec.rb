@@ -61,4 +61,24 @@ describe TemplateReposController do
 
   end
 
+  describe 'DELETE #destroy' do
+
+    let(:template_repo) { double(:template_repo, destroy: true) }
+
+    before do
+      TemplateRepo.stub(:new).with({ id: '1' }, persisted = true).and_return(template_repo)
+    end
+
+    it 'destroys the template repo' do
+      expect(template_repo).to receive(:destroy)
+      delete :destroy, id: '1'
+    end
+
+    it 'redirects to template repos index path' do
+      delete :destroy, id: '1'
+      expect(response).to redirect_to template_repos_path
+    end
+
+  end
+
 end

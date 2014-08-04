@@ -87,6 +87,10 @@ class FakePanamaxApi < Sinatra::Base
     status 201
   end
 
+  delete '/template_repos/1.json' do
+    status 200
+  end
+
   private
 
   def json_response(response_code, file_name)

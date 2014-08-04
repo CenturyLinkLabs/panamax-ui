@@ -10,6 +10,12 @@ class TemplateReposController < ApplicationController
     redirect_to template_repos_path
   end
 
+  def destroy
+    repo = TemplateRepo.new({ id: params[:id] }, persisted = true)
+    repo.destroy
+    redirect_to template_repos_path
+  end
+
   def reload
     repo = TemplateRepo.new({ id: params[:id] }, persisted = true)
     repo.post(:reload)
@@ -26,4 +32,5 @@ class TemplateReposController < ApplicationController
       "#{repo_name[0]}/#{repo_name[1]}"
     end
   end
+
 end
