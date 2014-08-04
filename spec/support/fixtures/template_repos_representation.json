@@ -1,10 +1,14 @@
 [
   {
      "id": 1,
-     "name": "ctllabs/canonical"
+     "name": "ctllabs/canonical",
+     "template_count": 2,
+     "updated_at": "07/17/2014"
   },
   {
      "id": 2,
-     "name": "user/publicrepo"
+     "name": "user/publicrepo",
+     "template_count": 2,
+     "updated_at": "07/28/2014"
   }
 ]
