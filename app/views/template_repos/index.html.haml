@@ -5,6 +5,5 @@
 %section.template_repos
   - if @template_repos
     %ul
-      - @template_repos.each do |repo|
-        = render 'template_repo_row', repo: repo
+      = render @template_repos
 

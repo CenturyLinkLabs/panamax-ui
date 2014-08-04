@@ -1,9 +1,9 @@
 %li
   .repo-info
-    =link_to repo.uri, repo.uri
+    =link_to template_repo.uri, template_repo.uri
     %span.count
       %label Templates:
-      = repo.template_count
+      = template_repo.template_count
   %ul.template-repo-button-menu
     %li
       = link_to 'Refresh Source', '#', method: :put, class: 'reload', title: 'reload'
