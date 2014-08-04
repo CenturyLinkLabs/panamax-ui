@@ -20,8 +20,22 @@
       base.$el.on('click', base.triggerPreview);
     };
 
+    base.serializeFormAndFixDocumentation = function(theForm) {
+      var doc_element_name = theForm.find('.template_documentation').attr('name');
+      var form_data_arr = theForm.serializeArray();
+
+      // Find and replace 'documentation' by striping out any trailing whitespace that precedes a newline
+      for (index = 0; index < form_data_arr.length; ++index) {
+        if (form_data_arr[index].name == doc_element_name) {
+          form_data_arr[index].value = form_data_arr[index].value.replace(/[^\S\n]*(?=\n)/g, '');
+          break;
+        }
+      }
+      return $.param(form_data_arr);
+    };
+
     base.triggerPreview = function(e) {
-      var form_data = base.$el.closest('form').serialize(),
+      var form_data = base.serializeFormAndFixDocumentation(base.$el.closest('form')),
           previewUrl = base.$el.attr(base.options.previewPath);
 
       e.preventDefault();

@@ -26,7 +26,19 @@ describe('$.fn.previewTemplate', function() {
     it('submits the template form data', function() {
       button.click();
       var request = mostRecentAjaxRequest();
-      expect(request.params).toEqual('description=testing');
+      expect(request.params).toContain('description=testing');
+    });
+
+    it('strips the trailing whitespace from documentation', function() {
+      var theForm = $('form.preview-form'),
+          strippedForm;
+
+      spyOn(theForm, 'serializeArray').andCallFake(function() {
+        return [{name:'documentation', value: 'line1  \n\nline2 \r\nline3' }];
+      });
+
+      strippedForm = subject.serializeFormAndFixDocumentation(theForm);
+      expect(strippedForm).toContain('documentation=line1%0A%0Aline2%0Aline3');
     });
   });
 
