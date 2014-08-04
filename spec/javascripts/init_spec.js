@@ -153,4 +153,17 @@ describe('$.PMX.init', function() {
       });
     });
   });
+
+  describe('.template_repos .button-add', function() {
+
+    beforeEach(function() {
+      fixture.load('manage-template-repos.html');
+    });
+
+    it ('toggles the display of the form', function () {
+      $('.template_repos .button-add').click();
+      expect($('form.new_template_repo').css('display')).toBe('block');
+    });
+
+  });
 });

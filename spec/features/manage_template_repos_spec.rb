@@ -12,6 +12,12 @@ describe 'managing template repos' do
 
     end
 
+    it 'displays a form to add a new source' do
+      visit '/template_repos'
+
+      expect(page).to have_selector 'form.new_template_repo'
+
+    end
   end
 
 end

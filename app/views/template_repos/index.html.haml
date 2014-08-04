@@ -6,3 +6,10 @@
   - if @template_repos
     %ul
       = render @template_repos
+
+  = form_for @template_repo do |f|
+    = f.label :name, 'New Source:'
+    = f.text_field :name, placeholder: 'username/repository'
+    = f.submit 'Add New Source', class: 'button-positive'
+
+  %button{class: 'button-add'} Add a New Source

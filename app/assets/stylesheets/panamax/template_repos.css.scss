@@ -2,10 +2,13 @@
 @import 'ctl_base_ui/mixins';
 @import 'ctl_base_ui/icons';
 
-section.template_repos {
+body#template_repo_flow {
   min-width: 960px;
+}
 
+section.template_repos {
   ul {
+    margin-bottom: 30px;
 
     li {
       overflow: hidden;
@@ -72,6 +75,55 @@ section.template_repos {
           @include icon-red;
         }
       }
+    }
+  }
+
+  .button-add {
+    background-color: $orange;
+    color: white;
+    &:after {
+      @include icon-white;
+    }
+
+    &:hover {
+      @include box-shadow(0, 0, 5px, rgba( $orange, 0.6 ));
+      background-color: darken( $orange, 5% );
+    }
+  }
+
+  form.new_template_repo {
+    position: relative;
+    display: none;
+    margin-bottom: 15px;
+
+    label {
+      font-weight: bold;
+
+      &:after {
+        content: 'https://github.com/';
+        position: absolute;
+        top: 15px;
+        left: 115px;
+        z-index: 1;
+        display: block;
+        height: 15px;
+        width: 117px;
+        font-family: "Lucida Grande", sans-serif;
+        font-size: 13px;
+        font-weight: normal;
+        color: #aaaaaa;
+      }
+    }
+
+    input[type="text"] {
+      width: 690px;
+      margin: 0 10px 0 5px;
+      padding-left: 140px;
+      box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+      font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
     }
   }
 }
