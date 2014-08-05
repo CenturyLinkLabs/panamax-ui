@@ -53,6 +53,7 @@
       })
       .done(function() {
         var $remove = $target.closest(base.options.removeAt);
+        debugger
         $remove.css('opacity', '0.5')
           .delay(1000)
           .fadeOut('slow', base.done)

@@ -74,11 +74,6 @@ describe TemplateReposController do
       delete :destroy, id: '1'
     end
 
-    it 'redirects to template repos index path' do
-      delete :destroy, id: '1'
-      expect(response).to redirect_to template_repos_path
-    end
-
   end
 
 end

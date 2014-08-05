@@ -19,15 +19,11 @@ describe 'managing template repos' do
 
     end
 
-    it 'can destroy a template repo' do
+    it 'displays a button to destroy a template repo' do
       visit '/template_repos'
 
-      within 'li:first-child .template-repo-button-menu' do
-        click_on 'delete'
-      end
+      expect(page).to have_selector 'a.delete-action'
 
-      expect(page).to have_css 'h1', text: 'Sources'
-      # TODO: assert flash message
     end
 
   end

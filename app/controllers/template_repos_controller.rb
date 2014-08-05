@@ -1,5 +1,7 @@
 class TemplateReposController < ApplicationController
 
+  respond_to :json, only: :destroy
+
   def index
     @template_repos = TemplateRepo.all
     @template_repo = TemplateRepo.new
@@ -7,13 +9,15 @@ class TemplateReposController < ApplicationController
 
   def create
     @template_repo = TemplateRepo.create(name: sanitize_repo_name(params[:template_repo][:name]))
-    redirect_to template_repos_path
+    redirect_to template_repos_url
+  rescue => ex
+    handle_exception(ex, redirect: template_repos_url)
   end
 
   def destroy
     repo = TemplateRepo.new({ id: params[:id] }, persisted = true)
     repo.destroy
-    redirect_to template_repos_path
+    respond_with repo
   end
 
   def reload

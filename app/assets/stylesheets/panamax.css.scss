@@ -351,6 +351,53 @@ ul[class*='button-menu'] {
   }
 }
 
+// Confirm delete dialog
+
+.confirm-delete {
+  position: absolute;
+  top: -10px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: $medium_grey;
+  font-weight: normal;
+  font-size: 0.9em;
+
+  span {
+    padding: 0;
+    display: block;
+    margin-top: -8px;
+
+    button {
+      padding: 3px 15px;
+      border-radius: 3px;
+      box-shadow: none;
+      border: none;
+      outline: none;
+
+      &.yes {
+        color: $white;
+        background: $dark_red;
+
+        &:hover {
+          cursor: pointer;
+          background: darken($dark_red, 5%);
+        }
+      }
+
+      &.no {
+        background: $medium_grey;
+        color: $dark_grey;
+
+        &:hover {
+          cursor: pointer;
+          background: darken($medium_grey, 5%);
+        }
+      }
+    }
+  }
+}
+
 .indicate-new {
   background: $yellow;
   width: 100%;

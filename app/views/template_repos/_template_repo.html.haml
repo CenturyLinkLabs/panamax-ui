@@ -8,16 +8,13 @@
       %label Last Refreshed:
       = DateTime.parse(template_repo.updated_at).strftime("%m/%d/%Y %H:%M:%S")
 
-  %ul.template-repo-button-menu
-    %li
-      = link_to 'Refresh Source',
-                reload_template_repo_path(template_repo.id),
-                method: :post,
-                class: 'reload',
-                title: 'reload'
-    %li
-      = link_to 'Delete Source',
-                template_repo_path(template_repo.id),
-                method: :delete,
-                class: 'delete-action',
-                title: 'delete'
+  .actions
+    = link_to 'Refresh Source',
+              reload_template_repo_path(template_repo.id),
+              method: :post,
+              class: 'reload',
+              title: 'reload'
+    = link_to 'Delete Source',
+              template_repo_path(template_repo.id),
+              class: 'delete-action',
+              title: 'delete'
