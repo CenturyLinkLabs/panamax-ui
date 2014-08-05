@@ -199,7 +199,7 @@ main {
 }
 
 main > section {
-  padding: 20px;
+  padding: 20px 0;
 }
 
 #hero h1 {
@@ -240,7 +240,7 @@ main > section {
 }
 
 #view-screens {
-  background-color: #274655;
+  background-color: #cccccc;
   padding: 20px 0 0 0;
 }
 
@@ -257,8 +257,55 @@ main > section {
   margin: 0 0 -3px 0;
 }
 
+#contest-banner {
+  background-image: url(../images/contest-background.jpg);
+  background-repeat: no-repeat;
+  width: 950px;
+  height: 245px;
+  padding:30px;
+  margin: 20px 0 0 0;
+}
+
+#contest-banner h3 {
+  color: #8DC543;
+  font-size: 24px;
+  font-weight: 100;
+  border-bottom: 0;
+  padding-bottom: 0;
+  margin: 20px 0 10px 0;
+}
+
+#contest-banner p {
+  color: #fff;
+  font-size: 16px;
+  line-height: 26px;
+  padding-bottom: 20px;
+  width: 603px;
+}
+
+#contest-banner span {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 100;
+}
+
+#contest-info {
+  float: right;
+}
+
+#contest-info .button-positive {
+  background-color: #8DC543;
+  margin: 60px 35px 0 0;
+}
+
+#contest-info .button-positive:hover {
+  transition: background-color 0.25s ease;
+  background: #fff;
+  color:#8DC543;
+}
+
 #get-panamax {
-  background-color: #274655;
+  background: #274655;
   padding: 20px;
 }
 
@@ -701,6 +748,10 @@ input {
     padding: 20px;
   }
 
+  header nav ul li.contest {
+    background: #659D1B;
+  }
+
   header nav ul li.twitter,
   header nav ul li.github {
     display: none;
@@ -819,6 +870,48 @@ input {
     float: left;
   }
 
+  #contest-structure dl dt {
+    color: #777;
+    float: left;
+    width: 15%;
+    font-weight: 200;
+    font-size: 20px;
+    margin: 20px 0 0 0;
+  }
+
+  #contest-structure dl dd {
+    font-size: 14px;
+    line-height: 24px;
+    padding: 20px 0;
+    padding-left: 20%;
+    border-bottom: 1px solid #f1f1f1;
+  }
+
+  #contest-structure dl dd:last-child {
+    border-bottom: none;
+  }
+
+  #how-to-submit dl dt {
+    color: #777;
+    float: left;
+    width: 15%;
+    font-weight: 200;
+    font-size: 20px;
+    margin: 20px 0 0 0;
+  }
+
+  #how-to-submit dl dd {
+    font-size: 14px;
+    line-height: 24px;
+    padding: 20px 0;
+    padding-left: 20%;
+    border-bottom: 1px solid #f1f1f1;
+  }
+
+  #how-to-submit dl dd:last-child {
+    border-bottom: none;
+  }
+
   /* FOOTER */
 
   #footer-info {
@@ -880,12 +973,12 @@ input {
     margin-left: 3%;
   }
 
-  #newsletter input[type='text'] {
+  #mc_embed_signup input[type='email'] {
     width: 60%;
     float: left;
   }
 
-  #newsletter input[type='submit'] {
+  #mc_embed_signup input[type='submit'] {
     width: 35%;
     float: right;
   }
