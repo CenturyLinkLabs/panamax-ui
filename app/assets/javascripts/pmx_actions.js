@@ -82,8 +82,8 @@
     };
 
     base.injectMarkup = function() {
-      var markup = '<section class="confirm-delete"><span>' + base.options.message + '</span>' +
-                   '<aside><button class="no">Cancel</button><button class="yes">Yes, Delete!</button></aside></section>',
+      var markup = '<section class="confirm-delete">' + base.options.message +
+                   '<span><button class="no">Cancel</button><button class="yes">Yes, Delete!</button></span></section>',
           $hideaway, $confirm;
 
       base.wrapElements();

@@ -118,14 +118,11 @@
       left: 0;
       width: 100%;
       height: 100%;
+      color: $medium_grey;
+      font-weight: normal;
+      font-size: 0.9em;
 
       span {
-        color: $medium_grey;
-        font-weight: normal;
-        font-size: 0.9em;
-      }
-
-      aside {
         padding: 0;
         display: block;
         margin-top: -8px;
@@ -604,7 +601,7 @@ section.application-services {
 
         header {
           position: relative;
-          min-height: 25px;
+          min-height: 30px;
 
           .confirm-delete {
             position: absolute;
