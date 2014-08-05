@@ -6,7 +6,7 @@
       = template_repo.template_count
     %span.updated
       %label Last Refreshed:
-      = Date.strptime(template_repo.updated_at).strftime("%D")
+      = DateTime.parse(template_repo.updated_at).strftime("%m/%d/%Y %H:%M:%S")
 
   %ul.template-repo-button-menu
     %li
