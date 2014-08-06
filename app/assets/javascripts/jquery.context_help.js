@@ -10,8 +10,8 @@
       contentLinks: 'section a',
       arrowSelector: 'aside.arrow',
       dismissSelector: 'span.dismiss',
-      top: '36px',
-      left: '-24px'
+      top: '32px',
+      left: '-25px'
     };
 
     base.init = function () {

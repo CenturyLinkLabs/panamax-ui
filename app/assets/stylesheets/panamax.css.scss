@@ -476,7 +476,7 @@ ul[class*='button-menu'] {
   display: block;
   position: absolute;
   z-index: 9999;
-  color: $medium_grey;
+  color: $warm_grey;
   background: $yellow;
   font-weight: normal;
   font-size: 0.85em;
@@ -590,29 +590,27 @@ footer {
 }
 
 .context-help {
-  section {
+  section.tooltip {
+    padding: 10px 15px 10px 10px;
     display: none;
-    color: $warm_grey;
     min-width: 345px;
     max-width: 490px;
-    position: absolute;
-    background: $yellow;
-    padding: 10px 15px 10px 10px;
-    z-index: 100;
-    font-size: 13px;
-    line-height: 1.0em;
+
+    &:before {
+      display: none;
+    }
 
     > aside.arrow {
       box-sizing: content-box;
       width: 0;
       height: 0;
       display: block;
-      border-left: 5px solid transparent;
-      border-right: 5px solid transparent;
-      border-bottom: 10px solid $yellow;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-bottom: 6px solid $yellow;
       position: absolute;
       left: 30px;
-      top: -10px;
+      top: -6px;
     }
 
     &:hover {
@@ -621,12 +619,23 @@ footer {
 
     p {
       font-size: 13px;
+
+      &:last-child {
+        padding-bottom: 0;
+      }
+    }
+
+    pre {
+      font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
+      background-color: lighten($yellow, 10%);
+      border: 1px solid darken($yellow, 10%);
+      padding: 5px 5px 4px 5px;
     }
 
     span.dismiss {
       float: right;
-      width: 20px;
-      height: 20px;
+      width: 15px;
+      height: 15px;
       position: relative;
 
       &:hover {
@@ -636,8 +645,8 @@ footer {
       &:after {
         content: '';
         position: absolute;
-        left: 6px;
-        top: 7px;
+        left: 0px;
+        top: 5px;
         display: block;
         @include icon-light-grey;
         @extend .icon-x;

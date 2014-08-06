@@ -21,14 +21,14 @@
       %a{ class: 'application-access' }
         Access your application
         .context-help
-          %section
+          %section.tooltip
             %aside.arrow
             %span{ class: 'dismiss' }
             %p
               If your application has a GUI, map a port on your local host machine to the port bound to the host. If using Virtual Box, use the following command in your local machine's terminal window to create the port forwarding rule:
-              %pre VboxManage controlvm panamax-vm natpf1 <em>rule</em>,<em>tcp</em>,,8997,,8080
+              %pre VboxManage controlvm panamax-vm natpf1 <em>rule</em>,<em>protocol</em>,,8997,,8080
             %p
-              Where rule is the friendly name and protocol is tcp or udp. Replace port 8997 with any free port on your local machine and replace 8080 to the port bound to the host.
+              where  <em>rule</em> is the friendly name and <em>protocol</em> is tcp or udp. Replace port 8997 with any free port on your local machine and replace 8080 to the port bound to the host.
             %p
               After you run this command locally, browse to http://localhost:port to see the GUI.
 
