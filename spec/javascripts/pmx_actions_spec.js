@@ -80,22 +80,15 @@ describe('$.fn.destroyLink', function () {
     });
 
     describe('and clicking cancel', function() {
-      beforeEach(function() {
-        $('.no').click();
-      });
-
       it('removes the hideaway class', function() {
+        $('.confirm-delete button.no').trigger($.Event('click'));
         expect($('.hideaway').length).toBe(0)
       });
     });
 
     describe('and clicking confirm', function() {
       beforeEach(function() {
-        $('.yes').click();
-      });
-
-      it('removes the hideaway class', function() {
-        expect($('.hideaway').length).toBe(0)
+        $('.confirm-delete button.yes').click();
       });
 
       it('calls the confirm callback', function() {
