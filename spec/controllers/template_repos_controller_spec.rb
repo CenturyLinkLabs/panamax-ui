@@ -30,13 +30,13 @@ describe TemplateReposController do
     end
 
     it 'assigns the template repo' do
-      post :create, template_repo: { name: 'https://github.com/user/repo.git' }
+      post :create, template_repo: { name: 'user/repo' }
       expect(assigns(:template_repo)).to eq fake_template_repo
     end
 
     it 'creates a template repo with a sanitized name' do
       expect(TemplateRepo).to receive(:create).with(name: 'user/repo')
-      post :create, template_repo: { name: 'https://github.com/user/repo.git' }
+      post :create, template_repo: { name: 'user/repo' }
     end
 
   end
