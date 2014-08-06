@@ -1,17 +1,26 @@
 describe('$.fn.templateRepoActions', function () {
+  var subject;
+
   beforeEach(function () {
     fixture.load('manage-template-repos.html');
-    $('.template-repos').templateRepoActions();
+    subject = new $.PMX.ManageTemplateRepos($('.template-repos'));
+    subject.init();
     jasmine.Ajax.useMock();
   });
 
   describe('clicking add source button', function() {
-   it ('toggles the form', function () {
-     var click = new $.Event('click');
-     $('.button-add').trigger(click);
-     console.log($('.button-add').html());
-     expect($('form').css('display')).toEqual('none');
-   });
+    it ('shows the form if the form is hidden', function () {
+      var click = new $.Event('click');
+      $('.button-add').trigger(click);
+      expect($('form').css('display')).toEqual('block');
+    });
+
+    it ('hides the form if the form is visible', function () {
+      var click = new $.Event('click');
+      $('form').css('display', 'block');
+      $('.button-add').trigger(click);
+      expect($('form').css('display')).toEqual('none');
+    });
   });
 
   describe('clicking delete link', function() {
@@ -23,16 +32,15 @@ describe('$.fn.templateRepoActions', function () {
 
     it('show the confirm dialog', function() {
       $('.delete-action').click();
-      console.log($('.template-repos').html());
       expect($('.confirm-delete').length).toEqual(1);
     });
 
     it('removes the repo row when delete is confirmed', function() {
-      $('delete-action').click();
-      console.log($('.template-repos').html());
+      spyOn(subject, 'confirmDelete');
+      $('.delete-action').click();
       $('button.yes').click();
 
-      expect($('ul').length).toEqual(0);
+      expect(subject.confirmDelete).toHaveBeenCalled();
     });
   });
 });

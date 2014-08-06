@@ -10,7 +10,7 @@
     base.defaultOptions = {
       $templateRepoForm: $('form.new_template_repo'),
       templateRepoFormButtonSelector: '.button-add',
-      deleteRepoSelector: 'a.delete-action',
+      deleteRepoSelector: '.actions a.delete-action',
       removeSelector: 'li'
     };
 
@@ -30,15 +30,7 @@
     };
 
     base.confirmDelete = function(e) {
-      debugger
-      var destroyer = new $.PMX.destroyLink($(e.currentTarget).closest(base.options.removeSelector),
-        {
-          linkSelector: base.options.deleteRepoSelector,
-          removeAt: base.options.removeSelector,
-          success: function() {
-            $(base.removeAt).remove();
-          }
-        });
+      var destroyer = new $.PMX.destroyLink($(e.currentTarget).closest(base.options.removeSelector));
 
       destroyer.init();
       destroyer.handleDelete(e);
@@ -48,14 +40,11 @@
       e.preventDefault();
 
       var $target = $(e.currentTarget);
-
       (new $.PMX.ConfirmDelete($target.closest('.actions'),
         {
           message: 'Delete this template repository?',
           confirm: function() {
-            var fakeEvent = $.Event('click');
-            fakeEvent.currentTarget = $target;
-            base.confirmDelete(fakeEvent);
+            base.confirmDelete(e);
           }
         }
       )).init();
