@@ -25,4 +25,36 @@ shared_examples 'an active resource model' do
     end
   end
 
+  describe '.all_with_response' do
+
+    let(:response) { double('response', body: '{}', header: { 'Total-Count' => '1' }) }
+    let(:connection) { double('connection', get: response) }
+    let(:collection) { %w(foo baz bar) }
+
+    before do
+      described_class.stub(:prefix_parameters).and_return({}) # ignore model prefix
+      described_class.stub(:connection).and_return(connection)
+      described_class.stub(:instantiate_collection).and_return(collection)
+    end
+
+    it 'makes a GET request with the proper path' do
+      expect(connection).to receive(:get).with("#{described_class.collection_path}", {}).and_return(response)
+      described_class.all_with_response
+    end
+
+    it 'returns an object which is effectively the same as the collection passed' do
+      wrapper = described_class.all_with_response
+      expect(wrapper).to eq(collection)
+    end
+
+    it 'returns an object that responds to #response' do
+      wrapper = described_class.all_with_response
+      expect(wrapper.respond_to?(:response)).to be true
+    end
+
+    it 'returns an object that returns the response when sent :response' do
+      wrapper = described_class.all_with_response
+      expect(wrapper.response).to eq(response)
+    end
+  end
 end

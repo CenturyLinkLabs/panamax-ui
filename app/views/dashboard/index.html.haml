@@ -1,0 +1,25 @@
+- content_for(:body_id, 'manage_flow')
+
+%header
+  = render '/shared/breadcrumbs', breadcrumbs: ["Manage",  "Dashboard"]
+
+#dashboard
+  - @resources.each do |resource, value|
+    %section
+      %a{href: value[:manage_path]}
+        %header
+          %span.count
+            = value[:count]
+          %span.title
+            = resource.pluralize(value[:count])
+      %ul
+        - value[:list].each do |item|
+          %li
+            = item.name
+        - if value[:more_count] > 0
+          %li.more
+            And #{value[:more_count]} more #{ resource.downcase.pluralize(value[:more_count]) }
+
+  - @resources.each do |resource, value|
+    %section
+      =link_to "Manage #{resource.pluralize}", value[:manage_path], class: 'button'
