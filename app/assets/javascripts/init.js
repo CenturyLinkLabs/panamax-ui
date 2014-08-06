@@ -69,9 +69,7 @@
       addCallback: enableNewItem
     });
 
-    $('.template_repos .button-add').click( function () {
-      $('form.new_template_repo').slideToggle();
-    });
+    $('.template-repos').templateRepoActions();
 
     $('.exposed-ports').appendableExposePorts();
 

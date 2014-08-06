@@ -23,7 +23,7 @@
       base.bindEvents();
     };
 
-    base.bindEvents = function(){
+    base.bindEvents = function() {
       base.$el.on('click', base.options.linkSelector, base.handleDelete);
     };
 
@@ -96,6 +96,7 @@
     };
 
     base.bindEvents = function() {
+      base.$el.unbind('click');
       base.$el.on('click', base.options.confirmSelector, base.handleConfirm);
       base.$el.on('click', base.options.cancelSelector, base.handleCancel);
     };
@@ -109,25 +110,15 @@
       var $parent = $target.closest('.confirm-delete').parent();
 
       $parent.find('.confirm-delete').remove();
-      $parent.find('.hideaway')
-        .css('display', 'auto')
-        .children().each(function() {
-          $(this).clone(true, true).appendTo($parent);
-        });
-      $parent.find('.hideaway').remove();
+      $parent.find('.hideaway').children().first().unwrap();
     };
 
     base.handleConfirm = function(e) {
-      var $target = $(e.currentTarget);
-
-      base.unWrapElements($target);
       if (base.options.confirm) { base.options.confirm(); }
     };
 
     base.handleCancel = function(e) {
-      var $target = $(e.currentTarget);
-
-      base.unWrapElements($target);
+      base.unWrapElements($(e.currentTarget));
       if (base.options.cancel) { base.options.cancel(); }
     };
   };

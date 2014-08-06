@@ -6,16 +6,28 @@ body#template_repo_flow {
   min-width: 960px;
 }
 
-section.template_repos {
+section.template-repos {
   ul {
     margin-bottom: 30px;
 
     li {
       overflow: hidden;
       margin-bottom: 20px;
+      position: relative;
 
       &:last-child {
         margin-bottom: 0;
+      }
+
+      .confirm-delete {
+        top: 0px;
+        right: 0px;
+        left: auto !important;
+        width: 210px;
+
+        span {
+          margin-top: 2px;
+        }
       }
 
       .repo-info {
@@ -59,20 +71,53 @@ section.template_repos {
         }
       }
 
-      .template-repo-button-menu {
+      .actions {
         float: right;
         width: 175px;
-      }
 
-      .delete-action {
-        @include hide-text;
-        @extend .icon-x-large;
-        @include icon-grey;
-        margin: 8px 0 0 12px;
-        padding: 0;
+        .reload {
+          font-size: 14px;
+          color: $white;
+          display: inline-block;
+          position: relative;
+          padding: 10px 10px 10px 25px;
+          text-align: left;
+          text-decoration: none;
+          border-radius: 3px;
+          background: $dark_grey;
 
-        &:hover {
-          @include icon-red;
+          &:hover {
+            background: $medium_grey;
+          }
+
+          &:after {
+            @include icon-white;
+            @extend .icon-arrowloop;
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 12px;
+            display: block;
+            height: 10px;
+            width: 10px;
+          }
+        }
+
+        .delete-action {
+          @include hide-text;
+          @extend .icon-x-large;
+          @include icon-grey;
+          margin: 8px 0 0 12px;
+          padding: 0;
+          float: right;
+
+          &:after {
+            display: none;
+          }
+
+          &:hover {
+            @include icon-red;
+          }
         }
       }
     }
@@ -116,7 +161,7 @@ section.template_repos {
     }
 
     input[type="text"] {
-      width: 690px;
+      width: 685px;
       margin: 0 10px 0 5px;
       padding-left: 140px;
       box-sizing: border-box;

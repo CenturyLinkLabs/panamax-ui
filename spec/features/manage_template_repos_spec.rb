@@ -18,6 +18,14 @@ describe 'managing template repos' do
       expect(page).to have_selector 'form.new_template_repo'
 
     end
+
+    it 'displays a button to destroy a template repo' do
+      visit '/template_repos'
+
+      expect(page).to have_selector 'a.delete-action'
+
+    end
+
   end
 
 end
