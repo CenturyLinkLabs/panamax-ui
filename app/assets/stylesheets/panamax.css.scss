@@ -644,7 +644,6 @@ footer {
         width: 20px;
         height: 20px;
       }
-
     }
   }
 }
@@ -656,4 +655,14 @@ em {
 pre.prettyprint {
   font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
   font-size: 0.9em;
+
+  span {
+    color: $dark_grey;
+    line-height: 1.15em;
+  }
+
+  span.com, span.str {
+    font-style: normal;
+  }
+
 }
