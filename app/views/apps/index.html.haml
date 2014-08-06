@@ -1,8 +1,8 @@
 - content_for(:body_id, 'manage_flow')
 
-%h1 Manage
-%header
-  %h3 My Applications
+= render '/shared/breadcrumbs', breadcrumbs: [ "Manage",
+                                                link_to("Dashboard", dashboard_index_path),
+                                                "My Applications" ]
 %section.applications
   - @apps.each do |app|
     %div.application

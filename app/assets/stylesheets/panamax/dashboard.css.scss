@@ -1,0 +1,120 @@
+@import 'ctl_base_ui/colors';
+@import 'ctl_base_ui/mixins';
+@import 'ctl_base_ui/icons';
+
+#dashboard {
+  overflow: auto;
+
+  section {
+    @include border-box;
+    float: left;
+    width: 300px;
+    min-height: 200px;
+    margin-right: 30px;
+
+    &:nth-of-type(3n) {
+      margin-right: 0;
+    }
+
+    &:nth-of-type(3n+4) {
+      clear: both;
+    }
+
+    &:hover {
+      header {
+        background: $blue_grey;
+      }
+
+      .title, .count {
+        color: $white;
+      }
+
+      li {
+        color: $blue_grey_dark;
+      }
+    }
+
+    a {
+      text-decoration: none;
+
+      &:hover  .title {
+        border-bottom: 1px solid $white;
+      }
+    }
+
+    header {
+      @include border-box;
+      height: 80px;
+      background-color: $light_grey;
+      border-radius: 3px;
+
+      .title {
+        display:inline-block;
+        margin-top: 30px;
+        padding-bottom: 3px;
+        color: $dark_grey;
+        font-weight: normal;
+      }
+
+      .count {
+        float: left;
+        color: $dark_grey;
+        margin: 18px;
+        font-size: 40px;
+        font-weight: bold;
+      }
+    }
+
+    ul {
+      float: left;
+      width: 100%;
+      margin-top: 10px;
+
+      li {
+        color: darken($grey, 10%);
+        padding: 17px 5px;
+        border-bottom: 1px solid $light_grey;
+
+        &:last-of-type {
+          border-bottom: none;
+        }
+      }
+
+      li.more {
+        font-style: italic;
+      }
+    }
+
+    a.button {
+      @include border-box;
+      margin-top: 17px;
+      border-radius: 3px;
+      padding-left: 10px;
+      padding-top: 15px;
+      font-size: 0.9em;
+      width: 100%;
+      position: relative;
+      height: 47px;
+      display: block;
+      color: $white;
+      background-color: $dark_grey;
+      text-decoration: none;
+
+      &:hover {
+        background-color: lighten($dark_grey, 10%);
+      }
+
+      &:before {
+        content: '';
+        position: absolute;
+        right: 10px;
+        top: 17px;
+        display: block;
+        @extend .icon-thick-arrow-right;
+        @include icon-white;
+        width: 10px;
+        height: 10px;
+      }
+    }
+  }
+}
