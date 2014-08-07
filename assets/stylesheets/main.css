@@ -304,11 +304,11 @@ section {
   background-size: 15px 1500px;
   background-position: 5px -205px;
 }
-#contest {
+#contest-banner {
   height: 275px;
 }
 
-#contest .inner {
+#contest-banner .inner {
   background-image: url(../images/panamax_contest_bg_big.jpg);
   background-position: 0 -215px;
   background-repeat: no-repeat;
@@ -317,28 +317,28 @@ section {
   position: relative;
 }
 
-#contest .inner .info,
-#contest .inner .action {
+#contest-banner .inner .info,
+#contest-banner .inner .action {
   height: 100%;
   padding: 20px;
   box-sizing: border-box;
 }
 
-#contest .inner .info {
+#contest-banner .inner .info {
   width: 70%;
   background-color: rgba(4, 19, 30, .75);
   float: left;
   padding-right: 40px;
 }
 
-#contest .inner .action {
+#contest-banner .inner .action {
   width: 30%;
   height: 100%;
   background-color: rgba(60, 82, 94, .75);
   float: right;
 }
 
-#contest h3 {
+#contest-banner .inner h3 {
   color: #8DC543;
   font-size: 24px;
   font-weight: 100;
@@ -347,31 +347,31 @@ section {
   margin: 20px 0 10px 0;
 }
 
-#contest p {
+#contest-banner p {
   color: #fff;
   font-size: 16px;
   line-height: 26px;
   padding-bottom: 20px;
 }
 
-#contest p, a, h3 {
+#contest-banner p, a, h3 {
   position: relative;
   z-index: 10;
 }
-#contest img.prizes {
+#contest-banner img.prizes {
   position: absolute;
   top: 25px;
   right: 18%;
   z-index: 1;
 }
 
-#contest .button-positive {
+#contest-banner .button-positive {
   background-color: #8DC543;
   margin: 27% 0 0 21%;
   text-decoration: none;
 }
 
-#contest .button-positive:hover {
+#contest-banner .button-positive:hover {
   transition: background-color 0.25s ease;
   background: #fff;
   color:#8DC543;
@@ -1119,41 +1119,41 @@ body.documentation main ul li {
 }
 
 @media screen and (max-width: 768px) {
-  #contest {
+  #contest-banner {
     height: 480px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
   }
 
-  #contest .inner {
+  #contest-banner .inner {
     background-position: bottom right;
   }
 
-  #contest .inner .info,
-  #contest .inner .action {
+  #contest-banner .inner .info,
+  #contest-banner .inner .action {
     float: none;
     box-sizing: border-box;
   }
 
-  #contest .inner .info {
+  #contest-banner .inner .info {
     width: 100%;
     height: 340px;
   }
 
-  #contest .inner .action {
+  #contest-banner .inner .action {
     padding-bottom: 0;
     width: 100%;
     height: 100px;
   }
 
-  #contest .button-positive {
+  #contest-banner .button-positive {
     display: block;
     width: 80%;
     margin: 0 auto;
   }
 
-  #contest img.prizes {
+  #contest-banner img.prizes {
     top: 55%;
     right: 30%;
   }
@@ -1170,37 +1170,37 @@ body.documentation main ul li {
 }
 
 @media all and (min-width: 481px) and (max-width: 768px) {
-  #contest {
+  #contest-banner {
     height: 440px;
   }
 
-  #contest h3 {
+  #contest-banner .inner h3 {
     margin-top: 80px;
     width: 70%;
   }
-  #contest .inner {
+  #contest-banner .inner {
     background-position: bottom right;
   }
 
-  #contest .inner .info,
-  #contest .inner .action {
+  #contest-banner .inner .info,
+  #contest-banner .inner .action {
     float: none;
     box-sizing: border-box;
   }
 
-  #contest .inner .info {
+  #contest-banner .inner .info {
     height: 300px;
   }
 
-  #contest .inner .action {
+  #contest-banner .inner .action {
     height: 100px;
   }
 
-  #contest .button-positive {
+  #contest-banner .button-positive {
     width: 50%;
     margin: 0 0 0 45%;
   }
-  #contest img.prizes {
+  #contest-banner img.prizes {
     top: 5%;
     right: 5%;
   }
