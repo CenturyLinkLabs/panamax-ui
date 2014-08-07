@@ -1,0 +1,61 @@
+@import 'ctl_base_ui/colors';
+@import 'ctl_base_ui/buttons';
+
+body#error_page {
+  background: image-url('error_background.jpg') no-repeat top center;
+
+  .error-explanation {
+    margin: 160px auto;
+    text-align: center;
+
+    h1 {
+      font-size: 196px;
+      border-bottom: none;
+      margin: 20px 0;
+      padding: 0;
+    }
+
+    h2 {
+      font-size: 30px;
+      color: $blue_grey;
+      font-weight: normal;
+      margin: 0;
+      padding: 0;
+
+      em {
+        font-style: normal;
+        color: $orange;
+      }
+    }
+
+    a {
+      display: block;
+      @extend .button-secondary;
+      background: $light_grey;
+      color: $dark_grey;
+      border: $dark_grey 1px solid;
+      position: relative;
+      width: 250px;
+      margin: 0 auto;
+
+      &:after {
+        content: '';
+        position: absolute;
+        display: block;
+        right: 10px;
+        top: 13px;
+        width: 20px;
+        height: 20px;
+        @extend .icon-thick-arrow-right-medium;
+      }
+
+      &:hover {
+        color: $white;
+
+        &:after {
+          @include icon-white;
+        }
+      }
+    }
+  }
+}
