@@ -163,7 +163,7 @@ header nav ul li a:hover {
 
 cite.built-by {
   display: block;
-  width: 195px;
+  width: 145px;
   overflow: hidden;
   margin: 0 10px 0 auto;
 }
@@ -192,13 +192,7 @@ cite.built-by h2 {
   background-position: center left;
 }
 
-main {
-  width: 100%;
-  margin-top: 20px;
-  padding-bottom: 20px;
-}
-
-main > section {
+section {
   padding: 20px 0;
 }
 
@@ -220,6 +214,11 @@ main > section {
   margin-bottom: 15px;
   display: block;
   text-decoration: none;
+}
+
+#hero,
+#about-panamax {
+  padding: 20px;
 }
 
 #about-panamax dl dt {
@@ -245,18 +244,25 @@ main > section {
   padding: 20px 0 0 0;
 }
 
+#view-screens .inner {
+  width: 520px;
+}
+
 #view-screens h2 {
-  margin: 18px 20px 0 0;
+  margin: 0 auto 10px;
+  display: block;
+  width: 370px;
   padding: 0;
   border-bottom: none;
   color: white;
-  float: left;
+  text-shadow: 0 0 2px rgba(150, 150, 150, .4);
 }
 
 #view-screens img.preview-image {
   padding: 0;
   margin: 0 0 -3px 0;
 }
+
 #view-screens a {
   position: relative;
   font-size: 0;
@@ -268,11 +274,12 @@ main > section {
   display: none;
   height: 98px;
   width: 150px;
-  background-color: rgba(150, 150, 150, .5);
+  background-color: rgba(150, 150, 150, .6);
   bottom: -3px;
   left: 5px;
   box-shadow: 0 0 5px rgba(100, 100, 100, .5);
 }
+
 #view-screens a:hover > .overlay {
   display: block;
 }
@@ -344,6 +351,7 @@ main > section {
 #get-panamax {
   background: #274655;
   padding: 20px;
+  margin-bottom: 0;
 }
 
 #get-panamax h2 {
@@ -480,6 +488,12 @@ footer {
   padding: 20px;
   overflow: hidden;
   background: #f1f1f1;
+  line-height: 22px;
+}
+
+footer p {
+  line-height: 22px;
+  margin-bottom: 15px;
 }
 
 #footer-info {
@@ -521,6 +535,7 @@ footer {
 
 #newsletter input {
   width: 100%;
+  margin-bottom: 10px;
 }
 
 #newsletter input[type='text'] {
@@ -604,49 +619,6 @@ hr {
 
   p a:hover {
     color: #229fe5;
-  }
-
-/*SPECIAL TYPOGRAPHY*/
-p {
-  font-size: 16px;
-  line-height: 36px;
-}
-
-h2 {
-  color: #5F7A87;
-  font-size: 36px;
-  font-weight: 200;
-  border-bottom: 1px solid #CCC;
-  padding-bottom: 30px;
-  margin: 20px 0px;
-}
-
-h3 {
-  font-size: 24px;
-  color: #ed6323;
-  border-bottom: 1px solid #CCC;
-  padding-bottom: 20px;
-  margin: 20px 0px;
-}
-
-blockquote {
-  color: #1B6C94;
-  font-size: 18px;
-  line-height: 28px;
-  font-weight: bold;
-  font-style: italic;
-  margin: 0px 0px 20px 0px;
-  padding-left: 60px;
-}
-
-pre {
-  border: 1px solid #CCC;
-  background: #f1f1f1;
-  padding: 20px;
-  margin-bottom: 20px;
-}
-  pre code {
-    word-wrap: break-word;
   }
 
 /*FORMS*/
@@ -744,6 +716,13 @@ input {
   #footer-info li.twitter {
     display: none;
   }
+
+  #view-screens h2 {
+    width: 370px;
+    margin: 0 auto 20px auto;
+    float: none;
+  }
+
 }
 
 @media all and (min-width: 769px) {
@@ -829,17 +808,22 @@ input {
     margin-right: 10px;
   }
 
+  #view-screens h2 {
+    float: left;
+    margin: 16px 5px 0 0 ;
+  }
+
+  #view-screens .inner {
+    width: 960px;
+  }
+
   /* MAIN INFO SECTIONS */
 
-  main {
-    max-width: 960px;
-    margin: 0 auto;
+  section {
+    margin: 0 auto 20px;
   }
 
-  main > section {
-    margin-bottom: 20px;
-  }
-  main > section:last-of-type {
+  section:last-of-type {
     margin-bottom: 0;
   }
 
@@ -856,6 +840,7 @@ input {
     position: relative;
     height: 400px;
     margin-top: 40px;
+    margin-bottom: 0;
   }
 
   #how-it-works .inner {
@@ -991,9 +976,20 @@ input {
     padding: 20px 8px;
     letter-spacing: 1px;
   }
+
   #social-icons {
     width: 53px;
   }
+
+  #view-screens a {
+    margin: 0 10px;
+  }
+
+  #view-screens img.preview-image {
+    padding: 0;
+    height: auto;
+  }
+
 }
 
 @media all and (min-width: 481px) {
@@ -1032,3 +1028,48 @@ input {
     margin-right: 2%;
   }
 }
+
+@media screen and (max-width: 480px) {
+  #view-screens h2 {
+    font-size: 26px;
+    width: 260px;
+  }
+
+  #view-screens .inner {
+    width: 320px;
+  }
+
+  #view-screens img.preview-image {
+    width: 100px;
+    height: auto;
+  }
+
+  #view-screens a > .overlay {
+    position: absolute;
+    display: none;
+    height: 60px;
+    width: 94px;
+    bottom: -3px;
+    left: 3px;
+  }
+
+  #view-screens a:hover > .overlay {
+    display: block;
+  }
+
+  #view-screens a:hover > .overlay:after {
+    top: 19px;
+    left: 35px;
+  }
+}
+
+@media all and (min-width: 481px) and (max-width: 550px) {
+  #view-screens .inner {
+    width: 480px;
+  }
+
+  #view-screens a {
+    margin: 0;
+  }
+}
+

@@ -52,3 +52,46 @@ li {
   color: #aaa;
   font-style: italic;
 }
+
+/*SPECIAL TYPOGRAPHY*/
+p {
+  font-size: 16px;
+  line-height: 36px;
+}
+
+h2 {
+  color: #5F7A87;
+  font-size: 36px;
+  font-weight: 200;
+  border-bottom: 1px solid #CCC;
+  padding-bottom: 30px;
+  margin: 20px 0px;
+}
+
+h3 {
+  font-size: 24px;
+  color: #ed6323;
+  border-bottom: 1px solid #CCC;
+  padding-bottom: 20px;
+  margin: 20px 0px;
+}
+
+blockquote {
+  color: #1B6C94;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: bold;
+  font-style: italic;
+  margin: 0px 0px 20px 0px;
+  padding-left: 60px;
+}
+
+pre {
+  border: 1px solid #CCC;
+  background: #f1f1f1;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+pre code {
+  word-wrap: break-word;
+}
