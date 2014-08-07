@@ -843,17 +843,17 @@ input {
   }
 
   #how-it-works.install > .background {
-    background-image: url('../images/how_install.jpg');
+    background-image: url('../images/how_it_works/how_install.jpg');
 
   }
 
   #how-it-works.build > .background {
-    background-image: url('../images/how_build.jpg');
+    background-image: url('../images/how_it_works/how_build.jpg');
 
   }
 
   #how-it-works.manage > .background {
-    background-image: url('../images/how_manage.jpg');
+    background-image: url('../images/how_it_works/how_manage.jpg');
 
   }
 

@@ -5,13 +5,14 @@
     <title>Panamax</title>
     <link href="assets/stylesheets/typography.css" media="all" rel="stylesheet" />
     <link href="assets/stylesheets/main.css" media="all" rel="stylesheet" />
+    <link href="assets/stylesheets/lightbox.css" media="all" rel="stylesheet" />
     <script src="assets/javascripts/ga.js"></script>
   </head>
   <body id="home">
     <div class="cache-warmer">
-      <img src="assets/images/how_install.jpg">
-      <img src="assets/images/how_build.jpg">
-      <img src="assets/images/how_manage.jpg">
+      <img src="assets/images/how_it_works/how_install.jpg">
+      <img src="assets/images/how_it_works/how_build.jpg">
+      <img src="assets/images/how_it_works/how_manage.jpg">
     </div>
     <header>
       <h1 class='panamax-logo'>
@@ -48,10 +49,19 @@
     </main>
       <section id="view-screens">
         <div class="inner">
-          <h2 class="get-panamax-heading">Wanna see a few screens?</h2>
-            <img src="assets/images/marketing_screen_01.png"/>
-            <img src="assets/images/marketing_screen_02.png"/>
-            <img src="assets/images/marketing_screen_03.png"/>
+          <h2 class="get-panamax-heading">Check out the interface</h2>
+          <a href="assets/images/preview_images/marketing_screen_01_big.png" data-lightbox="preview-set"
+             data-title="Manage your application">
+            <img class="preview-image" src="assets/images/preview_images/marketing_screen_01.png"/>
+          </a>
+          <a href="assets/images/preview_images/marketing_screen_02_big.png" data-lightbox="preview-set"
+             data-title="Search local images, templates, and the Docker Registry">
+            <img src="assets/images/preview_images/marketing_screen_02.png"/>
+          </a>
+          <a href="assets/images/preview_images/marketing_screen_03_big.png" data-lightbox="preview-set"
+             data-title="Manage individual services">
+            <img src="assets/images/preview_images/marketing_screen_03.png"/>
+          </a>
         </div>
       </section>
     <main>
@@ -154,6 +164,7 @@
       <small>&copy; 2014 Century Link Labs</small>
     </section>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="assets/javascripts/lightbox.min.js"></script>
     <script src="assets/javascripts/jquery.sidr.min.js"></script>
     <script src="assets/javascripts/jquery.touchwipe.min.js"></script>
     <script src="assets/javascripts/index.js"></script>
