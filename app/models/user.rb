@@ -5,6 +5,7 @@ class User < BaseResource
     string :email
     boolean :github_access_token_present
     string :github_access_token
+    boolean :subscribe
   end
 
   def repositories

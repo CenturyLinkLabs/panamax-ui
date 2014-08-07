@@ -7,6 +7,7 @@ describe User do
 
   it { should respond_to :email }
   it { should respond_to :github_access_token_present }
+  it { should respond_to :subscribe }
 
   describe '#repositories' do
     it 'should always respond to each' do

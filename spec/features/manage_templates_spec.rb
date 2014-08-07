@@ -52,6 +52,9 @@ describe 'managing a template' do
             href: 'https://github.com/settings/tokens/new?scope=repo,user:email'
           )
 
+          expect(page).to have_unchecked_field 'user_subscribe'
+          expect(page).to have_content 'Sign up for our newsletter - Get all the latest news'
+
           fill_in 'Github Token', with: 'abc123'
           click_on 'Save Token'
 

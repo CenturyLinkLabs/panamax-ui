@@ -7,4 +7,7 @@
   %strong
     = f.label :github_access_token, 'Github Token'
   = f.text_field :github_access_token, placeholder: 'Paste your GitHub token here'
+  %label.subscribe-flag
+    = f.check_box :subscribe, {}, true, false
+    Sign up for our newsletter - Get all the latest news, tips & tricks for Panamax
   = f.button 'Save Token', class: 'button-positive'
