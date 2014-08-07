@@ -215,10 +215,11 @@ main > section {
   margin-bottom: 30px;
 }
 
-#hero button {
+#hero a {
   width: 100%;
   margin-bottom: 15px;
   display: block;
+  text-decoration: none;
 }
 
 #about-panamax dl dt {
@@ -252,9 +253,45 @@ main > section {
   float: left;
 }
 
-#view-screens img {
+#view-screens img.preview-image {
   padding: 0;
   margin: 0 0 -3px 0;
+}
+#view-screens a {
+  position: relative;
+  font-size: 0;
+  margin: 0 5px;
+}
+
+#view-screens a > .overlay {
+  position: absolute;
+  display: none;
+  height: 98px;
+  width: 150px;
+  background-color: rgba(150, 150, 150, .5);
+  bottom: -3px;
+  left: 5px;
+  box-shadow: 0 0 5px rgba(100, 100, 100, .5);
+}
+#view-screens a:hover > .overlay {
+  display: block;
+}
+#view-screens a:hover > .overlay:after {
+  display: block;
+  content: '';
+  position: absolute;
+  top: 38px;
+  left: 62px;
+  background-color: rgba(100, 100, 100, .5);
+  background-image: url(../images/icon_sprite_white.svg);
+  background-repeat: no-repeat;
+  width: 25px;
+  height: 25px;
+  -webkit-background-size: 15px 1500px;
+  -o-background-size: 15px 1500px;
+  -moz-background-size: 15px 1500px;
+  background-size: 15px 1500px;
+  background-position: 5px -205px;
 }
 
 #contest-banner {
@@ -783,12 +820,12 @@ input {
     margin: 75px 0;
   }
 
-  #hero button {
+  #hero a {
     width: 45%;
     display: inline-block;
   }
 
-  #hero button:first-of-type {
+  #hero a:first-of-type {
     margin-right: 10px;
   }
 
@@ -986,12 +1023,12 @@ input {
 }
 
 @media all and (min-width: 481px) and (max-width: 768px) {
-  #hero button {
+  #hero a {
     width: 48%;
     display: inline-block;
   }
 
-  #hero button:first-of-type {
+  #hero a:first-of-type {
     margin-right: 2%;
   }
 }
