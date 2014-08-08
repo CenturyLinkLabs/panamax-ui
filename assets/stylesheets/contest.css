@@ -27,7 +27,7 @@ body#contest aside {
 body#contest aside {
   border-left: 6px solid #274655;
   padding-left: 14px;
-  margin: 10px 0;
+  margin: 10px 0 30px;
 }
 body#contest dl dt {
   color: #777;
@@ -100,7 +100,10 @@ body#contest #panel ul li .info a {
   display: inline-block;
   width: 20px;
   height: 20px;
-  margin-top: 8px;
+}
+
+body#contest #panel ul li .info em {
+  font-weight: bold;
 }
 
 body#contest #panel ul li .info a.github {
@@ -110,6 +113,72 @@ body#contest #panel ul li .info a.github {
 
 body#contest #panel ul li .info a.twitter {
   background-image: url("../images/logo_twitter_grey.svg");
+}
+
+body#contest #prizes > div {
+  width: 100%;
+  margin-bottom: 50px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+body#contest #prizes img {
+  float: left;
+  width: 40%;
+  margin-right: 3%;
+}
+
+body#contest #prizes header {
+  background: none;
+  display: inline-block;
+  height: 175px;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+body#contest #prizes header h5,
+body#contest #prizes header h6 {
+}
+
+body#contest #prizes header h5 {
+  margin-bottom: 8px;
+  font-weight: 200;
+  font-size: 32px;
+}
+
+body#contest #prizes header h5 em {
+  display: block;
+  font-style: normal;
+  font-size: 75px;
+  color: #aaaaaa;
+  font-weight: 100;
+}
+
+body#contest #prizes header h6 {
+  font-size: 20px;
+  color: #aaaaaa;
+  font-weight: 100;
+}
+
+body#contest #prizes ul.specs {
+  color: #aaaaaa;
+  list-style: disc;
+  padding-left: 10%;
+}
+
+body#contest #prizes ul li {
+  margin: 8px 0;
+}
+
+body#contest #prizes ul.extras li {
+  padding: 10px;
+  border-bottom: 1px solid #f1f1f1;
+  margin-bottom: 10px;
+  width: 100%;
+  font-size: 18px;
+  font-weight: 100;
+}
+
+body#contest #prizes ul.extras li:first-child {
+  border-top: 1px solid #f1f1f1;
 }
 
 @media screen and (min-width: 768px) {
@@ -162,6 +231,38 @@ body#contest #panel ul li .info a.twitter {
 
   body#contest #panel ul li:nth-of-type(even) {
     float: left;
+  }
+
+  body#contest #prizes > div {
+    width: 50%;
+    float: left;
+  }
+
+  body#contest #prizes ul.specs {
+    padding-left: 45%;
+    width: 95%;
+  }
+
+  body#contest #prizes ul.extras {
+    clear: both;
+    overflow: auto;
+    border-top: 1px solid #f1f1f1;
+  }
+
+  body#contest #prizes ul.extras li {
+    width: 33%;
+    float: left;
+    border: none;
+    margin: 0;
+  }
+
+  body#contest #prizes ul.extras li:nth-of-type(2) {
+    border-left: 1px solid #f1f1f1;
+    border-right: 1px solid #f1f1f1;
+  }
+
+  body#contest #prizes ul.extras li:first-child {
+    border: none;
   }
 }
 

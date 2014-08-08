@@ -583,7 +583,8 @@ footer p {
 }
 
 .copyright {
-  padding-bottom: 20px;
+  padding: 0;
+  margin: 0;
 }
 
 .copyright #logo {
@@ -909,6 +910,12 @@ body.documentation main ul li {
   }
 }
 
+@media all and (min-width: 481px) and (max-width: 850px) {
+  header nav ul li.welcome {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 768px) {
   #contest-banner {
     height: 480px;
@@ -977,11 +984,11 @@ body.documentation main ul li {
   }
 
   header nav ul li {
-    display: inline-block;
+    float: left;
   }
 
   header nav ul li a {
-    padding: 20px;
+    padding: 20px 12px;
   }
 
   header nav ul li.contest {
