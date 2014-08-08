@@ -1,3 +1,111 @@
-body#contest {
+
+body#contest section {
+  margin: 10px 0;
+}
+
+body#contest main h1 {
+  color: #274655;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+body#contest h3,
+body#contest h4 {
+  padding-bottom: 15px;
+  border-bottom: 1px solid #f1f1f1;
+  margin-bottom: 10px;
+}
+
+body#contest h4,
+body#contest aside {
+  font-size: 24px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 100;
+}
+
+body#contest aside {
+  border-left: 6px solid #274655;
+  padding-left: 14px;
+  margin: 10px 0;
+}
+body#contest dl dt {
+  color: #777;
+  font-weight: bold;
+  font-size: 18px;
+  margin: 20px 0 0 0;
+}
+
+body#contest dl dd,
+body#contest #judging ul li {
+  font-size: 14px;
+  line-height: 24px;
+  border-bottom: 1px solid #f1f1f1;
+  margin-bottom: 20px;
+  padding: 20px 0px;
+}
+
+body#contest dl dd:last-child {
+  border-bottom: none;
+}
+
+body#contest #rules ul li {
+  padding-left: 10%;
+  font-size: 14px;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+body#contest #rules ul li:last-child {
+  margin-bottom: 0;
+}
+body#contest #rules p {
+  font-size: 18px;
+  line-height: 22px;
+  margin-bottom: 20px;
+}
+
+body#contest #rules p:last-child {
+  margin-bottom: 0;
+}
+
+@media screen and (min-width: 768px) {
+  body#contest dl dt {
+    float: left;
+    width: 15%;
+  }
+
+  body#contest dl dd,
+  body#contest #judging ul li {
+    padding: 20px 0px 20px 20%;
+    margin-bottom: 0;
+  }
+
+  body#contest #faq dl dt {
+    width: 48%;
+  }
+
+  body#contest #faq dl dd {
+    padding: 20px 0px 20px 52%;
+  }
+
+  body#contest #rules {
+    overflow: auto;
+  }
+
+  body#contest #rules p {
+    font-size: 16px;
+    line-height: 20px;
+    margin: 20px 0;
+  }
+
+  body#contest #rules .left {
+    width: 48%;
+    float: left;
+  }
+
+  body#contest #rules .right {
+    width: 48%;
+    float: right;
+  }
 
 }

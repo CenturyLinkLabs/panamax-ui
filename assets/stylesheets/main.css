@@ -40,6 +40,8 @@ body.content .background {
 }
 
 main {
+  max-width: 960px;
+  margin: 0 auto;
   padding: 20px;
 }
 
@@ -735,6 +737,10 @@ input {
   color: #ffffff;
 }
 
+body.documentation main {
+  margin-bottom: 40px;
+}
+
 body.documentation main h1,
 body.documentation main h2 {
   margin-bottom: 15px;
@@ -932,48 +938,6 @@ body.documentation main ul li {
     width: 30%;
     margin: 0 1%;
     float: left;
-  }
-
-  #contest-structure dl dt {
-    color: #777;
-    float: left;
-    width: 15%;
-    font-weight: 200;
-    font-size: 20px;
-    margin: 20px 0 0 0;
-  }
-
-  #contest-structure dl dd {
-    font-size: 14px;
-    line-height: 24px;
-    padding: 20px 0;
-    padding-left: 20%;
-    border-bottom: 1px solid #f1f1f1;
-  }
-
-  #contest-structure dl dd:last-child {
-    border-bottom: none;
-  }
-
-  #how-to-submit dl dt {
-    color: #777;
-    float: left;
-    width: 15%;
-    font-weight: 200;
-    font-size: 20px;
-    margin: 20px 0 0 0;
-  }
-
-  #how-to-submit dl dd {
-    font-size: 14px;
-    line-height: 24px;
-    padding: 20px 0;
-    padding-left: 20%;
-    border-bottom: 1px solid #f1f1f1;
-  }
-
-  #how-to-submit dl dd:last-child {
-    border-bottom: none;
   }
 
   /* FOOTER */
