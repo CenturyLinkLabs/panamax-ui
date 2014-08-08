@@ -21,7 +21,8 @@ describe('$.fn.appInstructionsDialog', function() {
         resizable: false,
         draggable: true,
         width: 860,
-        position: ["top", 50],
+        height: 700,
+        position: ["top", 30],
         title: 'Post-Run Instructions',
         close: jasmine.any(Function),
         buttons: [
