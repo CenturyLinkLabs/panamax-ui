@@ -5,6 +5,7 @@
 .template-results
   - @search_result_set.templates.each do |template|
     = render 'template_row', {presenter: TemplatePresenter.new(template)}
+  = render 'source_blurb_row'
 %h3.search-title Images
 .local-image-results
   - @search_result_set.local_images.each do |image|

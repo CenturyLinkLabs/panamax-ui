@@ -182,6 +182,7 @@
       templateResultTemplate: Handlebars.compile($('#template_result_template').html()),
       loadingTemplate: Handlebars.compile($('#loading_row_template').html()),
       noResultsTemplate: Handlebars.compile($('#no_results_row_template').html()),
+      sourceRepoBlurbTemplate: Handlebars.compile($('#source_blurb_row_template').html()),
       trackingAction: 'not-given',
       tagDropdownSelector: 'select.image-tag-select',
       chosenDropdownSelector: '.chosen-container',
@@ -268,6 +269,7 @@
       } else {
         resultsHtml = base.options.noResultsTemplate();
       }
+      resultsHtml += base.options.sourceRepoBlurbTemplate();
       base.options.$templateResults.html(resultsHtml);
     };
 

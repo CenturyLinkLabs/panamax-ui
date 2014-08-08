@@ -189,11 +189,6 @@
     }
   }
 
-  .badge {
-    height: 110px;
-    width: 110px;
-  }
-
   .actions {
     float: right;
     min-height: 90px;
@@ -342,6 +337,56 @@
 
   .badge {
     background: asset-url('frowny_face.png') no-repeat center center;
+  }
+}
+
+.search-result-item.source-repo-blurb {
+  background-color: $blue_grey;
+  .basic-info {
+    padding-left: 5px;
+    padding-top: 10px;
+    height: 35px;
+    width: 600px;
+    @include border-box;
+    color: $white;
+  }
+
+  .badge {
+    width: 50px;
+    height: 50px;
+    background-color: $white;
+    background: asset-url('icon_template_default_small.png') no-repeat center center;
+  }
+
+  .link-actions {
+    font-size: 12px;
+    float: right;
+    height: 25px;
+    padding: 10px 40px 0 20px;
+    margin: 10px 10px 10px 0px;
+    display: block;
+    position: relative;
+
+    &:after {
+      content: '';
+      position: absolute;
+      right: 20px;
+      top: 12px;
+      display: block;
+      @extend .icon-thick-arrow-right;
+      @include icon-white;
+      width: 10px;
+      height: 10px;
+    }
+
+    a {
+      color: $grey;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
   }
 }
 
