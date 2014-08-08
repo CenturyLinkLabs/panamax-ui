@@ -30,6 +30,7 @@ body {
   min-width: 300px;
   overflow-x: hidden;
 }
+
 .cache-warmer,
 .background {
   display: none;
@@ -83,7 +84,7 @@ header h1.panamax-logo a {
 }
 
 header a#nav-toggle,
-.sidr-inner a#sidr-id-nav-close{
+.sidr-inner a#sidr-id-nav-close {
   display: block;
   position: absolute;
   top: 0px;
@@ -97,7 +98,7 @@ header a#nav-toggle:after,
 .sidr-inner a#sidr-id-nav-close:after {
   content: '';
   display: block;
-  position : absolute;
+  position: absolute;
   top: 20px;
   right: 20px;
   height: 15px;
@@ -106,7 +107,6 @@ header a#nav-toggle:after,
   background-repeat: no-repeat;
   background-size: 15px 1500px;
 }
-
 
 header a#nav-toggle:after {
   background-position: 0 -420px;
@@ -289,6 +289,7 @@ section {
 #view-screens a:hover > .overlay {
   display: block;
 }
+
 #view-screens a:hover > .overlay:after {
   display: block;
   content: '';
@@ -306,6 +307,7 @@ section {
   background-size: 15px 1500px;
   background-position: 5px -205px;
 }
+
 #contest-banner {
   height: 275px;
 }
@@ -360,6 +362,7 @@ section {
   position: relative;
   z-index: 10;
 }
+
 #contest-banner img.prizes {
   position: absolute;
   top: 25px;
@@ -376,7 +379,7 @@ section {
 #contest-banner .button-positive:hover {
   transition: background-color 0.25s ease;
   background: #fff;
-  color:#8DC543;
+  color: #8DC543;
 }
 
 #get-panamax {
@@ -544,6 +547,7 @@ footer p {
   display: block;
   margin: 10px 10px 10px 0px;
 }
+
 #footer-info li a {
   text-decoration: none;
 }
@@ -557,6 +561,8 @@ footer p {
   background-color: #777;
   font-size: inherit;
   padding: 10px;
+  position: relative;
+  top: 1px;
 }
 
 #newsletter .button-secondary:hover {
@@ -565,9 +571,10 @@ footer p {
 
 #newsletter input {
   margin-bottom: 10px;
+  width: 100%;
 }
 
-#newsletter input[type='text'] {
+#newsletter input[type='email'] {
   border-radius: 3px;
   text-align: left;
   border: 1px solid #aaa;
@@ -611,44 +618,48 @@ hr {
   text-align: center;
   cursor: pointer;
 }
-  .button-primary:hover,
-  .button-secondary:hover {
-    transition: background-color 0.25s ease;
-  }
-  .button-primary:focus,
-  .button-secondary:focus {
-    outline: none;
-  }
+
+.button-primary:hover,
+.button-secondary:hover {
+  transition: background-color 0.25s ease;
+}
+
+.button-primary:focus,
+.button-secondary:focus {
+  outline: none;
+}
 
 .button-primary {
   background: #5F7A87;
   color: #FFF;
 }
-  .button-primary:hover {
-    background: #81b838;
-  }
+
+.button-primary:hover {
+  background: #81b838;
+}
 
 .button-secondary {
   color: #229fe5;
   background: #f1f1f1;
 }
-  .button-secondary:hover {
-    background: #AAA;
-    color: #FFF;
-  }
+
+.button-secondary:hover {
+  background: #AAA;
+  color: #FFF;
+}
 
 .button-positive {
   background: #ed6323;
   color: #FFF;
 }
 
-  .button-positive:hover {
-    background: #e45513;
-  }
+.button-positive:hover {
+  background: #e45513;
+}
 
-  p a:hover {
-    color: #229fe5;
-  }
+p a:hover {
+  color: #229fe5;
+}
 
 /*FORMS*/
 
@@ -709,6 +720,7 @@ input {
   left: auto;
   right: -240px;
 }
+
 .sidr.left {
   left: -240px;
   right: auto;
@@ -747,8 +759,7 @@ body.documentation main h2 {
 }
 
 body.documentation main ul li,
-body.documentation main p
-{
+body.documentation main p {
   font-size: 20px;
 }
 
@@ -773,6 +784,164 @@ body.documentation main ul li {
 
 }
 
+@media screen and (max-width: 480px) {
+  #view-screens h2 {
+    font-size: 26px;
+    width: 260px;
+  }
+
+  #view-screens .inner {
+    width: 320px;
+  }
+
+  #view-screens img.preview-image {
+    width: 100px;
+    height: auto;
+  }
+
+  #view-screens a > .overlay {
+    position: absolute;
+    display: none;
+    height: 60px;
+    width: 94px;
+    bottom: -3px;
+    left: 3px;
+  }
+
+  #view-screens a:hover > .overlay {
+    display: block;
+  }
+
+  #view-screens a:hover > .overlay:after {
+    top: 19px;
+    left: 35px;
+  }
+}
+
+@media all and (min-width: 481px) {
+  #get-panamax h2 {
+    display: inline-block;
+    margin-bottom: 0;
+    position: relative;
+    top: 5px;
+  }
+
+  #get-panamax button {
+    width: 45%;
+    max-width: 400px;
+    margin-left: 3%;
+  }
+
+  #mc_embed_signup input[type='email'] {
+    width: 60%;
+    float: left;
+  }
+
+  #mc_embed_signup input[type='submit'] {
+    width: 35%;
+    float: right;
+  }
+}
+
+@media all and (min-width: 481px) and (max-width: 550px) {
+  #view-screens .inner {
+    width: 480px;
+  }
+
+  #view-screens a {
+    margin: 0;
+  }
+}
+
+@media all and (min-width: 481px) and (max-width: 768px) {
+  #hero a {
+    width: 48%;
+    display: inline-block;
+  }
+
+  #hero a:first-of-type {
+    margin-right: 2%;
+  }
+
+  #contest-banner {
+    height: 440px;
+  }
+
+  #contest-banner .inner h3 {
+    margin-top: 80px;
+    width: 70%;
+  }
+
+  #contest-banner .inner {
+    background-position: bottom right;
+  }
+
+  #contest-banner .inner .info,
+  #contest-banner .inner .action {
+    float: none;
+    box-sizing: border-box;
+  }
+
+  #contest-banner .inner .info {
+    height: 300px;
+  }
+
+  #contest-banner .inner .action {
+    height: 100px;
+  }
+
+  #contest-banner .button-positive {
+    width: 50%;
+    margin: 0 0 0 45%;
+  }
+
+  #contest-banner img.prizes {
+    top: 5%;
+    right: 5%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #contest-banner {
+    height: 480px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  #contest-banner .inner {
+    background-position: bottom right;
+  }
+
+  #contest-banner .inner .info,
+  #contest-banner .inner .action {
+    float: none;
+    box-sizing: border-box;
+  }
+
+  #contest-banner .inner .info {
+    width: 100%;
+    height: 340px;
+  }
+
+  #contest-banner .inner .action {
+    padding-bottom: 0;
+    width: 100%;
+    height: 100px;
+  }
+
+  #contest-banner .button-positive {
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  #contest-banner img.prizes {
+    top: 55%;
+    right: 30%;
+  }
+}
+
 @media all and (min-width: 769px) {
 
   .background {
@@ -783,16 +952,15 @@ body.documentation main ul li {
     width: 100%;
     opacity: .75;
   }
-  
-  /* HEADER */
 
+  /* HEADER */
   header {
     overflow: hidden;
     background: #8EC643;
     margin-bottom: 10px;
   }
 
-  header h1.panamax-logo{
+  header h1.panamax-logo {
     padding: 0;
     float: left;
   }
@@ -841,7 +1009,6 @@ body.documentation main ul li {
   }
 
   /* HERO */
-
   #hero {
     padding: 0 10% 0 30%;
     margin: 75px 0;
@@ -858,7 +1025,7 @@ body.documentation main ul li {
 
   #view-screens h2 {
     float: left;
-    margin: 16px 5px 0 0 ;
+    margin: 16px 5px 0 0;
   }
 
   #view-screens .inner {
@@ -866,7 +1033,6 @@ body.documentation main ul li {
   }
 
   /* MAIN INFO SECTIONS */
-
   section {
     margin: 0 auto 20px;
   }
@@ -883,7 +1049,7 @@ body.documentation main ul li {
   #about-panamax dl dd {
     padding-left: 20%;
   }
-  
+
   #how-it-works {
     position: relative;
     height: 400px;
@@ -941,10 +1107,9 @@ body.documentation main ul li {
   }
 
   /* FOOTER */
-
   #footer-info {
     margin-bottom: 0;
-    width: 55%;
+    width: 45%;
     float: left;
   }
 
@@ -957,9 +1122,17 @@ body.documentation main ul li {
     border-right: 1px solid #AAA;
   }
 
+  #footer-info p {
+    margin: 10px 0;
+  }
+
   #newsletter {
-    width: 40%;
+    width: 50%;
     float: right;
+  }
+
+  #newsletter input[type="email"] {
+    margin-bottom: 0;
   }
 
   .copyright {
@@ -976,6 +1149,7 @@ body.documentation main ul li {
     vertical-align: 30px;
   }
 }
+
 @media all and (min-width: 768px) and (max-width: 960px) {
 
   #view-screens h2 {
@@ -1010,164 +1184,3 @@ body.documentation main ul li {
   }
 
 }
-
-@media all and (min-width: 481px) {
-  #get-panamax h2 {
-    display: inline-block;
-    margin-bottom: 0;
-    position: relative;
-    top: 5px;
-  }
-
-  #get-panamax button {
-    width: 45%;
-    max-width: 400px;
-    margin-left: 3%;
-  }
-
-  #mc_embed_signup input[type='email'] {
-    width: 60%;
-    float: left;
-  }
-
-  #mc_embed_signup input[type='submit'] {
-    width: 35%;
-    float: right;
-  }
-
-}
-
-@media all and (min-width: 481px) and (max-width: 768px) {
-  #hero a {
-    width: 48%;
-    display: inline-block;
-  }
-
-  #hero a:first-of-type {
-    margin-right: 2%;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  #view-screens h2 {
-    font-size: 26px;
-    width: 260px;
-  }
-
-  #view-screens .inner {
-    width: 320px;
-  }
-
-  #view-screens img.preview-image {
-    width: 100px;
-    height: auto;
-  }
-
-  #view-screens a > .overlay {
-    position: absolute;
-    display: none;
-    height: 60px;
-    width: 94px;
-    bottom: -3px;
-    left: 3px;
-  }
-
-  #view-screens a:hover > .overlay {
-    display: block;
-  }
-
-  #view-screens a:hover > .overlay:after {
-    top: 19px;
-    left: 35px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  #contest-banner {
-    height: 480px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-
-  #contest-banner .inner {
-    background-position: bottom right;
-  }
-
-  #contest-banner .inner .info,
-  #contest-banner .inner .action {
-    float: none;
-    box-sizing: border-box;
-  }
-
-  #contest-banner .inner .info {
-    width: 100%;
-    height: 340px;
-  }
-
-  #contest-banner .inner .action {
-    padding-bottom: 0;
-    width: 100%;
-    height: 100px;
-  }
-
-  #contest-banner .button-positive {
-    display: block;
-    width: 80%;
-    margin: 0 auto;
-  }
-
-  #contest-banner img.prizes {
-    top: 55%;
-    right: 30%;
-  }
-}
-
-@media all and (min-width: 481px) and (max-width: 550px) {
-  #view-screens .inner {
-    width: 480px;
-  }
-
-  #view-screens a {
-    margin: 0;
-  }
-}
-
-@media all and (min-width: 481px) and (max-width: 768px) {
-  #contest-banner {
-    height: 440px;
-  }
-
-  #contest-banner .inner h3 {
-    margin-top: 80px;
-    width: 70%;
-  }
-  #contest-banner .inner {
-    background-position: bottom right;
-  }
-
-  #contest-banner .inner .info,
-  #contest-banner .inner .action {
-    float: none;
-    box-sizing: border-box;
-  }
-
-  #contest-banner .inner .info {
-    height: 300px;
-  }
-
-  #contest-banner .inner .action {
-    height: 100px;
-  }
-
-  #contest-banner .button-positive {
-    width: 50%;
-    margin: 0 0 0 45%;
-  }
-  #contest-banner img.prizes {
-    top: 5%;
-    right: 5%;
-  }
-
-}
-
