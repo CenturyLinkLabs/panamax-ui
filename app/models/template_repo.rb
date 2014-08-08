@@ -20,6 +20,6 @@ class TemplateRepo < BaseResource
 
   def self.has_user_sources?
     # assuming that we have at least the official one seeded in the sources
-    self.all.count > 1
+    self.all.count > 2
   end
 end
