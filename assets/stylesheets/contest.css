@@ -96,10 +96,11 @@ body#contest #panel ul li .info span {
   margin-top: 6px;
 }
 
-body#contest #panel ul li .info a {
+body#contest #panel ul li .info > a {
   display: inline-block;
   width: 20px;
   height: 20px;
+  margin-right: 4px;
 }
 
 body#contest #panel ul li .info em {
@@ -124,6 +125,8 @@ body#contest #prizes > div {
 body#contest #prizes img {
   float: left;
   width: 40%;
+  max-width: 150px;
+  margin-left: 13%;
   margin-right: 3%;
 }
 
@@ -132,10 +135,6 @@ body#contest #prizes header {
   display: inline-block;
   height: 175px;
   border-bottom: 1px solid #f1f1f1;
-}
-
-body#contest #prizes header h5,
-body#contest #prizes header h6 {
 }
 
 body#contest #prizes header h5 {
@@ -238,6 +237,15 @@ body#contest #prizes ul.extras li:first-child {
     float: left;
   }
 
+  body#contest #prizes header {
+    height: 180px;
+  }
+
+  body#contest #prizes img {
+    margin-left: 3%;
+    max-width: 200px;
+  }
+
   body#contest #prizes ul.specs {
     padding-left: 45%;
     width: 95%;
@@ -283,4 +291,9 @@ body#contest #prizes ul.extras li:first-child {
   body#contest #panel ul li .info span {
     margin-bottom: 8px;
   }
+
+  body#contest #prizes header {
+    height: 220px;
+  }
+
 }
