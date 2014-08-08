@@ -3,6 +3,10 @@
 @import 'ctl_base_ui/icons';
 @import 'panamax/buttons';
 
+body#search_flow main {
+  overflow: auto;
+}
+
 .template-details-dialog {
   position: absolute;
   top: 50px;
@@ -428,8 +432,8 @@
 }
 
 .blog-feed {
-  display: block;
-  width: 468px;
+  float: left;
+  width: 48%;
 
   h3 {
     padding-bottom: 16px;
@@ -444,38 +448,140 @@
     font-weight: normal;
     text-decoration: none;
   }
-}
 
-.blog-feed-items {
+  .blog-feed-items {
 
-  li {
-    padding: 0 0 20px 0;
-    border-bottom: 1px solid $light_grey;
-    margin: 20px 0 0 0;
-    font-size: 1.1em;
+    li {
+      padding: 0 0 20px 0;
+      border-bottom: 1px solid $light_grey;
+      margin: 20px 0 0 0;
+      font-size: 1.1em;
 
-    .timestamp {
-      display: inline-block;
-      width: 158px;
-      padding: 0 10px 0 0;
-      vertical-align: top;
-      color: $medium_grey;
-      font-weight: 200;
-    }
+      .timestamp {
+        display: inline-block;
+        width: 34%;
+        margin-right: 2%;
+        padding: 0;
+        vertical-align: top;
+        color: $medium_grey;
+        font-weight: 200;
+      }
 
-    a {
-      display: inline-block;
-      width: 290px;
-      padding: 0;
-      margin: 0;
-      font-weight: bold;
-      color: $blue_grey;
-      text-decoration: none;
+      a {
+        display: inline-block;
+        width: 61%;
+        padding: 0;
+        margin: 0;
+        font-weight: bold;
+        color: $blue_grey;
+        text-decoration: none;
 
-      &:hover {
-        color: $blue_grey_dark;
-        text-decoration: underline;
+        &:hover {
+          color: $blue_grey_dark;
+          text-decoration: underline;
+        }
       }
     }
   }
+}
+
+.contest-banner {
+  width: 48%;
+  height: 425px;
+  float: right;
+  margin-bottom: 50px;
+
+  .inner {
+    background: asset_url('contest/panamax_contest_bg_big.jpg') bottom right no-repeat;
+    height: 100%;
+    overflow: auto;
+    position: relative;
+
+    .info,
+    .action {
+      padding: 20px;
+      width: 100%;
+      @include border-box;
+    }
+
+    .info {
+      height: 330px;
+      background-color: rgba(4, 19, 30, .75);
+      float: left;
+      padding-right: 40px;
+      .white-logo {
+        background: asset_url('contest/panamax-logo-white.png');
+        display: block;
+        width: 148px;
+        height: 20px;
+      }
+    }
+
+    .action {
+      height: 95px;
+      background-color: rgba(60, 82, 94, .75);
+      float: right;
+
+      a {
+        color: #ffffff;
+        text-decoration: none;
+
+        &:first-child {
+          margin-left: 130px;
+        }
+      }
+
+      a.button-positive {
+        background-color: #8DC543;
+        margin-left: 10px;
+        font-weight: 100;
+        font-size: 1.2em;
+      }
+
+      a.button-positive:hover {
+        transition: background-color 0.25s ease;
+        background: #fff;
+        color: #8DC543;
+        box-shadow: 0 0 5px #8DC543;
+      }
+
+    }
+
+    h3 {
+      color: #8DC543;
+      font-size: 28px;
+      line-height: 32px;
+      font-weight: 200;
+      border-bottom: 0;
+      padding-bottom: 0;
+      margin: 50px 0 10px 0;
+    }
+  }
+
+  p {
+    color: #fff;
+    font-size: 16px;
+    line-height: 26px;
+    padding-bottom: 20px;
+    font-weight: bold;
+  }
+
+  p, a, h3 {
+    position: relative;
+    z-index: 10;
+  }
+
+  p ~ a {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: normal;
+    text-decoration: none;
+  }
+
+  p + a {
+    padding-right: 8px;
+    margin-right: 8px;
+    border-right: 1px solid #ffffff;
+  }
+
 }

@@ -2,6 +2,9 @@
 @import 'ctl_base_ui/mixins';
 @import 'ctl_base_ui/icons';
 
+body {
+  min-width: 960px;
+}
 body > header {
   background: $ctl_light_green;
   width: 100%;
