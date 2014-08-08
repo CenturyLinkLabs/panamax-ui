@@ -69,7 +69,7 @@ class App < BaseResource
     end
 
     def sort_by_position(list)
-      list.sort_by { |s| s.categories.first.position }
+      list.sort_by { |s| s.categories.first.position.to_i }
     end
 
     def source_image

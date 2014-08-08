@@ -94,13 +94,24 @@ describe App do
     describe '#services_with_category_name' do
       it 'returns services for a specified category name' do
         services = subject.services_with_category_name('foo')
-        expect(services.map { |s| s.name }).to include('blah', 'barf')
-        expect(services.map { |s| s.name }).to_not include('bark')
+        expect(services.map { |s| s.name }).to match_array ['blah', 'barf']
       end
 
       it 'returns an empty array if the category name is not present' do
         services = subject.services_with_category_name('notaname')
         expect(services).to eq []
+      end
+
+      it 'sorts services by the category position' do
+        services = subject.services_with_category_name('foo')
+        expect(services.map { |x| x.categories.first.position }).to eq [2, 3]
+      end
+
+      it 'does not blow up if one of the category positions is nil' do
+        subject.services.first.categories.first.position = nil
+        expect do
+          subject.services_with_category_name('foo')
+        end.to_not raise_error
       end
     end
 
