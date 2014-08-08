@@ -1,5 +1,5 @@
 html, body, h1, h2, h3, h4, h5, h6,
-p, pre, a, cite, img, small,
+p, a, cite, img, small,
 dl, dt, dd, ol, ul, li,
 form, label, input,
 table, tbody, tfoot, thead, tr, th, td,
@@ -611,9 +611,9 @@ hr {
   border-radius: 3px;
   border: 0;
   padding: 20px 40px 20px;
-  font-family: "Helvetica Neue";
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-size: 18px;
-  font-weight: 100;
+  font-weight: 200;
   letter-spacing: 1px;
   text-align: center;
   cursor: pointer;
@@ -799,6 +799,10 @@ body.documentation main ul li {
     height: auto;
   }
 
+  #view-screens a {
+    margin: 0;
+  }
+
   #view-screens a > .overlay {
     position: absolute;
     display: none;
@@ -815,6 +819,10 @@ body.documentation main ul li {
   #view-screens a:hover > .overlay:after {
     top: 19px;
     left: 35px;
+  }
+  #contest-banner img.prizes {
+    top: 55%;
+    right: 30%;
   }
 }
 
@@ -936,10 +944,6 @@ body.documentation main ul li {
     margin: 0 auto;
   }
 
-  #contest-banner img.prizes {
-    top: 55%;
-    right: 30%;
-  }
 }
 
 @media all and (min-width: 769px) {
@@ -1109,7 +1113,7 @@ body.documentation main ul li {
   /* FOOTER */
   #footer-info {
     margin-bottom: 0;
-    width: 45%;
+    width: 52%;
     float: left;
   }
 
@@ -1127,7 +1131,7 @@ body.documentation main ul li {
   }
 
   #newsletter {
-    width: 50%;
+    width: 46%;
     float: right;
   }
 
@@ -1148,6 +1152,11 @@ body.documentation main ul li {
     margin-left: 0;
     vertical-align: 30px;
   }
+
+  body.documentation footer #newsletter input {
+    width: 45%;
+  }
+
 }
 
 @media all and (min-width: 768px) and (max-width: 960px) {
@@ -1172,10 +1181,6 @@ body.documentation main ul li {
 
   #social-icons {
     width: 53px;
-  }
-
-  #view-screens a {
-    margin: 0 5px;
   }
 
   #view-screens img.preview-image {
