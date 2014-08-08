@@ -6,15 +6,15 @@ body#contest section {
 body#contest main h1 {
   color: #274655;
   padding-bottom: 15px;
-  border-bottom: 1px solid #f1f1f1;
+  border-bottom: 1px solid #cccccc;
   margin-bottom: 25px;
 }
 
 body#contest h3,
 body#contest h4 {
   padding-bottom: 15px;
-  border-bottom: 1px solid #f1f1f1;
-  margin-bottom: 10px;
+  border-bottom: 1px solid #cccccc;
+  margin-bottom: 15px;
 }
 
 body#contest h4,
@@ -68,6 +68,50 @@ body#contest #rules p:last-child {
   margin-bottom: 0;
 }
 
+body#contest #panel ul {
+  width: 100%;
+  overflow: auto;
+  margin-top: 25px;
+}
+
+body#contest #panel ul li {
+  width: 48%;
+  margin: 0 auto 40px;
+  font-weight: bold;
+  font-size: 16px;
+}
+body#contest #panel ul li:nth-of-type(even) {
+  float: right;
+}
+
+body#contest #panel ul li:nth-of-type(odd) {
+  float: left;
+}
+
+body#contest #panel ul li .info span {
+  font-weight: normal;
+  font-style: italic;
+  display: block;
+  font-size: 14px;
+  margin-top: 6px;
+}
+
+body#contest #panel ul li .info a {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-top: 8px;
+}
+
+body#contest #panel ul li .info a.github {
+  background-image: url("../images/logo_github_grey.svg");
+  margin-right: 2px;
+}
+
+body#contest #panel ul li .info a.twitter {
+  background-image: url("../images/logo_twitter_grey.svg");
+}
+
 @media screen and (min-width: 768px) {
   body#contest dl dt {
     float: left;
@@ -108,4 +152,34 @@ body#contest #rules p:last-child {
     float: right;
   }
 
+  body#contest #panel ul li {
+    width: 32%;
+  }
+
+  body#contest #panel ul li .info {
+    width: 140px;
+  }
+
+  body#contest #panel ul li:nth-of-type(even) {
+    float: left;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  body#contest #panel ul li {
+    margin-bottom: 60px;
+  }
+
+  body#contest #panel ul li img {
+    display: inline-block;
+  }
+  body#contest #panel ul li .info {
+    display: inline-block;
+    width: 45%;
+    vertical-align: top;
+    margin-left: 10px;
+  }
+  body#contest #panel ul li .info span {
+    margin-bottom: 8px;
+  }
 }
