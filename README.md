@@ -2,14 +2,14 @@
 
 ![Master_Build_Status](https://circleci.com/gh/CenturyLinkLabs/panamax-ui/tree/master.png?circle-token=d850f050b17d488a6a2b5066996875128b874674) [![Coverage Status](https://coveralls.io/repos/CenturyLinkLabs/panamax-ui/badge.png)](https://coveralls.io/r/CenturyLinkLabs/panamax-ui)
 
-This project exposes a friendly user interface to the Panamax API.
+This project exposes a friendly user interface to the [Panamax API](https://github.com/CenturyLinkLabs/panamax-api).
 
 ## Getting Started
 
 ### Pre-requisites
 * Computer
 * Ruby 2.1+
-* Panamax API running somewhere accessible the the panamax-ui application
+* Panamax API running somewhere accessible to the panamax-ui application
 
 ### Install steps
 ```
