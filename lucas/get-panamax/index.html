@@ -3,9 +3,12 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Panamax: Installation Instructions</title>
-    <link href="../../assets/stylesheets/typography.css" media="all" rel="stylesheet"/>
+    <link rel="shortcut icon" href="../../assets/images/favicons/favicon-160x160.png">
+    <link rel="apple-touch-icon" href="../../assets/images/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="../../assets/images/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="../../assets/images/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="../../assets/images/favicons/apple-touch-icon-152x152.png">
     <link href="../../assets/stylesheets/main.css" media="all" rel="stylesheet"/>
-    <link href="http://www.centurylinklabs.com/images/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
     <script src="../../assets/javascripts/ga.js"></script>
   </head>
   <body id="install" class="content">
@@ -39,20 +42,29 @@
       <h3>Installation Instructions</h3>
         <h4>Currently, Panamax is in BETA and is supported on Mac OS X 10.9.0 and higher.</h4>
         <div id="video">
-          <iframe width="448" height="252" src="//www.youtube.com/embed/15IKkYCfymk" frameborder="0" allowfullscreen></iframe>
+          <iframe src="http://www.youtube.com/embed/15IKkYCfymk" frameborder="0" allowfullscreen></iframe>
         </div>
-        <h5>Installation requirements:</h5>
-        <ul class="requirements">
-          <li><a href="https://www.virtualbox.org/wiki/Downloads/" target="_blank">VirtualBox 4.2</a> or higher</li>
-          <li><a href="http://www.vagrantup.com/downloads.html/" target="_blank">Vagrant 1.6</a> or higher</li>
-        </ul>
-
-        <p>
-          The Panamax installer creates a VM in VirtualBox called <em>panamax-vm</em>. This VM is built on <a href="https://coreos.com/" target="_blank">CoreOS</a>.
-        </p>
-        <p><a href="https://github.com/CenturyLinkLabs/panamax-ui/wiki/Release-Notes">Release Notes</a></p>
-        <p>Below are instructions for installing on Mac OSX and Ubuntu.</br>
-          For additional installation instructions, please see the Wiki page: <a href="https://github.com/CenturyLinkLabs/panamax-ui/wiki/Installing-Panamax" target="_blank">Installing Panamax.</a></p>
+        <div id="instructions">
+          <h5>Installation requirements:</h5>
+          <ul class="requirements">
+            <li><a href="https://www.virtualbox.org/wiki/Downloads/" target="_blank">VirtualBox 4.2</a> or higher</li>
+            <li><a href="http://www.vagrantup.com/downloads.html/" target="_blank">Vagrant 1.6</a> or higher</li>
+          </ul>
+          <p>
+            The Panamax installer creates a VM in VirtualBox called <em>panamax-vm</em>. This VM is built on <a href="https://coreos.com/" target="_blank">CoreOS</a>.
+          </p>
+          <p>
+            <a href="https://github.com/CenturyLinkLabs/panamax-ui/wiki/Release-Notes">Release Notes</a>
+          </p>
+          <p>
+            Below are instructions for installing on Mac OSX and Ubuntu.
+          </p>
+          <p>
+            For additional installation instructions, please see the Wiki page <a href="https://github.com/CenturyLinkLabs/panamax-ui/wiki/Installing-Panamax" target="_blank">Installing Panamax.</a>
+          </p>
+        </div>
+      </section>
+      <section>
         <h3>Mac OS X 10.9.0 or higher</h3>
           <p>To install Panamax on Mac, use <a href="http://brew.sh/" target="_blank">Homebrew</a>. Here are the steps:</p>
           <p>On your terminal window, run:</p>
@@ -120,6 +132,5 @@
     <script src="../../assets/javascripts/jquery.touchwipe.min.js"></script>
     <script src="../../assets/javascripts/index.js"></script>
     <script src="../../assets/javascripts/uservoice.js"></script>
-
   </body>
 </html>

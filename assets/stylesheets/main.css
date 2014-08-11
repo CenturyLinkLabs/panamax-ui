@@ -501,10 +501,6 @@ section {
   color: #5F7A87;
 }
 
-#video {
-  float:right;
-}
-
 #how-it-works {
   padding: 0;
 }
@@ -626,8 +622,12 @@ footer {
 }
 
 footer p {
-  line-height: 22px;
-  margin-bottom: 15px;
+  font-size: 0.857em;
+  line-height: 1.2em;
+}
+
+footer a {
+  color: #5f7a87;
 }
 
 #footer-info {
@@ -657,13 +657,19 @@ footer p {
   text-decoration: underline;
 }
 
+#newsletter h4 {
+  font-size: 1.2em;
+  font-weight: 400;
+  color: #ED6323;
+  margin-bottom: 0.6em;
+  padding-bottom: 0.6em;
+}
+
 #newsletter .button-secondary {
   color: #FFF;
   background-color: #777;
-  font-size: inherit;
-  padding: 10px;
-  position: relative;
-  top: 1px;
+  font-size: 14px;
+  padding: 10px 20px;
 }
 
 #newsletter .button-secondary:hover {
@@ -882,6 +888,15 @@ body#install section h5 {
   font-weight: bold;
   margin-bottom: 14px;
 }
+body#install #video {
+  margin: 0 auto 40px;
+}
+
+body#install #video iframe {
+  width: 320px;
+  height: 210px;
+  margin: 0 auto
+}
 
 body#install section ul.requirements {
   margin-bottom: 30px;
@@ -986,14 +1001,12 @@ body.documentation main ul li {
     margin-left: 3%;
   }
 
-  #mc_embed_signup input[type='email'] {
-    width: 60%;
-    float: left;
+  #newsletter input[type='email'] {
+    width: 55%;
   }
 
-  #mc_embed_signup input[type='submit'] {
-    width: 35%;
-    float: right;
+  #newsletter input[type='submit'] {
+    width: 40%;
   }
 }
 
@@ -1052,6 +1065,12 @@ body.documentation main ul li {
   #contest-banner img.prizes {
     top: 5%;
     right: 5%;
+  }
+
+  body#install #video iframe {
+    width: 440px;
+    height: 280px;
+    margin: 0 auto
   }
 }
 
@@ -1265,12 +1284,13 @@ body.documentation main ul li {
   /* FOOTER */
   #footer-info {
     margin-bottom: 0;
-    width: 52%;
+    width: 55%;
     float: left;
   }
 
   #footer-info li {
     display: inline-block;
+    margin-bottom: 0;
   }
 
   #footer-info li.twitter {
@@ -1279,15 +1299,18 @@ body.documentation main ul li {
   }
 
   #footer-info p {
-    margin: 10px 0;
+    padding-bottom: 50px;
+    margin: 0;
+    line-height: 1.7em;
   }
 
   #newsletter {
-    width: 46%;
+    width: 43%;
     float: right;
   }
 
-  #newsletter input[type="email"] {
+  #newsletter input[type="email"],
+  #newsletter input[type="submit"] {
     margin-bottom: 0;
   }
 
@@ -1324,6 +1347,31 @@ body.documentation main ul li {
   body#documentation section:nth-of-type(odd) {
     float: left;
     clear: both;
+  }
+
+  body#install section {
+    overflow: auto;
+  }
+
+  body#install #video {
+    width: 48%;
+    float: right;
+    margin-bottom: 0;
+  }
+
+  body#install #instructions {
+    width: 48%;
+    float: left;
+  }
+
+  body#install #instructions ~ p {
+    clear: both;
+  }
+
+  body#install #video iframe {
+    width: 440px;
+    height: 280px;
+    margin: 0;
   }
 }
 
