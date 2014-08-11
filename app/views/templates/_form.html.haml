@@ -35,7 +35,12 @@
 
   %h3 Template Documentation
   %label.documentation
-    %strong Add some instructions to help people use your template.
+    %div
+      %strong
+        Add some instructions to help people use your template. Check out some
+        = succeed '.' do
+          %a{href: 'https://github.com/CenturyLinkLabs/panamax-ui/wiki/How-To:-Create-Template-Documentation', target: '_blank'} examples
+
     Confused about the syntax?
     = link_to 'See the markdown guide here', 'http://daringfireball.net/projects/markdown/syntax', target: '_blank'
     = f.text_area :documentation, class: 'template_documentation'
