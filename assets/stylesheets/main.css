@@ -55,8 +55,10 @@ h3 {
 }
 
 h4 {
-  font-size: 1.2em;
-  font-weight: 400;
+  font-size: 24px;
+  font-weight: 100;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 h5 {
@@ -1306,10 +1308,6 @@ body.documentation main ul li {
   }
 
   /* end throwaway */
-
-  body#install section {
-    padding-left: 15%;
-  }
 
   body#documentation section {
     width: 48%;
