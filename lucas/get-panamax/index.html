@@ -8,7 +8,7 @@
     <link href="http://www.centurylinklabs.com/images/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/>
     <script src="../../assets/javascripts/ga.js"></script>
   </head>
-  <body class="content">
+  <body id="install" class="content">
     <header>
       <h1 class='panamax-logo'>
         <a href="../" title="Home">Panamax</a>
@@ -36,15 +36,17 @@
     <main>
       <h1>Get Panamax</h1>
       <section>
-      <h2>Installation Instructions</h2>
-        <p>
+      <h3>Installation Instructions</h3>
+        <strong>
           Currently, Panamax is supported on Mac OS X 10.9.x and higher.
-        </p>
-        <p><strong>Installation requirements:</strong></p>
+        </strong>
+        <h5>Installation requirements:</h5>
+        <ul class="requirements">
+          <li><a href="https://www.virtualbox.org/wiki/Downloads/" target="_blank">VirtualBox 4.2</a> or higher</li>
+          <li><a href ="http://www.vagrantup.com/downloads.html/" target="_blank">Vagrant 1.6</a> or higher</li>
+        </ul>
         <p>
-          <a href="https://www.virtualbox.org/wiki/Downloads/" target="_blank">VirtualBox 4.2</a> or higher</br>
-          <a href ="http://www.vagrantup.com/downloads.html/" target="_blank">Vagrant 1.6</a> or higher</br>
-          The Panamax installer, creates a VM in VirtualBox called panamax-vm. This VM is built on <a href="https://coreos.com/" target="_blank">CoreOS</a>.
+          The Panamax installer creates a VM in VirtualBox called <em>panamax-vm</em>. This VM is built on <a href="https://coreos.com/" target="_blank">CoreOS</a>.
         </p>
       </section>
       <section>

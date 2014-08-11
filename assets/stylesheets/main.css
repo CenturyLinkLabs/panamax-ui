@@ -863,6 +863,30 @@ body#documentation section a {
   color: #5F7A87;
 }
 
+body#install section strong {
+  margin: 15px 0 35px 0;
+  display: inline-block;
+  color: #aaaaaa;
+  font-size: 26px;
+  font-weight: 200;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+body#install section h5 {
+  font-weight: bold;
+  margin-bottom: 14px;
+}
+
+body#install section ul.requirements {
+  margin-bottom: 30px;
+}
+
+body#install section ul.requirements li {
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
 /* TODO throwaway styles */
 
 body.documentation main {
@@ -1279,6 +1303,12 @@ body.documentation main ul li {
 
   body.documentation footer #newsletter input {
     width: 45%;
+  }
+
+  /* end throwaway */
+
+  body#install section {
+    padding-left: 15%;
   }
 
   body#documentation section {
