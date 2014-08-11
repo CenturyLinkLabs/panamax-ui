@@ -20,7 +20,7 @@ class TemplateForm
 
   def documentation
     doc = @documentation || @app.try(:documentation)
-    doc = default_documentation if doc.blank?
+    # doc = default_documentation if doc.blank?
 
     # The regex here may require some explanation. Any trailing whitespace on
     # a line in the documentation causes problems for our YAML template
