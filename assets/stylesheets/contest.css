@@ -86,6 +86,7 @@ body#contest #panel ul li:nth-of-type(even) {
 
 body#contest #panel ul li:nth-of-type(odd) {
   float: left;
+  clear: both;
 }
 
 body#contest #panel ul li .info span {
@@ -93,7 +94,8 @@ body#contest #panel ul li .info span {
   font-style: italic;
   display: block;
   font-size: 14px;
-  margin-top: 6px;
+  margin: 6px 0;
+  max-width: 80%;
 }
 
 body#contest #panel ul li .info > a {
@@ -228,6 +230,10 @@ body#contest #prizes ul.extras li:first-child {
     width: 140px;
   }
 
+  body#contest #panel ul li:nth-of-type(odd) {
+    clear: none;
+  }
+  
   body#contest #panel ul li:nth-of-type(even) {
     float: left;
   }
