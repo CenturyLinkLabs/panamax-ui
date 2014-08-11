@@ -233,7 +233,7 @@ body#contest #prizes ul.extras li:first-child {
   body#contest #panel ul li:nth-of-type(odd) {
     clear: none;
   }
-  
+
   body#contest #panel ul li:nth-of-type(even) {
     float: left;
   }

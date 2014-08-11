@@ -1,3 +1,5 @@
+/* RESET */
+
 html, body, h1, h2, h3, h4, h5, h6,
 p, a, cite, img, small,
 dl, dt, dd, ol, ul, li,
@@ -22,6 +24,97 @@ html {
   height: 100%;
   width: 100%;
 }
+
+/* TYPOGRAPHY */
+
+h1 {
+  font-size: 2.5em;
+  font-weight: 200;
+  color: #5F7A87;
+  border-bottom: #CCC 1px solid;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  color: #5F7A87;
+  font-size: 36px;
+  font-weight: 200;
+  border-bottom: 1px solid #CCC;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-size: 24px;
+  font-weight: 800;
+  color: #ed6323;
+  border-bottom: 1px solid #CCC;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+h4 {
+  font-size: 1.2em;
+  font-weight: 400;
+}
+
+h5 {
+  font-size: 1.125em;
+  font-weight: 400;
+}
+
+h6 {
+  font-size: 0.929em;
+  font-weight: 400;
+}
+
+p {
+  font-size: 16px;
+  line-height: 32px;
+  padding: 0 0 1em 0;
+}
+
+a {
+  color: #186D95;
+  cursor: pointer;
+}
+
+strong {
+  font-weight: bold;
+}
+
+li {
+  font-size: 0.875em;
+}
+
+.microcopy {
+  color: #aaa;
+  font-style: italic;
+}
+
+blockquote {
+  color: #1B6C94;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: bold;
+  font-style: italic;
+  margin: 0 0 20px 0;
+  padding-left: 60px;
+}
+
+pre {
+  border: 1px solid #CCC;
+  background: #f1f1f1;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+pre code {
+  word-wrap: break-word;
+}
+
+/* BASE PANAMAX STYLES */
 
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -358,7 +451,9 @@ section {
   padding-bottom: 20px;
 }
 
-#contest-banner p, a, h3 {
+#contest-banner p,
+#contest-banner a,
+#contest-banner h3 {
   position: relative;
   z-index: 10;
 }
@@ -583,7 +678,7 @@ footer p {
 }
 
 .copyright {
-  padding: 0;
+  padding: 0 0 15px 0;
   margin: 0;
 }
 
@@ -749,6 +844,26 @@ input {
   text-decoration: none;
   color: #ffffff;
 }
+
+body#documentation main {
+  overflow: auto
+}
+
+body#documentation section h4 {
+  margin: 25px 0 15px;
+}
+body#documentation section ul.wiki-articles li a {
+  font-weight: normal;
+}
+
+body#documentation section a {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #5F7A87;
+}
+
+/* TODO throwaway styles */
 
 body.documentation main {
   margin-bottom: 40px;
@@ -1160,10 +1275,24 @@ body.documentation main ul li {
     vertical-align: 30px;
   }
 
+  /* TODO throwaway styles */
+
   body.documentation footer #newsletter input {
     width: 45%;
   }
 
+  body#documentation section {
+    width: 48%;
+  }
+
+  body#documentation section:nth-of-type(even) {
+    float: right;
+  }
+
+  body#documentation section:nth-of-type(odd) {
+    float: left;
+    clear: both;
+  }
 }
 
 @media all and (min-width: 768px) and (max-width: 960px) {
