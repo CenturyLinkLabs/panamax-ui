@@ -1,0 +1,1 @@
+(function(){var a=document.createElement("script");var b=document.getElementsByTagName('script')[0];a.src="https://www.thunderclap.it/widget/tw.js?"+Math.floor(new Date().getTime()/3600000);a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}());
