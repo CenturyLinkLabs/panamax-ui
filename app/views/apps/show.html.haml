@@ -20,19 +20,18 @@
     %li
       =link_to('Documentation', '#', { class: 'instructions-dialog', data: { 'doc-url'=> documentation_app_path(@app.id) } })  if @app.documentation.present?
     %li
-      %a{ class: 'application-access' }
+      %span{ class: 'application-access' }
         Access your application
         .context-help
           %section.tooltip
             %aside.arrow
             %span{ class: 'dismiss' }
             %p
-              If your application has a GUI, map a port on your local host machine to the port bound to the host. If using Virtual Box, use the following command in your local machine's terminal window to create the port forwarding rule:
-              %pre VboxManage controlvm panamax-vm natpf1 <em>rule</em>,<em>protocol</em>,,8997,,8080
+              If your application has a GUI, map a port on your local host machine to the port bound to the host.
             %p
-              where  <em>rule</em> is the friendly name and <em>protocol</em> is tcp or udp. Replace port 8997 with any free port on your local machine and replace 8080 to the port bound to the host.
-            %p
-              After you run this command locally, browse to http://localhost:port to see the GUI.
+              Go to our wiki for instructions.
+              %a{href:'https://github.com/CenturyLinkLabs/panamax-ui/wiki/How-To%3A-Port-Forwarding-on-VirtualBox'}
+                https://github.com/CenturyLinkLabs/panamax-ui/wiki/How-To%3A-Port-Forwarding-on-VirtualBox
 
   = render 'application_button_menu', app: @app
 

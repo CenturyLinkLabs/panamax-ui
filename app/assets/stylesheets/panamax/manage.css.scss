@@ -347,8 +347,13 @@ section.deployment-details {
       text-decoration: underline;
     }
 
-    a.application-access {
+    span.application-access {
       position: relative;
+      text-decoration: underline;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }
