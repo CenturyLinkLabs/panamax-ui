@@ -501,83 +501,103 @@ ul[class*='button-menu'] {
 footer {
   clear: both;
   margin-top: 70px;
+  background: $light_grey;
 
-  .content {
-    background: $light_grey;
+  .inner {
     padding: 20px;
     overflow: auto;
+    max-width: 960px;
+    margin: 0 auto;
+
+    #footer-info {
+      width: 45%;
+      float: left;
+
+      h4 {
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      > p {
+        padding-bottom: 70px;
+      }
+
+      ul li {
+        display: inline-block;
+
+        a {
+          display: inline-block;
+          font-size: 14px;
+          margin: 0px 10px 0px 0px;
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        &.github-link a {
+          @extend .icon-github-large;
+        }
+
+        &.twitter-link {
+          a {
+            @extend .icon-twitter-large;
+          }
+
+          &:after {
+            content: '|';
+            font-weight: 100;
+            color: $medium_grey;
+            margin-right: 5px;
+          }
+        }
+
+        &.github-link a,
+        &.twitter-link a {
+          margin-bottom: -5px;
+          width: 20px;
+          @include hide-text;
+          @include icon-light-grey;
+
+          &:hover {
+            @include icon-grey;
+          }
+        }
+      }
+    }
+
+    #newsletter {
+      width: 45%;
+      float: right;
+
+      input[type='email'] {
+        width: 240px;
+      }
+
+      input[type='submit'] {
+        font-weight: normal;
+      }
+    }
   }
+}
 
-  h4 {
-    margin-bottom: 0;
-    padding-bottom: 0;
-  }
+.copyright {
+  padding: 0;
+  margin: 0;
 
-  .content > p:first-of-type {
-    margin-bottom: 20px;
-    width: 60%;
-  }
-
-
-  ul li {
+  #logo {
+    height: 70px;
+    width: 190px;
     display: inline-block;
-
-    a {
-      display: inline-block;
-      font-size: 14px;
-      margin: 0px 10px 0px 0px;
-      text-decoration: none;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-
-    &.github-link a {
-      @extend .icon-github-large;
-    }
-
-    &.twitter-link {
-      a {
-        @extend .icon-twitter-large;
-      }
-
-      &:after {
-        content: '|';
-        font-weight: 100;
-        color: $medium_grey;
-        margin-right: 5px;
-      }
-    }
-
-    &.github-link a,
-    &.twitter-link a {
-      margin-bottom: -5px;
-      width: 20px;
-      @include hide-text;
-      @include icon-light-grey;
-
-      &:hover {
-        @include icon-grey;
-      }
-    }
+    background:  image-url('ctl_base_ui/ctl_logo_base.svg') 20px 20px no-repeat #FFF;
+    background-size: 140px 30px;
   }
 
-  #email_newsletter {
-    width: 35%;
-    float: right;
-  }
-
-  .ctl-copyright {
-    min-height: 70px;
-    padding: 20px 20px 0px 40px;
-    background: image-url('ctl_base_ui/ctl_logo_base.svg') no-repeat 20px 20px;
-    @include background-size(140px, 30px);
-
-    .microcopy {
-      margin: 6px 0px 0px 140px;
-      font-size: 12px;
-    }
+  small {
+    margin-left: 0px;
+    font-size: 12px;
+    vertical-align: 30px;
   }
 }
 

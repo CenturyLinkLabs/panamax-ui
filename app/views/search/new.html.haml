@@ -57,6 +57,8 @@
       %a{href: 'http://panamax.io/contest#faq'} FAQ
 
     .action
-      %a{href: 'http://panamax.io/contest'} Learn More
-      %a.button-positive{href: 'http://panamax.io/get-panamax'} Get Panamax
-    -#%img.prizes{src: 'assets/images/contest/prizes_group.png'}
+      = link_to 'Learn More',
+                'http://panamax.io/contest',
+                class: 'button-positive',
+                target: '_blank',
+                title: 'Learn More'

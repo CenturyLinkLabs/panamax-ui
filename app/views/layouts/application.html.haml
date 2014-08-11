@@ -6,7 +6,7 @@
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
-    = favicon_link_tag 'http://www.centurylinklabs.com/images/favicon.ico'
+    = favicon_link_tag asset_path('favicons/favicon-160x160.png')
     %script#host_health_template{type: 'text/x-handlebars-template'}
       = render '/shared/host_health'
     %script#ajax_error_template{type: 'text/x-handlebars-template'}
@@ -41,25 +41,55 @@
       = render 'shared/notifications'
       = yield
     %footer
-      .content
-        #email_newsletter
-          %h4 Sign Up for Our Newsletter
-          %p Get all the latest news, tips & tricks for Panamax, Docker, etc.
-          %form{ action: '#', method: 'get', name: 'input' }
-            %input.email-form{ name: 'user', type: 'text', value: 'Email Address' }/
-            %input.button-secondary{ type: 'submit', value: 'Submit' }/
-        %p
-          Panamax is an open-source product from CenturyLink Labs.
-        %ul
-          %li
-            %a{ href: 'http://www.centurylinklabs.com/' } CenturyLink Labs Blog
-          %li.github-link
-            %a{ href: 'https://github.com/CenturyLinkLabs', target: '_blank', title: 'Fork Us on GitHub' } Fork Us on GitHub
-          %li.twitter-link
-            %a{ href: 'https://twitter.com/centurylinklabs', target: '_blank', title: 'Follow Us on Twitter' } Follow Us on Twitter
-          %li
-            %a{ href: '#' } Terms & Conditions
-          %li
-            %a{ href: '#' } Privacy Policy
-      .ctl-copyright
-        %p.microcopy © 2014 Century Link Labs
+      .inner
+
+        #footer-info
+          %p
+            Panamax is an open-source product from CenturyLink Labs.
+          %ul
+            %li
+              = link_to 'CenturyLink Labs Blog',
+                        'http://www.centurylinklabs.com',
+                        target: '_blank',
+                        title: 'CenturyLink Labs Blog'
+            %li.github-link
+              = link_to 'Fork Us on GitHub',
+                        'https://github.com/CenturyLinkLabs/panamax-ui/wiki',
+                        target: '_blank',
+                        title: 'Fork Us on GitHub'
+            %li.twitter-link
+              = link_to 'Follow Us on Twitter',
+                        'https://twitter.com/panamax_io',
+                        target: '_blank',
+                        title: 'Follow Us on Twitter'
+            %li
+              = link_to 'Legal & Privacy Policy',
+                        'http://www.centurylinkcloud.com/legal',
+                        target: '_blank',
+                        title: 'Legal & Privacy Policy'
+        #newsletter
+          #mc_embed_signup
+            %form#mc-embedded-subscribe-form.validate{action: "http://centurylink.us3.list-manage.com/subscribe/post?u=021d5aea02a4ed5dec0c1c96c&id=7bb216c547", method: "post", name: "mc-embedded-subscribe-form", novalidate: "", target: "_blank"}
+              %h4 Sign Up for Our Newsletter
+              %p Get all the latest news, tips & tricks for Panamax, Docker, etc.
+              .mc-field-group
+                %input#mce-EMAIL.required.email{name: "EMAIL", placeholder: "Email Address", type: "email", value: ""}/
+                %input#mc-embedded-subscribe.button-secondary{name: "subscribe", type: "submit", value: "Subscribe"}/
+              .mc-field-group.input-group
+                %ul
+                  %li
+                    %input{checked: "checked", id: "mce-group[9397]-9397-0", name: "group[9397][1]", style: "display:none;", type: "checkbox", value: "1"}/
+                    %label{for: "mce-group[9397]-9397-0", style: "display:none;"} Panamax.io
+                  %li
+                    %input{id: "mce-group[9397]-9397-1", name: "group[9397][2]", style: "display:none;", type: "checkbox", value: "2"}/
+                    %label{for: "mce-group[9397]-9397-1", style: "display:none;"} Panamax-User
+              #mce-responses.clear
+                #mce-error-response.response{style: "display:none"}
+                #mce-success-response.response{style: "display:none"}
+              -# real people should not fill this in and expect good things - do not remove this or risk form bot signups
+              %div{style: "position: absolute; left: -5000px;"}
+                %input{name: "b_021d5aea02a4ed5dec0c1c96c_7bb216c547", tabindex: "-1", type: "text", value: ""}/
+              .clear
+  %section.copyright
+    #logo
+    %small &copy; 2014 CenturyLink. All Rights Reserved.
