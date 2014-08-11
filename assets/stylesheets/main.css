@@ -501,6 +501,10 @@ section {
   color: #5F7A87;
 }
 
+#video {
+  float:right;
+}
+
 #how-it-works {
   padding: 0;
 }
