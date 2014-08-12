@@ -39,16 +39,17 @@ If you've pushed a change to the *ctl-base-ui* project that you want to appear
 in *panamax-ui* you need to do the following:
 
 ```
-cd vendor/ctl-base-ui
-git checkout origin master
-git pull --rebase
-cd ../..
+git submodule update --remote
 git commit -a -m 'Update to latest ctl-base-ui version'
 ```
 This assumes you want *panamax-ui* to reference whatever is currently
-at the HEAD of the *ctl-base-ui* master branch -- if you want to link
-it to a commit on another branch, simply checkout whichever branch you
-want in lieu of master.
+at the HEAD of the *ctl-base-ui* master branch. If you would like
+to track another branch, you must add that branch to the submodule:
+```
+git submodule add -b feature/my-branch [URL to repo]
+```
+
+Running the update command will cause the submodule to track that branch.
 
 #### Pulling a change
 After you `git pull --rebase` to update the UI master branch you may
