@@ -20,6 +20,11 @@ ol, ul {
   box-sizing: border-box;
 }
 
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
 html {
   height: 100%;
   width: 100%;
@@ -956,7 +961,7 @@ body.documentation main ul li {
   }
 
   #view-screens .inner {
-    width: 320px;
+    width: 300px;
   }
 
   #view-screens img.preview-image {
