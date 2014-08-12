@@ -1347,7 +1347,7 @@ body#install section ul.requirements li {
     width: 48%;
   }
 
-  body#documentation section:last-of-type {
+  body#documentation section.copyright {
     width: 100%;
   }
 
