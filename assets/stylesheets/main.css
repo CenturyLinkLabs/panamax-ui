@@ -913,30 +913,6 @@ body#install section ul.requirements li {
   margin-bottom: 10px;
 }
 
-/* TODO throwaway styles */
-
-body.documentation main {
-  margin-bottom: 40px;
-}
-
-body.documentation main h1,
-body.documentation main h3 {
-  margin-bottom: 15px;
-}
-
-body.documentation main h3 {
-  border-bottom: 0;
-}
-
-body.documentation main ul li,
-body.documentation main p {
-  font-size: 20px;
-}
-
-body.documentation main ul li {
-  margin: 15px 0;
-}
-
 /*MEDIA QUERIES*/
 
 @media all and (max-width: 768px) {
@@ -1353,6 +1329,10 @@ body.documentation main ul li {
     width: 48%;
   }
 
+  body#documentation section:last-of-type {
+    width: 100%;
+  }
+
   body#documentation section:nth-of-type(even) {
     float: right;
   }
@@ -1361,7 +1341,7 @@ body.documentation main ul li {
     float: left;
     clear: both;
   }
-
+  
   body#install section {
     overflow: auto;
   }
