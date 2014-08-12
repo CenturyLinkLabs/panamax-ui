@@ -515,16 +515,6 @@ section {
   border-bottom: none;
 }
 
-#how-it-works pre {
-  white-space: normal;
-  font-weight: normal;
-  word-wrap: break-word;
-  background-color: rgb(85, 112, 125);
-  border: 1px solid rgb(55, 82, 95);
-  padding: 8px;
-  margin: 8px 20px;
-}
-
 #how-it-works ul {
   font-weight: bold;
 }
@@ -550,6 +540,19 @@ section {
   line-height: 20px;
   word-wrap: break-word;
 }
+
+#how-it-works li p span {
+  display: block;
+  white-space: normal;
+  font-weight: normal;
+  font-family: monospace;
+  font-size: .8em;
+  line-height: 1.2em;
+  word-wrap: break-word;
+  padding: 8px;
+  margin: 10px 0;
+}
+
 
 #how-it-works li h3:before {
   display: block;
@@ -580,6 +583,11 @@ section {
   display: block;
 }
 
+#how-it-works li.active p span {
+  background-color: rgb(85, 112, 125);
+  border: 1px solid rgb(55, 82, 95);
+}
+
 #how-it-works li.active h3:before {
   background-image: url(../images/icon_sprite_white.svg);
 }
@@ -597,14 +605,6 @@ section {
 
 #how-it-works li h3#manage:before {
   background-position: 0 -90px;
-}
-
-#how-it-works li h3#install + p {
-  padding-bottom: 0;
-}
-
-#how-it-works li h3#install ~ pre + p {
-  margin-top: 0;
 }
 
 .inner {
