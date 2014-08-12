@@ -515,6 +515,16 @@ section {
   border-bottom: none;
 }
 
+#how-it-works pre {
+  white-space: normal;
+  font-weight: normal;
+  word-wrap: break-word;
+  background-color: rgb(85, 112, 125);
+  border: 1px solid rgb(55, 82, 95);
+  padding: 8px;
+  margin: 8px 20px;
+}
+
 #how-it-works ul {
   font-weight: bold;
 }
@@ -587,6 +597,14 @@ section {
 
 #how-it-works li h3#manage:before {
   background-position: 0 -90px;
+}
+
+#how-it-works li h3#install + p {
+  padding-bottom: 0;
+}
+
+#how-it-works li h3#install ~ pre + p {
+  margin-top: 0;
 }
 
 .inner {
