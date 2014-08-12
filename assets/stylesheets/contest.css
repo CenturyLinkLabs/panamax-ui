@@ -182,6 +182,13 @@ body#contest #prizes ul.extras li:first-child {
   border-top: 1px solid #f1f1f1;
 }
 
+body#contest footer h4 {
+  border-bottom: none;
+  font-size: 1.2em;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+
 @media screen and (min-width: 768px) {
   body#contest dl dt {
     float: left;
