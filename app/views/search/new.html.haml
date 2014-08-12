@@ -49,13 +49,19 @@
   .inner
     .info
       .white-logo
-      %h3 CenturyLink Panamax App Template Challenge 2014
+      %h3 $100,000+ Panamax App Template Challenge 2014
       %p
         Submit your creative, popular or innovative Panamax App Template. Over $100,000+ in prizes are up for grabs. 60
         finalists from multiple categories will receive a Mac Pro or iPad Air.
-      %a{href: 'http://panamax.io/contest#rules'} Contest Rules
-      %a{href: 'http://panamax.io/contest#faq'} FAQ
-
+      = link_to 'Contest Rules',
+                'http://panamax.io/contest#rules',
+                target: '_blank',
+                title: 'Contest Rules'
+      = link_to 'FAQ',
+                'http://panamax.io/contest#faq',
+                target: '_blank',
+                title: 'FAQ'
+                
     .action
       = link_to 'Learn More',
                 'http://panamax.io/contest',
