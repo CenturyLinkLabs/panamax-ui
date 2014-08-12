@@ -1384,6 +1384,10 @@ body#install section ul.requirements li {
     height: 280px;
     margin: 0;
   }
+
+  body#install pre {
+    margin-left: 20px;
+  }
 }
 
 @media all and (min-width: 768px) and (max-width: 960px) {
