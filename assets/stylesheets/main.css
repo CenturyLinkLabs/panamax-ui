@@ -915,8 +915,12 @@ body.documentation main {
 }
 
 body.documentation main h1,
-body.documentation main h2 {
+body.documentation main h3 {
   margin-bottom: 15px;
+}
+
+body.documentation main h3 {
+  border-bottom: 0;
 }
 
 body.documentation main ul li,
@@ -987,6 +991,11 @@ body.documentation main ul li {
   }
 }
 
+@media all and (max-width: 550px) {
+  #about-panamax iframe {
+    display: none !important;
+  }
+}
 @media all and (min-width: 481px) {
   #get-panamax h2 {
     display: inline-block;
@@ -1115,6 +1124,9 @@ body.documentation main ul li {
     margin: 0 auto;
   }
 
+  #how-it-works h2 {
+    padding: 0 0 0 20px;
+  }
 }
 
 @media all and (min-width: 769px) {
@@ -1214,6 +1226,10 @@ body.documentation main ul li {
 
   section:last-of-type {
     margin-bottom: 0;
+  }
+
+  #about-panamax dl {
+    margin-right: 300px;
   }
 
   #about-panamax dl dt {
@@ -1327,14 +1343,6 @@ body.documentation main ul li {
     margin-left: 0;
     vertical-align: 30px;
   }
-
-  /* TODO throwaway styles */
-
-  body.documentation footer #newsletter input {
-    width: 45%;
-  }
-
-  /* end throwaway */
 
   body#documentation section {
     width: 48%;
