@@ -575,7 +575,8 @@ section {
   color: white;
 }
 
-#how-it-works li.active h3 {
+#how-it-works li.active h3,
+#how-it-works li.active a {
   color: white;
 }
 
@@ -726,6 +727,7 @@ footer a {
 .copyright small {
   margin-left: 20px;
   font-size: 12px;
+  display: inline-block;
 }
 
 hr {
