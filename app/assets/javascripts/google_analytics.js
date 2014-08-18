@@ -29,7 +29,7 @@
   a.async = 1;
   a.src = g;
   m.parentNode.insertBefore(a, m);
-})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'gaTracker');
+})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'gaTracker');
 
 gaTracker('create', 'UA-49491413-1', {
   'cookieDomain': 'none',

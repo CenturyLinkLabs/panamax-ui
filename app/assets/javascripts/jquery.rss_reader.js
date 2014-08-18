@@ -6,7 +6,7 @@
     base.xhr = null;
 
     base.defaultOptions = {
-      proxyUrl: 'http://ajax.googleapis.com/ajax/services/feed/load',
+      proxyUrl: 'https://ajax.googleapis.com/ajax/services/feed/load',
       itemCount: 5,
       blogItemTemplate: Handlebars.compile($('#blog_item_template').html()),
     };
