@@ -84,6 +84,7 @@ class Service < BaseResource
 
   def exposed_ports_attributes=(attributes)
     self.expose = attributes.each_with_object([]) do |(_, exposed_port), memo|
+      exposed_port['_deleted'] = 1 if exposed_port['port_number'].blank?
       memo << exposed_port['port_number'] unless exposed_port['_deleted'].to_s == '1'
     end
   end
