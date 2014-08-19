@@ -29,3 +29,5 @@
 //= require application
 
 jQuery.fx.off = true;
+
+jQuery.fn.errorInterceptor = function() { };
