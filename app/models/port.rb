@@ -6,4 +6,8 @@ class Port < BaseResource
     integer :container_port
     string :proto
   end
+
+  def proto
+    @attributes['proto'].blank? ? 'TCP' : @attributes['proto']
+  end
 end
