@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+0.1.1 - 2014-08-21
+------------------
+
+### Fixed
+- Exposed port validation added
+
+
 0.1.1 - 2014-08-11
 ------------------
 

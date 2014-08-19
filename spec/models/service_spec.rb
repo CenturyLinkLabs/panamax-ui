@@ -279,6 +279,25 @@ describe Service do
     end
   end
 
+  describe '#exposed_ports_attributes=' do
+    let(:attributes) do
+      {
+        '0' => { 'port_number' => '111', '_deleted' => false },
+        '1' => { 'port_number' => '222', '_deleted' => 1 },
+        '2' => { 'port_number' => '', '_deleted' => false }
+      }
+    end
+
+    before do
+      subject.exposed_ports_attributes = attributes
+    end
+
+    it 'assigns exposed ports when the port_number is valid' do
+      expect(subject.exposed_ports.size).to be 1
+      expect(subject.exposed_ports.first['port_number']).to eq '111'
+    end
+  end
+
   describe '#environment_attributes=' do
     let(:attributes) do
       {
