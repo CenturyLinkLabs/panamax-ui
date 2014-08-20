@@ -16,6 +16,8 @@ Teaspoon.configure do |config|
   # to generate fixtures within this path.
   config.fixture_paths = ['spec/javascripts/fixtures']
 
+  config.server = :webrick
+
   # You can modify the default suite configuration and create new suites here. Suites can be isolated from one another.
   # When defining a suite you can provide a name and a block. If the name is left blank, :default is assumed. You can
   # omit various directives and the defaults will be used.
