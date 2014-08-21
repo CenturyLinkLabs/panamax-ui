@@ -1,11 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-0.1.1 - 2014-08-21
+0.1.2 - 2014-08-21
 ------------------
 
 ### Fixed
 - Exposed port validation added
+- Edit application using Firefox
 
 
 0.1.1 - 2014-08-11

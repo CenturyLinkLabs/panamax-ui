@@ -179,11 +179,21 @@ main {
 }
 
 h1.breadcrumbs {
+  ul {
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
   ul li {
-    display: inline;
+    float: left;
     font-size: 0.6em;
     margin: 0;
     padding: 0;
+    line-height: 1.215em;
+
+    &:not(:first-of-type) {
+      padding-left: 10px;
+    }
 
     &:not(:last-of-type):after {
       content: '/';
@@ -196,17 +206,13 @@ h1.breadcrumbs {
       color: $blue_grey;
     }
 
-    &:last-child:before {
-      display: block;
-      margin-top: 10px;
-      content: '';
-    }
-
-    &:last-child {
+    &:last-of-type {
       padding: 0;
+      white-space: nowrap;
       position: relative;
       font-size: 1em;
       color: $orange;
+      clear: left;
     }
   }
 }
