@@ -322,6 +322,15 @@ section {
   text-decoration: none;
 }
 
+#hero #video {
+  float: right;
+  margin-top: 58px;
+}
+
+#hero .intro-copy {
+  margin-right: 440px;
+}
+
 #hero,
 #about-panamax {
   padding: 20px;
@@ -948,6 +957,13 @@ body#install section ul.requirements li {
     float: none;
   }
 
+  #hero .intro-copy {
+    margin-right: 0;
+  }
+  #hero #video {
+    float: none;
+  }
+
 }
 
 @media screen and (max-width: 480px) {
@@ -1198,7 +1214,7 @@ body#install section ul.requirements li {
 
   /* HERO */
   #hero {
-    padding: 0 10% 0 30%;
+    padding: 0;
     margin: 75px 0;
   }
 
@@ -1361,7 +1377,7 @@ body#install section ul.requirements li {
     float: left;
     clear: both;
   }
-  
+
   body#install section {
     overflow: auto;
   }

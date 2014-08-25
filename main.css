@@ -54,6 +54,11 @@ a:hover {
   text-decoration: underline;
 }
 
+#hero #video {
+  float: right;
+  border: red 1px solid;
+}
+
 h2 {
   color: #5F7985;
   font-size: 36px;
