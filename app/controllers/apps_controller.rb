@@ -43,7 +43,7 @@ class AppsController < ApplicationController
 
   def documentation
     app = retrieve_app
-    if app && app.documentation_to_html
+    if app && app.documentation_to_html.present?
       return render html: app.documentation_to_html.html_safe, layout: 'documentation'
     else
       head status: :not_found

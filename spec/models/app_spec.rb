@@ -24,6 +24,8 @@ describe App do
 
   it_behaves_like 'an active resource model'
 
+  it_behaves_like 'a markdown renderable object'
+
   it { should respond_to :services }
   it { should respond_to :template_id }
 

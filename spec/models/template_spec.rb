@@ -14,6 +14,8 @@ describe Template do
 
   subject { described_class.new(attributes) }
 
+  it_behaves_like 'a markdown renderable object'
+
   describe '#id' do
     it { should respond_to :id }
   end
