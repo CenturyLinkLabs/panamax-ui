@@ -26,7 +26,7 @@ class Template < BaseResource
   end
 
   def short_description
-    truncate(description, length: 165, escape: false, separator: ' ')
+    truncate(description, length: 120, escape: false, separator: ' ')
   end
 
   def image_count_label

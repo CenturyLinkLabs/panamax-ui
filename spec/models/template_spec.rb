@@ -77,7 +77,7 @@ describe Template do
     end
 
     it 'truncates the description to 165 charectors' do
-      expect(subject.short_description).to eq 'w' * 162 + '...'
+      expect(subject.short_description).to eq 'w' * 117 + '...'
     end
   end
   describe '#last_updated_on' do

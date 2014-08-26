@@ -174,16 +174,17 @@ body#search_flow main {
 
   .basic-info {
     float: left;
-    margin: 10px 20px 10px 0px;
-    padding: 0 20px;
+    margin: 10px 20px;
+    width: 465px;
     @include border-box;
-    width: 440px;
     height: 90px;
     overflow: auto;
 
     h3 {
       margin-bottom: 0;
       color: $dark_grey;
+      white-space: nowrap;
+      overflow-x: hidden;
     }
 
     p {
