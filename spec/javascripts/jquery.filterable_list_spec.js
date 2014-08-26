@@ -217,7 +217,7 @@ describe('$.fn.filterableList', function() {
         $('.template-details-link').click();
         var args = $.PMX.TemplateDetailsDialog.mostRecentCall.args;
         expect(args[0]).toEqual('.template-details-link');
-        expect(args[1]['url']).toMatch("/templates/77/details$")
+        expect(args[1]['url']).toMatch("/templates/77/details")
       });
 
     });
@@ -331,7 +331,7 @@ describe('$.PMX.TemplateDetailsDialog', function() {
     modalContents = $('#template-details-dialog');
     spyOn($.fn, "dialog");
     spyOn(window, "open");
-    subject = new $.PMX.TemplateDetailsDialog('.template-details-link', {url: urlOption});
+    subject = new $.PMX.TemplateDetailsDialog('.template-details-link', {url: urlOption, template_id: 77});
     subject.init();
   });
 

@@ -1,4 +1,4 @@
-.search-result-item.template-result
+.search-result-item.template-result{ id: "template_#{presenter.id}" }
   .badge
     %img{src: presenter.icon_src}
     = presenter.status_label
@@ -6,7 +6,7 @@
     %h3= presenter.title
     %p
       = presenter.short_description
-      %a{href:"#", class: "template-details-link", data: { 'template-id' => presenter.id }} More Details
+      %a{href:"/templates/#{presenter.id}/details", class: "template-details-link" } More Details
     %p.microcopy= "Last Updated: #{presenter.last_updated_on}"
   .actions
     = form_tag apps_path do
