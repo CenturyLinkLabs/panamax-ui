@@ -87,6 +87,8 @@
     base.defaultOptions = {
       $modalContents: $('#template-details-dialog'),
       $titlebarCloseButton: $('button.ui-dialog-titlebar-close'),
+      $templateRow: $('#template_' + options.template_id),
+      buttonSelector: '.actions button.button-positive',
       loadingTemplate: Handlebars.compile($('#loading_row_template').html())
     };
 
@@ -154,9 +156,8 @@
     };
 
     base.handleSubmit = function(e) {
+      var $actionsFormSubmit = base.options.$templateRow.find(base.options.buttonSelector);
       e.preventDefault();
-      var $templateRow = base.$el.closest('.template-result'),
-          $actionsFormSubmit = $templateRow.find('form button');
 
       $actionsFormSubmit.click();
       base.handleClose();
@@ -217,15 +218,13 @@
     base.handleTemplateDetailsClick = function(e) {
       e.preventDefault();
       var $elem = $(e.target),
-          template_id = $elem.attr('data-template-id'),
-          modal = base.initTemplateDetailsDialog(template_id);
+          url = $elem.attr('href'),
+          modal = base.initTemplateDetailsDialog(url, url.replace(/\D/g,''));
       modal.showTemplateDialog();
     };
 
-    base.initTemplateDetailsDialog = function(template_id) {
-      var origin = window.location.protocol + '//' + window.location.host,
-        url = origin + '/templates/' + template_id + '/details',
-        modal = new $.PMX.TemplateDetailsDialog(base.options.templateDetailsSelector, {url: url});
+    base.initTemplateDetailsDialog = function(url, template_id) {
+      var modal = new $.PMX.TemplateDetailsDialog(base.options.templateDetailsSelector, {url: url, template_id: template_id});
 
       modal.init();
       return modal;
