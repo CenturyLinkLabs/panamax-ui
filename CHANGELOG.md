@@ -1,12 +1,21 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-0.1.2 - 2014-08-21
+0.1.2 - 2014-08-27
 ------------------
 
+### Added
+- Upgraded to Rails 4.1.5
+- Text legend for port bindings
+- Link target on search results "Learn more" link
+
 ### Fixed
-- Exposed port validation added
-- Edit application using Firefox
+- Load remote JavaScript resources via HTTPS (#295)
+- Missing validation for exposed ports (#292)
+- Firefox issues on Edit Application screen (#307)
+- Port binding not showing protocol
+- A couple search ui bugs (#335)
+- Clicking run template from the modal (#333)
 
 
 0.1.1 - 2014-08-11
