@@ -1,6 +1,8 @@
 .port-bindings
   %h4 Port Bindings
   %ul
+    %li.legend
+      host port: container port / protocol
     = f.fields_for :ports do |port|
       - checkbox_id = "select_port_binding_#{port.options[:child_index]}"
       %li{title: "host: #{port.object.host_port},

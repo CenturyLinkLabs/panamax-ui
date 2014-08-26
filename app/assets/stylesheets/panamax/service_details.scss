@@ -223,6 +223,11 @@
     float: left;
     width: 65%;
 
+    li.legend {
+      color: $grey;
+      font-style: italic;
+    }
+
     select {
       width: 80px;
     }
