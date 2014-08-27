@@ -3,8 +3,10 @@
 @import 'ctl_base_ui/icons';
 @import 'panamax/buttons';
 
-body#search_flow main {
-  overflow: auto;
+body#search_flow main:after {
+  display: block;
+  content: '';
+  clear: both;
 }
 
 .template-details-dialog {
