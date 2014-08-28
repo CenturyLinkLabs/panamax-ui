@@ -18,7 +18,7 @@
     %h6 Tag:
     %span
       = @service.image_tag_name
-    = link_to 'View on Docker Index', @service.docker_index_url, { target: 'blank' }
+    = link_to 'View on Docker Hub', @service.docker_index_url, { target: 'blank' }
     =link_to('Documentation', '#', { class: 'documentation instructions-dialog', data: {'doc-url'=> documentation_app_path(@app.id)} })  if @app.documentation_to_html.present?
 
   = form_for [@app, @service], html: { class: 'service-edit-form' } do |f|
