@@ -332,7 +332,9 @@ describe('$.PMX.TemplateDetailsDialog', function() {
     spyOn($.fn, "dialog");
     spyOn(window, "open");
     subject = new $.PMX.TemplateDetailsDialog('.template-details-link', {url: urlOption, template_id: 77});
+    spyOn(subject, "calculateHeight").andCallFake(function() { return 800; });
     subject.init();
+
   });
 
   afterEach(function () {
@@ -348,6 +350,7 @@ describe('$.PMX.TemplateDetailsDialog', function() {
         resizable: false,
         draggable: true,
         width: 860,
+        height: 800,
         position: ["top", 50],
         title: 'Template Details',
         close: jasmine.any(Function),

@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+Latest
+------------------
+
+### Fixed
+- Template details dialog rendering
+
 0.1.2 - 2014-08-27
 ------------------
 

@@ -89,12 +89,18 @@
       $titlebarCloseButton: $('button.ui-dialog-titlebar-close'),
       $templateRow: $('#template_' + options.template_id),
       buttonSelector: '.actions button.button-positive',
+      dialogContentSelector: '.ui-dialog-content',
       loadingTemplate: Handlebars.compile($('#loading_row_template').html())
     };
 
     base.init = function() {
       base.options = $.extend({}, base.defaultOptions, options);
       base.initiateDialog();
+    };
+
+    base.calculateHeight = function() {
+      var browserHeight = $( window ).height();
+      return Math.ceil(browserHeight * 0.9);
     };
 
     base.initiateDialog = function () {
@@ -105,6 +111,7 @@
         resizable: false,
         draggable: true,
         width: 860,
+        height: base.calculateHeight(),
         position: ["top", 50],
         title: 'Template Details',
         close: base.handleClose,
@@ -122,6 +129,10 @@
           }
         ]
       });
+
+      // must set height here or jQueryUI sets inline style to auto
+      base.defaultOptions.$modalContents.find(base.options.dialogContentSelector).css('height', '100%');
+
     };
 
     base.handleClose = function () {
