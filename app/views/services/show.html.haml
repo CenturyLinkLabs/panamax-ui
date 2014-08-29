@@ -10,6 +10,17 @@
   %span.service-status{ class: @service.status,
       data: { source: app_service_path(@app.id, @service.id, format: :json) } }
     %span.panamax-state= @service.status.to_s.humanize
+    .tooltip
+      %ul
+        %li
+          Sub State:
+          %span.sub-state= @service.sub_state
+        %li
+          Active State:
+          %span.active-state= @service.active_state
+        %li
+          Load State:
+          %span.load-state= @service.load_state
 
   .base-image-detail
     %h6 Base Image:

@@ -4,7 +4,9 @@ describe('$.fn.serviceStatus', function() {
 
   var serviceResponse = {
     'status': 'foo',
-    'sub_state': 'bar'
+    'sub_state': 'bar',
+    'active_state': 'baz',
+    'load_state': 'buzz'
   };
 
   beforeEach(function() {
@@ -23,6 +25,30 @@ describe('$.fn.serviceStatus', function() {
       subject.init();
       var request = mostRecentAjaxRequest();
       expect(request.url).toBe('/foo/bar');
+    });
+
+    it('displays the sub state', function() {
+      subject.init();
+      mockAjaxResponse();
+
+      expect($('.sub-state').text()).toEqual(
+        subject.formatPanamaxState(serviceResponse.sub_state));
+    });
+
+    it('displays the loading state', function() {
+      subject.init();
+      mockAjaxResponse();
+
+      expect($('.load-state').text()).toEqual(
+        subject.formatPanamaxState(serviceResponse.load_state));
+    });
+
+    it('displays the active state', function() {
+      subject.init();
+      mockAjaxResponse();
+
+      expect($('.active-state').text()).toEqual(
+        subject.formatPanamaxState(serviceResponse.active_state));
     });
 
     it('displays the Panamax state', function() {
@@ -47,6 +73,23 @@ describe('$.fn.serviceStatus', function() {
 
       expect(window.setTimeout).toHaveBeenCalledWith(
         subject.fetchStatus, subject.options.refreshInterval);
+    });
+
+    describe('hovering on the panamax-state element', function() {
+      var mouseenter = $.Event('mouseenter');
+      var mouseleave = $.Event('mouseleave');
+
+      it('displays the tooltip on mouseenter', function() {
+        subject.init();
+        $('.panamax-state').trigger(mouseenter);
+        expect($('.tooltip').css('display')).toBe('block');
+      });
+
+      it('hides the tooltip on mouseleave', function() {
+        subject.init();
+        $('.panamax-state').trigger(mouseleave);
+        expect($('.tooltip').css('display')).toBe('none');
+      });
     });
 
     describe('when a request is already in-progress', function() {
