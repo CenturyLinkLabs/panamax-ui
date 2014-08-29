@@ -28,6 +28,7 @@ describe SearchController do
     it 'assigns keywords' do
       get :new
 
+      expect(assigns(:keywords_sorted_by_term)).to eq fake_keywords
       expect(assigns(:keywords_sorted_by_count)).to eq fake_keywords_by_count
     end
   end

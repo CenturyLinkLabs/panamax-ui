@@ -1,0 +1,6 @@
+.thingy#first
+  %a{data: { accordian: { expand: '#second', collapse: '.thingy' }}} expand second
+.thingy#second
+  %a{data: { accordian: { expand: '#third', collapse: '.thingy' }}} expand third
+.thingy#third
+  %a{data: { accordian: { expand: '#first', collapse: '.thingy' }}} expand first

@@ -86,5 +86,7 @@
     $('.service-status').serviceStatus();
 
     $('.application-services').appServicesStatus();
+
+    $('[data-accordian-expand]').accordian();
   };
 })(jQuery);
