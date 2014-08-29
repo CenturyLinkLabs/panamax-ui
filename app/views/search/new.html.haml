@@ -30,6 +30,7 @@
     %a.example.drupal{data: {query: 'drupal'}} Drupal
     %a.example.rails{data: {query: 'rails'}} Rails
 
+  = render 'keyword_cloud', keywords: @keywords_sorted_by_count, sort_title: 'Name', sorted_by: :count
   %h3.search-title Templates
   .template-results
 

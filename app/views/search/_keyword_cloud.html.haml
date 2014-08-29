@@ -1,0 +1,7 @@
+- show_selector =  "#sorted_by_#{sort_title.downcase}"
+- display_style ||= 'block'
+%section.example-searches{style: "display: #{display_style};", id: "sorted_by_#{sorted_by}"}
+  %h3
+    Or, browse these available templates:
+  - keywords.each do |kw|
+    %a.keyword{data: {query: kw.keyword}}= "#{kw.keyword} (#{kw.count})"
