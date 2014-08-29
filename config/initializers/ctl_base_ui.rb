@@ -6,7 +6,6 @@ CtlBaseUi.configure do |config|
     'search',
     'service_details',
     'service_journal',
-    'example_searches',
     'blog_feed'
   ]
 
