@@ -324,14 +324,19 @@ body#search_flow main:after {
   .badge {
     line-height: 1;
 
-    img {
+    div {
       @include border-box;
       @include border-radius(30px);
-      margin: 18px 0 5px;
+      margin: 18px 25px 5px;
       width: 60px;
       height: 60px;
       padding: 10px;
       background-color: $white;
+    }
+
+    img {
+      width: 40px;
+      height: 40px;
     }
 
     background-color: $blue_grey_dark;

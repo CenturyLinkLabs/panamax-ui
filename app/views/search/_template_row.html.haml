@@ -1,6 +1,7 @@
 .search-result-item.template-result{ id: "template_#{presenter.id}" }
   .badge
-    %img{src: presenter.icon_src}
+    %div
+      %img{src: presenter.icon_src}
     = presenter.status_label
   .basic-info
     %h3= presenter.title
