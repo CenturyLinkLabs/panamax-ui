@@ -82,9 +82,14 @@ p {
   padding: 0 0 1em 0;
 }
 
-a {
-  color: #186D95;
+a, p a {
+  color: #1C6D95;
   cursor: pointer;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #274655;
 }
 
 strong {
@@ -240,6 +245,7 @@ header nav ul li a {
 }
 
 header nav ul li a:hover {
+  color: #FFF;
   background-color: rgb(132, 188, 57);
   transition: background-color 0.25s ease;
 }
@@ -330,6 +336,10 @@ section {
 #hero .intro-copy {
   margin-right: 440px;
 }
+#hero .intro-copy a.button-positive:hover {
+  color: #FFF;
+}
+
 
 #hero,
 #about-panamax {
@@ -659,9 +669,6 @@ footer p {
   line-height: 1.2em;
 }
 
-footer a {
-  color: #5f7a87;
-}
 
 #footer-info {
   margin-bottom: 35px;
@@ -684,10 +691,6 @@ footer a {
 
 #footer-info li a {
   text-decoration: none;
-}
-
-#footer-info li a:hover {
-  text-decoration: underline;
 }
 
 #newsletter h4 {
@@ -799,10 +802,6 @@ hr {
   background: #e45513;
 }
 
-p a:hover {
-  color: #229fe5;
-}
-
 /*FORMS*/
 
 input {
@@ -845,7 +844,7 @@ input {
   text-transform: uppercase;
   letter-spacing: 1px;
   background: #8EC643;
-  color: #ffffff;
+  color: #FFF;
   font-weight: bold;
 }
 
@@ -888,7 +887,7 @@ input {
   padding: 0 16px;
   display: block;
   text-decoration: none;
-  color: #ffffff;
+  color: #FFF;
 }
 
 body#documentation main {
@@ -896,7 +895,7 @@ body#documentation main {
 }
 
 body#documentation section h4 {
-  margin: 25px 0 15px;
+  margin: 25px 0 0;
 }
 body#documentation section ul.wiki-articles li a {
   font-weight: normal;
@@ -906,7 +905,6 @@ body#documentation section a {
   display: block;
   font-weight: bold;
   margin-bottom: 10px;
-  color: #5F7A87;
 }
 
 body#install section strong {
