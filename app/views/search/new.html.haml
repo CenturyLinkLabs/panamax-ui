@@ -22,13 +22,8 @@
     = f.button 'Search', class: 'button-primary'
     %p.microcopy Examples: Rails, redis, NGiNX, mongoDB, you get the picture...
 
-  %section.example-searches
-    %h3
-      Or, try one of these popular searches:
-    %a.example.buildpack{data: {query: 'buildpack-runner'}} Buildpack
-    %a.example.wordpress{data: {query: 'wordpress'}} Wordpress
-    %a.example.drupal{data: {query: 'drupal'}} Drupal
-    %a.example.rails{data: {query: 'rails'}} Rails
+  = render 'keyword_cloud', keywords: @keywords_sorted_by_term, sort_title: 'Count', sorted_by: :name, display_style: 'none'
+  = render 'keyword_cloud', keywords: @keywords_sorted_by_count, sort_title: 'Name', sorted_by: :count
 
   %h3.search-title Templates
   .template-results
@@ -61,7 +56,7 @@
                 'http://panamax.io/contest#faq',
                 target: '_blank',
                 title: 'FAQ'
-                
+
     .action
       = link_to 'Learn More',
                 'http://panamax.io/contest',

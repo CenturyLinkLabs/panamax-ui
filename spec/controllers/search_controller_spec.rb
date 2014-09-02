@@ -5,13 +5,31 @@ describe SearchController do
     double(:fake_result_set)
   end
 
-  describe 'GET #new' do
-    it 'creates and assigns a search result set object' do
-      expect(SearchResultSet).to receive(:new).and_return(fake_result_set)
+  let(:fake_keywords_by_count) do
+    double(:fake_keywords)
+  end
 
+  let(:fake_keywords) do
+    double(:fake_keywords, reverse: fake_keywords_by_count)
+  end
+
+  describe 'GET #new' do
+    before do
+      SearchResultSet.stub(:new).and_return(fake_result_set)
+      Keyword.stub(:all_sorted_by).and_return(fake_keywords)
+    end
+
+    it 'creates and assigns a search result set object' do
       get :new
 
       expect(assigns(:search_result_set)).to eq fake_result_set
+    end
+
+    it 'assigns keywords' do
+      get :new
+
+      expect(assigns(:keywords_sorted_by_term)).to eq fake_keywords
+      expect(assigns(:keywords_sorted_by_count)).to eq fake_keywords_by_count
     end
   end
 

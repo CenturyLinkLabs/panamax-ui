@@ -4,6 +4,8 @@ class SearchController < ApplicationController
 
   def new
     @search_result_set = SearchResultSet.new
+    @keywords_sorted_by_term = Keyword.all_sorted_by(:keyword)
+    @keywords_sorted_by_count = Keyword.all_sorted_by(:count).reverse
   end
 
   def show

@@ -75,6 +75,10 @@ class FakePanamaxApi < Sinatra::Base
     json_response 200, 'service_representation_1.json'
   end
 
+  get '/keywords.json' do
+    json_response 200, 'keywords_representation.json'
+  end
+
   get '/types.json' do
     json_response 200, 'types_representation.json'
   end
