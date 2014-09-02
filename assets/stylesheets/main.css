@@ -307,10 +307,13 @@ cite.built-by h2 {
 section {
   padding: 20px 0;
 }
+#hero {
+  overflow: hidden;
+}
 
 #hero h1 {
   border-bottom: none;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 #hero h2 {
@@ -318,7 +321,7 @@ section {
   font-weight: bold;
   color: #AAA;
   border-bottom: none;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 #hero a {
@@ -328,18 +331,13 @@ section {
   text-decoration: none;
 }
 
-#hero #video {
-  float: right;
-  margin-top: 58px;
-}
-
-#hero .intro-copy {
-  margin-right: 440px;
-}
 #hero .intro-copy a.button-positive:hover {
   color: #FFF;
 }
 
+#hero #video {
+  margin-top: 15px;
+}
 
 #hero,
 #about-panamax {
@@ -907,6 +905,16 @@ body#documentation section a {
   margin-bottom: 10px;
 }
 
+body #video {
+  margin: 0 auto 40px;
+}
+
+body #video iframe {
+  width: 320px;
+  height: 210px;
+  margin: 0 auto
+}
+
 body#install section strong {
   margin: 15px 0 35px 0;
   display: inline-block;
@@ -919,15 +927,6 @@ body#install section strong {
 body#install section h5 {
   font-weight: bold;
   margin-bottom: 14px;
-}
-body#install #video {
-  margin: 0 auto 40px;
-}
-
-body#install #video iframe {
-  width: 320px;
-  height: 210px;
-  margin: 0 auto
 }
 
 body#install section ul.requirements {
@@ -952,13 +951,6 @@ body#install section ul.requirements li {
   #view-screens h2 {
     width: 370px;
     margin: 0 auto 20px auto;
-    float: none;
-  }
-
-  #hero .intro-copy {
-    margin-right: 0;
-  }
-  #hero #video {
     float: none;
   }
 
@@ -1000,9 +992,16 @@ body#install section ul.requirements li {
     top: 19px;
     left: 35px;
   }
+
   #contest-banner img.prizes {
     top: 55%;
     right: 30%;
+  }
+
+  body #video iframe {
+    margin: 0 auto 0 50%;
+    position: relative;
+    left: -160px;
   }
 }
 
@@ -1011,6 +1010,7 @@ body#install section ul.requirements li {
     display: none !important;
   }
 }
+
 @media all and (min-width: 481px) {
   #get-panamax h2 {
     display: inline-block;
@@ -1091,10 +1091,12 @@ body#install section ul.requirements li {
     right: 5%;
   }
 
-  body#install #video iframe {
+  body #video iframe {
     width: 440px;
     height: 280px;
-    margin: 0 auto
+    margin: 0 auto 0 50%;
+    position: relative;
+    left: -220px;
   }
 }
 
@@ -1145,7 +1147,6 @@ body#install section ul.requirements li {
 }
 
 @media all and (min-width: 769px) {
-
   .background {
     display: block;
     position: absolute;
@@ -1223,6 +1224,11 @@ body#install section ul.requirements li {
 
   #hero a:first-of-type {
     margin-right: 10px;
+  }
+
+  #hero .intro-copy {
+    float: left;
+    width: 48%;
   }
 
   #view-screens h2 {
@@ -1376,14 +1382,20 @@ body#install section ul.requirements li {
     clear: both;
   }
 
-  body#install section {
-    overflow: auto;
-  }
-
-  body#install #video {
+  body #video {
     width: 48%;
     float: right;
     margin-bottom: 0;
+  }
+
+  body #video iframe {
+    width: 440px;
+    height: 280px;
+    margin: 0;
+  }
+
+  body#install section {
+    overflow: auto;
   }
 
   body#install #instructions {
@@ -1393,12 +1405,6 @@ body#install section ul.requirements li {
 
   body#install #instructions ~ p {
     clear: both;
-  }
-
-  body#install #video iframe {
-    width: 440px;
-    height: 280px;
-    margin: 0;
   }
 
   body#install pre {
@@ -1416,6 +1422,18 @@ body#install section ul.requirements li {
 
   #view-screens .inner {
     width: 768px;
+  }
+
+  body#home #video {
+     width: 54%;
+  }
+
+  body#home #hero .intro-copy {
+    width: 45.5%;
+  }
+
+  #hero {
+    padding: 10px;
   }
 
 }
