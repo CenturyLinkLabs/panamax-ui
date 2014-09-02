@@ -31,6 +31,7 @@
     }
 
     a {
+      color: darken($grey, 10%);
       text-decoration: none;
 
       &:hover  .title {
@@ -73,6 +74,10 @@
 
         &:last-of-type {
           border-bottom: none;
+        }
+
+        a:hover {
+          color: $blue_grey_dark;
         }
       }
 

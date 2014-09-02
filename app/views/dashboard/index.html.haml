@@ -15,7 +15,10 @@
       %ul
         - value[:list].each do |item|
           %li
-            = item.name
+            - if "Application" == resource
+              = link_to item.name, app_path(item.id)
+            - else
+              = item.name
         - if value[:more_count] > 0
           %li.more
             And #{value[:more_count]} more #{ resource.downcase.pluralize(value[:more_count]) }
