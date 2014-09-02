@@ -15,13 +15,7 @@
       %ul
         - value[:list].each do |item|
           %li
-            - case resource
-            - when "Application"
-              = link_to item.name, app_path(item.id)
-            - when "Source"
-              = link_to item.name, item.uri, :target => '_blank'
-            - else
-              = item.name
+            = dashboard_link_for(resource, item)
         - if value[:more_count] > 0
           %li.more
             And #{value[:more_count]} more #{ resource.downcase.pluralize(value[:more_count]) }
