@@ -1005,12 +1005,6 @@ body#install section ul.requirements li {
   }
 }
 
-@media all and (max-width: 550px) {
-  #about-panamax iframe {
-    display: none !important;
-  }
-}
-
 @media all and (min-width: 481px) {
   #get-panamax h2 {
     display: inline-block;
@@ -1247,10 +1241,6 @@ body#install section ul.requirements li {
 
   section:last-of-type {
     margin-bottom: 0;
-  }
-
-  #about-panamax dl {
-    margin-right: 300px;
   }
 
   #about-panamax dl dt {
