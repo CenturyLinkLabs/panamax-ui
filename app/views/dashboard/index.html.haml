@@ -15,7 +15,7 @@
       %ul
         - value[:list].each do |item|
           %li
-            = item.name
+            = dashboard_link_for(resource, item)
         - if value[:more_count] > 0
           %li.more
             And #{value[:more_count]} more #{ resource.downcase.pluralize(value[:more_count]) }
