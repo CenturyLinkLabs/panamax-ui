@@ -15,8 +15,11 @@
       %ul
         - value[:list].each do |item|
           %li
-            - if "Application" == resource
+            - case resource
+            - when "Application"
               = link_to item.name, app_path(item.id)
+            - when "Source"
+              = link_to item.name, item.uri, :target => '_blank'
             - else
               = item.name
         - if value[:more_count] > 0
