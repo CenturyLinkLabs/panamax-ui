@@ -28,5 +28,13 @@ describe 'manage dashboard' do
 
       expect(page).to have_css 'li', text: 'Images'
     end
+
+    it 'can link to applications' do
+      visit '/dashboard'
+      click_on 'tutum/wordpress'
+
+      expect(page).to have_content 'Deployed to'
+      expect(page).to have_css 'li', text: 'tutum/wordpress'
+    end
   end
 end
