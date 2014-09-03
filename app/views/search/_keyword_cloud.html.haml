@@ -1,8 +1,12 @@
 - show_selector =  "#sorted_by_#{sort_title.downcase}"
 - display_style ||= 'block'
-%section.example-searches{style: "display: #{display_style};", id: "sorted_by_#{sorted_by}"}
+%section.example-searches.collapsed{style: "display: #{display_style};", id: "sorted_by_#{sorted_by}"}
   %h3
     Or, browse these available templates:
     %a{href: show_selector, data: { accordian: { expand: show_selector, collapse: '.example-searches' }}}= "Sort Searches by #{sort_title}"
-  - keywords.each do |kw|
-    %a.keyword{data: {query: kw.keyword}}= "#{kw.keyword} (#{kw.count})"
+  .keyword-bank
+    - keywords.each do |kw|
+      %a.keyword{data: {query: kw.keyword}}= "#{kw.keyword} (#{kw.count})"
+  %a.toggler{data: { toggle: { target: '.example-searches', class: 'collapsed' }}}
+    %span Show all keywords
+    %span Show fewer keywords

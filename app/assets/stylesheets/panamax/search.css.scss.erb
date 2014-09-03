@@ -99,6 +99,35 @@ body#search_flow main:after {
     }
   }
 
+  .toggler {
+    padding-top: 6px;
+    font-size: 0.8em;
+    clear: both;
+    display: block;
+
+    span:last-child {
+      display: inline;
+    }
+    span:first-child {
+      display: none;
+    }
+  }
+
+  &.collapsed {
+    .toggler {
+      span:last-child {
+        display: none;
+      }
+      span:first-child {
+        display: inline;
+      }
+    }
+    .keyword-bank {
+      height: 75px;
+      overflow: hidden;
+    }
+  }
+
   a.keyword {
     @extend .button-minor;
     min-width: 0;
@@ -138,7 +167,7 @@ body#search_flow main:after {
     padding-left: 10px;
 
     div {
-        margin: 10px 0;
+      margin: 10px 0;
     }
   }
 

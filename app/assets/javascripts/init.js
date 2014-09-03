@@ -88,5 +88,7 @@
     $('.application-services').appServicesStatus();
 
     $('[data-accordian-expand]').accordian();
+
+    $('[data-toggle-target]').toggleTargetClass();
   };
 })(jQuery);
