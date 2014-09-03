@@ -6,7 +6,7 @@
       = template_repo.template_count
     %span.updated
       %label Last Refreshed:
-      = DateTime.parse(template_repo.updated_at).strftime("%m/%d/%Y %H:%M:%S")
+      = DateTime.parse(template_repo.updated_at).strftime("%m/%d/%Y %H:%M:%S UTC")
 
   .actions
     = link_to 'Refresh Source',
