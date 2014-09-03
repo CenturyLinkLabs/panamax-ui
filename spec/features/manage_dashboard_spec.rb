@@ -39,7 +39,7 @@ describe 'manage dashboard' do
 
     it 'can link to sources' do
       visit '/dashboard'
-      page.inspect
+
       expect(page).to have_link 'ctllabs/canonical'
     end
   end
