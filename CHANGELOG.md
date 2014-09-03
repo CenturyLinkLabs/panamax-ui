@@ -1,11 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-Latest
+0.1.3 - 2014-09-03
 ------------------
 
 ### Fixed
-- Template details dialog rendering
+- Fix icon clipping on template search result display (#343)
+- Add a keyword cloud for browsing templates (#340)
+- Template details dialog rendering (#333)
 
 0.1.2 - 2014-08-27
 ------------------
