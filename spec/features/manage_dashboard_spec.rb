@@ -36,5 +36,11 @@ describe 'manage dashboard' do
       expect(page).to have_content 'Deployed to'
       expect(page).to have_css 'li', text: 'tutum/wordpress'
     end
+
+    it 'can link to sources' do
+      visit '/dashboard'
+      page.inspect
+      expect(page).to have_link 'ctllabs/canonical'
+    end
   end
 end
