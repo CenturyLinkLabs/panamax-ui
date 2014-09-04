@@ -1,8 +1,10 @@
 @import 'ctl_base_ui/colors';
 @import 'ctl_base_ui/buttons';
+@import 'ctl_base_ui/mixins';
 
 .button-add {
   @extend .button-primary;
+  @include border-box;
   border: transparent 1px solid;
   background-color: transparent;
   color: $orange;

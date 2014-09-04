@@ -16,4 +16,4 @@
       = add_fields_for(:exposed_ports, f, { child_index: '_replaceme_' }) do |builder|
         = builder.number_field :port_number, disabled: true, placeholder: 'port', title: 'port', min: 0, class: 'exposed-port'
         %a.cancel Cancel
-  %button.button-add Expose a Port
+  %a.button-add Expose a Port
