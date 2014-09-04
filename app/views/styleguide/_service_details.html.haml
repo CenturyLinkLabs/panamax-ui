@@ -17,7 +17,7 @@
           %input{type: 'number', placeholder: 'host'}
           %input{type: 'number', placeholder: 'container'}
 
-      %button.button-add Add a Port
+      %a.button-add Add a Port
 
     .service-links
       %h3 Service Links
@@ -39,7 +39,7 @@
           = ':'
           %input{type: 'text', placeholder: 'enter alias here'}
           %a Cancel
-      %button.button-add Add a Linked Service
+      %a.button-add Add a Linked Service
 
     .volumes
       %h3 Volumes
@@ -55,7 +55,7 @@
           %input{type: 'text', placeholder: 'container path'}
           %a.cancel Cancel
 
-      %button.button-add Add a Volume
+      %a.button-add Add a Volume
 
   .column-right
     .environment-variables
@@ -74,7 +74,7 @@
         %dd.editing
           %input{type: 'text', placeholder: 'Value'}
           %a Cancel
-      %button.button-add Add an Environment Variable
+      %a.button-add Add an Environment Variable
     .docker-run-command
       %h3 Docker run command
       = text_field_tag :command, nil, placeholder: 'enter run command here (optional)'
