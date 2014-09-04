@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+Latest
+------------------
+### Fixed
+- don't show scrollbar on envirnment variable field (#347)
+
 0.2.0 - 2014-09-09
 ------------------
 
