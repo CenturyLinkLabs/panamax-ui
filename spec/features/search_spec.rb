@@ -5,6 +5,11 @@ describe 'searching for templates and images' do
     it 'can navigate to the search page and see examples' do
       visit '/'
 
+      # keyword view
+      expect(page).to have_css '.collapsed'
+      page.find('.toggler').click
+      expect(page).to have_content 'Show fewer keywords'
+
       fill_in 'search_result_set_q', with: 'wordpress'
 
       expect(find_field('search_result_set_q').value).to eq 'wordpress'
