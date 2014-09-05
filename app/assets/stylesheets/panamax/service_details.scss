@@ -458,6 +458,18 @@ form.service-edit-form {
     background-color: $light_grey;
   }
 }
+
+#docker-string {
+  background-color: #F1F1F1;
+  margin: 10px 0;
+  padding: 10px;
+  font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
+
+  .run-segment {
+    white-space: nowrap;
+  }
+}
+
 .journal {
 
   margin-bottom: 30px;

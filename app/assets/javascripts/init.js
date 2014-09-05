@@ -57,6 +57,8 @@
       });
     };
 
+    $('.service-details').dockerRun();
+
     $('.environment-variables .additional-entries').appendable({
       $trigger: $('.environment-variables .button-add'),
       $elementToAppend: $('.environment-variables .additional-entries dl:first-of-type'),

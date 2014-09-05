@@ -33,6 +33,7 @@
 
     base.handleFormChange = function(e) {
       base.options.$submitButton.prop('disabled', false);
+      $('body').trigger('progressiveForm:changed');
     };
 
     base.handleRemove = function(e) {

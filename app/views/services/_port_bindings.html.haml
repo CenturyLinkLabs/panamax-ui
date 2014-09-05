@@ -8,9 +8,11 @@
       %li{title: "host: #{port.object.host_port},
                   container: #{port.object.container_port},
                   protocol: #{port.object.proto}"}
-        %strong= port.object.host_port
-        = ": #{port.object.container_port}"
-        = " / #{port.object.proto}"
+        %strong.host-port= port.object.host_port
+        \:
+        %span.container-port= port.object.container_port
+        \/
+        %span.proto= port.object.proto
         .actions
           = port.check_box :_deleted, { id: checkbox_id }
           = port.hidden_field :container_port
@@ -20,11 +22,11 @@
   %ul.additional-entries
     %li.editing
       = add_fields_for(:ports, f, { child_index: '_replaceme_' }) do |builder|
-        = builder.number_field :host_port, disabled: true, placeholder: 'host', title: 'host', min: 0
+        = builder.number_field :host_port, disabled: true, placeholder: 'host', title: 'host', min: 0, class: 'host-port'
         = ':'
-        = builder.number_field :container_port, disabled: true, placeholder: 'container', title: 'container', min: 0
+        = builder.number_field :container_port, disabled: true, placeholder: 'container', title: 'container', min: 0, class: 'container-port'
         = '/'
-        = builder.select :proto, options_for_select(['TCP', 'UDP']), {}, disabled: true, title: 'Protocol'
+        = builder.select :proto, options_for_select(['TCP', 'UDP']), {}, disabled: true, title: 'Protocol', class: 'proto'
         %a.cancel Cancel
         .optional (optional)
 

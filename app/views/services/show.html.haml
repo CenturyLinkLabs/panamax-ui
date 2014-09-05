@@ -24,7 +24,7 @@
 
   .base-image-detail
     %h6 Base Image:
-    %span
+    %span#image-name
       = @service.base_image_name
     %h6 Tag:
     %span
@@ -59,6 +59,7 @@
         .docker-run-command
           %h3 Docker run command
           = f.text_field :command, placeholder: 'enter run command here (optional)'
+    %p#docker-string
     = f.submit 'Save all changes', class: 'button-positive', data: {disable_with: 'Saving...'}
 
 = render 'shared/journal',

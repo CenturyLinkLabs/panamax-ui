@@ -13,8 +13,8 @@
 = f.fields_for :environment do |env_var|
   - index = env_var.options[:child_index]
   %dl
-    %dt= env_var.label(:value, env_var.object.variable)
-    %dd
+    %dt.variable-name= env_var.label(:value, env_var.object.variable)
+    %dd.variable-value
       - if env_var.object.value.blank?
         = env_var.text_field :value, placeholder: 'enter a value', class: 'empty'
       - else
@@ -30,9 +30,9 @@
   = add_fields_for(:environment, f, { child_index: '_replaceme_' }) do |builder|
     %dl
       %dt.editing
-        = builder.text_field :variable, disabled: true, placeholder: 'Label'
+        = builder.text_field :variable, disabled: true, placeholder: 'Label', class: 'variable-name'
       %dd.editing
-        = builder.text_field :value, disabled: true, placeholder: 'Value'
+        = builder.text_field :value, disabled: true, placeholder: 'Value', class: 'variable-value'
       %a.cancel Cancel
 
 %button.button-add Add an Environment Variable

@@ -1,0 +1,66 @@
+%div.breadcrumbs
+  %ul
+    %li
+      MYSERVICE
+
+.service-details
+
+  #image-name
+    foo/bar
+
+  #service_command
+    \/bin/bash
+
+  .service-links
+    %ul
+      %li
+        .link-name
+          MYSQL
+        .link-alias
+          DB
+  .port-bindings
+    %ul
+      %li
+        .host-port
+          1111
+        .container-port
+          2222
+        .proto
+          TCP
+      %li
+        %input.host-port
+        %input.container-port{ value: '3333' }
+        %select.proto
+          %option{ selected: true, value: 'UDP' }
+            UDP
+  .exposed-ports
+    %ul
+      %li
+        .exposed-port
+          4444
+    %ul
+      %li
+        %input.exposed-port{ value: '5555' }
+  .environment-variables
+    %dl
+      %dt.variable-name
+        PATH
+      %dd.variable-value
+        \/tmp
+    %dl
+      %dt
+        %input.variable-name{ value: 'DEBUG' }
+      %dd
+        %input.variable-value{ value: 'TRUE' }
+  .volumes
+    %ul
+      %li
+        .host-path
+          \/var/dir1
+        .container-path
+          \/var/dir2
+      %li
+        %input.host-path
+        %input.container-path{ value: '/tmp/dir'}
+
+  #docker-string

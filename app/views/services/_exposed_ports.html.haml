@@ -5,7 +5,7 @@
     = f.fields_for :exposed_ports do |port|
       - checkbox_id = "select_exposed_port_#{port.options[:child_index]}"
       %li
-        =port.object.port_number
+        %span.exposed-port= port.object.port_number
         .actions
           = port.check_box :_deleted, { id: checkbox_id }
           = port.hidden_field :port_number
@@ -14,6 +14,6 @@
   %ul.additional-entries
     %li.editing
       = add_fields_for(:exposed_ports, f, { child_index: '_replaceme_' }) do |builder|
-        = builder.number_field :port_number, disabled: true, placeholder: 'port', title: 'port', min:0
+        = builder.number_field :port_number, disabled: true, placeholder: 'port', title: 'port', min: 0, class: 'exposed-port'
         %a.cancel Cancel
   %button.button-add Expose a Port

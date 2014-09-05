@@ -20,6 +20,7 @@
     base.handleCancel = function(e) {
       e.preventDefault();
       base.$el.remove();
+      $('body').trigger('progressiveForm:changed');
     };
   };
 
