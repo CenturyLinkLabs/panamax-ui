@@ -23,7 +23,7 @@ class HostHealth < BaseResource
       sample = stats.pop(2)
       raw = sample[1].attributes[:cpu].attributes[:usage].attributes[:total] -
             sample[0].attributes[:cpu].attributes[:usage].attributes[:total]
-      spec = sample[1].attributes[:cpu].attributes[:usage].attributes[:per_cpu].length
+      spec = sample[1].attributes[:cpu].attributes[:usage].attributes[:per_cpu_usage].length
       usage = (raw / 1000000000.0).round(3)
       percent = ((usage / spec) * 100).round(2)
     end

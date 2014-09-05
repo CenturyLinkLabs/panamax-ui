@@ -9,7 +9,7 @@ describe HostHealth do
           cpu: {
             usage: {
               total: 0,
-              per_cpu: [100]
+              per_cpu_usage: [100]
             }
           },
           memory: {
@@ -20,7 +20,7 @@ describe HostHealth do
           cpu: {
             usage: {
               total: 10000000,
-              per_cpu: [100]
+              per_cpu_usage: [100]
             }
           },
           memory: {
