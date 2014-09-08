@@ -8,7 +8,7 @@
     %p
       = presenter.short_description
       %a{href:"/templates/#{presenter.id}/details", class: "template-details-link" } More Details
-    %p.microcopy= "Last Updated: #{presenter.last_updated_on}"
+    %p.microcopy= "Source Last Refreshed: #{presenter.last_updated_on} UTC"
   .actions
     = form_tag apps_path do
       = hidden_field_tag 'app[template_id]', presenter.id

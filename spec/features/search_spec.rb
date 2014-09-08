@@ -24,6 +24,7 @@ describe 'searching for templates and images' do
       expect(page).to have_content 'a wordpress template'
       expect(page).to have_content 'More Details'
       expect(page).to have_css '.image-count', text: '2 Images'
+      expect(page).to have_css '.microcopy', text: 'UTC'
       expect(page).to have_css 'img[src="/assets/type_icons/wordpress.svg"]'
 
       # source template repo blurb
