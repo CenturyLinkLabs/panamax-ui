@@ -1,6 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+0.2.0 - 2014-09-09
+------------------
+
+### Added
+- Direct links to apps/sources from dashboard (@coen-hyde)
+- Support for cAdvisor 0.2.2
+- Show 'docker run' string on service details page
+- UTC suffix on timestamps
+
 0.1.3 - 2014-09-03
 ------------------
 
