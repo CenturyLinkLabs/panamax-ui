@@ -91,6 +91,6 @@
 
     $('[data-accordian-expand]').accordian();
 
-    $('[data-toggle-target]').toggleTargetClass();
+    $('[data-toggle-target]').toggleTargetClass({ animate: true, animateTarget: '.keyword-bank', speed: 1500 });
   };
 })(jQuery);
