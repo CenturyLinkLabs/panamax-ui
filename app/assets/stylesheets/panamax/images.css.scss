@@ -7,44 +7,60 @@
   }
 }
 
-section.image {
+ul.images li {
   border-bottom: $light_grey 1px solid;
   overflow: auto;
   padding-bottom: 22px;
 
   h3 {
-    margin: 0;
+    margin: 00;
     padding: 22px 0 0 0;
   }
 
-  ul {
-    font-size: 0.9em;
-    margin-top: 10px;
+  h6 {
+    margin: 5px 0 0;
+  }
 
-    li {
-      float: left;
-      width: 240px;
+  dl {
+    font-size: 0.9em;
+    width: 90%;
+    float: left;
+    overflow: auto;
+
+    dt, dd {
+      margin-top: 8px;
+      line-height: 1.2em;
     }
 
-    li.actions {
-      text-align: right;
+    dt {
+      font-weight: bold;
+      width: 10%;
+      float: left;
+    }
+
+    dd {
+      width: 90%;
       float: right;
+    }
+  }
+  .actions {
+    text-align: right;
+    float: right;
 
-      .delete-action {
-        margin-top: -5px;
-        float: right;
-        height: 20px;
+    .delete-action {
+      margin-top: -5px;
+      float: right;
+      height: 20px;
 
-        &:after {
-          top: 0;
-          left: 0;
-          @extend .icon-x-large;
-          @include icon-light-grey;
-        }
+      &:after {
+        top: 0;
+        left: 0;
+        @extend .icon-x-large;
+        @include icon-light-grey;
+      }
 
-        &:hover:after {
-          @include icon-red;
-        }
+      &:hover:after {
+        @include icon-red;
       }
     }
   }
