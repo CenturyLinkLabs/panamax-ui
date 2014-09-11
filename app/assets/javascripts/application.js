@@ -17,10 +17,10 @@
 //= require_tree ./template_helpers
 //= require chosen.jquery
 //= require moment
-//= require pmx_namespace
-//= require pmx_config
-//= require pmx_helpers
+//= require panamax/pmx_namespace
+//= require panamax/pmx_config
+//= require panamax/pmx_helpers
 //= require google_analytics
-//= require pmx_actions.js
+//= require panamax/pmx_actions.js
 //= require_tree .
 //= require init
