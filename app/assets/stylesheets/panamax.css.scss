@@ -617,6 +617,14 @@ footer {
       font-size: 13px;
     }
   }
+
+  a {
+    color: $white;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 
 .context-help {
