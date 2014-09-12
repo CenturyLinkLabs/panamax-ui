@@ -3,7 +3,7 @@
     %div{class: notification_class(key)}
       %a.dismiss
       %strong
-        = flash[key]
+        = flash[key].html_safe
       - if key == 'success' && @app && @app.documentation_to_html.present?
         %p
           Click
