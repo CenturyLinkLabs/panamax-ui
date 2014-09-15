@@ -439,6 +439,7 @@ body#search_flow main:after {
 .blog-feed {
   float: left;
   width: 48%;
+  margin-top: 30px;
 
   h3 {
     padding-bottom: 16px;
@@ -488,102 +489,4 @@ body#search_flow main:after {
       }
     }
   }
-}
-
-.contest-banner {
-  width: 48%;
-  height: 425px;
-  float: right;
-  margin-bottom: 50px;
-
-  .inner {
-    background: asset_url('contest/panamax_contest_bg_big.jpg') bottom right no-repeat;
-    height: 100%;
-    overflow: auto;
-    position: relative;
-
-    .info,
-    .action {
-      padding: 20px;
-      width: 100%;
-      @include border-box;
-    }
-
-    .info {
-      height: 330px;
-      background-color: rgba(4, 19, 30, .75);
-      float: left;
-      padding-right: 40px;
-      .white-logo {
-        background: asset_url('contest/panamax-logo-white.png');
-        display: block;
-        width: 148px;
-        height: 20px;
-      }
-    }
-
-    .action {
-      height: 95px;
-      background-color: rgba(60, 82, 94, .75);
-      float: right;
-
-      a {
-        color: #ffffff;
-        text-decoration: none;
-        float: right;
-      }
-
-      a.button-positive {
-        background-color: #8DC543;
-        margin-left: 10px;
-        font-weight: 100;
-        font-size: 1.2em;
-      }
-
-      a.button-positive:hover {
-        transition: background-color 0.25s ease;
-        background: #fff;
-        color: #8DC543;
-        box-shadow: 0 0 5px rgba(141, 197, 67, .5);
-      }
-
-    }
-
-    h3 {
-      color: #8DC543;
-      font-size: 28px;
-      line-height: 32px;
-      font-weight: 200;
-      border-bottom: 0;
-      padding-bottom: 0;
-      margin: 50px 0 10px 0;
-    }
-  }
-
-  p {
-    color: #fff;
-    font-size: 16px;
-    line-height: 26px;
-    padding-bottom: 20px;
-    font-weight: bold;
-  }
-
-  p, a, h3 {
-    position: relative;
-    z-index: 10;
-  }
-
-  p ~ a {
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: normal;
-    text-decoration: none;
-  }
-
-  p + a {
-    padding-right: 8px;
-    margin-right: 8px;
-    border-right: 1px solid #ffffff;
-  }
-
 }

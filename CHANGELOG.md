@@ -16,6 +16,8 @@ All notable changes to this project will be documented in this file.
 - Don't show scrollbar on environment variable field (#347)
 - Unintentional service form submission (#348)
 
+### Removed
+- Removed all contest-related content from application
 
 0.2.0 - 2014-09-09
 ------------------
