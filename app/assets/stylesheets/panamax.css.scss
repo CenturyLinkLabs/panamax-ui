@@ -2,6 +2,7 @@
 @import 'ctl_base_ui/mixins';
 @import 'ctl_base_ui/icons';
 
+
 body {
   min-width: 960px;
 }
@@ -716,4 +717,53 @@ pre.prettyprint {
     font-style: normal;
   }
 
+}
+
+.styled-check {
+  width: 20px;
+  margin: 0 auto;
+  position: relative;
+
+  input[type=checkbox] {
+    visibility: hidden;
+
+    &:checked + label:after {
+      opacity: 1.0;
+    }
+  }
+
+  label {
+    cursor: pointer;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 0;
+    left: 0;
+    border-radius: 4px;
+    border: 2px solid $grey;
+
+    &:hover::after {
+      opacity: 0.33;
+    }
+
+    &:after {
+      opacity: 0;
+      content: '';
+      position: absolute;
+      width: 9px;
+      height: 5px;
+      background: transparent;
+      top: 4px;
+      left: 4px;
+      border: 3px solid $medium_grey;
+      border-top: none;
+      border-right: none;
+
+      -webkit-transform: rotate(-45deg);
+      -moz-transform: rotate(-45deg);
+      -o-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+    }
+  }
 }

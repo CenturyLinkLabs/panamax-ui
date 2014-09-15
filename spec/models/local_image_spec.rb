@@ -7,6 +7,7 @@ describe LocalImage do
   let(:attributes) do
     {
       'id' => 77,
+      'tags' => ['blah/not-panamax'],
       'source' => 'boom/shaka',
       'description' => 'this thing goes boom shaka laka',
       'star_count' => 127,
@@ -23,9 +24,84 @@ describe LocalImage do
     end
   end
 
+  describe '#panamax_image?' do
+    let(:panamax_ui) do
+      {
+        'tags' => ['centurylink/panamax-ui']
+      }
+    end
+
+    let(:panamax_api) do
+      {
+        'tags' => ['centurylink/panamax-api']
+      }
+    end
+    it 'is true when name is centurylink/panamax-ui' do
+      pmx_ui = described_class.new(panamax_ui)
+      expect(pmx_ui.panamax_image?).to be_true
+    end
+
+    it 'is true when name is centurylink/panamax-api' do
+      pmx_api = described_class.new(panamax_api)
+      expect(pmx_api.panamax_image?).to be_true
+    end
+
+    it 'is false when name is not panamax image' do
+      expect(subject.panamax_image?).to be_false
+    end
+  end
+
   describe '#docker_index_url' do
     it 'is nil' do
       expect(subject.docker_index_url).to be_nil
+    end
+  end
+
+  describe '.batch_destroy' do
+    describe 'when successful' do
+      let(:fake_image) { double(:fake_image, id: 1, destroy: true) }
+
+      before do
+        LocalImage.stub(:find_by_id).and_return(fake_image)
+      end
+
+      it 'calls #destroy on all the image provided' do
+        fake_image.should_receive(:destroy)
+        LocalImage.batch_destroy [1]
+      end
+
+      it 'returns the count of successfully removed images' do
+        result = LocalImage.batch_destroy [1, 2, 3, 4, 5]
+        expect(result[:count]).to eq 5
+      end
+    end
+
+    describe 'with failures' do
+      let(:fake_image) { double(:fake_image, name: 'bad_image', destroy: false) }
+
+      before do
+        LocalImage.stub(:find_by_id).and_return(fake_image)
+      end
+
+      it 'returns the set of failed images' do
+        result = LocalImage.batch_destroy [1]
+        expect(result[:count]). to eq 0
+        expect(result[:failed].to_a).to match_array ['bad_image failed to be removed']
+      end
+    end
+
+    describe 'with errors' do
+      let(:fake_image) { double(:fake_image, id: 1, destroy: true) }
+
+      before do
+        LocalImage.stub(:find_by_id).and_return(fake_image)
+        fake_image.stub(:destroy).and_raise(StandardError, 'oops')
+      end
+
+      it 'returns the set of failed error messages' do
+        result = LocalImage.batch_destroy [1]
+        expect(result[:failed].to_a).to match_array ['oops']
+      end
     end
   end
 

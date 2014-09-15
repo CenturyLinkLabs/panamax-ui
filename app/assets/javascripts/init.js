@@ -45,6 +45,8 @@
 
     $('#template_flow button.preview').previewTemplate();
 
+    $('#images_flow section.image').imageActions();
+
     $('header.application h1 li:last-of-type').editApplicationName();
 
     var enableNewItem = function(addedItem) {

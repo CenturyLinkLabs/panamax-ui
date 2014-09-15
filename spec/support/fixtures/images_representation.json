@@ -4,14 +4,16 @@
     "virtual_size": "123123",
     "tags": [
       "socialize_api:latest"
-    ]
+    ],
+    "virtual_size": 100
   },
   {
     "id": "156edca13ead93fe108e3432294a10d49771822aa802baf8435661ca8f1c0c26",
     "virtual_size": "123123",
     "tags": [
       "centurylinklabs/socialize-api:latest"
-    ]
+    ],
+    "virtual_size": 100
   }
 ]
 

@@ -13,7 +13,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :images, only: [:index, :destroy]
+  resources :images, only: [:index, :destroy] do
+    collection do
+      delete 'destroy_multiple'
+    end
+  end
 
   resources :template_repos, only: [:index, :create, :destroy] do
     member do
