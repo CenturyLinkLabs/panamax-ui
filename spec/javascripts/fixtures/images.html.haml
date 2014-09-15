@@ -1,0 +1,15 @@
+#images_flow
+  %section.image
+    = button_tag 'Remove Selected', type: 'submit', class: 'button-negative submit-button disabled'
+    .select-all
+      .label
+        Select All
+      .styled-check
+        = check_box_tag 'all', 1
+        %label{ :for => 'all' }
+    %ul.images
+      %li
+        .actions
+          .styled-check
+            = check_box_tag "delete[1]", 1
+            %label{ :for => "delete_1" }

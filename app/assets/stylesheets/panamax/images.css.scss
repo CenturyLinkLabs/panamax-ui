@@ -7,7 +7,65 @@
   }
 }
 
-section.image {
+#images_flow {
+  .select-all {
+    margin-top: 30px;
+    float: right;
+    height: 36px;
+    width: 110px;
+
+    .label {
+      float: left;
+      color: $grey;
+      padding: 5px 5px;
+    }
+
+    .styled-check {
+      float: left;
+    }
+  }
+
+  .submit-button {
+    margin-top: 20px;
+    width: 165px;
+    position: relative;
+    padding-left: 25px;
+    text-align: left;
+    text-decoration: none;
+    float: right;
+
+    &::after {
+      @include icon-white;
+      @extend .icon-x;
+      content: '';
+      position: absolute;
+      left: 9px;
+      top: 14px;
+      display: block;
+      height: 10px;
+      width: 10px;
+    }
+    &:disabled {
+      background-color: $grey;
+
+      &:hover {
+        @include box-shadow(0, 0, 0, 0);
+        border: none;
+        cursor: default;
+      }
+
+      &:after {
+        @include icon-light-grey;
+      }
+    }
+  }
+}
+
+ul.images {
+  clear: both;
+}
+
+ul.images li {
   border-bottom: $light_grey 1px solid;
   overflow: auto;
   padding-bottom: 22px;
@@ -17,35 +75,36 @@ section.image {
     padding: 22px 0 0 0;
   }
 
-  ul {
+  h6 {
+    margin: 5px 0 0;
+  }
+
+  dl {
     font-size: 0.9em;
-    margin-top: 10px;
+    width: 90%;
+    float: left;
+    overflow: auto;
 
-    li {
+    dt, dd {
+      margin-top: 8px;
+      line-height: 1.2em;
+    }
+
+    dt {
+      font-weight: bold;
+      width: 10%;
       float: left;
-      width: 240px;
     }
 
-    li.actions {
-      text-align: right;
+    dd {
+      width: 90%;
       float: right;
-
-      .delete-action {
-        margin-top: -5px;
-        float: right;
-        height: 20px;
-
-        &:after {
-          top: 0;
-          left: 0;
-          @extend .icon-x-large;
-          @include icon-light-grey;
-        }
-
-        &:hover:after {
-          @include icon-red;
-        }
-      }
     }
+  }
+  .actions {
+    text-align: right;
+    float: right;
+    box-sizing: border-box;
+    width: 40px;
   }
 }

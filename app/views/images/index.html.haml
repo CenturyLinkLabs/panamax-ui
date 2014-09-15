@@ -4,14 +4,34 @@
                                                 link_to("Dashboard", dashboard_index_path),
                                                 "Images" ]
 
-- @images.each do |image|
-  %section.image
-    %h3= image.tags.first
-    %h6= image.tags[1..-1].try(:join, ', ')
-    %ul
-      %li
-        %strong Image ID:
-        = image.id
-      %li.actions
-        = link_to 'Delete', image_path(image.id), method: :delete, class: 'delete-action'
-
+- unless @images.blank?
+  = form_tag destroy_multiple_images_path, method: :delete do
+    %section.image
+      = button_tag 'Remove Selected', type: 'submit', class: 'button-negative submit-button', disabled: true
+      .select-all
+        .label
+          Select All
+        .styled-check
+          = check_box_tag 'all', 1
+          %label{ :for => 'all' }
+      %ul.images
+        - @images.each do |image|
+          %li
+            %h3= image.tags.first
+            %h6= image.tags[1..-1].try(:join, ', ')
+            %dl
+              %dt
+                Image ID:
+              %dd
+                =image.id
+              %dt
+                Image Size:
+              %dd
+                =number_to_human_size(image.virtual_size)
+            .actions
+              - unless image.panamax_image?
+                .styled-check
+                  = check_box_tag "delete[#{image.id}]", 1
+                  %label{ :for => "delete_#{image.id}" }
+      %section
+        = button_tag 'Remove Selected', type: 'submit', class: 'button-negative submit-button', disabled: true

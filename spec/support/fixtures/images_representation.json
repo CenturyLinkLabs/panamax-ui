@@ -3,13 +3,15 @@
     "id": "65af5f136e080ca65af2c35d2b5d11730913484f0ada631caafef44d3cfc62c6",
     "tags": [
       "socialize_api:latest"
-    ]
+    ],
+    "virtual_size": 100
   },
   {
     "id": "156edca13ead93fe108e3432294a10d49771822aa802baf8435661ca8f1c0c26",
     "tags": [
       "centurylinklabs/socialize-api:latest"
-    ]
+    ],
+    "virtual_size": 100
   }
 ]
 
