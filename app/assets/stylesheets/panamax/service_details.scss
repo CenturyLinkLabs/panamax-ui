@@ -140,26 +140,32 @@
   * {
     display: inline-block;
   }
-  h6 {
-    color: $dark_grey;
-    font-weight: bold;
-  }
-  span {
-    margin-right: 6px;
-  }
-  a {
-    padding-left: 10px;
-    border-left: 1px solid $dark_grey;
+
+  .image-details {
+    h6 {
+      color: $dark_grey;
+      font-weight: bold;
+      padding-bottom: 0;
+    }
+
+    span {
+      margin-right: 6px;
+    }
+
+    .docker-link {
+      padding-left: 10px;
+      border-left: 1px solid $dark_grey;
+    }
   }
 
-  a.documentation {
-    border: 0;
+  .documentation {
     padding: 0;
-    position: absolute;
-    bottom: 0;
     display: block;
-    text-decoration: underline;
-    font-size: 0.9em;
+
+    a {
+      text-decoration: underline;
+      font-size: 0.9em;
+    }
   }
 }
 

@@ -23,14 +23,16 @@
           %span.load-state= @service.load_state
 
   .base-image-detail
-    %h6 Base Image:
-    %span#image-name
-      = @service.base_image_name
-    %h6 Tag:
-    %span
-      = @service.image_tag_name
-    = link_to 'View on Docker Hub', @service.docker_index_url, { target: 'blank' }
-    =link_to('Documentation', '#', { class: 'documentation instructions-dialog', data: {'doc-url'=> documentation_app_path(@app.id)} })  if @app.documentation_to_html.present?
+    .image-details
+      %h6 Base Image:
+      %span#image-name
+        = @service.base_image_name
+      %h6 Tag:
+      %span
+        = @service.image_tag_name
+      = link_to 'View on Docker Hub', @service.docker_index_url, { class: 'docker-link', target: 'blank', data: { 'tracking-method' => 'click', 'tracking-action' => 'View on Docker Hub', 'tracking-category' => 'Outbound Link', 'tracking-label' => @service.docker_index_url }}
+    .documentation
+      = link_to('Documentation', '#', { class: 'instructions-dialog', data: {'doc-url'=> documentation_app_path(@app.id)} })  if @app.documentation_to_html.present?
 
   = form_for [@app, @service], html: { class: 'service-edit-form' } do |f|
     = render 'shared/errors', errors: f.object.errors
