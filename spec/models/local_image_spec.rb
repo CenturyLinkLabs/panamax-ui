@@ -27,15 +27,16 @@ describe LocalImage do
   describe '#panamax_image?' do
     let(:panamax_ui) do
       {
-        'tags' => ['centurylink/panamax-ui']
+        'tags' => ['centurylink/panamax-ui:latest']
       }
     end
 
     let(:panamax_api) do
       {
-        'tags' => ['centurylink/panamax-api']
+        'tags' => ['centurylink/panamax-api:latest']
       }
     end
+
     it 'is true when name is centurylink/panamax-ui' do
       pmx_ui = described_class.new(panamax_ui)
       expect(pmx_ui.panamax_image?).to be_true

@@ -1,5 +1,5 @@
 class LocalImage < BaseImage
-  PANAMAX_IMAGE_NAMES = ['centurylink/panamax-ui', 'centurylink/panamax-api']
+  PANAMAX_IMAGE_NAMES = ['centurylink/panamax-ui:latest', 'centurylink/panamax-api:latest']
 
   def panamax_image?
     PANAMAX_IMAGE_NAMES.include?(name)
