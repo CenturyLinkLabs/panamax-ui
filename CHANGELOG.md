@@ -1,14 +1,21 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-Latest
+0.2.1 - 2014-09-18
 ------------------
-### Fixed
-- Don't show scrollbar on environment variable field (#347)
 
 ### Added
-- Edit Service Name
-- Remove Multiple Images
+- Edit service name (#356)
+- New styling for notification links (#357)
+- Image management
+  - Image size displayed (#358)
+  - Batch delete (#360)
+- Analytics instrumentation for 'View on Docker Index' link (#361)
+
+### Fixed
+- Don't show scrollbar on environment variable field (#347)
+- Unintentional service form submission (#348)
+
 
 0.2.0 - 2014-09-09
 ------------------
@@ -19,6 +26,7 @@ Latest
 - Show 'docker run' string on service details page
 - UTC suffix on timestamps
 
+
 0.1.3 - 2014-09-03
 ------------------
 
@@ -26,6 +34,7 @@ Latest
 - Fix icon clipping on template search result display (#343)
 - Add a keyword cloud for browsing templates (#340)
 - Template details dialog rendering (#333)
+
 
 0.1.2 - 2014-08-27
 ------------------
