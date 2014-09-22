@@ -4,6 +4,12 @@ class TemplatesController < ApplicationController
   def new
     if app = App.find_by_id(params[:app_id])
       @user = User.find
+      if !@user.has_valid_github_creds?
+        flash.now[:alert] = "Your token may be malformed, expired or is not scoped correctly.
+Please <a href='https://github.com/settings/tokens/new?scope=repo,user:email' target='_blank'>
+generate a Github access token</a> with the correct privileges. Be sure to select at least 'repo'
+and 'user:email'."
+      end
       @template_form = TemplateForm.new(
         types: Type.all,
         user: @user,

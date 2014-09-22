@@ -3,7 +3,7 @@
 = render 'shared/errors', errors: @template_form.errors
 
 %h1 Save as Template
-- if @user.github_access_token_present?
+- if @user.has_valid_github_creds?
   = render 'form', template_form: @template_form
 
 - else

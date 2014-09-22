@@ -16,6 +16,8 @@ describe TemplatesController do
     TemplateForm.stub(:new).and_return(fake_template_form)
     App.stub(:find).and_return(fake_app)
     Type.stub(:all).and_return(fake_types)
+    fake_user.stub(:github_access_token_present?)
+    fake_user.stub(:has_valid_github_creds?)
   end
 
   describe 'GET #new' do
@@ -42,18 +44,36 @@ describe TemplatesController do
       get :new
       expect(assigns(:template_form)).to eq fake_template_form
     end
-  end
 
-  context 'when an app cannot be found' do
-    before do
-      App.stub(:find).and_raise(ActiveResource::ResourceNotFound.new(double('err', code: '404')))
+    context 'when an app cannot be found' do
+      before do
+        App.stub(:find).and_raise(ActiveResource::ResourceNotFound.new(double('err', code: '404')))
+      end
+
+      it 'redirects to the apps page with a flash message' do
+        get :new
+        expect(flash[:alert]).to eq 'could not find application'
+        expect(response).to redirect_to(apps_path)
+      end
     end
 
-    it 'redirects to the apps page with a flash message' do
-      get :new
-      expect(flash[:alert]).to eq 'could not find application'
-      expect(response).to redirect_to(apps_path)
+    context 'when user github creds are not valid' do
+      expected_flash_msg = "Your token may be malformed, expired or is not scoped correctly.
+Please <a href='https://github.com/settings/tokens/new?scope=repo,user:email' target='_blank'>
+generate a Github access token</a> with the correct privileges. Be sure to select at least 'repo'
+and 'user:email'."
+      before do
+        fake_user.stub(:has_valid_github_creds?).and_return(false)
+      end
+
+      it 'renders the new view with a flash error message' do
+        get :new
+        expect(flash[:alert]).to eq expected_flash_msg
+        expect(response).to render_template :new
+      end
+
     end
+
   end
 
   describe 'POST #create' do
@@ -128,12 +148,12 @@ describe TemplatesController do
       end
 
     end
-  end
 
-  context 'for template_repo' do
-    it 'invokes create unless repo already exists' do
-      expect(TemplateRepo).to_not receive(:create).with(name: 'user/publicrepo')
-      post :create, name: 'user/publicrepo'
+    context 'for template_repo' do
+      it 'invokes create unless repo already exists' do
+        expect(TemplateRepo).to_not receive(:create).with(name: 'user/publicrepo')
+        post :create, name: 'user/publicrepo'
+      end
     end
   end
 

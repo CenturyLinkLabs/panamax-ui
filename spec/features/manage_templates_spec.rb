@@ -61,6 +61,61 @@ describe 'managing a template' do
           expect(page).to have_content 'Save as Template'
         end
       end
+
+      context 'when user does not have an email' do
+
+        before do
+          user = User.new(github_access_token_present: true, email: '', github_username: 'bar')
+          User.stub(:find).and_return(user)
+          user.stub(:update_attributes).and_return(true)
+        end
+
+        it 'allows the user to request and enter a token' do
+
+          visit '/templates/new?app_id=1'
+
+          expect(page).to have_link(
+                              'Generate a Github access token',
+                              href: 'https://github.com/settings/tokens/new?scope=repo,user:email'
+                          )
+
+          expect(page).to have_unchecked_field 'user_subscribe'
+          expect(page).to have_content 'Sign up for our newsletter - Get all the latest news'
+
+          fill_in 'Github Token', with: 'abc123'
+          click_on 'Save Token'
+
+          expect(page).to have_content 'Save as Template'
+        end
+      end
+
+      context 'when user does not have a github username' do
+
+        before do
+          user = User.new(github_access_token_present: true, email: 'foo', github_username: '')
+          User.stub(:find).and_return(user)
+          user.stub(:update_attributes).and_return(true)
+        end
+
+        it 'allows the user to request and enter a token' do
+
+          visit '/templates/new?app_id=1'
+
+          expect(page).to have_link(
+                              'Generate a Github access token',
+                              href: 'https://github.com/settings/tokens/new?scope=repo,user:email'
+                          )
+
+          expect(page).to have_unchecked_field 'user_subscribe'
+          expect(page).to have_content 'Sign up for our newsletter - Get all the latest news'
+
+          fill_in 'Github Token', with: 'abc123'
+          click_on 'Save Token'
+
+          expect(page).to have_content 'Save as Template'
+        end
+      end
+
     end
   end
 end
