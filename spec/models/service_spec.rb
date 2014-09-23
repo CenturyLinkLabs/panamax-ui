@@ -259,7 +259,7 @@ describe Service do
       {
         '0' => { 'host_port' => 9090, 'container_port' => 90, 'proto' => 'TCP', '_deleted' => false },
         '1' => { 'host_port' => 8080, 'container_port' => 70, 'proto' => 'TCP', '_deleted' => 1 },
-        '2' => { 'host_port' => 6060, 'container_port' => 60, 'proto' => 'TCP', 'id' => nil, '_deleted' => false }
+        '2' => { 'host_port' => nil, 'container_port' => 60, 'proto' => 'TCP', 'id' => nil, '_deleted' => false }
       }
     end
 
@@ -276,6 +276,11 @@ describe Service do
     it 'excludes the id' do
       subject.ports_attributes = attributes
       expect(subject.ports.last.attributes.keys).to_not include 'id'
+    end
+
+    it 'excludes the host_port if the value is empty' do
+      subject.ports_attributes = attributes
+      expect(subject.ports.last.attributes.keys).to_not include 'host_port'
     end
   end
 

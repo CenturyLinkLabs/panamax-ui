@@ -64,7 +64,11 @@ class Service < BaseResource
 
   def ports_attributes=(attributes)
     self.ports = attributes.each_with_object([]) do |(_, port), memo|
-      memo << Port.new(port.except('id')) unless port['_deleted'].to_s == '1'
+      unless port['_deleted'].to_s == '1'
+        excludes = ['id']
+        excludes << 'host_port' if port['host_port'].blank?
+        memo << Port.new(port.except(*excludes))
+      end
     end
   end
 
