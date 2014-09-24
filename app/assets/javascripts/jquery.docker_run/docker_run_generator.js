@@ -96,6 +96,22 @@
       return flags;
     };
 
+    var volumesFrom = function() {
+      var command = [],
+          args = [];
+
+      if (options.volumesFrom.length > 0) {
+        for (var i = 0; i < options.volumesFrom.length; i++) {
+          var volume = options.volumesFrom[i];
+          args.push(volume);
+        }
+        command.push('--volumes-from "');
+        command.push(args.join(' '));
+        command.push('"');
+      }
+      return command.join('');
+    };
+
     var imageName = function() {
       return options.imageName;
     };
@@ -113,6 +129,7 @@
         exposeFlags(),
         environmentFlags(),
         volumeFlags(),
+        volumesFrom(),
         imageName(),
         command()
       ];
