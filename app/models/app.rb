@@ -30,6 +30,12 @@ class App < BaseResource
     'Service'.pluralize(services.length)
   end
 
+  def find_service_by_name(name)
+    services.select do |service|
+      service.name == name
+    end.first
+  end
+
   concerning :ServiceCategories do
     def categorized_services
       groups = categories.each_with_object({}) do |category, hash|
