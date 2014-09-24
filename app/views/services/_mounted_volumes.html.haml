@@ -1,0 +1,4 @@
+- if service.present?
+  %dl
+    - service.select_data_volumes.each do |volume|
+      %dd= volume.container_path
