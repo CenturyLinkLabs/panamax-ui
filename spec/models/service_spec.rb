@@ -17,6 +17,14 @@ describe Service do
       'links' => [
         { 'service_name' => 'DB' },
         { 'service_name' => 'Wordpress' }
+      ],
+      'volumes_from' => [
+        { 'container_path' => 'path1' },
+        { 'container_path' => 'path2' }
+      ],
+      'volumes' => [
+        { 'container_path' => 'foo', 'host_path' => 'host' },
+        { 'container_path' => 'bar', 'host_path' => '' }
       ]
     }
   end
@@ -170,6 +178,11 @@ describe Service do
       result = described_class.build_from_response(fake_json_response)
       expect(result.links.map(&:service_name)).to match_array(%w(DB Wordpress))
     end
+
+    it 'instantiates a volumes_from for each link' do
+      result = described_class.build_from_response(fake_json_response)
+      expect(result.volumes_from.map(&:container_path)).to match_array(%w(path1 path2))
+    end
   end
 
   describe '#category_names' do
@@ -251,6 +264,25 @@ describe Service do
     it 'excludes the id' do
       subject.volumes_attributes = attributes
       expect(subject.volumes.last.attributes.keys).to eq ['host_path', 'container_path', '_deleted']
+    end
+  end
+
+  describe '#volumes_from_attributes=' do
+    let(:attributes) do
+      {
+        '0' => { 'container_path' => 'path1', '_deleted' => false },
+        '1' => { 'container_path' => 'path2', '_deleted' => 1 }
+      }
+    end
+
+    it 'assigns to volumes_from when container_path is non nil' do
+      subject.volumes_from_attributes = attributes
+      expect(subject.volumes_from).to include VolumesFrom.new(attributes['0'])
+    end
+
+    it 'does not assign to volumes_from when _deleted is 1' do
+      subject.volumes_from_attributes = attributes
+      expect(subject.volumes_from.map(&:container_path)).to_not include 'path2'
     end
   end
 
@@ -360,6 +392,13 @@ describe Service do
     it 'returns the category with the lowest id' do
       result = described_class.build_from_response(fake_json_response)
       expect(result.category_priority).to eq 10
+    end
+  end
+
+  describe '#select_data_volumes' do
+    it 'returns volumes with only container path defined' do
+      result = described_class.build_from_response(fake_json_response)
+      expect(result.select_data_volumes).to match_array [Volume.new({ 'container_path' => 'bar', 'host_path' => '' })]
     end
   end
 

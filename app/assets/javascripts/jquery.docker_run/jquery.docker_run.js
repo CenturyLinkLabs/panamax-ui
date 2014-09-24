@@ -21,9 +21,11 @@
       environmentVarsSelector: '.environment-variables dl:visible',
       envVarNameSelector: '.variable-name',
       envVarValueSelector: '.variable-value',
-      volumesSelector: '.volumes > ul > li:visible',
+      volumesSelector: '.volumes > .data-containers > ul > li:visible',
       volumeHostPathSelector: '.host-path',
       volumeContainerPathSelector: '.container-path',
+      volumesFromSelector: '.volumes > .mounted-containers > ul > li:visible',
+      volumesFromMountSelector: '.mount-point',
       segmentWrapper: '<span class="run-segment">'
     };
 
@@ -50,6 +52,7 @@
         exposedPorts: base.exposedPorts(),
         environment: base.environment(),
         volumes: base.volumes(),
+        volumesFrom: base.volumesFrom(),
         imageName: base.imageName(),
         command: base.command()
       };
@@ -136,14 +139,27 @@
       base.$el.find(base.options.volumesSelector).each(function(_, element) {
         var $hostPath = $(element).find(base.options.volumeHostPathSelector);
         var $containerPath = $(element).find(base.options.volumeContainerPathSelector);
-
-        volumes.push({
-          hostPath: base.extractText($hostPath),
-          containerPath: base.extractText($containerPath)
-        });
+        if ($containerPath.length == 1) {
+          volumes.push({
+            hostPath: base.extractText($hostPath),
+            containerPath: base.extractText($containerPath)
+          });
+        }
       });
 
       return volumes;
+    };
+
+    base.volumesFrom = function() {
+      var volumes_from = [];
+
+      base.$el.find(base.options.volumesFromSelector).each(function(_, element) {
+        var $mount = $(element).find(base.options.volumesFromMountSelector);
+        if ($mount.length == 1) {
+          volumes_from.push(base.extractText($mount));
+        }
+      });
+      return volumes_from;
     };
 
     base.imageName = function() {
