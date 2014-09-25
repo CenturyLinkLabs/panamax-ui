@@ -13,5 +13,8 @@
   "from": "panamax/panamax-docker-wordpress:latest",
   "expose": [
     80
+  ],
+  "default_exposed_ports": [
+    "3000/tcp"
   ]
 }

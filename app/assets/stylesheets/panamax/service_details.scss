@@ -290,7 +290,6 @@
       width: 23%;
       padding-right: 0px;
     }
-
   }
 
   .exposed-ports {
@@ -300,6 +299,15 @@
     input[type='number'] {
       @include border-box;
       width: 68px;
+    }
+
+    .info {
+      width: 60px;
+      float: right;
+      font-size: 10px;
+      color: #ccc;
+      font-style: italic;
+      margin-top: -6px;
     }
   }
 

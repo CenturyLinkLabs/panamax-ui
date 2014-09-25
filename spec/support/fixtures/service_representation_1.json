@@ -48,5 +48,8 @@
     "name": "Web Tier",
     "position": 1
   }
+  ],
+  "default_exposed_ports": [
+    "3000/tcp"
   ]
 }

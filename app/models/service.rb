@@ -120,6 +120,13 @@ class Service < BaseResource
     end
   end
 
+  def default_ports
+    self.default_exposed_ports.each_with_object([]) do |port, memo|
+      port_number, protocol = port.split('/')
+      memo << OpenStruct.new({port_number: port_number, proto: protocol})
+    end
+  end
+
   def self.build_from_response(response)
     attributes = JSON.parse(response)
     self.new(attributes)

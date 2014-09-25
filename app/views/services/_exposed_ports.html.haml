@@ -2,6 +2,12 @@
   %h4 Exposed Ports
 
   %ul
+    - @service.default_ports.each do |p|
+      %li
+        #{p.port_number}/#{p.proto}
+        .info
+          exposed by base image
+
     = f.fields_for :exposed_ports do |port|
       - checkbox_id = "select_exposed_port_#{port.options[:child_index]}"
       %li

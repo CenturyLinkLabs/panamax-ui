@@ -331,6 +331,22 @@ describe Service do
     end
   end
 
+  describe '#default_ports' do
+    it 'assigns the ports to an array' do
+      subject.default_exposed_ports = ['3000/tcp', '8888/tcp']
+      expect(subject.default_ports).to be_an(Array)
+      expect(subject.default_ports.length).to eq(2)
+    end
+
+    it 'includes both port_number and protocol' do
+      subject.default_exposed_ports = ['3000/tcp', '8888/tcp']
+      expect(subject.default_ports.first['port_number']).to eq '3000'
+      expect(subject.default_ports.first['proto']).to eq 'tcp'
+
+    end
+
+  end
+
   describe '#base_image_name' do
     it 'returns the base image name without any tag information' do
       subject.from = 'supercool/repository:foobar'
