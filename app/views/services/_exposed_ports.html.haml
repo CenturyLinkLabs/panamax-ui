@@ -23,7 +23,9 @@
         %tr
           - checkbox_id = "select_exposed_port_#{port.options[:child_index]}"
           %td
-            #{port.object.port_number} / TCP
+            %span.exposed-port
+              #{port.object.port_number}
+            \/ TCP
           %td
             .actions
               = port.check_box :_deleted, { id: checkbox_id }

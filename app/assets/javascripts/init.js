@@ -103,6 +103,8 @@
 
     $('.application-services').appServicesStatus();
 
+    $('.dynamic-host').dynamicHostPort();
+
     $('[data-accordian-expand]').accordian();
 
     $('[data-toggle-target]').toggleTargetClass();

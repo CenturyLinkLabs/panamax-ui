@@ -308,11 +308,19 @@
     }
     tr {
       border-bottom: 1px solid #f1f1f1;
+      &.allocating {
+        color: #a1a1a1;
+        td {
+          font-weight: normal;
+          a {
+            color: #a1a1a1;
+            text-decoration: none;
+            cursor: not-allowed;
+          }
+        }
+      }
       td {
         font-weight: bold;
-        .view-action {
-          margin-left: 6px;
-        }
 
         .info {
           font-size: 10px;
@@ -322,10 +330,9 @@
           margin-top: -6px;
         }
 
-        .actions {
-
+        a {
+          font-weight: normal;
         }
-
       }
     }
   }
@@ -382,6 +389,7 @@
     color: $medium_grey;
     font-style: italic;
     margin-top: 3px;
+    font-size: 11px;
   }
 }
 

@@ -7,7 +7,7 @@
     base.timer = null;
 
     base.defaultOptions = {
-      refreshInterval: 2500,
+      refreshInterval: 2000,
       $panamaxState: base.$el.find('.panamax-state'),
       $serviceSubState: base.$el.find('.sub-state'),
       $serviceActiveState: base.$el.find('.active-state'),
@@ -24,6 +24,7 @@
     base.bindEvents = function() {
       base.$el.on('mouseenter', base.options.$panamaxState, base.showServiceDetails);
       base.$el.on('mouseleave', base.options.$panamaxState, base.hideServiceDetails);
+      base.$el.on('update-service-status', base.updateStatus);
     };
 
     base.fetchStatus = function() {
@@ -36,13 +37,13 @@
       });
 
       base.xhr.done(function(response, status) {
-        base.updateStatus(response);
+        base.$el.trigger('update-service-status', [response]);
         clearTimeout(base.timer);
         base.timer = setTimeout(base.fetchStatus, base.options.refreshInterval);
       });
     };
 
-    base.updateStatus = function(service) {
+    base.updateStatus = function(_, service) {
       base.$el.removeClass().addClass('service-status').addClass(service.status);
       base.options.$panamaxState.text(base.formatPanamaxState(service.status));
       base.options.$serviceSubState.text(base.formatPanamaxState(service.sub_state));

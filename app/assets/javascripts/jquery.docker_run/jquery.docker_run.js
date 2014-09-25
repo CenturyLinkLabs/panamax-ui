@@ -13,7 +13,7 @@
       serviceLinksSelector: '.service-links > ul > li:visible',
       linkNameSelector: '.link-name',
       linkAliasSelector: '.link-alias',
-      portBindingsSelector: '.port-bindings > ul > li:visible',
+      portBindingsSelector: '.port-bindings > ul > li:visible, table.port-bindings tr td',
       hostPortSelector: '.host-port',
       containerPortSelector: '.container-port',
       protoSelector: '.proto',

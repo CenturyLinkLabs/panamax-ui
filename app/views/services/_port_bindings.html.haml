@@ -16,18 +16,22 @@
     %tbody
       = f.fields_for :ports do |port|
         - checkbox_id = "select_port_binding_#{port.options[:child_index]}"
-        %tr
+        %tr{class: port.object.host_port.blank? ?  'dynamic-host' : '', data: { source: app_service_path(@app.id, @service.id, format: :json) } }
           %td{title: "host: #{port.object.host_port},
                       container: #{port.object.container_port},
                       protocol: #{port.object.proto}"}
-            %span.container_port= port.object.host_port
+            %span.host-port= port.object.host_port
             \:
             %span.container-port= port.object.container_port
             \/
             %span.proto= port.object.proto
-          %td
-            = "https://#{request.env['SERVER_NAME']}:#{port.object.host_port}"
-            = link_to 'View', "https://#{request.env['SERVER_NAME']}:#{port.object.host_port}", target: 'blank', class: 'view-action'
+          %td.mapped-endpoint-link
+            %span.path
+            = link_to "#{request.env['SERVER_NAME']}:#{port.object.host_port}",
+                      "#{request.env['SERVER_NAME']}:#{port.object.host_port}",
+                      target: 'blank',
+                      class: 'view-action',
+                      data: {host: request.env['SERVER_NAME']}
           %td
             .actions
               = port.check_box :_deleted, { id: checkbox_id }
@@ -45,6 +49,6 @@
         = '/'
         = builder.select :proto, options_for_select(['TCP', 'UDP']), {}, disabled: true, title: 'Protocol', class: 'proto'
         %a.cancel Cancel
-        .optional (optional)
+        .optional leave host blank for auto assignment
 
   %a.button-add Bind a Port
