@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+LATEST
+------------------
+### Added
+- Edit name and value of environment variables
+
+
 0.2.1 - 2014-09-18
 ------------------
 

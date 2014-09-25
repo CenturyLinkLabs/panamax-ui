@@ -1,0 +1,11 @@
+.service-details
+  %dl.entries
+    %dt.variable-name
+      %label{ data: { index: '0' } }
+        Variable
+      .actions
+        %a{ class: 'edit-action' }
+    %dd.actions
+      %input{ type: 'hidden', value: 'test', data: { index: 'name_0' } }
+  %form
+    %input{ type: 'submit', disabled: true }

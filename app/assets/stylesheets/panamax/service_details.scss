@@ -339,6 +339,27 @@
       input[type="text"] {
         width: 100%;
       }
+
+
+      &:hover .actions {
+        display: inline-block;
+
+        > .edit-action {
+          visibility: visible;
+
+          &:after {
+            left: 2px;
+            top: 0;
+          }
+        }
+      }
+
+      .actions {
+        float: none;
+        display: none;
+        width: 10px;
+        height: 10px;
+      }
     }
 
     dt {
