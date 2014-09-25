@@ -1,6 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+Latest
+------------------
+
+### Added
+- Port management
+ - Show ports exposed by the base image in list (#368)
+ - Table-based layout for ports information (#369)
+ 
+
 0.2.2 - 2014-09-26
 ------------------
 

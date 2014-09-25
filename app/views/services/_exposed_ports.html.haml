@@ -1,22 +1,34 @@
 .exposed-ports
   %h4 Exposed Ports
 
-  %ul
-    - @service.default_ports.each do |p|
-      %li
-        #{p.port_number}/#{p.proto}
-        .info
-          exposed by base image
+  %table.exposed-ports
+    %colgroup
+      %col.ports
+      %col
+    %thead
+      %tr
+        %th
+          port
+        %th
+    %tbody
+      - @service.default_ports.each do |p|
+        %tr.image-defined
+          %td
+            #{p.port_number} / #{p.proto.upcase}
+          %td
+            .info
+              exposed by base image
 
-    = f.fields_for :exposed_ports do |port|
-      - checkbox_id = "select_exposed_port_#{port.options[:child_index]}"
-      %li
-        %span.exposed-port= port.object.port_number
-        .actions
-          = port.check_box :_deleted, { id: checkbox_id }
-          = port.hidden_field :port_number
-          %a{class: 'delete-action', title: 'remove', data: { checkbox: { selector: "##{checkbox_id}" } } } remove
-
+      = f.fields_for :exposed_ports do |port|
+        %tr
+          - checkbox_id = "select_exposed_port_#{port.options[:child_index]}"
+          %td
+            #{port.object.port_number} / TCP
+          %td
+            .actions
+              = port.check_box :_deleted, { id: checkbox_id }
+              = port.hidden_field :port_number
+              %a{class: 'delete-action', title: 'remove', data: { checkbox: { selector: "##{checkbox_id}" } } } remove
   %ul.additional-entries
     %li.editing
       = add_fields_for(:exposed_ports, f, { child_index: '_replaceme_' }) do |builder|

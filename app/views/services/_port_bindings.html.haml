@@ -1,24 +1,41 @@
 .port-bindings
-  %h4 Port Bindings
-  %ul
-    %li.legend
-      host port: container port / protocol
-    = f.fields_for :ports do |port|
-      - checkbox_id = "select_port_binding_#{port.options[:child_index]}"
-      %li{title: "host: #{port.object.host_port},
-                  container: #{port.object.container_port},
-                  protocol: #{port.object.proto}"}
-        %strong.host-port= port.object.host_port
-        \:
-        %span.container-port= port.object.container_port
-        \/
-        %span.proto= port.object.proto
-        .actions
-          = port.check_box :_deleted, { id: checkbox_id }
-          = port.hidden_field :container_port
-          = port.hidden_field :host_port
-          = port.hidden_field :proto
-          %a{class: 'delete-action', title: 'remove', data: { checkbox: { selector: "##{checkbox_id}" } } } remove
+  %h4 Mapped Endpoints
+
+  %table.port-bindings
+    %colgroup
+      %col.ports
+      %col
+      %col.actions
+    %thead
+      %tr
+        %th
+          host : container / protocol
+        %th
+          mapped endpoint
+        %th
+    %tbody
+      = f.fields_for :ports do |port|
+        - checkbox_id = "select_port_binding_#{port.options[:child_index]}"
+        %tr
+          %td{title: "host: #{port.object.host_port},
+                      container: #{port.object.container_port},
+                      protocol: #{port.object.proto}"}
+            %span.container_port= port.object.host_port
+            \:
+            %span.container-port= port.object.container_port
+            \/
+            %span.proto= port.object.proto
+          %td
+            = "https://#{request.env['SERVER_NAME']}:#{port.object.host_port}"
+            = link_to 'View', "https://#{request.env['SERVER_NAME']}:#{port.object.host_port}", target: 'blank', class: 'view-action'
+          %td
+            .actions
+              = port.check_box :_deleted, { id: checkbox_id }
+              = port.hidden_field :container_port
+              = port.hidden_field :host_port
+              = port.hidden_field :proto
+              %a{class: 'delete-action', title: 'remove', data: { checkbox: { selector: "##{checkbox_id}" } } } remove
+
   %ul.additional-entries
     %li.editing
       = add_fields_for(:ports, f, { child_index: '_replaceme_' }) do |builder|

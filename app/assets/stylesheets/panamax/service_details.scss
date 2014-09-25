@@ -206,7 +206,8 @@
   ul li:hover .actions,
   dl dt:hover + dd + .actions,
   dl dd:hover + .actions,
-  dl dd.actions:hover {
+  dl dd.actions:hover,
+  tr:hover .actions {
     > * {
       visibility: visible;
     }
@@ -258,17 +259,86 @@
 .port-detail {
   @extend .service-detail;
 
+  table {
+    width: 100%;
+    &.port-bindings {
+      colgroup {
+        col {
+          &.ports {
+            width: 40%;
+          }
+          &.actions {
+            width: 20%
+          }
+        }
+      }
+    }
+
+    &.exposed-ports {
+      colgroup {
+        col {
+          &.ports {
+            width: 100px;
+          }
+        }
+      }
+      tr td {
+        &:last-child {
+          margin-left: 0;
+
+          .actions {
+            position: relative;
+            top: 3px;
+            float: left;
+          }
+        }
+      }
+    }
+
+    thead th, tbody tr td {
+      padding: 15px 5px;
+      text-align: left;
+      @include border-box;
+    }
+    thead {
+      th {
+        color: $grey;
+        font-style: italic;
+      }
+    }
+    tr {
+      border-bottom: 1px solid #f1f1f1;
+      td {
+        font-weight: bold;
+        .view-action {
+          margin-left: 6px;
+        }
+
+        .info {
+          font-size: 10px;
+          color: #ccc;
+          font-style: italic;
+          font-weight: normal;
+          margin-top: -6px;
+        }
+
+        .actions {
+
+        }
+
+      }
+    }
+  }
+
   .port-detail-forms {
     overflow: hidden;
   }
 
-  .port-bindings {
-    float: left;
-    width: 65%;
+  div.port-bindings {
+    margin-bottom: 50px;
 
-    li.legend {
-      color: $grey;
-      font-style: italic;
+    a + a#copy-endpoint {
+      margin-left: 6px;
     }
 
     select {
@@ -290,25 +360,15 @@
       width: 23%;
       padding-right: 0px;
     }
+
   }
 
   .exposed-ports {
-    width: 32%;
-    float: right;
-
     input[type='number'] {
       @include border-box;
       width: 68px;
     }
 
-    .info {
-      width: 60px;
-      float: right;
-      font-size: 10px;
-      color: #ccc;
-      font-style: italic;
-      margin-top: -6px;
-    }
   }
 
   h4 {
