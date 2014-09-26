@@ -37,6 +37,16 @@ describe('$.fn.editParameter', function() {
       subject.completeEdit({text: 'New Value'});
 
       expect($('form input').attr('disabled')).toBeUndefined()
-    })
+    });
+
+    it('triggers progressiveForm:changed event', function() {
+      var triggered = false;
+      $('body').on('progressiveForm:changed', function() {
+        triggered = true;
+      });
+
+      subject.completeEdit({text: 'New Value'});
+      expect(triggered).toBeTruthy();
+    });
   });
 });
