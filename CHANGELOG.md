@@ -1,10 +1,17 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-LATEST
+0.2.2 - 2014-09-26
 ------------------
+
 ### Added
-- Edit name and value of environment variables
+- Edit name and value of environment variables (#371)
+
+### Removed
+- Removed all contest-related content from application (#370)
+
+### Fixed
+- Port mapping bug when host port not specified (#363)
 
 
 0.2.1 - 2014-09-18
@@ -22,8 +29,6 @@ LATEST
 - Don't show scrollbar on environment variable field (#347)
 - Unintentional service form submission (#348)
 
-### Removed
-- Removed all contest-related content from application
 
 0.2.0 - 2014-09-09
 ------------------
