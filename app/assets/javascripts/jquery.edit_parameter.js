@@ -48,7 +48,7 @@
 
       field.val(data.text);
       $(base.options.submitButton).removeAttr('disabled');
-
+      $('body').trigger('progressiveForm:changed');
       transaction.resolve();
 
       return transaction.promise();
