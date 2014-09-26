@@ -5,6 +5,12 @@
   %dt Email Address:
   %dd= template_form.user.email
 
+%p
+  = link_to "Replace GitHub Token", '#', id: 'token-replace'
+
+#update-token-modal
+  = render 'github_token_replace', user: @user
+
 = form_for template_form, url: templates_path do |f|
   = f.hidden_field :app_id
   %h3 Select a repository for your application template

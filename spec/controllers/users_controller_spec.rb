@@ -25,6 +25,18 @@ describe UsersController do
       expect(response).to redirect_to '/some/origin'
     end
 
+    it 'sets a flash message indicating successful update' do
+      user.stub(:update_attributes).and_return(true)
+      put :update, user: update_params
+      expect(flash[:success]).to eq 'Your GitHub token has been saved.'
+    end
+
+    it 'sets a flash alert if the token could not be saved' do
+      user.stub(:update_attributes).and_return(false)
+      put :update, user: update_params
+      expect(flash[:alert]).to_not be blank?
+    end
+
     context 'when an error occurs' do
 
       before do

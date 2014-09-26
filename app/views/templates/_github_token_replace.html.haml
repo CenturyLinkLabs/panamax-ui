@@ -1,0 +1,8 @@
+%p
+  Make sure your token is scoped to 'repo' and 'user'.  You can regenerate your token at
+  = link_to 'https://github.com/settings/applications', 'https://github.com/settings/applications', target: '_blank'
+
+= form_for user, url: user_path, method: :put, html: { class: 'update-github-token' } do |f|
+  %strong
+    = f.label :github_access_token, 'GitHub Token'
+  = f.text_field :github_access_token, placeholder: 'Paste your GitHub token here'
