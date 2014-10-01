@@ -69,9 +69,9 @@
       addCallback: enableNewItem
     });
 
-    $('.volumes .additional-entries').appendable({
-      $trigger: $('.volumes .button-add'),
-      $elementToAppend: $('.volumes .additional-entries li:first-of-type'),
+    $('.volumes .data-containers .additional-entries').appendable({
+      $trigger: $('.volumes .data-containers .button-add'),
+      $elementToAppend: $('.volumes .data-containers .additional-entries li:first-of-type'),
       addCallback: enableNewItem
     });
 
@@ -82,6 +82,8 @@
     $('.service-links').appendableServiceLinks();
 
     $('.port-bindings').appendablePortBindings();
+
+    $('.mounted-containers').appendableVolumesFrom();
 
     $('.environment-variables dl.entries').editParameter({
       fieldSelector: 'dt.variable-name label',

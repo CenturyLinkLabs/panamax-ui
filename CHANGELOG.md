@@ -4,7 +4,13 @@ All notable changes to this project will be documented in this file.
 Latest
 ------------------
 
+### Fixed
+- Don't show scrollbar on environment variable field (#347)
+
 ### Added
+- Edit Service Name
+- Remove Multiple Images
+- Manage Volumes From
 - Port management
  - Show ports exposed by the base image in list (#368)
  - Table-based layout for ports information (#369)
@@ -51,7 +57,6 @@ Latest
 - Show 'docker run' string on service details page
 - UTC suffix on timestamps
 
-
 0.1.3 - 2014-09-03
 ------------------
 
@@ -59,7 +64,6 @@ Latest
 - Fix icon clipping on template search result display (#343)
 - Add a keyword cloud for browsing templates (#340)
 - Template details dialog rendering (#333)
-
 
 0.1.2 - 2014-08-27
 ------------------

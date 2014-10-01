@@ -115,7 +115,7 @@ describe('$.PMX.init', function() {
         $('#row_template input').prop('disabled', true);
         var fakeAdditonalItem = {
           $el: $('#row_template')
-        }
+        };
 
         spyOn($.PMX, 'Appendable').andCallFake(function($el, options) {
           return {
@@ -153,5 +153,4 @@ describe('$.PMX.init', function() {
       });
     });
   });
-
 });

@@ -57,11 +57,11 @@
           .port-detail-forms
             = render 'port_mappings', f: f
             = render 'exposed_ports', f: f
-        .volumes
-          = render 'volumes', f: f
       .column-right
         .environment-variables
           = render 'environment_variables', f: f
+        .volumes
+          = render 'volumes', f: f, services: @app.services, service_id: @service.id
         .docker-run-command
           %h3 Docker run command
           = f.text_field :command, placeholder: 'enter run command here (optional)'

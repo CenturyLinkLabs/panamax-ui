@@ -7,6 +7,7 @@ class Service < BaseResource
   has_many :links
   has_many :environment
   has_many :volumes
+  has_many :volumes_from
   has_one :docker_status
 
   schema do
@@ -78,6 +79,12 @@ class Service < BaseResource
     end
   end
 
+  def volumes_from_attributes=(attributes)
+    self.volumes_from = attributes.each_with_object([]) do |(_, volume_from), memo|
+      memo << VolumesFrom.new(volume_from.except('id')) unless volume_from['_deleted'].to_s == '1'
+    end
+  end
+
   def links_attributes=(attributes)
     self.links = attributes.each_with_object([]) do |(_, link), memo|
       # exclude link ID for now. May need this later if we decide to
@@ -125,6 +132,10 @@ class Service < BaseResource
       port_number, protocol = port.split('/')
       memo << OpenStruct.new({port_number: port_number, proto: protocol})
     end
+  end
+
+  def select_data_volumes
+    self.volumes.select { |volume| volume.host_path.empty? }
   end
 
   def self.build_from_response(response)

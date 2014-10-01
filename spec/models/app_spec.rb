@@ -37,6 +37,19 @@ describe App do
     end
   end
 
+  describe '#find_service_by_name' do
+
+    it 'returns the service when name is found' do
+      app = described_class.new(attributes)
+      expect(app.find_service_by_name('bark').id).to eq '5'
+    end
+
+    it 'returns nil when service name is not found' do
+      app = described_class.new(attributes)
+      expect(app.find_service_by_name('not_here')).to be nil
+    end
+  end
+
   describe '#has_empty_env_values?' do
     it 'returns true if any of the services have an empty env value' do
       fake_service = double(:fake_service, has_empty_env_values?: true)

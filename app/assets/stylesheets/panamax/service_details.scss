@@ -192,6 +192,18 @@
     padding: 13px 15px;
   }
 
+  h4 {
+    color: #000;
+    font-weight: bold;
+    font-size: 1em;
+    margin: 10px 0 0;
+  }
+
+  li.legend {
+    color: $grey;
+    font-style: italic;
+  }
+
   ul li,
   dl dt,
   dl dd {
@@ -379,7 +391,6 @@
       @include border-box;
       width: 68px;
     }
-
   }
 
   h4 {
@@ -570,6 +581,36 @@ form.service-edit-form {
   }
   .button-primary[disabled]:hover {
     background-color: $light_grey;
+  }
+}
+
+.mounted-containers {
+  ul:not(.additional-entries) li {
+    overflow: auto;
+  }
+
+  .mount-point {
+    float: left;
+
+    &:after {
+      content: ' : ';
+    }
+  }
+
+  select.mount-point {
+    min-width: 190px;
+  }
+
+  dl {
+    float: left;
+    padding-left: 5px;
+    display: inline-block;
+
+    dd {
+      float: none;
+      padding: 0 0 5px 0;
+      display: block;
+    }
   }
 }
 

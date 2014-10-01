@@ -24,6 +24,9 @@ describe('$.fn.dockerRun', function() {
       { hostPath: '/var/dir1', containerPath: '/var/dir2' },
       { hostPath: '', containerPath: '/tmp/dir' }
     ],
+
+    volumesFrom: [],
+
     imageName: 'foo/bar',
     command: '/bin/bash'
   };
