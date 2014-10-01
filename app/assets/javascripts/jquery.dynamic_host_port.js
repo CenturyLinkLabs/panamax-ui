@@ -23,11 +23,11 @@
     };
 
     base.handleResponse = function (_, response) {
-      if (response.sub_state == 'running') {
+      if (response.sub_state == 'running' && response.load_state == 'loaded') {
         base.updatePortMappings(response);
       }
       else {
-        base.$el.addClass('allocating');
+        base.$el.closest('table').addClass('service-loading');
         base.options.$pathLink.text('port is being assigned...');
         base.options.$pathLink.attr('href', '');
         base.options.$hostPort.text('.....');
@@ -35,7 +35,7 @@
     };
 
     base.updatePortMappings = function(response) {
-      base.$el.removeClass('allocating');
+      base.$el.closest('table').removeClass('service-loading');
       var portsList = base.getPortsList(response.docker_status.info.NetworkSettings.Ports);
       $.each(portsList, function (index, value) {
         if (value['portNumber'] == base.options.containerPort) {

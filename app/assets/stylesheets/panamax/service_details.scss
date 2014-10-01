@@ -295,6 +295,20 @@
       }
     }
 
+    &.service-loading {
+      td a.view-action {
+        color: #a1a1a1;
+        text-decoration: none;
+        pointer-events: none;
+      }
+      tr.dynamic-host {
+        color: #a1a1a1;
+        td {
+          font-weight: normal;
+        }
+      }
+    }
+
     thead th, tbody tr td {
       padding: 15px 5px;
       text-align: left;
@@ -308,17 +322,6 @@
     }
     tr {
       border-bottom: 1px solid #f1f1f1;
-      &.allocating {
-        color: #a1a1a1;
-        td {
-          font-weight: normal;
-          a {
-            color: #a1a1a1;
-            text-decoration: none;
-            cursor: not-allowed;
-          }
-        }
-      }
       td {
         font-weight: bold;
 

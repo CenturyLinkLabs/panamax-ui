@@ -4,6 +4,7 @@ describe('$.fn.dynamicHostPort', function() {
 
   var serviceResponse = {
     'sub_state': 'running',
+    'load_state': 'loaded',
     'docker_status': {
       'info': {
         'NetworkSettings': {
@@ -15,6 +16,15 @@ describe('$.fn.dynamicHostPort', function() {
 
   var stoppedServiceResponse = {
     'sub_state': 'stopped',
+    'load_state': 'foo',
+    'docker_status': {
+      'info': {}
+    }
+  };
+
+  var loadingServiceResponse = {
+    'sub_state': 'foo',
+    'load_state': 'loading',
     'docker_status': {
       'info': {}
     }
@@ -35,14 +45,24 @@ describe('$.fn.dynamicHostPort', function() {
       expect(subject.updatePortMappings).toHaveBeenCalledWith(serviceResponse);
     });
 
-    it('updates the row if the service is not running', function () {
+    it('updates the table and rows if the service is not running', function () {
       subject.init();
       $('span.service-status').trigger('update-service-status', stoppedServiceResponse);
       expect($('.view-action').text()).toEqual('port is being assigned...');
       expect($('.view-action').attr('href')).toEqual('');
       expect($('.host-port').text()).toEqual('.....');
-      expect($('tr.dynamic-host').hasClass('allocating')).toBeTruthy;
+      expect($('table.port-bindings').hasClass('service-loading')).toBeTruthy;
     });
+
+    it('updates the table and rows if the service is not loaded', function () {
+      subject.init();
+      $('span.service-status').trigger('update-service-status', loadingServiceResponse);
+      expect($('.view-action').text()).toEqual('port is being assigned...');
+      expect($('.view-action').attr('href')).toEqual('');
+      expect($('.host-port').text()).toEqual('.....');
+      expect($('table.port-bindings').hasClass('service-loading')).toBeTruthy;
+    });
+
   });
 
   describe('updatePortMappings', function () {
@@ -54,15 +74,13 @@ describe('$.fn.dynamicHostPort', function() {
       expect(subject.getPortsList).toHaveBeenCalledWith(serviceResponse.docker_status.info.NetworkSettings.Ports);
     });
 
-    it ('removes the class from the loading row', function () {
+    it ('removes the loading class from the table', function () {
       subject.init();
-      serviceResponse.sub_state = 'stopped';
-      $('span.service-status').trigger('update-service-status', serviceResponse);
-      expect($('tr:first-child').hasClass('allocating')).toBeTruthy;
+      $('span.service-status').trigger('update-service-status', stoppedServiceResponse);
+      expect($('table.port-bindings').hasClass('service-loading')).toBeTruthy;
 
-      serviceResponse.sub_state = 'running';
       $('span.service-status').trigger('update-service-status', serviceResponse);
-      expect($('tr:first-child').hasClass('allocating')).toBeFalsy;
+      expect($('table.port-bindings').hasClass('service-loading')).toBeFalsy;
     });
 
     it ('replaces port information', function () {
