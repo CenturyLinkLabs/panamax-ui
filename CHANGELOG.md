@@ -8,7 +8,7 @@ Latest
 - Port management
  - Show ports exposed by the base image in list (#368)
  - Table-based layout for ports information (#369)
- 
+- GitHub token update (#375)
 
 0.2.2 - 2014-09-26
 ------------------
