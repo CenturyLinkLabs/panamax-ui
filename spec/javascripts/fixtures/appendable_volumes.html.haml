@@ -1,12 +1,13 @@
-%li#row_template
-  a new thing
-  %input{name: '_replaceme_'}
-  %input#alias_input{name: 'alias_replaceme_'}
-  %select{name: '_replaceme_'}
-    %option{selected: true, value: 'foo'} bar
-  %a.cancel cancel
 .volumes
-  %ul.additional-entries
-    %li /foo/bar
+  %li#row_template
+    a new thing
+    %input{name: '_replaceme_'}
+    %input#alias_input{name: 'alias_replaceme_'}
+    %select{name: '_replaceme_'}
+      %option{selected: true, value: 'foo'} bar
+    %a.cancel cancel
+  .data-containers
+    %ul.additional-entries
+      %li /foo/bar
 
-  %button.button-add
+    %button.button-add

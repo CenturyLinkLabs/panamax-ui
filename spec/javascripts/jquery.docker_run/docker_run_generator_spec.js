@@ -17,6 +17,10 @@ describe('$.PMX.DockerRunGenerator', function() {
       { hostPath: '/var/dir1', containerPath: '/var/dir2' },
       { containerPath: '/tmp/dir' }
     ],
+    volumesFrom: [
+      'fromVolume',
+      'nextVolume'
+    ],
     imageName: 'foo/bar',
     command: '/bin/bash'
   };
@@ -31,6 +35,8 @@ describe('$.PMX.DockerRunGenerator', function() {
     '-e "PATH=/tmp"',
     '-v /var/dir1:/var/dir2',
     '-v /tmp/dir',
+    '--volumes-from "fromVolume"',
+    '--volumes-from "nextVolume"',
     'foo/bar',
     '/bin/bash'
   ]

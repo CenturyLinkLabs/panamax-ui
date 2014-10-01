@@ -53,14 +53,15 @@
       %dd
         %input.variable-value{ value: 'TRUE' }
   .volumes
-    %ul
-      %li
-        .host-path
-          \/var/dir1
-        .container-path
-          \/var/dir2
-      %li
-        %input.host-path
-        %input.container-path{ value: '/tmp/dir'}
+    .data-containers
+      %ul
+        %li
+          .host-path
+            \/var/dir1
+          .container-path
+            \/var/dir2
+        %li
+          %input.host-path
+          %input.container-path{ value: '/tmp/dir'}
 
   #docker-string
