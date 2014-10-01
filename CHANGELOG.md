@@ -9,6 +9,7 @@ Latest
 ### Added
 - Edit Service Name
 - Remove Multiple Images
+- Manage Volumes From
 
 0.2.0 - 2014-09-09
 ------------------

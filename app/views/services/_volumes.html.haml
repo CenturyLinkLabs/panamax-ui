@@ -5,29 +5,56 @@
       %section.tooltip
         %aside.arrow
         %span{ class: 'dismiss' }
+        %h5 Data Volumes
         %p Panamax currently supports the volume (-v) command for mounting a host directory as a data volume and adding a data volume to a container.
+        %h5 Data Volume Containers
         %p
-          For adding a data volume to a container, provide the path to the volume on the container. For mounting a host directory, provide the local host path and the mapped container path.
-          Panamax does not currently support the read-only option (:ro) or volumes from (--volumes-from).
-        %p To see if any additional volumes were mounted via the VOLUME command at run time, review the Dockerfile of any base images.
-%ul
-  = f.fields_for :volumes do |volume|
-    - checkbox_id = "select_volume_#{volume.options[:child_index]}"
-    %li{title: "host: #{volume.object.host_path}, container: #{volume.object.container_path}"}
-      %strong.host-path= volume.object.host_path
-      \:
-      %span.container-path= volume.object.container_path
-      .actions
-        = volume.check_box :_deleted, { id: checkbox_id }
-        = volume.hidden_field :host_path
-        = volume.hidden_field :container_path
-        %a{class: 'delete-action', title: 'remove', data: { checkbox: { selector: "##{checkbox_id}" } } } remove
-%ul.additional-entries
-  %li.editing
-    = add_fields_for(:volumes, f, { child_index: '_replaceme_' }) do |builder|
-      = builder.text_field :host_path, disabled: true, placeholder: 'host path (optional)', title: 'host path', class: 'host-path'
-      = ':'
-      = builder.text_field :container_path, disabled: true, placeholder: 'container path', title: 'container path', class: 'container-path'
-      %a.cancel Cancel
-
-%a.button-add Add a Volume
+          Panamax supports the --volumes-from command for mounting volumes shared by other services/containers.
+        %p
+          For additional information see
+          %a{ href: 'https://github.com/CenturyLinkLabs/panamax-ui/wiki/Managing-Volumes-within-Panamax' } Managing Volumes within Panamax
+.data-containers
+  %h4 Data Volumes
+  %ul
+    %li.legend
+      host directory : container directory
+    = f.fields_for :volumes do |volume|
+      - checkbox_id = "select_volume_#{volume.options[:child_index]}"
+      %li{ title: "host: #{volume.object.host_path}, container: #{volume.object.container_path}" }
+        %strong.host-path= volume.object.host_path
+        \:
+        %span.container-path= volume.object.container_path
+        .actions
+          = volume.check_box :_deleted, { id: checkbox_id }
+          = volume.hidden_field :host_path
+          = volume.hidden_field :container_path
+          %a{ class: 'delete-action', title: 'remove', data: { checkbox: { selector: "##{checkbox_id}" } } } remove
+  %ul.additional-entries
+    %li.editing
+      = add_fields_for(:volumes, f, { child_index: '_replaceme_' }) do |builder|
+        = builder.text_field :host_path, disabled: true, placeholder: 'host path (optional)', title: 'host path', class: 'host-path'
+        = ':'
+        = builder.text_field :container_path, disabled: true, placeholder: 'container path', title: 'container path', class: 'container-path'
+        %a.cancel Cancel
+  %a.button-add Add a Volume
+.mounted-containers
+  %h4 Data Volume Containers
+  %ul
+    %li.legend
+      name : container directory
+    = f.fields_for :volumes_from do |data|
+      - checkbox_id = "select_volume_from_#{data.options[:child_index]}"
+      %li{ title: "mount: #{data.object.service_name}" }
+        %strong.mount-point= data.object.service_name
+        = render 'mounted_volumes', service: @app.find_service_by_name(data.object.service_name)
+        .actions
+          = data.check_box :_deleted, { id: checkbox_id }
+          = data.hidden_field :service_id
+          = data.hidden_field :service_name
+          %a{ class: 'delete-action', title: 'remove', data: { checkbox: { selector: "##{checkbox_id}" } } } remove
+  %ul.additional-entries
+    %li.editing
+      = add_fields_for(:volumes_from, f, { child_index: '_replaceme_' }) do |builder|
+        = builder.select :service_id, linkable_service_options(services, service_id), { include_blank: true }, disabled: true, title: 'Mount', class: 'mount-point'
+        %a.cancel Cancel
+  %a.button-add Mount a new Data Volume Container
