@@ -16,7 +16,7 @@
     %tbody
       = f.fields_for :ports do |port|
         - checkbox_id = "select_port_binding_#{port.options[:child_index]}"
-        %tr{class: port.object.host_port.blank? ?  'dynamic-host' : '', data: { source: app_service_path(@app.id, @service.id, format: :json) } }
+        %tr{class: port.object.host_port.blank? ?  'auto-assigned-host' : ''}
           %td{title: "host: #{port.object.host_port},
                       container: #{port.object.container_port},
                       protocol: #{port.object.proto}"}

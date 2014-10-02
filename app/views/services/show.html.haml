@@ -55,7 +55,7 @@
                   %p All ports exposed via EXPOSE in the Dockerfile will be noted as exposed by the base image.
 
           .port-detail-forms
-            = render 'port_bindings', f: f
+            = render 'port_mappings', f: f
             = render 'exposed_ports', f: f
         .volumes
           = render 'volumes', f: f

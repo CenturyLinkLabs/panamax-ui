@@ -1,11 +1,10 @@
 (function($) {
-  $.PMX.DynamicHostPort = function(el, options) {
+  $.PMX.PortMappings = function(el, options) {
     var base = this;
 
     base.$el = $(el);
 
     base.defaultOptions = {
-      refreshInterval: 5000,
       $pathLink: base.$el.find('a.view-action'),
       $hostPort: base.$el.find('span.host-port'),
       containerPort: base.$el.find('span.container-port').text(),
@@ -23,19 +22,40 @@
     };
 
     base.handleResponse = function (_, response) {
-      if (response.sub_state == 'running' && response.load_state == 'loaded') {
-        base.updatePortMappings(response);
+      var hasAutoAssignedPorts = base.$el.hasClass('auto-assigned-host');
+      var serviceIsRunning = response.sub_state === 'running' && response.load_state === 'loaded';
+
+      if (serviceIsRunning) {
+        base.hideLoadingStyles();
+        if (hasAutoAssignedPorts) {
+          base.updatePortMappings(response);
+        }
       }
+
       else {
+        base.showLoadingStyles();
+        if (hasAutoAssignedPorts) {
+          base.options.$pathLink.text('port is being assigned...');
+          base.options.$pathLink.attr('href', '');
+          base.options.$hostPort.text('.....');
+        }
+      }
+    };
+
+    base.showLoadingStyles = function () {
+      if (!base.$el.closest('table').hasClass('service-loading')) {
         base.$el.closest('table').addClass('service-loading');
-        base.options.$pathLink.text('port is being assigned...');
-        base.options.$pathLink.attr('href', '');
-        base.options.$hostPort.text('.....');
+      }
+    };
+
+    base.hideLoadingStyles = function () {
+      if (base.$el.closest('table').hasClass('service-loading')) {
+        base.$el.closest('table').removeClass('service-loading');
       }
     };
 
     base.updatePortMappings = function(response) {
-      base.$el.closest('table').removeClass('service-loading');
+      base.hideLoadingStyles();
       var portsList = base.getPortsList(response.docker_status.info.NetworkSettings.Ports);
       $.each(portsList, function (index, value) {
         if (value['portNumber'] == base.options.containerPort) {
@@ -60,9 +80,9 @@
     };
   };
 
-  $.fn.dynamicHostPort = function(options) {
+  $.fn.portMappings = function(options) {
     return this.each(function() {
-      (new $.PMX.DynamicHostPort(this, options)).init();
+      (new $.PMX.PortMappings(this, options)).init();
     });
   };
 

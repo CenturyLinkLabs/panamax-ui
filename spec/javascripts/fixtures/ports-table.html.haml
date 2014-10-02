@@ -1,4 +1,4 @@
-%span.service-status{ data: { source: '/foo/bar' } }
+%span.service-status
 
 %table.port-bindings
   %thead
@@ -8,7 +8,19 @@
       mapped endpoint
     %th
   %tbody
-    %tr{data: {host: 'localhost'}, class: 'dynamic-host'}
+    %tr.present-host
+      %td
+        %span.host-port 1234
+        %span.container-port 3333
+        %span.proto
+        = link_to 'localhost:1234',
+                  'localhost:1234',
+                  class: 'view-action',
+                  data: {host: 'localhost'}
+      %td
+        .actions
+
+    %tr.auto-assigned-host
       %td
         %span.host-port
         %span.container-port

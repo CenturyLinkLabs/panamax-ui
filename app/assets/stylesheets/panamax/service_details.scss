@@ -300,8 +300,9 @@
         color: #a1a1a1;
         text-decoration: none;
         pointer-events: none;
+        position: relative;
       }
-      tr.dynamic-host {
+      tr.auto-assigned-host {
         color: #a1a1a1;
         td {
           font-weight: normal;

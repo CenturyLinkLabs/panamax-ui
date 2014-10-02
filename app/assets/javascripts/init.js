@@ -103,7 +103,7 @@
 
     $('.application-services').appServicesStatus();
 
-    $('.dynamic-host').dynamicHostPort();
+    $('table.port-bindings tbody tr').portMappings();
 
     $('[data-accordian-expand]').accordian();
 
