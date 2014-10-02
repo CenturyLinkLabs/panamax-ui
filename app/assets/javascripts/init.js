@@ -103,6 +103,8 @@
 
     $('.service-status').serviceStatus();
 
+    $('.service-details .inspect').dockerInspect();
+
     $('.application-services').appServicesStatus();
 
     $('table.port-bindings tbody tr').portMappings();

@@ -1,0 +1,13 @@
+%section.service-details
+  .inspect
+    = link_to 'Docker Status','#'
+
+  %span.service-status{ data: { source: '/foo/bar' } }
+
+#docker-inspect
+  %pre
+    :plain
+      {
+        'thing1': 'value',
+        'thing2': 'value'
+      }

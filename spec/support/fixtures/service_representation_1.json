@@ -51,5 +51,6 @@
   ],
   "default_exposed_ports": [
     "3000/tcp"
-  ]
+  ],
+  "docker_status": {}
 }

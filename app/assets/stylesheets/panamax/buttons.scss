@@ -55,3 +55,21 @@ a.button-minor {
   padding-top: 4px;
   padding-bottom: 4px;
 }
+
+.button-dark-blue {
+  @extend .button-primary;
+  @include border-box;
+  background-color: $dark_blue;
+  color: $white;
+
+
+  &:hover {
+    background-color: darken( $dark_blue, 10% );
+    transition: background-color 0.25s ease;
+    color: $white;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}

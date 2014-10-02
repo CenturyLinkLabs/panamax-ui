@@ -7,6 +7,10 @@
                                               @service.name]
 
 %section.service-details
+
+  .inspect
+    = link_to 'Docker Inspect', '#'
+
   %span.service-status{ class: @service.status,
       data: { source: app_service_path(@app.id, @service.id, format: :json) } }
     %span.panamax-state= @service.status.to_s.humanize
@@ -74,3 +78,7 @@
 
 #post-run-html
   = @app.documentation_to_html.html_safe if @app.documentation.present?
+
+#docker-inspect
+  %pre
+    = JSON.pretty_generate(@service.docker_status)
