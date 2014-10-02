@@ -4,7 +4,7 @@
 
     base.$el = $el;
     base.defaultOptions = {
-
+      selectionSelector: 'select'
     };
 
     base.init = function() {
@@ -14,7 +14,6 @@
         $elementToAppend: $linksAdditionalEntries.find('li:first-of-type'),
         addCallback: base.handleAppend
       });
-
     };
 
     base.handleAppend = function(addedItem) {
@@ -25,18 +24,8 @@
       });
 
       addedItem.$el.find('select').each(function() {
-        base.updateHiddenFields($(this));
-        $(this).on('change', function(e) {
-          base.updateHiddenFields($(e.currentTarget));
-        });
         $(this).chosen({disable_search: true});
       });
-    };
-
-    base.updateHiddenFields = function($select) {
-      var $associated = $select.siblings('[name*="mount"]');
-      var text = $select.find('option:selected').text();
-      $associated.val(text);
     };
 
     base.substituteName = function($input, guid) {
