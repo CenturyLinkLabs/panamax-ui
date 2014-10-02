@@ -101,6 +101,8 @@
 
     $('.service-status').serviceStatus();
 
+    $('.service-details .inspect').dockerInspect();
+
     $('.application-services').appServicesStatus();
 
     $('.dynamic-host').dynamicHostPort();

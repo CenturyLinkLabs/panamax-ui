@@ -11,6 +11,18 @@
     padding-left: 40px;
     padding-right: 20px;
   }
+
+  .inspect {
+    float: right;
+    font-size: 0.8em;
+    margin-left: 10px;
+    padding-top: 4px;
+    display:none;
+
+    a {
+      text-decoration: underline;
+    }
+  }
 }
 
 .service-help-icon {
@@ -51,7 +63,6 @@
   background-repeat: no-repeat;
   background-position: left center;
   position: relative;
-  z-index: 10;
 
   .panamax-state {
     cursor: pointer;
@@ -142,6 +153,7 @@
 .base-image-detail {
   position: relative;
   margin-bottom: 20px;
+  width: 80%;
 
   * {
     display: inline-block;
@@ -665,4 +677,9 @@ a.journal-toggle {
 
 input.empty {
   border: $orange 2px solid;
+}
+
+#docker-inspect {
+  color: $blue_grey;
+  font-size: 0.9em;
 }
