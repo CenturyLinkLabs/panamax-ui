@@ -9,6 +9,7 @@ Latest
  - Show ports exposed by the base image in list (#368)
  - Table-based layout for ports information (#369)
  - Show port numbers automatically assigned by Docker (#376)
+ - Disable endpoint links when service is not running (#378, #379)
 - GitHub token update (#375)
 
 
