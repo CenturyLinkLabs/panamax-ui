@@ -21,7 +21,7 @@
     = f.fields_for :volumes do |volume|
       - checkbox_id = "select_volume_#{volume.options[:child_index]}"
       %li{ title: "host: #{volume.object.host_path}, container: #{volume.object.container_path}" }
-        %strong.host-path= volume.object.host_path
+        = optional_directory(volume.object.host_path)
         \:
         %span.container-path= volume.object.container_path
         .actions
