@@ -11,6 +11,12 @@
     padding-left: 40px;
     padding-right: 20px;
   }
+
+  .note {
+    color: $grey;
+    text-transform: lowercase;
+    font-style: italic;
+  }
 }
 
 .service-help-icon {
