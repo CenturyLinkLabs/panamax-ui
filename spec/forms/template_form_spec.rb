@@ -203,6 +203,32 @@ describe TemplateForm do
         expect(subject.errors.messages).to include(name: ['is invalid'])
       end
     end
+
+    context 'when token is unscoped for repo' do
+
+      let(:fake_template) { double(:fake_template, valid?: true) }
+
+      before do
+        Template.stub(:create).and_return(fake_template)
+        subject.stub(:save_template_to_repo).with(fake_template).and_raise('boom')
+      end
+
+      it 'adds an error for template form' do
+        subject.save
+        expect(subject.errors.count).to eq(1)
+      end
+
+      it 'display an error for the repo attribute' do
+        subject.save
+        expect(subject.errors.full_message(:repo, 'boom')).to eq('Repo boom')
+      end
+
+      it 'does not save the template to a repo' do
+        expect(Template.any_instance).to_not receive(:post)
+        subject.save
+      end
+
+    end
   end
 
 end

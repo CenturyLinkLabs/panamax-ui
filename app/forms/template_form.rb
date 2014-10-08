@@ -38,7 +38,12 @@ class TemplateForm
   def save
     @template = create_template
     if @template.valid?
-      save_template_to_repo(@template)
+      begin
+        save_template_to_repo(@template)
+      rescue => ex
+        self.errors.add(:repo, ex.message)
+        return false
+      end
     else
       self.errors.messages.merge!(@template.errors.messages)
       return false
