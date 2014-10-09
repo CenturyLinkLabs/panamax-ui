@@ -18,6 +18,7 @@ describe TemplatesController do
     Type.stub(:all).and_return(fake_types)
     fake_user.stub(:github_access_token_present?)
     fake_user.stub(:has_valid_github_creds?)
+    fake_user.stub(:has_invalid_github_creds?)
   end
 
   describe 'GET #new' do
@@ -57,18 +58,30 @@ describe TemplatesController do
       end
     end
 
-    context 'when user github creds are not valid' do
-      expected_flash_msg = "Your token may be malformed, expired or is not scoped correctly.
-Please <a href='https://github.com/settings/tokens/new?scope=repo,user:email' target='_blank'>
-generate a Github access token</a> with the correct privileges. Be sure to select at least 'repo'
-and 'user:email'."
+    context 'when the user comes in for the first time' do
       before do
+        fake_user.stub(:has_valid_github_creds?).and_return(false)
+        fake_user.stub(:has_invalid_github_creds?).and_return(false)
+      end
+
+      it 'renders the new view without any error message' do
+        get :new
+        expect(flash[:alert]).to be_nil
+        expect(response).to render_template :new
+      end
+
+    end
+
+    context 'when user github creds are not valid' do
+      expected_flash_msg = "Your token may be malformed, expired or is not scoped correctly."
+      before do
+        fake_user.stub(:has_invalid_github_creds?).and_return(true)
         fake_user.stub(:has_valid_github_creds?).and_return(false)
       end
 
       it 'renders the new view with a flash error message' do
         get :new
-        expect(flash[:alert]).to eq expected_flash_msg
+        expect(flash[:alert]).to include(expected_flash_msg)
         expect(response).to render_template :new
       end
 

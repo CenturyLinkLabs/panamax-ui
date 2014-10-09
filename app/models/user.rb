@@ -17,5 +17,8 @@ class User < BaseResource
     self.github_access_token_present? && self.email.present? && self.github_username.present?
   end
 
+  def has_invalid_github_creds?
+    self.github_access_token_present? && self.email.blank? && self.github_username.blank?
+  end
 
 end
