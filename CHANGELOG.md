@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 - GitHub token update (#375)
+- Docker Inspect dialog added to service details
 
 
 0.2.3 - 2014-10-02
