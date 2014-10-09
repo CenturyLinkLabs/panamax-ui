@@ -56,8 +56,9 @@ describe('$.fn.replaceToken', function() {
   describe('clicking the Save New Token button', function() {
     it('submits the form', function() {
       var submitted = false;
-      $('form.update-github-token').on('submit', function(){
+      $('form.update-github-token').on('submit', function(e){
         submitted = true;
+        e.preventDefault();
       });
       subject.initiateDialog();
       subject.handleTokenSave();
