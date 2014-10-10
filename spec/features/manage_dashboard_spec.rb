@@ -34,6 +34,9 @@ describe 'manage dashboard' do
       click_on 'Manage Registries'
 
       expect(page).to have_css 'li', text: 'Registries'
+
+      expect(page).to have_content 'my_top_secret_registry'
+      expect(page).to have_content 'localhost:5000'
     end
 
 

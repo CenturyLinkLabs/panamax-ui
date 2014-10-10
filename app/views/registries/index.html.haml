@@ -3,3 +3,12 @@
 = render '/shared/breadcrumbs', breadcrumbs: ["Manage",
                                                link_to("Dashboard", dashboard_index_path),
                                                "Registries"]
+
+%section.registries-list
+  %ul
+    - @registries.each do |registry|
+      %li
+        =link_to registry.name, '#', class: 'name'
+        %span.endpoint
+          %strong Endpoint:
+          = registry.endpoint_url

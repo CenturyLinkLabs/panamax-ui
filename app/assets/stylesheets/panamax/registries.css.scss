@@ -1,0 +1,26 @@
+@import 'ctl_base_ui/colors';
+
+.registries-list {
+  ul li {
+    font-size: 14px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: $light_grey 1px solid;
+
+    a.name {
+      width: 380px;
+      float: left;
+      font-weight: bold;
+      font-size: 20px;
+      text-decoration: none;
+    }
+
+    .endpoint {
+      font-style: italic;
+
+      strong {
+        font-style: normal;
+      }
+    }
+  }
+}
