@@ -3,6 +3,7 @@ class BaseImage < BaseResource
 
   schema do
     integer :id
+    integer :registry_id
     string :description
     string :source
     string :star_count

@@ -17,7 +17,7 @@
         remote ? options_for_select(['latest']) : presenter.tag_options,
         id: nil,
         class: 'image-tag-select',
-        data: {'load-tags-endpoint' => load_tags_search_path, 'loaded' => !remote}
+        data: { 'load-tags-endpoint' => load_tags_search_path, 'loaded' => !remote, 'registry-id' => presenter.registry_id }
       %button.button-positive{ data: { disable_with: 'Starting App...', tracking: { method: 'click', action: 'Create Application', category: 'Run Image', label: presenter.title }}} Run Image
   - if remote
     .community-data

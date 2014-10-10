@@ -160,19 +160,37 @@ describe('$.fn.filterableList', function() {
       jasmine.Ajax.useMock();
     });
 
-    it('ajax loads tags if they are not already loaded', function() {
-      $('input.query-field').val('apache').keyup();
+    describe('when the tags are not yet loaded', function() {
+      it('places the tags in the select', function() {
+        $('input.query-field').val('apache').keyup();
 
-      $('.chosen-container').first().click();
+        $('.chosen-container').first().click();
 
-      request = mostRecentAjaxRequest();
-      request.response({
-        status: 200,
-        responseText: JSON.stringify(['foo', 'bar'])
+        request = mostRecentAjaxRequest();
+        request.response({
+          status: 200,
+          responseText: JSON.stringify(['foo', 'bar'])
+        });
+
+        expect($('select.image-tag-select').first().data('loaded')).toBe(true);
+        expect($('select.image-tag-select').first().children().length).toNotEqual(0);
       });
 
-      expect($('select.image-tag-select').first().data('loaded')).toBe(true);
-      expect($('select.image-tag-select').first().children().length).toNotEqual(0);
+      it('sends the local_image and registry_id in the request', function() {
+        $('input.query-field').val('apache').keyup();
+
+        $('.remote-image-results .chosen-container').first().click();
+
+        request = mostRecentAjaxRequest();
+        request.response({
+          status: 200,
+          responseText: JSON.stringify(['foo', 'bar'])
+        });
+
+        var urlFragments = request.url.split(/[\?\&]/);
+        expect(urlFragments).toContain('local_image=false');
+        expect(urlFragments).toContain('registry_id=321');
+      });
     });
 
     it('does not ajax load tags if they are already loaded', function() {

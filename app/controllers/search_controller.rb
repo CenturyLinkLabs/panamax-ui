@@ -15,7 +15,7 @@ class SearchController < ApplicationController
 
   def load_tags
     repository = Repository.find(
-      params[:repo], params: { local: params[:local_image] })
+      params[:repo], params: { registry_id: params[:registry_id], local: params[:local_image] })
 
     respond_with repository.image_tags
   end

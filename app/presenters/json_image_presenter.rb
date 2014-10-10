@@ -1,4 +1,8 @@
 class JsonImagePresenter
+  def registry_id
+    '{{registry_id}}'
+  end
+
   def title
     '{{source}}'
   end

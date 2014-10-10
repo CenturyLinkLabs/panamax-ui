@@ -84,7 +84,7 @@ describe SearchController do
 
       it 'passes local=true flag to the API call' do
         expect(Repository).to receive(:find)
-          .with(repo.id, params: { local: true })
+          .with(repo.id, params: { local: true, registry_id: nil })
 
         get :load_tags, repo: repo.id, local_image: true, format: :json
       end
@@ -94,9 +94,18 @@ describe SearchController do
 
       it 'passes local=false flag to the API call' do
         expect(Repository).to receive(:find)
-          .with(repo.id, params: { local: false })
+          .with(repo.id, params: { local: false, registry_id: nil })
 
         get :load_tags, repo: repo.id, local_image: false, format: :json
+      end
+    end
+
+    context 'when the registry_id parameter is set' do
+      it 'passes the registry_id along' do
+        expect(Repository).to receive(:find)
+          .with(repo.id, params: { local: false, registry_id: 7 })
+
+        get :load_tags, repo: repo.id, local_image: false, registry_id: 7, format: :json
       end
     end
   end

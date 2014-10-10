@@ -3,6 +3,7 @@
   "remote_images":[
     {
       "id":null,
+      "registry_id":null,
       "image_id":null,
       "name":null,
       "source":"tutum/wordpress",

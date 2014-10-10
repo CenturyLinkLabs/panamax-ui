@@ -117,11 +117,12 @@
           $resultRow = $elem.closest('.search-result-item'),
           $selectBox = $resultRow.find(base.options.tagDropdownSelector),
           loaded = $selectBox.data('loaded'),
-          local_image = $resultRow.data('status-label') == 'Local';
+          localImage = $resultRow.data('status-label') == 'Local';
+          registryId = $selectBox.data('registry-id');
       if (!loaded) {
         var tagsXhr = $.get(
           $(base.options.tagDropdownSelector).data('load-tags-endpoint'),
-          { 'repo': $resultRow.data('title'), 'local_image': local_image }
+          { 'repo': $resultRow.data('title'), 'local_image': localImage, 'registry_id': registryId }
         );
 
         tagsXhr.done(function (response) {

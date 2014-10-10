@@ -4,6 +4,7 @@ describe ImagePresenter do
 
   let(:fake_image) do
     double(:fake_image,
+      registry_id: 7,
       source: 'boom/shaka',
       tags: ['foo', 'bar'],
       description: 'goes boom shaka laka',
@@ -22,6 +23,12 @@ describe ImagePresenter do
   describe '#title' do
     it 'exposes the image repository' do
       expect(subject.title).to eq 'boom/shaka'
+    end
+  end
+
+  describe '#registry_id' do
+    it 'exposes the image registry_id' do
+      expect(subject.registry_id).to eq 7
     end
   end
 
