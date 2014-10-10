@@ -25,6 +25,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :registries, only: [:index]
+
   resource :user, only: [:update]
 
   resources :apps, only: [:index, :create, :show, :update, :destroy] do

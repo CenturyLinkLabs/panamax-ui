@@ -29,6 +29,14 @@ describe 'manage dashboard' do
       expect(page).to have_css 'li', text: 'Images'
     end
 
+    it 'can link to manage registries' do
+      visit '/dashboard'
+      click_on 'Manage Registries'
+
+      expect(page).to have_css 'li', text: 'Registries'
+    end
+
+
     it 'can link to applications' do
       visit '/dashboard'
       click_on 'tutum/wordpress'

@@ -1,0 +1,5 @@
+- content_for(:body_id, 'registries_flow')
+
+= render '/shared/breadcrumbs', breadcrumbs: ["Manage",
+                                               link_to("Dashboard", dashboard_index_path),
+                                               "Registries"]

@@ -1,0 +1,7 @@
+[
+  {
+    "id": 1,
+    "name": "my_top_secret_registry",
+    "endpoint_url": "localhost:5000"
+  }
+]

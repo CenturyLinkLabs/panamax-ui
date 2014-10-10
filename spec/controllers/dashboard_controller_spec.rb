@@ -10,7 +10,8 @@ describe DashboardController do
       {
         'Application' => { list: resource_response, count: 10, manage_path: apps_path, more_count: 5 },
         'Source' => { list: resource_response, count: 10, manage_path: template_repos_path, more_count: 5  },
-        'Image' => { list: resource_response, count: 10, manage_path: images_path, more_count: 5  }
+        'Image' => { list: resource_response, count: 10, manage_path: images_path, more_count: 5  },
+        'Registry' => { list: resource_response, count: 10, manage_path: registries_path, more_count: 5  }
       }
     end
 
@@ -29,8 +30,13 @@ describe DashboardController do
       get :index
     end
 
+    it 'calls all_with_response on Registry' do
+      expect(Registry).to receive(:all_with_response).with(params: { limit: limit }).and_return(resource_response)
+      get :index
+    end
+
     it 'assigns values to the resources instance variable' do
-      [App, TemplateRepo, LocalImage].each do |resource|
+      [App, TemplateRepo, LocalImage, Registry].each do |resource|
         resource.stub(:all_with_response).and_return(resource_response)
       end
 
@@ -40,7 +46,7 @@ describe DashboardController do
 
     it 'the map of resources contains expected keys' do
       get :index
-      expect(assigns(:resources).keys).to match_array %w(Application Source Image)
+      expect(assigns(:resources).keys).to match_array %w(Application Source Image Registry)
     end
   end
 end

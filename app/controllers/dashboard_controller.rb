@@ -12,6 +12,9 @@ class DashboardController < ApplicationController
     image_list = LocalImage.all_with_response(params: { limit: limit })
     image_count = image_list.response.header['Total-Count'].to_i
 
+    registry_list = Registry.all_with_response(params: { limit: limit })
+    registry_count = registry_list.response.header['Total-Count'].to_i
+
     @resources =
       {
         'Application' =>
@@ -34,6 +37,13 @@ class DashboardController < ApplicationController
             count: image_count,
             manage_path: images_path,
             more_count: more_count(image_count, limit)
+          },
+        'Registry' =>
+          {
+            list: registry_list,
+            count: registry_count,
+            manage_path: registries_path,
+            more_count: more_count(registry_count, limit)
           }
       }
   end
