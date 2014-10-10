@@ -1,12 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-0.2.4 - 2014-10-09
+0.2.4 - 2014-10-10
 ------------------
 
+### Fixed
+- Catch malformed, expired or badly scoped Github token (#362, #382, #383)
+
 ### Added
-- GitHub token update (#375)
-- Docker Inspect dialog added to service details
+- Add capability to update GitHub token (#375)
+- Docker Inspect dialog added to service details (#380)
 
 
 0.2.3 - 2014-10-02
