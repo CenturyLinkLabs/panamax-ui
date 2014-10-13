@@ -25,20 +25,37 @@ describe TemplateReposController do
 
     let(:fake_template_repo) { [TemplateRepo.new] }
 
-    before do
-      TemplateRepo.stub(:create).and_return(fake_template_repo)
+    context 'when create is successful' do
+      before do
+        TemplateRepo.stub(:create).and_return(fake_template_repo)
+      end
+
+      it 'assigns the template repo' do
+        post :create, template_repo: { name: 'user/repo' }
+        expect(assigns(:template_repo)).to eq fake_template_repo
+      end
+
+      it 'creates a template repo with a sanitized name' do
+        expect(TemplateRepo).to receive(:create).with(name: 'user/repo')
+        post :create, template_repo: { name: 'user/repo' }
+      end
+
+      it 'creates a template repo with a sanitized name' do
+        expect(TemplateRepo).to receive(:create).with(name: 'user/repo')
+        post :create, template_repo: { name: 'http://github.com/user/repo' }
+      end
     end
 
-    it 'assigns the template repo' do
-      post :create, template_repo: { name: 'user/repo' }
-      expect(assigns(:template_repo)).to eq fake_template_repo
-    end
+    context 'when create is not successful' do
+      before do
+        TemplateRepo.stub(:create).and_raise(StandardError.new)
+      end
 
-    it 'creates a template repo with a sanitized name' do
-      expect(TemplateRepo).to receive(:create).with(name: 'user/repo')
-      post :create, template_repo: { name: 'user/repo' }
+      it 'handles an exception' do
+        post :create, template_repo: { name: '' }
+        expect(response.body).to redirect_to(template_repos_url)
+      end
     end
-
   end
 
   describe 'POST #reload' do
