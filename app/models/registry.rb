@@ -1,7 +1,9 @@
 class Registry < BaseResource
 
   schema do
-    string :id
+    integer :id
+    string :name
+    string :endpoint_url
   end
 
 end

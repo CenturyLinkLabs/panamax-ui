@@ -10,5 +10,12 @@ describe 'managing registries' do
       expect(page).to have_content 'my_top_secret_registry'
       expect(page).to have_content 'localhost:5000'
     end
+
+    it 'displays a form to add a new registry' do
+      visit '/registries'
+
+      expect(page).to have_selector 'form.new_registry'
+    end
+
   end
 end

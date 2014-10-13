@@ -77,6 +77,8 @@
 
     $('.template-repos').templateRepoActions();
 
+    $('.registries').registriesActions();
+
     $('.exposed-ports').appendableExposePorts();
 
     $('.service-links').appendableServiceLinks();

@@ -123,19 +123,6 @@ section.template-repos {
     }
   }
 
-  .button-add {
-    background-color: $orange;
-    color: white;
-    &:after {
-      @include icon-white;
-    }
-
-    &:hover {
-      @include box-shadow(0, 0, 5px, rgba( $orange, 0.6 ));
-      background-color: darken( $orange, 5% );
-    }
-  }
-
   form.new_template_repo {
     position: relative;
     display: none;

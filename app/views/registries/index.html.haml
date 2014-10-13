@@ -4,11 +4,14 @@
                                                link_to("Dashboard", dashboard_index_path),
                                                "Registries"]
 
-%section.registries-list
-  %ul
-    - @registries.each do |registry|
-      %li
-        =link_to registry.name, '#', class: 'name'
-        %span.endpoint
-          %strong Endpoint:
-          = registry.endpoint_url
+%section.registries
+  - if @registries
+    %ul
+      = render @registries
+
+  = form_for @registry do |f|
+    = f.text_field :name, placeholder: 'Give your registry a name'
+    = f.text_field :endpoint_url, placeholder: 'Registry endpoint'
+    = f.submit 'Add Registry', class: 'button-positive'
+
+  %a.button-add Add a New Registry

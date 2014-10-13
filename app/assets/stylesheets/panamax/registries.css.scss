@@ -1,6 +1,6 @@
 @import 'ctl_base_ui/colors';
 
-.registries-list {
+.registries {
   ul li {
     font-size: 14px;
     padding-bottom: 20px;
@@ -21,6 +21,14 @@
       strong {
         font-style: normal;
       }
+    }
+  }
+  form {
+    display: none;
+    margin-bottom: 30px;
+    #registry_name,
+    #registry_endpoint_url {
+      width: 350px;
     }
   }
 }
