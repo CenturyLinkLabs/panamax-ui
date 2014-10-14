@@ -7,24 +7,28 @@
                                               @service.name]
 
 %section.service-details
-
-  .inspect
-    = link_to 'Docker Inspect', '#'
-
-  %span.service-status{ class: @service.status,
-      data: { source: app_service_path(@app.id, @service.id, format: :json) } }
-    %span.panamax-state= @service.status.to_s.humanize
-    .tooltip
-      %ul
-        %li
-          Sub State:
-          %span.sub-state= @service.sub_state
-        %li
-          Active State:
-          %span.active-state= @service.active_state
-        %li
-          Load State:
-          %span.load-state= @service.load_state
+  .state
+    .inspect
+      = link_to 'Docker Inspect', '#'
+    %span.service-status{ class: @service.status,
+        data: { source: app_service_path(@app.id, @service.id, format: :json) } }
+      %span.panamax-state= @service.status.to_s.humanize
+      .tooltip
+        %ul
+          %li
+            Sub State:
+            %span.sub-state= @service.sub_state
+          %li
+            Active State:
+            %span.active-state= @service.active_state
+          %li
+            Load State:
+            %span.load-state= @service.load_state
+    %span.metric-details
+      %a{ href: metrics_url_for(@service.name), target: '_blank' }
+        Details
+    %span.metrics{ data: { 'service-name' => @service.name } }
+      = render 'shared/metrics'
 
   .base-image-detail
     .image-details

@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+LATEST
+------------------
+
+### Added
+- Updated cAdvisor meter for host and services
+
+
+
 0.2.4 - 2014-10-09
 ------------------
 

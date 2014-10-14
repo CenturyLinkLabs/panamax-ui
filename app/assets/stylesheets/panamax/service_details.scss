@@ -6,6 +6,25 @@
 .service-details {
   padding-bottom: 20px;
 
+  .metrics {
+    float: right;
+    padding-left: 0;
+    padding-right: 15px;
+  }
+
+  .state {
+    width: 370px;
+    float: right;
+
+    .metric-details {
+      float: right;
+      font-size: 13px;
+      margin-right: 15px;
+      padding: 4px 15px 0 0;
+      border-right: 1px solid $grey;
+    }
+  }
+
   a.button-add {
     margin: 10px 0;
     padding-left: 40px;
@@ -153,7 +172,7 @@
 .base-image-detail {
   position: relative;
   margin-bottom: 20px;
-  width: 80%;
+  width: 70%;
 
   * {
     display: inline-block;

@@ -37,7 +37,9 @@
 
     $('.service-edit-form').progressiveForm();
 
-    $('aside.host').hostHealth();
+    $('aside.metrics').hostHealth();
+
+    $('.service-details .state span.metrics').serviceHealth();
 
     $('.service-help-icon').contextHelp();
 

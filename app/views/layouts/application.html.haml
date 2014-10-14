@@ -7,8 +7,6 @@
     = javascript_include_tag 'application'
     = csrf_meta_tags
     = favicon_link_tag asset_path('favicons/favicon-160x160.png')
-    %script#host_health_template{type: 'text/x-handlebars-template'}
-      = render '/shared/host_health'
     %script#ajax_error_template{type: 'text/x-handlebars-template'}
       = render '/shared/notice'
 
@@ -32,9 +30,11 @@
             = link_to 'Manage', dashboard_index_path, title: 'Manage'
           %li.documentation-link
             = link_to 'Documentation', 'http://panamax.io/documentation', target: '_blank', title: 'Documentation'
-    %aside.host
-      %span CoreOS Host:
-      .health
+    %aside.metrics
+      %span
+        %a{ href: metrics_url, target: '_blank' }
+          CoreOS Host Performance:
+      = render 'shared/metrics'
     %cite.built-by
       %h2 Century Link
     %main
