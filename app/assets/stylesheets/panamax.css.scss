@@ -102,13 +102,9 @@ cite.built-by {
   }
 }
 
-aside.host {
+.metrics {
   float: left;
   margin-left: 30px;
-
-  &:hover {
-    cursor: pointer;
-  }
 
   span {
     float: left;
@@ -117,58 +113,48 @@ aside.host {
     margin-right: 8px;
     color: $dark_grey;
     font-weight: 400;
+    margin-top: 8px;
   }
 
   .health {
     margin-top: 5px;
     position: relative;
     float: left;
-    width: 12px;
+    width: auto;
     height: 12px;
-    border-radius: 4px;
-    background: darken($ctl_light_green, 10%);
 
-    section.details {
-      padding: 10px;
-      width: 220px;
-      top: 24px;
-      left: -30px;
+    section {
+      font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
+      font-size: 11px;
+      margin-bottom: 2px;
+      clear: both;
 
-      &:before {
-        left: 30px;
+      .label {
+        float: left;
+        padding: 0 5px 3px 0;
       }
-    }
 
-    &.danger {
-      background-color: $dark_red;
-    }
+      .bar {
+        float: left;
+        height: 8px;
+        width: 0;
+        transition: background-color 0.6s;
+        -o-transition: background-color 0.6s;
+        -moz-transition: background-color 0.6s;
+        -webkit-transition: background-color 0.6s;
 
-    &.warning {
-      background: #F5D04C;
-    }
+        &.danger {
+          background-color: $dark_red;
+        }
 
-    &.good {
-      background: darken($ctl_light_green, 10%);
-    }
+        &.warning {
+          background: #F5D04C;
+        }
 
-    li {
-      clear:both;
-      height: 25px;
-      line-height: 25px;
-
-      span {
-        line-height: inherit;
-        margin: -1px 0 0 4px;
-        padding-right: 2px;
-        font-weight: bold;
+        &.good {
+          background: darken($ctl_light_green, 10%);
+        }
       }
-    }
-
-    footer {
-      margin-top: 15px;
-      font-style: italic;
-      font-size: 0.9em;
-      background-color: $yellow;
     }
   }
 }

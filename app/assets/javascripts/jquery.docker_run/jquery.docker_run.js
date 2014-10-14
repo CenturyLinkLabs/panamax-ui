@@ -141,7 +141,7 @@
         var $containerPath = $(element).find(base.options.volumeContainerPathSelector);
         if ($containerPath.length == 1) {
           volumes.push({
-            hostPath: base.extractText($hostPath),
+            hostPath: ($hostPath.length == 1) ? base.extractText($hostPath) : '',
             containerPath: base.extractText($containerPath)
           });
         }
