@@ -32,7 +32,8 @@ ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
 RSpec.configure do |config|
   config.before(:each) do
-    stub_request(:any, /localhost/).to_rack(FakePanamaxApi)
+    hostname = URI.parse(PanamaxApi::URL).hostname
+    stub_request(:any, /#{hostname}/).to_rack(FakePanamaxApi)
   end
   # ## Mock Framework
   #
