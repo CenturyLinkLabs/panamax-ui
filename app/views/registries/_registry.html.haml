@@ -1,5 +1,12 @@
 %li
-  =link_to registry.name, '#', class: 'name'
+  %span.name
+    = registry.name
   %span.endpoint
     %strong Endpoint:
     = registry.endpoint_url
+
+  .actions
+    = link_to 'Delete Registry',
+              registry_path(registry.id),
+              class: 'delete-action',
+              title: 'delete'

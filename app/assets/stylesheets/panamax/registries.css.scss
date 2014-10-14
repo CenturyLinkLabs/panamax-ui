@@ -1,13 +1,16 @@
 @import 'ctl_base_ui/colors';
+@import 'ctl_base_ui/mixins';
+@import 'ctl_base_ui/icons';
 
 .registries {
   ul li {
     font-size: 14px;
-    padding-bottom: 20px;
-    margin-bottom: 20px;
+    height: 20px;
+    padding-bottom: 25px;
+    margin-bottom: 25px;
     border-bottom: $light_grey 1px solid;
 
-    a.name {
+    span.name {
       width: 380px;
       float: left;
       font-weight: bold;
@@ -17,9 +20,38 @@
 
     .endpoint {
       font-style: italic;
+      display: inline-block;
+      margin-top: 2px;
 
       strong {
         font-style: normal;
+      }
+    }
+    .actions {
+      position: relative;
+      width: 165px;
+      float: right;
+
+      .delete-action {
+        @include hide-text;
+        @extend .icon-x-large;
+        @include icon-grey;
+        padding: 0;
+        float: right;
+
+        &:after {
+          display: none;
+        }
+
+        &:hover {
+          @include icon-red;
+        }
+      }
+      .confirm-delete {
+        font-size: 14px;
+        span {
+          margin-top: 3px;
+        }
       }
     }
   }

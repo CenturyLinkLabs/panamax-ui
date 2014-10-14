@@ -45,4 +45,7 @@ en:
 
     ## Resources
     List any other resources that you may want to share.
-
+  registries:
+    destroy:
+      error: 'Your registry could not be deleted'
+      success: 'Your registry was deleted successfully'

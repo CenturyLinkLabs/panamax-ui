@@ -61,4 +61,35 @@ describe RegistriesController do
       end
     end
   end
+
+  describe 'DELETE #destroy' do
+
+    let(:fake_registry) { double(:fake_registry, destroy: true) }
+
+    context 'when destroy is successful' do
+
+      before do
+        Registry.stub(:find).with('7').and_return(fake_registry)
+      end
+
+      it 'destroys the registry' do
+        expect(fake_registry).to receive(:destroy)
+        delete :destroy, id: '7'
+        expect(flash[:success]).to eq I18n.t('registries.destroy.success')
+      end
+    end
+
+    context 'when destroy is not successful' do
+
+      before do
+        Registry.stub(:find).with('7').and_raise(StandardError.new)
+      end
+
+      it 'rescues an exception' do
+        delete :destroy, id: '7'
+        expect(response.body).to redirect_to(registries_url)
+        expect(flash[:error]).to eq I18n.t('registries.destroy.error')
+      end
+    end
+  end
 end
