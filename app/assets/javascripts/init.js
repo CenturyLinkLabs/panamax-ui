@@ -114,5 +114,7 @@
     $('[data-accordian-expand]').accordian();
 
     $('[data-toggle-target]').toggleTargetClass();
+
+    $('form.edit-registry').registryEditForm();
   };
 })(jQuery);

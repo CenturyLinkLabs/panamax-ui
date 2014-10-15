@@ -9,7 +9,7 @@
     %ul
       = render @registries
 
-  = form_for @registry do |f|
+  = form_for @registry, html: { class: 'create-registry' } do |f|
     = f.text_field :name, placeholder: 'Give your registry a name'
     = f.text_field :endpoint_url, placeholder: 'Registry endpoint'
     = f.submit 'Add Registry', class: 'button-positive'

@@ -5,7 +5,7 @@
     base.$el = $(el);
 
     base.defaultOptions = {
-      $registriesForm: $('form.new_registry'),
+      $registriesForm: $('form.create-registry'),
       registriesFormButtonSelector: '.button-add',
       deleteRegistrySelector: '.actions a.delete-action',
       removeSelector: 'li'

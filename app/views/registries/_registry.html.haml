@@ -4,6 +4,11 @@
   %span.endpoint
     %strong Endpoint:
     = registry.endpoint_url
+  = form_for registry, html: { class: 'edit-registry' }  do |f|
+    - enabled_dom_id = "#{dom_id(registry)}_enabled"
+    .styled-check.enabled
+      = f.check_box :enabled, id: enabled_dom_id
+      = f.label :enabled, content_tag(:em, 'Enabled'), for: enabled_dom_id
 
   .actions
     = link_to 'Delete Registry',

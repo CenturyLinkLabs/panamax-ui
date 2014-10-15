@@ -1,5 +1,6 @@
 class RegistriesController < ApplicationController
-  respond_to :json, only: :destroy
+  respond_to :html
+  respond_to :json, only: [:update, :destroy]
 
   def index
     @registries = Registry.all
@@ -24,5 +25,11 @@ class RegistriesController < ApplicationController
   rescue => ex
     flash[:error] = I18n.t('registries.destroy.error')
     handle_exception(ex, redirect: registries_path)
+  end
+
+  def update
+    @registry = Registry.find(params[:id])
+    @registry.update_attributes(params[:registry])
+    respond_with(@registry)
   end
 end

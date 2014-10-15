@@ -765,5 +765,13 @@ pre.prettyprint {
       -ms-transform: rotate(-45deg);
       transform: rotate(-45deg);
     }
+
+    em {
+      left: 30px;
+      top: 3px;
+      position: absolute;
+      font-style: normal;
+    }
+
   }
 }

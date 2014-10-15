@@ -3,10 +3,16 @@ require 'spec_helper'
 describe RegistriesController do
 
   describe 'GET #index' do
-    let(:registry) { [Registry.new] }
+
+    let(:fake_registries) do
+      [
+        double(:fake_registry),
+        double(:fake_registry)
+      ]
+    end
 
     before do
-      Registry.stub(:all).and_return(registry)
+      Registry.stub(:all).and_return(fake_registries)
     end
 
     it 'renders the index view' do
@@ -14,9 +20,9 @@ describe RegistriesController do
       expect(response).to render_template :index
     end
 
-    it 'retrieves all registries' do
+    it 'assigns registries' do
       get :index
-      expect(assigns(:registries)).to eq registry
+      expect(assigns(:registries)).to eq fake_registries
     end
   end
 
@@ -89,6 +95,46 @@ describe RegistriesController do
         delete :destroy, id: '7'
         expect(response.body).to redirect_to(registries_url)
         expect(flash[:error]).to eq I18n.t('registries.destroy.error')
+      end
+    end
+  end
+
+  describe 'PUT #update' do
+
+    let(:registry_params) { { 'name' => 'updated name' } }
+    let(:fake_registry) { double(:fake_registry, update_attributes: true) }
+
+    before do
+      Registry.stub(:find).with('3').and_return(fake_registry)
+    end
+
+    it 'updates the given record' do
+      expect(fake_registry).to receive(:update_attributes).with(registry_params)
+      put :update, id: 3, registry: registry_params
+    end
+
+    context 'when update is successfull' do
+      it 'responds with a successful status code' do
+        put :update, id: 3, registry: registry_params, format: :json
+        expect(response.status).to eq 204
+      end
+    end
+
+    context 'when the regsitry cannot be found' do
+      before do
+        Registry.stub(:find).and_raise(ActiveResource::ResourceNotFound.new(double('err', code: '404')))
+      end
+
+      it 'responds with a 302 status code' do
+        put :update, id: 13, registry: registry_params, format: :json
+        expect(response.status).to eq 302
+      end
+    end
+
+    context 'as json' do
+      it 'responds with the representation of the registry' do
+        put :update, id: 3, registry: registry_params, format: :json
+        expect(response.body).to eq ''
       end
     end
   end

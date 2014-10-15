@@ -2,60 +2,76 @@
 @import 'ctl_base_ui/mixins';
 @import 'ctl_base_ui/icons';
 
+#registries_flow {
+  h1.breadcrumbs {
+    margin-bottom: 0;
+  }
+}
+
 .registries {
-  ul li {
-    font-size: 14px;
-    height: 20px;
-    padding-bottom: 25px;
+  ul {
     margin-bottom: 25px;
-    border-bottom: $light_grey 1px solid;
 
-    span.name {
-      width: 380px;
-      float: left;
-      font-weight: bold;
-      font-size: 20px;
-      text-decoration: none;
-    }
+    li {
+      font-size: 14px;
+      padding: 25px 0;
+      border-bottom: $light_grey 1px solid;
+      overflow: auto;
 
-    .endpoint {
-      font-style: italic;
-      display: inline-block;
-      margin-top: 2px;
-
-      strong {
-        font-style: normal;
+      .name,
+      .endpoint,
+      .edit-registry {
+        float: left;
       }
-    }
-    .actions {
-      position: relative;
-      width: 165px;
-      float: right;
 
-      .delete-action {
-        @include hide-text;
-        @extend .icon-x-large;
-        @include icon-grey;
-        padding: 0;
+      span.name {
+        width: 380px;
+        font-weight: bold;
+        font-size: 20px;
+        text-decoration: none;
+      }
+
+      .endpoint {
+        font-style: italic;
+        margin-top: 2px;
+        width: 390px;
+
+        strong {
+          font-style: normal;
+        }
+      }
+
+      .actions {
+        position: relative;
+        width: 165px;
         float: right;
 
-        &:after {
-          display: none;
-        }
+        .delete-action {
+          @include hide-text;
+          @extend .icon-x-large;
+          @include icon-grey;
+          padding: 0;
+          float: right;
 
-        &:hover {
-          @include icon-red;
+          &:after {
+            display: none;
+          }
+
+          &:hover {
+            @include icon-red;
+          }
         }
-      }
-      .confirm-delete {
-        font-size: 14px;
-        span {
-          margin-top: 3px;
+        .confirm-delete {
+          font-size: 14px;
+          span {
+            margin-top: 3px;
+          }
         }
       }
     }
   }
-  form {
+
+  form.create-registry {
     display: none;
     margin-bottom: 30px;
     #registry_name,

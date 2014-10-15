@@ -4,6 +4,7 @@ class Registry < BaseResource
     integer :id
     string :name
     string :endpoint_url
+    boolean :enabled
   end
 
 end

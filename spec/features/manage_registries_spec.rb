@@ -14,7 +14,7 @@ describe 'managing registries' do
     it 'displays a form to add a new registry' do
       visit '/registries'
 
-      expect(page).to have_selector 'form.new_registry'
+      expect(page).to have_selector 'form.create-registry'
     end
 
   end
