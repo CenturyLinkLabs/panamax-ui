@@ -4,10 +4,10 @@ module ApplicationHelper
   end
 
   def metrics_url
-    HostHealth.site
+    "http://#{request.host}:3002/"
   end
 
   def metrics_url_for(name)
-    "#{HostHealth.site}containers/docker/#{name}"
+    "http://#{request.host}:3002/containers/docker/#{name}"
   end
 end

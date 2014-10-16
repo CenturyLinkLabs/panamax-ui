@@ -2,19 +2,19 @@ require 'spec_helper'
 
 describe ApplicationHelper do
   before do
-    HostHealth.stub(:site).and_return('/health/')
+    helper.request.host = 'localhost'
   end
 
   describe '#metrics_url' do
 
-    it 'returns HostHealth.site value' do
-      expect(metrics_url).to eq '/health/'
+    it 'returns host health value' do
+      expect(helper.metrics_url).to eq 'http://localhost:3002/'
     end
   end
 
   describe '#metrics_url_for' do
-    it 'returns HostHealth.site with service path appended' do
-      expect(metrics_url_for('ME')).to eq '/health/containers/docker/ME'
+    it 'returns  service path appended' do
+      expect(helper.metrics_url_for('ME')).to eq 'http://localhost:3002/containers/docker/ME'
     end
   end
 end
