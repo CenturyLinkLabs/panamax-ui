@@ -22,13 +22,19 @@ describe('$.fn.filterableList', function() {
         title:"some/name",
         id:"dlacewell/asdf"
       }
+    ],
+    dummyErrors = [
+      {
+        registry_id: 1,
+        summary: 'There was an error'
+      }
     ];
 
     return {
       fetch: function() {},
       templates: function(callback) { callback.call(this, dummyTemplates) },
       localImages: function(callback) { callback.call(this, dummyLocalImages) },
-      remoteImages: function(callback) { callback.call(this, dummyRemoteImages) }
+      remoteImages: function(callback) { callback.call(this, dummyRemoteImages, dummyErrors) }
     }
   };
 
@@ -39,6 +45,7 @@ describe('$.fn.filterableList', function() {
     spyOn($.PMX, 'SearchResults').andReturn(fakeSearchResults);
     spyOn(PMX.Tracker, 'trackEvent');
     $('.filterable-list').filterableList();
+    spyOn($.PMX.Helpers, 'displayError');
   });
 
   describe('submitting the form', function() {
@@ -106,6 +113,12 @@ describe('$.fn.filterableList', function() {
 
       var request = mostRecentAjaxRequest();
       expect(fakeSearchResults.fetch).toHaveBeenCalledWith('mys');
+    });
+
+    it('places the errors on the page', function() {
+      $('input.query-field').val('apache').keyup();
+
+      expect($.PMX.Helpers.displayError).toHaveBeenCalledWith('There was an error');
     });
 
     it('places the results on the page', function() {

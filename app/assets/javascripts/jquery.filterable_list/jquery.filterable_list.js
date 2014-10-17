@@ -77,8 +77,13 @@
       base.searchResults.remoteImages(base.loadRemoteImageResults);
     };
 
-    base.loadRemoteImageResults = function(images) {
+    base.loadRemoteImageResults = function(images, errors) {
       var resultsHtml = '';
+
+      for (var i = 0; i < errors.length; i++) {
+        $.PMX.Helpers.displayError(errors[i].summary);
+      }
+
       $.each(images, function(i, image) {
         resultsHtml += base.options.remoteImageResultTemplate(image);
       });

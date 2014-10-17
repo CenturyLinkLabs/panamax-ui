@@ -78,10 +78,10 @@ describe('$.PMX.SearchResults', function() {
       var request = mostRecentAjaxRequest();
       request.response({
         status: 200,
-        responseText: JSON.stringify({remote_images: 'remote images stuff'})
+        responseText: JSON.stringify({remote_images: 'remote images stuff', errors: []})
       });
 
-      expect(callback).toHaveBeenCalledWith('remote images stuff');
+      expect(callback).toHaveBeenCalledWith('remote images stuff', []);
     });
   });
 });
