@@ -22,6 +22,23 @@ describe('$.fn.registryActions', function () {
     });
   });
 
+  describe('clicking form cancel button', function() {
+    it ('hides the form', function () {
+      var click = new $.Event('click');
+      $('.button-add').trigger(click);
+      $('a.cancel').trigger(click);
+      expect($('form').css('display')).toEqual('none');
+    });
+
+    it ('clears the form values', function () {
+      var click = new $.Event('click');
+      $('.button-add').trigger(click);
+      $('form').closest('input[type="text"]').val('foo');
+      $('a.cancel').trigger(click);
+      expect($('form').find('input[type="text"]').val()).toEqual('');
+    });
+  });
+
   describe('clicking the delete X', function() {
     it('prevents default behavior', function() {
       var click = new $.Event('click');

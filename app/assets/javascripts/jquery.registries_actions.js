@@ -8,7 +8,8 @@
       $registriesForm: $('form.create-registry'),
       registriesFormButtonSelector: '.button-add',
       deleteRegistrySelector: '.actions a.delete-action',
-      removeSelector: 'li'
+      removeSelector: 'li',
+      cancelButtonSelector: 'form a.cancel'
     };
 
     base.init = function() {
@@ -18,12 +19,22 @@
 
     base.bindEvents = function () {
       base.$el.on('click', base.options.registriesFormButtonSelector, base.toggleForm);
+      base.$el.on('click', base.options.cancelButtonSelector, base.handleCancel);
       base.$el.on('click', base.options.deleteRegistrySelector, base.handleDelete);
     };
 
     base.toggleForm = function (e) {
       e.preventDefault();
       base.options.$registriesForm.slideToggle();
+    };
+
+    base.clearForm = function () {
+      base.options.$registriesForm.find('input[type="text"]').val('');
+    };
+
+    base.handleCancel = function (e) {
+      base.clearForm();
+      base.toggleForm(e);
     };
 
     base.confirmDelete = function(e) {

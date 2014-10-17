@@ -17,5 +17,12 @@ describe 'managing registries' do
       expect(page).to have_selector 'form.create-registry'
     end
 
+    it 'does not show the delete button for the Docker Registry' do
+
+      visit '/registries'
+      # Docker Hub can't be deleted or edited
+      expect('ul.registries li:first-child').to_not have_selector '.actions'
+    end
+
   end
 end

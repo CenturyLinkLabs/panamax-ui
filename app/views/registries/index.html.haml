@@ -13,5 +13,6 @@
     = f.text_field :name, placeholder: 'Give your registry a name'
     = f.text_field :endpoint_url, placeholder: 'Registry endpoint'
     = f.submit 'Add Registry', class: 'button-positive'
+    = link_to 'Cancel', '#', class: 'cancel'
 
   %a.button-add Add a New Registry

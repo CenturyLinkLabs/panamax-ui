@@ -25,7 +25,7 @@
       }
 
       span.name {
-        width: 380px;
+        width: 340px;
         font-weight: bold;
         font-size: 20px;
         text-decoration: none;
@@ -34,7 +34,7 @@
       .endpoint {
         font-style: italic;
         margin-top: 2px;
-        width: 390px;
+        width: 355px;
 
         strong {
           font-style: normal;
@@ -76,7 +76,13 @@
     margin-bottom: 30px;
     #registry_name,
     #registry_endpoint_url {
-      width: 350px;
+      width: 330px;
+    }
+    input[type="submit"] {
+      font-family: Helvetica, Arial, sans-serif;
+    }
+    a.cancel {
+      margin-left: 10px;
     }
   }
 }

@@ -9,9 +9,9 @@
     .styled-check.enabled
       = f.check_box :enabled, id: enabled_dom_id
       = f.label :enabled, content_tag(:em, 'Enabled'), for: enabled_dom_id
-
-  .actions
-    = link_to 'Delete Registry',
-              registry_path(registry.id),
-              class: 'delete-action',
-              title: 'delete'
+  - unless registry.name == 'Docker Hub'
+    .actions
+      = link_to 'Delete Registry',
+                registry_path(registry.id),
+                class: 'delete-action',
+                title: 'delete'
