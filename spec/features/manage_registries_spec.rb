@@ -14,7 +14,7 @@ describe 'managing registries' do
     it 'displays a form to add a new registry' do
       visit '/registries'
 
-      expect(page).to have_selector 'form.create-registry'
+      expect(page).to have_selector 'form.create-registry', visible: false
     end
 
     it 'does not show the delete button for the Docker Registry' do
