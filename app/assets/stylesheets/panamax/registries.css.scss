@@ -9,7 +9,7 @@
 }
 
 .registries {
-  ul {
+  > ul {
     margin-bottom: 25px;
 
     li {
@@ -72,10 +72,13 @@
   }
 
   form.create-registry {
-    display: none;
+    .notice-danger {
+      margin: 0 0 10px 0;
+    }
     margin-bottom: 30px;
     #registry_name,
-    #registry_endpoint_url {
+    #registry_endpoint_url,
+    .field_with_errors {
       width: 330px;
     }
     input[type="submit"] {

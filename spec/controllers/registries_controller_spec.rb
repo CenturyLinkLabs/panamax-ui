@@ -61,21 +61,19 @@ describe RegistriesController do
     end
 
     context 'when the registry is invalid' do
-      let(:errors) { double(:errors, messages: { endpoint_url: ['wrong'] }) }
-      let(:invalid_registry) { double(:invalid_registry, errors: errors, valid?: false) }
+      let(:invalid_registry) { double(:invalid_registry, model_name: "Registry", valid?: false) }
 
       before do
         Registry.stub(:create).and_return(invalid_registry)
+        post :create, registry_form_params
       end
 
-      it 'redirects to the registries page' do
-        post :create, registry_form_params
-        expect(response).to redirect_to(registries_path)
+      it "assigns the invalid registry" do
+        expect(assigns(:registry)).to eq(invalid_registry)
       end
 
-      it 'shows a flash message with errors' do
-        post :create, registry_form_params
-        expect(flash[:alert]).to start_with I18n.t('registries.create.invalid')
+      it "renders the index view" do
+        expect(response).to render_template :index
       end
     end
 
