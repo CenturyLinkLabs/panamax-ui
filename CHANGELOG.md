@@ -1,13 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-LATEST
+0.2.5 - 2014-10-20
 ------------------
 
 ### Added
-- Updated cAdvisor meter for host and services
-
-
+- Updated cAdvisor meter for host and services (#392)
+- Private Registries support (#398, #395, #394, #388, #387, #386)
+- Additional type icons (#391)
 
 0.2.4 - 2014-10-10
 ------------------
