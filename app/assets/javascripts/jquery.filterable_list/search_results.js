@@ -33,7 +33,7 @@
 
     base.remoteImages = function(callback) {
       base.remoteImagesXhr.done(function(response, status) {
-        callback.call(this, response.remote_images);
+        callback.call(this, response.remote_images, response.errors);
       });
     };
 
