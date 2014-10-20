@@ -9,10 +9,21 @@ class RegistriesController < ApplicationController
 
   def create
     @registry = Registry.create(params[:registry])
-    flash[:success] = 'Your registry has been added successfully'
+
+    if @registry.valid?
+      flash[:success] = I18n.t('registries.create.success')
+    else
+      error_message = I18n.t('registries.create.invalid')
+      @registry.errors.messages.each do |attr, messages|
+        messages.each do |message|
+          error_message += "#{attr.to_s.humanize}: #{message}<br>"
+        end
+      end
+      flash[:alert] = error_message
+    end
     redirect_to registries_url
   rescue => ex
-    flash[:error] = 'Your registry could not be added'
+    flash[:error] = I18n.t('registries.create.error')
     handle_exception(ex, redirect: registries_url)
   end
 

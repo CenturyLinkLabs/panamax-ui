@@ -27,34 +27,59 @@ describe RegistriesController do
   end
 
   describe 'POST #create' do
-    let(:fake_registry) { [Registry.new(name: 'test', endpoint_url: 'localhost:5000')] }
+    let(:fake_registry) { [Registry.new(name: 'test', endpoint_url: 'http://localhost:5000')] }
     let(:registry_form_params) do
       { 'registry' =>
           { 'name' => 'foo',
-            'endpoint_url' => 'localhost:1234'
+            'endpoint_url' => 'http://localhost:5000'
           }
       }
     end
 
     context 'when create is successful' do
+      let(:valid_registry) { double(:valid_registry, valid?: true) }
 
       before do
-        Registry.any_instance.stub(:save)
+        Registry.any_instance.stub(:save).and_return(valid_registry)
       end
 
       it 'creates the registry' do
         expect(Registry).to receive(:new)
                            .with(
                              'name' => 'foo',
-                             'endpoint_url' => 'localhost:1234'
+                             'endpoint_url' => 'http://localhost:5000'
                            )
                            .and_return(fake_registry)
         expect(fake_registry).to receive(:save)
         post :create, registry_form_params
       end
+
+      it 'shows a flash message for success' do
+        post :create, registry_form_params
+        expect(flash[:success]).to eql I18n.t('registries.create.success')
+      end
     end
 
-    context 'when create is not successful' do
+    context 'when the registry is invalid' do
+      let(:errors) { double(:errors, messages: { endpoint_url: ['wrong'] }) }
+      let(:invalid_registry) { double(:invalid_registry, errors: errors, valid?: false) }
+
+      before do
+        Registry.stub(:create).and_return(invalid_registry)
+      end
+
+      it 'redirects to the registries page' do
+        post :create, registry_form_params
+        expect(response).to redirect_to(registries_path)
+      end
+
+      it 'shows a flash message with errors' do
+        post :create, registry_form_params
+        expect(flash[:alert]).to start_with I18n.t('registries.create.invalid')
+      end
+    end
+
+    context 'when create raises an exception' do
 
       before do
         Registry.any_instance.stub(:save).and_raise(StandardError.new)
@@ -63,7 +88,7 @@ describe RegistriesController do
       it 'rescues an exception' do
         post :create, registry_form_params
         expect(response.body).to redirect_to(registries_url)
-        expect(flash[:error]).to eq 'Your registry could not be added'
+        expect(flash[:error]).to eq I18n.t('registries.create.error')
       end
     end
   end
@@ -113,7 +138,7 @@ describe RegistriesController do
       put :update, id: 3, registry: registry_params
     end
 
-    context 'when update is successfull' do
+    context 'when update is successful' do
       it 'responds with a successful status code' do
         put :update, id: 3, registry: registry_params, format: :json
         expect(response.status).to eq 204
