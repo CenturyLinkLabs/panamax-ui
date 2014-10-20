@@ -3,4 +3,4 @@
     %strong The following errors prevented you from saving.
     %ul
       - errors.each do |field, message|
-        %li= "#{field} #{message}"
+        %li= "#{field.to_s.humanize} #{message}"
