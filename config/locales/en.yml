@@ -47,5 +47,9 @@ en:
     List any other resources that you may want to share.
   registries:
     destroy:
-      error: 'Your registry could not be deleted'
       success: 'Your registry was deleted successfully'
+      error: 'Your registry could not be deleted'
+    create:
+      success: 'Your registry was added successfully'
+      error: 'Your registry could not be added'
+      invalid: 'The registry could not be saved because of the following errors: <br>'
