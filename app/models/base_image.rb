@@ -4,6 +4,7 @@ class BaseImage < BaseResource
   schema do
     integer :id
     integer :registry_id
+    string :registry_name
     string :description
     string :source
     string :star_count
@@ -23,7 +24,7 @@ class BaseImage < BaseResource
     elsif local?
       'Local'
     else
-      'Repository'
+      self.try(:registry_name) || 'Repository'
     end
   end
 
