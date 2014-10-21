@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+0.2.5 - 2014-10-21
+------------------
+### Fixed
+- Ability to actually run an image from a private registry (#404)
+- Service health error bubbling supressed (#403)
+
 0.2.5 - 2014-10-20
 ------------------
 
