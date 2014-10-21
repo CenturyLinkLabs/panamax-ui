@@ -6,7 +6,7 @@
     base.$el = $el;
 
     base.defaultOptions = {
-      excludePaths: ['host_health', 'journal']
+      excludePaths: ['host_health', 'service_health', 'journal']
     };
 
     base.init = function() {
