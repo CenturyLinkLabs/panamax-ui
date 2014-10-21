@@ -118,5 +118,7 @@
     $('[data-toggle-target]').toggleTargetClass();
 
     $('form.edit-registry').registryEditForm();
+
+    $('.tab-container').fingerTabs();
   };
 })(jQuery);

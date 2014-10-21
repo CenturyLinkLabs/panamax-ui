@@ -1,0 +1,134 @@
+@import 'ctl_base_ui/mixins';
+@import 'ctl_base_ui/colors';
+@import 'ctl_base_ui/icons';
+@import 'panamax/buttons';
+
+
+.tab-container {
+  display: flex;
+  border-collapse: separate;
+  border-spacing: 10px 0;
+  width: 100%;
+  min-height: 460px;
+
+  .tab, .tab > * {
+    box-sizing: border-box;
+  }
+
+  .column {
+    flex-grow: 0;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    vertical-align: top;
+
+    .title {
+      height: 55px;
+
+      h3 {
+        @include border-radius(3px);
+        background: $blue_grey;
+        color: $white;
+        font-weight: normal;
+        padding: 13px 15px;
+      }
+    }
+
+    .content {
+      box-sizing: border-box;
+      width: 100%;
+      min-height: 400px;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+  }
+
+  .card {
+    display: none;
+    padding-right: 10px;
+  }
+
+  .tabs {
+    flex-basis: 155px;
+    clear: both;
+    position: relative;
+
+    .tab {
+      width: 155px;
+      margin-bottom: 10px;
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+      border: 1px solid #ccc;
+      border-right: none;
+      background: $light_grey;
+
+      &.hide {
+        border: none;
+        background: none;
+        height: 55px;
+        margin: 0;
+      }
+
+      label {
+        left: 1px;
+        padding: 10px;
+        height: 100%;
+        position: relative;
+        width: 100%;
+        display: inline-block;
+
+        .icon {
+          display: inline-block;
+          width: 20px;
+          height: 30px;
+        }
+
+        .text {
+          display: inline;
+        }
+      }
+
+      [type=radio] {
+        display: none;
+      }
+    }
+
+    &.slim {
+      flex-basis: 30px;
+
+      .tab {
+        width: 30px;
+      }
+
+      .card {
+        left: 30px;
+      }
+      label .text {
+        display: none;
+      }
+    }
+  }
+
+  .cards {
+    flex-basis: 510px;
+  }
+
+  .docker-run {
+    flex-grow: 1;
+    flex-shrink: 1;
+    * {
+      box-sizing: border-box;
+    }
+    .content {
+      background: $light_grey;
+
+      #docker-string {
+        margin: 0;
+        padding: 0;
+
+        .run-segment {
+          white-space: normal;
+        }
+      }
+    }
+  }
+}

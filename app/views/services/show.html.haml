@@ -73,8 +73,66 @@
         .docker-run-command
           %h3 Docker run command
           = f.text_field :command, placeholder: 'enter run command here (optional)'
-    %p#docker-string
+
     = f.submit 'Save all changes', class: 'button-positive', data: {disable_with: 'Saving...'}
+    .service-attributes
+      .tab-container
+        .tabs.column
+          .tab.hide
+            %label{ for: 'hide' }
+            .icon
+          .tab
+            %label{ for: 'links' }
+              .icon
+              .text Service Links
+
+          .tab
+            %label{ for: 'vars' }
+              .icon
+              .text
+                Environment Variables
+          .tab
+            %label{ for: 'ports' }
+              .icon
+              .text
+                Ports
+          .tab
+            %label{ for: 'volumes' }
+              .icon
+              .text
+                Volumes
+          .tab
+            %label{ for: 'run' }
+              .icon
+              .text
+                Docker Run
+        .cards.column
+          = render 'service_links', f: f, services: @app.services, service_id: @service.id
+          .card
+            .title
+              %h3 Environment Variables
+            .content
+              Form Data Two
+          .card
+            .title
+              %h3 Environment Variables
+            .content
+              Form Data Two
+          .card
+            .title
+              %h3 Environment Variables
+            .content
+              Form Data Two
+          .card
+            .title
+              %h3 Environment Variables
+            .content
+              Form Data Two
+        .docker-run.column
+          .title
+            %h3 Docker Run
+          .content
+            %p#docker-string
 
 = render 'shared/journal',
   title: 'CoreOS Journal - Service Activity Log',
