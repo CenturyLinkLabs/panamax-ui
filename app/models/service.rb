@@ -101,11 +101,11 @@ class Service < BaseResource
   end
 
   def base_image_name
-    self.from.split(':')[0]
+    docker_image_name.base_image
   end
 
   def image_tag_name
-    self.from.split(':')[1]
+    docker_image_name.tag
   end
 
   def category_priority
@@ -141,5 +141,11 @@ class Service < BaseResource
   def self.build_from_response(response)
     attributes = JSON.parse(response)
     self.new(attributes)
+  end
+
+  private
+
+  def docker_image_name
+    @docker_image_name ||= DockerImageName.parse(from)
   end
 end

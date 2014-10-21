@@ -62,12 +62,14 @@ describe Image do
   end
 
   describe '#base_image_name' do
+    let(:docker_image_name) { double(:docker_image_name, base_image: 'fooyah') }
+
     before do
-      subject.source = 'ctl/booyah:latest'
+      DockerImageName.stub(:parse).with(subject.source).and_return(docker_image_name)
     end
 
-    it 'returns the base image name' do
-      expect(subject.base_image_name).to eq 'ctl/booyah'
+    it 'delegates to the Docker helper' do
+      expect(subject.base_image_name).to eq 'fooyah'
     end
   end
 

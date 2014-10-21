@@ -43,7 +43,12 @@ describe RemoteImage do
   end
 
   describe '#status_label' do
-    it 'is repository by default' do
+    it 'returns the registry name' do
+      subject.registry_name = 'private reg'
+      expect(subject.status_label).to eql 'private reg'
+    end
+
+    it 'returns default text when the registry name is falsy' do
       expect(subject.status_label).to eql 'Repository'
     end
   end
