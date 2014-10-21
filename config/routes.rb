@@ -48,7 +48,7 @@ Rails.application.routes.draw do
 
   resources :host_health, only: [:index]
 
-  resources :service_health, only: [:show]
+  resources :service_health, only: [:show], :id => /[^\/]+/
 
   get '/404', to: 'errors#not_found'
   get '/422', to: 'errors#unacceptable'
