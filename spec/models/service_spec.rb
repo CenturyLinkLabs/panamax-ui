@@ -380,25 +380,26 @@ describe Service do
   end
 
   describe '#base_image_name' do
-    it 'returns the base image name without any tag information' do
-      subject.from = 'supercool/repository:foobar'
-      expect(subject.base_image_name).to eq 'supercool/repository'
+    let(:docker_image_name) { double(:docker_image_name, base_image: 'fooyah') }
+
+    before do
+      DockerImageName.stub(:parse).with(subject.from).and_return(docker_image_name)
+    end
+
+    it 'delegates to the Docker helper' do
+      expect(subject.base_image_name).to eq 'fooyah'
     end
   end
 
   describe '#image_tag_name' do
-    context 'when there is a tag on the image' do
-      it 'returns the tag of the image' do
-        subject.from = 'supercool/repository:foobar'
-        expect(subject.image_tag_name).to eq 'foobar'
-      end
+    let(:docker_image_name) { double(:docker_image_name, tag: 'latest') }
+
+    before do
+      DockerImageName.stub(:parse).with(subject.from).and_return(docker_image_name)
     end
 
-    context 'when there is NO tag on the image' do
-      it 'returns nil' do
-        subject.from = 'supercool/repository'
-        expect(subject.image_tag_name).to be_nil
-      end
+    it 'delegates to the Docker helper' do
+      expect(subject.image_tag_name).to eq 'latest'
     end
   end
 

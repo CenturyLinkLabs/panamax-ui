@@ -25,11 +25,17 @@ class Image < BaseResource
   end
 
   def base_image_name
-    self.source.split(':')[0]
+    docker_image_name.base_image
   end
 
   def icon
     type.blank? ? icon_source_for('default') : icon_source_for(type)
+  end
+
+  private
+
+  def docker_image_name
+    @docker_image_name ||= DockerImageName.parse(source)
   end
 
 end

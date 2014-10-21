@@ -12,6 +12,7 @@
   .actions
     = form_tag apps_path do
       = hidden_field_tag 'app[image]', presenter.title
+      = hidden_field_tag 'app[registry_id]', presenter.registry_id
       = label 'app[tag]', 'Tag:'
       = select_tag 'app[tag]',
         remote ? options_for_select(['latest']) : presenter.tag_options,

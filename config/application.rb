@@ -24,6 +24,8 @@ module PanamaxUi
 
     config.exceptions_app = self.routes
 
+    config.autoload_paths += %W(#{config.root}/lib)
+
     config.action_view.field_error_proc = Proc.new do |html_tag, instance|
       html_tag
     end
