@@ -49,6 +49,8 @@ shared_examples 'an image' do
         expect(subject.status_label).to eql 'Official'
       end
     end
+
+    # there are more specs in the child classes
   end
 
 end
