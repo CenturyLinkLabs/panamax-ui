@@ -1,0 +1,105 @@
+@import 'ctl_base_ui/mixins';
+@import 'ctl_base_ui/colors';
+@import 'ctl_base_ui/icons';
+@import 'panamax/buttons';
+
+
+.tab-container {
+  .column {
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+
+  .card {
+    display: none;
+    padding-right: 10px;
+
+    &.active {
+      display: block;
+    }
+  }
+
+  .tabs {
+    .tab, .hide {
+      label {
+        .icon {
+          background-image: image-url('service_icons/icons_tabs_services.png');
+        }
+      }
+    }
+  }
+
+  .cards {
+    flex-basis: 510px;
+  }
+
+  .docker-run {
+    flex-grow: 1;
+    flex-shrink: 1;
+    * {
+      box-sizing: border-box;
+    }
+    .content {
+      background: $light_grey;
+
+      #docker-string {
+        margin: 0;
+        padding: 0;
+
+        .run-segment {
+          white-space: normal;
+        }
+      }
+    }
+  }
+}
+
+.tab label[for='links'] {
+  .icon {
+    background-position: 0 -30px;
+
+    &.changed {
+      background-position: -21px -30px;
+    }
+  }
+}
+
+.tab label[for='vars'] {
+  .icon {
+    background-position: 0 -60px;
+
+    &.changed {
+      background-position: -21px -60px;
+    }
+  }
+}
+
+.tab label[for='ports'] {
+  .icon {
+    background-position: 0 -90px;
+
+    &.changed {
+      background-position: -21px -90px;
+    }
+  }
+}
+
+.tab label[for='vols'] {
+  .icon {
+    background-position: 0 -120px;
+
+    &.changed {
+      background-position: -21px -120px;
+    }
+  }
+}
+
+.tab label[for='run'] {
+  .icon {
+    background-position: 0 -180px;
+
+    &.changed {
+      background-position: -21px -180px;
+    }
+  }
+}

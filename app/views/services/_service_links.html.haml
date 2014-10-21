@@ -1,33 +1,36 @@
-%h3
-  Service Links
-  .service-help-icon
-    .context-help
-      %section.tooltip
-        %aside.arrow
-        %span{ class: 'dismiss' }
-        %p To create a functional link between two services, you will need to specify an Alias of the service you are linking to.
-        %p This Alias may be arbitrary or need to be consistent with information referenced in the Dockerfile of the base image or one of its supporting files.
-        %p
-          To learn more about docker links and the role of the Alias in creating the links,
-          %a{href: 'https://docs.docker.com/userguide/dockerlinks/#container-linking'} click here.
-%ul
-  = f.fields_for :links do |link|
-    - checkbox_id = "select_link_#{link.options[:child_index]}"
-    %li
-      %a{data: { checkbox: { selector: "##{checkbox_id}" } }, class: 'remove-link', title: 'remove link'} remove
-      %span.link-name{title: 'Name'}= link.object.service_name
-      = ':'
-      %span.link-alias{title: 'Alias'}= link.object.alias
-      = link.check_box :_deleted, { id: checkbox_id }
-      = link.hidden_field :service_id
-      = link.hidden_field :service_name
-      = link.hidden_field :alias
-%ul.additional-entries
-  %li.editing
-    = add_fields_for(:links, f, { child_index: '_replaceme_' }) do |builder|
-      = builder.select :service_id, linkable_service_options(services, service_id), { include_blank: true }, disabled: true, title: 'Name', class: 'link-name'
-      = ':'
-      = builder.text_field :alias, disabled: true, placeholder: 'enter link alias', title: 'Alias', id: nil, class: 'link-alias'
-      %a.cancel Cancel
+.title
+  %h3
+    Service Links
+    .service-help-icon
+      .context-help
+        %section.tooltip
+          %aside.arrow
+          %span{ class: 'dismiss' }
+          %p To create a functional link between two services, you will need to specify an Alias of the service you are linking to.
+          %p This Alias may be arbitrary or need to be consistent with information referenced in the Dockerfile of the base image or one of its supporting files.
+          %p
+            To learn more about docker links and the role of the Alias in creating the links,
+            %a{href: 'https://docs.docker.com/userguide/dockerlinks/#container-linking'} click here.
+.content
+  .service-links
+    %ul
+      = f.fields_for :links do |link|
+        - checkbox_id = "select_link_#{link.options[:child_index]}"
+        %li
+          %a{data: { checkbox: { selector: "##{checkbox_id}" } }, class: 'remove-link', title: 'remove link'} remove
+          %span.link-name{title: 'Name'}= link.object.service_name
+          = ':'
+          %span.link-alias{title: 'Alias'}= link.object.alias
+          = link.check_box :_deleted, { id: checkbox_id }
+          = link.hidden_field :service_id
+          = link.hidden_field :service_name
+          = link.hidden_field :alias
+    %ul.additional-entries
+      %li.editing
+        = add_fields_for(:links, f, { child_index: '_replaceme_' }) do |builder|
+          = builder.select :service_id, linkable_service_options(services, service_id), { include_blank: true }, disabled: true, title: 'Name', class: 'link-name'
+          = ':'
+          = builder.text_field :alias, disabled: true, placeholder: 'enter link alias', title: 'Alias', id: nil, class: 'link-alias'
+          %a.cancel Cancel
 
-%a.button-add Add a Linked Service
+    %a.button-add Add a Linked Service

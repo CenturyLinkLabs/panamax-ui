@@ -149,6 +149,7 @@
 .service-attributes {
   clear: both;
   padding-top: 10px;
+  margin-bottom: 20px;
 
   &:after {
     content: '';
@@ -214,7 +215,6 @@
 
 .service-detail {
   width: 100%;
-  margin-bottom: 40px;
   font-size: 13px;
 
   > dl {
@@ -395,7 +395,6 @@
   }
 
   div.port-bindings {
-    margin-bottom: 50px;
 
     a + a#copy-endpoint {
       margin-left: 6px;

@@ -45,36 +45,78 @@
   = form_for [@app, @service], html: { class: 'service-edit-form' } do |f|
     = render 'shared/errors', errors: f.object.errors
     .service-attributes
-      .column-left
-        .service-links
-          = render 'service_links', f: f, services: @app.services, service_id: @service.id
-        .port-detail
-          %h3
-            Ports
-            .service-help-icon
-              .context-help
-                %section.tooltip
-                  %aside.arrow
-                  %span{ class: 'dismiss' }
-                  %p Panamax currently supports port binding (-p) and port expose (--expose).
-                  %p To allow Docker to auto assign a host port, leave the 'Host' field blank when adding a port rule.
-                  %p Auto-assigned ports will receive a new port number each time the service is restarted. If you wish to control the port number on the host, please specify a host port when adding the rule.
-                  %p Click the mapped endpoint to display the GUI, if available, on that port.
-                  %p All ports exposed via EXPOSE in the Dockerfile will be noted as exposed by the base image.
+      .tab-container
+        .tabs.column
+          .hide
+            %label{ for: 'hide' }
+              .icon
+              .text Hide Tabs
+          .tab
+            %label{ for: 'links' }
+              .icon
+              .text Service Links
 
-          .port-detail-forms
-            = render 'port_mappings', f: f
-            = render 'exposed_ports', f: f
-      .column-right
-        .environment-variables
-          = render 'environment_variables', f: f
-        .volumes
-          = render 'volumes', f: f, services: @app.services, service_id: @service.id
-        .docker-run-command
-          %h3 Docker run command
-          = f.text_field :command, placeholder: 'enter run command here (optional)'
-    %p#docker-string
+          .tab
+            %label{ for: 'vars' }
+              .icon
+              .text
+                Environment Variables
+          .tab
+            %label{ for: 'ports' }
+              .icon
+              .text
+                Ports
+          .tab
+            %label{ for: 'vols' }
+              .icon
+              .text
+                Volumes
+          .tab
+            %label{ for: 'run' }
+              .icon
+              .text
+                Docker Run Command
+        .cards.column
+          .card.links
+            = render 'service_links', f: f, services: @app.services, service_id: @service.id
+          .card.vars
+            = render 'environment_variables', f: f
+          .card.ports
+            .port-detail
+              .title
+                %h3
+                  Ports
+                  .service-help-icon
+                    .context-help
+                      %section.tooltip
+                        %aside.arrow
+                        %span{ class: 'dismiss' }
+                        %p Panamax currently supports port binding (-p) and port expose (--expose).
+                        %p To allow Docker to auto assign a host port, leave the 'Host' field blank when adding a port rule.
+                        %p Auto-assigned ports will receive a new port number each time the service is restarted. If you wish to control the port number on the host, please specify a host port when adding the rule.
+                        %p Click the mapped endpoint to display the GUI, if available, on that port.
+                        %p All ports exposed via EXPOSE in the Dockerfile will be noted as exposed by the base image.
+
+              .content
+                .port-detail-forms
+                  = render 'port_mappings', f: f
+                  = render 'exposed_ports', f: f
+          .card.vols
+            = render 'volumes', f: f, services: @app.services, service_id: @service.id
+          .card.run
+            .title
+              %h3 Docker Run Command
+            .content
+              .docker-run-command
+                = f.text_field :command, placeholder: 'enter run command here (optional)'
+        .docker-run.column
+          .title
+            %h3 Docker Run
+          .content
+            %p#docker-string
+
     = f.submit 'Save all changes', class: 'button-positive', data: {disable_with: 'Saving...'}
+
 
 = render 'shared/journal',
   title: 'CoreOS Journal - Service Activity Log',

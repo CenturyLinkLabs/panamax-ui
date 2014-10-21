@@ -1,46 +1,48 @@
-%h3
-  Environment Variables
-  .service-help-icon
-    .context-help
-      %section.tooltip
-        %aside.arrow
-        %span{ class: 'dismiss' }
-        %p
-          You can set any number of environment variables for a container.  If a container is the child of a container via linking, docker generates variables which are pre-pended with the alias string.
-          %a{href: 'https://docs.docker.com/reference/run/#env-environment-variables'}Learn More.
-        %p To see if any additional environment variables were set at run time, review the Dockerfile of any base image.
+.environment-variables
+  .title
+    %h3
+      Environment Variables
+      .service-help-icon
+        .context-help
+          %section.tooltip
+            %aside.arrow
+            %span{ class: 'dismiss' }
+            %p
+              You can set any number of environment variables for a container.  If a container is the child of a container via linking, docker generates variables which are pre-pended with the alias string.
+              %a{href: 'https://docs.docker.com/reference/run/#env-environment-variables'}Learn More.
+            %p To see if any additional environment variables were set at run time, review the Dockerfile of any base image.
+  .content
+    = f.fields_for :environment do |env_var|
+      - index = env_var.options[:child_index]
 
-= f.fields_for :environment do |env_var|
-  - index = env_var.options[:child_index]
+      %dl.entries
+        %dt.variable-name
+          = env_var.label(:value, env_var.object.variable, data: { index: "#{index}" })
+          .actions
+            %a{ class: 'edit-action' }
+        %dd.variable-value
+          - if env_var.object.value.blank?
+            = env_var.text_field :value, placeholder: 'enter a value', class: 'empty', data: { index: "#{index}" }
+          - else
+            %span{ data: { index: "#{index}" } }
+              = env_var.object.value
+            .actions
+              %a{ class: 'edit-action' }
+        %dd.actions
+          - checkbox_id = "select_environment_variable_#{index}"
+          = env_var.check_box :_deleted, { id: checkbox_id }
+          = env_var.hidden_field :variable, data: { index: "name_#{index}" }
+          = env_var.hidden_field :value, data: { index: "value_#{index}" }
+          %a{class: 'delete-action', title: 'remove', data: { checkbox: { selector: "##{checkbox_id}" } } } remove
 
-  %dl.entries
-    %dt.variable-name
-      = env_var.label(:value, env_var.object.variable, data: { index: "#{index}" })
-      .actions
-        %a{ class: 'edit-action' }
-    %dd.variable-value
-      - if env_var.object.value.blank?
-        = env_var.text_field :value, placeholder: 'enter a value', class: 'empty', data: { index: "#{index}" }
-      - else
-        %span{ data: { index: "#{index}" } }
-          = env_var.object.value
-        .actions
-          %a{ class: 'edit-action' }
-    %dd.actions
-      - checkbox_id = "select_environment_variable_#{index}"
-      = env_var.check_box :_deleted, { id: checkbox_id }
-      = env_var.hidden_field :variable, data: { index: "name_#{index}" }
-      = env_var.hidden_field :value, data: { index: "value_#{index}" }
-      %a{class: 'delete-action', title: 'remove', data: { checkbox: { selector: "##{checkbox_id}" } } } remove
+    .additional-entries
+      = add_fields_for(:environment, f, { child_index: '_replaceme_' }) do |builder|
+        %dl
+          %dt.editing
+            = builder.text_field :variable, disabled: true, placeholder: 'Label', class: 'variable-name'
+          %dd.editing
+            = builder.text_field :value, disabled: true, placeholder: 'Value', class: 'variable-value'
+          %a.cancel Cancel
 
-.additional-entries
-  = add_fields_for(:environment, f, { child_index: '_replaceme_' }) do |builder|
-    %dl
-      %dt.editing
-        = builder.text_field :variable, disabled: true, placeholder: 'Label', class: 'variable-name'
-      %dd.editing
-        = builder.text_field :value, disabled: true, placeholder: 'Value', class: 'variable-value'
-      %a.cancel Cancel
-
-%a.button-add Add an Environment Variable
+    %a.button-add Add an Environment Variable
 

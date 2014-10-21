@@ -27,7 +27,7 @@ describe 'managing a service' do
           expect(page).to have_content 'DB_PASSWORD pass@word01'
         end
 
-        within '.service-links', text: 'Service Links' do
+        within '.service-links' do
           expect(page).to have_content 'DB_1 : DB'
         end
       end
