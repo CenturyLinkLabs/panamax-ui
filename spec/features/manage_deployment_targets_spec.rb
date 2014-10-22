@@ -10,5 +10,16 @@ describe 'managing deployment targets' do
       expect(page).to have_content 'Endpoint: https://foo.host'
       expect(page).to have_content 'Target Token aHR0cHM6Ly8xMC4wLjEuODozMDAxfGEyNjNkNWEyLTVkNDUtNGUxNy1iNDQ3LTQ2MGM3YzcwODIy'
     end
+
+    it 'can create a deployment target' do
+      visit '/deployment_targets'
+
+      fill_in 'Name', with: 'Socialize Production Environment'
+      fill_in 'Token', with: 'gobbleydeegook'
+
+      click_on 'Create Remote Deployment Target'
+
+      expect(page).to have_content 'Your deployment target was added successfully'
+    end
   end
 end

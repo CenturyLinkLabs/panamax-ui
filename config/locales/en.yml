@@ -45,6 +45,9 @@ en:
 
     ## Resources
     List any other resources that you may want to share.
+  deployment_targets:
+    create:
+      success: 'Your deployment target was added successfully'
   registries:
     destroy:
       success: 'Your registry was deleted successfully'

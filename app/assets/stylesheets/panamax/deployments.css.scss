@@ -4,10 +4,23 @@
 @import 'ctl_base_ui/colors';
 @import 'ctl_base_ui/typography';
 
-#deployments_flow {}
+#deployments_flow {
+  a.button-add {
+    margin-top: 30px;
+    clear: both;
+  }
+}
+
+.expandable {
+  @include transition('height 0.5s, padding 0.5s');
+  height: 0;
+  overflow: hidden;
+}
 
 .deployment-target {
   padding: 0 15px;
+  margin-bottom: 15px;
+
   .name {
     @extend .title;
     display: block;
@@ -43,11 +56,9 @@
   }
 
   .token {
-    @include transition('height 0.5s, padding 0.5s');
-    height: 0;
+    @extend .expandable;
     padding: 0;
     border-top: $light_grey 1px solid;
-    overflow: hidden;
 
     .token-contents {
       width: 605px;
@@ -73,3 +84,31 @@
     }
   }
 }
+
+#create_target {
+  @extend .expandable;
+
+  input[type="text"],
+  textarea {
+    width: 560px;
+  }
+
+  textarea {
+    font-family: $monospace_font_family;
+    height: 480px;
+  }
+
+  dt {
+    margin: 15px 0 5px;
+    color: $medium_grey;
+  }
+
+  button {
+    float: right;
+  }
+
+  &.expanded {
+    height: 660px;
+  }
+}
+

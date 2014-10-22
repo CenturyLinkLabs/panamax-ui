@@ -10,3 +10,15 @@
       %dt Target Token
       %dd.token-contents
         %div{ contenteditable: true }= target.auth_blob
+
+= render 'shared/errors', errors: @deployment_target.errors
+= form_for @deployment_target, html: { id: 'create_target', class: ('expanded' unless @deployment_target.valid?) } do |f|
+  %dl
+    %dt= f.label :name
+    %dd= f.text_field :name
+    %dt= f.label :auth_blob, 'Token'
+    %dd= f.text_area :auth_blob
+
+  = f.button 'Create Remote Deployment Target', class: 'button-add'
+
+%a.button-add{ { data: { toggle: { target: '#create_target', class: 'expanded' } } } } Add a new Remote Deployment Target
