@@ -9,6 +9,10 @@ class FakePanamaxApi < Sinatra::Base
     json_response 200, 'images_representation.json'
   end
 
+  get '/deployment_targets.json' do
+    json_response 200, 'deployment_targets_representation.json'
+  end
+
   get '/registries.json' do
     json_response 200, 'registries_representation.json'
   end

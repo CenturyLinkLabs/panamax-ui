@@ -1,4 +1,5 @@
 @import 'ctl_base_ui/colors';
+@import 'ctl_base_ui/typography';
 @import 'ctl_base_ui/mixins';
 @import 'ctl_base_ui/icons';
 
@@ -37,12 +38,10 @@ section.template-repos {
         width: 775px;
 
         a {
+          @extend .title;
           display: block;
           width: 100%;
           margin-bottom: 12px;
-          font-size: 1.2em;
-          font-weight: bold;
-          color: $blue_grey;
           text-decoration: none;
           word-wrap: break-word;
 

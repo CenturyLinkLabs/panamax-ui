@@ -1,0 +1,8 @@
+- content_for(:body_id, 'deployments_flow')
+= render '/shared/breadcrumbs', breadcrumbs: ["Manage", "Remote Deployment Targets"]
+- @deployment_targets.each do |target|
+  .deployment-target
+    %a.name= target.name
+    %dl
+      %dt Endpoint:
+      %dd= target.endpoint_url

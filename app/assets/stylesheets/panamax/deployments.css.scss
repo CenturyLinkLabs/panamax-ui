@@ -1,0 +1,26 @@
+@import 'ctl_base_ui/typography';
+
+#deployments_flow {}
+
+.deployment-target {
+  .name {
+    @extend .title;
+    display: block;
+    margin-bottom: 15px;
+  }
+
+  dl {
+    dt, dd {
+      float: left;
+      font-size: 0.9em;
+    }
+    dt {
+      font-weight: bold;
+      margin-right: 7px;
+    }
+    dd {
+      font-style: italic;
+      margin-right: 20px;
+    }
+  }
+}
