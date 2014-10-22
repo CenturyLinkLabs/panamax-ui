@@ -1,15 +1,33 @@
+@import 'ctl_base_ui/icons';
+@import 'ctl_base_ui/variables';
+@import 'ctl_base_ui/mixins';
+@import 'ctl_base_ui/colors';
 @import 'ctl_base_ui/typography';
 
 #deployments_flow {}
 
 .deployment-target {
+  padding: 0 15px;
   .name {
     @extend .title;
     display: block;
     margin-bottom: 15px;
+    position: relative;
+
+    &:after {
+      @extend .icon-thick-arrow-right;
+      content: '';
+      display: block;
+      position: absolute;
+      left: -15px;
+      top: 5px;
+    }
   }
 
   dl {
+    overflow: auto;
+    padding-bottom: 15px;
+
     dt, dd {
       float: left;
       font-size: 0.9em;
@@ -21,6 +39,37 @@
     dd {
       font-style: italic;
       margin-right: 20px;
+    }
+  }
+
+  .token {
+    @include transition('height 0.5s, padding 0.5s');
+    height: 0;
+    padding: 0;
+    border-top: $light_grey 1px solid;
+    overflow: hidden;
+
+    .token-contents {
+      width: 605px;
+      clear: left;
+      margin-top: 8px;
+      font-family: $monospace_font_family;
+      font-style: normal;
+      word-wrap: break-word;
+      padding: 20px;
+      border: $medium_grey 1px solid;
+      background: $light_grey;
+    }
+  }
+
+  &.expanded {
+    .name:after {
+      @extend .icon-thick-arrow-down;
+    }
+
+    .token {
+      height: 500px;
+      padding: 15px 0;
     }
   }
 }
