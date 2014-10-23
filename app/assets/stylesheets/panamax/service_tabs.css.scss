@@ -5,154 +5,26 @@
 
 
 .tab-container {
-  display: flex;
-  border-collapse: separate;
-  border-spacing: 10px 0;
-  width: 100%;
-  min-height: 460px;
-
-  .tab, .tab > * {
-    box-sizing: border-box;
-  }
-
   .column {
     flex-grow: 0;
     flex-shrink: 0;
-    box-sizing: border-box;
-    vertical-align: top;
-    transition: all 0.6s;
-    -webkit-transition: all 0.6s;
-    -o-transition: all 0.6s;
-    -moz-transition: all 0.6s;
-
-    .title {
-      height: 55px;
-
-      h3 {
-        @include border-radius(3px);
-        background: $blue_grey;
-        color: $white;
-        font-weight: normal;
-        padding: 13px 15px;
-        font-size: 16px;
-      }
-    }
-
-    .content {
-      box-sizing: border-box;
-      width: 100%;
-      min-height: 400px;
-      padding: 10px;
-      border: 1px solid #ccc;
-    }
   }
 
   .card {
     display: none;
     padding-right: 10px;
+
+    &.active {
+      display: block;
+    }
   }
 
   .tabs {
-    flex-basis: 185px;
-    clear: both;
-    position: relative;
-
     .tab, .hide {
-      width: 185px;
-      height: 54px;
-      margin-bottom: 10px;
-      border-top-left-radius: 3px;
-      border-bottom-left-radius: 3px;
-      border: 1px solid #ccc;
-      border-right: none;
-      position: relative;
-      background: $light_grey;
-      transition: all 0.6s;
-      -webkit-transition: all 0.6s;
-      -o-transition: all 0.6s;
-      -moz-transition: all 0.6s;
-
-      &:hover {
-        background: $white;
-      }
-
-      &.active {
-        background: $white;
-
-        .text {
-          color: $dark_grey;
-          font-weight: bold;
-        }
-
-        label {
-          border-right: 1px solid $white;
-        }
-
-      }
-
       label {
-        left: 1px;
-        padding: 10px;
-        height: 52px;
-        position: absolute;
-        width: 100%;
-        display: inline-block;
-
         .icon {
-          float:left;
-          width: 20px;
-          height: 20px;
-          margin-top: 5px;
           background-image: image-url('service_icons/icons_tabs_services.png');
-          background-repeat: no-repeat;
         }
-
-        .text {
-          float: left;
-          font-size: 12px;
-          margin: 10px 0 0 10px;
-          color: $blue_grey;
-          transition: opacity 0s;
-          -webkit-transition: opacity 0s;
-          -o-transition: opacity 0s;
-          -moz-transition: opacity 0s;
-          transition-delay: 0.5s;
-          -webkit-transition-delay: 0.5s;
-          -o-transition-delay: 0.5s;
-          -moz-transition-delay: 0.5s;
-          opacity: 1.0;
-        }
-      }
-    }
-
-    .hide:hover {
-      background: none;
-    }
-
-    .hide {
-      border: none;
-      background: none;
-      height: 55px;
-      margin: 0;
-
-      .icon {
-        background-position: 0 0;
-      }
-    }
-
-    &.slim {
-      flex-basis: 40px;
-
-      .tab {
-        width: 40px;
-      }
-
-      label .text {
-        opacity: 0;
-        transition-delay: 0s;
-        -webkit-transition-delay: 0s;
-        -o-transition-delay: 0s;
-        -moz-transition-delay: 0s;
       }
     }
   }
@@ -185,29 +57,49 @@
 .tab label[for='links'] {
   .icon {
     background-position: 0 -30px;
+
+    &.changed {
+      background-position: -21px -30px;
+    }
   }
 }
 
 .tab label[for='vars'] {
   .icon {
     background-position: 0 -60px;
+
+    &.changed {
+      background-position: -21px -60px;
+    }
   }
 }
 
 .tab label[for='ports'] {
   .icon {
     background-position: 0 -90px;
+
+    &.changed {
+      background-position: -21px -90px;
+    }
   }
 }
 
 .tab label[for='vols'] {
   .icon {
     background-position: 0 -120px;
+
+    &.changed {
+      background-position: -21px -120px;
+    }
   }
 }
 
 .tab label[for='run'] {
   .icon {
     background-position: 0 -180px;
+
+    &.changed {
+      background-position: -21px -180px;
+    }
   }
 }
