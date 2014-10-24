@@ -829,10 +829,7 @@ pre.prettyprint {
       border-right: none;
       position: relative;
       background: $light_grey;
-      transition: all 0.6s;
-      -webkit-transition: all 0.6s;
-      -o-transition: all 0.6s;
-      -moz-transition: all 0.6s;
+      @include transition('all 0.6s');
 
       &:hover {
         background: $white;
@@ -873,10 +870,7 @@ pre.prettyprint {
           font-size: 12px;
           margin: 10px 0 0 10px;
           color: $blue_grey;
-          transition: opacity 0s;
-          -webkit-transition: opacity 0s;
-          -o-transition: opacity 0s;
-          -moz-transition: opacity 0s;
+          @include transition('opacity 0s');
           transition-delay: 0.5s;
           -webkit-transition-delay: 0.5s;
           -o-transition-delay: 0.5s;
