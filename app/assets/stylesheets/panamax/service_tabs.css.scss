@@ -3,7 +3,6 @@
 @import 'ctl_base_ui/icons';
 @import 'panamax/buttons';
 
-
 .tab-container {
   .column {
     flex-grow: 0;
@@ -101,5 +100,11 @@
     &.changed {
       background-position: -21px -180px;
     }
+  }
+}
+
+.card.links {
+  .content .title {
+    height: 24px;
   }
 }
