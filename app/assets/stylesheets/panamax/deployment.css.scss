@@ -1,0 +1,111 @@
+@import 'ctl_base_ui/colors';
+@import 'ctl_base_ui/mixins';
+@import 'ctl_base_ui/icons';
+
+
+#deployment_flow {
+
+  h2 {
+    font-weight: normal;
+    font-size: 2.2em;
+  }
+
+  h3 {
+    color: $blue_grey;
+    margin: 0;
+  }
+
+  .deployment-metadata {
+
+
+    dl {
+      margin: 0 0 10px 0;
+      padding: 0 0 20px 0;
+      border-bottom: 1px solid $grey;
+
+      dt {
+        color: $dark_grey;
+        display: inline-block;
+
+        &:after {
+          content: ':'
+        }
+      }
+
+      dd {
+        color: lighten($blue_grey, 15%);
+        display: inline-block;
+        margin-right: 15px;
+      }
+    }
+  }
+
+  .deployment-settings {
+    h3 {
+      margin-bottom: 10px;
+    }
+
+    .tab-container {
+      .hide {
+        display: none;
+      }
+
+      .cards {
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: auto;
+      }
+
+      .card {
+        overflow: auto;
+      }
+
+      .tab label[for='options'] {
+        .icon {
+          background-position: 0 -150px;
+
+          &.changed {
+            background-position: -21px -150px;
+          }
+        }
+      }
+
+      .content {
+        padding: 20px;
+      }
+    }
+    .card.options {
+      .entries {
+        padding: 20px;
+
+        .variable-name {
+          color: $blue_grey;
+          font-size: 0.9em;
+          display: inline-block;
+          margin-right: 20px;
+          width: 130px;
+        }
+
+        p {
+          padding: 10px 0;
+        }
+
+        .variable-value {
+          display: inline-block;
+        }
+
+        select {
+          width: 90px;
+        }
+
+        input[type=radio] {
+          display: none;
+        }
+
+        .disabled {
+          color: $grey;
+        }
+      }
+    }
+  }
+}

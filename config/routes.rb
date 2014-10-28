@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :deployment_settings, only: [:show]
+
   resources :images, only: [:index, :destroy] do
     collection do
       delete 'destroy_multiple'

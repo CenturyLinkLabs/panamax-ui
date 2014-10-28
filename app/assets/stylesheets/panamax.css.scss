@@ -706,6 +706,50 @@ pre.prettyprint {
 
 }
 
+.styled-radio {
+  width: 30px;
+  height: 20px;
+  margin: 0 auto;
+  display: inline-block;
+  position: relative;
+
+  input[type=radio] {
+    visibility: hidden;
+
+    &:checked + label:after {
+      opacity: 1.0;
+    }
+  }
+
+  label {
+    cursor: pointer;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 0;
+    left: 5px;
+    border-radius: 10px;
+    border: 2px solid $grey;
+
+    &:hover::after {
+      opacity: 0.33;
+    }
+
+    &:after {
+      opacity: 0;
+      content: '';
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      width: 0;
+      height: 0;
+      border: 5px solid $dark_grey;
+      border-radius: 5px;
+    }
+  }
+
+}
+
 .styled-check {
   width: 20px;
   margin: 0 auto;
@@ -778,10 +822,7 @@ pre.prettyprint {
     flex-shrink: 1;
     box-sizing: border-box;
     vertical-align: top;
-    transition: all 0.6s;
-    -webkit-transition: all 0.6s;
-    -o-transition: all 0.6s;
-    -moz-transition: all 0.6s;
+    @include transition('all 0.6s');
 
     .title {
       height: 55px;

@@ -9,7 +9,7 @@
 
     $(document).errorInterceptor();
 
-    $('select.fancy').chosen({disable_search: true});
+    $('select.fancy').chosen({disable_search: true, width: "100%"});
 
     $('.example-searches').searchQueryPopulator({
       $searchField: $('input.query-field')
