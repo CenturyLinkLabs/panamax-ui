@@ -23,9 +23,10 @@
 
   .name {
     @extend .title;
-    display: block;
+    float: left;
     margin-bottom: 15px;
     position: relative;
+    width: 755px;
 
     &:after {
       @extend .icon-thick-arrow-right;
@@ -37,7 +38,32 @@
     }
   }
 
+  .actions {
+    position: relative;
+    float: right;
+    height: 20px;
+    width: 165px;
+    margin-top: 10px;
+
+    .delete-action {
+      @include hide-text;
+      @extend .icon-x-large;
+      @include icon-grey;
+      padding: 0;
+      float: right;
+
+      &:after {
+        display: none;
+      }
+
+      &:hover {
+        @include icon-red;
+      }
+    }
+  }
+
   dl {
+    clear: left;
     overflow: auto;
     padding-bottom: 15px;
 

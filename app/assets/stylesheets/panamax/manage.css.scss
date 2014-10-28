@@ -32,6 +32,10 @@
   float: left;
   position: relative;
 
+  .confirm-delete span {
+    margin-top: -8px;
+  }
+
   &.add {
     button {
       height: 45px;

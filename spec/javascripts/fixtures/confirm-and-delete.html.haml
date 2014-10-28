@@ -1,0 +1,8 @@
+%li
+  .actions
+    = link_to 'Delete Thing',
+              '/delete/thing/1',
+              class: 'delete-action',
+              title: 'delete',
+              method: 'delete',
+              data: { delete_confirm: 'Delete this thing?', delete_remove_at: 'li' }

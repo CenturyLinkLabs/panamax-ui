@@ -20,7 +20,6 @@ describe DeploymentTargetsController do
   end
 
   describe 'POST #create' do
-    let(:fake_target) { [DeploymentTarget.new(name: 'test', endpoint_url: 'http://localhost:5000', auth_blob: 'xyzbcbc')] }
     let(:deployment_target_params) do
       { 'deployment_target' =>
           { 'name' => 'foo',
@@ -63,6 +62,50 @@ describe DeploymentTargetsController do
 
       it 'renders the index view' do
         expect(response).to render_template :index
+      end
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    let(:fake_target) { double(:fake_target, destroy: true) }
+
+    before do
+      DeploymentTarget.stub(:find).with('13').and_return(fake_target)
+    end
+
+    context 'html format' do
+      before do
+        delete :destroy, id: 13
+      end
+
+      it 'deletes the target with the given id' do
+        expect(fake_target).to have_received(:destroy)
+      end
+
+      it 'responds with a http 302 status code' do
+        expect(response.status).to eq 302
+      end
+
+      it 'redirects to the index page' do
+        expect(response).to redirect_to deployment_targets_path
+      end
+    end
+
+    context 'json request' do
+      before do
+        delete :destroy, id: 13, format: :json
+      end
+
+      it 'deletes the target with the given id' do
+        expect(fake_target).to have_received(:destroy)
+      end
+
+      it 'responds with a http 204 status code' do
+        expect(response.status).to eq 204
+      end
+
+      it 'returns an empty response' do
+        expect(response.body).to be_empty
       end
     end
   end

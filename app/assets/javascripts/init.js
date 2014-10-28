@@ -120,5 +120,7 @@
     $('form.edit-registry').registryEditForm();
 
     $('.tab-container').fingerTabs();
+
+    $('[data-delete-confirm]').confirmAndDelete();
   };
 })(jQuery);

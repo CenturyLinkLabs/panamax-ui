@@ -22,25 +22,4 @@ describe('$.fn.templateRepoActions', function () {
       expect($('form').css('display')).toEqual('none');
     });
   });
-
-  describe('clicking delete link', function() {
-    it('prevents default behavior', function() {
-      var click = new $.Event('click');
-      $('.delete-action').trigger(click);
-      expect(click.isDefaultPrevented).toBeTruthy();
-    });
-
-    it('show the confirm dialog', function() {
-      $('.delete-action').click();
-      expect($('.confirm-delete').length).toEqual(1);
-    });
-
-    it('removes the repo row when delete is confirmed', function() {
-      spyOn(subject, 'confirmDelete');
-      $('.delete-action').click();
-      $('button.yes').click();
-
-      expect(subject.confirmDelete).toHaveBeenCalled();
-    });
-  });
 });

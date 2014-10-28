@@ -14,4 +14,6 @@
       = link_to 'Delete Registry',
                 registry_path(registry.id),
                 class: 'delete-action',
-                title: 'delete'
+                title: 'delete',
+                method: 'delete',
+                data: { delete_confirm: 'Delete this registry?', delete_remove_at: 'li' }

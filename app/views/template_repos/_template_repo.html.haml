@@ -17,4 +17,6 @@
     = link_to 'Delete Source',
               template_repo_path(template_repo.id),
               class: 'delete-action',
-              title: 'delete'
+              title: 'delete',
+              method: 'delete',
+              data: { delete_confirm: 'Delete this template repository?', delete_remove_at: 'li' }

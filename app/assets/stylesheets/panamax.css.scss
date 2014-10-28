@@ -347,6 +347,11 @@ ul[class*='button-menu'] {
   }
 }
 
+
+.ui-dialog-buttonset button {
+  margin-left: 5px;
+}
+
 // Confirm delete dialog
 
 .confirm-delete {
@@ -362,7 +367,7 @@ ul[class*='button-menu'] {
   span {
     padding: 0;
     display: block;
-    margin-top: -8px;
+    margin-top: 3px;
 
     button {
       padding: 3px 15px;
@@ -374,6 +379,7 @@ ul[class*='button-menu'] {
       &.yes {
         color: $white;
         background: $dark_red;
+        margin-left: 2px;
 
         &:hover {
           cursor: pointer;

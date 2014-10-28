@@ -38,25 +38,4 @@ describe('$.fn.registryActions', function () {
       expect($('form').find('input[type="text"]').val()).toEqual('');
     });
   });
-
-  describe('clicking the delete X', function() {
-    it('prevents default behavior', function() {
-      var click = new $.Event('click');
-      $('.delete-action').trigger(click);
-      expect(click.isDefaultPrevented).toBeTruthy();
-    });
-
-    it('shows the confirm dialog', function() {
-      $('a.delete-action').click();
-      expect($('.confirm-delete').length).toEqual(1);
-    });
-
-    it('removes the registry row when delete is confirmed', function() {
-      spyOn(subject, 'confirmDelete');
-      $('a.delete-action').click();
-      $('button.yes').click();
-
-      expect(subject.confirmDelete).toHaveBeenCalled();
-    });
-  });
 });
