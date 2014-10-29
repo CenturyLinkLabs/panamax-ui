@@ -1,0 +1,140 @@
+@import 'ctl_base_ui/icons';
+@import 'ctl_base_ui/variables';
+@import 'ctl_base_ui/mixins';
+@import 'ctl_base_ui/colors';
+@import 'ctl_base_ui/typography';
+
+#deployments_flow {
+  a.button-add {
+    margin-top: 30px;
+    clear: both;
+  }
+}
+
+.expandable {
+  @include transition('height 0.5s, padding 0.5s');
+  height: 0;
+  overflow: hidden;
+}
+
+.deployment-target {
+  padding: 0 15px;
+  margin-bottom: 15px;
+
+  .name {
+    @extend .title;
+    float: left;
+    margin-bottom: 15px;
+    position: relative;
+    width: 755px;
+
+    &:after {
+      @extend .icon-thick-arrow-right;
+      content: '';
+      display: block;
+      position: absolute;
+      left: -15px;
+      top: 5px;
+    }
+  }
+
+  .actions {
+    position: relative;
+    float: right;
+    height: 20px;
+    width: 165px;
+    margin-top: 10px;
+
+    .delete-action {
+      @include hide-text;
+      @extend .icon-x-large;
+      @include icon-grey;
+      padding: 0;
+      float: right;
+
+      &:after {
+        display: none;
+      }
+
+      &:hover {
+        @include icon-red;
+      }
+    }
+  }
+
+  dl {
+    clear: left;
+    overflow: auto;
+    padding-bottom: 15px;
+
+    dt, dd {
+      float: left;
+      font-size: 0.9em;
+    }
+    dt {
+      font-weight: bold;
+      margin-right: 7px;
+    }
+    dd {
+      font-style: italic;
+      margin-right: 20px;
+    }
+  }
+
+  .token {
+    @extend .expandable;
+    padding: 0;
+    border-top: $light_grey 1px solid;
+
+    .token-contents {
+      width: 605px;
+      clear: left;
+      margin-top: 8px;
+      font-family: $monospace_font_family;
+      font-style: normal;
+      word-wrap: break-word;
+      padding: 20px;
+      border: $medium_grey 1px solid;
+      background: $light_grey;
+    }
+  }
+
+  &.expanded {
+    .name:after {
+      @extend .icon-thick-arrow-down;
+    }
+
+    .token {
+      height: 500px;
+      padding: 15px 0;
+    }
+  }
+}
+
+#create_target {
+  @extend .expandable;
+
+  input[type="text"],
+  textarea {
+    width: 560px;
+  }
+
+  textarea {
+    font-family: $monospace_font_family;
+    height: 480px;
+  }
+
+  dt {
+    margin: 15px 0 5px;
+    color: $medium_grey;
+  }
+
+  button {
+    float: right;
+  }
+
+  &.expanded {
+    height: 660px;
+  }
+}
+

@@ -10,8 +10,7 @@
     base.defaultOptions = {
       $templateRepoForm: $('form.new_template_repo'),
       templateRepoFormButtonSelector: '.button-add',
-      deleteRepoSelector: '.actions a.delete-action',
-      removeSelector: 'li'
+      deleteRepoSelector: '.actions a.delete-action'
     };
 
     base.init = function() {
@@ -21,7 +20,6 @@
 
     base.bindEvents = function () {
       base.$el.on('click', base.options.templateRepoFormButtonSelector, base.toggleForm);
-      base.$el.on('click', base.options.deleteRepoSelector, base.handleDelete);
     };
 
     base.toggleForm = function (e) {
@@ -29,26 +27,6 @@
       base.options.$templateRepoForm.slideToggle();
     };
 
-    base.confirmDelete = function(e) {
-      var destroyer = new $.PMX.destroyLink($(e.currentTarget).closest(base.options.removeSelector));
-
-      destroyer.init();
-      destroyer.handleDelete(e);
-    };
-
-    base.handleDelete = function(e) {
-      e.preventDefault();
-
-      var $target = $(e.currentTarget);
-      (new $.PMX.ConfirmDelete($target.closest('.actions'),
-        {
-          message: 'Delete this template repository?',
-          confirm: function() {
-            base.confirmDelete(e);
-          }
-        }
-      )).init();
-    };
   };
 
   $.fn.templateRepoActions = function(options) {

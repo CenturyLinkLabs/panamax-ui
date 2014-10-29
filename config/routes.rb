@@ -27,6 +27,8 @@ Rails.application.routes.draw do
 
   resources :registries, only: [:index, :create, :destroy, :update]
 
+  resources :deployment_targets, only: [:index, :create, :destroy]
+
   resource :user, only: [:update]
 
   resources :apps, only: [:index, :create, :show, :update, :destroy] do

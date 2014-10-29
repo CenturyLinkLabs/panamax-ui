@@ -1,3 +1,4 @@
+@import 'ctl_base_ui/variables';
 @import 'ctl_base_ui/colors';
 @import 'ctl_base_ui/mixins';
 @import 'ctl_base_ui/icons';
@@ -125,7 +126,7 @@ cite.built-by {
     height: 12px;
 
     section {
-      font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
+      font-family: $monospace_font_family;
       font-size: 11px;
       margin-bottom: 2px;
       clear: both;
@@ -139,10 +140,7 @@ cite.built-by {
         float: left;
         height: 8px;
         width: 0;
-        transition: background-color 0.6s;
-        -o-transition: background-color 0.6s;
-        -moz-transition: background-color 0.6s;
-        -webkit-transition: background-color 0.6s;
+        @include transition('background-color 0.6s');
 
         &.danger {
           background-color: $dark_red;
@@ -349,6 +347,11 @@ ul[class*='button-menu'] {
   }
 }
 
+
+.ui-dialog-buttonset button {
+  margin-left: 5px;
+}
+
 // Confirm delete dialog
 
 .confirm-delete {
@@ -364,7 +367,7 @@ ul[class*='button-menu'] {
   span {
     padding: 0;
     display: block;
-    margin-top: -8px;
+    margin-top: 3px;
 
     button {
       padding: 3px 15px;
@@ -376,6 +379,7 @@ ul[class*='button-menu'] {
       &.yes {
         color: $white;
         background: $dark_red;
+        margin-left: 2px;
 
         &:hover {
           cursor: pointer;

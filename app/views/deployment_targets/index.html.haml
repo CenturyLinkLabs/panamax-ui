@@ -1,0 +1,31 @@
+- content_for(:body_id, 'deployments_flow')
+= render '/shared/breadcrumbs', breadcrumbs: ["Manage", "Remote Deployment Targets"]
+- @deployment_targets.each do |target|
+  .deployment-target{ id: dom_id(target) }
+    %a.name{ data: { toggle: { target: "##{dom_id(target)}", class: 'expanded' } } }= target.name
+    .actions
+      = link_to 'Delete Target',
+                deployment_target_path(target),
+                class: 'delete-action',
+                title: 'delete',
+                method: 'delete',
+                data: { delete_confirm: 'Delete this Target?', delete_remove_at: '.deployment-target' }
+    %dl.target-info
+      %dt Endpoint:
+      %dd= target.endpoint_url
+    %dl.token
+      %dt Target Token
+      %dd.token-contents
+        %div{ contenteditable: true }= target.auth_blob
+
+= render 'shared/errors', errors: @deployment_target.errors
+= form_for @deployment_target, html: { id: 'create_target', class: ('expanded' unless @deployment_target.valid?) } do |f|
+  %dl
+    %dt= f.label :name
+    %dd= f.text_field :name
+    %dt= f.label :auth_blob, 'Token'
+    %dd= f.text_area :auth_blob
+
+  = f.button 'Create Remote Deployment Target', class: 'button-add'
+
+%a.button-add{ { data: { toggle: { target: '#create_target', class: 'expanded' } } } } Add a new Remote Deployment Target

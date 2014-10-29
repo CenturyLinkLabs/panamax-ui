@@ -43,7 +43,7 @@
 
   &:hover {
     background-color: lighten( $dark_grey, 20% );
-    transition: background-color 0.25s ease;
+    @include transition('background-color 0.25s ease');
     color: $white;
   }
 
@@ -65,7 +65,7 @@ a.button-minor {
 
   &:hover {
     background-color: darken( $dark_blue, 10% );
-    transition: background-color 0.25s ease;
+    @include transition('background-color 0.25s ease');
     color: $white;
   }
 
