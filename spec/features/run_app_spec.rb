@@ -15,7 +15,7 @@ describe 'searching for templates and images' do
     it 'can run a template' do
       visit '/search?utf8=%E2%9C%93&search_result_set[q]=wordpress'
 
-      click_on 'Run Template'
+      click_on 'Run Locally'
 
       expect(page).to have_css 'h1', text: 'tutum/wordpress'
       expect(page).to have_content 'The application was successfully created.'
