@@ -1,19 +1,41 @@
 describe('$.fn.toggleTargetClass', function() {
   beforeEach(function() {
     fixture.load('toggle-target-class.html');
-    $('[data-toggle-target]').toggleTargetClass();
   });
 
   describe('on click', function() {
-    it('toggles the specified class', function() {
-      var $target = $('.target-container');
-      var $toggler = $('a.toggler');
+    describe('when the target is supplied', function() {
+      beforeEach(function() {
+        $('a.toggler').toggleTargetClass();
+      });
 
-      expect($target.hasClass('collapsed')).toBe(false);
-      $toggler.click();
-      expect($target.hasClass('collapsed')).toBe(true);
-      $toggler.click();
-      expect($target.hasClass('collapsed')).toBe(false);
+      it('toggles the specified class', function() {
+        var $target = $('.target-container');
+        var $toggler = $('a.toggler');
+
+        expect($target.hasClass('collapsed')).toBe(false);
+        $toggler.click();
+        expect($target.hasClass('collapsed')).toBe(true);
+        $toggler.click();
+        expect($target.hasClass('collapsed')).toBe(false);
+      });
     });
+
+    describe('when the target is not supplied', function() {
+      beforeEach(function() {
+        $('a.toggler-no-target').toggleTargetClass();
+      });
+
+      it('toggles the specified class', function() {
+        var $toggler = $('a.toggler-no-target');
+
+        expect($toggler.hasClass('collapsed')).toBe(false);
+        $toggler.click();
+        expect($toggler.hasClass('collapsed')).toBe(true);
+        $toggler.click();
+        expect($toggler.hasClass('collapsed')).toBe(false);
+      });
+    });
+
   });
 });
