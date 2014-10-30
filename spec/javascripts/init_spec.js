@@ -1,4 +1,6 @@
 describe('$.PMX.init', function() {
+  var subject = $.PMX.ogInit;
+
   beforeEach(function() {
     spyOn($.PMX, 'ErrorInterceptor').andCallFake(function($el, options) {
       return {
@@ -25,7 +27,7 @@ describe('$.PMX.init', function() {
           }
         });
 
-        $.PMX.init();
+        subject();
       });
 
       it('calls the appendable plugin with the appropriate base element', function() {
@@ -75,7 +77,7 @@ describe('$.PMX.init', function() {
             }
           }
         });
-        $.PMX.init();
+        subject();
       });
 
       it('calls the appendable plugin with the appropriate base element', function() {
@@ -124,7 +126,7 @@ describe('$.PMX.init', function() {
             }
           }
         });
-        $.PMX.init();
+        subject();
       });
 
       it('calls the appendable plugin with the appropriate base element', function() {
