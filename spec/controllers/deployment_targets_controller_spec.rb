@@ -37,8 +37,8 @@ describe DeploymentTargetsController do
         expect(assigns(:deployment_targets)).to eq deployment_targets
       end
 
-      it 'renders the view' do
-        expect(response).to render_template :select
+      it 'renders the view in the plain layout' do
+        expect(response).to render_template :select, layout: 'plain'
       end
 
       it 'assigns the template' do

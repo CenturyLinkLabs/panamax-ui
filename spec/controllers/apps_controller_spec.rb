@@ -148,7 +148,7 @@ describe AppsController do
     it 'renders the apps documentation with the documentation layout' do
       dummy_app.stub(:documentation_to_html).and_return('<p>some instructions</a>')
       get :documentation, id: 77
-      expect(response).to render_template(layout: 'documentation')
+      expect(response).to render_template('documentation', layout: 'plain')
     end
 
     it 'returns 404 if there is no documentation for the app' do

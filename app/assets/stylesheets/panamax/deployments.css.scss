@@ -282,3 +282,36 @@
   }
 }
 
+.select-remote-target {
+  ul {
+    list-style-type: none;
+
+    li {
+      padding: 20px 10px;
+      border-bottom: 1px solid $grey;
+      overflow: auto;
+
+      dl {
+        float: left;
+        width: 50%;
+
+        dt {
+          color: $blue_grey;
+          font-weight: bold;
+          margin-bottom: 10px;
+          font-size: 1.1em;
+        }
+      }
+
+      &:last-of-type {
+       border-bottom: none;
+      }
+
+      a.button-positive {
+        text-decoration: none;
+        float: right;
+      }
+    }
+  }
+}
+

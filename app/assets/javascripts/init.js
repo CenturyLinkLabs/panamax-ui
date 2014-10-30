@@ -122,5 +122,7 @@
     $('.tab-container').fingerTabs();
 
     $('[data-delete-confirm]').confirmAndDelete();
+
+    $('body').selectDeploymentTarget();
   };
 })(jQuery);

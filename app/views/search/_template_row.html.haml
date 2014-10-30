@@ -13,7 +13,7 @@
     = form_tag apps_path do
       = hidden_field_tag 'app[template_id]', presenter.id
       %button.button-positive{ data: { disable_with: 'Starting App...', tracking: { method: 'click', action: 'Create Application', category: 'Run Template', label: presenter.title }}} Run Template
-      = link_to 'Deploy to Target', "#{select_deployment_targets_path}?template_id=#{presenter.id}"
+      = link_to 'Deploy to Target', "#{select_deployment_targets_path}?template_id=#{presenter.id}", class: 'select-deployment-target'
   .community-data
     .image-count
       %em= presenter.image_count

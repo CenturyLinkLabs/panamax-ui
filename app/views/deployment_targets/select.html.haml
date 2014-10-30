@@ -1,6 +1,10 @@
-- @deployment_targets.each do |target|
-  %li
-    = target.name
-    Endpoint:
-    = target.endpoint_url
-    = link_to 'Deploy to Target', new_deployment_target_deployment_path(target, template_id: @template.id)
+.select-remote-target
+  %ul
+    - @deployment_targets.each do |target|
+      %li
+        %dl
+          %dt=target.name
+          %dd
+            Endpoint:
+            = target.endpoint_url
+        = link_to 'Deploy to Target', new_deployment_target_deployment_path(target, template_id: @template.id), class: 'button-positive'
