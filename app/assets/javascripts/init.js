@@ -115,7 +115,7 @@
 
     $('[data-accordian-expand]').accordian();
 
-    $('[data-toggle-class]').toggleTargetClass();
+    $('body').toggleTargetClass();
 
     $('form.edit-registry').registryEditForm();
 
