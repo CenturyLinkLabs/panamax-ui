@@ -39,6 +39,7 @@
 
 %h5 Template Row
 :ruby
+  def select_deployment_targets_path; '/';end
   fake_template_presenter = OpenStruct.new({
     title: 'Some Template',
     status_label: 'Repository',

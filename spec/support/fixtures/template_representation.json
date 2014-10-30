@@ -1,4 +1,44 @@
 {
   "id": 1,
-  "name": "Rails"
+  "name": "AWS CLI - wetty",
+  "description": "Amazon Web Services - CLI (Version 1.0.0) - using wetty Terminal in Chrome Browser",
+  "keywords": "AWS, AWSCLI, CLI, public",
+  "source": "centurylinklabs/panamax-public-templates",
+  "type": "Ubuntu",
+  "image_count": 1,
+  "created_at": "2014-10-20T23:00:48.524Z",
+  "updated_at": "2014-10-20T23:00:48.534Z",
+  "documentation": "AWS CLI 1.0 - wetty terminal\n=======================\nInstalls a [wetty terminal](https://github.com/krishnasrinivas/wetty) with [Amazon Web Services\n- CLI](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html).\n\nInteract with AWS CLI by browsing to http://panamax.local:8088\n\nDefault username and password are:\n\nUsername:**term**\n\nPassword:**term**\n\n##Template\nConfiguration:\n\nSet your AWS Credentials as Environment Variables in the service details in Panamax to get them injected in or run: \n\n`aws configure`\n\nin your wetty terminal.\n",
+  "images": [
+    {
+    "id": 1,
+    "category": null,
+    "name": "AWS_CLI_wetty",
+    "source": "centurylink/aws-cli-wetty:latest",
+    "description": null,
+    "type": "Default",
+    "expose": [],
+    "ports": [
+      {
+      "host_port": "8088",
+      "container_port": "3000",
+      "proto": "TCP"
+    }
+    ],
+    "links": [],
+    "environment": [
+      {
+      "variable": "AWS_ACCESS_KEY_ID",
+      "value": ""
+    },
+    {
+      "variable": "AWS_SECRET_ACCESS_KEY",
+      "value": ""
+    }
+    ],
+    "volumes": [],
+    "volumes_from": [],
+    "command": null
+  }
+  ]
 }

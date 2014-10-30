@@ -16,8 +16,8 @@ class AppsController < ApplicationController
     @app = retrieve_app
     @app.categories.sort_by! { |cat| cat.position || @app.categories.length } if @app.categories
     @search_result_set = SearchResultSet.new
-    rescue ActiveResource::ResourceNotFound
-      render status: :not_found
+  rescue ActiveResource::ResourceNotFound
+    render status: :not_found
   end
 
   def update
