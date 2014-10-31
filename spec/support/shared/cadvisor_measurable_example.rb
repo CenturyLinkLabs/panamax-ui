@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-shared_examples_for "cadvisor_measurable" do
+shared_examples_for 'cadvisor_measurable' do
   before do
     MachineInfo.stub(:find).and_return(MachineInfo.new({ num_cores: 2, memory_capacity: 1000 }))
   end
