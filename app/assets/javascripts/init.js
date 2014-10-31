@@ -77,10 +77,6 @@
       addCallback: enableNewItem
     });
 
-    $('.template-repos').templateRepoActions();
-
-    $('.registries').registriesActions();
-
     $('.exposed-ports').appendableExposePorts();
 
     $('.service-links').appendableServiceLinks();
@@ -124,5 +120,7 @@
     $('[data-delete-confirm]').confirmAndDelete();
 
     $('body').selectDeploymentTarget();
+
+    $('[data-cancel-form]').cancelForm();
   };
 })(jQuery);

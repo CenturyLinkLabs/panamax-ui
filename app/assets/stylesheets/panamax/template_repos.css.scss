@@ -2,6 +2,7 @@
 @import 'ctl_base_ui/typography';
 @import 'ctl_base_ui/mixins';
 @import 'ctl_base_ui/icons';
+@import 'extensions';
 
 body#template_repo_flow {
   min-width: 960px;
@@ -122,8 +123,8 @@ section.template-repos {
   }
 
   form.new_template_repo {
+    @extend .expandable;
     position: relative;
-    display: none;
     margin-bottom: 15px;
 
     label {
@@ -146,7 +147,7 @@ section.template-repos {
     }
 
     input[type="text"] {
-      width: 685px;
+      width: 635px;
       margin: 0 10px 0 5px;
       padding-left: 140px;
       box-sizing: border-box;
@@ -154,6 +155,20 @@ section.template-repos {
 
     input[type="submit"] {
       font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+  }
+  .button-add-positive {
+    @include transition('opacity 0.6s');
+  }
+
+  &.expanded {
+    form.new_template_repo {
+      max-height: 50px;
+    }
+
+    .button-add-positive {
+      @include transition('opacity 0.6s');
+      opacity: 0;
     }
   }
 }

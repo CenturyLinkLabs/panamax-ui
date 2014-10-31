@@ -26,6 +26,8 @@
     %dt= f.label :auth_blob, 'Token'
     %dd= f.text_area :auth_blob
 
-  = f.button 'Create Remote Deployment Target', class: 'button-add'
+  = f.button 'Save Remote Deployment Target', class: 'button-add-positive'
+  %a.button-cancel{ { data: { toggle: { target: '#create_target', class: 'expanded' }, cancel: { form: true } } } }
+    Cancel
 
 %a.button-add-positive{ { data: { toggle: { target: '#create_target', class: 'expanded' } } } } Add a new Remote Deployment Target

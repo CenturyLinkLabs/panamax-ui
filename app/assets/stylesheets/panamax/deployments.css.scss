@@ -17,9 +17,14 @@
     margin: 0;
   }
 
-  a.button-add {
+  a.button-add-positive {
     margin-top: 30px;
     clear: both;
+    @include transition('opacity 1.2s');
+  }
+
+  a.button-cancel {
+    margin: 5px 0 0 10px;
   }
 
   .deployment-metadata {
@@ -268,11 +273,17 @@
   }
 
   button {
-    float: right;
+    margin-top: 5px;
+    float: left;
   }
 
   &.expanded {
     max-height: 660px;
+
+    &+ a.button-add-positive {
+      @include transition('opacity 1.2s');
+      opacity: 0;
+    }
   }
 }
 

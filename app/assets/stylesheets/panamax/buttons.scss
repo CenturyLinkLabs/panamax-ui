@@ -96,3 +96,8 @@ a.button-minor {
     outline: none;
   }
 }
+
+.button-cancel {
+  @extend .button-secondary;
+  @include border-box;
+}
