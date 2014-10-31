@@ -16,7 +16,7 @@ class Image < BaseResource
   end
 
   def environment_attributes=(attrs)
-    self.environment = attrs.values
+    self.environment = attrs.values.map { |a| a.except('id') }
   end
 
   def docker_index_url

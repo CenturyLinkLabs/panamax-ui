@@ -44,7 +44,7 @@ describe Image do
       var_1 = { 'variable' => 'booh', 'value' => 'yah' }
       var_2 = { 'variable' => 'GIT_REPO', 'value' => 'bla.git' }
       subject.environment_attributes = {
-        '0' => var_1,
+        '0' => var_1.merge({'id' => 'excluded'}),
         '1' => var_2
       }
       expect(subject.environment).to match_array [var_1, var_2]
