@@ -17,7 +17,7 @@ describe 'managing deployment targets' do
       fill_in 'Name', with: 'Socialize Production Environment'
       fill_in 'Token', with: 'gobbleydeegook'
 
-      click_on 'Create Remote Deployment Target'
+      click_on 'Save Remote Deployment Target'
 
       expect(page).to have_content 'Your deployment target was added successfully'
     end

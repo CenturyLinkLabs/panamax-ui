@@ -1,6 +1,7 @@
 @import 'ctl_base_ui/colors';
 @import 'ctl_base_ui/mixins';
 @import 'ctl_base_ui/icons';
+@import 'extensions';
 
 #registries_flow {
   h1.breadcrumbs {
@@ -69,6 +70,8 @@
   }
 
   form.create-registry {
+    @extend .expandable;
+
     .notice-danger {
       margin: 0 0 10px 0;
     }
@@ -83,6 +86,23 @@
     }
     a.cancel {
       margin-left: 10px;
+    }
+  }
+
+  .button-add {
+    @include transition('opacity 0.6s');
+  }
+
+
+
+  &.expanded {
+    form.create-registry {
+      height: 50px;
+    }
+
+    .button-add {
+      @include transition('opacity 0.6s');
+      opacity: 0;
     }
   }
 }

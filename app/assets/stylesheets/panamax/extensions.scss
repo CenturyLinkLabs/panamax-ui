@@ -1,0 +1,7 @@
+@import 'ctl_base_ui/mixins';
+
+.expandable {
+  @include transition('height 0.5s, padding 0.5s');
+  height: 0;
+  overflow: hidden;
+}

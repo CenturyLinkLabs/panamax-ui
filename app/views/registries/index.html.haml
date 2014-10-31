@@ -9,12 +9,13 @@
     %ul
       = render @registries
 
-  = form_for @registry, html: { style: "display: #{none_if(@registry.valid?)};", class: 'create-registry' } do |f|
+  = form_for @registry, html: { class: 'create-registry' } do |f|
     = render 'shared/errors', errors: @registry.errors
 
     = f.text_field :name, placeholder: 'Give your registry a name'
     = f.text_field :endpoint_url, placeholder: 'http://localhost:5000'
-    = f.submit 'Add Registry', class: 'button-positive'
-    = link_to 'Cancel', '#', class: 'cancel'
+    = f.submit 'Save Registry', class: 'button-positive'
+    = link_to 'Cancel', '#', class: 'cancel', data: { toggle_class: 'expanded', toggle_target: 'section.registries', cancel_form: true }
 
-  %a.button-add Add a New Registry
+  %a.button-add{ data: { toggle: { class: 'expanded', target: 'section.registries' } } }
+    Add a New Registry

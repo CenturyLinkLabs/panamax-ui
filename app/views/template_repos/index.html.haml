@@ -12,6 +12,8 @@
   = form_for @template_repo do |f|
     = f.label :name, 'New Source:'
     = f.text_field :name, placeholder: 'username/repository'
-    = f.submit 'Add New Source', class: 'button-positive'
+    = f.submit 'Save Source', class: 'button-positive'
+    = link_to 'Cancel', '#', class: 'cancel', data: { toggle_class: 'expanded', toggle_target: 'section.template-repos', cancel_form: true }
 
-  %a.button-add Add a New Source
+  %a.button-add{ data: { toggle: { class: 'expanded', target: 'section.template-repos' } } }
+    Add a New Source

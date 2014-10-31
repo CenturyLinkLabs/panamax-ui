@@ -3,6 +3,7 @@
 @import 'ctl_base_ui/mixins';
 @import 'ctl_base_ui/colors';
 @import 'ctl_base_ui/typography';
+@import 'extensions';
 
 #deployments_flow {
 
@@ -19,6 +20,11 @@
   a.button-add {
     margin-top: 30px;
     clear: both;
+    @include transition('opacity 1.2s');
+  }
+
+  a.button-cancel {
+    margin: 5px 0 0 10px;
   }
 
   .deployment-metadata {
@@ -155,12 +161,6 @@
   }
 }
 
-.expandable {
-  @include transition('height 0.5s, padding 0.5s');
-  height: 0;
-  overflow: hidden;
-}
-
 .deployment-target {
   padding: 0 15px;
   margin-bottom: 15px;
@@ -274,11 +274,17 @@
   }
 
   button {
-    float: right;
+    margin-top: 5px;
+    float: left;
   }
 
   &.expanded {
     height: 660px;
+
+    &+ a.button-add {
+      @include transition('opacity 1.2s');
+      opacity: 0;
+    }
   }
 }
 
