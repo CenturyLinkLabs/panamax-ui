@@ -5,9 +5,153 @@
 @import 'ctl_base_ui/typography';
 
 #deployments_flow {
+
+  h2.template-name {
+    font-weight: normal;
+    font-size: 2.2em;
+  }
+
+  h3.image-name {
+    color: $blue_grey;
+    margin: 0;
+  }
+
   a.button-add {
     margin-top: 30px;
     clear: both;
+  }
+
+  .deployment-metadata {
+
+
+    dl {
+      margin: 0 0 10px 0;
+      padding: 0 0 20px 0;
+      border-bottom: 1px solid $grey;
+
+      dt {
+        color: $dark_grey;
+        display: inline-block;
+
+        &:after {
+          content: ':'
+        }
+      }
+
+      dd {
+        color: lighten($blue_grey, 15%);
+        display: inline-block;
+        margin-right: 15px;
+      }
+    }
+  }
+
+  .deployment-settings {
+    h3 {
+      margin-bottom: 10px;
+    }
+
+    .button-positive {
+      float: right;
+    }
+
+    .deployment-item {
+      border-bottom: 1px solid $light_grey;
+      margin-bottom: 20px;
+
+      .expand {
+        padding-left: 20px;
+        position: relative;
+        cursor: pointer;
+
+        &:before {
+          @extend .icon-thick-arrow-right;
+          content: '';
+          display: block;
+          position: absolute;
+          left: 0;
+          top: 5px;
+        }
+      }
+
+      .expanded:before {
+        @extend .icon-thick-arrow-down;
+      }
+
+      .expand + .tab-container {
+        @include transition('height 0.5s');
+        height: 0;
+        min-height: 0;
+        overflow: hidden;
+      }
+
+      .expanded + .tab-container {
+        height: 450px;
+      }
+    }
+
+    .tab-container {
+      .hide {
+        display: none;
+      }
+
+      .cards {
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: auto;
+      }
+
+      .card {
+        overflow: auto;
+      }
+
+      .tab label[for='options'] {
+        .icon {
+          background-position: 0 -150px;
+
+          &.changed {
+            background-position: -21px -150px;
+          }
+        }
+      }
+
+      .content {
+        padding: 20px;
+      }
+    }
+    .card.options {
+      .entries {
+        padding: 20px;
+
+        .variable-name {
+          color: $blue_grey;
+          font-size: 0.9em;
+          display: inline-block;
+          margin-right: 20px;
+          width: 130px;
+        }
+
+        p {
+          padding: 10px 0;
+        }
+
+        .variable-value {
+          display: inline-block;
+        }
+
+        select {
+          width: 90px;
+        }
+
+        input[type=radio] {
+          display: none;
+        }
+
+        .disabled {
+          color: $grey;
+        }
+      }
+    }
   }
 }
 
@@ -135,6 +279,39 @@
 
   &.expanded {
     height: 660px;
+  }
+}
+
+.select-remote-target {
+  ul {
+    list-style-type: none;
+
+    li {
+      padding: 20px 10px;
+      border-bottom: 1px solid $grey;
+      overflow: auto;
+
+      dl {
+        float: left;
+        width: 50%;
+
+        dt {
+          color: $blue_grey;
+          font-weight: bold;
+          margin-bottom: 10px;
+          font-size: 1.1em;
+        }
+      }
+
+      &:last-of-type {
+       border-bottom: none;
+      }
+
+      a.button-positive {
+        text-decoration: none;
+        float: right;
+      }
+    }
   }
 }
 

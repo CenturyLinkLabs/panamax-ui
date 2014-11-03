@@ -10,6 +10,10 @@ class FakePanamaxApi < Sinatra::Base
   end
 
   post '/deployment_targets.json' do
+    json_response 201, 'deployment_target_representation.json'
+  end
+
+  get '/deployment_targets/:id.json' do
     json_response 200, 'deployment_target_representation.json'
   end
 
@@ -17,8 +21,16 @@ class FakePanamaxApi < Sinatra::Base
     json_response 200, 'deployment_targets_representation.json'
   end
 
+  post '/deployment_targets/:target_id/deployments.json' do
+    json_response 201, 'deployment_representation.json'
+  end
+
   get '/registries.json' do
     json_response 200, 'registries_representation.json'
+  end
+
+  get '/templates/:id.json' do
+    json_response 200, 'template_representation.json'
   end
 
   post '/templates.json' do
@@ -26,7 +38,7 @@ class FakePanamaxApi < Sinatra::Base
   end
 
   post '/templates/:id/save.json*' do
-    json_response 200, 'template_representation.json'
+    json_response 201, 'template_representation.json'
   end
 
   get '/repositories/:repo/tags' do
@@ -40,7 +52,7 @@ class FakePanamaxApi < Sinatra::Base
   end
 
   post '/apps.json' do
-    json_response 200, 'app_representation.json'
+    json_response 201, 'app_representation.json'
   end
 
   get '/apps/:id.:format' do |id, _format|

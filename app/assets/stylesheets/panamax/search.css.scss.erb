@@ -140,7 +140,14 @@ body#search_flow main:after {
   background-color: $light_grey;
   border: darken( $light_grey, 10% ) 1px solid;
   margin: 1em 0;
-  overflow: auto;
+
+  &:after {
+    content: '';
+    width: 1px;
+    height: 1px;
+    clear: both;
+    display: block;
+  }
 
   .badge {
     float: left;
@@ -209,6 +216,101 @@ body#search_flow main:after {
       width: 132px !important;
       .chosen-results {
         max-height: 55px; /* for now */
+      }
+    }
+
+    .select-target-container {
+      float: right;
+      width: 165px;
+      position: relative;
+    }
+
+    .select-target {
+      @include border-radius(0.3em);
+      @include border-box;
+      width: 165px;
+      position: absolute;
+      margin: 10px 0 0;
+      background: $orange;
+      overflow:hidden;
+      border-radius: 0.3em;
+      padding: 10px 30px 11px;
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+
+      header {
+        color: $white;
+        font-size: 14px;
+
+        &:after {
+          content: '';
+          position: absolute;
+          right: 10px;
+          top: 12px;
+          display: block;
+          @extend .icon-thick-arrow-right;
+          @include icon-white;
+          width: 10px;
+          height: 10px;
+        }
+
+        &.expanded {
+          &:after {
+            @extend .icon-thick-arrow-down;
+            content: '';
+            position: absolute;
+            right: 10px;
+            top: 12px;
+            display: block;
+            @include icon-white;
+            width: 10px;
+            height: 10px;
+          }
+
+          &+ .target-options {
+            padding-top: 20px;
+            height: 50px;
+          }
+        }
+      }
+
+      button.link {
+        outline: none;
+        border: none;
+        background: none;
+        color: $white;
+        font-size: 13px;
+        cursor: pointer;
+        padding: 0;
+        margin: 0;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      a {
+        color: $white;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: normal;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      .target-options {
+        @include transition('height 0.5s, padding 0.5s');
+        height: 0;
+        text-align: left;
+        overflow: hidden;
+
+        li {
+          padding: 5px 0;
+        }
       }
     }
 

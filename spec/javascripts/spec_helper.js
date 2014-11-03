@@ -30,4 +30,7 @@
 
 jQuery.fx.off = true;
 
+jQuery.PMX.ogInit = jQuery.PMX.init;
+jQuery.PMX.init = function() {};
+
 jQuery.fn.errorInterceptor = function() { };

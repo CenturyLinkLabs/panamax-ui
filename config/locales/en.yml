@@ -45,6 +45,10 @@ en:
 
     ## Resources
     List any other resources that you may want to share.
+  deployments:
+    create:
+      success: 'Deployment successfully triggered'
+      error: 'There was an error triggering your deployment'
   deployment_targets:
     create:
       success: 'Your deployment target was added successfully'

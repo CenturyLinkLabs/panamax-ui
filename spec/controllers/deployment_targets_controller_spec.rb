@@ -13,9 +13,48 @@ describe DeploymentTargetsController do
       expect(assigns(:deployment_targets)).to eq deployment_targets
     end
 
-    it 'renders the the view' do
+    it 'renders the view' do
       get :index
       expect(response).to render_template :index
+    end
+  end
+
+  describe 'GET #select' do
+    let(:deployment_targets) { [double(:target1), double(:target2) ] }
+    let(:fake_template) { double(:fake_template) }
+
+    before do
+      DeploymentTarget.stub(:all).and_return(deployment_targets)
+    end
+
+    context 'with a template id passed in ' do
+      before do
+        Template.stub(:find).with('7').and_return(fake_template)
+        get :select, template_id: 7
+      end
+
+      it 'assigns all the deployment targets' do
+        expect(assigns(:deployment_targets)).to eq deployment_targets
+      end
+
+      it 'renders the view in the plain layout' do
+        expect(response).to render_template :select, layout: 'plain'
+      end
+
+      it 'assigns the template' do
+        expect(assigns(:template)).to eq fake_template
+      end
+    end
+
+    context 'when a template cannot be found' do
+      before do
+        Template.stub(:find).and_raise(ActiveResource::ResourceNotFound.new(double('err', code: '404')))
+      end
+
+      it 'is exceptional' do
+        expect(controller).to receive(:handle_exception)
+        get :select
+      end
     end
   end
 

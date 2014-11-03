@@ -1,0 +1,95 @@
+require 'spec_helper'
+
+describe DeploymentsController do
+  describe 'GET #new' do
+    let(:fake_deployment_form) { double(:fake_deployment_form) }
+    let(:fake_deployment_target) { double(:fake_deployment_target) }
+    let(:fake_template) { double(:fake_template) }
+
+    before do
+      Template.stub(:find).and_return(fake_template)
+      DeploymentTarget.stub(:find).and_return(fake_deployment_target)
+      DeploymentForm.stub(:new).with(
+        template: fake_template,
+        deployment_target_id: '7'
+      ).and_return(fake_deployment_form)
+
+      get :new, deployment_target_id: 7, template_id: '8'
+    end
+
+    it 'assigns the deployment_form object' do
+      expect(assigns(:deployment_form)).to eq fake_deployment_form
+    end
+
+    it 'assigns the deployment_target object' do
+      expect(assigns(:deployment_target)).to eq fake_deployment_target
+    end
+
+    it 'assigns the template object' do
+      expect(assigns(:template)).to eq fake_template
+    end
+
+    it 'renders the new view' do
+      expect(response).to render_template :new
+    end
+  end
+
+  describe 'POST #create' do
+    let(:fake_deployment_form) { double(:fake_deployment_form) }
+    let(:create_params) do
+      {
+        deployment_target_id: '7',
+        template_id: '8'
+      }.stringify_keys
+    end
+
+    before do
+      DeploymentForm.stub(:new).with(create_params).and_return(fake_deployment_form)
+    end
+
+    it 'calls save on the deployment form' do
+      expect(fake_deployment_form).to receive(:save)
+      post :create, deployment_form: create_params, deployment_target_id: 7
+    end
+
+    context 'when successful' do
+      before do
+        fake_deployment_form.stub(:save).and_return(true)
+        post :create, deployment_form: create_params, deployment_target_id: 7
+      end
+
+      it 'redirects to the deployments list page' do
+        expect(response).to redirect_to deployment_target_deployments_path(7)
+      end
+
+      it 'renders a success message' do
+        expect(flash[:success]).to eq I18n.t('deployments.create.success')
+      end
+    end
+
+    context 'when the save fails' do
+      before do
+        fake_deployment_form.stub(:save).and_return(false)
+        post :create, deployment_form: create_params, deployment_target_id: 7
+      end
+
+      it 'redirects to the deployments list page' do
+        expect(response).to redirect_to deployment_target_deployments_path(7)
+      end
+
+      it 'renders a success message' do
+        expect(flash[:error]).to eq I18n.t('deployments.create.error')
+      end
+    end
+  end
+
+  describe 'GET #index' do
+    before do
+      get :index, deployment_target_id: 7
+    end
+
+    it 'renders the index view' do
+      expect(response).to render_template :index
+    end
+  end
+end

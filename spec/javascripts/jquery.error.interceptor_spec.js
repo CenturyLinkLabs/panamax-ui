@@ -2,7 +2,6 @@ describe('$.fn.errorInterceptor', function() {
   var subject;
 
   beforeEach(function() {
-    fixture.load('error-interceptor.html');
     subject = new $.PMX.ErrorInterceptor($('.errors'), {excludePaths: ['excludeMe']});
     spyOn($.PMX.Helpers, 'displayError');
     subject.init();

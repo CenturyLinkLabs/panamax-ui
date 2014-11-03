@@ -16,8 +16,8 @@ class AppsController < ApplicationController
     @app = retrieve_app
     @app.categories.sort_by! { |cat| cat.position || @app.categories.length } if @app.categories
     @search_result_set = SearchResultSet.new
-    rescue ActiveResource::ResourceNotFound
-      render status: :not_found
+  rescue ActiveResource::ResourceNotFound
+    render status: :not_found
   end
 
   def update
@@ -42,9 +42,9 @@ class AppsController < ApplicationController
   end
 
   def documentation
-    app = retrieve_app
-    if app && app.documentation_to_html.present?
-      return render html: app.documentation_to_html.html_safe, layout: 'documentation'
+    @app = retrieve_app
+    if @app && @app.documentation_to_html.present?
+      render layout: 'plain'
     else
       head status: :not_found
     end

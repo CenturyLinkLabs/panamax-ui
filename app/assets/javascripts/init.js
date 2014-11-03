@@ -115,12 +115,14 @@
 
     $('[data-accordian-expand]').accordian();
 
-    $('[data-toggle-target]').toggleTargetClass();
+    $('body').toggleTargetClass();
 
     $('form.edit-registry').registryEditForm();
 
     $('.tab-container').fingerTabs();
 
     $('[data-delete-confirm]').confirmAndDelete();
+
+    $('body').selectDeploymentTarget();
   };
 })(jQuery);

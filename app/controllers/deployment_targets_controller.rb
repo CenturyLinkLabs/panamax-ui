@@ -7,6 +7,12 @@ class DeploymentTargetsController < ApplicationController
     @deployment_target = DeploymentTarget.new
   end
 
+  def select
+    @template = Template.find(params[:template_id])
+    @deployment_targets = DeploymentTarget.all
+    render layout: 'plain'
+  end
+
   def create
     @deployment_target = DeploymentTarget.create(params[:deployment_target])
     if @deployment_target.valid?
