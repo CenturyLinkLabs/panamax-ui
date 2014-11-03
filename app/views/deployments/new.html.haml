@@ -51,31 +51,15 @@
                     %dd.variable-value
                       = env_var.text_field :value, placeholder: 'enter a value'
 
-          .card.options
-            .content
-              .title
-                %h3 Options
-                %dl.entries
-                  %p
-                    %dt.variable-name
-                      Deploy Count
-                    %dd.variable-value
-                      = select :count, :count, options_for_select([["1", "1"], ["2", "2"], ["3", "3"]]), {}, class: 'fancy'
-                  %p
-                    %dt.variable-name.disabled
-                      Cohost?
-                    %dd.variable-value.disabled
-                      .styled-radio
-                        = radio_button_tag :todo, true, nil, { :disabled => true }
-                        %label{ :for => 'todo_true' }
-                      Yes
-                      .styled-radio
-                        = radio_button_tag :todo, false, nil, { :disabled => true }
-                        %label{ :for => 'todo_false' }
-                      No
-                  %p
-                    %dt.variable-name.disabled
-                      Restart Policy
-                    %dd.variable-value
-                      = select :count, :count, options_for_select([["Always", "Always"], ["Never", "Never"], ["Once", "Once"]]), {}, class: 'fancy', disabled: true
+          = image_fields.fields_for :deployment do |deploy_fields|
+            .card.options
+              .content
+                .title
+                  %h3 Options
+                  %dl.entries
+                    %p
+                      %dt.variable-name
+                        = deploy_fields.label :count, 'Deploy Count'
+                      %dd.variable-value
+                        = deploy_fields.select :count, options_for_select(deployment_count_options), {}, class: 'fancy'
   = f.button 'Deploy to Target', class: 'button-positive'

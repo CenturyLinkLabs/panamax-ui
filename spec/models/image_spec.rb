@@ -51,6 +51,21 @@ describe Image do
     end
   end
 
+  describe '#deployment_attributes=' do
+    let(:some_attrs_hash) { { 'some' => 'attrs' } }
+
+    it 'sets the deployment attrs to what was passed in' do
+      subject.deployment_attributes= some_attrs_hash
+      expect(subject.attributes['deployment']).to eq some_attrs_hash
+    end
+  end
+
+  describe '#deployment' do
+    it 'returns a representation of default deployment settings' do
+      expect(subject.deployment.count).to eq 1
+    end
+  end
+
   describe '#docker_index_url' do
     before do
       subject.source = 'ctl/booyah:latest'

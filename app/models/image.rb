@@ -19,6 +19,16 @@ class Image < BaseResource
     self.environment = attrs.values.map { |a| a.except('id') }
   end
 
+  def deployment_attributes=(attrs)
+    self.deployment = attrs
+  end
+
+  def deployment
+    BaseResource.new({
+      count: 1
+    })
+  end
+
   def docker_index_url
     path_part = "u/#{self.base_image_name}"
     "#{DOCKER_INDEX_BASE_URL}#{path_part}"
