@@ -6,7 +6,8 @@ CtlBaseUi.configure do |config|
     'search',
     'service_details',
     'service_journal',
-    'blog_feed'
+    'blog_feed',
+    'finger_tabs'
   ]
 
   config.view_helpers = [
