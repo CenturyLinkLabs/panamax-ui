@@ -146,24 +146,3 @@
     }
   }
 }
-
-// Dashboard resource styles
-#template_repo_flow,
-#images_flow,
-#registries_flow,
-#manage_flow,
-#deployments_flow {
-  .button-add {
-    background-color: $orange;
-    color: white;
-    &:after {
-      @include icon-white;
-      top: 15px;
-    }
-
-    &:hover {
-      @include box-shadow(0, 0, 5px, rgba( $orange, 0.6 ));
-      background-color: darken( $orange, 5% );
-    }
-  }
-}

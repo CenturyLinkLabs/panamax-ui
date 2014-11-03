@@ -303,15 +303,15 @@
         }
       }
 
-      &:last-of-type {
-       border-bottom: none;
-      }
-
       a.button-positive {
         text-decoration: none;
         float: right;
       }
     }
+  }
+
+  .button-add-positive {
+    margin-top: 10px;
   }
 }
 
