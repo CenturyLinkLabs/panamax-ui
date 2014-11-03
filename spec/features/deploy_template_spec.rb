@@ -13,7 +13,7 @@ describe 'deploying a template from the search results' do
       expect(page).to have_content 'Endpoint: https://foo.host'
 
       within 'li', text: 'Socialize staging environment' do
-        click_on 'Deploy to Target'
+        click_on 'Select this Target'
       end
 
       #configure deployment

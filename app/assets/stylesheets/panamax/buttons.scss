@@ -28,6 +28,29 @@
   }
 }
 
+.button-add-positive {
+  @extend .button-positive;
+  @include border-box;
+  position: relative;
+  padding-left: 40px;
+  padding-right: 20px;
+  text-decoration: none;
+
+  &:after {
+    position: absolute;
+    left: 15px;
+    top: 13px;
+    content: '';
+    @extend .icon-plus;
+    @include icon-white;
+  }
+
+  &:hover {
+    padding-left: 40px;
+    padding-right: 20px;
+  }
+}
+
 .button-minor {
   @include border-radius(0.3em);
   min-width: 80px;
