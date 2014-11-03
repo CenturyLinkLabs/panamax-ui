@@ -60,3 +60,19 @@ en:
       success: 'Your registry was added successfully'
       error: 'Your registry could not be added'
       invalid: 'The registry could not be saved because of the following errors: <br>'
+  dashboard:
+    application:
+      message: 'Manage your Applications'
+      title: 'Application'
+    source:
+      message: 'Manage your Sources'
+      title: 'Source'
+    image:
+      message: 'Manage your Images'
+      title: 'Image'
+    registry:
+      message: 'Manage your Registries'
+      title: 'Registry'
+    target:
+      message: 'Manage your Targets'
+      title: 'Remote Deployment Target'
