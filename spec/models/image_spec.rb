@@ -44,10 +44,25 @@ describe Image do
       var_1 = { 'variable' => 'booh', 'value' => 'yah' }
       var_2 = { 'variable' => 'GIT_REPO', 'value' => 'bla.git' }
       subject.environment_attributes = {
-        '0' => var_1,
+        '0' => var_1.merge({'id' => 'excluded'}),
         '1' => var_2
       }
       expect(subject.environment).to match_array [var_1, var_2]
+    end
+  end
+
+  describe '#deployment_attributes=' do
+    let(:some_attrs_hash) { { 'some' => 'attrs' } }
+
+    it 'sets the deployment attrs to what was passed in' do
+      subject.deployment_attributes= some_attrs_hash
+      expect(subject.attributes['deployment']).to eq some_attrs_hash
+    end
+  end
+
+  describe '#deployment' do
+    it 'returns a representation of default deployment settings' do
+      expect(subject.deployment.count).to eq 1
     end
   end
 

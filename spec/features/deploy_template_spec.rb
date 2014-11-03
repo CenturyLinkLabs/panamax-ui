@@ -19,6 +19,12 @@ describe 'deploying a template from the search results' do
       #configure deployment
       expect(page).to have_content 'https://social.host'
       expect(page).to have_content 'AWS CLI - wetty'
+      expect(page).to have_content 'AWS_CLI_wetty'
+
+      fill_in 'AWS_ACCESS_KEY_ID', with: 'abc123'
+      expect(page).to have_field 'AWS_SECRET_ACCESS_KEY', with: 'zzz'
+
+      select '3', from: 'Deploy Count'
 
       click_on 'Deploy to Target'
 
