@@ -1,0 +1,40 @@
+.tab-container
+  .tabs.column
+    .hide
+      %label{ for: 'hide' }
+        .icon
+        .text Hide Tabs
+    .tab
+      %label{ for: 'links' }
+        .icon
+        .text Service Links
+
+    .tab
+      %label{ for: 'vars' }
+        .icon
+        .text
+          Environment Variables
+    .tab
+      %label{ for: 'ports' }
+        .icon
+        .text
+          Ports
+  .cards.column
+    .card.links{ class: 'active' }
+      .title
+        %h3
+          Links
+      .content
+        Links Content
+    .card.vars
+      .title
+        %h3
+          Environment Vars
+      .content
+        Environment Content
+    .card.ports
+      .title
+        %h3
+          Ports
+      .content
+        Port Content
