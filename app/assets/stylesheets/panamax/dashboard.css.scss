@@ -8,15 +8,15 @@
   section {
     @include border-box;
     float: left;
-    width: 221px;
-    min-height: 200px;
-    margin-right: 25px;
+    width: 300px;
+    min-height: 100px;
+    margin-right: 15px;
 
-    &:nth-of-type(4n) {
+    &:nth-of-type(3n) {
       margin-right: 0;
     }
 
-    &:nth-of-type(4n+5) {
+    &:nth-of-type(3n+4) {
       clear: both;
     }
 
@@ -25,8 +25,17 @@
         background: $blue_grey;
       }
 
-      .title, .count {
+      dt, dd {
         color: $white;
+      }
+
+      dt {
+        text-decoration: underline;
+      }
+
+      .count {
+        color: $blue_grey;
+        background-color: $white;
       }
     }
 
@@ -44,21 +53,39 @@
       height: 80px;
       background-color: $light_grey;
       border-radius: 3px;
-
-      .title {
-        display:inline-block;
-        margin-top: 30px;
-        padding-bottom: 3px;
-        color: $dark_grey;
-        font-weight: normal;
-      }
+      padding: 10px;
 
       .count {
+        background: $grey;
+        border-radius: 30px;
+        width: 60px;
+        height: 60px;
         float: left;
-        color: $dark_grey;
-        margin: 18px;
+        color: $light_grey;
         font-size: 40px;
         font-weight: bold;
+        text-align: center;
+        line-height: 60px;
+      }
+
+      dl {
+        border-left: 1px solid $grey;
+        display: inline-block;
+        padding: 8px 10px;
+        margin: 5px 0 0 10px;
+
+        dt {
+          color: $dark_grey;
+          font-size: 14px;
+        }
+
+        dd {
+          font-style: italic;
+          padding-top: 10px;
+          font-size: 12px;
+          font-weight: normal;
+        }
+
       }
     }
 

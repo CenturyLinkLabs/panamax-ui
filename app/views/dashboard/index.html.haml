@@ -10,16 +10,6 @@
         %header
           %span.count
             = value[:count]
-          %span.title
-            = resource.pluralize(value[:count])
-      %ul
-        - value[:list].each do |item|
-          %li
-            = dashboard_link_for(resource, item)
-        - if value[:more_count] > 0
-          %li.more
-            And #{value[:more_count]} more #{ resource.downcase.pluralize(value[:more_count]) }
-
-  - @resources.each do |resource, value|
-    %section
-      =link_to "Manage #{resource.pluralize}", value[:manage_path], class: 'button'
+          %dl
+            %dt= value[:title].pluralize(value[:count])
+            %dd= value[:message]
