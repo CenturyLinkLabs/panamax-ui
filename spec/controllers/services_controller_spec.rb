@@ -10,6 +10,7 @@ describe ServicesController do
     App.stub(:find).and_return(valid_app)
     Service.stub(:find).and_return(valid_service)
     valid_service.stub(:categories=)
+    valid_service.stub(:hydrate_linked_services!).and_return(Service.new)
     valid_app.stub(:services).and_return(app_services)
   end
 
@@ -33,6 +34,11 @@ describe ServicesController do
     it 'assigns service' do
       get :show, app_id: 77, id: 89
       expect(assigns(:service)).to eq valid_service
+    end
+
+    it 'hydrates the linked services' do
+      expect(valid_service).to receive(:hydrate_linked_services!)
+      get :show, app_id: 77, id: 89
     end
 
     context 'when format is JSON' do

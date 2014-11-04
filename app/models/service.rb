@@ -143,6 +143,12 @@ class Service < BaseResource
     self.new(attributes)
   end
 
+  def hydrate_linked_services!
+    self.links.each do |link|
+      link.linked_to_service = Service.find(link.service_id, params: { app_id: self.app.id })
+    end
+  end
+
   private
 
   def docker_image_name

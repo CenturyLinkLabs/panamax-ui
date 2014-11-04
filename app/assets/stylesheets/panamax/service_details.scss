@@ -524,13 +524,30 @@
 .service-links {
   @extend .service-detail;
 
+  .title {
+    color: darken($blue_grey_dark, 10%);
+  }
+
+  .service-icon {
+    display: inline-block;
+    float: left;
+    background-color: $light_grey;
+    width: 40px;
+    height: 40px;
+    margin: -10px 6px 0 -6px;
+    border-radius: 4px;
+    img {
+      margin: 3px;
+    }
+  }
+
   > ul {
     margin-top: 20px;
   }
 
   > ul > li {
     margin-left: 20px;
-    padding-left: 40px;
+    padding-left: 30px;
     position: relative;
     border: 0;
 
@@ -542,14 +559,19 @@
       }
     }
 
+    span.link-name {
+      display: inline-block;
+      margin-top: 3px;
+    }
+
     &:before {
       z-index: -1;
       position: absolute;
       content: '';
       border: $blue_grey 1px solid;
       border-width: 0 0 1px 1px;
-      height: 45px;
-      width: 20px;
+      height: 47px;
+      width: 30px;
       top: -20px;
       left: 0;
     }

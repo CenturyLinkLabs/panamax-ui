@@ -78,7 +78,7 @@
                 Docker Run Command
         .cards.column
           .card.links
-            = render 'service_links', f: f, services: @app.services, service_id: @service.id
+            = render 'service_links', f: f, services: @app.services, service_id: @service.id, app_id: @app.to_param
           .card.vars
             = render 'environment_variables', f: f
           .card.ports
