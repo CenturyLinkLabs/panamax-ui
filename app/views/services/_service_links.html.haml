@@ -13,13 +13,15 @@
             %a{href: 'https://docs.docker.com/userguide/dockerlinks/#container-linking'} click here.
 .content
   .title
-    Links
+    = @service.name
   .service-links
     %ul
       = f.fields_for :links do |link|
         - checkbox_id = "select_link_#{link.options[:child_index]}"
         %li
           %a{data: { checkbox: { selector: "##{checkbox_id}" } }, class: 'remove-link', title: 'remove link'} remove
+          .service-icon
+            %img{ src: link.object.linked_to_service.icon }
           %span.link-name{title: 'Name'}= link.object.service_name
           = ':'
           %span.link-alias{title: 'Alias'}= link.object.alias

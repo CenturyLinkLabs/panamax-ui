@@ -15,8 +15,8 @@ describe Service do
         { 'variable' => 'WP_PASS', 'value' => 'abc123' }
       ],
       'links' => [
-        { 'service_name' => 'DB' },
-        { 'service_name' => 'Wordpress' }
+        { 'service_name' => 'DB', 'service_id' => 1 },
+        { 'service_name' => 'Wordpress', 'service_id' => 1 }
       ],
       'volumes_from' => [
         { 'service_name' => 'name1', 'service_id' => 1 },
@@ -25,7 +25,10 @@ describe Service do
       'volumes' => [
         { 'container_path' => 'foo', 'host_path' => 'host' },
         { 'container_path' => 'bar', 'host_path' => '' }
-      ]
+      ],
+      'app' => {
+        'id' => 1
+      }
     }
   end
 
@@ -421,6 +424,20 @@ describe Service do
     it 'returns volumes with only container path defined' do
       result = described_class.build_from_response(fake_json_response)
       expect(result.select_data_volumes).to match_array [Volume.new({ 'container_path' => 'bar', 'host_path' => '' })]
+    end
+  end
+
+  describe '#hydrate_linked_services!' do
+    let(:fake_service) { double(:fake_service, id: 3) }
+    before do
+      Service.stub(:find).and_return(fake_service)
+    end
+    it 'returns complete service model as linked_to_service on each link' do
+      result = described_class.build_from_response(fake_json_response)
+      result.hydrate_linked_services!
+      result.links.each do |link|
+        expect(link.linked_to_service).to be fake_service
+      end
     end
   end
 

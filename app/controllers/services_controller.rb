@@ -11,6 +11,7 @@ class ServicesController < ApplicationController
   def show
     @app = App.find(params[:app_id])
     @service = retrieve_service
+    @service.hydrate_linked_services!
     respond_with @app, @service
   end
 
