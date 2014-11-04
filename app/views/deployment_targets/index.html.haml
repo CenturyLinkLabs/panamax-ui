@@ -15,6 +15,13 @@
     %dl.target-info
       %dt Endpoint:
       %dd= target.endpoint_url
+      - if target.metadata?
+        %dt Agent Version:
+        %dd= target.metadata.agent_version
+        %dt Adapter Type:
+        %dd= target.metadata.adapter_type
+        %dt Adapter Version:
+        %dd= target.metadata.adapter_version
     %dl.token
       %dt{ data: { toggle: { class: 'expanded' } } }
         Target Token

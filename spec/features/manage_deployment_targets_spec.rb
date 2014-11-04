@@ -6,9 +6,17 @@ describe 'managing deployment targets' do
       visit '/deployment_targets'
 
       expect(page).to have_content 'Remote Deployment Targets'
-      expect(page).to have_content 'Socialize staging environment'
-      expect(page).to have_content 'Endpoint: https://foo.host'
-      expect(page).to have_content 'Target Token aHR0cHM6Ly8xMC4wLjEuODozMDAxfGEyNjNkNWEyLTVkNDUtNGUxNy1iNDQ3LTQ2MGM3YzcwODIy'
+
+      within('div', text: 'Socialize') do
+        expect(page).to have_content 'Socialize staging environment'
+        expect(page).to have_content 'Endpoint: https://foo.host'
+        expect(page).to have_content 'Target Token aHR0cHM6Ly8xMC4wLjEuODozMDAxfGEyNjNkNWEyLTVkNDUtNGUxNy1iNDQ3LTQ2MGM3YzcwODIy'
+        expect(page).to have_content 'Agent Version: 0.1.0'
+      end
+
+      within('div', text: 'Brand new target') do
+        expect(page).to have_no_content 'Agent Version'
+      end
     end
 
     it 'can create a deployment target' do
