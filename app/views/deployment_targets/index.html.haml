@@ -1,33 +1,6 @@
 - content_for(:body_id, 'deployments_flow')
 = render '/shared/breadcrumbs', breadcrumbs: ["Manage", "Remote Deployment Targets"]
-- @deployment_targets.each do |target|
-  .deployment-target
-    = link_to target.name,
-              deployment_target_deployments_path(target),
-              class: 'name'
-    .actions
-      = link_to 'Delete Target',
-                deployment_target_path(target),
-                class: 'delete-action',
-                title: 'delete',
-                method: 'delete',
-                data: { delete_confirm: 'Delete this Target?', delete_remove_at: '.deployment-target' }
-    %dl.target-info
-      %dt Endpoint:
-      %dd= target.endpoint_url
-      - if target.metadata?
-        %dt Agent Version:
-        %dd= target.metadata.agent_version
-        %dt Adapter Type:
-        %dd= target.metadata.adapter_type
-        %dt Adapter Version:
-        %dd= target.metadata.adapter_version
-    %dl.token
-      %dt{ data: { toggle: { class: 'expanded' } } }
-        Target Token
-      %dd.token-contents
-        .token-container
-          %div{ contenteditable: true }= target.auth_blob
+= render @deployment_targets
 
 = render 'shared/errors', errors: @deployment_target.errors
 = form_for @deployment_target, html: { id: 'create_target', class: ('expanded' unless @deployment_target.valid?) } do |f|

@@ -41,5 +41,15 @@ describe 'managing deployment targets' do
       page.should have_content 'wp-pod'
       page.should have_content 'db-pod'
     end
+
+    it 'can refresh a deployment target' do
+      visit '/deployment_targets'
+
+      within('div', text: 'Brand new target') do
+        click_on "Refresh"
+      end
+
+      expect(current_path).to eq(deployment_targets_path)
+    end
   end
 end
