@@ -2,6 +2,7 @@ CtlBaseUi.configure do |config|
   config.additional_entries = [
     'panamax_buttons',
     'panamax_forms',
+    'panamax_expandable',
     'breadcrumbs',
     'search',
     'service_details',
@@ -16,5 +17,5 @@ CtlBaseUi.configure do |config|
 
   config.partials_path = '/styleguide/'
   config.app_name = 'Panamax'
-  config.additional_stylesheets = ['application']
+  config.additional_stylesheets = ['application', 'styleguide']
 end

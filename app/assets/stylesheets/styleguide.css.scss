@@ -1,0 +1,19 @@
+#panamax_expandable {
+  #expand_trigger {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .expandable-example.expandable {
+    border: #cacaca 1px solid;
+    width: 200px;
+    margin-right: 10px;
+    float: left;
+    line-height: 1.1;
+
+    &.expanded {
+      overflow-y: auto;
+      max-height: 150px;
+    }
+  }
+}

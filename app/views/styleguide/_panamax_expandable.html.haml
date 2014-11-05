@@ -1,0 +1,37 @@
+%h5 Usage
+%p
+  Extend the .expandable class for items that need a sliding toggle transition.
+  This will put the element in a "collapsed" state.
+  Then set a target max-height on the element for "expanded" state.
+  Generally we toggle an "expanded" class to get the desired effect, which is where we place the max-height.
+%p
+  In the case of toggling a container where the height is not known (because the contents of the container are dynamic) apply an overflow: auto or similar to ensure contents are never being chopped.
+  You can see this in practice in the examples below.
+
+%h5 Examples
+%a#expand_trigger expand/collapse
+.expandable.expandable-example.expanded
+  %ul
+    %li item 1
+    %li item 2
+    %li item 3
+    %li item 4
+.expandable.expandable-example.expanded
+  %ul
+    %li item 1
+    %li item 2
+    %li item 3
+    %li item 4
+    %li item 5
+    %li item 6
+    %li item 7
+    %li item 8
+    %li item 9
+    %li item 10
+    %li item 11
+    %li item 12
+
+:javascript
+  $('a#expand_trigger').click(function(e) {
+    $('.expandable-example').toggleClass('expanded');
+  });

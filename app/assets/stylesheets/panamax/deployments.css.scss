@@ -3,6 +3,7 @@
 @import 'ctl_base_ui/mixins';
 @import 'ctl_base_ui/colors';
 @import 'ctl_base_ui/typography';
+@import 'extensions';
 
 #deployments_flow {
 
@@ -79,14 +80,13 @@
       }
 
       .expand + .tab-container {
-        @include transition('height 0.5s');
-        height: 0;
+        @extend .expandable;
         min-height: 0;
-        overflow: hidden;
       }
 
       .expanded + .tab-container {
-        height: 450px;
+        max-height: 450px;
+        overflow-y: auto;
       }
     }
 
@@ -153,12 +153,6 @@
       }
     }
   }
-}
-
-.expandable {
-  @include transition('height 0.5s, padding 0.5s');
-  height: 0;
-  overflow: hidden;
 }
 
 .deployment-target {
@@ -249,7 +243,7 @@
     }
 
     .token {
-      height: 500px;
+      max-height: 500px;
       padding: 15px 0;
     }
   }
@@ -278,7 +272,7 @@
   }
 
   &.expanded {
-    height: 660px;
+    max-height: 660px;
   }
 }
 
