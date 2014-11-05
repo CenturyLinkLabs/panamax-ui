@@ -363,22 +363,8 @@
     };
 
     base.initiateDialog = function() {
-      base.defaultOptions.$modalContents.dialog({
-        autoOpen: false,
-        modal: true,
-        resizable: false,
-        draggable: true,
-        width: 860,
-        position: ["top", 50],
-        title: 'Search Images',
-        close: base.handleClose,
-        buttons: [
-          {
-            text: "Cancel",
-            class: 'button-secondary',
-            click: base.handleClose
-          }
-        ]
+      $.PMX.Helpers.dialog(base, base.defaultOptions.$modalContents, {
+        title: 'Search Images'
       });
     };
   };

@@ -89,12 +89,12 @@ describe('$.fn.categoryActions', function() {
         resizable: false,
         draggable: true,
         width: 860,
-        position: ["top", 50],
+        position: { my: "top", at: "top+50", of: window },
         title: 'Search Images',
         close: jasmine.any(Function),
         buttons: [
           {
-            text: "Cancel",
+            text: "Dismiss",
             class: 'button-secondary',
             click: jasmine.any(Function)
           }

@@ -28,16 +28,9 @@
     };
 
     base.initiateDialog = function () {
-      base.defaultOptions.$modalContents.dialog({
-        autoOpen: false,
-        modal: true,
-        resizable: false,
-        draggable: true,
-        width: 860,
+      $.PMX.Helpers.dialog(base, base.defaultOptions.$modalContents, {
         height: 300,
-        position: ["top", 30],
         title: 'Replace GitHub Token',
-        close: base.handleClose,
         buttons: [
           {
             text: "Save New Token",

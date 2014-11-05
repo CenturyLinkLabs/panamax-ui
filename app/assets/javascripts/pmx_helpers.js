@@ -1,3 +1,5 @@
+//= require jquery.ui.dialog
+
 (function($) {
   $.PMX.Helpers = {
     guid: function() {
@@ -12,6 +14,28 @@
           }));
 
       $(notification).prependTo('main');
+    },
+
+    dialog: function(scope, $content, options) {
+      var defaultOptions = {
+        autoOpen: false,
+        modal: true,
+        resizable: false,
+        draggable: true,
+        width: 860,
+        position: { my: "top", at: "top+50", of: window },
+        title: 'Dialog',
+        close: scope.handleClose,
+        buttons: [
+          {
+            text: "Dismiss",
+            class: 'button-secondary',
+            click: scope.handleClose
+          }
+        ]
+      };
+
+      return $content.dialog($.extend({}, defaultOptions, options));
     }
   };
 

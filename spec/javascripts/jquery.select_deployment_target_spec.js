@@ -33,7 +33,7 @@ describe('$.fn.selectDeploymentTarget', function () {
         resizable: false,
         draggable: true,
         width: 860,
-        position: ["top", 50],
+        position: { my: "top", at: "top+50", of: window },
         title: 'Select Remote Deployment Target',
         close: jasmine.any(Function),
         buttons: [

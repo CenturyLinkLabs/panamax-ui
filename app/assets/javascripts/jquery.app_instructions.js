@@ -8,8 +8,7 @@
     base.$el = $(el);
 
     base.defaultOptions = {
-      $modalContents: $('#post-run-html'),
-      $titlebarCloseButton: $('button.ui-dialog-titlebar-close')
+      $modalContents: $('#post-run-html')
     };
 
 
@@ -30,16 +29,9 @@
     };
 
     base.initiateDialog = function () {
-      base.defaultOptions.$modalContents.dialog({
-        autoOpen: false,
-        modal: true,
-        resizable: false,
-        draggable: true,
-        width: 860,
-        height: 700,
-        position: ["top", 30],
+      $.PMX.Helpers.dialog(base, base.defaultOptions.$modalContents, {
         title: 'Post-Run Instructions',
-        close: base.handleClose,
+        height: 700,
         buttons: [
           {
             text: "Open in New Browser Window",
