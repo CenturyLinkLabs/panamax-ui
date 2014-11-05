@@ -1,0 +1,15 @@
+- content_for(:body_id, 'deployments_flow')
+= render '/shared/breadcrumbs', breadcrumbs: ["Manage",
+                                              link_to("Remote Deployment Targets", deployment_targets_path),
+                                              @deployment_target.name]
+- @deployments.each do |deployment|
+  .deployment{ id: dom_id(deployment) }
+    %a.name{ data: { toggle: { target: "##{dom_id(deployment)}", class: 'expanded' } } }= "Deployment ID: #{deployment.id}"
+    %dl
+      %dt Services:
+      %dd= deployment.service_ids.length
+    .services
+      %ul
+        - deployment.service_ids.each do |service_id|
+          %li
+            %strong= service_id

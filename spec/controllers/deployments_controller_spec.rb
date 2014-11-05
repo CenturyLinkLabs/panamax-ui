@@ -84,12 +84,25 @@ describe DeploymentsController do
   end
 
   describe 'GET #index' do
+    let(:fake_target) { double(:fake_target) }
+    let(:fake_deployments) { double(:fake_deployments) }
+
     before do
+      DeploymentTarget.stub(:find).with('7').and_return(fake_target)
+      Deployment.stub(:all).with(params: { deployment_target_id: '7' }).and_return(fake_deployments)
       get :index, deployment_target_id: 7
     end
 
     it 'renders the index view' do
       expect(response).to render_template :index
+    end
+
+    it 'assigns deployment_target' do
+      expect(assigns(:deployment_target)).to eq fake_target
+    end
+
+    it 'assigns deployments' do
+      expect(assigns(:deployments)).to eq fake_deployments
     end
   end
 end

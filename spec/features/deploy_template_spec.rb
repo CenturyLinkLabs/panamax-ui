@@ -29,6 +29,11 @@ describe 'deploying a template from the search results' do
       click_on 'Deploy to Target'
 
       page.should have_content 'Deployment successfully triggered'
+      page.should have_content 'Socialize production environment'
+      page.should have_content 'Services: 3'
+      page.should have_content 'db-1'
+      page.should have_content 'wp-pod'
+      page.should have_content 'db-pod'
 
     end
   end

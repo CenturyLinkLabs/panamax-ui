@@ -155,14 +155,16 @@
   }
 }
 
-.deployment-target {
-  padding: 0 15px;
+.deployment-target,
+.deployment {
   margin-bottom: 15px;
+  font-size: 0.9em;
 
   .name {
     @extend .title;
     float: left;
     margin-bottom: 15px;
+    margin-left: 15px;
     position: relative;
     width: 755px;
 
@@ -201,13 +203,13 @@
   }
 
   dl {
+    margin-left: 15px;
     clear: left;
     overflow: auto;
     padding-bottom: 15px;
 
     dt, dd {
       float: left;
-      font-size: 0.9em;
     }
     dt {
       font-weight: bold;
@@ -219,6 +221,38 @@
     }
   }
 
+
+  &.expanded {
+    .name:after {
+      @extend .icon-thick-arrow-down;
+    }
+  }
+}
+
+.deployment {
+
+  .services {
+    @extend .expandable;
+    overflow-y: auto;
+
+    border-top: $light_grey 1px solid;
+    padding-left: 15px;
+
+    li {
+      padding: 20px 0;
+      border-bottom: $light_grey 1px solid;
+    }
+  }
+
+  &.expanded {
+    .services {
+      max-height: 280px;
+    }
+  }
+}
+
+
+.deployment-target {
   .token {
     @extend .expandable;
     padding: 0;
@@ -238,10 +272,6 @@
   }
 
   &.expanded {
-    .name:after {
-      @extend .icon-thick-arrow-down;
-    }
-
     .token {
       max-height: 500px;
       padding: 15px 0;
