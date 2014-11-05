@@ -55,22 +55,8 @@
     };
 
     base.initiateDialog = function (contents) {
-      return $('<pre class="prettyprint lang-yaml">' + contents + '</pre>').dialog({
-        autoOpen: false,
-        modal: true,
-        resizable: false,
-        draggable: true,
-        width: 860,
-        position: ["top", 50],
-        title: 'Template File Preview',
-        close: base.handleClose,
-        buttons: [
-          {
-            text: "Dismiss",
-            class: 'button-secondary',
-            click: base.handleClose
-          }
-        ]
+      return $.PMX.Helpers.dialog(base, $('<pre class="prettyprint lang-yaml">' + contents + '</pre>'), {
+        title: 'Template File Preview'
       });
     };
 

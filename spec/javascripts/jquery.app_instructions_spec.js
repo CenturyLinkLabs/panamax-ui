@@ -22,7 +22,7 @@ describe('$.fn.appInstructionsDialog', function() {
         draggable: true,
         width: 860,
         height: 700,
-        position: ["top", 30],
+        position: { my: "top", at: "top+50", of: window },
         title: 'Post-Run Instructions',
         close: jasmine.any(Function),
         buttons: [

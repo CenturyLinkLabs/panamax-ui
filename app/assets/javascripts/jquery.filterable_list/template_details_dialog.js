@@ -27,17 +27,10 @@
     };
 
     base.initiateDialog = function () {
-      base.defaultOptions.$modalContents.dialog({
+      $.PMX.Helpers.dialog(base, base.defaultOptions.$modalContents, {
         dialogClass: 'template-details-dialog',
-        autoOpen: false,
-        modal: true,
-        resizable: false,
-        draggable: true,
-        width: 860,
         height: base.calculateHeight(),
-        position: ["top", 50],
         title: 'Template Details',
-        close: base.handleClose,
         open: base.fetchTemplateDetails,
         buttons: [
           {

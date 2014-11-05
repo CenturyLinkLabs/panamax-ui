@@ -21,7 +21,7 @@ describe('$.fn.replaceToken', function() {
         draggable: true,
         width: 860,
         height: 300,
-        position: ["top", 30],
+        position: { my: "top", at: "top+50", of: window },
         title: 'Replace GitHub Token',
         close: jasmine.any(Function),
         buttons: [

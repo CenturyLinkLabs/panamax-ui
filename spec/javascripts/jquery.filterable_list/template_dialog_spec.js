@@ -28,7 +28,7 @@ describe('$.PMX.TemplateDetailsDialog', function() {
         draggable: true,
         width: 860,
         height: 800,
-        position: ["top", 50],
+        position: { my: "top", at: "top+50", of: window },
         title: 'Template Details',
         close: jasmine.any(Function),
         open: jasmine.any(Function),

@@ -55,16 +55,9 @@
     };
 
     base.initiateDialog = function () {
-      base.options.$modalContents.dialog({
-        autoOpen: false,
-        modal: true,
-        resizable: false,
-        draggable: true,
-        width: 860,
+      $.PMX.Helpers.dialog(base, base.defaultOptions.$modalContents, {
         height: 500,
-        position: ["top", 30],
         title: 'Docker Inspect',
-        close: base.handleClose,
         buttons: [
           {
             text: "Dismiss",

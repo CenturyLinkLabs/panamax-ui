@@ -58,7 +58,7 @@ describe('$.fn.previewTemplate', function() {
         resizable: false,
         draggable: true,
         width: 860,
-        position: ["top", 50],
+        position: { my: "top", at: "top+50", of: window },
         title: 'Template File Preview',
         close: jasmine.any(Function),
         buttons: [

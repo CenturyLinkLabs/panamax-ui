@@ -44,22 +44,8 @@
     };
 
     base.initiateDialog = function ($contents) {
-      targetDialog = $contents.dialog({
-        autoOpen: false,
-        modal: true,
-        resizable: false,
-        draggable: true,
-        width: 860,
-        position: ["top", 50],
-        title: 'Select Remote Deployment Target',
-        close: base.handleClose,
-        buttons: [
-          {
-            text: "Dismiss",
-            class: 'button-secondary',
-            click: base.handleClose
-          }
-        ]
+      targetDialog = $.PMX.Helpers.dialog(base,$contents, {
+        title: 'Select Remote Deployment Target'
       });
       targetDialog.dialog('open');
     };
