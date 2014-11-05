@@ -57,7 +57,12 @@
 
     .deployment-item {
       border-bottom: 1px solid $light_grey;
+      padding-bottom: 30px;
       margin-bottom: 20px;
+
+      .content {
+        min-height: 320px;
+      }
 
       .expand {
         padding-left: 20px;
@@ -79,14 +84,15 @@
       }
 
       .expand + .tab-container {
-        @include transition('height 0.5s');
-        height: 0;
+        @include transition('max-height 0.5s');
+        max-height: 0;
         min-height: 0;
         overflow: hidden;
       }
 
       .expanded + .tab-container {
-        height: 450px;
+        @include transition('max-height: 0.22s');
+        max-height: 950px;
       }
     }
 
