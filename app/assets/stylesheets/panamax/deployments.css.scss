@@ -63,7 +63,12 @@
 
     .deployment-item {
       border-bottom: 1px solid $light_grey;
+      padding-bottom: 30px;
       margin-bottom: 20px;
+
+      .content {
+        min-height: 320px;
+      }
 
       .expand {
         padding-left: 20px;
@@ -90,7 +95,7 @@
       }
 
       .expanded + .tab-container {
-        max-height: 450px;
+        max-height: 850px;
         overflow-y: auto;
       }
     }
