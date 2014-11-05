@@ -21,6 +21,10 @@ class FakePanamaxApi < Sinatra::Base
     json_response 200, 'deployment_targets_representation.json'
   end
 
+  get '/deployment_targets/:target_id/deployments.json' do
+    json_response 200, 'deployments_representation.json'
+  end
+
   post '/deployment_targets/:target_id/deployments.json' do
     json_response 201, 'deployment_representation.json'
   end

@@ -21,6 +21,8 @@ class DeploymentsController < ApplicationController
   end
 
   def index
+    @deployment_target = DeploymentTarget.find(target_id)
+    @deployments = Deployment.all(params: { deployment_target_id: target_id })
   end
 
   private
