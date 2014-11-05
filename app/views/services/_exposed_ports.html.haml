@@ -17,7 +17,7 @@
             #{p.port_number} / #{p.proto.upcase}
           %td
             .info
-              exposed by base image
+              exposed by base image - remote deployment will require explicit port declaration
 
       = f.fields_for :exposed_ports do |port|
         %tr
