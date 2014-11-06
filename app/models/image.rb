@@ -24,9 +24,11 @@ class Image < BaseResource
   end
 
   def deployment
-    BaseResource.new({
-      count: 1
-    })
+    Class.new(BaseResource) do
+      def count
+        1
+      end
+    end.new
   end
 
   def docker_index_url
