@@ -2,10 +2,16 @@
   = link_to deployment_target.name,
             deployment_target_deployments_path(deployment_target),
             class: 'name'
-  .actions
+  %em.status
+    %span.last-updated
+      Last Updated:
+      - if deployment_target.metadata?
+        = l(deployment_target.metadata.created_at, format: :informal)
+      - else
+        never
     = form_for [ deployment_target, DeploymentTargetMetadataRefresh.new ] do |f|
-      = f.submit "Refresh"
-
+      = f.button "Refresh"
+  .actions
     = link_to 'Delete Target',
               deployment_target_path(deployment_target),
               class: 'delete-action',

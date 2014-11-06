@@ -168,7 +168,44 @@
       margin-bottom: 15px;
       margin-left: 15px;
       position: relative;
-      width: 755px;
+    }
+
+    .status {
+      font-size: 14px;
+      color: $medium_grey;
+      float: left;
+
+      .last-updated,
+      form {
+        float: left;
+        margin-left: 15px;
+      }
+      .last-updated {
+        margin-top: 4px;
+      }
+
+      form button {
+        @include border-box;
+        border: none;
+        background: none;
+        position: relative;
+        height: 15px;
+        width: 15px;
+        font-size: 0;
+
+        &:after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          @extend .icon-arrowloop-medium;
+          @include icon-green;
+        }
+
+        &:hover:after {
+          @include icon-light-green;
+        }
+      }
     }
 
     .actions {
