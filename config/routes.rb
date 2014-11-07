@@ -29,7 +29,7 @@ Rails.application.routes.draw do
 
   resources :deployment_targets, only: [:index, :create, :destroy] do
     get :select, on: :collection
-    resources :deployments, only: [:new, :create, :index]
+    resources :deployments, only: [:new, :create, :index, :destroy]
   end
 
   resource :user, only: [:update]

@@ -105,4 +105,48 @@ describe DeploymentsController do
       expect(assigns(:deployments)).to eq fake_deployments
     end
   end
+
+  describe 'DELETE #destroy' do
+    let(:fake_deployment) { double(:fake_deployment, destroy: true) }
+
+    before do
+      Deployment.stub(:find).with('13', params: { deployment_target_id: '9' }).and_return(fake_deployment)
+    end
+
+    context 'html format' do
+      before do
+        delete :destroy, id: 13, deployment_target_id: 9
+      end
+
+      it 'deletes the target with the given id' do
+        expect(fake_deployment).to have_received(:destroy)
+      end
+
+      it 'responds with a http 302 status code' do
+        expect(response.status).to eq 302
+      end
+
+      it 'redirects to the index page' do
+        expect(response).to redirect_to deployment_target_deployments_path(9)
+      end
+    end
+
+    context 'json request' do
+      before do
+        delete :destroy, id: 13, deployment_target_id: 9, format: :json
+      end
+
+      it 'deletes the target with the given id' do
+        expect(fake_deployment).to have_received(:destroy)
+      end
+
+      it 'responds with a http 204 status code' do
+        expect(response.status).to eq 204
+      end
+
+      it 'returns an empty response' do
+        expect(response.body).to be_empty
+      end
+    end
+  end
 end
