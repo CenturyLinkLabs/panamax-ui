@@ -163,6 +163,169 @@
       }
     }
   }
+
+
+  .deployment-target,
+  .deployment {
+    margin-bottom: 15px;
+    font-size: 0.9em;
+
+    .name {
+      @extend .title;
+      float: left;
+      margin-bottom: 15px;
+      margin-left: 15px;
+      position: relative;
+      width: 755px;
+    }
+
+    .actions {
+      position: relative;
+      float: right;
+      height: 20px;
+      width: 165px;
+      margin-top: 10px;
+
+      .delete-action {
+        @include hide-text;
+        @extend .icon-x-large;
+        @include icon-grey;
+        padding: 0;
+        float: right;
+
+        &:after {
+          display: none;
+        }
+
+        &:hover {
+          @include icon-red;
+        }
+      }
+    }
+
+    dl {
+      margin-left: 15px;
+      clear: left;
+      overflow: auto;
+      padding-bottom: 15px;
+
+      dt, dd {
+        float: left;
+      }
+      dt {
+        font-weight: bold;
+        margin-right: 7px;
+      }
+      dd {
+        font-style: italic;
+        margin-right: 20px;
+      }
+    }
+  }
+
+  .deployment {
+    .services {
+      @extend .expandable;
+      overflow-y: auto;
+      border-top: $light_grey 1px solid;
+      padding-left: 15px;
+
+      li {
+        padding: 20px 0;
+        border-bottom: $light_grey 1px solid;
+      }
+    }
+
+    &.expanded {
+      .services {
+        max-height: 280px;
+      }
+    }
+  }
+
+  .deployment-target {
+    padding-bottom: 30px;
+    border-bottom: 1px solid $light_grey;
+
+    .token {
+      padding: 0;
+      background-color: $light_grey;
+
+      dt {
+        position: relative;
+        padding: 10px 0 10px 25px;
+        color: $blue_grey;
+
+        &:after {
+          @extend .icon-thick-arrow-right;
+          content: '';
+          display: block;
+          position: absolute;
+          left: 10px;
+          top: 11px;
+        }
+
+        &.expanded {
+          &:after {
+            @extend .icon-thick-arrow-down;
+          }
+
+          &+ .token-contents {
+            max-height: 500px;
+            margin: 8px 20px;
+            border: $medium_grey 1px solid;
+          }
+        }
+      }
+
+      .token-contents {
+        @extend .expandable;
+        clear: left;
+        font-family: $monospace_font_family;
+        font-style: normal;
+        word-wrap: break-word;
+        background: $white;
+
+        > div {
+          width: 605px;
+          margin: 20px;
+        }
+      }
+    }
+  }
+
+  #create_target {
+    @extend .expandable;
+
+    input[type="text"],
+    textarea {
+      width: 560px;
+    }
+
+    textarea {
+      font-family: $monospace_font_family;
+      height: 480px;
+    }
+
+    dt {
+      margin: 15px 0 5px;
+      color: $medium_grey;
+    }
+
+    button {
+      margin-top: 5px;
+      float: left;
+    }
+
+    &.expanded {
+      max-height: 660px;
+
+      &+ a.button-add-positive {
+        @include transition('opacity 1.2s');
+        opacity: 0;
+      }
+    }
+  }
 }
 
 .deployment-target,
@@ -177,15 +340,6 @@
     margin-left: 15px;
     position: relative;
     width: 755px;
-
-    &:after {
-      @extend .icon-thick-arrow-right;
-      content: '';
-      display: block;
-      position: absolute;
-      left: -15px;
-      top: 5px;
-    }
   }
 
   .actions {
@@ -230,21 +384,12 @@
       margin-right: 20px;
     }
   }
-
-
-  &.expanded {
-    .name:after {
-      @extend .icon-thick-arrow-down;
-    }
-  }
 }
 
 .deployment {
-
   .services {
     @extend .expandable;
     overflow-y: auto;
-
     border-top: $light_grey 1px solid;
     padding-left: 15px;
 
@@ -261,67 +406,94 @@
   }
 }
 
-
 .deployment-target {
+  padding-bottom: 30px;
+  border-bottom: 1px solid $light_grey;
+
   .token {
-    @extend .expandable;
     padding: 0;
-    border-top: $light_grey 1px solid;
+    background-color: $light_grey;
+
+    dt {
+      position: relative;
+      padding: 10px 0 10px 25px;
+      color: $blue_grey;
+
+      &:after {
+        @extend .icon-thick-arrow-right;
+        content: '';
+        display: block;
+        position: absolute;
+        left: 10px;
+        top: 11px;
+      }
+
+      &.expanded {
+        &:after {
+          @extend .icon-thick-arrow-down;
+        }
+
+        &+ .token-contents {
+          max-height: 500px;
+          margin: 8px 20px;
+          border: $medium_grey 1px solid;
+        }
+      }
+    }
 
     .token-contents {
-      width: 605px;
+      @extend .expandable;
       clear: left;
-      margin-top: 8px;
       font-family: $monospace_font_family;
       font-style: normal;
       word-wrap: break-word;
-      padding: 20px;
-      border: $medium_grey 1px solid;
-      background: $light_grey;
+      background: $white;
+
+      > div {
+        width: 605px;
+        margin: 20px;
+      }
     }
   }
 
-  &.expanded {
-    .token {
-      max-height: 500px;
-      padding: 15px 0;
+  #create_target {
+    @extend .expandable;
+
+    input[type="text"],
+    textarea {
+      width: 560px;
     }
-  }
-}
 
-#create_target {
-  @extend .expandable;
+    textarea {
+      font-family: $monospace_font_family;
+      height: 480px;
+    }
 
-  input[type="text"],
-  textarea {
-    width: 560px;
-  }
+    dt {
+      margin: 15px 0 5px;
+      color: $medium_grey;
+    }
 
-  textarea {
-    font-family: $monospace_font_family;
-    height: 480px;
-  }
+    button {
+      margin-top: 5px;
+      float: left;
+    }
 
-  dt {
-    margin: 15px 0 5px;
-    color: $medium_grey;
-  }
+    &.expanded {
+      max-height: 660px;
 
-  button {
-    margin-top: 5px;
-    float: left;
-  }
-
-  &.expanded {
-    max-height: 660px;
-
-    &+ a.button-add-positive {
-      @include transition('opacity 1.2s');
-      opacity: 0;
+      &+ a.button-add-positive {
+        @include transition('opacity 1.2s');
+        opacity: 0;
+      }
     }
   }
 }
 
+/*
+ This styles the select target dialog box which will be used
+ in many flows so it should not be part of the #deployment_flow
+*/
 .select-remote-target {
   ul {
     list-style-type: none;

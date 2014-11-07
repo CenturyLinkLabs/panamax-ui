@@ -21,5 +21,17 @@ describe 'managing deployment targets' do
 
       expect(page).to have_content 'Your deployment target was added successfully'
     end
+
+    it 'can link to the deployment' do
+      visit '/deployment_targets'
+
+      click_on 'Socialize staging environment'
+
+      page.should have_content 'Deployment ID: 1'
+      page.should have_content 'Services: 3'
+      page.should have_content 'db-1'
+      page.should have_content 'wp-pod'
+      page.should have_content 'db-pod'
+    end
   end
 end
