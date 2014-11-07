@@ -1,8 +1,10 @@
 - content_for(:body_id, 'deployments_flow')
 = render '/shared/breadcrumbs', breadcrumbs: ["Manage", "Remote Deployment Targets"]
 - @deployment_targets.each do |target|
-  .deployment-target{ id: dom_id(target) }
-    %a.name{ data: { toggle: { target: "##{dom_id(target)}", class: 'expanded' } } }= target.name
+  .deployment-target
+    = link_to target.name,
+              deployment_target_deployments_path(target),
+              class: 'name'
     .actions
       = link_to 'Delete Target',
                 deployment_target_path(target),
@@ -14,7 +16,8 @@
       %dt Endpoint:
       %dd= target.endpoint_url
     %dl.token
-      %dt Target Token
+      %dt{ data: { toggle: { class: 'expanded' } } }
+        Target Token
       %dd.token-contents
         %div{ contenteditable: true }= target.auth_blob
 
