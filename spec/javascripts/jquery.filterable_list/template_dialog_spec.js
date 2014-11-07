@@ -34,11 +34,6 @@ describe('$.PMX.TemplateDetailsDialog', function() {
         open: jasmine.any(Function),
         buttons: [
           {
-            text: "Run Template",
-            class: 'button-positive',
-            click: jasmine.any(Function)
-          },
-          {
             text: "Dismiss",
             class: 'button-secondary',
             click: jasmine.any(Function)

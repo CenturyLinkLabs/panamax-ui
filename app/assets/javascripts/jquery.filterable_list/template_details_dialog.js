@@ -34,11 +34,6 @@
         open: base.fetchTemplateDetails,
         buttons: [
           {
-            text: "Run Template",
-            class: 'button-positive',
-            click: base.handleSubmit
-          },
-          {
             text: "Dismiss",
             class: 'button-secondary',
             click: base.handleClose

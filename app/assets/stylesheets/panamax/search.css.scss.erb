@@ -240,6 +240,26 @@ body#search_flow main:after {
       font-weight: bold;
       cursor: pointer;
 
+      &.expanded {
+        header:after {
+          @extend .icon-thick-arrow-down;
+          content: '';
+          position: absolute;
+          right: 10px;
+          top: 12px;
+          display: block;
+          @include icon-white;
+          width: 10px;
+          height: 10px;
+        }
+
+        .target-options {
+          padding-top: 20px;
+          height: 50px;
+        }
+      }
+
+
       header {
         color: $white;
         font-size: 14px;
@@ -254,25 +274,6 @@ body#search_flow main:after {
           @include icon-white;
           width: 10px;
           height: 10px;
-        }
-
-        &.expanded {
-          &:after {
-            @extend .icon-thick-arrow-down;
-            content: '';
-            position: absolute;
-            right: 10px;
-            top: 12px;
-            display: block;
-            @include icon-white;
-            width: 10px;
-            height: 10px;
-          }
-
-          &+ .target-options {
-            padding-top: 20px;
-            height: 50px;
-          }
         }
       }
 
