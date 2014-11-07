@@ -19,7 +19,8 @@
       %dt{ data: { toggle: { class: 'expanded' } } }
         Target Token
       %dd.token-contents
-        %div{ contenteditable: true }= target.auth_blob
+        .token-container
+          %div{ contenteditable: true }= target.auth_blob
 
 = render 'shared/errors', errors: @deployment_target.errors
 = form_for @deployment_target, html: { id: 'create_target', class: ('expanded' unless @deployment_target.valid?) } do |f|

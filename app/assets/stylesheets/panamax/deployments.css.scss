@@ -252,6 +252,7 @@
       background-color: $light_grey;
 
       dt {
+        cursor: pointer;
         position: relative;
         padding: 10px 0 10px 25px;
         color: $blue_grey;
@@ -271,9 +272,7 @@
           }
 
           &+ .token-contents {
-            max-height: 500px;
-            margin: 8px 20px;
-            border: $medium_grey 1px solid;
+            max-height: 530px;
           }
         }
       }
@@ -284,11 +283,17 @@
         font-family: $monospace_font_family;
         font-style: normal;
         word-wrap: break-word;
-        background: $white;
 
-        > div {
-          width: 605px;
+
+        .token-container {
           margin: 20px;
+          padding: 20px;
+          border: 1px solid $grey;
+          background: $white;
+
+          div {
+            width: 605px;
+          }
         }
       }
     }
@@ -402,90 +407,6 @@
   &.expanded {
     .services {
       max-height: 280px;
-    }
-  }
-}
-
-.deployment-target {
-  padding-bottom: 30px;
-  border-bottom: 1px solid $light_grey;
-
-  .token {
-    padding: 0;
-    background-color: $light_grey;
-
-    dt {
-      position: relative;
-      padding: 10px 0 10px 25px;
-      color: $blue_grey;
-
-      &:after {
-        @extend .icon-thick-arrow-right;
-        content: '';
-        display: block;
-        position: absolute;
-        left: 10px;
-        top: 11px;
-      }
-
-      &.expanded {
-        &:after {
-          @extend .icon-thick-arrow-down;
-        }
-
-        &+ .token-contents {
-          max-height: 500px;
-          margin: 8px 20px;
-          border: $medium_grey 1px solid;
-        }
-      }
-    }
-
-    .token-contents {
-      @extend .expandable;
-      clear: left;
-      font-family: $monospace_font_family;
-      font-style: normal;
-      word-wrap: break-word;
-      background: $white;
-
-      > div {
-        width: 605px;
-        margin: 20px;
-      }
-    }
-  }
-
-  #create_target {
-    @extend .expandable;
-
-    input[type="text"],
-    textarea {
-      width: 560px;
-    }
-
-    textarea {
-      font-family: $monospace_font_family;
-      height: 480px;
-    }
-
-    dt {
-      margin: 15px 0 5px;
-      color: $medium_grey;
-    }
-
-    button {
-      margin-top: 5px;
-      float: left;
-    }
-
-    &.expanded {
-      max-height: 660px;
-
-      &+ a.button-add-positive {
-        @include transition('opacity 1.2s');
-        opacity: 0;
-      }
     }
   }
 }
