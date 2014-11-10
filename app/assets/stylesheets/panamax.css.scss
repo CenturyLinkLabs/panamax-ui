@@ -2,6 +2,7 @@
 @import 'ctl_base_ui/colors';
 @import 'ctl_base_ui/mixins';
 @import 'ctl_base_ui/icons';
+@import 'panamax/mixins';
 
 
 body {
@@ -811,7 +812,7 @@ pre.prettyprint {
   }
 }
 .tab-container {
-  display: flex;
+  @include flexbox();
   border-collapse: separate;
   border-spacing: 10px 0;
   width: 100%;
@@ -822,10 +823,10 @@ pre.prettyprint {
   }
 
   .column {
-    flex-grow: 1;
-    flex-shrink: 1;
     box-sizing: border-box;
     vertical-align: top;
+    @include flex-grow(1);
+    @include flex-shrink(1);
     @include transition('all 0.6s');
 
     .title {
@@ -860,9 +861,9 @@ pre.prettyprint {
   }
 
   .tabs {
-    flex-basis: 185px;
     clear: both;
     position: relative;
+    @include flex-basis('185px');
 
     .tab, .hide {
       width: 185px;
@@ -944,7 +945,7 @@ pre.prettyprint {
     }
 
     &.slim {
-      flex-basis: 40px;
+      @include flex-basis('40px');
 
       .tab {
         width: 40px;
@@ -961,6 +962,6 @@ pre.prettyprint {
   }
 
   .cards {
-    flex-basis: 510px;
+    @include flex-basis('510px');
   }
 }

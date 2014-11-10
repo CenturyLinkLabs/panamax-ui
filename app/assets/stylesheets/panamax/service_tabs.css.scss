@@ -2,11 +2,12 @@
 @import 'ctl_base_ui/colors';
 @import 'ctl_base_ui/icons';
 @import 'panamax/buttons';
+@import 'mixins';
 
 .tab-container {
   .column {
-    flex-grow: 0;
-    flex-shrink: 0;
+    @include flex-grow(0);
+    @include flex-shrink(0);
   }
 
   .card {
@@ -29,12 +30,13 @@
   }
 
   .cards {
-    flex-basis: 510px;
+    @include flex-basis('510px');
   }
 
   .docker-run {
-    flex-grow: 1;
-    flex-shrink: 1;
+    @include flex-grow(1);
+    @include flex-shrink(1);
+
     * {
       box-sizing: border-box;
     }

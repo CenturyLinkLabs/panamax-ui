@@ -1,0 +1,19 @@
+@mixin flexbox() {
+  display: flex;
+  display: -webkit-flex;
+}
+
+@mixin flex-grow($amount) {
+  flex-grow: #{$amount};
+  -webkit-flex-grow: #{$amount};
+}
+
+@mixin flex-shrink($amount) {
+  flex-shrink: #{$amount};
+  -webkit-flex-shrink: #{$amount};
+}
+
+@mixin flex-basis($size) {
+  flex-basis: #{$size};
+  -webkit-flex-basis: #{$size};
+}
