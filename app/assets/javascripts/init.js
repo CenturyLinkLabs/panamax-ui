@@ -23,6 +23,8 @@
       trackingAction: 'add'
     });
 
+    $('#search_flow .filterable-list').submitLocalDeployment();
+
     $('ul.services li').serviceActions();
 
     $('section.application-services').serviceViews();
