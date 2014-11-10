@@ -13,8 +13,8 @@
     = form_tag apps_path do
       = hidden_field_tag 'app[template_id]', presenter.id
       .select-target-container
-        .select-target{ data: { toggle: { class: 'expanded' } } }
-          %header
+        .select-target
+          %header{ data: { toggle: { class: 'expanded' } } }
             Run Template
           .target-options
             %ul
