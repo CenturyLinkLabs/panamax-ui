@@ -18,6 +18,9 @@ All notable changes to this project will be documented in this file.
 ### Upgraded
 - Rails from 4.1.5 to 4.1.7 (#422)
 
+### Known Issues
+- CSS issue with Safari 8 browser on service details page and deployment configuration page
+
 0.2.6 - 2014-10-22
 ------------------
 ### Fixed
