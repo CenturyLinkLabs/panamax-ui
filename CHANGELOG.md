@@ -1,12 +1,27 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-LATEST
+0.2.7 - 2014-11-10
 ------------------
-
 ### Added
-- tab based service management view
+- Ability to manage deployment targets (#406)
+- Ability to deploy a template remotely (#415, #416)
+- Ability to view a list of remote deployments (#427, #435)
+- Ability to delete a deployment (#433)
+- Updated dashboard view (#418)
+- tab based service management view (#408)
 
+### Fixed
+- Link line wrap issue (#411)
+- Service health route for possible dot in name (#405)
+
+### Upgraded
+- Rails from 4.1.5 to 4.1.7 (#422)
+
+0.2.6 - 2014-10-22
+------------------
+### Fixed
+- Private registry image run (#404)
 
 0.2.5 - 2014-10-20
 ------------------
