@@ -4,6 +4,7 @@
 @import 'ctl_base_ui/colors';
 @import 'ctl_base_ui/typography';
 @import 'extensions';
+@import 'mixins';
 
 #deployments_flow {
   h2.template-name {
@@ -99,9 +100,9 @@
       }
 
       .cards {
-        flex-grow: 1;
-        flex-shrink: 1;
-        flex-basis: auto;
+        @include flex-grow(1);
+        @include flex-shrink(1);
+        @include flex-basis('auto');
       }
 
       .card {
