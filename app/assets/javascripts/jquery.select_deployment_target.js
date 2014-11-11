@@ -10,7 +10,8 @@
 
     base.defaultOptions = {
       targetSelector: '.select-deployment-target',
-      filterSelector: '.select-remote-target'
+      filterSelector: '.select-remote-target',
+      dialogContentSelector: '.ui-dialog-content'
     };
 
 
@@ -47,7 +48,11 @@
       targetDialog = $.PMX.Helpers.dialog(base,$contents, {
         title: 'Select Remote Deployment Target'
       });
+
       targetDialog.dialog('open');
+
+      // must set height here or jQueryUI sets inline style to auto
+      $contents.css('height', ($contents.height() + 20) + 'px');
     };
 
     base.handleClose = function () {
