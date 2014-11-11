@@ -4,7 +4,7 @@
                                               @deployment_target.name]
 - @deployments.each do |deployment|
   .deployment{ id: dom_id(deployment) }
-    %a.name{ data: { toggle: { target: "##{dom_id(deployment)}", class: 'expanded' } } }= "Deployment ID: #{deployment.id}"
+    %a.name{ data: { toggle: { target: "##{dom_id(deployment)}", class: 'expanded' } } }= "ID: #{deployment.id} / #{deployment.name}"
     .actions
       = link_to 'Delete Target',
                 deployment_target_deployment_path(@deployment_target.id, deployment.to_param),

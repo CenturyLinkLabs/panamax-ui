@@ -27,7 +27,7 @@ describe 'managing deployment targets' do
 
       click_on 'Socialize staging environment'
 
-      page.should have_content 'Deployment ID: 1'
+      page.should have_content 'ID: 1 / Unnamed Deployment'
       page.should have_content 'Services: 3'
       page.should have_content 'db-1'
       page.should have_content 'wp-pod'

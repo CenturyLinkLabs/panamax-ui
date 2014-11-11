@@ -1,6 +1,7 @@
 [
   {
   "id": 1,
+  "name": "Unnamed Deployment",
   "service_ids": [
     "db-1",
     "wp-pod",
