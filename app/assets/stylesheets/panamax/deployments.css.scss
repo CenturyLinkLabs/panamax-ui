@@ -6,7 +6,6 @@
 @import 'extensions';
 
 #deployments_flow {
-
   h2.template-name {
     font-weight: normal;
     font-size: 2.2em;
@@ -28,8 +27,6 @@
   }
 
   .deployment-metadata {
-
-
     dl {
       margin: 0 0 10px 0;
       padding: 0 0 20px 0;
@@ -160,7 +157,6 @@
     }
   }
 
-
   .deployment-target,
   .deployment {
     margin-bottom: 15px;
@@ -215,26 +211,6 @@
       dd {
         font-style: italic;
         margin-right: 20px;
-      }
-    }
-  }
-
-  .deployment {
-    .services {
-      @extend .expandable;
-      overflow-y: auto;
-      border-top: $light_grey 1px solid;
-      padding-left: 15px;
-
-      li {
-        padding: 20px 0;
-        border-bottom: $light_grey 1px solid;
-      }
-    }
-
-    &.expanded {
-      .services {
-        max-height: 280px;
       }
     }
   }
@@ -295,6 +271,38 @@
     }
   }
 
+  .deployment {
+    .name:after {
+      @extend .icon-thick-arrow-right;
+      content: '';
+      display: block;
+      position: absolute;
+      left: -15px;
+      top: 5px;
+    }
+
+    .services {
+      @extend .expandable;
+      overflow-y: auto;
+      border-top: $light_grey 1px solid;
+      padding-left: 15px;
+
+      li {
+        padding: 20px 0;
+        border-bottom: $light_grey 1px solid;
+      }
+    }
+
+    &.expanded {
+      .name:after {
+        @extend .icon-thick-arrow-down;
+      }
+      .services {
+        max-height: 280px;
+      }
+    }
+  }
+
   #create_target {
     @extend .expandable;
 
@@ -329,83 +337,6 @@
   }
 }
 
-.deployment-target,
-.deployment {
-  margin-bottom: 15px;
-  font-size: 0.9em;
-
-  .name {
-    @extend .title;
-    float: left;
-    margin-bottom: 15px;
-    margin-left: 15px;
-    position: relative;
-    width: 755px;
-  }
-
-  .actions {
-    position: relative;
-    float: right;
-    height: 20px;
-    width: 165px;
-    margin-top: 10px;
-
-    .delete-action {
-      @include hide-text;
-      @extend .icon-x-large;
-      @include icon-grey;
-      padding: 0;
-      float: right;
-
-      &:after {
-        display: none;
-      }
-
-      &:hover {
-        @include icon-red;
-      }
-    }
-  }
-
-  dl {
-    margin-left: 15px;
-    clear: left;
-    overflow: auto;
-    padding-bottom: 15px;
-
-    dt, dd {
-      float: left;
-    }
-    dt {
-      font-weight: bold;
-      margin-right: 7px;
-    }
-    dd {
-      font-style: italic;
-      margin-right: 20px;
-    }
-  }
-}
-
-.deployment {
-  .services {
-    @extend .expandable;
-    overflow-y: auto;
-    border-top: $light_grey 1px solid;
-    padding-left: 15px;
-
-    li {
-      padding: 20px 0;
-      border-bottom: $light_grey 1px solid;
-    }
-  }
-
-  &.expanded {
-    .services {
-      max-height: 280px;
-    }
-  }
-}
 
 /*
  This styles the select target dialog box which will be used
