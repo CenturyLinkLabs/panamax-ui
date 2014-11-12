@@ -6,9 +6,14 @@ class Deployment < BaseResource
   schema do
     integer :id
     integer :template_id
+    string :name
   end
 
   def to_param
     self.id
+  end
+
+  def display_name
+    self.name || 'Unnamed Deployment'
   end
 end
