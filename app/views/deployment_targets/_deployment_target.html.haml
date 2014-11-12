@@ -1,0 +1,36 @@
+.deployment-target
+  = link_to deployment_target.name,
+            deployment_target_deployments_path(deployment_target),
+            class: 'name'
+  %em.status
+    %span.last-updated
+      Last Updated:
+      - if deployment_target.metadata?
+        = l(deployment_target.metadata.created_at, format: :informal)
+      - else
+        never
+    = form_for [ deployment_target, DeploymentTargetMetadataRefresh.new ] do |f|
+      = f.button "Refresh"
+  .actions
+    = link_to 'Delete Target',
+              deployment_target_path(deployment_target),
+              class: 'delete-action',
+              title: 'delete',
+              method: 'delete',
+              data: { delete_confirm: 'Delete this Target?', delete_remove_at: '.deployment-target' }
+  %dl.target-info
+    %dt Endpoint:
+    %dd= deployment_target.endpoint_url
+    - if deployment_target.metadata?
+      %dt Agent Version:
+      %dd= deployment_target.metadata.agent_version
+      %dt Adapter Type:
+      %dd= deployment_target.metadata.adapter_type
+      %dt Adapter Version:
+      %dd= deployment_target.metadata.adapter_version
+  %dl.token
+    %dt{ data: { toggle: { class: 'expanded' } } }
+      Target Token
+    %dd.token-contents
+      .token-container
+        %div{ contenteditable: true }= deployment_target.auth_blob

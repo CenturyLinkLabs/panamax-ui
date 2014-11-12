@@ -6,4 +6,9 @@ class DeploymentTarget < BaseResource
     string :endpoint_url
   end
 
+  class Metadata < BaseResource
+    def created_at
+      Time.parse(attributes[:created_at])
+    end
+  end
 end

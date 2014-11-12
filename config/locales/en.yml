@@ -52,6 +52,8 @@ en:
   deployment_targets:
     create:
       success: 'Your deployment target was added successfully'
+    metadata_refresh:
+      success: 'Agent was successfully refreshed'
   registries:
     destroy:
       success: 'Your registry was deleted successfully'

@@ -1,0 +1,4 @@
+en:
+  time:
+    formats:
+      informal: "%m/%d/%Y at %l:%M%P"
