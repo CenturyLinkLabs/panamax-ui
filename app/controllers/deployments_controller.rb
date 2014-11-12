@@ -1,6 +1,6 @@
 class DeploymentsController < ApplicationController
   respond_to :html
-  respond_to :json, only: [:destroy]
+  respond_to :json, only: [:destroy, :show]
 
   def new
     @template = Template.find(params[:template_id])
@@ -29,6 +29,10 @@ class DeploymentsController < ApplicationController
   def destroy
     deployment = Deployment.find(params[:id], params: { deployment_target_id: target_id })
     respond_with(deployment.destroy, location: deployment_target_deployments_path(target_id))
+  end
+
+  def show
+    respond_with(Deployment.find(params[:id], params: { deployment_target_id: target_id }))
   end
 
   private

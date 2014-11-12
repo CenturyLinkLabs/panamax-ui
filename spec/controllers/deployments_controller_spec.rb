@@ -149,4 +149,27 @@ describe DeploymentsController do
       end
     end
   end
+
+  describe 'GET #show' do
+    let(:fake_deployment) { double(:fake_deployment) }
+
+    before do
+      Deployment.stub(:find).with('7', params: { deployment_target_id: '9' }).and_return(fake_deployment)
+    end
+
+    context 'json request' do
+      before do
+        get :show, id: 7, deployment_target_id: 9, format: :json
+      end
+
+
+      it 'returns a 200 status' do
+        expect(response.status).to eq 200
+      end
+
+      it 'responds with a json representation of the deployment' do
+        expect(response.body).to eq fake_deployment.to_json
+      end
+    end
+  end
 end
