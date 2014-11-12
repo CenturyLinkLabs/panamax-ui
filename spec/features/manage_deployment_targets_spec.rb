@@ -49,6 +49,7 @@ describe 'managing deployment targets' do
         click_on "Refresh"
       end
 
+      expect(page).to have_content(I18n.t('deployment_targets.metadata_refresh.success'))
       expect(current_path).to eq(deployment_targets_path)
     end
   end
