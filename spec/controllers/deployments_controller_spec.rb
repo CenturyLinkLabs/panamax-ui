@@ -4,34 +4,60 @@ describe DeploymentsController do
   describe 'GET #new' do
     let(:fake_deployment_form) { double(:fake_deployment_form) }
     let(:fake_deployment_target) { double(:fake_deployment_target) }
-    let(:fake_template) { double(:fake_template) }
+    let(:fake_resource) { double(:fake_resource) }
 
     before do
-      Template.stub(:find).and_return(fake_template)
       DeploymentTarget.stub(:find).and_return(fake_deployment_target)
       DeploymentForm.stub(:new).with(
-        template: fake_template,
+        resource: fake_resource,
         deployment_target_id: '7'
       ).and_return(fake_deployment_form)
-
-      get :new, deployment_target_id: 7, template_id: '8'
     end
 
-    it 'assigns the deployment_form object' do
-      expect(assigns(:deployment_form)).to eq fake_deployment_form
+    context 'when resource type is Template' do
+      before do
+        Template.stub(:find).and_return(fake_resource)
+        get :new, deployment_target_id: 7, resource_id: '8', resource_type: 'Template'
+      end
+
+      it 'assigns the deployment_form object' do
+        expect(assigns(:deployment_form)).to eq fake_deployment_form
+      end
+
+      it 'assigns the deployment_target object' do
+        expect(assigns(:deployment_target)).to eq fake_deployment_target
+      end
+
+      it 'assigns the resource object' do
+        expect(assigns(:resource)).to eq fake_resource
+      end
+
+      it 'renders the new view' do
+        expect(response).to render_template :new
+      end
     end
 
-    it 'assigns the deployment_target object' do
-      expect(assigns(:deployment_target)).to eq fake_deployment_target
+    context 'when resource type is App' do
+      before do
+        App.stub(:find).and_return(fake_resource)
+        get :new, deployment_target_id: 7, resource_id: '8', resource_type: 'App'
+      end
+
+      it 'assigns the resource object' do
+        expect(assigns(:resource)).to eq fake_resource
+      end
     end
 
-    it 'assigns the template object' do
-      expect(assigns(:template)).to eq fake_template
+    context 'when resource type is not provided' do
+      before do
+        get :new, deployment_target_id: 7, resource_id: '8'
+      end
+
+      it 'raises an error' do
+        expect(flash[:alert]).to eq 'Unknown resource type.'
+      end
     end
 
-    it 'renders the new view' do
-      expect(response).to render_template :new
-    end
   end
 
   describe 'POST #create' do
@@ -39,7 +65,8 @@ describe DeploymentsController do
     let(:create_params) do
       {
         deployment_target_id: '7',
-        template_id: '8'
+        resource_id: '8',
+        resource_type: 'Template'
       }.stringify_keys
     end
 

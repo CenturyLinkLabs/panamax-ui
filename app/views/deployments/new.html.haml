@@ -8,10 +8,11 @@
     %dt Endpoint
     %dd= @deployment_target.endpoint_url
 %h2.template-name
-  = @template.name
+  = @resource.name
 
 = form_for @deployment_form, url: deployment_target_deployments_path(@deployment_form.deployment_target_id), html: { class: 'deployment-settings' } do |f|
-  = f.hidden_field :template_id
+  = f.hidden_field :resource_id
+  = f.hidden_field :resource_type
   = f.hidden_field :deployment_target_id
   = f.fields_for :images do |image_fields|
     - index = image_fields.options[:child_index]

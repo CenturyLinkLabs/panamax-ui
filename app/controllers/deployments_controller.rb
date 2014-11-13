@@ -2,11 +2,14 @@ class DeploymentsController < ApplicationController
   respond_to :html
   respond_to :json, only: [:destroy, :show]
 
+  RESOURCE_TYPES = { 'Template' => Template, 'App' => App }
+
   def new
-    @template = Template.find(params[:template_id])
+    raise 'Unknown resource type.' unless params[:resource_type]
+    @resource = RESOURCE_TYPES[params[:resource_type]].find(params[:resource_id])
     @deployment_target = DeploymentTarget.find(target_id)
     @deployment_form = DeploymentForm.new(
-      template: @template,
+      resource: @resource,
       deployment_target_id: target_id
     )
   end

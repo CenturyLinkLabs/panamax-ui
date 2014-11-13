@@ -2,49 +2,63 @@ require 'spec_helper'
 
 describe DeploymentForm do
 
-  it { should respond_to :template_id= }
-  it { should respond_to :template }
-  it { should respond_to :template= }
+  it { should respond_to :resource_id= }
+  it { should respond_to :resource }
+  it { should respond_to :resource= }
   it { should respond_to :deployment_target_id }
   it { should respond_to :deployment_target_id= }
   it { should respond_to :override }
   it { should respond_to :override= }
 
   describe '#images' do
-    let(:fake_template) { double(:fake_template) }
+    context 'when resource is a Template' do
+      let(:images) { [Image.new] }
+      let(:fake_resource) { Template.new(images: images) }
 
-    before do
-      subject.template = fake_template
+      before do
+        subject.resource = fake_resource
+      end
+
+      it 'calls Template#images' do
+        expect(subject.images).to eq(images)
+      end
     end
 
-    it 'delegates to the template' do
-      expect(fake_template).to receive(:images)
-      subject.images
+    context 'when resource is an App' do
+      let(:services) { [Service.new] }
+      let(:fake_app_resource) { App.new(services: services) }
+
+      before do
+        subject.resource = fake_app_resource
+      end
+      it 'calls App#services' do
+        expect(subject.images).to eq(services)
+      end
     end
   end
 
-  describe '#template_id' do
-    context 'when a template id has been set on the object' do
-      let(:deployment_form) { described_class.new(template_id: 7) }
+  describe '#resource_id' do
+    context 'when a resource id has been set on the object' do
+      let(:deployment_form) { described_class.new(resource_id: 7) }
 
-      subject { deployment_form.template_id }
+      subject { deployment_form.resource_id }
 
       it { should eq 7 }
     end
 
-    context 'when a template is passed in but no template_id is supplied' do
-      let(:fake_template) { double(:fake_template, id: 9) }
-      let(:deployment_form) { described_class.new(template: fake_template ) }
+    context 'when a resource is passed in but no resource_id is supplied' do
+      let(:fake_resource) { double(:fake_resource, id: 9) }
+      let(:deployment_form) { described_class.new(resource: fake_resource) }
 
-      subject { deployment_form.template_id }
+      subject { deployment_form.resource_id }
 
       it { should eq 9 }
     end
 
-    context 'when neither template or template_id are supplied' do
+    context 'when neither resource or resource_id are supplied' do
       let(:deployment_form) { described_class.new }
 
-      subject { deployment_form.template_id }
+      subject { deployment_form.resource_id }
 
       it { should be_nil }
     end
@@ -84,7 +98,7 @@ describe DeploymentForm do
   describe '#save' do
     let(:deployment_form) do
       described_class.new(
-        template_id: 1,
+        resource: double(:resource, id: 1, class: 'Template'),
         deployment_target_id: 2
       )
     end
@@ -93,7 +107,8 @@ describe DeploymentForm do
 
     it 'creates the deployment' do
       expect(Deployment).to receive(:create).with(
-        template_id: 1,
+        resource_id: 1,
+        resource_type: 'Template',
         deployment_target_id: 2,
         override: nil
       )

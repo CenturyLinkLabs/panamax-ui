@@ -1,5 +1,6 @@
 class Image < BaseResource
   include ApplicationHelper
+  include Scalable
 
   has_many :environment
 
@@ -17,18 +18,6 @@ class Image < BaseResource
 
   def environment_attributes=(attrs)
     self.environment = attrs.values.map { |a| a.except('id') }
-  end
-
-  def deployment_attributes=(attrs)
-    self.deployment = attrs
-  end
-
-  def deployment
-    Class.new(BaseResource) do
-      def count
-        1
-      end
-    end.new
   end
 
   def docker_index_url

@@ -5,7 +5,8 @@ class Deployment < BaseResource
 
   schema do
     integer :id
-    integer :template_id
+    string :resource_key
+    string :resource_type
     string :name
   end
 

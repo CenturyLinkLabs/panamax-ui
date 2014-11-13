@@ -7,6 +7,6 @@
           %dd
             Endpoint:
             = target.endpoint_url
-        = link_to 'Select this Target', new_deployment_target_deployment_path(target, template_id: @template.id), class: 'button-positive'
+        = link_to 'Select this Target', new_deployment_target_deployment_path(target, resource_id: @resource[:id], resource_type: @resource[:type]), class: 'button-positive'
 
   = link_to 'Add a New Remote Deployment Target', deployment_targets_path, class: 'button-add-positive'

@@ -21,7 +21,7 @@
               %li
                 %button.link{ data: { loading: 'Starting App...', tracking: { method: 'click', action: 'Create Application', category: 'Run Template', label: presenter.title }}} Run Locally
               %li
-                = link_to 'Deploy to Target', "#{select_deployment_targets_path}?template_id=#{presenter.id}", class: 'select-deployment-target'
+                = link_to 'Deploy to Target', "#{select_deployment_targets_path}?resource_id=#{presenter.id}&resource_type=Template", class: 'select-deployment-target'
   .community-data
     .image-count
       %em= presenter.image_count

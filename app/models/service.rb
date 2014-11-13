@@ -1,5 +1,6 @@
 class Service < BaseResource
   include ApplicationHelper
+  include Scalable
 
   self.prefix = '/apps/:app_id/'
 

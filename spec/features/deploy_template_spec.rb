@@ -5,7 +5,6 @@ describe 'deploying a template from the search results' do
     it 'can deploy an application' do
       #search for a template
       visit '/search?utf8=%E2%9C%93&search_result_set[q]=wordpress'
-
       click_on 'Deploy to Target'
 
       # select a target

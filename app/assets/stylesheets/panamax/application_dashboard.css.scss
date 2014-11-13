@@ -1,6 +1,7 @@
 @import 'ctl_base_ui/colors';
 @import 'ctl_base_ui/mixins';
 @import 'ctl_base_ui/icons';
+@import 'panamax/extensions';
 
 h1 + header {
   border-bottom: 1px solid $grey;
@@ -82,4 +83,86 @@ header.application {
 
 a.button-add-positive {
   margin-top: 10px;
+}
+
+.settings-container {
+  width: 48px;
+  height: 39px;
+  position: relative;
+  @include transition('background 0.2s ease 0.42s');
+
+  &:before {
+    @include icon-light-grey;
+    @extend .icon-sprocket-large;
+    content: '';
+    display: block;
+    position: absolute;
+    top: 8px;
+    left: 5px;
+    width: 30px;
+    height: 30px;
+  }
+
+  &:after {
+    @include icon-light-grey;
+    @extend .icon-thick-arrow-down;
+    content: '';
+    display: block;
+    position: absolute;
+    top: 12px;
+    right: 5px;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &.expanded {
+    background: $dark_grey;
+    @include transition('background 0.001s ease');
+
+
+    &:before {
+      @include icon-white;
+    }
+
+    &:after {
+      @include icon-white;
+    }
+
+    .settings-menu {
+      max-height: 80px;
+    }
+  }
+
+  .settings-menu {
+    @extend .expandable;
+    position: absolute;
+    box-sizing: border-box;
+    top: 39px;
+    right: 0;
+    width: 140px;
+    background: $dark_grey;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    z-index: 100;
+
+    li {
+      padding: 0px 10px 5px 10px;
+      margin-left: 0;
+    }
+
+    .delete, .reload {
+      background-color: transparent;
+
+      &:after {
+        left: 5px;
+      }
+
+      &:hover {
+        background-color: transparent;
+        text-decoration: underline;
+      }
+    }
+  }
 }

@@ -8,7 +8,7 @@ class DeploymentTargetsController < ApplicationController
   end
 
   def select
-    @template = Template.find(params[:template_id])
+    @resource = { type: params[:resource_type], id: params[:resource_id] }
     @deployment_targets = DeploymentTarget.all
     render layout: 'plain'
   end
@@ -28,4 +28,5 @@ class DeploymentTargetsController < ApplicationController
     target = DeploymentTarget.find(params[:id])
     respond_with(target.destroy, location: deployment_targets_path)
   end
+
 end

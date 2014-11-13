@@ -3,13 +3,11 @@ require 'active_model'
 class DeploymentForm
   include ActiveModel::Model
 
-  attr_accessor :deployment_target_id, :template, :override
-  attr_writer :template_id
+  attr_accessor :deployment_target_id, :resource, :override
+  attr_writer :resource_id, :resource_type
 
-  delegate :images, to: :template
-
-  def template_id
-    @template_id || @template.try(:id)
+  def resource_id
+    @resource_id || resource.try(:id)
   end
 
   def images_attributes=(attrs)
@@ -17,11 +15,21 @@ class DeploymentForm
   end
 
   def save
+
     Deployment.create(
-      template_id: template_id,
+      resource_type: resource_type,
+      resource_id: resource_id,
       deployment_target_id: deployment_target_id,
       override: override
     )
+  end
+
+  def images
+    resource.service_defs
+  end
+
+  def resource_type
+    resource.class
   end
 
   private

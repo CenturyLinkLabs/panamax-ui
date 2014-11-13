@@ -2,6 +2,7 @@ require 'kramdown'
 
 class App < BaseResource
   include MarkdownRenderable
+  include Deployable
 
   before_create :source_image,
     unless: -> { self.attributes[:template_id].present? }

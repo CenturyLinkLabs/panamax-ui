@@ -21,7 +21,7 @@ describe DeploymentTargetsController do
 
   describe 'GET #select' do
     let(:deployment_targets) { [double(:target1), double(:target2) ] }
-    let(:fake_template) { double(:fake_template) }
+    let(:fake_resource) { { id: '7', type: 'Template' } }
 
     before do
       DeploymentTarget.stub(:all).and_return(deployment_targets)
@@ -29,8 +29,7 @@ describe DeploymentTargetsController do
 
     context 'with a template id passed in ' do
       before do
-        Template.stub(:find).with('7').and_return(fake_template)
-        get :select, template_id: 7
+        get :select, resource_id: 7, resource_type: 'Template'
       end
 
       it 'assigns all the deployment targets' do
@@ -41,19 +40,8 @@ describe DeploymentTargetsController do
         expect(response).to render_template :select, layout: 'plain'
       end
 
-      it 'assigns the template' do
-        expect(assigns(:template)).to eq fake_template
-      end
-    end
-
-    context 'when a template cannot be found' do
-      before do
-        Template.stub(:find).and_raise(ActiveResource::ResourceNotFound.new(double('err', code: '404')))
-      end
-
-      it 'is exceptional' do
-        expect(controller).to receive(:handle_exception)
-        get :select
+      it 'assigns the resource' do
+        expect(assigns(:resource)).to eq fake_resource
       end
     end
   end
