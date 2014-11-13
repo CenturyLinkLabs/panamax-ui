@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+0.2.8 - 2014-11-13
+------------------
+### Added
+- Deployment names (#446)
+
+### Fixed
+- CSS issue with Safari 8 browser on service details page and deployment configuration page (#441)
+- Click region on the run app button (#442)
+- Dialog positioning issue (#447)
+
 0.2.7 - 2014-11-10
 ------------------
 ### Added
