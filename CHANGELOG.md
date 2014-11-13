@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ------------------
 ### Added
 - Deployment names (#446)
+- Ability to see metadata for a given target (#432)
 
 ### Fixed
 - CSS issue with Safari 8 browser on service details page and deployment configuration page (#441)
