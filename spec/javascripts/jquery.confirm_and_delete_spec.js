@@ -3,7 +3,7 @@ describe('$.fn.confirmAndDelete', function() {
 
   beforeEach(function() {
     fixture.load('confirm-and-delete.html');
-    subject = new $.PMX.ConfirmAndDelete($('[data-delete-confirm]'));
+    subject = new $.PMX.ConfirmAndDelete($('body'));
     subject.init();
   });
 
@@ -22,7 +22,8 @@ describe('$.fn.confirmAndDelete', function() {
 
     it('call createConfirmation', function() {
       spyOn(subject, 'createConfirmation');
-      $('.delete-action').click();
+      var click = new $.Event('click');
+      $('.delete-action').trigger(click);
       expect(subject.createConfirmation).toHaveBeenCalled();
     });
   });

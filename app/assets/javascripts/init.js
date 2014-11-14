@@ -97,6 +97,7 @@
       editSelector: 'dd.variable-value a.edit-action',
       inputKey: 'input[data-index=value_%]'
     });
+
     $('.journal-output').journalLoader();
 
     $('.journal-toggle').journalToggle();
@@ -121,7 +122,7 @@
 
     $('.tab-container').fingerTabs();
 
-    $('[data-delete-confirm]').confirmAndDelete();
+    $('body').confirmAndDelete();
 
     $('body').selectDeploymentTarget();
 
