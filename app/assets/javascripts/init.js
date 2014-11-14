@@ -111,6 +111,8 @@
 
     $('table.port-bindings tbody tr').portMappings();
 
+    $('table.exposed-ports').exposedPorts();
+
     $('[data-accordian-expand]').accordian();
 
     $('body').toggleTargetClass();
