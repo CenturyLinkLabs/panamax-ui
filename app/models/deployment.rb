@@ -16,4 +16,12 @@ class Deployment < BaseResource
   def display_name
     self.name || 'Unnamed Deployment'
   end
+
+  def as_json(options={})
+    super
+      .merge(
+        'display_name' => display_name
+      )
+  end
+
 end
