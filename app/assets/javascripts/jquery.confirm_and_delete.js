@@ -10,10 +10,10 @@
     };
 
     base.bindEvents = function () {
-      base.$el.on('click', base.clickHandler);
+      base.$el.on('click', '[data-delete-confirm]', base.clickHandler);
     };
 
-    base.clickHandler =function(e) {
+    base.clickHandler = function(e) {
       e.preventDefault();
       e.stopPropagation(); // so jquery_ujs doesn't catch this
 

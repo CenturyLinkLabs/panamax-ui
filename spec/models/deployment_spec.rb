@@ -31,4 +31,23 @@ describe Deployment do
       end
     end
   end
+
+  describe '#as_json' do
+    let(:attributes) do
+      {
+        id: 7,
+        template_id: 9,
+        name: 'boom'
+      }.stringify_keys
+    end
+
+    subject { described_class.new(attributes) }
+
+    it 'provides the attributes to be converted to JSON' do
+      expected = attributes.merge(
+        'display_name' => 'boom'
+      )
+      expect(subject.as_json).to eq expected
+    end
+  end
 end

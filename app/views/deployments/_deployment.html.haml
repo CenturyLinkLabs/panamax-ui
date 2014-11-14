@@ -1,0 +1,17 @@
+%a.name{ data: { toggle: { target: "##{presenter.dom_id}", class: 'expanded' } } }= "Deployment ID: #{presenter.deployment_id} / #{presenter.deployment_name}"
+.actions
+  = link_to 'Delete Target',
+            presenter.destroy_path,
+            class: 'delete-action',
+            title: 'delete',
+            method: 'delete',
+            data: { delete_confirm: 'Delete this Deployment?', delete_remove_at: '.deployment' }
+%dl
+  %dt Services:
+  %dd= presenter.service_count
+.services
+  %ul
+    = presenter.services do |id, status|
+      %li
+        %strong= id
+        %span.status-info{class: status}= " - #{status}"
