@@ -2,6 +2,7 @@ describe('$.PMX.init', function() {
   var subject = $.PMX.ogInit;
 
   beforeEach(function() {
+    spyOn(Handlebars, 'compile');
     spyOn($.PMX, 'ErrorInterceptor').andCallFake(function($el, options) {
       return {
         init: function() {},

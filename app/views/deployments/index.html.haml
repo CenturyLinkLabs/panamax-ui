@@ -2,21 +2,10 @@
 = render '/shared/breadcrumbs', breadcrumbs: ["Manage",
                                               link_to("Remote Deployment Targets", deployment_targets_path),
                                               @deployment_target.name]
+%script#deployment_template{type: 'text/x-handlebars-template'}
+  = render 'deployment', { presenter: JsonDeploymentPresenter.new(@deployment_target, self) }
+
 - @deployments.each do |deployment|
-  .deployment{ id: dom_id(deployment) }
-    %a.name{ data: { toggle: { target: "##{dom_id(deployment)}", class: 'expanded' } } }= "ID: #{deployment.id} / #{deployment.display_name}"
-    .actions
-      = link_to 'Delete Target',
-                deployment_target_deployment_path(@deployment_target.id, deployment.to_param),
-                class: 'delete-action',
-                title: 'delete',
-                method: 'delete',
-                data: { delete_confirm: 'Delete this Deployment?', delete_remove_at: '.deployment' }
-    %dl
-      %dt Services:
-      %dd= deployment.service_ids.length
-    .services
-      %ul
-        - deployment.service_ids.each do |service_id|
-          %li
-            %strong= service_id
+  - presenter = DeploymentPresenter.new(@deployment_target, deployment, self)
+  .deployment{ id: presenter.dom_id, data: { show_path: deployment_target_deployment_path(@deployment_target.to_param, deployment.to_param) } }
+    = render 'deployment', { presenter: presenter }

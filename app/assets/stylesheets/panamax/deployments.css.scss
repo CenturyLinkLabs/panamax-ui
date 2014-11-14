@@ -339,6 +339,12 @@
         max-height: 280px;
       }
     }
+
+    .status-info {
+      font-style: italic;
+      text-transform: capitalize;
+    }
+
   }
 
   #create_target {
