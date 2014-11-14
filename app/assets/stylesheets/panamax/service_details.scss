@@ -333,14 +333,22 @@
           }
         }
       }
-      tr td {
-        &:last-child {
-          margin-left: 0;
+      tr {
+        &.loading {
+          td {
+            font-weight: normal;
+            color: #a1a1a1;
+          }
+        }
+        td {
+          &:last-child {
+            margin-left: 0;
 
-          .actions {
-            position: relative;
-            top: 3px;
-            float: left;
+            .actions {
+              position: relative;
+              top: 3px;
+              float: left;
+            }
           }
         }
       }
