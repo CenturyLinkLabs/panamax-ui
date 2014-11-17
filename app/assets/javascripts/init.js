@@ -128,5 +128,9 @@
       urlDataAttribute: 'show-path',
       template: Handlebars.compile($('#deployment_template').html() || '')
     });
+
+    $('#deployments_flow .deployment-settings').newRemoteDeployment({
+      refreshPath: $('.deployment-metadata').data('refresh-path')
+    });
   };
 })(jQuery);

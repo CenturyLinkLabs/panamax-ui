@@ -2,7 +2,7 @@
 
 %h1 Deployment Settings
 
-.deployment-metadata
+.deployment-metadata{ data: { refresh_path: deployment_target_metadata_refreshes_path(@deployment_target) } }
   %h3 Target
   %dl
     %dt Endpoint
@@ -62,4 +62,4 @@
                         = deploy_fields.label :count, 'Deploy Count'
                       %dd.variable-value
                         = deploy_fields.select :count, options_for_select(deployment_count_options), {}, class: 'fancy'
-  = f.button 'Deploy to Target', class: 'button-positive'
+  = f.button 'Deploy to Target', class: "deploy button-positive"

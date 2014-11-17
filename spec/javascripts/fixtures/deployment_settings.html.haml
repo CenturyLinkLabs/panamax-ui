@@ -1,0 +1,8 @@
+%script#ajax_error_template{type: 'text/x-handlebars-template'}
+  = render '/shared/notice'
+
+.deployment-metadata{ data: { refresh_path: '/refresh_path.html' } }
+
+#deployments_flow
+  .deployment-settings
+    %button.deploy Deploy

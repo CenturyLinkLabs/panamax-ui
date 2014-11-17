@@ -156,4 +156,25 @@ describe('$.PMX.init', function() {
       });
     });
   });
+
+  describe("$.fn.newRemoteDeployment", function() {
+    beforeEach(function() {
+      fixture.load('deployment_settings.html');
+      spyOn($.PMX, 'NewRemoteDeployment').andCallFake(function() {
+        return { init: function() {} };
+      });
+      subject();
+    });
+
+    it('calls the NewRemoteDeployment plugin with the correct base element', function() {
+      var nativeDomEl = $.PMX.NewRemoteDeployment.mostRecentCall.args[0][0];
+      expect(nativeDomEl.length).toBe();
+      expect(nativeDomEl).toEqual($('.deployment-settings')[0]);
+    });
+
+    it('calls the NewRemoteDeployment with the correct refreshPath', function() {
+      var refreshPath = $.PMX.NewRemoteDeployment.mostRecentCall.args[1].refreshPath;
+      expect(refreshPath).toEqual("/refresh_path.html");
+    });
+  });
 });

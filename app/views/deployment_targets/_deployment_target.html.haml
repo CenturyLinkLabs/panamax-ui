@@ -9,7 +9,7 @@
         = l(deployment_target.metadata.created_at, format: :informal)
       - else
         never
-    = form_for [ deployment_target, DeploymentTargetMetadataRefresh.new ] do |f|
+    = form_for DeploymentTargetMetadataRefresh.new, url: deployment_target_metadata_refreshes_path(deployment_target) do |f|
       = f.button "Refresh"
   .actions
     = link_to 'Delete Target',
