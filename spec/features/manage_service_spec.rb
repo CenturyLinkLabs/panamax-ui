@@ -24,7 +24,7 @@ describe 'managing a service' do
         end
 
         within '.environment-variables', text: 'Environment Variables' do
-          expect(page).to have_content 'DB_PASSWORD pass@word01'
+          expect(page).to have_field('DB_PASSWORD', with: "pass@word01")
         end
 
         within '.service-links' do

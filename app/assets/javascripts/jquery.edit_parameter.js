@@ -35,6 +35,7 @@
           onRevert: base.handleRevert,
           editorPromise: base.completeEdit
         })).init();
+      base.overrideLabelClickBehavior();
     };
 
     base.handleRevert = function(e) {
@@ -50,8 +51,18 @@
       $(base.options.submitButton).removeAttr('disabled');
       $('body').trigger('progressiveForm:changed');
       transaction.resolve();
+      base.reinitializeDefaultClickBehavior();
 
       return transaction.promise();
+    };
+
+    base.overrideLabelClickBehavior = function() {
+      base.$el.on('click', function(e) { e.preventDefault(); });
+    };
+
+    base.reinitializeDefaultClickBehavior = function() {
+      base.$el.unbind('click');
+      base.bindEvents();
     };
 
   };
