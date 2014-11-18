@@ -92,12 +92,6 @@
       inputKey: 'input[data-index=name_%]'
     });
 
-    $('.environment-variables dl.entries').editParameter({
-      fieldSelector: 'dd.variable-value span',
-      editSelector: 'dd.variable-value a.edit-action',
-      inputKey: 'input[data-index=value_%]'
-    });
-
     $('.journal-output').journalLoader();
 
     $('.journal-toggle').journalToggle();

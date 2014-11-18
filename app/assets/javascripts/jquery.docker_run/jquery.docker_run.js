@@ -20,7 +20,7 @@
       exposedPortsSelector: '.exposed-ports .exposed-port:visible',
       environmentVarsSelector: '.environment-variables dl:visible',
       envVarNameSelector: '.variable-name',
-      envVarValueSelector: '.variable-value',
+      envVarValueSelector: '.variable-value input',
       volumesSelector: '.volumes > .data-containers > ul > li:visible',
       volumeHostPathSelector: '.host-path',
       volumeContainerPathSelector: '.container-path',

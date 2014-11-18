@@ -21,18 +21,11 @@
           .actions
             %a{ class: 'edit-action' }
         %dd.variable-value
-          - if env_var.object.value.blank?
-            = env_var.text_field :value, placeholder: 'enter a value', class: 'empty', data: { index: "#{index}" }
-          - else
-            %span{ data: { index: "#{index}" } }
-              = env_var.object.value
-            .actions
-              %a{ class: 'edit-action' }
+          = env_var.text_field :value, placeholder: 'enter a value', data: { index: "#{index}" }
         %dd.actions
           - checkbox_id = "select_environment_variable_#{index}"
           = env_var.check_box :_deleted, { id: checkbox_id }
           = env_var.hidden_field :variable, data: { index: "name_#{index}" }
-          = env_var.hidden_field :value, data: { index: "value_#{index}" }
           %a{class: 'delete-action', title: 'remove', data: { checkbox: { selector: "##{checkbox_id}" } } } remove
 
     .additional-entries

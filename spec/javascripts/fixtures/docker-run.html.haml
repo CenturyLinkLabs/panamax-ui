@@ -46,12 +46,12 @@
       %dt.variable-name
         PATH
       %dd.variable-value
-        \/tmp
+        %input{ value: '/tmp' }
     %dl
       %dt
         %input.variable-name{ value: 'DEBUG' }
-      %dd
-        %input.variable-value{ value: 'TRUE' }
+      %dd.variable-value
+        %input{ value: 'TRUE' }
   .volumes
     .data-containers
       %ul
