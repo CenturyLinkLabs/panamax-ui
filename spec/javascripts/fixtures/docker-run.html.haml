@@ -12,15 +12,15 @@
     \/bin/bash
 
   .service-links
-    %ul
+    %ul.entries
       %li
         .link-name
           MYSQL
         .link-alias
           DB
-  .port-bindings
-    %ul
-      %li
+  %table.port-bindings
+    %tr
+      %td
         .host-port
           1111
         .container-port
@@ -36,30 +36,31 @@
   .exposed-ports
     %ul
       %li
-        .exposed-port
+        %span.exposed-port
           4444
     %ul
       %li
         %input.exposed-port{ value: '5555' }
   .environment-variables
-    %dl
+    %dl.entries
       %dt.variable-name
         PATH
       %dd.variable-value
         %input{ value: '/tmp' }
     %dl
+      %input{ value: "Just another random DL to spice up your tests" }
+    %dl.entries
       %dt
         %input.variable-name{ value: 'DEBUG' }
       %dd.variable-value
         %input{ value: 'TRUE' }
   .volumes
     .data-containers
-      %ul
+      %ul.entries
         %li
           .host-path
             \/var/dir1
-          .container-path
-            \/var/dir2
+          %input.container-path{ value: "/var/dir2" }
         %li
           %input.host-path
           %input.container-path{ value: '/tmp/dir'}
