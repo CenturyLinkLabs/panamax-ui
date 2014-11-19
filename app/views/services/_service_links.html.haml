@@ -15,7 +15,7 @@
   .title
     = @service.name
   .service-links
-    %ul
+    %ul.entries
       = f.fields_for :links do |link|
         - checkbox_id = "select_link_#{link.options[:child_index]}"
         %li

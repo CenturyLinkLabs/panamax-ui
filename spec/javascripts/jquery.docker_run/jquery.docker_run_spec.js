@@ -12,10 +12,9 @@ describe('$.fn.dockerRun', function() {
       { name: 'MYSQL', alias: 'DB' },
     ],
     portMappings: [
-      { hostPort: '1111', containerPort: '2222', proto: 'TCP' },
-      { hostPort: '', containerPort: '3333', proto: 'UDP' }
+      { hostPort: '1111', containerPort: '2222', proto: 'TCP' }
     ],
-    exposedPorts: [ '4444', '5555' ],
+    exposedPorts: [ '4444' ],
     environment: [
       { name: 'PATH', value: '/tmp' },
       { name: 'DEBUG', value: 'TRUE' }

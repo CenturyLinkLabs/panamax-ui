@@ -18,7 +18,7 @@
   .content
     .data-containers
       %h4 Data Volumes
-      %ul
+      %ul.entries
         %li.legend
           host directory : container directory
         = f.fields_for :volumes do |volume|
@@ -29,8 +29,8 @@
             %span.container-path= volume.object.container_path
             .actions
               = volume.check_box :_deleted, { id: checkbox_id }
-              = volume.hidden_field :host_path
-              = volume.hidden_field :container_path
+              = volume.hidden_field :host_path, class: 'host-path'
+              = volume.hidden_field :container_path, class: 'container-path'
               %a{ class: 'delete-action', title: 'remove', data: { checkbox: { selector: "##{checkbox_id}" } } } remove
       %ul.additional-entries
         %li.editing
@@ -42,7 +42,7 @@
       %a.button-add Add a Volume
     .mounted-containers
       %h4 Data Volume Containers
-      %ul
+      %ul.entries
         %li.legend
           name : container directory
         = f.fields_for :volumes_from do |data|
