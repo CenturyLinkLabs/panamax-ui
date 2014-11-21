@@ -1,6 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+0.2.9 - 2014-11-21
+------------------
+### Added
+- Refresh exposed ports if service isn't running on intitial page load (#449)
+- Informal time zone format (#450)
+
+### Fixed
+- Environment variables without values can now be submitted (#455)
+
 0.2.8 - 2014-11-13
 ------------------
 ### Added
