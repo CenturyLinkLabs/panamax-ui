@@ -187,7 +187,11 @@
     base.$el = el;
     base.defaultOptions = {
       content: 'span.title',
-      editSelector: 'header .actions a.edit-action'
+      categoriesSelector: '.categories',
+      editSelector: 'header .actions a.edit-action',
+      panelSelector: '.category-panel',
+      editServiceSelector: 'ul.services li a.edit-action',
+      uncategorizedSelector: 'a[data-category="null"]'
     };
 
     base.init = function() {
@@ -201,7 +205,7 @@
     };
 
     base.sortable = function(enabled) {
-      var categories = base.$el.closest('.categories');
+      var categories = base.$el.closest(base.options.categoriesSelector);
       (enabled) ? categories.sortable('enable') : categories.sortable('disable');
     };
 
@@ -275,8 +279,8 @@
             });
           },
           assign = function(category) {
-            var $addData = base.$el.find('a[data-category="null"]'),
-                $uncategorized = $addData.closest('.category-panel').find('ul.services li a.view-action'),
+            var $addData = base.$el.find(base.options.uncategorizedSelector),
+                $uncategorized = $addData.closest(base.options.panelSelector).find(base.options.editServiceSelector),
                 serviceList = [];
 
             $addData.attr('data-category', ''+category.id);
