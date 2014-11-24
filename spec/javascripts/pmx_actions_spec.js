@@ -31,6 +31,32 @@ describe('$.fn.destroyLink', function () {
       expect(clickEvent.isDefaultPrevented()).toBeTruthy();
     });
 
+    it('stops propagation', function() {
+      var clickEvent = $.Event('click');
+      $('ul.destroy li .actions .delete-action').trigger(clickEvent);
+
+      expect(clickEvent.isPropagationStopped()).toBeTruthy();
+    });
+
+    describe('when disableWith option provided', function() {
+      beforeEach(function() {
+        subject = new $.PMX.destroyLink($('ul.destroy'),
+          {
+            disableWith: 'Deleting...'
+          });
+        subject.init();
+      });
+      it('updates the target html', function() {
+        $('ul.destroy li .actions .delete-action').click();
+        expect($('ul.destroy li .actions .delete-action').html()).toEqual('Deleting...');
+      });
+
+      it('adds disabled class to target', function() {
+        $('ul.destroy li .actions .delete-action').click();
+        expect($('ul.destroy li .actions .delete-action').hasClass('disabled')).toBeTruthy();
+      });
+    });
+
     it('hides the dom element', function() {
       $('ul.destroy li .actions .delete-action').click();
       var request = mostRecentAjaxRequest();

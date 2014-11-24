@@ -287,6 +287,20 @@ ul[class*='button-menu'] {
           width: 10px;
         }
       }
+
+      &.disabled {
+        background:$grey;
+        color: $dark_grey;
+
+        &:hover {
+          background: $grey;
+          cursor: not-allowed;
+        }
+
+        &:after {
+          @include icon-grey;
+        }
+      }
     }
   }
 }

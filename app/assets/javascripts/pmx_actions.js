@@ -27,11 +27,18 @@
       base.$el.on('click', base.options.linkSelector, base.handleDelete);
     };
 
+    base.disable = function($target) {
+      if (base.options.disableWith) {
+        $target.html(base.options.disableWith);
+        $target.addClass('disabled');
+      }
+    };
+
     base.done = function() {
        if (base.options.success) { base.options.success(); }
     };
 
-    base.fail = function(response){
+    base.fail = function(response) {
       if (base.options.fail) {
         base.options.fail(response);
       } else {
@@ -43,6 +50,8 @@
       var $target = $(event.currentTarget);
       event.preventDefault();
       event.stopPropagation();
+
+      base.disable($target);
 
       $.ajax({
         url: $target.attr('href'),
