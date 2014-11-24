@@ -406,10 +406,10 @@ describe Service do
     end
   end
 
-  describe '#docker_index_url' do
-    it 'composes a docker index URL' do
+  describe '#docker_search_url' do
+    it 'composes a docker search URL' do
       subject.from = 'supercool/repository'
-      expect(subject.docker_index_url).to eq "#{DOCKER_INDEX_BASE_URL}u/supercool/repository"
+      expect(subject.docker_search_url).to eq "#{DOCKER_INDEX_BASE_URL}search?q=supercool/repository"
     end
   end
 

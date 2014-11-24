@@ -197,11 +197,6 @@
     span {
       margin-right: 6px;
     }
-
-    .docker-link {
-      padding-left: 10px;
-      border-left: 1px solid $dark_grey;
-    }
   }
 
   .documentation {
@@ -211,6 +206,11 @@
     a {
       text-decoration: underline;
       font-size: 0.9em;
+      padding-right: 5px;
+      &:last-child {
+        padding-left: 10px;
+        border-left: 1px solid $dark_grey;
+      }
     }
   }
 }

@@ -112,9 +112,8 @@ class Service < BaseResource
     categories.min_by { |category| category.id }.id
   end
 
-  def docker_index_url
-    path_part = "u/#{self.base_image_name}"
-    "#{DOCKER_INDEX_BASE_URL}#{path_part}"
+  def docker_search_url
+    "#{DOCKER_INDEX_BASE_URL}search?q=#{self.base_image_name}"
   end
 
   def as_json(options={})
