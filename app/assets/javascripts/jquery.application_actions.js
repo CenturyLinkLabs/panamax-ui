@@ -14,7 +14,8 @@
       (new $.PMX.destroyLink(base.$el ,
         {
           linkSelector: 'ul.application-button-menu a.delete',
-          removeAt: 'div.application'
+          removeAt: 'div.application',
+          disableWith: 'Deleting...'
         })).init();
     };
   };

@@ -164,5 +164,9 @@ a.button-add-positive {
         text-decoration: underline;
       }
     }
+
+    .disabled {
+      color: $white;
+    }
   }
 }

@@ -29,7 +29,7 @@
 
     $('section.application-services').serviceViews();
 
-    $('section.applications').applicationActions();
+    $('#manage_flow section.applications').applicationActions();
 
     $('.category-panel').categoryActions();
 
