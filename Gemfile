@@ -17,7 +17,6 @@ group :test, :development do
   gem 'teaspoon', '0.8.0'
   gem 'phantomjs', '1.9.7.1'
   gem 'dotenv-rails', '0.11.1'
-  gem 'jshintrb', '0.2.4'
   gem 'pry'
   gem 'pry-byebug'
   gem 'pry-stack_explorer'
