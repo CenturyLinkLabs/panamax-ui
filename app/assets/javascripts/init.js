@@ -122,12 +122,11 @@
 
     $('[data-cancel-form]').cancelForm();
 
-    // leaving this out until the adapters are updated
-    // $('#deployments_flow .deployment[data-show-path]').updatableContents({
-    //   targetSelector: '.name',
-    //   refreshedClass: 'contents-refreshed',
-    //   urlDataAttribute: 'show-path',
-    //   template: Handlebars.compile($('#deployment_template').html() || '')
-    // });
+    $('#deployments_flow .deployment[data-show-path]').updatableContents({
+      targetSelector: '.name',
+      refreshedClass: 'contents-refreshed',
+      urlDataAttribute: 'show-path',
+      template: Handlebars.compile($('#deployment_template').html() || '')
+    });
   };
 })(jQuery);
