@@ -10,6 +10,8 @@ describe 'managing template repos' do
 
       expect(page).to have_css 'h1', text: 'Sources'
 
+      expect(find_link('https://github.com/ctllabs/canonical')[:target]).to eq '_blank'
+
     end
 
     it 'displays a form to add a new source' do
