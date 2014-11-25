@@ -1,10 +1,46 @@
-inherit_from: ./.hound.yml
-
 AllCops:
   Exclude:
     - config/**/*
     - db/**/*
 
-Documentation:
+Metrics/LineLength:
+  Description: 'Limit lines to 120 characters.'
+  Max: 120
+
+Metrics/CyclomaticComplexity:
   Enabled: false
 
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/ClassLength:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+
+Style/SpaceAroundEqualsInParameterDefault:
+  EnforcedStyle: no_space
+
+Style/AlignParameters:
+  Enabled: with_fixed_indentation
+
+Style/DotPosition:
+  EnforcedStyle: leading
+
+Style/NumericLiterals:
+  Enabled: false
+
+Style/CollectionMethods:
+  PreferredMethods:
+    collect: 'map'
+    collect!: 'map!'
+    inject: 'reduce'
+    detect: 'find'
+    find_all: 'select'
+
+Style/RedundantSelf:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
