@@ -1,3 +1,4 @@
+- content_for(:title, @app.name)
 - content_for(:body_id, 'manage_flow')
 
 %script#new_category_template{type: 'text/x-handlebars-template'}
@@ -8,9 +9,9 @@
   = render 'category_panel', { presenter: JsonCategoryPresenter.new() }
 
 %header.application
-  = render '/shared/breadcrumbs', breadcrumbs: ["Manage",
-                                                link_to("Dashboard", dashboard_index_path),
-                                                link_to("Applications", apps_path), @app.name]
+  = render '/shared/breadcrumbs', breadcrumbs: ['Manage',
+                                                link_to('Dashboard', dashboard_index_path),
+                                                link_to('Applications', apps_path), yield(:title)]
 
 %section.deployment-details
   %ul.deployment-env

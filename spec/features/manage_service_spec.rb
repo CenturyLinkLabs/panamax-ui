@@ -15,6 +15,10 @@ describe 'managing a service' do
         visit '/apps/2/services/1'
       end
 
+      it 'has a title' do
+        expect(page).to have_title 'Panamax > WP_1'
+      end
+
       it 'can view a service for a running application' do
         expect(page).to have_css 'h1', text: 'tutum/wordpress'
         expect(page).to have_css 'h1', text: 'WP_1'

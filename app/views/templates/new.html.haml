@@ -1,8 +1,9 @@
+- content_for(:title, 'Save as Template')
 - content_for(:body_id, 'template_flow')
 
 = render 'shared/errors', errors: @template_form.errors
 
-%h1 Save as Template
+%h1= yield(:title)
 - if @user.has_valid_github_creds?
   = render 'form', template_form: @template_form
 

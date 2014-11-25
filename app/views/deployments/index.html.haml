@@ -1,7 +1,8 @@
+- content_for(:title, @deployment_target.name)
 - content_for(:body_id, 'deployments_flow')
-= render '/shared/breadcrumbs', breadcrumbs: ["Manage",
-                                              link_to("Remote Deployment Targets", deployment_targets_path),
-                                              @deployment_target.name]
+= render '/shared/breadcrumbs', breadcrumbs: ['Manage',
+                                              link_to('Remote Deployment Targets', deployment_targets_path),
+                                              yield(:title)]
 %script#deployment_template{type: 'text/x-handlebars-template'}
   = render 'deployment', { presenter: JsonDeploymentPresenter.new(@deployment_target, self) }
 

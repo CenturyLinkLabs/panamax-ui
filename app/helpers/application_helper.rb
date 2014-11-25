@@ -14,4 +14,9 @@ module ApplicationHelper
   def none_if(condition)
     'none' if condition
   end
+
+  def formatted_title(*page_titles)
+    titles = ['Panamax'] + page_titles
+    titles.compact.join(' > ')
+  end
 end

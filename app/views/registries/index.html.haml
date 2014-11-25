@@ -1,8 +1,9 @@
+- content_for(:title, 'Registries')
 - content_for(:body_id, 'registries_flow')
 
-= render '/shared/breadcrumbs', breadcrumbs: ["Manage",
-                                               link_to("Dashboard", dashboard_index_path),
-                                               "Registries"]
+= render '/shared/breadcrumbs', breadcrumbs: ['Manage',
+                                              link_to('Dashboard', dashboard_index_path),
+                                              yield(:title)]
 
 %section.registries
   = render 'shared/errors', errors: @registry.errors

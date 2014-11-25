@@ -1,10 +1,11 @@
+- content_for(:title, @service.name)
 - content_for(:body_id, 'manage_flow')
 
 = render '/shared/breadcrumbs', breadcrumbs: ["Manage",
                                               link_to("Dashboard", dashboard_index_path),
                                               link_to("Applications", apps_path),
                                               link_to(@app.name, app_path(@app.to_param)),
-                                              @service.name]
+                                              yield(:title)]
 
 %section.service-details
   .state

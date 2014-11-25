@@ -11,6 +11,7 @@ describe 'managing a template' do
 
         click_on 'Save as Template'
 
+        expect(page).to have_title 'Save as Template'
         expect(page).to have_css 'h1', text: 'Save as Template'
 
         expect(page).not_to have_content 'Generate a Github access token'

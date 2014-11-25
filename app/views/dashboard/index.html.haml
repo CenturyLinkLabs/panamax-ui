@@ -1,7 +1,8 @@
+- content_for(:title, 'Dashboard')
 - content_for(:body_id, 'manage_flow')
 
 %header
-  = render '/shared/breadcrumbs', breadcrumbs: ["Manage",  "Dashboard"]
+  = render '/shared/breadcrumbs', breadcrumbs: ['Manage', yield(:title)]
 
 #dashboard
   - @resources.each do |resource, value|

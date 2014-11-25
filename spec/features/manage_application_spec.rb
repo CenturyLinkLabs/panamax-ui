@@ -65,6 +65,8 @@ describe 'managing an application' do
       it 'shows the deployment environment' do
         visit '/apps/2'
 
+        expect(page).to have_title 'Panamax > tutum/wordpress'
+
         within '.deployment-details' do
           expect(page).to have_css '.deployment-env', text: 'Deployed to: CoreOS Local'
         end

@@ -1,8 +1,9 @@
+- content_for(:title, 'My Applications')
 - content_for(:body_id, 'manage_flow')
 
-= render '/shared/breadcrumbs', breadcrumbs: [ "Manage",
-                                                link_to("Dashboard", dashboard_index_path),
-                                                "My Applications" ]
+= render '/shared/breadcrumbs', breadcrumbs: [ 'Manage',
+                                                link_to('Dashboard', dashboard_index_path),
+                                                yield(:title)]
 %section.applications
   - @apps.each do |app|
     %div.application

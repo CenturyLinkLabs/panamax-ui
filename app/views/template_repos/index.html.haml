@@ -1,8 +1,9 @@
+- content_for(:title, 'Sources')
 - content_for(:body_id, 'template_repo_flow')
 
-= render '/shared/breadcrumbs', breadcrumbs: ["Manage",
-                                               link_to("Dashboard", dashboard_index_path),
-                                               "Sources"]
+= render '/shared/breadcrumbs', breadcrumbs: ['Manage',
+                                               link_to('Dashboard', dashboard_index_path),
+                                               yield(:title)]
 
 %section.template-repos
   - if @template_repos

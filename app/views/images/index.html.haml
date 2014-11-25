@@ -1,8 +1,9 @@
+- content_for(:title, 'Images')
 - content_for(:body_id, 'images_flow')
 
-= render '/shared/breadcrumbs', breadcrumbs: [ "Manage",
-                                                link_to("Dashboard", dashboard_index_path),
-                                                "Images" ]
+= render '/shared/breadcrumbs', breadcrumbs: [ 'Manage',
+                                                link_to('Dashboard', dashboard_index_path),
+                                                yield(:title)]
 
 - unless @images.blank?
   = form_tag destroy_multiple_images_path, method: :delete do

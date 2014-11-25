@@ -27,4 +27,24 @@ describe ApplicationHelper do
       expect(helper.none_if(false)).to be_nil
     end
   end
+
+  describe '#formatted_title' do
+    context 'when no page_title exists' do
+      subject { helper.formatted_title(nil) }
+
+      it { should eq 'Panamax' }
+    end
+
+    context 'when the page title does exist' do
+      subject { helper.formatted_title('pretty pictures') }
+
+      it { should eq 'Panamax > pretty pictures' }
+    end
+
+    context 'when multiple titles are passed' do
+      subject { helper.formatted_title('pretty pictures', 'more pretty') }
+
+      it { should eq 'Panamax > pretty pictures > more pretty' }
+    end
+  end
 end

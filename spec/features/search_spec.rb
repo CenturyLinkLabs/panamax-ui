@@ -5,6 +5,8 @@ describe 'searching for templates and images' do
     it 'can navigate to the search page and see examples' do
       visit '/'
 
+      expect(page).to have_title 'Panamax > Search'
+
       fill_in 'search_result_set_q', with: 'wordpress'
 
       expect(find_field('search_result_set_q').value).to eq 'wordpress'
@@ -14,6 +16,8 @@ describe 'searching for templates and images' do
       within 'form.search-form' do
         click_on 'Search'
       end
+
+      expect(page).to have_title 'Panamax > Search Results'
 
       # remote image result
       expect(page.find_link('tutum/wordpress')['href']).to eq "#{DOCKER_INDEX_BASE_URL}u/tutum/wordpress"
