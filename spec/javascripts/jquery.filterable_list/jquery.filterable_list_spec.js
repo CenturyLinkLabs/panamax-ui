@@ -1,6 +1,11 @@
 describe('$.fn.filterableList', function() {
   var fakeSearchResults;
 
+  function enterTerm(term) {
+    $('input.query-field').val(term).keyup();
+    jasmine.Clock.tick(300);
+  };
+
   function createFakeSearchResults() {
     var dummyTemplates = [
       {
@@ -39,6 +44,7 @@ describe('$.fn.filterableList', function() {
   };
 
   beforeEach(function() {
+    jasmine.Clock.useMock();
     fixture.load('search.html');
     fakeSearchResults = createFakeSearchResults();
     spyOn(fakeSearchResults, 'fetch');
@@ -89,40 +95,58 @@ describe('$.fn.filterableList', function() {
 
   describe('changing the text in the query field', function() {
 
+    it('waits 250 millis to make the search', function() {
+      $('input.query-field').val('word').keyup();
+      jasmine.Clock.tick(1);
+      expect(fakeSearchResults.fetch).not.toHaveBeenCalled();
+      jasmine.Clock.tick(300);
+      expect(fakeSearchResults.fetch).toHaveBeenCalled();
+    });
+
+    it('kills the previous search request if made within 250 milli window', function() {
+      $('input.query-field').val('word').keyup();
+      jasmine.Clock.tick(1);
+      $('input.query-field').val('wordpress').keyup();
+      jasmine.Clock.tick(700);
+
+      expect(fakeSearchResults.fetch.calls.length).toEqual(1);
+
+    });
+
     it('does not request results if fewer than 3 characters exist', function() {
-      $('input.query-field').val('my').keyup();
+      enterTerm('my');
 
       expect(fakeSearchResults.fetch).not.toHaveBeenCalled();
     });
 
     it('does not re-request results if the value has not actually changed', function() {
-      $('input.query-field').val('word').keyup();
-      $('input.query-field').val('word').keyup();
+      enterTerm('word');
+      enterTerm('word');
 
       expect(fakeSearchResults.fetch.calls.length).toEqual(1);
     });
 
     it('displays the search headings', function() {
       $('h3.search-title').hide();
-      $('input.query-field').val('word').keyup();
+      enterTerm('word');
       expect($('h3.search-title:visible').length).toEqual(2);
     });
 
     it('requests results when the searchfield is changed', function() {
-      $('input.query-field').val('mys').keyup();
+      enterTerm('mys');
 
       var request = mostRecentAjaxRequest();
       expect(fakeSearchResults.fetch).toHaveBeenCalledWith('mys');
     });
 
     it('places the errors on the page', function() {
-      $('input.query-field').val('apache').keyup();
+      enterTerm('apache');
 
       expect($.PMX.Helpers.displayError).toHaveBeenCalledWith('There was an error');
     });
 
     it('places the results on the page', function() {
-      $('input.query-field').val('apache').keyup();
+      enterTerm('apache');
 
       expect($('.remote-image-results').html()).toContain('some/name');
       expect($('.remote-image-results').html()).toContain('some description');
@@ -133,7 +157,7 @@ describe('$.fn.filterableList', function() {
     });
 
     it('calls chosen on the tags dropdown once the element is added to the page', function() {
-      $('input.query-field').val('apache').keyup();
+      enterTerm('apache');
 
       expect($('.local-image-results').html()).toContain('chosen-container');
     });
@@ -143,7 +167,7 @@ describe('$.fn.filterableList', function() {
         callback.call(this, []);
       });
 
-      $('input.query-field').val('apache').keyup();
+      enterTerm('apache');
 
       expect($('.template-results').html()).toContain('sorry, nothin here');
     });
@@ -151,7 +175,7 @@ describe('$.fn.filterableList', function() {
 
   describe('searching for anything', function() {
     it('shows the source repo blurb if it finds a template', function() {
-      $('input.query-field').val('apache').keyup();
+      enterTerm('apache');
 
       expect($('.template-results').html()).toContain('This is some information about how users can create their own templates');
     });
@@ -161,7 +185,7 @@ describe('$.fn.filterableList', function() {
         callback.call(this, []);
       });
 
-      $('input.query-field').val('apache').keyup();
+      enterTerm('apache');
 
       expect($('.template-results').html()).toContain('This is some information about how users can create their own templates');
     });
@@ -175,7 +199,7 @@ describe('$.fn.filterableList', function() {
 
     describe('when the tags are not yet loaded', function() {
       it('places the tags in the select', function() {
-        $('input.query-field').val('apache').keyup();
+        enterTerm('apache');
 
         $('.chosen-container').first().click();
 
@@ -190,7 +214,7 @@ describe('$.fn.filterableList', function() {
       });
 
       it('sends the local_image and registry_id in the request', function() {
-        $('input.query-field').val('apache').keyup();
+        enterTerm('apache');
 
         $('.remote-image-results .chosen-container').first().click();
 
@@ -207,7 +231,7 @@ describe('$.fn.filterableList', function() {
     });
 
     it('does not ajax load tags if they are already loaded', function() {
-      $('input.query-field').val('apache').keyup();
+      enterTerm('apache');
       var $tagsSelect = $('select.image-tag-select').first();
       $tagsSelect.attr('data-loaded', true);
       $('.chosen-container').first().click();
