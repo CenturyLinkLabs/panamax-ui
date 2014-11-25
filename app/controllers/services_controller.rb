@@ -51,6 +51,7 @@ class ServicesController < ApplicationController
         format.json { render(json: @service.to_json, status: status) }
       end
     else
+      @service.reload
       render :show
     end
   end

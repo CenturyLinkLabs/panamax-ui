@@ -203,6 +203,12 @@ describe ServicesController do
     context 'when saving fails' do
       before do
         valid_service.stub(:save).and_return(false)
+        valid_service.stub(:reload).and_return(true)
+      end
+
+      it 'reloads the service' do
+        patch :update, app_id: 2, id: 3, service: attributes
+        expect(valid_service).to have_received(:reload)
       end
 
       it 're-renders the show page' do
