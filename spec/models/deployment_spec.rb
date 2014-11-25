@@ -5,7 +5,7 @@ describe Deployment do
   it_behaves_like 'an active resource model'
 
   it { should respond_to :id }
-  it { should respond_to :resource_key }
+  it { should respond_to :resource_id }
   it { should respond_to :resource_type }
   it { should respond_to :override }
 

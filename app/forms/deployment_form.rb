@@ -15,7 +15,6 @@ class DeploymentForm
   end
 
   def save
-
     Deployment.create(
       resource_type: resource_type,
       resource_id: resource_id,
@@ -29,7 +28,7 @@ class DeploymentForm
   end
 
   def resource_type
-    resource.class
+    @resource_type ||= resource.class
   end
 
   private
