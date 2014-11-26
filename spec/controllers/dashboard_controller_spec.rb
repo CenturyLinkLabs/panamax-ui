@@ -17,29 +17,9 @@ describe DashboardController do
   end
 
   describe 'GET #index' do
-    it 'calls all_with_response on APP' do
-      expect(App).to receive(:all)
-      get :index
-    end
-
-    it 'calls all_with_response on TemplateRepo' do
-      expect(TemplateRepo).to receive(:all)
-      get :index
-    end
-
-    it 'calls all_with_response on LocalImage' do
-      expect(LocalImage).to receive(:all)
-      get :index
-    end
-
-    it 'calls all_with_response on Registry' do
-      expect(Registry).to receive(:all)
-      get :index
-    end
-
     it 'assigns values to the resources instance variable' do
       [App, TemplateRepo, LocalImage, Registry, DeploymentTarget].each do |resource|
-        resource.stub(:all).and_return(['thing'])
+        resource.stub(:all).and_return(double(length: 1))
       end
 
       get :index

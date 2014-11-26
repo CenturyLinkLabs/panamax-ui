@@ -47,11 +47,4 @@ class DashboardController < ApplicationController
           }
       }
   end
-
-  private
-
-  def more_count(total, limit)
-    [0, total - limit].max
-  end
-
 end
