@@ -49,9 +49,6 @@ describe TemplateForm do
   end
 
   describe '#documentation' do
-    before do
-      I18n.stub(:t).with('boilerplate_template_documentation').and_return('## default markdown ##')
-    end
 
     it 'returns documentation if set' do
       expect(subject.documentation).to eq '##some markdown##'
@@ -63,10 +60,10 @@ describe TemplateForm do
       expect(subject.documentation).to eq 'app doc'
     end
 
-    pending 'returns the default documentation if neither are set' do
+    it 'returns nil if neither are set' do
       subject.documentation = nil
       subject.app = nil
-      expect(subject.documentation).to eq '## default markdown ##'
+      expect(subject.documentation).to be_nil
     end
 
     context 'when the documentation contains carriage returns' do
