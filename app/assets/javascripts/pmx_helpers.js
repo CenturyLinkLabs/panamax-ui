@@ -7,27 +7,17 @@
     },
 
     displayError: function(message, options) {
-      options = options || {};
+      var defaultOptions = { style: "danger", container: "main" };
+      options = $.extend({}, defaultOptions, options);
+
       var ajaxErrorTemplate = Handlebars.compile($('#ajax_error_template').html());
       var notification = $(ajaxErrorTemplate(
           { title: 'The following Error occured',
             message: new Handlebars.SafeString(message)
           }));
 
-      if(options.style !== undefined) {
-        notification.find(".notice-danger").
-          removeClass("notice-danger").
-          addClass("notice-" + options.style);
-      }
-
-      var container;
-      if(options.container !== undefined) {
-        container = options.container;
-      } else {
-        container = 'main';
-      }
-
-      $(notification).prependTo(container);
+      notification.find(".notice-container").addClass("notice-" + options.style);
+      $(notification).prependTo(options.container);
     },
 
     dialog: function(scope, $content, options) {

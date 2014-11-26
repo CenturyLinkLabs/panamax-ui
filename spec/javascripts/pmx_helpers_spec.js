@@ -6,7 +6,7 @@ describe('$.PMX.Helpers', function() {
       fixture.load('site-layout.html');
     });
 
-    it('prepends the notice to the main container', function() {
+    it('prepends a notice-danger to the main container by default', function() {
       expect($('main .notice-danger').text()).not.toContain('boom');
       subject.displayError('boom');
       expect($('main .notice-danger').text()).toContain('boom');
