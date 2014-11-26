@@ -129,27 +129,6 @@ describe TemplateForm do
     end
   end
 
-  # describe '#errors' do
-  #   context 'when no template is present' do
-  #     it 'returns no errors' do
-  #       expect(subject.errors).to eq nil
-  #     end
-  #   end
-  #
-  #   context 'when a template is present' do
-  #     let(:fake_template) { double(:fake_template, errors: 'some error', valid?: false) }
-  #
-  #     before do
-  #       Template.stub(:create).and_return(fake_template)
-  #       subject.save
-  #     end
-  #
-  #     it 'returns the @template errors' do
-  #       expect(subject.errors).to eq 'some error'
-  #     end
-  #   end
-  # end
-
   describe '#save' do
     let(:fake_template) { double(:fake_template, valid?: true) }
 
