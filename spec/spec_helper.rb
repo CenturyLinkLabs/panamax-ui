@@ -5,22 +5,25 @@ require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/rails'
 require 'webmock/rspec'
-require 'coveralls'
-require 'simplecov'
+
+if ENV['CIRCLE_ARTIFACTS'] || ENV['COVERAGE'].present?
+  require 'coveralls'
+  require 'simplecov'
+
+  SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+      SimpleCov::Formatter::HTMLFormatter,
+      Coveralls::SimpleCov::Formatter
+  ]
+
+  SimpleCov.start('rails')
+
+  if ENV['CIRCLE_ARTIFACTS']
+    dir = File.join('..', '..', '..', ENV['CIRCLE_ARTIFACTS'], 'coverage')
+    SimpleCov.coverage_dir(dir)
+  end
+end
 
 DOCKER_INDEX_BASE_URL = 'https://registry.hub.docker.com/'
-
-SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
-    SimpleCov::Formatter::HTMLFormatter,
-    Coveralls::SimpleCov::Formatter
-]
-
-SimpleCov.start('rails')
-
-if ENV['CIRCLE_ARTIFACTS']
-  dir = File.join('..', '..', '..', ENV['CIRCLE_ARTIFACTS'], 'coverage')
-  SimpleCov.coverage_dir(dir)
-end
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
