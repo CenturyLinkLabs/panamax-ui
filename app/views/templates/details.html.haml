@@ -1,7 +1,6 @@
 - content_for(:title, 'Template Details')
 .template-images
-  %h2
-    Template Images
+  %h2 Template Images
   %ul
     - @template.images.each do |image|
       %li.template-image-detail
@@ -12,8 +11,7 @@
           = link_to 'View on Docker Hub', image.docker_index_url, { target: 'blank' }
 
 - if @template.documentation
-  %h2
-    Documentation
+  %h2 Documentation
 
   #post-run-html
     = @template.documentation_to_html.html_safe

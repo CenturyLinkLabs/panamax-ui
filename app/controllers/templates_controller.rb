@@ -39,7 +39,7 @@ and 'user:email'."
 
   def details
     @template = Template.find(params[:id])
-    render :details, layout: nil
+    render layout: nil
   end
 
   private

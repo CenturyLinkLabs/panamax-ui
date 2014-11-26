@@ -37,5 +37,26 @@ describe 'searching for templates and images' do
       expect(page.find_link('Learn more')['href']).to eq 'https://github.com/CenturyLinkLabs/panamax-ui/wiki/How-To:-Make-a-Template'
     end
 
+    it 'can view template details' do
+      visit '/'
+
+      fill_in 'search_result_set_q', with: 'wordpress'
+
+      within 'form.search-form' do
+        click_on 'Search'
+      end
+
+      within '.template-result' do
+        click_on 'More Details'
+      end
+
+      expect(page).to have_content 'Template Images'
+      expect(page).to have_content 'centurylink/aws-cli-wetty:latest'
+      expect(page).to have_link 'View on Docker Hub', href: 'https://registry.hub.docker.com/u/centurylink/aws-cli-wetty'
+
+      expect(page).to have_content 'Documentation'
+      expect(page).to have_content 'AWS CLI 1.0 - wetty terminal' # did't include all the documentation here
+    end
+
   end
 end
