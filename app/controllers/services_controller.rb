@@ -52,6 +52,7 @@ class ServicesController < ApplicationController
       end
     else
       @service.reload
+      @service.hydrate_linked_services!
       render :show
     end
   end
