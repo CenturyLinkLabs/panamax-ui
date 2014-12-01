@@ -4,7 +4,7 @@ describe HostHealthController do
   let(:fake_response) { double(:fake_response, overall: {}) }
 
   before do
-    HostHealth.stub(:find).and_return(fake_response)
+    allow(HostHealth).to receive(:find).and_return(fake_response)
   end
 
   describe 'GET #index' do

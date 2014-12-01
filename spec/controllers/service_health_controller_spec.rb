@@ -4,7 +4,7 @@ describe ServiceHealthController do
   let(:fake_response) { double(:fake_response, overall: {}) }
 
   before do
-    ServiceHealth.stub(:find).and_return(fake_response)
+    allow(ServiceHealth).to receive(:find).and_return(fake_response)
   end
 
   describe 'GET #show' do

@@ -12,7 +12,7 @@ describe RegistriesController do
     end
 
     before do
-      Registry.stub(:all).and_return(fake_registries)
+      allow(Registry).to receive(:all).and_return(fake_registries)
     end
 
     it 'renders the index view' do
@@ -40,7 +40,7 @@ describe RegistriesController do
       let(:valid_registry) { double(:valid_registry, valid?: true) }
 
       before do
-        Registry.any_instance.stub(:save).and_return(valid_registry)
+        allow_any_instance_of(Registry).to receive(:save).and_return(valid_registry)
       end
 
       it 'creates the registry' do
@@ -64,7 +64,7 @@ describe RegistriesController do
       let(:invalid_registry) { double(:invalid_registry, model_name: "Registry", valid?: false) }
 
       before do
-        Registry.stub(:create).and_return(invalid_registry)
+        allow(Registry).to receive(:create).and_return(invalid_registry)
         post :create, registry_form_params
       end
 
@@ -80,7 +80,7 @@ describe RegistriesController do
     context 'when create raises an exception' do
 
       before do
-        Registry.any_instance.stub(:save).and_raise(StandardError.new)
+        allow_any_instance_of(Registry).to receive(:save).and_raise(StandardError.new)
       end
 
       it 'rescues an exception' do
@@ -98,7 +98,7 @@ describe RegistriesController do
     context 'when destroy is successful' do
 
       before do
-        Registry.stub(:find).with('7').and_return(fake_registry)
+        allow(Registry).to receive(:find).with('7').and_return(fake_registry)
       end
 
       it 'destroys the registry' do
@@ -111,7 +111,7 @@ describe RegistriesController do
     context 'when destroy is not successful' do
 
       before do
-        Registry.stub(:find).with('7').and_raise(StandardError.new)
+        allow(Registry).to receive(:find).with('7').and_raise(StandardError.new)
       end
 
       it 'rescues an exception' do
@@ -128,7 +128,7 @@ describe RegistriesController do
     let(:fake_registry) { double(:fake_registry, update_attributes: true) }
 
     before do
-      Registry.stub(:find).with('3').and_return(fake_registry)
+      allow(Registry).to receive(:find).with('3').and_return(fake_registry)
     end
 
     it 'updates the given record' do
@@ -145,7 +145,7 @@ describe RegistriesController do
 
     context 'when the regsitry cannot be found' do
       before do
-        Registry.stub(:find).and_raise(ActiveResource::ResourceNotFound.new(double('err', code: '404')))
+        allow(Registry).to receive(:find).and_raise(ActiveResource::ResourceNotFound.new(double('err', code: '404')))
       end
 
       it 'responds with a 302 status code' do

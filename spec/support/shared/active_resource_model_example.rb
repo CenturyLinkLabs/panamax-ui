@@ -15,12 +15,12 @@ shared_examples 'an active resource model' do
 
   describe '.find_by_id' do
     it 'finds the record by the given id' do
-      described_class.stub(:find).and_return 'thing'
+      allow(described_class).to receive(:find).and_return 'thing'
       expect(described_class.find_by_id(1)).to eq 'thing'
     end
 
     it 'returns nil if the record does not exist' do
-      described_class.stub(:find).and_raise(ActiveResource::ResourceNotFound.new(double('err', code: '404')))
+      allow(described_class).to receive(:find).and_raise(ActiveResource::ResourceNotFound.new(double('err', code: '404')))
       expect(described_class.find_by_id(99)).to be_nil
     end
   end
@@ -32,9 +32,9 @@ shared_examples 'an active resource model' do
     let(:collection) { %w(foo baz bar) }
 
     before do
-      described_class.stub(:prefix_parameters).and_return({}) # ignore model prefix
-      described_class.stub(:connection).and_return(connection)
-      described_class.stub(:instantiate_collection).and_return(collection)
+      allow(described_class).to receive(:prefix_parameters).and_return({}) # ignore model prefix
+      allow(described_class).to receive(:connection).and_return(connection)
+      allow(described_class).to receive(:instantiate_collection).and_return(collection)
     end
 
     it 'makes a GET request with the proper path' do

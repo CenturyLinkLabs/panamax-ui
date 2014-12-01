@@ -18,7 +18,7 @@ describe ApplicationController do
     context 'when request is XHR' do
 
       before do
-        controller.request.stub(xhr?: true)
+        allow(controller.request).to receive(:xhr?).and_return(true)
       end
 
       it 'returns a 500 status code' do
@@ -57,7 +57,7 @@ describe ApplicationController do
     context 'when request is XHR' do
 
       before do
-        controller.request.stub(xhr?: true)
+        allow(controller.request).to receive(:xhr?).and_return(true)
       end
 
       it 'returns panamax API connection message in the response body' do
@@ -83,7 +83,7 @@ describe ApplicationController do
     context 'when the request is XHR' do
 
       before do
-        controller.request.stub(xhr?: true)
+        allow(controller.request).to receive(:xhr?).and_return(true)
       end
 
       context 'when a message is provided' do

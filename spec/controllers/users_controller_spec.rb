@@ -6,12 +6,12 @@ describe UsersController do
   let(:update_params) { { 'email' => 'test@example.com' } }
 
   before do
-    User.stub(:find).and_return(user)
+    allow(User).to receive(:find).and_return(user)
   end
 
   describe 'put #update' do
     before do
-      user.stub(:update_attributes)
+      allow(user).to receive(:update_attributes)
       request.env['HTTP_REFERER'] = '/some/origin'
     end
 
@@ -26,13 +26,13 @@ describe UsersController do
     end
 
     it 'sets a flash message indicating successful update' do
-      user.stub(:update_attributes).and_return(true)
+      allow(user).to receive(:update_attributes).and_return(true)
       put :update, user: update_params
       expect(flash[:success]).to eq I18n.t('users.update.success')
     end
 
     it 'sets a flash alert if the token could not be saved' do
-      user.stub(:update_attributes).and_return(false)
+      allow(user).to receive(:update_attributes).and_return(false)
       put :update, user: update_params
       expect(flash[:alert]).to_not be blank?
     end
@@ -40,7 +40,7 @@ describe UsersController do
     context 'when an error occurs' do
 
       before do
-        user.stub(:update_attributes).and_raise('oops')
+        allow(user).to receive(:update_attributes).and_raise('oops')
       end
 
       it 'flashes an error message' do

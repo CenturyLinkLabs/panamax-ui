@@ -8,18 +8,19 @@ describe AppsController do
   let(:fake_delete_response) { double(:fake_delete_response, body: 'test', status: 200) }
 
   before do
-    controller.stub(:show_url)
-    App.stub(:find).and_return(dummy_app)
-    dummy_app.stub(:id).and_return(77)
-    dummy_app.stub(:categories).and_return([Category.new(id: 33, name: 'Test3', position: 3),
-                                            Category.new(id: 22, name: 'Test2', position: 2),
-                                            Category.new(id: 11, name: 'Test1', position: 1)
-                                           ])
+    allow(controller).to receive(:show_url)
+    allow(App).to receive(:find).and_return(dummy_app)
+    allow(dummy_app).to receive(:id).and_return(77)
+    allow(dummy_app).to receive(:categories).and_return([
+      Category.new(id: 33, name: 'Test3', position: 3),
+      Category.new(id: 22, name: 'Test2', position: 2),
+      Category.new(id: 11, name: 'Test1', position: 1)
+    ])
   end
 
   describe 'POST #create' do
     before do
-      App.stub(:create).and_return(dummy_app)
+      allow(App).to receive(:create).and_return(dummy_app)
     end
 
     it 'creates an application' do
@@ -35,7 +36,7 @@ describe AppsController do
 
     context 'when the created app is valid' do
       before do
-        dummy_app.stub(:valid?).and_return(true)
+        allow(dummy_app).to receive(:valid?).and_return(true)
       end
 
       it 'redirects to the show page' do
@@ -52,7 +53,7 @@ describe AppsController do
 
     context 'when app is not valid' do
       before do
-        App.stub(:create).and_return(false)
+        allow(App).to receive(:create).and_return(false)
       end
 
       it 'renders the show template' do
@@ -71,8 +72,8 @@ describe AppsController do
     end
 
     before do
-      App.stub(:find).and_return(dummy_app)
-      dummy_app.stub(:save)
+      allow(App).to receive(:find).and_return(dummy_app)
+      allow(dummy_app).to receive(:save)
     end
 
     it 'retrieves the app to be updated' do
@@ -93,7 +94,7 @@ describe AppsController do
 
   describe '#destroy' do
     before do
-      dummy_app.stub(:destroy)
+      allow(dummy_app).to receive(:destroy)
     end
 
     it 'uses the applications service to destroy the application' do
@@ -115,7 +116,7 @@ describe AppsController do
   describe 'GET #index' do
     let(:apps) { [App.new] }
     before do
-      App.stub(:all).and_return(apps)
+      allow(App).to receive(:all).and_return(apps)
     end
 
     it 'retrieves all the applications' do
@@ -142,7 +143,7 @@ describe AppsController do
     end
 
     it 'returns a 404 if the app is not found' do
-      App.stub(:find).and_raise(ActiveResource::ResourceNotFound.new(double('err', code: '404')))
+      allow(App).to receive(:find).and_raise(ActiveResource::ResourceNotFound.new(double('err', code: '404')))
       get :show, id: 77
       expect(response.status).to eq 404
     end
@@ -151,7 +152,7 @@ describe AppsController do
   describe 'GET #documentation' do
 
     it 'renders the apps documentation with the documentation layout' do
-      dummy_app.stub(:documentation_to_html).and_return('<p>some instructions</a>')
+      allow(dummy_app).to receive(:documentation_to_html).and_return('<p>some instructions</a>')
       get :documentation, id: 77
       expect(response).to render_template('documentation', layout: 'plain')
     end
@@ -179,7 +180,7 @@ describe AppsController do
     end
 
     before do
-      dummy_app.stub(:post).and_return(template_response)
+      allow(dummy_app).to receive(:post).and_return(template_response)
     end
 
     it 'retrieve the template' do
@@ -203,7 +204,7 @@ describe AppsController do
     end
 
     before do
-      dummy_app.stub(:get).and_return(journal_lines)
+      allow(dummy_app).to receive(:get).and_return(journal_lines)
     end
 
     it 'retrieve the journal' do
@@ -232,7 +233,7 @@ describe AppsController do
 
     context 'when successful' do
       before do
-        dummy_app.stub(:put).and_return(true)
+        allow(dummy_app).to receive(:put).and_return(true)
       end
 
       it 'redirects to the applications index view when format is html' do
@@ -253,7 +254,7 @@ describe AppsController do
 
     context 'when unsuccessful' do
       before do
-        dummy_app.stub(:put).and_return(false)
+        allow(dummy_app).to receive(:put).and_return(false)
       end
 
       it 'returns status 302 when format is html' do
@@ -275,7 +276,7 @@ describe AppsController do
     context 'when an ActiveResource::ServerError occurs' do
 
       before do
-        dummy_app.stub(:put).and_raise(
+        allow(dummy_app).to receive(:put).and_raise(
           ActiveResource::ServerError.new(nil, 'oops'))
       end
 

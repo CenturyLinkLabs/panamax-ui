@@ -44,7 +44,7 @@ describe DeploymentPresenter do
     subject { presenter.destroy_path }
 
     before do
-      view_context.stub(:deployment_target_deployment_path).with(9, 7).and_return('/foo/bar')
+      allow(view_context).to receive(:deployment_target_deployment_path).with(9, 7).and_return('/foo/bar')
     end
 
     it { should eq '/foo/bar' }

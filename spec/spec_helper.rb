@@ -33,12 +33,6 @@ Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
 RSpec.configure do |config|
-  # Allow the old and new syntax. This is probably a temporary situation, but
-  # that is going to be an enormous changeset that I'd rather do separately.
-  config.mock_with :rspec do |c|
-    c.syntax = [ :should, :expect ]
-  end
-
   config.infer_spec_type_from_file_location!
 
   # Run specs in random order to surface order dependencies. If you find an

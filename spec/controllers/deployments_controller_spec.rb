@@ -7,8 +7,8 @@ describe DeploymentsController do
     let(:fake_resource) { double(:fake_resource) }
 
     before do
-      DeploymentTarget.stub(:find).and_return(fake_deployment_target)
-      DeploymentForm.stub(:new).with(
+      allow(DeploymentTarget).to receive(:find).and_return(fake_deployment_target)
+      allow(DeploymentForm).to receive(:new).with(
         resource: fake_resource,
         deployment_target_id: '7'
       ).and_return(fake_deployment_form)
@@ -16,7 +16,7 @@ describe DeploymentsController do
 
     context 'when resource type is Template' do
       before do
-        Template.stub(:find).and_return(fake_resource)
+        allow(Template).to receive(:find).and_return(fake_resource)
         get :new, deployment_target_id: 7, resource_id: '8', resource_type: 'Template'
       end
 
@@ -39,7 +39,7 @@ describe DeploymentsController do
 
     context 'when resource type is App' do
       before do
-        App.stub(:find).and_return(fake_resource)
+        allow(App).to receive(:find).and_return(fake_resource)
         get :new, deployment_target_id: 7, resource_id: '8', resource_type: 'App'
       end
 
@@ -71,7 +71,7 @@ describe DeploymentsController do
     end
 
     before do
-      DeploymentForm.stub(:new).with(create_params).and_return(fake_deployment_form)
+      allow(DeploymentForm).to receive(:new).with(create_params).and_return(fake_deployment_form)
     end
 
     it 'calls save on the deployment form' do
@@ -81,7 +81,7 @@ describe DeploymentsController do
 
     context 'when successful' do
       before do
-        fake_deployment_form.stub(:save).and_return(true)
+        allow(fake_deployment_form).to receive(:save).and_return(true)
         post :create, deployment_form: create_params, deployment_target_id: 7
       end
 
@@ -96,7 +96,7 @@ describe DeploymentsController do
 
     context 'when the save fails' do
       before do
-        fake_deployment_form.stub(:save).and_return(false)
+        allow(fake_deployment_form).to receive(:save).and_return(false)
         post :create, deployment_form: create_params, deployment_target_id: 7
       end
 
@@ -115,8 +115,8 @@ describe DeploymentsController do
     let(:fake_deployments) { double(:fake_deployments) }
 
     before do
-      DeploymentTarget.stub(:find).with('7').and_return(fake_target)
-      Deployment.stub(:all).with(params: { deployment_target_id: '7' }).and_return(fake_deployments)
+      allow(DeploymentTarget).to receive(:find).with('7').and_return(fake_target)
+      allow(Deployment).to receive(:all).with(params: { deployment_target_id: '7' }).and_return(fake_deployments)
       get :index, deployment_target_id: 7
     end
 
@@ -137,7 +137,7 @@ describe DeploymentsController do
     let(:fake_deployment) { double(:fake_deployment, destroy: true) }
 
     before do
-      Deployment.stub(:find).with('13', params: { deployment_target_id: '9' }).and_return(fake_deployment)
+      allow(Deployment).to receive(:find).with('13', params: { deployment_target_id: '9' }).and_return(fake_deployment)
     end
 
     context 'html format' do
@@ -181,7 +181,7 @@ describe DeploymentsController do
     let(:fake_deployment) { double(:fake_deployment) }
 
     before do
-      Deployment.stub(:find).with('7', params: { deployment_target_id: '9' }).and_return(fake_deployment)
+      allow(Deployment).to receive(:find).with('7', params: { deployment_target_id: '9' }).and_return(fake_deployment)
     end
 
     context 'json request' do

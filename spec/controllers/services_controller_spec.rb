@@ -7,11 +7,11 @@ describe ServicesController do
   let(:app_services) { double([Service.new]) }
 
   before do
-    App.stub(:find).and_return(valid_app)
-    Service.stub(:find).and_return(valid_service)
-    valid_service.stub(:categories=)
-    valid_service.stub(:hydrate_linked_services!).and_return(Service.new)
-    valid_app.stub(:services).and_return(app_services)
+    allow(App).to receive(:find).and_return(valid_app)
+    allow(Service).to receive(:find).and_return(valid_service)
+    allow(valid_service).to receive(:categories=)
+    allow(valid_service).to receive(:hydrate_linked_services!).and_return(Service.new)
+    allow(valid_app).to receive(:services).and_return(app_services)
   end
 
   describe 'GET #show' do
@@ -87,8 +87,8 @@ describe ServicesController do
     end
 
     before do
-      Category.stub(:find).and_return(dummy_category)
-      Service.any_instance.stub(:save)
+      allow(Category).to receive(:find).and_return(dummy_category)
+      allow_any_instance_of(Service).to receive(:save)
     end
 
     it 'creates the service' do
@@ -170,8 +170,8 @@ describe ServicesController do
     end
 
     before do
-      valid_service.stub(:write_attributes)
-      valid_service.stub(:save).and_return(true)
+      allow(valid_service).to receive(:write_attributes)
+      allow(valid_service).to receive(:save).and_return(true)
     end
 
     it 'retrieves the service to be updated' do
@@ -202,9 +202,9 @@ describe ServicesController do
 
     context 'when saving fails' do
       before do
-        valid_service.stub(:save).and_return(false)
-        valid_service.stub(:reload).and_return(true)
-        valid_service.stub(:hydrate_linked_services!).and_return(true)
+        allow(valid_service).to receive(:save).and_return(false)
+        allow(valid_service).to receive(:reload).and_return(true)
+        allow(valid_service).to receive(:hydrate_linked_services!).and_return(true)
       end
 
       it 'reloads the service' do
@@ -226,7 +226,7 @@ describe ServicesController do
 
   describe '#destroy' do
     before do
-      valid_service.stub(:destroy)
+      allow(valid_service).to receive(:destroy)
     end
 
     it 'uses the services service to destroy the service' do
@@ -254,8 +254,8 @@ describe ServicesController do
     end
 
     before do
-      Service.stub(:new).and_return(valid_service)
-      valid_service.stub(:get).and_return(journal_lines)
+      allow(Service).to receive(:new).and_return(valid_service)
+      allow(valid_service).to receive(:get).and_return(journal_lines)
     end
 
     context 'when the cursor param is nil' do

@@ -40,8 +40,8 @@ describe 'managing a template' do
 
         before do
           user = User.new(github_access_token_present: false)
-          User.stub(:find).and_return(user)
-          user.stub(:update_attributes).and_return(true)
+          allow(User).to receive(:find).and_return(user)
+          allow(user).to receive(:update_attributes).and_return(true)
         end
 
         it 'allows the user to request and enter a token' do
@@ -67,8 +67,8 @@ describe 'managing a template' do
 
         before do
           user = User.new(github_access_token_present: true, email: '', github_username: 'bar')
-          User.stub(:find).and_return(user)
-          user.stub(:update_attributes).and_return(true)
+          allow(User).to receive(:find).and_return(user)
+          allow(user).to receive(:update_attributes).and_return(true)
         end
 
         it 'allows the user to request and enter a token' do
@@ -94,8 +94,8 @@ describe 'managing a template' do
 
         before do
           user = User.new(github_access_token_present: true, email: 'foo', github_username: '')
-          User.stub(:find).and_return(user)
-          user.stub(:update_attributes).and_return(true)
+          allow(User).to receive(:find).and_return(user)
+          allow(user).to receive(:update_attributes).and_return(true)
         end
 
         it 'allows the user to request and enter a token' do

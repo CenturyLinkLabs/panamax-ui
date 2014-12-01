@@ -63,11 +63,11 @@ describe LocalImage do
       let(:fake_image) { double(:fake_image, id: 1, destroy: true) }
 
       before do
-        LocalImage.stub(:find_by_id).and_return(fake_image)
+        allow(LocalImage).to receive(:find_by_id).and_return(fake_image)
       end
 
       it 'calls #destroy on all the image provided' do
-        fake_image.should_receive(:destroy)
+        expect(fake_image).to receive(:destroy)
         LocalImage.batch_destroy [1]
       end
 
@@ -81,7 +81,7 @@ describe LocalImage do
       let(:fake_image) { double(:fake_image, name: 'bad_image', destroy: false) }
 
       before do
-        LocalImage.stub(:find_by_id).and_return(fake_image)
+        allow(LocalImage).to receive(:find_by_id).and_return(fake_image)
       end
 
       it 'returns the set of failed images' do
@@ -95,8 +95,8 @@ describe LocalImage do
       let(:fake_image) { double(:fake_image, id: 1, destroy: true) }
 
       before do
-        LocalImage.stub(:find_by_id).and_return(fake_image)
-        fake_image.stub(:destroy).and_raise(StandardError, 'oops')
+        allow(LocalImage).to receive(:find_by_id).and_return(fake_image)
+        allow(fake_image).to receive(:destroy).and_raise(StandardError, 'oops')
       end
 
       it 'returns the set of failed error messages' do

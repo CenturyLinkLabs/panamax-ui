@@ -13,13 +13,13 @@ describe DashboardController do
   end
 
   before do
-    I18n.stub(:t).and_return('test')
+    allow(I18n).to receive(:t).and_return('test')
   end
 
   describe 'GET #index' do
     it 'assigns values to the resources instance variable' do
       [App, TemplateRepo, LocalImage, Registry, DeploymentTarget].each do |resource|
-        resource.stub(:all).and_return(double(length: 1))
+        allow(resource).to receive(:all).and_return(double(length: 1))
       end
 
       get :index

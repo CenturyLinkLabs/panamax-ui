@@ -22,7 +22,7 @@ describe TemplateRepo do
   describe '.has_user_sources?' do
     context 'when template sources repo has an user repo' do
       before do
-        TemplateRepo.stub_chain(:all, :count).and_return(3)
+        allow(TemplateRepo).to receive_message_chain(:all, :count).and_return(3)
       end
 
       it 'returns true' do
@@ -32,7 +32,7 @@ describe TemplateRepo do
 
     context 'when template sources repo does not have an user repo' do
       before do
-        TemplateRepo.stub_chain(:all, :count).and_return(2)
+        allow(TemplateRepo).to receive_message_chain(:all, :count).and_return(2)
       end
 
       it 'returns false if ' do

@@ -16,8 +16,8 @@ describe CategoriesController do
     end
 
     before do
-      Category.stub(:find).and_return(dummy_category)
-      Category.stub(:create).and_return(dummy_category)
+      allow(Category).to receive(:find).and_return(dummy_category)
+      allow(Category).to receive(:create).and_return(dummy_category)
     end
 
     it 'creates the category' do
@@ -43,8 +43,8 @@ describe CategoriesController do
     end
 
     before do
-      Category.stub(:find).and_return(dummy_category)
-      dummy_category.stub(:save)
+      allow(Category).to receive(:find).and_return(dummy_category)
+      allow(dummy_category).to receive(:save)
     end
 
     it 'retrieves the category to be updated' do
@@ -65,8 +65,8 @@ describe CategoriesController do
 
   describe 'DELETE #destroy' do
     before do
-      Category.stub(:find).and_return(dummy_category)
-      dummy_category.stub(:destroy)
+      allow(Category).to receive(:find).and_return(dummy_category)
+      allow(dummy_category).to receive(:destroy)
     end
 
     it 'retrieves the category to be updated' do

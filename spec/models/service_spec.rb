@@ -386,7 +386,7 @@ describe Service do
     let(:docker_image_name) { double(:docker_image_name, base_image: 'fooyah') }
 
     before do
-      DockerImageName.stub(:parse).with(subject.from).and_return(docker_image_name)
+      allow(DockerImageName).to receive(:parse).with(subject.from).and_return(docker_image_name)
     end
 
     it 'delegates to the Docker helper' do
@@ -398,7 +398,7 @@ describe Service do
     let(:docker_image_name) { double(:docker_image_name, tag: 'latest') }
 
     before do
-      DockerImageName.stub(:parse).with(subject.from).and_return(docker_image_name)
+      allow(DockerImageName).to receive(:parse).with(subject.from).and_return(docker_image_name)
     end
 
     it 'delegates to the Docker helper' do
@@ -430,7 +430,7 @@ describe Service do
   describe '#hydrate_linked_services!' do
     let(:fake_service) { double(:fake_service, id: 3) }
     before do
-      Service.stub(:find).and_return(fake_service)
+      allow(Service).to receive(:find).and_return(fake_service)
     end
     it 'returns complete service model as linked_to_service on each link' do
       result = described_class.build_from_response(fake_json_response)
