@@ -73,7 +73,4 @@ class TemplateForm
     template.post(:save, body)
   end
 
-  def default_documentation
-    I18n.t('boilerplate_template_documentation')
-  end
 end
