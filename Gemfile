@@ -13,10 +13,11 @@ gem 'zeroclipboard-rails'
 
 
 group :test, :development do
-  gem 'rspec-rails', '2.14.2'
-  gem 'capybara', '2.3.0'
-  gem 'teaspoon', '0.8.0'
-  gem 'phantomjs', '1.9.7.1'
+  gem 'rspec-rails'
+  gem 'its'
+  gem 'capybara'
+  gem 'teaspoon'
+  gem 'phantomjs'
   gem 'dotenv-rails', '0.11.1'
   gem 'pry'
   gem 'pry-byebug'

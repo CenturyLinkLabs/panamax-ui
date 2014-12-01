@@ -170,7 +170,7 @@ describe TemplateForm do
       end
 
       it 'does not save the template to a repo' do
-        expect(Template.any_instance).to_not receive(:post)
+        expect_any_instance_of(Template).to_not receive(:post)
         subject.save
       end
 
@@ -200,7 +200,7 @@ describe TemplateForm do
       end
 
       it 'does not save the template to a repo' do
-        expect(Template.any_instance).to_not receive(:post)
+        expect_any_instance_of(Template).to_not receive(:post)
         subject.save
       end
 

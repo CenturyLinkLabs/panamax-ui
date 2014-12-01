@@ -26,7 +26,7 @@ describe TemplateRepo do
       end
 
       it 'returns true' do
-        expect(TemplateRepo.has_user_sources?).to be_true
+        expect(TemplateRepo.has_user_sources?).to be_truthy
       end
     end
 
@@ -36,7 +36,7 @@ describe TemplateRepo do
       end
 
       it 'returns false if ' do
-        expect(TemplateRepo.has_user_sources?).to be_false
+        expect(TemplateRepo.has_user_sources?).to be_falsey
       end
     end
   end

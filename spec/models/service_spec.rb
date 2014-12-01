@@ -57,7 +57,7 @@ describe Service do
         Environment.new('variable' => 'PORT', 'value' => '80'),
         Environment.new('variable' => 'OPTIONAL', 'value' => '')
       ]
-      expect(subject.has_empty_env_values?).to be_true
+      expect(subject.has_empty_env_values?).to be_truthy
     end
 
     it 'returns true if a value is missing' do
@@ -65,12 +65,12 @@ describe Service do
         Environment.new('variable' => 'PORT', 'value' => '80'),
         Environment.new('variable' => 'OPTIONAL')
       ]
-      expect(subject.has_empty_env_values?).to be_true
+      expect(subject.has_empty_env_values?).to be_truthy
     end
 
     it 'returns false if there are no env vars' do
       subject.environment = []
-      expect(subject.has_empty_env_values?).to be_false
+      expect(subject.has_empty_env_values?).to be_falsey
     end
 
     it 'returns false if there are no empty valued env vars' do
@@ -78,7 +78,7 @@ describe Service do
         Environment.new('variable' => 'PORT', 'value' => '80'),
         Environment.new('variable' => 'OPTIONAL', 'value' => 'present')
       ]
-      expect(subject.has_empty_env_values?).to be_false
+      expect(subject.has_empty_env_values?).to be_falsey
     end
   end
 
@@ -143,12 +143,12 @@ describe Service do
   describe '#running?' do
     it 'is true when sub state is running' do
       subject.sub_state = 'running'
-      expect(subject.running?).to be_true
+      expect(subject.running?).to be_truthy
     end
 
     it 'is false when sub state is something else' do
       subject.sub_state = 'somethingelse'
-      expect(subject.running?).to be_false
+      expect(subject.running?).to be_falsey
     end
 
   end

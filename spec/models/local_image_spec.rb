@@ -20,7 +20,7 @@ describe LocalImage do
 
   describe '#local?' do
     it 'is a local image' do
-      expect(subject.local?).to be_true
+      expect(subject.local?).to be_truthy
     end
   end
 
@@ -39,16 +39,16 @@ describe LocalImage do
 
     it 'is true when name is centurylink/panamax-ui' do
       pmx_ui = described_class.new(panamax_ui)
-      expect(pmx_ui.panamax_image?).to be_true
+      expect(pmx_ui.panamax_image?).to be_truthy
     end
 
     it 'is true when name is centurylink/panamax-api' do
       pmx_api = described_class.new(panamax_api)
-      expect(pmx_api.panamax_image?).to be_true
+      expect(pmx_api.panamax_image?).to be_truthy
     end
 
     it 'is false when name is not panamax image' do
-      expect(subject.panamax_image?).to be_false
+      expect(subject.panamax_image?).to be_falsey
     end
   end
 

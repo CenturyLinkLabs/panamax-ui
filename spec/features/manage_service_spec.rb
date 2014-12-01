@@ -7,7 +7,7 @@ describe 'managing a service' do
 
       click_on 'tutum/wordpress'
 
-      page.should have_content 'tutum/wordpress'
+      expect(page).to have_content 'tutum/wordpress'
     end
 
     context 'when the service is running' do

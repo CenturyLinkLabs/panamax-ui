@@ -35,11 +35,11 @@ describe 'managing deployment targets' do
 
       click_on 'Socialize staging environment'
 
-      page.should have_content 'ID: 1 / Unnamed Deployment'
-      page.should have_content 'Services: 3'
-      page.should have_content 'db-1'
-      page.should have_content 'wp-pod'
-      page.should have_content 'db-pod'
+      expect(page).to have_content 'ID: 1 / Unnamed Deployment'
+      expect(page).to have_content 'Services: 3'
+      expect(page).to have_content 'db-1'
+      expect(page).to have_content 'wp-pod'
+      expect(page).to have_content 'db-pod'
     end
 
     it 'can refresh a deployment target' do
