@@ -39,11 +39,6 @@ RSpec.configure do |config|
     c.syntax = [ :should, :expect ]
   end
 
-  config.before(:each) do
-    hostname = URI.parse(PanamaxApi::URL).hostname
-    stub_request(:any, /#{hostname}/).to_rack(FakePanamaxApi)
-  end
-
   config.infer_spec_type_from_file_location!
 
   # Run specs in random order to surface order dependencies. If you find an

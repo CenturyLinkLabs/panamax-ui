@@ -190,7 +190,7 @@ GEM
     uglifier (2.5.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    webmock (1.18.0)
+    webmock (1.20.4)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
     xpath (2.0.0)
@@ -222,5 +222,5 @@ DEPENDENCIES
   teaspoon
   therubyracer (= 0.12.1)
   uglifier (= 2.5.1)
-  webmock (= 1.18.0)
+  webmock
   zeroclipboard-rails

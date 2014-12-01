@@ -25,7 +25,7 @@ group :test, :development do
 end
 
 group :test do
-  gem 'webmock', '1.18.0'
+  gem 'webmock'
   gem 'sinatra', '1.4.5'
   gem 'coveralls', '0.7.0'
 end
