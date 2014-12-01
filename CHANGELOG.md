@@ -1,6 +1,21 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+0.2.10 - 2014-12-1
+------------------
+### Added
+- Deployment status (#448)
+- Deploy from an application (#452)
+- Title text to most pages (#467)
+
+### Changed
+- Replace docker index url with docker search url (#458)
+- Disable delete button while pending (#459)
+ 
+### Fixed
+- Docker run preview of ENV vars (#456)
+- Debounce the search input (#463, #437)
+
 0.2.9 - 2014-11-21
 ------------------
 ### Added
