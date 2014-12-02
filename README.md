@@ -19,7 +19,6 @@ This project exposes a friendly user interface to the [Panamax API](https://gith
 ```
 git clone git@github.com:CenturyLinkLabs/panamax-ui.git
 cd panamax-ui
-git submodule update --init # To download ctl-base-ui
 bundle
 
 # the below environment variables are set by .env in the root of the project.
@@ -30,41 +29,6 @@ export PMX_API_PORT_3000_TCP_PORT=8888
 rails s
 ```
 now visit localhost:3000 and see if it works
-
-### Updating ctl-base-ui
-
-#### Pushing a change
-
-If you've pushed a change to the *ctl-base-ui* project that you want to appear
-in *panamax-ui* you need to do the following:
-
-```
-git submodule update --remote
-git commit -a -m 'Update to latest ctl-base-ui version'
-```
-This assumes you want *panamax-ui* to reference whatever is currently
-at the HEAD of the *ctl-base-ui* master branch. If you would like
-to track another branch, you must add that branch to the submodule:
-```
-git submodule add -b feature/my-branch [URL to repo]
-```
-
-Running the update command will cause the submodule to track that branch.
-
-#### Pulling a change
-After you `git pull --rebase` to update the UI master branch you may
-see a git status message like this:
-
-```
-    modified:   vendor/ctl-base-ui (new commits)
-```
-
-This means there is a new change to *ctl-base-ui* that needs to be
-retrieved. You can refresh *ctl-base-ui* by issuing the following
-command:
-```
-git submodule update
-```
 
 ### Running tests, etc.
 ```
