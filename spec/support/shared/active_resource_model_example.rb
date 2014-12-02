@@ -20,7 +20,9 @@ shared_examples 'an active resource model' do
     end
 
     it 'returns nil if the record does not exist' do
-      allow(described_class).to receive(:find).and_raise(ActiveResource::ResourceNotFound.new(double('err', code: '404')))
+      allow(described_class).to(
+        receive(:find).and_raise(ActiveResource::ResourceNotFound.new(double('err', code: '404')))
+      )
       expect(described_class.find_by_id(99)).to be_nil
     end
   end

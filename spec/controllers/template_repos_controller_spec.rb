@@ -63,7 +63,7 @@ describe TemplateReposController do
     let(:template_repo) { double(:template_repo, post: true) }
 
     before do
-      allow(TemplateRepo).to receive(:new).with({ id: '1' }, persisted = true).and_return(template_repo)
+      allow(TemplateRepo).to receive(:new).with({ id: '1' }, true).and_return(template_repo)
     end
 
     it 'reloads the template repo' do
@@ -83,7 +83,7 @@ describe TemplateReposController do
     let(:template_repo) { double(:template_repo, destroy: true) }
 
     before do
-      allow(TemplateRepo).to receive(:new).with({ id: '1' }, persisted = true).and_return(template_repo)
+      allow(TemplateRepo).to receive(:new).with({ id: '1' }, true).and_return(template_repo)
     end
 
     it 'destroys the template repo' do
