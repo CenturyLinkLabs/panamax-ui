@@ -96,6 +96,8 @@
 
     $('.journal-toggle').journalToggle();
 
+    $('[data-clipboard-text]').clipboard();
+
     $('.blog-feed-items').rssReader();
 
     $('.service-status').serviceStatus();

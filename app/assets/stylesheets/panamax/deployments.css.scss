@@ -260,6 +260,7 @@
     .token {
       padding: 0;
       background-color: $light_grey;
+      position: relative;
 
       dt {
         cursor: pointer;
@@ -284,6 +285,19 @@
           &+ .token-contents {
             max-height: 530px;
           }
+        }
+      }
+
+      .actions {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        margin: 0;
+        width: 180px;
+
+        a {
+          font-weight: normal;
+          text-decoration: underline;
         }
       }
 
