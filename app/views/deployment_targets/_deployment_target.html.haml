@@ -34,3 +34,6 @@
     %dd.token-contents
       .token-container
         %div{ contenteditable: true }= deployment_target.auth_blob
+    .actions
+      %a{ data: { clipboard: { text: deployment_target.auth_blob, after: 'Token Copied to Clipboard' } } }
+        Copy Token to Clipboard

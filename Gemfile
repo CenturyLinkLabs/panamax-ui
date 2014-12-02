@@ -9,6 +9,7 @@ gem 'uglifier', '2.5.1'
 gem 'ctl_base_ui'
 gem 'activeresource', '4.0.0'
 gem 'kramdown', '1.4.0'
+gem 'zeroclipboard-rails'
 
 
 group :test, :development do

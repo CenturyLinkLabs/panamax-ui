@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require handlebars
+//= require zeroclipboard
 //= require google-code-prettify/prettify
 //= require_tree ./template_helpers
 //= require chosen.jquery
