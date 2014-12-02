@@ -6,7 +6,12 @@
     base.$el = $el;
 
     base.defaultOptions = {
-      excludePaths: ['host_health', 'service_health', 'journal']
+      excludePaths: [
+        'host_health',
+        'service_health',
+        'journal',
+        'deployment_target_metadata_refreshes'
+      ]
     };
 
     base.init = function() {

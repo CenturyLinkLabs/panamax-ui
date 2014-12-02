@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   resources :deployment_targets, only: [:index, :create, :destroy] do
     get :select, on: :collection
     resources :deployments, only: [:new, :create, :index, :show, :destroy]
-    resources :deployment_target_metadata_refreshes, only: :create
+    resources :deployment_target_metadata_refreshes, only: :create, as: :metadata_refreshes
   end
 
   resource :user, only: [:update]

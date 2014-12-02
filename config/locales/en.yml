@@ -31,6 +31,7 @@ en:
       success: 'Your deployment target was added successfully'
     metadata_refresh:
       success: 'Agent was successfully refreshed'
+      failure: 'There was a problem with your deployment target. Visit our <a href="https://github.com/CenturyLinkLabs/panamax-ui/wiki/Remote-Deployment-Troubleshooting" target="_blank">troubleshooting guide on the wiki</a> for suggestions.'
   registries:
     destroy:
       success: 'Your registry was deleted successfully'

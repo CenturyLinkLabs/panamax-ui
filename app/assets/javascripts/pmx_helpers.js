@@ -6,14 +6,18 @@
       return (new Date()).getTime();
     },
 
-    displayError: function(message) {
+    displayError: function(message, options) {
+      var defaultOptions = { style: "danger", container: "main" };
+      options = $.extend({}, defaultOptions, options);
+
       var ajaxErrorTemplate = Handlebars.compile($('#ajax_error_template').html());
       var notification = $(ajaxErrorTemplate(
           { title: 'The following Error occured',
-            message: message
+            message: new Handlebars.SafeString(message)
           }));
 
-      $(notification).prependTo('main');
+      notification.find(".notice-container").addClass("notice-" + options.style);
+      $(notification).prependTo(options.container);
     },
 
     dialog: function(scope, $content, options) {
