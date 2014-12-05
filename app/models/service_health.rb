@@ -7,6 +7,6 @@ class ServiceHealth < BaseResource
 
   self.collection_name = 'docker'
   self.element_name = 'docker'
-  self.prefix = '/api/v1.0/containers/'
+  self.prefix = '/api/v1.2/'
   self.include_format_in_path = false
 end
