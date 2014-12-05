@@ -28,6 +28,5 @@ describe VolumeHelper do
         expect(result).to include('<strong>my_path</strong>')
       end
     end
-
   end
 end

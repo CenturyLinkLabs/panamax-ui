@@ -8,7 +8,7 @@ module ApplicationHelper
   end
 
   def metrics_url_for(name)
-    "http://#{request.host}:3002/containers/docker/#{name}"
+    "http://#{request.host}:3002/docker/#{name}"
   end
 
   def none_if(condition)

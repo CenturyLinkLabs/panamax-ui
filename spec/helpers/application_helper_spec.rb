@@ -14,7 +14,7 @@ describe ApplicationHelper do
 
   describe '#metrics_url_for' do
     it 'returns  service path appended' do
-      expect(helper.metrics_url_for('ME')).to eq 'http://localhost:3002/containers/docker/ME'
+      expect(helper.metrics_url_for('ME')).to eq 'http://localhost:3002/docker/ME'
     end
   end
 
