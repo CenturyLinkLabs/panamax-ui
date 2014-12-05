@@ -22,24 +22,10 @@
 en:
   hello: "Hello world"
   panamax_api_connection_error: "Panamax API is not responding"
-  deployments:
-    create:
-      success: 'Deployment successfully triggered'
-      error: 'There was an error triggering your deployment'
-  deployment_targets:
-    create:
-      success: 'Your deployment target was added successfully'
-    metadata_refresh:
-      success: 'Agent was successfully refreshed'
-      failure: 'There was a problem with your deployment target. Visit our <a href="https://github.com/CenturyLinkLabs/panamax-ui/wiki/Remote-Deployment-Troubleshooting" target="_blank">troubleshooting guide on the wiki</a> for suggestions.'
-  registries:
-    destroy:
-      success: 'Your registry was deleted successfully'
-      error: 'Your registry could not be deleted'
-    create:
-      success: 'Your registry was added successfully'
-      error: 'Your registry could not be added'
-      invalid: 'The registry could not be saved because of the following errors: <br>'
+  apps:
+    rebuild:
+      success: 'The application was successfully rebuilt'
+      error:  'The application could not be rebuilt'
   dashboard:
     application:
       message: 'Manage your Applications'
@@ -56,3 +42,41 @@ en:
     target:
       message: 'Manage your Targets'
       title: 'Remote Deployment Target'
+  deployments:
+    create:
+      success: 'Deployment successfully triggered'
+      error: 'There was an error triggering your deployment'
+  deployment_targets:
+    create:
+      success: 'Your deployment target was added successfully'
+    metadata_refresh:
+      success: 'Agent was successfully refreshed'
+      failure: 'There was a problem with your deployment target. Visit our
+                <a href="https://github.com/CenturyLinkLabs/panamax-ui/wiki/Remote-Deployment-Troubleshooting"
+                target="_blank">troubleshooting guide on the wiki</a> for suggestions.'
+  images:
+    destroy:
+      success: 'The image was successfully removed'
+      error: 'There was an error removing the image'
+  registries:
+    destroy:
+      success: 'Your registry was deleted successfully'
+      error: 'Your registry could not be deleted'
+    create:
+      success: 'Your registry was added successfully'
+      error: 'Your registry could not be added'
+      invalid: 'The registry could not be saved because of the following errors: <br>'
+  templates:
+    new:
+      invalid_creds: "Your token may be malformed, expired or is not scoped correctly.
+                      Please <a href='https://github.com/settings/tokens/new?scope=repo,user:email' target='_blank'>
+                      generate a Github access token</a> with the correct privileges. Be sure to select at least 'repo'
+                      and 'user:email'."
+      error: 'Could not find application'
+    create:
+      success: 'Your template was created successfully.'
+  users:
+    update:
+      success: 'Your GitHub token has been saved successfully'
+      error: "The GitHub token provided was not saved because it is invalid or too restrictive.
+              Validate the token is correct and make sure your token is scoped to 'repo' and 'user.'"

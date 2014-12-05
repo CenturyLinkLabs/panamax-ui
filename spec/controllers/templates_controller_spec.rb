@@ -53,7 +53,7 @@ describe TemplatesController do
 
       it 'redirects to the apps page with a flash message' do
         get :new
-        expect(flash[:alert]).to eq 'could not find application'
+        expect(flash[:alert]).to eq I18n.t('templates.new.error')
         expect(response).to redirect_to(apps_path)
       end
     end
@@ -73,7 +73,7 @@ describe TemplatesController do
     end
 
     context 'when user github creds are not valid' do
-      expected_flash_msg = "Your token may be malformed, expired or is not scoped correctly."
+      expected_flash_msg = I18n.t('templates.new.invalid_creds')
       before do
         fake_user.stub(:has_invalid_github_creds?).and_return(true)
         fake_user.stub(:has_valid_github_creds?).and_return(false)
@@ -122,7 +122,7 @@ describe TemplatesController do
 
       it 'sets a successful flash message' do
         post :create, 'template_form' => create_params
-        expect(flash[:success]).to eq 'Template successfully created.'
+        expect(flash[:success]).to eq I18n.t('templates.create.success')
       end
 
       it 'redirects to the applications path' do

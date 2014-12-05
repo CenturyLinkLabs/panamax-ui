@@ -27,7 +27,7 @@ describe 'managing deployment targets' do
 
       click_on 'Save Remote Deployment Target'
 
-      expect(page).to have_content 'Your deployment target was added successfully'
+      expect(page).to have_content I18n.t('deployment_targets.create.success')
     end
 
     it 'can link to the deployment' do

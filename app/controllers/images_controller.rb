@@ -6,9 +6,9 @@ class ImagesController < ApplicationController
   def destroy
     image = LocalImage.find(params[:id])
     if image.destroy
-      flash[:notice] = 'image successfully removed'
+      flash[:success] = I18n.t('images.destroy.success')
     else
-      flash[:error] = 'unable to remove image'
+      flash[:error] = I18n.t('images.destroy.error')
     end
     redirect_to images_url
   rescue => ex

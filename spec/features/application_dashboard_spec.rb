@@ -19,7 +19,7 @@ describe 'applications dashboard' do
 
         click_on 'rebuild'
 
-        expect(page).to have_css 'div.notice-success', text: 'The application was successfully rebuilt.'
+        expect(page).to have_css 'div.notice-success', text: I18n.t('apps.rebuild.success')
       end
     end
   end

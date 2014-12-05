@@ -4,10 +4,9 @@ class UsersController < ApplicationController
   def update
     user = User.find
     if user.update_attributes(params[:user])
-      flash[:success] = 'Your GitHub token has been saved.'
+      flash[:success] = I18n.t('users.update.success')
     else
-      flash[:alert] = "The GitHub token provided was not saved because it is invalid or too restrictive.
-                      Validate the token is correct and make sure your token is scoped to 'repo' and 'user.'"
+      flash[:alert] = I18n.t('users.update.error')
     end
     redirect_to :back
   rescue => ex

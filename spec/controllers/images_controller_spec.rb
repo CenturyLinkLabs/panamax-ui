@@ -34,13 +34,13 @@ describe ImagesController do
 
     it 'sets a success notice when successful' do
       delete :destroy, id: 2
-      expect(flash[:notice]).to eq 'image successfully removed'
+      expect(flash[:success]).to eq I18n.t('images.destroy.success')
     end
 
     it 'sets a failure notice when destroy fails' do
       fake_image.stub(:destroy).and_return false
       delete :destroy, id: 2
-      expect(flash[:error]).to eq 'unable to remove image'
+      expect(flash[:error]).to eq I18n.t('images.destroy.error')
     end
 
     context 'when an error occurs' do

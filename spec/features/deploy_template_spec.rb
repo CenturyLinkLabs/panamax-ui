@@ -30,7 +30,7 @@ describe 'deploying a template from the search results' do
       click_on 'Deploy to Target'
 
       expect(page).to have_title 'Panamax > Socialize production environment'
-      expect(page).to have_content 'Deployment successfully triggered'
+      expect(page).to have_content I18n.t('deployments.create.success')
       expect(page).to have_content 'Socialize production environment'
       expect(page).to have_content 'Services: 3'
       expect(page).to have_content 'db-1'

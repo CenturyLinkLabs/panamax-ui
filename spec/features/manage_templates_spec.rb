@@ -33,7 +33,7 @@ describe 'managing a template' do
 
         click_on 'Publish Your Template'
 
-        expect(page).to have_content 'Template successfully created.'
+        expect(page).to have_content I18n.t('templates.create.success')
       end
 
       context 'when user does not have a github access token' do

@@ -237,7 +237,7 @@ describe AppsController do
 
       it 'sets a flash success message' do
         put :rebuild, id: 77
-        expect(flash[:success]).to eq 'The application was successfully rebuilt.'
+        expect(flash[:success]).to eq I18n.t('apps.rebuild.success')
       end
 
       it 'returns no content for json' do
@@ -258,7 +258,7 @@ describe AppsController do
 
       it 'sets a flash alert' do
         put :rebuild, id: 77
-        expect(flash[:alert]).to eq 'The application could not be rebuilt.'
+        expect(flash[:alert]).to eq I18n.t('apps.rebuild.error')
       end
 
       it 'returns status 204 when format is json' do

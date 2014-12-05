@@ -5,7 +5,7 @@ class AppsController < ApplicationController
 
   def create
     if @app = App.create(params[:app])
-      flash[:success] = 'The application was successfully created.'
+      flash[:success] = I18n.t('apps.create.success')
       redirect_to app_url(@app.to_param)
     else
       render :show
@@ -64,9 +64,9 @@ class AppsController < ApplicationController
   def rebuild
     app = retrieve_app
     if app.put(:rebuild)
-      flash[:success] = 'The application was successfully rebuilt.'
+      flash[:success] = I18n.t('apps.rebuild.success')
     else
-      flash[:alert] = 'The application could not be rebuilt.'
+      flash[:alert] = I18n.t('apps.rebuild.error')
     end
     respond_with app, location: request.referer || apps_path
   rescue ActiveResource::ServerError => ex
