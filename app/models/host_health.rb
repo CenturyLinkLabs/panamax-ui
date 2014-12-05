@@ -6,7 +6,7 @@ class HostHealth < BaseResource
 
   self.site = "#{ENV['CADVISOR_PORT']}"
   def self.singleton_path(_prefix_options={}, _query_options=nil)
-    '/api/v1.0/containers/'
+    '/api/v1.2/containers/'
   end
 
 
