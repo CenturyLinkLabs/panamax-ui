@@ -43,6 +43,11 @@ describe AppsController do
 
         expect(response).to redirect_to app_url(77)
       end
+
+      it 'shows a success message' do
+        post :create, app: { image: 'some/image', tag: ':latest' }
+        expect(flash[:success]).to eql I18n.t('apps.create.success')
+      end
     end
 
     context 'when app is not valid' do

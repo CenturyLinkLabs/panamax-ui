@@ -23,6 +23,8 @@ en:
   hello: "Hello world"
   panamax_api_connection_error: "Panamax API is not responding"
   apps:
+    create:
+      success: 'The application was successfully created'
     rebuild:
       success: 'The application was successfully rebuilt'
       error:  'The application could not be rebuilt'
