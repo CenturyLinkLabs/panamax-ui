@@ -41,6 +41,16 @@ describe JsonDeploymentPresenter do
     it { should eq '/foo/bar/{{id}}' }
   end
 
+  describe '#redeploy_path' do
+    subject { presenter.redeploy_path }
+
+    before do
+      view_context.stub(:deployment_target_deployments_path).with(9).and_return('/foo/bar')
+    end
+
+    it { should eq '/foo/bar/{{id}}/redeploy' }
+  end
+
   describe '#service_count' do
     subject { presenter.service_count }
 

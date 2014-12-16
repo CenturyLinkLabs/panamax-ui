@@ -20,6 +20,10 @@ class JsonDeploymentPresenter
     @view_context.deployment_target_deployments_path(@target.id) + '/{{id}}'
   end
 
+  def redeploy_path
+    @view_context.deployment_target_deployments_path(@target.id) + '/{{id}}/redeploy'
+  end
+
   def service_count
     '{{status.services.length}}'
   end

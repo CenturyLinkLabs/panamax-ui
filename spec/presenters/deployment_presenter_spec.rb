@@ -50,6 +50,16 @@ describe DeploymentPresenter do
     it { should eq '/foo/bar' }
   end
 
+  describe '#redeploy_path' do
+    subject { presenter.redeploy_path }
+
+    before do
+      view_context.stub(:redeploy_deployment_target_deployment_path).with(9, 7).and_return('/foo/bar')
+    end
+
+    it { should eq '/foo/bar' }
+  end
+
   describe '#service_count' do
     subject { presenter.service_count }
 

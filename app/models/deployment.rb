@@ -10,6 +10,11 @@ class Deployment < BaseResource
     string :name
   end
 
+  def redeploy
+    response = self.post(:redeploy)
+    Deployment.new(JSON.parse(response.body))
+  end
+
   def to_param
     self.id
   end

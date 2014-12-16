@@ -1,6 +1,6 @@
 class DeploymentsController < ApplicationController
   respond_to :html
-  respond_to :json, only: [:destroy, :show]
+  respond_to :json, only: [:destroy, :show, :redeploy]
 
   RESOURCE_TYPES = { 'Template' => Template, 'App' => App }
 
@@ -36,6 +36,12 @@ class DeploymentsController < ApplicationController
 
   def show
     respond_with(Deployment.find(params[:id], params: { deployment_target_id: target_id }))
+  end
+
+  def redeploy
+    deployment = Deployment.find(params[:id], params: { deployment_target_id: target_id })
+    redeployed = deployment.redeploy
+    respond_with(redeployed, location: deployment_target_deployments_path(target_id))
   end
 
   private

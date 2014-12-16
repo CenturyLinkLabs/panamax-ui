@@ -9,6 +9,24 @@ describe Deployment do
   it { should respond_to :resource_type }
   it { should respond_to :override }
 
+  describe '#redeploy' do
+    let(:fake_response) { double(:fake_response,  body: '{"id": 14}') }
+    before { allow(subject).to receive(:post).and_return(fake_response) }
+
+    it 'posts to the redeploy endpoint' do
+      expect(subject).to receive(:post).with(:redeploy)
+      subject.redeploy
+    end
+
+    it 'returns a new Deployment' do
+      expect(subject.redeploy).to be_a Deployment
+    end
+
+    it 'returns a new Deployment instantiated from the response body' do
+      expect(subject.redeploy.id).to eq 14
+    end
+  end
+
   describe '#to_param' do
     subject { described_class.new('id' => 77).to_param }
 
