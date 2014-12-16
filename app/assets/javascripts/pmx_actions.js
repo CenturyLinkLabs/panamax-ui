@@ -79,7 +79,8 @@
     base.$el = $(el);
 
     base.defaultOptions = {
-      message: "Delete this item?",
+      message: 'Delete this item?',
+      buttonText: 'Yes, Delete!',
       confirmSelector: '.confirm-delete button.yes',
       cancelSelector: '.confirm-delete button.no'
     };
@@ -92,7 +93,8 @@
 
     base.injectMarkup = function() {
       var markup = '<section class="confirm-delete">' + base.options.message +
-                   '<span><button class="no">Cancel</button><button class="yes">Yes, Delete!</button></span></section>',
+                   '<span><button class="no">Cancel</button><button class="yes">' +
+                   base.options.buttonText + '</button></span></section>',
           $hideaway, $confirm;
 
       base.wrapElements();

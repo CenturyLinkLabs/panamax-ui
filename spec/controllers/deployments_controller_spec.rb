@@ -199,4 +199,29 @@ describe DeploymentsController do
       end
     end
   end
+
+  describe 'POST #redeploy' do
+    let(:new_deployment) { Deployment.new(id: 14) }
+    let(:fake_deployment) { double(:fake_deployment, redeploy: new_deployment) }
+
+    before do
+      Deployment.stub(:find).with('13', params: { deployment_target_id: '9' }).and_return(fake_deployment)
+    end
+
+    before do
+      post :redeploy, id: 13, deployment_target_id: 9, format: :json
+    end
+
+    it 'responds with a http 201 status code' do
+      expect(response.status).to eq 201
+    end
+
+    it 'returns an empty response' do
+      expect(JSON.parse(response.body)['id']).to eq 14
+    end
+
+    it 'sets the response location to the deployments list page' do
+      expect(response.location).to eq '/deployment_targets/9/deployments'
+    end
+  end
 end

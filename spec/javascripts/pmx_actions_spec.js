@@ -88,37 +88,59 @@ describe('$.fn.destroyLink', function () {
 
     beforeEach(function () {
       fixture.load('confirm-delete.html');
-      subject = new $.PMX.ConfirmDelete($('header'),
-        {
-          confirm: function() {
-            confirmed = true;
-          }
+    });
+
+    describe('when relying on default button text', function() {
+      beforeEach(function () {
+        subject = new $.PMX.ConfirmDelete($('header'),
+          {
+            confirm: function () {
+              confirmed = true;
+            }
+          });
+        subject.init();
+      });
+
+      it('injects confirm delete markup', function () {
+        expect($('.confirm-delete').length).toBe(1);
+      });
+
+      it('wraps original markup in a hideaway class', function () {
+        expect($('.hideaway').length).toBe(1);
+      });
+
+      describe('and clicking cancel', function () {
+        it('removes the hideaway class', function () {
+          $('.confirm-delete button.no').trigger($.Event('click'));
+          expect($('.hideaway').length).toBe(0);
         });
-      subject.init();
-    });
+      });
 
-    it('injects confirm delete markup', function() {
-      expect($('.confirm-delete').length).toBe(1);
-    });
+      describe('and clicking confirm', function () {
+        beforeEach(function () {
+          $('.confirm-delete button.yes').click();
+        });
 
-    it('wraps original markup in a hideaway class', function() {
-      expect($('.hideaway').length).toBe(1);
-    });
-
-    describe('and clicking cancel', function() {
-      it('removes the hideaway class', function() {
-        $('.confirm-delete button.no').trigger($.Event('click'));
-        expect($('.hideaway').length).toBe(0)
+        it('calls the confirm callback', function () {
+          expect(confirmed).toBeTruthy();
+        });
       });
     });
 
-    describe('and clicking confirm', function() {
+    describe('when button text is specified', function() {
       beforeEach(function() {
-        $('.confirm-delete button.yes').click();
+        subject = new $.PMX.ConfirmDelete($('header'),
+          {
+            buttonText: 'foo',
+            confirm: function() {
+              confirmed = true;
+            }
+          });
+        subject.init();
       });
 
-      it('calls the confirm callback', function() {
-        expect(confirmed).toBeTruthy();
+      it('displays the button text', function(){
+        expect($('.confirm-delete button.yes').text()).toEqual('foo');
       });
     });
   });

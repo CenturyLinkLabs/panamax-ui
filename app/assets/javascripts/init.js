@@ -120,6 +120,8 @@
 
     $('body').confirmAndDelete();
 
+    $('.deployment > .actions').confirmAndRedeploy();
+
     $('body').selectDeploymentTarget();
 
     $('[data-cancel-form]').cancelForm();

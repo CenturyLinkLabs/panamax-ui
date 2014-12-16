@@ -21,6 +21,10 @@ class DeploymentPresenter
     @view_context.deployment_target_deployment_path(@target.to_param, @deployment.to_param)
   end
 
+  def redeploy_path
+    @view_context.redeploy_deployment_target_deployment_path(@target.to_param, @deployment.to_param)
+  end
+
   def service_count
     @deployment.service_ids.length
   end
