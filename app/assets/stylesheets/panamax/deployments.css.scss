@@ -212,15 +212,44 @@
     .actions {
       position: relative;
       float: right;
-      height: 20px;
-      width: 165px;
-      margin-top: 10px;
+      width: 175px;
+
+      .redeploy {
+        font-size: 14px;
+        color: $white;
+        display: inline-block;
+        position: relative;
+        float: right;
+        padding: 10px 10px 10px 25px;
+        margin-right: 20px;
+        text-align: left;
+        text-decoration: none;
+        border-radius: 3px;
+        background: $dark_grey;
+
+        &:hover {
+          background: $medium_grey;
+        }
+
+        &:after {
+          @include icon-white;
+          @extend .icon-arrowloop;
+          content: '';
+          position: absolute;
+          left: 10px;
+          top: 12px;
+          display: block;
+          height: 10px;
+          width: 10px;
+        }
+      }
 
       .delete-action {
         @include hide-text;
         @extend .icon-x-large;
         @include icon-grey;
         padding: 0;
+        margin-top: 6px;
         float: right;
 
         &:after {

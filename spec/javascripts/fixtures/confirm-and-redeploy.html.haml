@@ -1,0 +1,8 @@
+%li
+  .actions
+    = link_to 'Redeploy',
+              '/thing/1/redeploy',
+              method: :post,
+              class: 'redeploy',
+              title: 'redeploy',
+              data: { action_confirm: 'Redeploy this Deployment?', action_button_text: 'Yes, Redeploy!' }
