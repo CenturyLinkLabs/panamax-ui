@@ -6,12 +6,12 @@
             title: 'delete',
             method: 'delete',
             data: { delete_confirm: 'Delete this Deployment?', delete_remove_at: '.deployment' }
-  = link_to 'Redeploy',
+  = link_to 'Redeploy Application',
             presenter.redeploy_path,
             method: :post,
             class: 'redeploy',
             title: 'redeploy',
-            data: { action_confirm: 'Redeploy this Deployment?', action_button_text: 'Yes, Redeploy!' }
+            data: { action_confirm: 'Are you sure? All services will be discarded.', action_button_text: 'Yes, Redeploy!' }
 %dl
   %dt Services:
   %dd= presenter.service_count

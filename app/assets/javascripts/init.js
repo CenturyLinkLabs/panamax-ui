@@ -120,7 +120,7 @@
 
     $('body').confirmAndDelete();
 
-    $('.deployment > .actions').confirmAndRedeploy();
+    $('body').confirmAndRedeploy();
 
     $('body').selectDeploymentTarget();
 

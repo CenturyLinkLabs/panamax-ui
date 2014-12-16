@@ -212,7 +212,15 @@
     .actions {
       position: relative;
       float: right;
-      width: 175px;
+      width: 255px;
+
+      .confirm-delete {
+        top: 0;
+      }
+
+      span {
+        padding: 0 0 0 80px;
+      }
 
       .redeploy {
         font-size: 14px;
