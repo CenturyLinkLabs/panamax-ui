@@ -1,6 +1,17 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+0.2.11 - 2014-12-17
+-------------------
+### Added
+- Add capability to display error helper (#468)
+- Enable deployment after health check (#469)
+- Copy token to clipboard (#474)
+- Adding the ability to redeploy a remote deployment (#485)
+
+### Changed
+- Update cAdvisor api to 1.2 (#480)
+
 0.2.10 - 2014-12-1
 ------------------
 ### Added
