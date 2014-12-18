@@ -12,7 +12,7 @@
 
   = form_for @template_repo do |f|
     = f.label :name, 'New Source:'
-    = f.text_field :name, placeholder: 'username/repository'
+    = f.text_field :name, placeholder: 'http://github.com/username/repository'
     = f.submit 'Save Source', class: 'button-positive'
     = link_to 'Cancel', '#', class: 'cancel', data: { toggle_class: 'expanded', toggle_target: 'section.template-repos', cancel_form: true }
 

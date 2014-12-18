@@ -129,27 +129,10 @@ section.template-repos {
 
     label {
       font-weight: bold;
-
-      &:after {
-        content: 'https://github.com/';
-        position: absolute;
-        top: 15px;
-        left: 115px;
-        z-index: 1;
-        display: block;
-        height: 15px;
-        width: 117px;
-        font-family: "Lucida Grande", sans-serif;
-        font-size: 13px;
-        font-weight: normal;
-        color: #aaaaaa;
-      }
     }
 
     input[type="text"] {
       width: 635px;
-      margin: 0 10px 0 5px;
-      padding-left: 140px;
       box-sizing: border-box;
     }
 
