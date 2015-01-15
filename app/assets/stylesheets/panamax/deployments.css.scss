@@ -424,9 +424,38 @@
     &.expanded {
       max-height: 660px;
 
-      &+ a.button-add-positive {
+      & + .add-target {
         @include transition('opacity 1.2s');
         opacity: 0;
+      }
+    }
+  }
+
+  .add-target {
+    p {
+      padding-top: 18px;
+    }
+  }
+
+  .providers {
+    overflow: none;
+    float: left;
+    border-right: $light_grey 1px solid;
+    padding-right: 5px;
+    margin-right: 15px;
+
+    .provider {
+      float: left;
+      margin-right: 10px;
+
+      a {
+        display: block;
+        padding: 0 10px;
+        background-color: $light_grey;
+
+        &:hover {
+          background-color: $white;
+        }
       }
     }
   }

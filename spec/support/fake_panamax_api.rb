@@ -33,6 +33,10 @@ class FakePanamaxApi < Sinatra::Base
     json_response 201, 'deployment_target_refresh_representation.json'
   end
 
+  get '/job_templates.json' do
+    json_response 200, 'job_templates_representation.json'
+  end
+
   get '/registries.json' do
     json_response 200, 'registries_representation.json'
   end

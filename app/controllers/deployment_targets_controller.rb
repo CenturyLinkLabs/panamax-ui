@@ -5,6 +5,7 @@ class DeploymentTargetsController < ApplicationController
   def index
     @deployment_targets = DeploymentTarget.all
     @deployment_target = DeploymentTarget.new
+    @job_templates = JobTemplate.all
   end
 
   def select

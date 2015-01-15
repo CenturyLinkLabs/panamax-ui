@@ -3,18 +3,23 @@ require 'spec_helper'
 describe DeploymentTargetsController do
   describe 'GET #index' do
     let(:deployment_targets) { [double(:target1), double(:target2) ] }
+    let(:job_templates) { [double(:template1), double(:template2) ] }
 
     before do
-      DeploymentTarget.stub(:all).and_return(deployment_targets)
+      allow(DeploymentTarget).to receive(:all).and_return(deployment_targets)
+      allow(JobTemplate).to receive(:all).and_return(job_templates)
+      get :index
     end
 
     it 'assigns all the deployment targets' do
-      get :index
+      expect(assigns(:job_templates)).to eq job_templates
+    end
+
+    it 'assigns the job templates' do
       expect(assigns(:deployment_targets)).to eq deployment_targets
     end
 
     it 'renders the view' do
-      get :index
       expect(response).to render_template :index
     end
   end
@@ -24,7 +29,7 @@ describe DeploymentTargetsController do
     let(:fake_resource) { { id: '7', type: 'Template' } }
 
     before do
-      DeploymentTarget.stub(:all).and_return(deployment_targets)
+      allow(DeploymentTarget).to receive(:all).and_return(deployment_targets)
     end
 
     context 'with a template id passed in ' do
@@ -59,7 +64,7 @@ describe DeploymentTargetsController do
       let(:valid_target) { double(:valid_target, valid?: true) }
 
       before do
-        DeploymentTarget.stub(:create).with(
+        allow(DeploymentTarget).to receive(:create).with(
                              'name' => 'foo',
                              'auth_blob' => 'zcvasdfasdf'
                            ).and_return(valid_target)
@@ -79,7 +84,7 @@ describe DeploymentTargetsController do
       let(:invalid_target) { double(:invalid_target, model_name: 'DeploymentTarget', valid?: false) }
 
       before do
-        DeploymentTarget.stub(:create).and_return(invalid_target)
+        allow(DeploymentTarget).to receive(:create).and_return(invalid_target)
         post :create, deployment_target_params
       end
 
@@ -97,7 +102,7 @@ describe DeploymentTargetsController do
     let(:fake_target) { double(:fake_target, destroy: true) }
 
     before do
-      DeploymentTarget.stub(:find).with('13').and_return(fake_target)
+      allow(DeploymentTarget).to receive(:find).with('13').and_return(fake_target)
     end
 
     context 'html format' do

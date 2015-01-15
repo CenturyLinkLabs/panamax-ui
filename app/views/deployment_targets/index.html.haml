@@ -16,4 +16,13 @@
   %a.button-cancel{ { data: { toggle: { target: '#create_target', class: 'expanded' }, cancel: { form: true } } } }
     Cancel
 
-%a.button-add-positive{ { data: { toggle: { target: '#create_target', class: 'expanded' } } } } Add a new Remote Deployment Target
+.add-target
+  %h2 Add Another Remote Deployment Target
+  .providers
+    %ul
+      - @job_templates.each do |job_template|
+        %li.provider
+          = link_to image_tag("providers/logo_#{job_template.name.gsub(/\s/, "_").downcase}_small.png"), '#todo'
+  %p
+    Or
+    %a{ { data: { toggle: { target: '#create_target', class: 'expanded' } } } } Add a new Remote Deployment Target
