@@ -1,5 +1,4 @@
-[
-  {
+{
   "id": 1,
   "name": "Amazon Web Services",
   "description": "Short-description",
@@ -12,8 +11,7 @@
   },
   {
     "variable": "CLIENT_ID",
-    "value": null,
-    "description": "Enter your Client ID. You can generate a Client ID from your BrightBox Console\n"
+    "value": null
   },
   {
     "variable": "CLIENT_SECRET",
@@ -22,7 +20,7 @@
   },
   {
     "variable": "OPEN_TCP_PORTS",
-    "value": 80803306,
+    "value": 8080,
     "description": "Specify any additional open tcp ports for your cluster. Separate values with a comma. ex: 8080,3306\n"
   },
   {
@@ -62,4 +60,3 @@
   }
   ]
 }
-]

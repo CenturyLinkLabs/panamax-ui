@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe DeploymentTargetsController do
   describe 'GET #index' do
-    let(:deployment_targets) { [double(:target1), double(:target2) ] }
-    let(:job_templates) { [double(:template1), double(:template2) ] }
+    let(:deployment_targets) { [double(:target1), double(:target2)] }
+    let(:job_templates) { [double(:template1), double(:template2)] }
 
     before do
       allow(DeploymentTarget).to receive(:all).and_return(deployment_targets)

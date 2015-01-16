@@ -1002,3 +1002,16 @@ pre.prettyprint {
     @include flex-basis('510px');
   }
 }
+
+::-webkit-input-placeholder {
+  font-style: italic;
+}
+:-moz-placeholder { /* Firefox 18- */
+  font-style: italic;
+}
+::-moz-placeholder {  /* Firefox 19+ */
+  font-style: italic;
+}
+:-ms-input-placeholder {
+  font-style: italic;
+}

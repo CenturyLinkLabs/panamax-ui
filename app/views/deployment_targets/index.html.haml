@@ -22,7 +22,7 @@
     %ul
       - @job_templates.each do |job_template|
         %li.provider
-          = link_to image_tag("providers/logo_#{job_template.name.gsub(/\s/, "_").downcase}_small.png"), '#todo'
+          = link_to provider_label(job_template.name), new_job_path(template_id: job_template.id), title: job_template.name
   %p
     Or
     %a{ { data: { toggle: { target: '#create_target', class: 'expanded' } } } } Add a new Remote Deployment Target

@@ -447,6 +447,8 @@
     .provider {
       float: left;
       margin-right: 10px;
+      max-width: 200px;
+      overflow: hidden;
 
       a {
         display: block;

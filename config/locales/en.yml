@@ -56,6 +56,10 @@ en:
       failure: 'There was a problem with your deployment target. Visit our
                 <a href="https://github.com/CenturyLinkLabs/panamax-ui/wiki/Remote-Deployment-Troubleshooting"
                 target="_blank">troubleshooting guide on the wiki</a> for suggestions.'
+  jobs:
+    create:
+      success: 'Your job was created successfully'
+      failure: 'There was a problem launching your job'
   images:
     destroy:
       success: 'The image was successfully removed'

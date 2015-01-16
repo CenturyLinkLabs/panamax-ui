@@ -1,0 +1,30 @@
+@import 'ctl_base_ui/colors';
+
+#new_job {
+  ul {
+    li {
+      clear: both;
+      overflow: hidden;
+      margin-bottom: 20px;
+
+      input[type='text'],
+      label {
+        float: left;
+      }
+
+      input[type='text'] {
+        margin-right: 20px;
+        width: 350px;
+        color: $dark_grey;
+
+      }
+
+      label {
+        margin-top: 10px;
+        width: 420px;
+        font-size: .9em;
+        line-height: 1.3em;
+      }
+    }
+  }
+}
