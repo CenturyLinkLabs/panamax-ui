@@ -16,4 +16,13 @@
   %a.button-cancel{ { data: { toggle: { target: '#create_target', class: 'expanded' }, cancel: { form: true } } } }
     Cancel
 
-%a.button-add-positive{ { data: { toggle: { target: '#create_target', class: 'expanded' } } } } Add a new Remote Deployment Target
+.add-target
+  %h2 Add Another Remote Deployment Target
+  .providers
+    %ul
+      - @job_templates.each do |job_template|
+        %li.provider
+          = link_to provider_label(job_template.name), new_job_path(template_id: job_template.id), title: job_template.name
+  %p
+    Or
+    %a{ { data: { toggle: { target: '#create_target', class: 'expanded' } } } } Add a new Remote Deployment Target

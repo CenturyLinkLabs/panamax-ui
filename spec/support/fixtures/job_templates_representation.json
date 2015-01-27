@@ -1,0 +1,65 @@
+[
+  {
+  "id": 1,
+  "name": "Amazon Web Services",
+  "description": "Short-description",
+  "documentation": "[![image](http://brightbox.com/images/misc/logo.png)[BrightBox](http://brightbox.com/) - **Serious Cloud Hosting.**\nCreate a CoreOS cluster on BrightBox, deployment ready from Panamax. Visit your BrightBox dashboard and create an API\nID and make note of your Secret ID. You will need these to launch your cluster.\n",
+  "environment": [
+    {
+    "variable": "REMOTE_TARGET_NAME",
+    "value": null,
+    "description": "Enter a friendly name for your Remote Deployment Target.\n"
+  },
+  {
+    "variable": "CLIENT_ID",
+    "value": null,
+    "description": "Enter your Client ID. You can generate a Client ID from your BrightBox Console\n"
+  },
+  {
+    "variable": "CLIENT_SECRET",
+    "value": null,
+    "description": "Enter the Secret ID that is generated after you create your API ID.\n"
+  },
+  {
+    "variable": "OPEN_TCP_PORTS",
+    "value": 80803306,
+    "description": "Specify any additional open tcp ports for your cluster. Separate values with a comma. ex: 8080,3306\n"
+  },
+  {
+    "variable": "VM_SIZE",
+    "value": "Nano",
+    "description": {
+      "Enter the size of node for your cluster. Valid values include": "Nano, Mini, Small, Medium, Large, XL and XXL."
+    }
+  },
+  {
+    "variable": "NODE_COUNT",
+    "value": 2,
+    "description": "Enter how many CoreOS nodes you want in your cluster. An additional node will be create to install the Remote Agent\nand Adapter.\n"
+  }
+  ],
+  "steps": [
+    {
+    "id": 1,
+    "order": 0,
+    "name": "Create BrightBox CoreOS Cluster",
+    "source": "centurylink/brightbox_coreos",
+    "environment": []
+  },
+  {
+    "id": 2,
+    "order": 1,
+    "name": "Create PMX_Agent Node",
+    "source": "centurylink/pmx_remote_node",
+    "environment": []
+  },
+  {
+    "id": 3,
+    "order": 2,
+    "name": "Install Remote Agent and CoreOS Adapter",
+    "source": "centurylink/pmx_remote_installer",
+    "environment": []
+  }
+  ]
+}
+]

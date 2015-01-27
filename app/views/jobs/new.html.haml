@@ -1,0 +1,15 @@
+- content_for(:body_id, 'jobs_flow')
+- content_for(:title, "New #{@template.name} Remote Deployment Target")
+
+%h1 create a new job
+= form_for @job do |f|
+  = f.hidden_field :template_id
+  %ul
+    = f.fields_for :override do |ov|
+      = ov.fields_for :environment do |env|
+        %li
+          = env.hidden_field :variable
+          = env.text_field :value, placeholder: env.object.variable
+          %label= env.object.description
+
+  = f.submit 'Add New Target', class: 'button-positive'
