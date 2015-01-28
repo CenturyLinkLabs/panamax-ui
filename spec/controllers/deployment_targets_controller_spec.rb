@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe DeploymentTargetsController do
-  describe 'GET #index' do
-    let(:deployment_targets) { [double(:target1), double(:target2)] }
-    let(:job_templates) { [double(:template1), double(:template2)] }
+  let(:deployment_targets) { [double(:target1), double(:target2)] }
+  let(:job_templates) { [double(:template1), double(:template2)] }
 
+  describe 'GET #index' do
     before do
       allow(DeploymentTarget).to receive(:all).and_return(deployment_targets)
       allow(JobTemplate).to receive(:all).and_return(job_templates)
@@ -16,7 +16,7 @@ describe DeploymentTargetsController do
     end
 
     it 'assigns the job templates' do
-      expect(assigns(:deployment_targets)).to eq deployment_targets
+      expect(assigns(:job_templates)).to eq job_templates
     end
 
     it 'renders the view' do
@@ -85,11 +85,16 @@ describe DeploymentTargetsController do
 
       before do
         allow(DeploymentTarget).to receive(:create).and_return(invalid_target)
+        allow(JobTemplate).to receive(:all).and_return(job_templates)
         post :create, deployment_target_params
       end
 
       it 'assigns the invalid deployment_target' do
         expect(assigns(:deployment_target)).to eq(invalid_target)
+      end
+
+      it 'assigns the job templates' do
+        expect(assigns(:job_templates)).to eq job_templates
       end
 
       it 'renders the index view' do
