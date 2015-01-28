@@ -42,13 +42,9 @@
 
       base.modal = $.PMX.Helpers.dialog(base, $content, {
         title: title
-      });
+      }, true);
 
       base.modal.dialog('open');
-    };
-
-    base.handleClose = function() {
-      base.modal.dialog('close');
     };
   };
 

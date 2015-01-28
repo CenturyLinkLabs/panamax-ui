@@ -36,19 +36,11 @@ describe('$.fn.remoteContentsDialog', function() {
       expect($.PMX.Helpers.dialog).toHaveBeenCalledWith(
         jasmine.any(Object),
         jasmine.any(jQuery),
-        { title: '' }
+        { title: '' },
+        true
       );
 
       expect(fakeModal.dialog).toHaveBeenCalledWith('open');
-    });
-
-    describe('handleClose', function() {
-      it('closes the dialog', function() {
-        subject.modal = fakeModal;
-        subject.handleClose();
-
-        expect(fakeModal.dialog).toHaveBeenCalledWith('close');
-      });
     });
   });
 

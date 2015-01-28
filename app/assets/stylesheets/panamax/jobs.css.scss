@@ -1,6 +1,8 @@
 @import 'ctl_base_ui/colors';
 
 #new_job {
+  padding-bottom: 65px;
+
   ul {
     li {
       clear: both;
@@ -20,11 +22,15 @@
       }
 
       label {
-        margin-top: 10px;
         width: 420px;
         font-size: .9em;
         line-height: 1.3em;
       }
     }
   }
+
+  input.button-positive {
+    float: right;
+  }
+
 }
