@@ -461,6 +461,60 @@
       }
     }
   }
+
+  .deployment-job {
+    background: $light-grey;
+    padding: 20px;
+    margin-bottom: 20px;
+
+    h5 {
+      font-size: 18px;
+      color: $dark_grey;
+      border-bottom: $grey 1px solid;
+    }
+
+    /* NOTE: this is used for job and step status */
+    .status-info {
+      background-repeat: no-repeat;
+      padding-left: 25px;
+      padding-bottom: 2px;
+      margin-left: 10px;
+      color: $medium_grey;
+    }
+
+    h5 > .status-info {
+      font-size: 14px;
+    }
+
+    &.complete h5 > .status-info {
+      background-image: image-url('icon_status_running.png');
+    }
+
+    &.running h5 > .status-info {
+      background-image: image-url('icon_loading_green.gif');
+    }
+
+    &.error h5 > .status-info {
+      background-image: image-url('icon_status_stopped.png');
+    }
+
+    ol li {
+      font-size: 0.8em;
+      color: $dark_grey;
+      list-style: decimal;
+      list-style-position: inside;
+      height: 30px;
+      line-height: 30px;
+
+      &.complete .status-info {
+        background-image: image-url('icon_status_running.png');
+      }
+
+      &.in-progress .status-info {
+        background-image: image-url('icon_loading_green.gif');
+      }
+    }
+  }
 }
 
 

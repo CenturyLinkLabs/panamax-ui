@@ -1,8 +1,16 @@
 class Job < BaseResource
   has_one :override, class_name: 'JobOverride'
+  has_many :steps
 
   schema do
     integer :template_id
+  end
+
+  def with_step_status!
+    steps.each do |step|
+      step.status = step.get_status(completed_steps)
+    end
+    self
   end
 
   def self.new_from_template(template)
@@ -22,5 +30,9 @@ class Job < BaseResource
     override = JobOverride.new
     override.write_attributes(attrs)
     self.override = override
+  end
+
+  def total_steps
+    steps.length
   end
 end

@@ -3,16 +3,27 @@ require 'spec_helper'
 describe DeploymentTargetsController do
   let(:deployment_targets) { [double(:target1), double(:target2)] }
   let(:job_templates) { [double(:template1), double(:template2)] }
+  let(:job) { double(:job) }
+  let(:jobs) { [job] }
+
+  before do
+    allow(job).to receive(:with_step_status!).and_return(job)
+  end
 
   describe 'GET #index' do
     before do
       allow(DeploymentTarget).to receive(:all).and_return(deployment_targets)
       allow(JobTemplate).to receive(:all).and_return(job_templates)
+      allow(Job).to receive(:all).and_return(jobs)
       get :index
     end
 
     it 'assigns all the deployment targets' do
-      expect(assigns(:job_templates)).to eq job_templates
+      expect(assigns(:deployment_targets)).to eq deployment_targets
+    end
+
+    it 'assigns all the jobs' do
+      expect(assigns(:jobs)).to eq jobs
     end
 
     it 'assigns the job templates' do
@@ -85,12 +96,22 @@ describe DeploymentTargetsController do
 
       before do
         allow(DeploymentTarget).to receive(:create).and_return(invalid_target)
+        allow(DeploymentTarget).to receive(:all).and_return(deployment_targets)
         allow(JobTemplate).to receive(:all).and_return(job_templates)
+        allow(Job).to receive(:all).and_return(jobs)
         post :create, deployment_target_params
       end
 
       it 'assigns the invalid deployment_target' do
         expect(assigns(:deployment_target)).to eq(invalid_target)
+      end
+
+      it 'assigns all the deployment targets' do
+        expect(assigns(:deployment_targets)).to eq deployment_targets
+      end
+
+      it 'assigns all the jobs' do
+        expect(assigns(:jobs)).to eq jobs
       end
 
       it 'assigns the job templates' do

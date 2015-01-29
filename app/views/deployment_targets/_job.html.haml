@@ -1,0 +1,8 @@
+%h5
+  %span= presenter.title
+  %em.status-info= presenter.status
+%ol
+  = presenter.steps do |name, status|
+    %li{ class: status }
+      %strong= name
+      %em.status-info= status

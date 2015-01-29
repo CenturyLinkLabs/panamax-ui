@@ -34,5 +34,6 @@ class DeploymentTargetsController < ApplicationController
   def hydrate_index_view
     @deployment_targets = DeploymentTarget.all
     @job_templates = JobTemplate.all
+    @jobs = Job.all.map(&:with_step_status!)
   end
 end

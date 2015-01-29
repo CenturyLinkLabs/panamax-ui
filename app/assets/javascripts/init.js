@@ -138,5 +138,7 @@
     });
 
     $('body').remoteContentsDialog({ targetSelector: '.provider a' });
+
+    $('.deployment-job').updatableContentsPolling();
   };
 })(jQuery);

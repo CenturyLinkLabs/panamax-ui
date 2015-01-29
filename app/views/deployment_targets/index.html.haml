@@ -1,6 +1,12 @@
 - content_for(:title, 'Remote Deployment Targets')
 - content_for(:body_id, 'deployments_flow')
 = render '/shared/breadcrumbs', breadcrumbs: ['Manage', yield(:title)]
+%script#job_template{type: 'text/x-handlebars-template'}
+  = render 'job', { presenter: JsonJobPresenter.new(self) }
+
+- @jobs.each do |job|
+  .deployment-job{ class: job.status, data: { source: job_path(job.key) } }
+    = render 'job', presenter: JobPresenter.new(job, self)
 
 = render @deployment_targets
 

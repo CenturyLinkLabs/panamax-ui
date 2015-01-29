@@ -4,6 +4,7 @@ describe Job do
   it_behaves_like 'an active resource model'
 
   it { should respond_to :template_id }
+  it { should respond_to :steps }
 
   describe '.new_from_template' do
     let(:fake_template) { double(:fake_template, environment: 'some environment stuff', id: 9) }
@@ -70,6 +71,38 @@ describe Job do
       expect(env.first.value).to eq 'bullseye'
       expect(env.last.variable).to eq 'CLIENT_ID'
       expect(env.last.value).to eq ''
+    end
+  end
+
+  describe '#with_step_status!' do
+    let(:step1) { Step.new }
+    let(:step2) { Step.new }
+
+    before do
+      allow(step1).to receive(:get_status).with(2).and_return('completed')
+      allow(step2).to receive(:get_status).with(2).and_return('completed')
+    end
+
+    before do
+      subject.completed_steps = 2
+      subject.steps = [step1, step2]
+    end
+
+    it 'hydrates each child step with a status' do
+      subject.with_step_status!
+      expect(subject.steps.map(&:status)).to eq ['completed', 'completed']
+    end
+  end
+
+  describe '#total_steps' do
+    subject do
+      described_class.new(
+        steps: [1, 2]
+      )
+    end
+
+    it 'returns the step count' do
+      expect(subject.total_steps).to eq 2
     end
   end
 end

@@ -26,6 +26,19 @@ describe JobsController do
     end
   end
 
+  describe 'GET #show' do
+    let(:fake_job) { double(:fake_job, with_step_status!: { job: 'bla' }) }
+
+    before do
+      allow(Job).to receive(:find).with('7').and_return(fake_job)
+      get :show, key: 7, format: :json
+    end
+
+    it 'returns a json representation of the job' do
+      expect(response.body).to eq({ job: 'bla' }.to_json)
+    end
+  end
+
   describe 'POST #create' do
     let(:create_params) do
       {
