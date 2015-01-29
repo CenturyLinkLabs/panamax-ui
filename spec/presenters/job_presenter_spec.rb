@@ -4,7 +4,7 @@ describe JobPresenter do
 
   let(:fake_job) do
     double(:fake_job,
-           key: 'abc123',
+           name: 'abc123',
            status: 'complete',
            steps: [
              double(:step1, name: 'foo', status: 'complete'),

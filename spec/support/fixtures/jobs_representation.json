@@ -1,6 +1,8 @@
 [
     {
+        "name": "Amazon Web Services",
         "id": 4,
+        "job_template_id": "2",
         "key": "C3DC7DE3-F51C-67E3-21A3-4B3EE084DBF7",
         "completed_steps": 0,
         "status": "error",
@@ -36,7 +38,9 @@
         ]
     },
     {
+        "name": "Amazon Web Services",
         "id": 3,
+        "job_template_id": "2",
         "key": "6835D57F-F9EB-E7DE-23EA-8E21E0E8D8D4",
         "completed_steps": 2,
         "status": "complete",

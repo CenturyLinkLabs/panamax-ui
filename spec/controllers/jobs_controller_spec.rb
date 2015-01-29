@@ -27,9 +27,11 @@ describe JobsController do
   end
 
   describe 'GET #show' do
-    let(:fake_job) { double(:fake_job, with_step_status!: { job: 'bla' }) }
+    let(:fake_job) { double(:fake_job) }
 
     before do
+      allow(fake_job).to receive(:with_template!).and_return(fake_job)
+      allow(fake_job).to receive(:with_step_status!).and_return(job: 'bla')
       allow(Job).to receive(:find).with('7').and_return(fake_job)
       get :show, key: 7, format: :json
     end

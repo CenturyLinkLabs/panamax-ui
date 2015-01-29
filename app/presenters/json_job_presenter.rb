@@ -4,7 +4,7 @@ class JsonJobPresenter
   end
 
   def title
-    '{{key}}'
+    '{{name}}'
   end
 
   def status

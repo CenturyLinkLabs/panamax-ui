@@ -8,6 +8,7 @@ describe DeploymentTargetsController do
 
   before do
     allow(job).to receive(:with_step_status!).and_return(job)
+    allow(job).to receive(:with_template!).and_return(job)
   end
 
   describe 'GET #index' do

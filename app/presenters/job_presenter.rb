@@ -7,7 +7,7 @@ class JobPresenter
   delegate :status, to: :@job
 
   def title
-    @job.key
+    @job.name
   end
 
   def steps(&block)

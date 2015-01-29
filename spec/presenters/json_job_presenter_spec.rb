@@ -9,7 +9,7 @@ describe JsonJobPresenter do
   describe '#title' do
     subject { presenter.title }
 
-    it { should eq '{{key}}' }
+    it { should eq '{{name}}' }
   end
 
   describe '#status' do

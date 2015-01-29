@@ -491,7 +491,7 @@
     }
 
     &.running h5 > .status-info {
-      background-image: image-url('icon_loading_green.gif');
+      background-image: image-url('icon_loading_grey.gif');
     }
 
     &.error h5 > .status-info {
@@ -511,7 +511,7 @@
       }
 
       &.in-progress .status-info {
-        background-image: image-url('icon_loading_green.gif');
+        background-image: image-url('icon_loading_grey.gif');
       }
     }
   }

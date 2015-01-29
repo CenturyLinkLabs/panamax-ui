@@ -14,7 +14,7 @@ describe 'managing jobs' do
 
       page.should have_content 'Add Another Remote Deployment Target'
 
-      page.should have_content 'C3DC7DE3-F51C-67E3-21A3-4B3EE084DBF7'
+      page.should have_content 'Amazon Web Services'
 
       page.should have_content 'Deploy CenturyLink Cloud Cluster'
       page.should have_content 'Install Kubernetes on Cluster'
