@@ -3,19 +3,21 @@ require 'spec_helper'
 describe DeploymentTargetsController do
   let(:deployment_targets) { [double(:target1), double(:target2)] }
   let(:job_templates) { [double(:template1), double(:template2)] }
-  let(:job) { double(:job) }
-  let(:jobs) { [job] }
+  let(:job1) { double(:job1) }
+  let(:job2) { double(:job2) }
 
   before do
-    allow(job).to receive(:with_step_status!).and_return(job)
-    allow(job).to receive(:with_template!).and_return(job)
+    allow(job1).to receive(:with_step_status!).and_return(job1)
+    allow(job2).to receive(:with_step_status!).and_return(job2)
+    allow(job1).to receive(:with_template!).and_return(job1)
+    allow(job2).to receive(:with_template!).and_return(job2)
   end
 
   describe 'GET #index' do
     before do
       allow(DeploymentTarget).to receive(:all).and_return(deployment_targets)
       allow(JobTemplate).to receive(:all).and_return(job_templates)
-      allow(Job).to receive(:all).and_return(jobs)
+      allow(Job).to receive(:all).and_return([job1, job2])
       get :index
     end
 
@@ -24,7 +26,7 @@ describe DeploymentTargetsController do
     end
 
     it 'assigns all the jobs' do
-      expect(assigns(:jobs)).to eq jobs
+      expect(assigns(:jobs)).to eq [job2, job1]
     end
 
     it 'assigns the job templates' do
@@ -99,7 +101,7 @@ describe DeploymentTargetsController do
         allow(DeploymentTarget).to receive(:create).and_return(invalid_target)
         allow(DeploymentTarget).to receive(:all).and_return(deployment_targets)
         allow(JobTemplate).to receive(:all).and_return(job_templates)
-        allow(Job).to receive(:all).and_return(jobs)
+        allow(Job).to receive(:all).and_return([job1, job2])
         post :create, deployment_target_params
       end
 
@@ -112,7 +114,7 @@ describe DeploymentTargetsController do
       end
 
       it 'assigns all the jobs' do
-        expect(assigns(:jobs)).to eq jobs
+        expect(assigns(:jobs)).to eq [job2, job1]
       end
 
       it 'assigns the job templates' do
