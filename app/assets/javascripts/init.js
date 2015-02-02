@@ -94,7 +94,7 @@
 
     $('.journal-output').journalLoader();
 
-    $('.journal-toggle').journalToggle();
+    $('.journal-log').journalToggle();
 
     $('[data-clipboard-text]').clipboard();
 
@@ -139,6 +139,15 @@
 
     $('body').remoteContentsDialog({ targetSelector: '.provider a' });
 
-    $('.deployment-job').updatableContentsPolling();
+    $('.deployment-job-progress').updatableContentsPolling();
+
+    $('.log-output').scrolliePollie();
+
+    $('.deployment-job').journalToggle({
+      journalOutputSelector: '.log-output',
+      journalTruncatedHeight: '0px',
+      journalFullHeight: '300px',
+      trigger: 'a.toggle-log'
+    });
   };
 })(jQuery);

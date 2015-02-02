@@ -18,6 +18,12 @@ describe JsonJobPresenter do
     it { should eq '{{status}}' }
   end
 
+  describe '#dom_id' do
+    subject { presenter.dom_id }
+
+    it { should eq 'job_{{id}}' }
+  end
+
   describe '#steps' do
     it 'wraps the injected template with the handlebar tags' do
       result = subject.steps do |option_one, option_two|

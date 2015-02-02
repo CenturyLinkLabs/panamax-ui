@@ -4,6 +4,7 @@ describe JobPresenter do
 
   let(:fake_job) do
     double(:fake_job,
+           id: 7,
            name: 'abc123',
            status: 'complete',
            steps: [
@@ -27,6 +28,12 @@ describe JobPresenter do
     subject { presenter.status }
 
     it { should eq 'complete' }
+  end
+
+  describe '#dom_id' do
+    subject { presenter.dom_id }
+
+    it { should eq 'job_7' }
   end
 
   describe '#steps' do

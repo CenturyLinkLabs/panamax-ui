@@ -41,6 +41,20 @@ describe JobsController do
     end
   end
 
+  describe 'GET #log' do
+    let(:fake_job) { double(:fake_job) }
+
+    before do
+      allow(Job).to receive(:new).with(id: '7').and_return(fake_job)
+      allow(fake_job).to receive(:get).with(:log, index: 13).and_return(lines: [])
+      get :log, key: 7, index: 13, format: :json
+    end
+
+    it 'returns a json representation of the job log' do
+      expect(response.body).to eq({ lines: [] }.to_json)
+    end
+  end
+
   describe 'POST #create' do
     let(:create_params) do
       {

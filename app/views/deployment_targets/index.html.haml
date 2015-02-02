@@ -3,10 +3,19 @@
 = render '/shared/breadcrumbs', breadcrumbs: ['Manage', yield(:title)]
 %script#job_template{type: 'text/x-handlebars-template'}
   = render 'job', { presenter: JsonJobPresenter.new(self) }
+%script#journal_line_template{type: 'text/x-handlebars-template'}
+  %p
+    %span.timestamp {{timestamp}}
+    %span.source {{source}}
+    {{message}}
 
 - @jobs.each do |job|
-  .deployment-job{ class: job.status, data: { source: job_path(job.key) } }
-    = render 'job', presenter: JobPresenter.new(job, self)
+  - presenter = JobPresenter.new(job, self)
+  .deployment-job{ id: "#{presenter.dom_id}" }
+    .deployment-job-progress{ data: { source: job_path(job.key) } }
+      = render 'job', presenter: presenter
+    .deployment-job-log
+      %code.log-output.truncated{ data: { source: log_job_path(job.key) } }
 
 = render @deployment_targets
 

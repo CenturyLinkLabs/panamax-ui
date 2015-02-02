@@ -10,6 +10,10 @@ class JobPresenter
     @job.name
   end
 
+  def dom_id
+    'job_' + @job.id.to_s
+  end
+
   def steps(&block)
     @job.steps.map do |step|
       @view_context.capture(step.name, step.status, &block)

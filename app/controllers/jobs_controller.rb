@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
   respond_to :html, only: [:create, :new]
-  respond_to :json, only: :show
+  respond_to :json, only: [:show, :log]
 
   def new
     @template = JobTemplate.find(params[:template_id])
@@ -10,6 +10,11 @@ class JobsController < ApplicationController
 
   def show
     respond_with Job.find(params[:key]).with_step_status!
+  end
+
+  def log
+    job = Job.new(id: params[:key])
+    respond_with job.get(:log, index: params[:index])
   end
 
   def create

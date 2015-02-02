@@ -7,6 +7,10 @@ class JsonJobPresenter
     '{{name}}'
   end
 
+  def dom_id
+    'job_{{id}}'
+  end
+
   def status
     '{{status}}'
   end

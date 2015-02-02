@@ -8,7 +8,8 @@
     base.defaultOptions = {
       journalOutputSelector: '.journal-output',
       journalTruncatedHeight: '118px',
-      journalFullHeight: '300px'
+      journalFullHeight: '300px',
+      trigger: 'a.journal-toggle'
     };
 
     base.init = function(){
@@ -17,7 +18,7 @@
     };
 
     base.bindEvents = function() {
-      $(base.$el).on('click', base.handleToggle);
+      base.$el.on('click', base.options.trigger, base.handleToggle);
     };
 
     base.handleToggle = function(e) {
@@ -26,7 +27,7 @@
     };
 
     base.toggleJournal = function() {
-      var $journal = $(base.options.journalOutputSelector);
+      var $journal = base.$el.find(base.options.journalOutputSelector);
 
       if ($journal.hasClass('truncated')) {
 
@@ -35,6 +36,7 @@
         }, {
           complete: function() {
             $journal.toggleClass('truncated');
+            $journal.scrollTop($journal[0].scrollHeight);
             base.toggleLinkText();
           }
         });
@@ -53,11 +55,12 @@
     };
 
     base.toggleLinkText = function() {
-      var currentText = base.$el.text();
-      var newText = base.$el.data('alt-text');
+      var $trigger = base.$el.find(base.options.trigger);
+      var currentText = $trigger.text();
+      var newText = $trigger.data('alt-text');
 
-      base.$el.text(newText);
-      base.$el.data('alt-text', currentText);
+      $trigger.text(newText);
+      $trigger.data('alt-text', currentText);
     };
   };
 

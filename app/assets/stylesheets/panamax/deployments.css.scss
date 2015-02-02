@@ -467,51 +467,68 @@
     padding: 20px;
     margin-bottom: 20px;
 
-    h5 {
-      font-size: 18px;
-      color: $dark_grey;
-      border-bottom: $grey 1px solid;
-    }
+    .deployment-job-progress {
 
-    /* NOTE: this is used for job and step status */
-    .status-info {
-      background-repeat: no-repeat;
-      padding-left: 25px;
-      padding-bottom: 2px;
-      margin-left: 10px;
-      color: $medium_grey;
-    }
+      h5 {
+        font-size: 18px;
+        color: $dark_grey;
+        border-bottom: $grey 1px solid;
+      }
 
-    h5 > .status-info {
-      font-size: 14px;
-    }
+      .status-info {
+        background-repeat: no-repeat;
+        padding-left: 25px;
+        padding-bottom: 2px;
+        margin-left: 10px;
+        color: $medium_grey;
+      }
 
-    &.complete h5 > .status-info {
-      background-image: image-url('icon_status_running.png');
-    }
+      h5 > .status-info {
+        font-size: 14px;
+      }
 
-    &.running h5 > .status-info {
-      background-image: image-url('icon_loading_grey.gif');
-    }
+      h5 > a {
+        float: right;
+        font-size: 13px;
+        color: $dark_grey;
+        text-decoration: underline;
+      }
 
-    &.error h5 > .status-info {
-      background-image: image-url('icon_status_stopped.png');
-    }
-
-    ol li {
-      font-size: 0.8em;
-      color: $dark_grey;
-      list-style: decimal;
-      list-style-position: inside;
-      height: 30px;
-      line-height: 30px;
-
-      &.complete .status-info {
+      > .complete h5 > .status-info {
         background-image: image-url('icon_status_running.png');
       }
 
-      &.in-progress .status-info {
+      > .running h5 > .status-info {
         background-image: image-url('icon_loading_grey.gif');
+      }
+
+      > .error h5 > .status-info {
+        background-image: image-url('icon_status_stopped.png');
+      }
+
+      ol li {
+        font-size: 0.8em;
+        color: $dark_grey;
+        list-style: decimal;
+        list-style-position: inside;
+        height: 30px;
+        line-height: 30px;
+
+        &.complete .status-info {
+          background-image: image-url('icon_status_running.png');
+        }
+
+        &.in-progress .status-info {
+          background-image: image-url('icon_loading_grey.gif');
+        }
+      }
+    }
+
+    .deployment-job-log .log-output {
+      &.truncated {
+        overflow: hidden;
+        height: 0;
+        padding: 0;
       }
     }
   }
