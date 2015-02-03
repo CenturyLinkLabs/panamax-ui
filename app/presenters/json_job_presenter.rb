@@ -15,6 +15,16 @@ class JsonJobPresenter
     '{{status}}'
   end
 
+  def message
+    '{{#if success}}' +
+      I18n.t('jobs.completion.success_async') +
+    '{{else}}' +
+      '{{#if failure}}' +
+        I18n.t('jobs.completion.failure') +
+      '{{/if}}' +
+    '{{/if}}'
+  end
+
   def steps(&block)
     result = @view_context.capture('{{this.name}}', '{{this.status}}', &block)
     "{{#each steps}}#{result}{{/each}}".html_safe

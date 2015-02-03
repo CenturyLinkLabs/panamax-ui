@@ -475,6 +475,11 @@
         border-bottom: $grey 1px solid;
       }
 
+      .message {
+        padding: 10px;
+        font-style: italic;
+      }
+
       .status-info {
         background-repeat: no-repeat;
         padding-left: 25px;
@@ -494,16 +499,24 @@
         text-decoration: underline;
       }
 
-      > .complete h5 > .status-info {
-        background-image: image-url('icon_status_running.png');
+      > .complete {
+        h5 > .status-info {
+          background-image: image-url('icon_status_running.png');
+        }
       }
 
       > .running h5 > .status-info {
         background-image: image-url('icon_loading_grey.gif');
       }
 
-      > .error h5 > .status-info {
-        background-image: image-url('icon_status_stopped.png');
+      > .error {
+        h5 > .status-info {
+          background-image: image-url('icon_status_stopped.png');
+        }
+
+        .message {
+          color: $dark_red;
+        }
       }
 
       ol li {
@@ -520,6 +533,10 @@
 
         &.in-progress .status-info {
           background-image: image-url('icon_loading_grey.gif');
+        }
+
+        &.error .status-info {
+          background-image: image-url('icon_status_stopped.png');
         }
       }
     }

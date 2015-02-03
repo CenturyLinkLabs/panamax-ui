@@ -4,11 +4,12 @@ class Job < BaseResource
 
   schema do
     integer :template_id
+    string :status
   end
 
   def with_step_status!
     steps.each do |step|
-      step.status = step.get_status(completed_steps)
+      step.status = step.get_status(completed_steps, status)
     end
     self
   end
@@ -32,7 +33,23 @@ class Job < BaseResource
     self.override = override
   end
 
+  def success?
+    status == 'complete'
+  end
+
+  def failure?
+    status == 'error'
+  end
+
   def total_steps
     steps.length
+  end
+
+  def as_json(options={})
+    super
+      .merge(
+        'success' => success?,
+        'failure' => failure?
+      )
   end
 end

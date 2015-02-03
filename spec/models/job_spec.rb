@@ -79,8 +79,9 @@ describe Job do
     let(:step2) { Step.new }
 
     before do
-      allow(step1).to receive(:get_status).with(2).and_return('completed')
-      allow(step2).to receive(:get_status).with(2).and_return('completed')
+      subject.status = 'complete'
+      allow(step1).to receive(:get_status).with(2, 'complete').and_return('completed')
+      allow(step2).to receive(:get_status).with(2, 'complete').and_return('completed')
     end
 
     before do
@@ -91,6 +92,36 @@ describe Job do
     it 'hydrates each child step with a status' do
       subject.with_step_status!
       expect(subject.steps.map(&:status)).to eq ['completed', 'completed']
+    end
+  end
+
+  describe 'success?' do
+    it 'is true when status is complete' do
+      subject.status = 'complete'
+      expect(subject.success?).to be_true
+    end
+
+    it 'is false when status in anything else' do
+      results = [false, nil, 'in-progress'].map do |status|
+        subject.status = status
+        subject.success?
+      end
+      expect(results).to eq 3.times.map { false }
+    end
+  end
+
+  describe 'failure?' do
+    it 'is true when status is error' do
+      subject.status = 'error'
+      expect(subject.failure?).to be_true
+    end
+
+    it 'is false when status in anything else' do
+      results = [false, nil, 'in-progress'].map do |status|
+        subject.status = status
+        subject.failure?
+      end
+      expect(results).to eq 3.times.map { false }
     end
   end
 

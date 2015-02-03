@@ -14,6 +14,14 @@ class JobPresenter
     'job_' + @job.id.to_s
   end
 
+  def message
+    if @job.success?
+      I18n.t('jobs.completion.success')
+    elsif @job.failure?
+      I18n.t('jobs.completion.failure')
+    end
+  end
+
   def steps(&block)
     @job.steps.map do |step|
       @view_context.capture(step.name, step.status, &block)

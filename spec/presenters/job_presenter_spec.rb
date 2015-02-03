@@ -7,6 +7,8 @@ describe JobPresenter do
            id: 7,
            name: 'abc123',
            status: 'complete',
+           success?: nil,
+           failure?: nil,
            steps: [
              double(:step1, name: 'foo', status: 'complete'),
              double(:step2, name: 'bar', status: 'in-progress')
@@ -34,6 +36,25 @@ describe JobPresenter do
     subject { presenter.dom_id }
 
     it { should eq 'job_7' }
+  end
+
+  describe '#message' do
+    its(:message) { should be_nil }
+
+    context 'when the job was successful' do
+      before do
+        fake_job.stub(:success?).and_return(true)
+      end
+
+      its(:message) { should eq I18n.t('jobs.completion.success') }
+    end
+    context 'when the job failed' do
+      before do
+        fake_job.stub(:failure?).and_return(true)
+      end
+
+      its(:message) { should eq I18n.t('jobs.completion.failure') }
+    end
   end
 
   describe '#steps' do
