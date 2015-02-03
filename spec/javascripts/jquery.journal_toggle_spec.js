@@ -5,10 +5,11 @@ describe('$.fn.journalToggle', function() {
 
   beforeEach(function() {
     fixture.load('journal-loader.html');
+    $journal = $('#teaspoon-fixtures').find('.overall-journal');
     $journalToggle = $('#teaspoon-fixtures').find('.journal-toggle');
     $journalOutput = $('#teaspoon-fixtures').find('.journal-output');
 
-    subject = new $.PMX.JournalToggle($journalToggle);
+    subject = new $.PMX.JournalToggle($journal);
     subject.init();
   });
 

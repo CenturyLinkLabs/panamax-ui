@@ -1,0 +1,10 @@
+%div{class: presenter.status}
+  %h5
+    %span= presenter.title
+    %em.status-info= presenter.status
+    %a.toggle-log Toggle Log
+  %ol
+    = presenter.steps do |name, status|
+      %li{ class: status }
+        %strong= name
+        %em.status-info= status

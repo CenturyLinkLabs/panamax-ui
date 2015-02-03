@@ -14,6 +14,13 @@ describe 'managing jobs' do
 
       page.should have_content 'Add Another Remote Deployment Target'
 
+      page.should have_content 'Amazon Web Services'
+
+      page.should have_content 'Deploy CenturyLink Cloud Cluster'
+      page.should have_content 'Install Kubernetes on Cluster'
+      page.should have_content 'Deploy Panamax Remote Agent Node'
+      page.should have_content 'Install Panamax Remote Agent, Adaptor and Remote Target Endpoint'
+
     end
   end
 end

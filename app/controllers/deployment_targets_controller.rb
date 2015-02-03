@@ -3,9 +3,8 @@ class DeploymentTargetsController < ApplicationController
   respond_to :json, only: [:destroy]
 
   def index
-    @deployment_targets = DeploymentTarget.all
+    hydrate_index_view
     @deployment_target = DeploymentTarget.new
-    @job_templates = JobTemplate.all
   end
 
   def select
@@ -20,7 +19,7 @@ class DeploymentTargetsController < ApplicationController
       flash[:success] = I18n.t('deployment_targets.create.success')
       redirect_to deployment_targets_path
     else
-      @deployment_targets = DeploymentTarget.all
+      hydrate_index_view
       render :index
     end
   end
@@ -30,4 +29,11 @@ class DeploymentTargetsController < ApplicationController
     respond_with(target.destroy, location: deployment_targets_path)
   end
 
+  private
+
+  def hydrate_index_view
+    @deployment_targets = DeploymentTarget.all
+    @job_templates = JobTemplate.all
+    @jobs = Job.all.map(&:with_step_status!).reverse
+  end
 end

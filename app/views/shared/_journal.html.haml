@@ -6,8 +6,9 @@
       %span.source {{source}}
       {{message}}
 
-  %header
-    %h3= title
-    %a.journal-toggle{ data: { alt: { text: 'Hide Full Activity Log' } } }
-      Show Full Activity Log
-  %code.journal-output.truncated{ data: { source: journal_path } }
+  .journal-log
+    %header
+      %h3= title
+      %a.journal-toggle{ data: { alt: { text: 'Hide Full Activity Log' } } }
+        Show Full Activity Log
+    %code.journal-output.truncated{ data: { source: journal_path } }

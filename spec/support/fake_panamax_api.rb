@@ -37,6 +37,10 @@ class FakePanamaxApi < Sinatra::Base
     json_response 201, 'job_representation.json'
   end
 
+  get '/jobs.json' do
+    json_response 201, 'jobs_representation.json'
+  end
+
   get '/job_templates/:id.json' do
     json_response 200, 'job_template_representation.json'
   end
