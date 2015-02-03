@@ -139,7 +139,7 @@
 
     $('body').remoteContentsDialog({ targetSelector: '.provider a' });
 
-    $('.deployment-job-progress').updatableContentsPolling();
+    $('.deployment-job-progress.intially-running').updatableContentsPolling();
 
     $('.log-output').scrolliePollie();
 
