@@ -87,20 +87,12 @@ describe JobsController do
       it 'redirects to the deployment_targets list page' do
         expect(response).to redirect_to deployment_targets_url
       end
-
-      it 'displays the flash notice' do
-        expect(flash[:notice]).to eql I18n.t('jobs.create.success')
-      end
     end
 
     context 'when creation fails' do
       before do
         allow(Job).to receive(:nested_create).with(create_params).and_return(false)
         post :create, job: create_params
-      end
-
-      it 'displays the flash error' do
-        expect(flash[:error]).to eql I18n.t('jobs.create.failure')
       end
     end
   end
