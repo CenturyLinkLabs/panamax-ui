@@ -139,7 +139,9 @@
 
     $('body').remoteContentsDialog({ targetSelector: '.provider a' });
 
-    $('.initially-running .deployment-job-progress').updatableContentsPolling();
+    $('.initially-running .deployment-job-progress').updatableContentsPolling({
+      refreshInterval: 1500
+    });
 
     $('.initially-running .log-output').scrolliePollie();
 
@@ -154,7 +156,10 @@
       {
         linkSelector: 'a.delete-action',
         removeAt: '.deployment-job',
-        disableWith: 'Deleting...'
+        disableWith: 'Removing...',
+        fail: function(res, $target, context) {
+          context.remove($target);
+        }
       })).init();
   };
 })(jQuery);
