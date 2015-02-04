@@ -4,7 +4,7 @@
     %em.status-info= presenter.status
     = presenter.unless_running do
       = link_to 'Dismiss',
-                '#todo',
+                presenter.destroy_path,
                 class: 'delete-action',
                 title: 'delete',
                 method: 'delete',

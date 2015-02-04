@@ -12,6 +12,15 @@ describe JsonJobPresenter do
     it { should eq '{{name}}' }
   end
 
+  describe '#destroy_path' do
+    before do
+      view_context.stub(:jobs_path).and_return('/destroy/path')
+    end
+    it 'returns the job_path' do
+      expect(subject.destroy_path).to eq '/destroy/path/{{key}}'
+    end
+  end
+
   describe '#status' do
     subject { presenter.status }
 

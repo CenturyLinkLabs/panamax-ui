@@ -149,5 +149,12 @@
       journalFullHeight: '300px',
       trigger: 'a.toggle-log'
     });
+
+    (new $.PMX.destroyLink($('body'),
+      {
+        linkSelector: 'a.delete-action',
+        removeAt: '.deployment-job',
+        disableWith: 'Deleting...'
+      })).init();
   };
 })(jQuery);

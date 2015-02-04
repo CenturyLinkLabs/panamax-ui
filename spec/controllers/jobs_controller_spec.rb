@@ -104,4 +104,11 @@ describe JobsController do
       end
     end
   end
+
+  describe 'DELETE #destroy' do
+    it 'deletes the job with the given key' do
+      expect(Job).to receive(:delete).with('xyz')
+      delete :destroy, key: 'xyz', format: :json
+    end
+  end
 end

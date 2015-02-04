@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     resources :deployment_target_metadata_refreshes, only: :create, as: :metadata_refreshes
   end
 
-  resources :jobs, param: :key do
+  resources :jobs, param: :key, only: [:create, :new, :show, :destroy] do
     get :log, on: :member
   end
 

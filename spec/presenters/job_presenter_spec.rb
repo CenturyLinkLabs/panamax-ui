@@ -5,6 +5,7 @@ describe JobPresenter do
   let(:fake_job) do
     double(:fake_job,
            id: 7,
+           key: 'xyz',
            name: 'abc123',
            status: 'complete',
            success?: nil,
@@ -24,6 +25,15 @@ describe JobPresenter do
     subject { presenter.title }
 
     it { should eq 'abc123' }
+  end
+
+  describe '#destroy_path' do
+    before do
+      view_context.stub(:job_path).with('xyz').and_return('/destroy/path')
+    end
+    it 'returns the job_path' do
+      expect(subject.destroy_path).to eq '/destroy/path'
+    end
   end
 
   describe '#status' do

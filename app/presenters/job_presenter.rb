@@ -10,6 +10,10 @@ class JobPresenter
     @job.name
   end
 
+  def destroy_path
+    @view_context.job_path(@job.key)
+  end
+
   def dom_id
     'job_' + @job.id.to_s
   end

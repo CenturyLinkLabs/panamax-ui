@@ -7,6 +7,10 @@ class JsonJobPresenter
     '{{name}}'
   end
 
+  def destroy_path
+    @view_context.jobs_path + '/{{key}}'
+  end
+
   def dom_id
     'job_{{id}}'
   end
