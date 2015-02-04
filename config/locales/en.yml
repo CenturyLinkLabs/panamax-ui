@@ -57,6 +57,8 @@ en:
                 <a href="https://github.com/CenturyLinkLabs/panamax-ui/wiki/Remote-Deployment-Troubleshooting"
                 target="_blank">troubleshooting guide on the wiki</a> for suggestions.'
   jobs:
+    create:
+      failure: 'There was a problem launching your job. Did you fill out all the required fields?'
     completion:
       success_async: 'Job successful, please refresh your browser to see the new Target'
       success: 'Job successful, view the created Target below'

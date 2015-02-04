@@ -9,7 +9,7 @@
       = ov.fields_for :environment do |env|
         %li
           = env.hidden_field :variable
-          = env.text_field :value, placeholder: env.object.variable
+          = env.text_field :value, placeholder: env.object.variable, required: true
           %label= env.object.description
 
   = f.submit 'Add New Target', class: 'button-positive'

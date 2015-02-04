@@ -18,7 +18,9 @@ class JobsController < ApplicationController
   end
 
   def create
-    @job = Job.nested_create(params[:job])
+    unless @job = Job.nested_create(params[:job])
+      flash[:error] = I18n.t('jobs.create.failure')
+    end
     respond_with @job, location: deployment_targets_url
   end
 

@@ -94,6 +94,10 @@ describe JobsController do
         allow(Job).to receive(:nested_create).with(create_params).and_return(false)
         post :create, job: create_params
       end
+
+      it 'displays the flash error' do
+        expect(flash[:error]).to eql I18n.t('jobs.create.failure')
+      end
     end
   end
 
