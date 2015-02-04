@@ -5,6 +5,13 @@ class Job < BaseResource
   schema do
     integer :template_id
     string :status
+    string :log
+  end
+
+  def with_log!
+    job = Job.new(id: key)
+    self.log = job.get(:log)
+    self
   end
 
   def with_step_status!

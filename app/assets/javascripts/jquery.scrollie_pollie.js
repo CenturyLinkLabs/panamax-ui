@@ -13,6 +13,7 @@
 
     base.init = function(){
       base.options = $.extend({}, base.defaultOptions, options);
+      base.$el.html('');
       base.fetch();
     };
 

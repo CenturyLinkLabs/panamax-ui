@@ -139,9 +139,9 @@
 
     $('body').remoteContentsDialog({ targetSelector: '.provider a' });
 
-    $('.deployment-job-progress.intially-running').updatableContentsPolling();
+    $('.initially-running .deployment-job-progress').updatableContentsPolling();
 
-    $('.log-output').scrolliePollie();
+    $('.initially-running .log-output').scrolliePollie();
 
     $('.deployment-job').journalToggle({
       journalOutputSelector: '.log-output',

@@ -9,6 +9,8 @@ describe DeploymentTargetsController do
   before do
     allow(job1).to receive(:with_step_status!).and_return(job1)
     allow(job2).to receive(:with_step_status!).and_return(job2)
+    allow(job1).to receive(:with_log!).and_return(job1)
+    allow(job2).to receive(:with_log!).and_return(job2)
     allow(job1).to receive(:with_template!).and_return(job1)
     allow(job2).to receive(:with_template!).and_return(job2)
   end

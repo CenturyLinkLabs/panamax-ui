@@ -74,6 +74,21 @@ describe Job do
     end
   end
 
+  describe '#with_log!' do
+    let(:fake_new_job) { double(:fake_new_job) }
+    before do
+      subject.key = 7
+      allow(Job).to receive(:new).with(id: 7).and_return(fake_new_job)
+      allow(fake_new_job).to receive(:get).with(:log).and_return(['log'])
+    end
+
+    it 'fetches and assigns the log' do
+      expect(subject.log).to be_nil
+      subject.with_log!
+      expect(subject.log).to eq ['log']
+    end
+  end
+
   describe '#with_step_status!' do
     let(:step1) { Step.new }
     let(:step2) { Step.new }

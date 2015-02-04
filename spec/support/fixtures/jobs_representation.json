@@ -3,6 +3,7 @@
         "name": "Amazon Web Services",
         "id": 4,
         "job_template_id": "2",
+        "logs": [],
         "key": "C3DC7DE3-F51C-67E3-21A3-4B3EE084DBF7",
         "completed_steps": 0,
         "status": "error",
