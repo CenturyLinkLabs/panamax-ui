@@ -29,11 +29,6 @@ class JsonJobPresenter
     '{{/if}}'
   end
 
-  def unless_running(&block)
-    result = @view_context.capture(&block)
-    "{{#unless running}}#{result}{{/unless}}".html_safe
-  end
-
   def steps(&block)
     result = @view_context.capture('{{this.name}}', '{{this.status}}', &block)
     "{{#each steps}}#{result}{{/each}}".html_safe

@@ -26,11 +26,6 @@ class JobPresenter
     end
   end
 
-  def unless_running(&block)
-    result = @view_context.capture(&block)
-    result unless @job.running?
-  end
-
   def steps(&block)
     @job.steps.map do |step|
       @view_context.capture(step.name, step.status, &block)

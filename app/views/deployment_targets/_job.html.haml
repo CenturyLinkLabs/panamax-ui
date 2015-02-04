@@ -2,13 +2,12 @@
   %h5
     %span= presenter.title
     %em.status-info= presenter.status
-    = presenter.unless_running do
-      = link_to 'Dismiss',
-                presenter.destroy_path,
-                class: 'delete-action',
-                title: 'delete',
-                method: 'delete',
-                data: { delete_remove_at: '.deployment-job' }
+    = link_to 'Dismiss',
+              presenter.destroy_path,
+              class: 'delete-action',
+              title: 'delete',
+              method: 'delete',
+              data: { delete_remove_at: '.deployment-job' }
     %a.toggle-log Toggle Log
   %ol
     = presenter.steps do |name, status|

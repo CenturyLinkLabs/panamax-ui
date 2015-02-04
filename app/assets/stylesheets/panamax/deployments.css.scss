@@ -526,8 +526,14 @@
         }
       }
 
-      > .running h5 > .status-info {
-        background-image: image-url('icon_loading_grey.gif');
+      > .running {
+        h5 > .status-info {
+          background-image: image-url('icon_loading_grey.gif');
+        }
+
+        .delete-action {
+          visibility: hidden;
+        }
       }
 
       > .error {
