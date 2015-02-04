@@ -41,6 +41,10 @@ class Job < BaseResource
     status == 'error'
   end
 
+  def running?
+    status == 'running'
+  end
+
   def total_steps
     steps.length
   end
@@ -49,7 +53,8 @@ class Job < BaseResource
     super
       .merge(
         'success' => success?,
-        'failure' => failure?
+        'failure' => failure?,
+        'running' => running?
       )
   end
 end

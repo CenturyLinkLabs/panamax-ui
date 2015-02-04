@@ -110,6 +110,21 @@ describe Job do
     end
   end
 
+  describe 'running?' do
+    it 'is true when status is running' do
+      subject.status = 'running'
+      expect(subject.running?).to be_true
+    end
+
+    it 'is false when status in anything else' do
+      results = [false, nil, 'complete'].map do |status|
+        subject.status = status
+        subject.running?
+      end
+      expect(results).to eq 3.times.map { false }
+    end
+  end
+
   describe 'failure?' do
     it 'is true when status is error' do
       subject.status = 'error'
@@ -134,6 +149,13 @@ describe Job do
 
     it 'returns the step count' do
       expect(subject.total_steps).to eq 2
+    end
+  end
+
+  describe '#as_json' do
+    it 'provides the attributes to be converted to JSON' do
+      subject.name = 'booyah'
+      expect(subject.as_json.keys).to match_array ['name', 'running', 'failure', 'success']
     end
   end
 end

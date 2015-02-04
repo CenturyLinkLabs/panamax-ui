@@ -6,8 +6,8 @@ class Step < BaseResource
     string :source
   end
 
-  def get_status(steps_completed, status)
-    if status == 'error'
+  def get_status(steps_completed, job_status)
+    if job_status == 'error'
       'error'
     elsif (steps_completed.to_i + 1) == order
       'in-progress'

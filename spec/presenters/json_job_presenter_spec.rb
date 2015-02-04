@@ -36,6 +36,15 @@ describe JsonJobPresenter do
     end
   end
 
+  describe '#unless_running' do
+    it 'wraps the block in the appropriate handlebars logic' do
+      result = subject.unless_running do
+        'MARKUP!'
+      end
+      expect(result).to eq '{{#unless running}}MARKUP!{{/unless}}'
+    end
+  end
+
   describe '#steps' do
     it 'wraps the injected template with the handlebar tags' do
       result = subject.steps do |option_one, option_two|

@@ -57,6 +57,20 @@ describe JobPresenter do
     end
   end
 
+  describe '#unless_running' do
+    it 'returns nothing when running' do
+      fake_job.stub(:running?).and_return(true)
+      result = subject.unless_running { 'foo' }
+      expect(result).to be_nil
+    end
+
+    it 'returns the html when not running' do
+      fake_job.stub(:running?).and_return(false)
+      result = subject.unless_running { 'foo' }
+      expect(result).to eq 'foo'
+    end
+  end
+
   describe '#steps' do
     it 'returns the templatized representation' do
       result = subject.steps do |name, status|
@@ -65,5 +79,4 @@ describe JobPresenter do
       expect(result).to eq("NAME:foo|STATUS:complete\nNAME:bar|STATUS:in-progress")
     end
   end
-
 end

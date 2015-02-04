@@ -488,6 +488,27 @@
         color: $medium_grey;
       }
 
+      .delete-action {
+        padding-right: 15px;
+        margin-left: 15px;
+        float: right;
+        position: relative;
+
+        &:after {
+          content: '';
+          display: block;
+          position: absolute;
+          right: 0;
+          top: 3px;
+          @extend .icon-x;
+          @include icon-grey;
+        }
+
+        &:hover:after {
+          @include icon-red;
+        }
+      }
+
       h5 > .status-info {
         font-size: 14px;
       }
