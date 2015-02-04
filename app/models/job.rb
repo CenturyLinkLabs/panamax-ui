@@ -16,7 +16,7 @@ class Job < BaseResource
 
   def with_step_status!
     steps.each do |step|
-      step.status = step.get_status(completed_steps, status)
+      step.update_status!(completed_steps, failure?)
     end
     self
   end

@@ -95,18 +95,20 @@ describe Job do
 
     before do
       subject.status = 'complete'
-      allow(step1).to receive(:get_status).with(2, 'complete').and_return('completed')
-      allow(step2).to receive(:get_status).with(2, 'complete').and_return('completed')
-    end
-
-    before do
       subject.completed_steps = 2
       subject.steps = [step1, step2]
+      allow(step1).to receive(:update_status!)
+      allow(step2).to receive(:update_status!)
     end
 
     it 'hydrates each child step with a status' do
       subject.with_step_status!
-      expect(subject.steps.map(&:status)).to eq ['completed', 'completed']
+      expect(step1).to have_received(:update_status!).with(2, false)
+      expect(step2).to have_received(:update_status!).with(2, false)
+    end
+
+    it 'returns itself for chaining' do
+      expect(subject.with_step_status!).to eq subject
     end
   end
 

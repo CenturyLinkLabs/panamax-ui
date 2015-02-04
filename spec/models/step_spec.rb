@@ -8,38 +8,58 @@ describe Step do
   it { should respond_to :name }
   it { should respond_to :source }
 
-  describe '#get_status' do
+  describe '#update_status!' do
 
     context 'when the order of the current step is 2' do
       before do
         subject.order = 2
       end
 
-      it 'returns error when job status is error' do
-        results = [nil, 0, 1, 2, 3].map do |steps|
-          subject.get_status(steps, 'error')
+      context 'when the job is in the error state' do
+        it 'returns complete when two steps have been completed' do
+          subject.update_status!(2, 'error')
+          expect(subject.status).to eq 'complete'
         end
-        expect(results).to eq 5.times.map { 'error' }
+
+        it 'returns complete when more than two steps have been completed' do
+          subject.update_status!(4, 'error')
+          expect(subject.status).to eq 'complete'
+        end
+
+        it 'returns error for the step in progress' do
+          subject.update_status!(1, 'error')
+          expect(subject.status).to eq 'error'
+        end
+
+        it 'returns nothing for steps that have not started' do
+          subject.update_status!(0, 'error')
+          expect(subject.status).to eq ''
+        end
       end
 
       it 'returns waiting when nil steps have been completed' do
-        expect(subject.get_status(nil, nil)).to eq 'waiting'
+        subject.update_status!(nil, nil)
+        expect(subject.status).to eq 'waiting'
       end
 
       it 'returns waiting when 0 steps have been completed' do
-        expect(subject.get_status(0, nil)).to eq 'waiting'
+        subject.update_status!(0, nil)
+        expect(subject.status).to eq 'waiting'
       end
 
       it 'returns in-progress when one step has been completed' do
-        expect(subject.get_status(1, nil)).to eq 'in-progress'
+        subject.update_status!(1, nil)
+        expect(subject.status).to eq 'in-progress'
       end
 
       it 'returns complete when two steps have been completed' do
-        expect(subject.get_status(2, nil)).to eq 'complete'
+        subject.update_status!(2, nil)
+        expect(subject.status).to eq 'complete'
       end
 
       it 'returns complete when more than two steps have been completed' do
-        expect(subject.get_status(4, nil)).to eq 'complete'
+        subject.update_status!(4, nil)
+        expect(subject.status).to eq 'complete'
       end
     end
   end
