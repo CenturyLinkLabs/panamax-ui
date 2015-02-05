@@ -156,7 +156,7 @@
 
     (new $.PMX.destroyLink($('body'),
       {
-        linkSelector: 'a.delete-action',
+        linkSelector: '.deployment-job a.delete-action',
         removeAt: '.deployment-job',
         disableWith: 'Removing...',
         fail: function(res, $target, context) {
