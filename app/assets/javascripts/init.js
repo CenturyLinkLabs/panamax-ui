@@ -140,10 +140,12 @@
     $('body').remoteContentsDialog({ targetSelector: '.provider a' });
 
     $('.initially-running .deployment-job-progress').updatableContentsPolling({
-      refreshInterval: 1500
+      refreshInterval: 5000
     });
 
-    $('.initially-running .log-output').scrolliePollie();
+    $('.initially-running .log-output').scrolliePollie({
+      refreshInterval: 3000
+    });
 
     $('.deployment-job').journalToggle({
       journalOutputSelector: '.log-output',
