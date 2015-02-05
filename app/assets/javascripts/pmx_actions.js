@@ -38,12 +38,20 @@
        if (base.options.success) { base.options.success(); }
     };
 
-    base.fail = function(response) {
+    base.fail = function(response, $target) {
       if (base.options.fail) {
-        base.options.fail(response);
+        base.options.fail(response, $target, base);
       } else {
         alert("Unable to complete delete operation");
       }
+    };
+
+    base.remove = function($target) {
+      var $remove = $target.closest(base.options.removeAt);
+      $remove.css('opacity', '0.5')
+        .delay(1000)
+        .fadeOut('slow', base.done)
+        .find('a').css('cursor', 'not-allowed');
     };
 
     base.handleDelete = function(event) {
@@ -61,14 +69,10 @@
         type: 'DELETE'
       })
       .done(function() {
-        var $remove = $target.closest(base.options.removeAt);
-        $remove.css('opacity', '0.5')
-          .delay(1000)
-          .fadeOut('slow', base.done)
-          .find('a').css('cursor', 'not-allowed');
+        base.remove($target);
       })
       .fail(function(response){
-        base.fail(response);
+        base.fail(response, $target);
       });
     };
   };

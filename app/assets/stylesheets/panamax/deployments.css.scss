@@ -475,12 +475,38 @@
         border-bottom: $grey 1px solid;
       }
 
+      .message {
+        padding: 10px;
+        font-style: italic;
+      }
+
       .status-info {
         background-repeat: no-repeat;
         padding-left: 25px;
         padding-bottom: 2px;
         margin-left: 10px;
         color: $medium_grey;
+      }
+
+      .delete-action {
+        padding-right: 15px;
+        margin-left: 15px;
+        float: right;
+        position: relative;
+
+        &:after {
+          content: '';
+          display: block;
+          position: absolute;
+          right: 0;
+          top: 3px;
+          @extend .icon-x;
+          @include icon-grey;
+        }
+
+        &:hover:after {
+          @include icon-red;
+        }
       }
 
       h5 > .status-info {
@@ -494,16 +520,30 @@
         text-decoration: underline;
       }
 
-      > .complete h5 > .status-info {
-        background-image: image-url('icon_status_running.png');
+      > .complete {
+        h5 > .status-info {
+          background-image: image-url('icon_status_running.png');
+        }
       }
 
-      > .running h5 > .status-info {
-        background-image: image-url('icon_loading_grey.gif');
+      > .running {
+        h5 > .status-info {
+          background-image: image-url('icon_loading_grey.gif');
+        }
+
+        .delete-action {
+          visibility: hidden;
+        }
       }
 
-      > .error h5 > .status-info {
-        background-image: image-url('icon_status_stopped.png');
+      > .error {
+        h5 > .status-info {
+          background-image: image-url('icon_status_stopped.png');
+        }
+
+        .message {
+          color: $dark_red;
+        }
       }
 
       ol li {
@@ -520,6 +560,10 @@
 
         &.in-progress .status-info {
           background-image: image-url('icon_loading_grey.gif');
+        }
+
+        &.error .status-info {
+          background-image: image-url('icon_status_stopped.png');
         }
       }
     }

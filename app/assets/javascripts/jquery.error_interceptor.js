@@ -10,6 +10,7 @@
         'host_health',
         'service_health',
         'journal',
+        'jobs',
         'deployment_target_metadata_refreshes'
       ]
     };

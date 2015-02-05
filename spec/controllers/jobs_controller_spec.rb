@@ -87,10 +87,6 @@ describe JobsController do
       it 'redirects to the deployment_targets list page' do
         expect(response).to redirect_to deployment_targets_url
       end
-
-      it 'displays the flash notice' do
-        expect(flash[:notice]).to eql I18n.t('jobs.create.success')
-      end
     end
 
     context 'when creation fails' do
@@ -102,6 +98,13 @@ describe JobsController do
       it 'displays the flash error' do
         expect(flash[:error]).to eql I18n.t('jobs.create.failure')
       end
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    it 'deletes the job with the given key' do
+      expect(Job).to receive(:delete).with('xyz')
+      delete :destroy, key: 'xyz', format: :json
     end
   end
 end

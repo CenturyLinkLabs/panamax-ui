@@ -58,8 +58,11 @@ en:
                 target="_blank">troubleshooting guide on the wiki</a> for suggestions.'
   jobs:
     create:
-      success: 'Your job was created successfully'
-      failure: 'There was a problem launching your job'
+      failure: 'There was a problem launching your job. Did you fill out all the required fields?'
+    completion:
+      success_async: 'Job successful, please refresh your browser to see the new Target'
+      success: 'Job successful, view the created Target below'
+      failure: 'Something went wrong. Please review the logs to diagnose the issue. You will need to access your cloud provider directly to delete any VMs or artifacts created during the job to avoid unwanted charges.'
   images:
     destroy:
       success: 'The image was successfully removed'

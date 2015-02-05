@@ -74,23 +74,86 @@ describe Job do
     end
   end
 
+  describe '#with_log!' do
+    let(:fake_new_job) { double(:fake_new_job) }
+    before do
+      subject.key = 7
+      allow(Job).to receive(:new).with(id: 7).and_return(fake_new_job)
+      allow(fake_new_job).to receive(:get).with(:log).and_return(['log'])
+    end
+
+    it 'fetches and assigns the log' do
+      expect(subject.log).to be_nil
+      subject.with_log!
+      expect(subject.log).to eq ['log']
+    end
+  end
+
   describe '#with_step_status!' do
     let(:step1) { Step.new }
     let(:step2) { Step.new }
 
     before do
-      allow(step1).to receive(:get_status).with(2).and_return('completed')
-      allow(step2).to receive(:get_status).with(2).and_return('completed')
-    end
-
-    before do
+      subject.status = 'complete'
       subject.completed_steps = 2
       subject.steps = [step1, step2]
+      allow(step1).to receive(:update_status!)
+      allow(step2).to receive(:update_status!)
     end
 
     it 'hydrates each child step with a status' do
       subject.with_step_status!
-      expect(subject.steps.map(&:status)).to eq ['completed', 'completed']
+      expect(step1).to have_received(:update_status!).with(2, false)
+      expect(step2).to have_received(:update_status!).with(2, false)
+    end
+
+    it 'returns itself for chaining' do
+      expect(subject.with_step_status!).to eq subject
+    end
+  end
+
+  describe 'success?' do
+    it 'is true when status is complete' do
+      subject.status = 'complete'
+      expect(subject.success?).to be_true
+    end
+
+    it 'is false when status in anything else' do
+      results = [false, nil, 'in-progress'].map do |status|
+        subject.status = status
+        subject.success?
+      end
+      expect(results).to eq 3.times.map { false }
+    end
+  end
+
+  describe 'running?' do
+    it 'is true when status is running' do
+      subject.status = 'running'
+      expect(subject.running?).to be_true
+    end
+
+    it 'is false when status in anything else' do
+      results = [false, nil, 'complete'].map do |status|
+        subject.status = status
+        subject.running?
+      end
+      expect(results).to eq 3.times.map { false }
+    end
+  end
+
+  describe 'failure?' do
+    it 'is true when status is error' do
+      subject.status = 'error'
+      expect(subject.failure?).to be_true
+    end
+
+    it 'is false when status in anything else' do
+      results = [false, nil, 'in-progress'].map do |status|
+        subject.status = status
+        subject.failure?
+      end
+      expect(results).to eq 3.times.map { false }
     end
   end
 
@@ -103,6 +166,13 @@ describe Job do
 
     it 'returns the step count' do
       expect(subject.total_steps).to eq 2
+    end
+  end
+
+  describe '#as_json' do
+    it 'provides the attributes to be converted to JSON' do
+      subject.name = 'booyah'
+      expect(subject.as_json.keys).to match_array ['name', 'running', 'failure', 'success']
     end
   end
 end

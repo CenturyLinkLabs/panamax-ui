@@ -12,6 +12,15 @@ describe JsonJobPresenter do
     it { should eq '{{name}}' }
   end
 
+  describe '#destroy_path' do
+    before do
+      view_context.stub(:jobs_path).and_return('/destroy/path')
+    end
+    it 'returns the job_path' do
+      expect(subject.destroy_path).to eq '/destroy/path/{{key}}'
+    end
+  end
+
   describe '#status' do
     subject { presenter.status }
 
@@ -22,6 +31,18 @@ describe JsonJobPresenter do
     subject { presenter.dom_id }
 
     it { should eq 'job_{{id}}' }
+  end
+
+  describe '#message' do
+    its(:message) do
+      should eq '{{#if success}}' +
+        I18n.t('jobs.completion.success_async') +
+        '{{else}}' +
+        '{{#if failure}}' +
+        I18n.t('jobs.completion.failure') +
+        '{{/if}}' +
+        '{{/if}}'
+    end
   end
 
   describe '#steps' do

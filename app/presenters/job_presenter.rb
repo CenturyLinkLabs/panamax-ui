@@ -10,8 +10,20 @@ class JobPresenter
     @job.name
   end
 
+  def destroy_path
+    @view_context.job_path(@job.key)
+  end
+
   def dom_id
     'job_' + @job.id.to_s
+  end
+
+  def message
+    if @job.success?
+      I18n.t('jobs.completion.success')
+    elsif @job.failure?
+      I18n.t('jobs.completion.failure')
+    end
   end
 
   def steps(&block)
