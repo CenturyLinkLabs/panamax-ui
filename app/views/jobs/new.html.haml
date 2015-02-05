@@ -2,6 +2,7 @@
 - content_for(:title, "New #{@template.name} Remote Deployment Target")
 
 %h1 create a new job
+%p.microcopy All fields required.
 = form_for @job do |f|
   = f.hidden_field :template_id
   %ul
