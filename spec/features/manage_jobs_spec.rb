@@ -12,7 +12,7 @@ describe 'managing jobs' do
 
       click_on 'Add New Target'
 
-      page.should have_content 'Add Another Remote Deployment Target'
+      page.should have_content 'Add a Remote Deployment Target'
 
       page.should have_content 'Amazon Web Services'
 

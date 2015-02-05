@@ -26,9 +26,9 @@
     Setup a remote target to deploy templates and images from Panamax directly to your infrastructure.
     Enter endpoints manually or create a cluster endpoint automatically via Dray, leveraging popular cloud providers and orchestrators.
     %br/
-    = link_to 'Learn more about Remote Deployment Targets.', 'https://github.com/CenturyLinkLabs/panamax-ui/wiki/Panamax-Remote-Agent-Installation'
+    = link_to 'Learn more about Remote Deployment Targets.', 'https://github.com/CenturyLinkLabs/panamax-ui/wiki/Panamax-Remote-Agent-Installation', target: '_blank'
     %br/
-    = link_to 'Learn more about Dray.', 'https://registry.hub.docker.com/u/centurylink/dray/'
+    = link_to 'Learn more about Dray.', 'https://registry.hub.docker.com/u/centurylink/dray/', target: '_blank'
 
 = render 'shared/errors', errors: @deployment_target.errors
 = form_for @deployment_target, html: { id: 'create_target', class: ('expanded' unless @deployment_target.valid?) } do |f|
@@ -43,12 +43,22 @@
     Cancel
 
 .add-target
-  %h2 Add Another Remote Deployment Target
+  %h2 Add a Remote Deployment Target
   .providers
+    %p.macrocopy
+      Automatically set up your deployment target on one of these providers using
+      = link_to 'Dray.', 'https://registry.hub.docker.com/u/centurylink/dray/', target: '_blank'
+
     %ul
       - @job_templates.each do |job_template|
         %li.provider
           = link_to provider_label(job_template.name), new_job_path(template_id: job_template.id), title: job_template.name
+    %p.alternative-provider
+      Don't see your favorite provider listed?
+      %br/
+      Set a deployment target up manually.
+      = link_to 'Learn more.', 'https://github.com/CenturyLinkLabs/panamax-ui/wiki/Panamax-Remote-Agent-Installation', target: '_blank'
   %p
-    Or
-    %a{ { data: { toggle: { target: '#create_target', class: 'expanded' } } } } Add a new Remote Deployment Target
+    Already have a deployment target set up?
+    %br/
+    %a{ { data: { toggle: { target: '#create_target', class: 'expanded' } } } } Enter your token here.
