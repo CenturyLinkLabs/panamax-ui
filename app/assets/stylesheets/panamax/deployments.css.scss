@@ -432,21 +432,32 @@
   }
 
   .add-target {
-    p {
-      padding-top: 18px;
+    margin-top: 30px;
+    overflow: auto;
+
+    h2 {
+      margin-bottom: 0;
     }
+
+    a { text-decoration: underline; }
   }
 
   .providers {
-    overflow: none;
     float: left;
     border-right: $light_grey 1px solid;
-    padding-right: 5px;
+    padding-right: 15px;
     margin-right: 15px;
+    width: 686px;
+    @include border-box;
+
+    .alternative-provider {
+      padding-top: 10px;
+      clear: left;
+    }
 
     .provider {
       float: left;
-      margin-right: 10px;
+      margin: 0 10px 10px 0;
       max-width: 200px;
       overflow: hidden;
 
@@ -454,6 +465,8 @@
         display: block;
         padding: 0 10px;
         background-color: $light_grey;
+        height: 60px;
+        line-height: 50px;
 
         &:hover {
           background-color: $white;
