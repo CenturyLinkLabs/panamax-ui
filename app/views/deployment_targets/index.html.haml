@@ -15,7 +15,7 @@
     .deployment-job-progress{ data: { source: job_path(job.key) } }
       = render 'job', presenter: presenter
     .deployment-job-log
-      %code.log-output.truncated{ data: { source: log_job_path(job.key) } }
+      %code.log-output{ data: { source: log_job_path(job.key) } }
         - job.log.each do |output|
           %p= output
 

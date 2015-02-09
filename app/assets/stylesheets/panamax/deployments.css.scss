@@ -582,6 +582,8 @@
     }
 
     .deployment-job-log .log-output {
+      height: 300px;
+
       &.truncated {
         overflow: hidden;
         height: 0;
