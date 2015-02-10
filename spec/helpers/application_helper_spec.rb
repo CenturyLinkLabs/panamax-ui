@@ -47,4 +47,24 @@ describe ApplicationHelper do
       it { should eq 'Panamax > pretty pictures > more pretty' }
     end
   end
+
+  describe '#markdown_to_html' do
+    context 'when content is passed in' do
+      subject { helper.markdown_to_html('#bla') }
+
+      let(:fake_kramdoc) { double(:fake_kramdoc, to_html: '<h1>bla</h1>') }
+
+      before do
+        allow(Kramdown::Document).to receive(:new).with('#bla').and_return(fake_kramdoc)
+      end
+
+      it { should eq '<h1>bla</h1>' }
+    end
+
+    context 'when nothing is passed in' do
+      subject { helper.markdown_to_html('') }
+
+      it { should eq '' }
+    end
+  end
 end

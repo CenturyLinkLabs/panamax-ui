@@ -19,4 +19,8 @@ module ApplicationHelper
     titles = ['Panamax'] + page_titles
     titles.compact.join(' > ')
   end
+
+  def markdown_to_html(markdown)
+    markdown.present? ? Kramdown::Document.new(markdown).to_html : ''
+  end
 end
