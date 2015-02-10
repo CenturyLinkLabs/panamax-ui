@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+0.2.12 - 2015-2-10
+-------------------
+### Added
+- Ability to trigger creation of a cluster (#495, #498, #504)
+- Ability to view the progress of a job (#499, #500, #500, #503)
+
 0.2.11 - 2014-12-17
 -------------------
 ### Added
