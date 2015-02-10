@@ -54,9 +54,14 @@
       = link_to 'Dray.', 'https://registry.hub.docker.com/u/centurylink/dray/', target: '_blank'
 
     %ul
-      - @job_templates.each do |job_template|
+      - @job_templates_by_vendor.each do |vendor, templates|
         %li.provider
-          = link_to provider_label(job_template.name), new_job_path(template_id: job_template.id), title: job_template.name
+          %span= provider_label(vendor)
+          .job-templates
+            %h6 Select Orchestrator
+            - templates.each do |job_template|
+              = link_to job_template.adapter, new_job_path(template_id: job_template.id), title: job_template.name
+
     %p.alternative-provider
       Don't see your favorite provider listed?
       %br/

@@ -33,7 +33,7 @@ class DeploymentTargetsController < ApplicationController
 
   def hydrate_index_view
     @deployment_targets = DeploymentTarget.all
-    @job_templates = JobTemplate.all
+    @job_templates_by_vendor = JobTemplate.all.group_by(&:vendor)
     @jobs = Job.all
       .map(&:with_template!)
       .map(&:with_log!)

@@ -2,6 +2,8 @@
   {
   "id": 1,
   "name": "Amazon Web Services",
+  "vendor": "Amazon Cloud",
+  "adapter": "Kubernetes",
   "description": "Short-description",
   "documentation": "[![image](http://brightbox.com/images/misc/logo.png)[BrightBox](http://brightbox.com/) - **Serious Cloud Hosting.**\nCreate a CoreOS cluster on BrightBox, deployment ready from Panamax. Visit your BrightBox dashboard and create an API\nID and make note of your Secret ID. You will need these to launch your cluster.\n",
   "environment": [
