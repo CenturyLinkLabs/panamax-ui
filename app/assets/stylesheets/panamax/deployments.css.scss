@@ -433,7 +433,12 @@
 
   .add-target {
     margin-top: 30px;
-    overflow: auto;
+    &:after {
+      display: block;
+      content: " ";
+      clear: both;
+      height: 0;
+    }
 
     h2 {
       margin-bottom: 0;
@@ -458,18 +463,50 @@
     .provider {
       float: left;
       margin: 0 10px 10px 0;
-      max-width: 200px;
-      overflow: hidden;
+      width: 200px;
+      text-align: center;
+      position: relative;
 
-      a {
+      span {
         display: block;
         padding: 0 10px;
         background-color: $light_grey;
         height: 60px;
         line-height: 50px;
+      }
 
-        &:hover {
-          background-color: $white;
+      .job-templates {
+        display: none;
+        position: absolute;
+        padding: 20px;
+        text-align: left;
+        background-color: $dark_grey;
+
+        h6, a {
+          color: $white;
+        }
+
+        h6 {
+          font-size: 14px;
+          font-weight: bold;
+          margin-bottom: 10px;
+        }
+
+        a {
+          display: block;
+          line-height: 30px;
+          font-size: 14px;
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      &:hover {
+        .job-templates {
+          display: block;
         }
       }
     }

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe DeploymentTargetsController do
   let(:deployment_targets) { [double(:target1), double(:target2)] }
-  let(:job_templates) { [double(:template1), double(:template2)] }
+  let(:job_templates) { [double(:template1, vendor: 'CTL'), double(:template2, vendor: 'CTL')] }
   let(:job1) { double(:job1) }
   let(:job2) { double(:job2) }
 
@@ -32,7 +32,7 @@ describe DeploymentTargetsController do
     end
 
     it 'assigns the job templates' do
-      expect(assigns(:job_templates)).to eq job_templates
+      expect(assigns(:job_templates_by_vendor)).to eq('CTL' => job_templates)
     end
 
     it 'renders the view' do
@@ -120,7 +120,7 @@ describe DeploymentTargetsController do
       end
 
       it 'assigns the job templates' do
-        expect(assigns(:job_templates)).to eq job_templates
+        expect(assigns(:job_templates_by_vendor)).to eq('CTL' => job_templates)
       end
 
       it 'renders the index view' do
