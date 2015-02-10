@@ -6,6 +6,12 @@ class Job < BaseResource
     integer :template_id
     string :status
     string :log
+    string :template
+  end
+
+  def with_template!
+    self.template = JobTemplate.find(job_template_id)
+    self
   end
 
   def with_log!

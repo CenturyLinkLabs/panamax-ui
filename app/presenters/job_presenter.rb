@@ -10,6 +10,10 @@ class JobPresenter
     @job.name
   end
 
+  def documentation
+    @view_context.markdown_to_html(@job.template.try(:documentation))
+  end
+
   def destroy_path
     @view_context.job_path(@job.key)
   end
