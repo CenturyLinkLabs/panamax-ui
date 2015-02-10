@@ -10,6 +10,7 @@ describe JobPresenter do
            status: 'complete',
            success?: nil,
            failure?: nil,
+           template: '',
            steps: [
              double(:step1, name: 'foo', status: 'complete'),
              double(:step2, name: 'bar', status: 'in-progress')
@@ -25,6 +26,25 @@ describe JobPresenter do
     subject { presenter.title }
 
     it { should eq 'abc123' }
+  end
+
+  describe '#documentation' do
+    context 'when a template has been assigned to the job' do
+      before do
+        fake_job.stub(:template).and_return(double(:fake_template, documentation: '#bla'))
+        view_context.stub(:markdown_to_html).with('#bla').and_return('<h1>bla</h1>')
+      end
+
+      its(:documentation) { should eq '<h1>bla</h1>' }
+    end
+
+    context 'when no template has been assigned to the job' do
+      before do
+        view_context.stub(:markdown_to_html).with(nil).and_return('')
+      end
+
+      its(:documentation) { should eq '' }
+    end
   end
 
   describe '#destroy_path' do

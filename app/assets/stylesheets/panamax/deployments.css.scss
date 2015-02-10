@@ -581,6 +581,13 @@
       }
     }
 
+    .deployment-job-documentation {
+      background-color: $white;
+      padding: 15px;
+      padding-bottom: 0;
+      margin-bottom: 20px;
+    }
+
     .deployment-job-log .log-output {
       height: 300px;
 

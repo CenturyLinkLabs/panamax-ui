@@ -14,6 +14,10 @@
   .deployment-job{ class: "initially-#{presenter.status}", id: "#{presenter.dom_id}" }
     .deployment-job-progress{ data: { source: job_path(job.key) } }
       = render 'job', presenter: presenter
+    - if presenter.documentation.present?
+      .deployment-job-documentation
+        %h5 Documentation
+        != presenter.documentation
     .deployment-job-log
       %code.log-output{ data: { source: log_job_path(job.key) } }
         - job.log.each do |output|
