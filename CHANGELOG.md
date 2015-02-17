@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+0.2.13 - 2015-2-17
+-------------------
+### Changed
+- Remove outline from focused links (#9699cb74d52b6b7906d4dbc8ad225f0ab5d92c99)
+
 0.2.12 - 2015-2-10
 -------------------
 ### Added
