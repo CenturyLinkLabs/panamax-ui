@@ -7,6 +7,11 @@
 body {
   min-width: 960px;
 }
+
+a:focus {
+  outline: none;
+}
+
 body > header {
   background: $ctl_light_green;
   width: 100%;
@@ -1014,8 +1019,4 @@ pre.prettyprint {
 }
 :-ms-input-placeholder {
   font-style: italic;
-}
-
-.plain-contents a:focus {
-  outline: none;
 }
