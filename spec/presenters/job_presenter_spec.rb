@@ -31,8 +31,8 @@ describe JobPresenter do
   describe '#documentation' do
     context 'when a template has been assigned to the job' do
       before do
-        fake_job.stub(:template).and_return(double(:fake_template, documentation: '#bla'))
-        view_context.stub(:markdown_to_html).with('#bla').and_return('<h1>bla</h1>')
+        allow(fake_job).to receive(:template).and_return(double(:fake_template, documentation: '#bla'))
+        allow(view_context).to receive(:markdown_to_html).with('#bla').and_return('<h1>bla</h1>')
       end
 
       its(:documentation) { should eq '<h1>bla</h1>' }
@@ -40,7 +40,7 @@ describe JobPresenter do
 
     context 'when no template has been assigned to the job' do
       before do
-        view_context.stub(:markdown_to_html).with(nil).and_return('')
+        allow(view_context).to receive(:markdown_to_html).with(nil).and_return('')
       end
 
       its(:documentation) { should eq '' }
@@ -49,7 +49,7 @@ describe JobPresenter do
 
   describe '#destroy_path' do
     before do
-      view_context.stub(:job_path).with('xyz').and_return('/destroy/path')
+      allow(view_context).to receive(:job_path).with('xyz').and_return('/destroy/path')
     end
     it 'returns the job_path' do
       expect(subject.destroy_path).to eq '/destroy/path'
@@ -73,14 +73,14 @@ describe JobPresenter do
 
     context 'when the job was successful' do
       before do
-        fake_job.stub(:success?).and_return(true)
+        allow(fake_job).to receive(:success?).and_return(true)
       end
 
       its(:message) { should eq I18n.t('jobs.completion.success') }
     end
     context 'when the job failed' do
       before do
-        fake_job.stub(:failure?).and_return(true)
+        allow(fake_job).to receive(:failure?).and_return(true)
       end
 
       its(:message) { should eq I18n.t('jobs.completion.failure') }

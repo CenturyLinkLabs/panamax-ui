@@ -19,7 +19,7 @@ describe RemoteImage do
 
   describe '#remote?' do
     it 'is a remote image' do
-      expect(subject.remote?).to be_true
+      expect(subject.remote?).to be_truthy
     end
   end
 

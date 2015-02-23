@@ -11,14 +11,14 @@ describe TemplatesController do
   end
 
   before do
-    Template.stub(:find).and_return(fake_template)
-    User.stub(:find).and_return(fake_user)
-    TemplateForm.stub(:new).and_return(fake_template_form)
-    App.stub(:find).and_return(fake_app)
-    Type.stub(:all).and_return(fake_types)
-    fake_user.stub(:github_access_token_present?)
-    fake_user.stub(:has_valid_github_creds?)
-    fake_user.stub(:has_invalid_github_creds?)
+    allow(Template).to receive(:find).and_return(fake_template)
+    allow(User).to receive(:find).and_return(fake_user)
+    allow(TemplateForm).to receive(:new).and_return(fake_template_form)
+    allow(App).to receive(:find).and_return(fake_app)
+    allow(Type).to receive(:all).and_return(fake_types)
+    allow(fake_user).to receive(:github_access_token_present?)
+    allow(fake_user).to receive(:has_valid_github_creds?)
+    allow(fake_user).to receive(:has_invalid_github_creds?)
   end
 
   describe 'GET #new' do
@@ -48,7 +48,7 @@ describe TemplatesController do
 
     context 'when an app cannot be found' do
       before do
-        App.stub(:find).and_raise(ActiveResource::ResourceNotFound.new(double('err', code: '404')))
+        allow(App).to receive(:find).and_raise(ActiveResource::ResourceNotFound.new(double('err', code: '404')))
       end
 
       it 'redirects to the apps page with a flash message' do
@@ -60,8 +60,8 @@ describe TemplatesController do
 
     context 'when the user comes in for the first time' do
       before do
-        fake_user.stub(:has_valid_github_creds?).and_return(false)
-        fake_user.stub(:has_invalid_github_creds?).and_return(false)
+        allow(fake_user).to receive(:has_valid_github_creds?).and_return(false)
+        allow(fake_user).to receive(:has_invalid_github_creds?).and_return(false)
       end
 
       it 'renders the new view without any error message' do
@@ -75,8 +75,8 @@ describe TemplatesController do
     context 'when user github creds are not valid' do
       expected_flash_msg = I18n.t('templates.new.invalid_creds')
       before do
-        fake_user.stub(:has_invalid_github_creds?).and_return(true)
-        fake_user.stub(:has_valid_github_creds?).and_return(false)
+        allow(fake_user).to receive(:has_invalid_github_creds?).and_return(true)
+        allow(fake_user).to receive(:has_valid_github_creds?).and_return(false)
       end
 
       it 'renders the new view with a flash error message' do
@@ -117,7 +117,7 @@ describe TemplatesController do
 
     context 'when saving is successful' do
       before do
-        fake_template_form.stub(:save).and_return(true)
+        allow(fake_template_form).to receive(:save).and_return(true)
       end
 
       it 'sets a successful flash message' do
@@ -139,10 +139,10 @@ describe TemplatesController do
 
     context 'when saving is not successful' do
       before do
-        fake_template_form.stub(:save).and_return(false)
-        fake_template_form.stub(:errors).and_return(['some stuff'])
-        fake_template_form.stub(:user=).and_return(true)
-        fake_template_form.stub(:types=).and_return(true)
+        allow(fake_template_form).to receive(:save).and_return(false)
+        allow(fake_template_form).to receive(:errors).and_return(['some stuff'])
+        allow(fake_template_form).to receive(:user=).and_return(true)
+        allow(fake_template_form).to receive(:types=).and_return(true)
       end
 
       it 'looks up and assigns the user' do

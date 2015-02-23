@@ -5,7 +5,7 @@ describe DeploymentTargetMetadataRefreshesController do
     subject { response }
     let(:format) { :html }
     let(:post_create) { post :create, deployment_target_id: '19', format: format }
-    before { DeploymentTargetMetadataRefresh.stub(:create).and_call_original }
+    before { allow(DeploymentTargetMetadataRefresh).to receive(:create).and_call_original }
 
     context 'when refresh is successful' do
       before { post_create }
@@ -43,7 +43,7 @@ describe DeploymentTargetMetadataRefreshesController do
 
     context 'when refresh fails' do
       before do
-        DeploymentTargetMetadataRefresh.stub(:create).and_raise(error)
+        allow(DeploymentTargetMetadataRefresh).to receive(:create).and_raise(error)
         post_create
       end
 

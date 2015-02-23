@@ -130,7 +130,7 @@ describe Job do
   describe 'success?' do
     it 'is true when status is complete' do
       subject.status = 'complete'
-      expect(subject.success?).to be_true
+      expect(subject.success?).to be_truthy
     end
 
     it 'is false when status in anything else' do
@@ -145,7 +145,7 @@ describe Job do
   describe 'running?' do
     it 'is true when status is running' do
       subject.status = 'running'
-      expect(subject.running?).to be_true
+      expect(subject.running?).to be_truthy
     end
 
     it 'is false when status in anything else' do
@@ -160,7 +160,7 @@ describe Job do
   describe 'failure?' do
     it 'is true when status is error' do
       subject.status = 'error'
-      expect(subject.failure?).to be_true
+      expect(subject.failure?).to be_truthy
     end
 
     it 'is false when status in anything else' do

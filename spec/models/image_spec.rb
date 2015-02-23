@@ -80,7 +80,7 @@ describe Image do
     let(:docker_image_name) { double(:docker_image_name, base_image: 'fooyah') }
 
     before do
-      DockerImageName.stub(:parse).with(subject.source).and_return(docker_image_name)
+      allow(DockerImageName).to receive(:parse).with(subject.source).and_return(docker_image_name)
     end
 
     it 'delegates to the Docker helper' do

@@ -1,5 +1,11 @@
 require 'sinatra/base'
 
+RSpec.configure do |config|
+  config.before(:each) do
+    stub_request(:any, /^#{PanamaxApi::URL}/).to_rack(FakePanamaxApi)
+  end
+end
+
 class FakePanamaxApi < Sinatra::Base
   get '/search.json' do
     json_response 200, 'search_results.json'

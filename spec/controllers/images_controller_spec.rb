@@ -6,7 +6,7 @@ describe ImagesController do
     let(:fake_images) { [1, 2] }
 
     before do
-      LocalImage.stub(:all).and_return(fake_images)
+      allow(LocalImage).to receive(:all).and_return(fake_images)
     end
 
     it 'renders the index view' do
@@ -24,7 +24,7 @@ describe ImagesController do
     let(:fake_image) { double(:fake_image, id: 2, destroy: true) }
 
     before do
-      LocalImage.stub(:find).and_return(fake_image)
+      allow(LocalImage).to receive(:find).and_return(fake_image)
     end
 
     it 'redirects to the listing page' do
@@ -38,7 +38,7 @@ describe ImagesController do
     end
 
     it 'sets a failure notice when destroy fails' do
-      fake_image.stub(:destroy).and_return false
+      allow(fake_image).to receive(:destroy).and_return false
       delete :destroy, id: 2
       expect(flash[:error]).to eq I18n.t('images.destroy.error')
     end
@@ -46,7 +46,7 @@ describe ImagesController do
     context 'when an error occurs' do
 
       before do
-        LocalImage.stub(:find).and_raise(StandardError, 'oops')
+        allow(LocalImage).to receive(:find).and_raise(StandardError, 'oops')
       end
 
       it 'redirects the user to the image page' do
@@ -65,7 +65,7 @@ describe ImagesController do
     let(:fake_image) { double(:fake_image, id: 1, destroy: true) }
 
     before do
-      LocalImage.stub(:find_by_id).and_return(fake_image)
+      allow(LocalImage).to receive(:find_by_id).and_return(fake_image)
     end
 
     it 'redirects to the listing page' do
@@ -87,7 +87,7 @@ describe ImagesController do
 
     describe 'sets alert notice when' do
       before do
-        LocalImage.stub(:find_by_id).and_raise(StandardError, 'oops')
+        allow(LocalImage).to receive(:find_by_id).and_raise(StandardError, 'oops')
       end
 
       it 'flashes the error message' do
@@ -98,7 +98,7 @@ describe ImagesController do
 
     context 'when an error occurs' do
       before do
-        LocalImage.stub(:batch_destroy).and_raise(StandardError, 'oops')
+        allow(LocalImage).to receive(:batch_destroy).and_raise(StandardError, 'oops')
       end
 
       it 'redirects the user to the image page' do

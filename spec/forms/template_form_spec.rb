@@ -113,7 +113,7 @@ describe TemplateForm do
     subject { described_class.new(attributes.merge(types: fake_types)) }
 
     before do
-      fake_types.stub(:first).and_return(double(:type, name: 'Generic'))
+      allow(fake_types).to receive(:first).and_return(double(:type, name: 'Generic'))
     end
 
     it 'is the type if set' do
@@ -140,7 +140,7 @@ describe TemplateForm do
         app_id: 7,
         documentation: '##some markdown##'
       ).and_return(fake_template)
-      subject.stub(:save_template_to_repo).and_return(true)
+      allow(subject).to receive(:save_template_to_repo).and_return(true)
       subject.save
     end
 
@@ -148,7 +148,7 @@ describe TemplateForm do
       let(:fake_template) { double(:fake_template, valid?: true) }
 
       before do
-        Template.stub(:create).and_return(fake_template)
+        allow(Template).to receive(:create).and_return(fake_template)
       end
 
       it 'saves the template to the supplied repo' do
@@ -166,11 +166,11 @@ describe TemplateForm do
       let(:fake_template) { double(:fake_template, errors: errors, valid?: false) }
 
       before do
-        Template.stub(:create).and_return(fake_template)
+        allow(Template).to receive(:create).and_return(fake_template)
       end
 
       it 'does not save the template to a repo' do
-        expect(Template.any_instance).to_not receive(:post)
+        expect_any_instance_of(Template).to_not receive(:post)
         subject.save
       end
 
@@ -185,8 +185,8 @@ describe TemplateForm do
       let(:fake_template) { double(:fake_template, valid?: true) }
 
       before do
-        Template.stub(:create).and_return(fake_template)
-        subject.stub(:save_template_to_repo).with(fake_template).and_raise('boom')
+        allow(Template).to receive(:create).and_return(fake_template)
+        allow(subject).to receive(:save_template_to_repo).with(fake_template).and_raise('boom')
       end
 
       it 'adds an error for template form' do
@@ -200,7 +200,7 @@ describe TemplateForm do
       end
 
       it 'does not save the template to a repo' do
-        expect(Template.any_instance).to_not receive(:post)
+        expect_any_instance_of(Template).to_not receive(:post)
         subject.save
       end
 

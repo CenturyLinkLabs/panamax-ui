@@ -15,8 +15,8 @@ describe SearchController do
 
   describe 'GET #new' do
     before do
-      SearchResultSet.stub(:new).and_return(fake_result_set)
-      Keyword.stub(:all_sorted_by).and_return(fake_keywords)
+      allow(SearchResultSet).to receive(:new).and_return(fake_result_set)
+      allow(Keyword).to receive(:all_sorted_by).and_return(fake_keywords)
     end
 
     it 'creates and assigns a search result set object' do
@@ -35,7 +35,7 @@ describe SearchController do
 
   describe 'GET #show' do
     before do
-      SearchResultSet.stub(:new).and_return(fake_result_set)
+      allow(SearchResultSet).to receive(:new).and_return(fake_result_set)
     end
 
     it 'searches for the supplied query' do
@@ -46,7 +46,7 @@ describe SearchController do
 
     context 'when successful' do
       before do
-        SearchResultSet.stub(:find).and_return(fake_result_set)
+        allow(SearchResultSet).to receive(:find).and_return(fake_result_set)
       end
 
       context 'when an html request' do
@@ -72,7 +72,7 @@ describe SearchController do
     let(:repo) { Repository.new(id: 'foo/bar', tags: ['latest']) }
 
     before do
-      Repository.stub(:find).and_return(repo)
+      allow(Repository).to receive(:find).and_return(repo)
     end
 
     it 'returns a list of tags' do

@@ -23,118 +23,90 @@ describe User do
   end
 
   describe '#has_valid_github_creds?' do
+    subject { fake_user.has_valid_github_creds? }
+
     context 'when all github creds are present' do
       let(:fake_user) { User.new(github_access_token_present: true, email: 'foo', github_username: 'bar') }
-      it 'returns true' do
-        expect(fake_user.has_valid_github_creds?).to be_true
-      end
+      it { should be_truthy }
     end
 
     context 'when github username is not present' do
       let(:fake_user) { User.new(github_access_token_present: true, email: 'foo', github_username: '') }
-      it 'returns false' do
-        expect(fake_user.has_valid_github_creds?).to be_false
-      end
+      it { should be_falsey }
     end
 
     context 'when only user email is not present' do
       let(:fake_user) { User.new(github_access_token_present: true, email: '', github_username: 'bar') }
-      it 'returns false' do
-        expect(fake_user.has_valid_github_creds?).to be_false
-      end
+      it { should be_falsey }
     end
 
     context 'when only github token is not present' do
       let(:fake_user) { User.new(github_access_token_present: false, email: 'foo', github_username: 'bar') }
-      it 'returns false' do
-        expect(fake_user.has_valid_github_creds?).to be_false
-      end
+      it { should be_falsey }
     end
 
     context 'when only github token is present' do
       let(:fake_user) { User.new(github_access_token_present: true, email: '', github_username: '') }
-      it 'returns false' do
-        expect(fake_user.has_valid_github_creds?).to be_false
-      end
+      it { should be_falsey }
     end
 
     context 'when only email is present' do
       let(:fake_user) { User.new(github_access_token_present: false, email: 'foo', github_username: '') }
-      it 'returns false' do
-        expect(fake_user.has_valid_github_creds?).to be_false
-      end
+      it { should be_falsey }
     end
 
     context 'when only github username is present' do
       let(:fake_user) { User.new(github_access_token_present: false, email: '', github_username: 'bar') }
-      it 'returns false' do
-        expect(fake_user.has_valid_github_creds?).to be_false
-      end
+      it { should be_falsey }
     end
 
     context 'when all github creds are not present' do
       let(:fake_user) { User.new(github_access_token_present: false, email: '', github_username: '') }
-      it 'returns false' do
-        expect(fake_user.has_valid_github_creds?).to be_false
-      end
+      it { should be_falsey }
     end
   end
 
   describe '#has_invalid_github_creds?' do
+    subject { fake_user.has_invalid_github_creds? }
+
     context 'when all github creds are present' do
       let(:fake_user) { User.new(github_access_token_present: true, email: 'foo', github_username: 'bar') }
-      it 'returns false' do
-        expect(fake_user.has_invalid_github_creds?).to be_false
-      end
+      it { should be_falsey }
     end
 
     context 'when only github token is present' do
       let(:fake_user) { User.new(github_access_token_present: true, email: nil, github_username: nil) }
-      it 'returns true' do
-        expect(fake_user.has_invalid_github_creds?).to be_true
-      end
+      it { should be_truthy }
     end
 
     context 'when only github token is not present' do
       let(:fake_user) { User.new(github_access_token_present: false, email: 'foo', github_username: 'bar') }
-      it 'returns false' do
-        expect(fake_user.has_invalid_github_creds?).to be_false
-      end
+      it { should be_falsey }
     end
 
     context 'when only email is not present' do
       let(:fake_user) { User.new(github_access_token_present: true, email: '', github_username: 'bar') }
-      it 'returns false' do
-        expect(fake_user.has_invalid_github_creds?).to be_false
-      end
+      it { should be_falsey }
     end
 
     context 'when only github username is not present' do
       let(:fake_user) { User.new(github_access_token_present: true, email: 'foo', github_username: '') }
-      it 'returns false' do
-        expect(fake_user.has_invalid_github_creds?).to be_false
-      end
+      it { should be_falsey }
     end
 
     context 'when only user name is present' do
       let(:fake_user) { User.new(github_access_token_present: false, email: '', github_username: 'bar') }
-      it 'returns false' do
-        expect(fake_user.has_invalid_github_creds?).to be_false
-      end
+      it { should be_falsey }
     end
 
     context 'when only email is present' do
       let(:fake_user) { User.new(github_access_token_present: false, email: 'foo', github_username: '') }
-      it 'returns false' do
-        expect(fake_user.has_invalid_github_creds?).to be_false
-      end
+      it { should be_falsey }
     end
 
     context 'when all github creds are not present' do
       let(:fake_user) { User.new(github_access_token_present: false, email: nil, github_username: nil) }
-      it 'returns false' do
-        expect(fake_user.has_invalid_github_creds?).to be_false
-      end
+      it { should be_falsey }
     end
   end
 

@@ -20,7 +20,7 @@ describe LocalImage do
 
   describe '#local?' do
     it 'is a local image' do
-      expect(subject.local?).to be_true
+      expect(subject.local?).to be_truthy
     end
   end
 
@@ -39,16 +39,16 @@ describe LocalImage do
 
     it 'is true when name is centurylink/panamax-ui' do
       pmx_ui = described_class.new(panamax_ui)
-      expect(pmx_ui.panamax_image?).to be_true
+      expect(pmx_ui.panamax_image?).to be_truthy
     end
 
     it 'is true when name is centurylink/panamax-api' do
       pmx_api = described_class.new(panamax_api)
-      expect(pmx_api.panamax_image?).to be_true
+      expect(pmx_api.panamax_image?).to be_truthy
     end
 
     it 'is false when name is not panamax image' do
-      expect(subject.panamax_image?).to be_false
+      expect(subject.panamax_image?).to be_falsey
     end
   end
 
@@ -63,11 +63,11 @@ describe LocalImage do
       let(:fake_image) { double(:fake_image, id: 1, destroy: true) }
 
       before do
-        LocalImage.stub(:find_by_id).and_return(fake_image)
+        allow(LocalImage).to receive(:find_by_id).and_return(fake_image)
       end
 
       it 'calls #destroy on all the image provided' do
-        fake_image.should_receive(:destroy)
+        expect(fake_image).to receive(:destroy)
         LocalImage.batch_destroy [1]
       end
 
@@ -81,7 +81,7 @@ describe LocalImage do
       let(:fake_image) { double(:fake_image, name: 'bad_image', destroy: false) }
 
       before do
-        LocalImage.stub(:find_by_id).and_return(fake_image)
+        allow(LocalImage).to receive(:find_by_id).and_return(fake_image)
       end
 
       it 'returns the set of failed images' do
@@ -95,8 +95,8 @@ describe LocalImage do
       let(:fake_image) { double(:fake_image, id: 1, destroy: true) }
 
       before do
-        LocalImage.stub(:find_by_id).and_return(fake_image)
-        fake_image.stub(:destroy).and_raise(StandardError, 'oops')
+        allow(LocalImage).to receive(:find_by_id).and_return(fake_image)
+        allow(fake_image).to receive(:destroy).and_raise(StandardError, 'oops')
       end
 
       it 'returns the set of failed error messages' do
