@@ -12,14 +12,14 @@ describe 'managing jobs' do
 
       click_on 'Add New Target'
 
-      page.should have_content 'Add a Remote Deployment Target'
+      expect(page).to have_content 'Add a Remote Deployment Target'
 
-      page.should have_content 'Amazon Web Services'
+      expect(page).to have_content 'Amazon Web Services'
 
-      page.should have_content 'Deploy CenturyLink Cloud Cluster'
-      page.should have_content 'Install Kubernetes on Cluster'
-      page.should have_content 'Deploy Panamax Remote Agent Node'
-      page.should have_content 'Install Panamax Remote Agent, Adaptor and Remote Target Endpoint'
+      expect(page).to have_content 'Deploy CenturyLink Cloud Cluster'
+      expect(page).to have_content 'Install Kubernetes on Cluster'
+      expect(page).to have_content 'Deploy Panamax Remote Agent Node'
+      expect(page).to have_content 'Install Panamax Remote Agent, Adaptor and Remote Target Endpoint'
 
     end
   end

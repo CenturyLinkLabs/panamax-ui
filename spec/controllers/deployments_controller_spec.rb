@@ -205,7 +205,7 @@ describe DeploymentsController do
     let(:fake_deployment) { double(:fake_deployment, redeploy: new_deployment) }
 
     before do
-      Deployment.stub(:find).with('13', params: { deployment_target_id: '9' }).and_return(fake_deployment)
+      allow(Deployment).to receive(:find).with('13', params: { deployment_target_id: '9' }).and_return(fake_deployment)
     end
 
     before do
