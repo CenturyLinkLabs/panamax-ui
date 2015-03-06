@@ -11,6 +11,10 @@
     %ul
       = render @registries
 
+  %p
+    = link_to 'Allow Insecure Registries:', 'https://github.com/CenturyLinkLabs/panamax-ui/wiki/How-to:-Add-Registries', title: 'Learn more about insecure registries.'
+    %strong= PanamaxUi.allow_insecure_registries
+
   = form_for @registry, html: { class: 'create-registry' } do |f|
     = f.text_field :name, placeholder: 'Give your registry a name'
     = f.text_field :endpoint_url, placeholder: 'http://localhost:5000'
