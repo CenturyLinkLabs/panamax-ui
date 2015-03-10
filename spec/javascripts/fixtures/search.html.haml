@@ -32,6 +32,10 @@
       id: nil,
       class: 'image-tag-select',
       data: {'loaded' => false}
+%script#absolute_image_result_template{type: 'text/x-handlebars-template'}
+  .search-result-item
+    %h4= '{{source}}'
+    %p This is an absolute path
 %script#no_results_row_template{type: 'text/x-handlebars-template'}
   %p sorry, nothin here
 %script#source_blurb_row_template{type: 'text/x-handlebars-template'}

@@ -1,9 +1,12 @@
+- json_image_presenter = JsonImagePresenter.new
 %script#template_result_template{type: 'text/x-handlebars-template'}
   = render '/search/template_row', {presenter: JsonTemplatePresenter.new}
 %script#remote_image_result_template{type: 'text/x-handlebars-template'}
-  = render '/search/modal_image_row', {presenter: JsonImagePresenter.new, remote: true}
+  = render '/search/modal_image_row', {presenter: json_image_presenter, remote: true}
 %script#local_image_result_template{type: 'text/x-handlebars-template'}
-  = render '/search/modal_image_row', {presenter: JsonImagePresenter.new, locals: {app: @app}}
+  = render '/search/modal_image_row', {presenter: json_image_presenter, locals: {app: @app}}
+%script#absolute_image_result_template{type: 'text/x-handlebars-template'}
+  = render '/search/absolute_image_row', {presenter: json_image_presenter, app: @app}
 %script#source_blurb_row_template{type: 'text/x-handlebars-template'}
   = render '/search/source_blurb_row'
 %script#loading_row_template{type: 'text/x-handlebars-template'}

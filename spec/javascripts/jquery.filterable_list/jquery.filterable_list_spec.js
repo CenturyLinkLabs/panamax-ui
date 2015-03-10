@@ -37,9 +37,15 @@ describe('$.fn.filterableList', function() {
 
     return {
       fetch: function() {},
-      templates: function(callback) { callback.call(this, dummyTemplates) },
-      localImages: function(callback) { callback.call(this, dummyLocalImages) },
-      remoteImages: function(callback) { callback.call(this, dummyRemoteImages, dummyErrors) }
+      templates: function(callback) {
+        callback.call(this, dummyTemplates);
+      },
+      localImages: function(callback) {
+        callback.call(this, dummyLocalImages, 'mys');
+      },
+      remoteImages: function(callback) {
+        callback.call(this, dummyRemoteImages, dummyErrors);
+      }
     }
   };
 
@@ -170,6 +176,13 @@ describe('$.fn.filterableList', function() {
       enterTerm('apache');
 
       expect($('.template-results').html()).toContain('sorry, nothin here');
+    });
+
+    it('displays the absolute image if no local images match the query', function() {
+      enterTerm('!=apache');
+
+      expect($('.local-image-results').html()).toContain('This is an absolute path');
+
     });
   });
 

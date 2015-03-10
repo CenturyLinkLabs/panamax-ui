@@ -1,0 +1,23 @@
+- remote ||= false
+- app ||= nil
+.search-result-item.absolute-image-result{data: {'title' => presenter.title, 'status-label' => presenter.status_label}}
+  .badge.absolute= 'Absolute'
+  .basic-info
+    %h3
+      = presenter.title
+    %p
+      This image search query looks like it may be a private image.
+      %br/
+      = link_to 'Learn about private image authorization.', 'https://github.com/CenturyLinkLabs/panamax-ui/wiki/How-to:-Add-Registries', target: '_blank'
+  .actions
+    - if app
+      = form_tag app_services_path(app.id) do
+        = hidden_field_tag 'app[name]', @app.name
+        = hidden_field_tag 'app[category]', 'null', class: 'category-form-field'
+        = hidden_field_tag 'name', presenter.title
+        = hidden_field_tag 'app[image]', presenter.title
+        %button.button-positive{ data: { disable_with: 'Adding...', tracking: { method: 'click', action: 'Add to Application', category: 'Run Image', label: presenter.title }}} Add to App
+    - else
+      = form_tag apps_path do
+        = hidden_field_tag 'app[image]', presenter.title
+        %button.button-positive{ data: { disable_with: 'Starting App...', tracking: { method: 'click', action: 'Create Application', category: 'Run Image', label: presenter.title }}} Run Image

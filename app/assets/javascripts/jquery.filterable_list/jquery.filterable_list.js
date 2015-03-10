@@ -5,6 +5,10 @@
 
     base.$el = $(el);
 
+    base.filters = {
+      absolute: /^!=\s*/
+    };
+
     base.defaultOptions = {
       $queryField: base.$el.find('input.query-field'),
       queryFormSelector: 'form.search-form',
@@ -12,10 +16,12 @@
       limit: 40,
       $localImageResults: base.$el.find('.local-image-results'),
       $remoteImageResults: base.$el.find('.remote-image-results'),
+      $absoluteImageResults: base.$el.find('.absolute-image-results'),
       $templateResults: base.$el.find('.template-results'),
       $resultHeadings: base.$el.find('.search-title'),
       remoteImageResultTemplate: Handlebars.compile($('#remote_image_result_template').html()),
       localImageResultTemplate: Handlebars.compile($('#local_image_result_template').html()),
+      absoluteImageResultTemplate: Handlebars.compile($('#absolute_image_result_template').html()),
       templateResultTemplate: Handlebars.compile($('#template_result_template').html()),
       loadingTemplate: Handlebars.compile($('#loading_row_template').html()),
       noResultsTemplate: Handlebars.compile($('#no_results_row_template').html()),
@@ -36,7 +42,7 @@
     };
 
     base.bindEvents = function() {
-      base.queryField.onChange(base.fetchResults);
+      base.queryField.onChange(base.execQuery);
       base.$el.on('submit', base.options.queryFormSelector, base.handleSubmit);
       base.$el.on('click', base.options.chosenDropdownSelector, base.fetchTags);
       base.$el.on('click', base.options.templateDetailsSelector, base.handleTemplateDetailsClick);
@@ -44,11 +50,7 @@
 
     base.handleSubmit = function(e) {
       e.preventDefault();
-      base.fetchResults(base.queryField.getTerm());
-    };
-
-    base.handleQueryChange = function(e) {
-      base.fetchResults();
+      base.execQuery(base.queryField.getTerm());
     };
 
     base.handleTemplateDetailsClick = function(e) {
@@ -66,15 +68,29 @@
       return modal;
     };
 
-    base.fetchResults = function(term) {
-      base.displayLoadingIndicators();
-      base.options.$resultHeadings.css('display', 'block');
+    base.execQuery = function(term) {
       PMX.Tracker.trackEvent('search', base.options.trackingAction, term);
+      base.options.$resultHeadings.css('display', 'block');
 
-      base.searchResults.fetch(term);
-      base.searchResults.templates(base.loadTemplateResults);
-      base.searchResults.localImages(base.loadLocalImageResults);
-      base.searchResults.remoteImages(base.loadRemoteImageResults);
+      if (term.match(base.filters.absolute)) {
+        base.loadAbsoluteResult(term);
+      } else {
+        base.displayLoadingIndicators();
+        base.searchResults.fetch(term);
+        base.searchResults.templates(base.loadTemplateResults);
+        base.searchResults.localImages(base.loadLocalImageResults);
+        base.searchResults.remoteImages(base.loadRemoteImageResults);
+      }
+    };
+
+    base.loadAbsoluteResult = function(term) {
+        base.options.$resultHeadings.first().css('display', 'none');
+        base.options.$templateResults.html('');
+        base.options.$remoteImageResults.html('');
+
+        var image = { source: term.replace(base.filters.absolute, '') };
+        var resultsHtml = base.options.absoluteImageResultTemplate(image);
+        base.options.$localImageResults.html(resultsHtml);
     };
 
     base.loadRemoteImageResults = function(images, errors) {

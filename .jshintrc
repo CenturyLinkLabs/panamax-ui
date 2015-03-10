@@ -14,5 +14,6 @@
   "undef": false,
   "strict": false,
   "trailing": true,
-  "browser": true
+  "browser": true,
+  "maxlen": 120
 }

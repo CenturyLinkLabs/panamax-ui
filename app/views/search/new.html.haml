@@ -1,12 +1,16 @@
-- content_for(:title, 'Search')
-- content_for(:body_id, 'search_flow')
+:ruby
+  json_image_presenter = JsonImagePresenter.new
+  content_for(:title, 'Search')
+  content_for(:body_id, 'search_flow')
 
 %script#template_result_template{type: 'text/x-handlebars-template'}
   = render 'template_row', {presenter: JsonTemplatePresenter.new}
 %script#remote_image_result_template{type: 'text/x-handlebars-template'}
-  = render 'image_row', {presenter: JsonImagePresenter.new, remote: true}
+  = render 'image_row', {presenter: json_image_presenter, remote: true}
 %script#local_image_result_template{type: 'text/x-handlebars-template'}
-  = render 'image_row', {presenter: JsonImagePresenter.new}
+  = render 'image_row', {presenter: json_image_presenter}
+%script#absolute_image_result_template{type: 'text/x-handlebars-template'}
+  = render 'absolute_image_row', {presenter: json_image_presenter}
 %script#loading_row_template{type: 'text/x-handlebars-template'}
   = render 'loading_row'
 %script#no_results_row_template{type: 'text/x-handlebars-template'}
@@ -21,7 +25,12 @@
   = form_for @search_result_set, url: search_path, method: :get, html: {class: 'search-form'} do |f|
     = f.text_field :q, placeholder: 'enter your query', accesskey: 's', class: 'query-field'
     = f.button 'Search', class: 'button-primary'
-    %p.microcopy Examples: Rails, redis, NGiNX, mongoDB, you get the picture...
+    %p.microcopy
+      %strong Examples:
+      Wordpress,
+      =link_to '!=namespace/private-repo', 'https://github.com/CenturyLinkLabs/panamax-ui/wiki/How-to:-Add-Registries#running-an-image-from-a-private-repository', target: '_blank', title: 'Learn about search filters.'
+      =','
+      Rails, redis, NGiNX, you get the picture...
 
   = render 'keyword_cloud', keywords: @keywords_sorted_by_term, sort_title: 'Count', sorted_by: :name, display_style: 'none'
   = render 'keyword_cloud', keywords: @keywords_sorted_by_count, sort_title: 'Name', sorted_by: :count
