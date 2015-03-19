@@ -12,7 +12,7 @@
       = render @registries
 
   %p
-    = link_to 'Allow Insecure Registries:', 'https://github.com/CenturyLinkLabs/panamax-ui/wiki/How-to:-Add-Registries', title: 'Learn more about insecure registries.'
+    = link_to 'Allow Insecure Registries:', 'https://github.com/CenturyLinkLabs/panamax-ui/wiki/How-to:-Add-Registries', title: 'Learn more about insecure registries.', target: '_blank'
     %strong= PanamaxUi.allow_insecure_registries
 
   = form_for @registry, html: { class: 'create-registry' } do |f|
