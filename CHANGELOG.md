@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+0.2.15 - 2015-3-19
+-------------------
+### Added
+- New Brightbox Logo
+- Insecure Registry Messaging (#510)
+- Ability to supply absolute Image Paths (#512)
+
 0.2.14 - 2015-2-25
 -------------------
 ### Updated
