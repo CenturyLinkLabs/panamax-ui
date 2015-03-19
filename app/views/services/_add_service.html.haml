@@ -19,14 +19,7 @@
     = form_for @search_result_set, url: search_path, method: :get, html: {class: 'search-form'} do |f|
       = f.text_field :q, placeholder: 'enter your command / query', accesskey: 's', class: 'query-field'
       = f.button 'Search', class: 'button-primary'
-    %p.example-searches
-      %strong
-        Examples:
-      %a{data: {query: 'wordpress'}} wordpress
-      %a{data: {query: 'apache'}} apache
-      %a{data: {query: 'rails'}} rails
-      %a{data: {query: 'ubuntu'}} ubuntu
-      %a{data: {query: 'java'}} java
+    = render '/search/examples'
 
     %h3.search-title Images
     .local-image-results

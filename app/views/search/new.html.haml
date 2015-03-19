@@ -25,14 +25,7 @@
   = form_for @search_result_set, url: search_path, method: :get, html: {class: 'search-form'} do |f|
     = f.text_field :q, placeholder: 'enter your query', accesskey: 's', class: 'query-field'
     = f.button 'Search', class: 'button-primary'
-    %p.microcopy
-      %strong Examples:
-      Wordpress,
-      =link_to '!=namespace/private-repo', 'https://github.com/CenturyLinkLabs/panamax-ui/wiki/How-to:-Add-Registries#running-an-image-from-a-private-repository', target: '_blank', title: 'Learn about search filters.'
-      =','
-      =link_to '!=your_registry_endpoint/your-repo', 'https://github.com/CenturyLinkLabs/panamax-ui/wiki/How-to:-Add-Registries#running-an-image-from-a-private-repository', target: '_blank', title: 'Learn about search filters.'
-      =','
-      Rails, redis, NGiNX, you get the picture...
+    = render 'examples'
 
   = render 'keyword_cloud', keywords: @keywords_sorted_by_term, sort_title: 'Count', sorted_by: :name, display_style: 'none'
   = render 'keyword_cloud', keywords: @keywords_sorted_by_count, sort_title: 'Name', sorted_by: :count
