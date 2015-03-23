@@ -56,7 +56,7 @@ GEM
       thor
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
-    ctl_base_ui (0.0.5)
+    ctl_base_ui (0.0.6)
       haml (~> 4.0)
       jquery-rails (~> 3.1)
       jquery-ui-rails (~> 4.2)
@@ -200,7 +200,7 @@ DEPENDENCIES
   activeresource (= 4.0.0)
   capybara
   coveralls (= 0.7.0)
-  ctl_base_ui
+  ctl_base_ui (= 0.0.6)
   dotenv-rails (= 0.11.1)
   haml (= 4.0.5)
   its
