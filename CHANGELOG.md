@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+0.2.16 - 2015-3-31
+-------------------
+### Updated
+- Updated base image
+
 0.2.15 - 2015-3-19
 -------------------
 ### Added
