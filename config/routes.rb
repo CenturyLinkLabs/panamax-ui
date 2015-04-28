@@ -29,6 +29,7 @@ Rails.application.routes.draw do
 
   resources :deployment_targets, only: [:index, :create, :destroy] do
     get :select, on: :collection
+    get :token, on: :member
     resources :deployments, only: [:new, :create, :index, :show, :destroy] do
       post :redeploy, on: :member
     end

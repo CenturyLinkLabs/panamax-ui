@@ -15,6 +15,22 @@ describe DeploymentTargetsController do
     allow(job2).to receive(:with_template!).and_return(job2)
   end
 
+  describe 'GET #token' do
+    let(:fake_target) { double(:fake_target, auth_blob: 'blob', name: 'pro') }
+    before do
+      allow(DeploymentTarget).to receive(:find).with('7').and_return(fake_target)
+    end
+
+    it 'sends a file of the token' do
+      expect(controller).to receive(:send_data).with(
+        'blob',
+        filename: 'pro.txt',
+        type: 'text/plain'
+      )
+      get :token, id: 7
+    end
+  end
+
   describe 'GET #index' do
     before do
       allow(DeploymentTarget).to receive(:all).and_return(deployment_targets)

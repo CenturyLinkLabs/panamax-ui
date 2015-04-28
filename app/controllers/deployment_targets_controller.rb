@@ -29,6 +29,13 @@ class DeploymentTargetsController < ApplicationController
     respond_with(target.destroy, location: deployment_targets_path)
   end
 
+  def token
+    target = DeploymentTarget.find(params[:id])
+    send_data target.auth_blob,
+      filename: "#{target.name}.txt",
+      type: 'text/plain'
+  end
+
   private
 
   def hydrate_index_view

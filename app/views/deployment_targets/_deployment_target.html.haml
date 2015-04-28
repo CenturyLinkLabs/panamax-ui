@@ -35,5 +35,5 @@
       .token-container
         %div{ contenteditable: true }= deployment_target.auth_blob
     .actions
-      %a{ data: { clipboard: { text: deployment_target.auth_blob, after: 'Token Copied to Clipboard' } } }
-        Copy Token to Clipboard
+      %a{ data: { clipboard: { text: deployment_target.auth_blob, after: 'Token Copied to Clipboard' } } } Copy Token to Clipboard
+      = link_to 'Download Token', token_deployment_target_path(deployment_target)
