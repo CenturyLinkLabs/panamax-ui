@@ -16,7 +16,7 @@ describe DeploymentTargetsController do
   end
 
   describe 'GET #token' do
-    let(:fake_target) { double(:fake_target, auth_blob: 'blob', name: 'pro') }
+    let(:fake_target) { double(:fake_target, auth_blob: 'blob', name: 'prod! targ^0') }
     before do
       allow(DeploymentTarget).to receive(:find).with('7').and_return(fake_target)
     end
@@ -24,7 +24,7 @@ describe DeploymentTargetsController do
     it 'sends a file of the token' do
       expect(controller).to receive(:send_data).with(
         'blob',
-        filename: 'pro.txt',
+        filename: 'prod__targ_0.txt',
         type: 'text/plain'
       )
       get :token, id: 7
