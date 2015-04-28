@@ -1,5 +1,6 @@
 @import 'ctl_base_ui/colors';
 @import 'ctl_base_ui/icons';
+@import 'ctl_base_ui/mixins';
 
 #images_flow {
   h1 {
@@ -69,10 +70,24 @@ ul.images li {
   border-bottom: $light_grey 1px solid;
   overflow: auto;
   padding-bottom: 22px;
+  padding-top: 22px;
+
+  .image-layers-link {
+    background: image-url('icon_image_layers.svg') -10px -17px;
+    background-size: 40px 40px;
+    float: left;
+    width: 20px;
+    height: 20px;
+    @include hide-text;
+
+    &:hover {
+      background-position: -10px 3px;
+    }
+  }
 
   h3 {
-    margin: 0;
-    padding: 22px 0 0 0;
+    margin: 0 0 0 25px;
+    padding: 0;
   }
 
   h6 {

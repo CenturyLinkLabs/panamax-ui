@@ -52,6 +52,12 @@ describe LocalImage do
     end
   end
 
+  describe '#image_layers_url' do
+    it 'concatenates the image layers URL with the image name' do
+      expect(subject.image_layers_url).to eq 'https://ImageLayers.io?images=blah/not-panamax'
+    end
+  end
+
   describe '#docker_index_url' do
     it 'is nil' do
       expect(subject.docker_index_url).to be_nil

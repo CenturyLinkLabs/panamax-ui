@@ -1,8 +1,13 @@
 class LocalImage < BaseImage
   PANAMAX_IMAGE_NAMES = ['centurylink/panamax-ui:latest', 'centurylink/panamax-api:latest']
+  IMAGE_LAYERS_BASE_URL = 'https://ImageLayers.io'
 
   def panamax_image?
     PANAMAX_IMAGE_NAMES.include?(name)
+  end
+
+  def image_layers_url
+    IMAGE_LAYERS_BASE_URL + "?images=#{name}"
   end
 
   def local?
