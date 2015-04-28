@@ -29,6 +29,16 @@ describe DeploymentTargetsController do
       )
       get :token, id: 7
     end
+
+    it 'properly sanitizes names' do
+      allow(fake_target).to receive(:name).and_return('foo')
+      expect(controller).to receive(:send_data).with(
+        'blob',
+        filename: 'foo.txt',
+        type: 'text/plain'
+      )
+      get :token, id: 7
+    end
   end
 
   describe 'GET #index' do

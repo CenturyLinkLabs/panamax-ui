@@ -39,7 +39,7 @@ class DeploymentTargetsController < ApplicationController
   private
 
   def sanitize_filename(name)
-    name.gsub!(/[^0-9A-Za-z.\-]/, '_')
+    name.gsub(/[^0-9A-Za-z.\-]/, '_')
   end
 
   def hydrate_index_view
