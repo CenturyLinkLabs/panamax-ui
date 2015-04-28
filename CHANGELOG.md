@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+0.2.17 - 2015-4-28
+-------------------
+### Added
+- Allow users to download the token for a deployment target (#515)
+
 0.2.16 - 2015-3-31
 -------------------
 ### Updated
