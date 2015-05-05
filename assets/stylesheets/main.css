@@ -154,7 +154,6 @@ main {
 /* Header and Nav*/
 header {
   width: 100%;
-  overflow: hidden;
   margin-bottom: 10px;
 }
 
@@ -228,12 +227,12 @@ header nav {
   display: none
 }
 
-header nav ul li {
+header nav > ul > li {
   text-transform: uppercase;
   font-weight: 400;
 }
 
-header nav ul li a {
+header nav > ul > li > a {
   color: #FFF;
   text-decoration: none;
   padding: 20px 0;
@@ -244,7 +243,7 @@ header nav ul li a {
   text-align: center;
 }
 
-header nav ul li a:hover {
+header nav > ul > li > a:hover {
   color: #FFF;
   background-color: rgb(132, 188, 57);
   transition: background-color 0.25s ease;
@@ -1095,7 +1094,7 @@ body#install section ul.requirements li {
 }
 
 @media all and (min-width: 481px) and (max-width: 850px) {
-  header nav ul li.welcome {
+  header nav > ul > li.welcome {
     display: none;
   }
 }
@@ -1152,9 +1151,17 @@ body#install section ul.requirements li {
 
   /* HEADER */
   header {
-    overflow: hidden;
     background: #8EC643;
     margin-bottom: 10px;
+  }
+
+  header:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
   }
 
   header h1.panamax-logo {
@@ -1169,20 +1176,20 @@ body#install section ul.requirements li {
     margin-bottom: 0;
   }
 
-  header nav ul li {
+  header nav > ul > li {
     float: left;
   }
 
-  header nav ul li a {
+  header nav > ul > li > a {
     padding: 20px 12px;
   }
 
-  header nav ul li.contest {
+  header nav > ul > li.contest {
     background: #659D1B;
   }
 
-  header nav ul li.twitter,
-  header nav ul li.github {
+  header nav > ul > li.twitter,
+  header nav > ul > li.github {
     display: none;
   }
 
@@ -1429,7 +1436,7 @@ body#install section ul.requirements li {
 }
 
 @media all and (min-width: 481px) and (max-width: 960px) {
-  header nav ul li a {
+  header nav > ul > li > a {
     padding: 20px 8px;
     letter-spacing: 1px;
   }

@@ -1,0 +1,200 @@
+nav.ctl .about-contents a {
+  display: inline;
+  width: inherit;
+  font-size: 14px;
+}
+
+
+nav.ctl .about-contents * {
+  box-sizing: content-box;
+  text-align: left;
+  text-transform: none;
+  font-weight: normal;
+  letter-spacing: 0;
+}
+
+nav.ctl .about-contents .clear {
+  clear: both;
+}
+
+nav.ctl .about-contents h3 {
+  border-bottom: 0;
+}
+
+nav.ctl .about-contents h4 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+nav.ctl .about-contents hr + h4 {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* line 6, ../../app/styles/ctl.scss */
+nav.ctl {
+  float: left;
+  padding-left: 20px;
+  margin-bottom: 0;
+  height: 100%;
+}
+/* line 12, ../../app/styles/ctl.scss */
+nav.ctl > ul {
+  height: 100%;
+}
+/* line 16, ../../app/styles/ctl.scss */
+nav.ctl > ul > li {
+  font-size: 14px;
+  font-weight: normal;
+  float: left;
+  position: relative;
+  height: 100%;
+}
+/* line 25, ../../app/styles/ctl.scss */
+nav.ctl > ul > li > * {
+  line-height: 1;
+}
+
+/* line 35, ../../app/styles/ctl.scss */
+nav.ctl > ul > li > a {
+  position: relative;
+  padding-right: 20px;
+}
+/* line 40, ../../app/styles/ctl.scss */
+nav.ctl > ul > li > a:after {
+  content: ' ';
+  display: block;
+  position: absolute;
+  top: 20px;
+  right: 5px;
+  width: 16px;
+  height: 16px;
+  background-image: url("../images/icon_sprite_white.svg");
+}
+/* line 62, ../../app/styles/ctl.scss */
+nav.ctl > ul > li:hover > ul {
+  display: block;
+}
+/* line 65, ../../app/styles/ctl.scss */
+nav.ctl > ul > li:hover > ul > li {
+  height: 495px;
+}
+/* line 71, ../../app/styles/ctl.scss */
+nav.ctl > ul > li > a {
+  text-decoration: none;
+}
+/* line 76, ../../app/styles/ctl.scss */
+nav.ctl > ul > li > ul {
+  transition: height 0.3s;
+  position: absolute;
+  z-index: 100;
+  top: 100%;
+  left: -530px;
+  width: 845px;
+  padding: 0;
+}
+/* line 84, ../../app/styles/ctl.scss */
+nav.ctl > ul > li > ul li {
+  margin-top: 2px;
+  transition: height 0.3s;
+  height: 0;
+  box-sizing: border-box;
+  background: #fff;
+  overflow: hidden;
+  color: #777;
+}
+/* line 93, ../../app/styles/ctl.scss */
+nav.ctl > ul > li > ul li .strong {
+  font-weight: bold;
+}
+/* line 97, ../../app/styles/ctl.scss */
+nav.ctl > ul > li > ul li .about-contents {
+  border: 1px solid #999;
+  border-top: none;
+  padding: 20px;
+}
+/* line 108, ../../app/styles/ctl.scss */
+nav.ctl > ul > li > ul p {
+  padding-top: 20px;
+  line-height: 1.25em;
+}
+/* line 113, ../../app/styles/ctl.scss */
+nav.ctl > ul > li > ul hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1.1em 0;
+  padding: 0;
+}
+/* line 121, ../../app/styles/ctl.scss */
+nav.ctl > ul > li > ul a.project {
+  display: inline-block;
+  background: #f1f1f1;
+  margin-right: 10px;
+  color: inherit;
+  text-decoration: none;
+  float: left;
+}
+/* line 129, ../../app/styles/ctl.scss */
+nav.ctl > ul > li > ul a.project:hover {
+  background: #e1e1e1;
+}
+/* line 132, ../../app/styles/ctl.scss */
+nav.ctl > ul > li > ul a.project:hover mark {
+  text-decoration: none;
+}
+/* line 137, ../../app/styles/ctl.scss */
+nav.ctl > ul > li > ul a.project:nth-last-of-type(1) {
+  margin-right: 0;
+}
+/* line 140, ../../app/styles/ctl.scss */
+nav.ctl > ul > li > ul a.project article {
+  width: 220px;
+  padding: 20px;
+}
+/* line 144, ../../app/styles/ctl.scss */
+nav.ctl > ul > li > ul a.project article p {
+  font-size: 0.9em;
+  padding: 0;
+}
+/* line 149, ../../app/styles/ctl.scss */
+nav.ctl > ul > li > ul a.project article mark {
+  background: none;
+  text-decoration: underline;
+}
+/* line 154, ../../app/styles/ctl.scss */
+nav.ctl > ul > li > ul a.project article h4 {
+  margin: 20px 0 0 0;
+  color: #444;
+}
+/* line 159, ../../app/styles/ctl.scss */
+nav.ctl > ul > li > ul a.project article .lorry-logo {
+  background: url(../images/about_ctl/logo_lorry.svg) no-repeat;
+  background-size: 70%;
+  padding: 0;
+  padding-bottom: 50px;
+}
+/* line 166, ../../app/styles/ctl.scss */
+nav.ctl > ul > li > ul a.project article .ilayers-logo {
+  background: url(../images/about_ctl/logo_image_layers.svg) no-repeat;
+  padding: 0;
+  padding-bottom: 50px;
+}
+/* line 172, ../../app/styles/ctl.scss */
+nav.ctl > ul > li > ul a.project article .dray-logo {
+  background: url(../images/about_ctl/logo_dray_long.svg) -233px -345px no-repeat;
+  background-size: 260%;
+  padding: 0;
+  padding-bottom: 50px;
+}
+
+/* line 83, ../../app/styles/icons.scss */
+nav.ctl > ul > li > a:after {
+  background-repeat: no-repeat;
+  width: 10px;
+  height: 10px;
+  background-size: 10px 1000px;
+  background-position: 0 -640px;
+}
+
