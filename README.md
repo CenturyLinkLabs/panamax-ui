@@ -4,7 +4,7 @@
 
 # Panamax-ui
 
-![Master_Build_Status](https://circleci.com/gh/CenturyLinkLabs/panamax-ui/tree/master.png?circle-token=d850f050b17d488a6a2b5066996875128b874674) [![Coverage Status](https://coveralls.io/repos/CenturyLinkLabs/panamax-ui/badge.png)](https://coveralls.io/r/CenturyLinkLabs/panamax-ui)
+[![](https://badge.imagelayers.io/centurylink/panamax-ui.svg)](https://imagelayers.io/?images=centurylink/panamax-ui:latest 'Get your own badge on imagelayers.io')![Master_Build_Status](https://circleci.com/gh/CenturyLinkLabs/panamax-ui/tree/master.png?circle-token=d850f050b17d488a6a2b5066996875128b874674) [![Coverage Status](https://coveralls.io/repos/CenturyLinkLabs/panamax-ui/badge.png)](https://coveralls.io/r/CenturyLinkLabs/panamax-ui)
 
 This project exposes a friendly user interface to the [Panamax API](https://github.com/CenturyLinkLabs/panamax-api), and is one of the components used by [Panamax-Coreos](https://github.com/CenturyLinkLabs/panamax-coreos)
 
