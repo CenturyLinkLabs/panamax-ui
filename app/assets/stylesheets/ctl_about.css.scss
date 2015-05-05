@@ -1,0 +1,169 @@
+@import 'ctl_base_ui/variables';
+@import 'ctl_base_ui/colors';
+@import 'ctl_base_ui/mixins';
+@import 'ctl_base_ui/icons';
+
+nav.ctl {
+  float: left;
+  margin-bottom: 0;
+  height: 100%;
+
+  > ul {
+    height: 100%;
+  }
+
+  > ul > li {
+    color: #9c9c9c;
+    font-weight: normal;
+    float: left;
+    position: relative;
+    height: 100%;
+    line-height: 80px;
+
+    h4 {
+      a {
+        color: $medium_grey;
+      }
+    }
+
+    > a {
+      position: relative;
+    }
+
+    &:hover {
+      > ul {
+        display: block;
+
+        > li {
+          height: 515px;
+        }
+      }
+    }
+
+    .about-contents {
+      * {
+        text-transform: none;
+        line-height: 1;
+        letter-spacing: 0;
+      }
+
+      a {
+        display: inline;
+        color: $dark_blue;
+        background: none;
+        padding: 0;
+        font-weight: normal;
+      }
+
+      .clear {
+        clear: both;
+      }
+
+      h3 {
+      }
+    }
+
+    > ul {
+      transition: height 0.3s;
+      position: absolute;
+      z-index: 100;
+      top: 100%;
+      left: -553px;
+      width: 845px;
+      padding: 0;
+
+      li {
+        transition: height 0.3s;
+        height: 0;
+        @include border-box;
+        background: #fff;
+        overflow: hidden;
+        color: #777;
+
+        .strong {
+          font-weight: bold;
+        }
+
+        .about-contents {
+          border: 1px solid #999;
+          border-top: none;
+          padding: 20px;
+          padding-bottom: 0;
+        }
+      }
+
+      p {
+        padding-top: 20px;
+        line-height: 1.25em;
+      }
+
+      hr {
+        display: block; height: 1px;
+        border: 0;
+        border-top: 1px solid #ccc;
+        margin: 1.1em 0;
+        padding: 0;
+      }
+
+      a.project {
+        display: inline-block;
+        background: #f1f1f1;
+        margin-right: 10px;
+        color: inherit;
+        text-decoration: none;
+        float: left;
+
+        &:hover {
+          background: #e1e1e1;
+
+          mark {
+            text-decoration: none;
+          }
+        }
+
+        &:nth-last-of-type(1) {
+          margin-right: 0;
+        }
+        article {
+          width: 220px;
+          padding: 20px;
+
+          p {
+            font-size: 0.9em;
+            padding: 0;
+          }
+
+          mark {
+            background: none;
+            text-decoration: underline;
+          }
+
+          h4 {
+            margin: 20px 0 0 0;
+            color: #444;
+          }
+
+          .lorry-logo {
+            background: image-url('about_ctl/logo_lorry.svg') no-repeat;
+            background-size: 70%;
+            padding: 0;
+            padding-bottom: 50px;
+          }
+
+          .ilayers-logo {
+            background: image-url('about_ctl/logo_image_layers.svg') no-repeat;
+            padding: 0;
+            padding-bottom: 50px;
+          }
+
+          .dray-logo {
+            background: image-url('about_ctl/logo_dray_long.svg') -233px -345px no-repeat;
+            background-size: 260%;
+            padding: 0;
+            padding-bottom: 50px;
+          }
+        }
+      }
+    }
+  }
+}

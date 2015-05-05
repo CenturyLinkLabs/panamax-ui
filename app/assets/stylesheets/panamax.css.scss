@@ -15,8 +15,16 @@ a:focus {
 body > header {
   background: $ctl_light_green;
   width: 100%;
-  overflow: hidden;
   margin-bottom: 10px;
+
+  &:after {
+    content: " ";
+    display: block;
+    clear: both;
+    font-size: 0;
+    height: 0;
+    visibility: hidden;
+  }
 
   h1 {
     border: none;
@@ -41,6 +49,10 @@ body > header {
     ul li {
       float: left;
 
+      &:hover a {
+        background-color: $lime;
+      }
+
       a {
         @include border-box;
         color: $white;
@@ -61,10 +73,6 @@ body > header {
           left: 20px;
           top: 20px;
         }
-
-        &:hover {
-          background-color: $lime;
-        }
       }
     }
   }
@@ -81,6 +89,11 @@ body > header nav ul li {
   }
   &.documentation-link a:before {
     @extend .icon-document-large;
+    @include icon-white;
+  }
+  &.about-link > nav > ul > li > a:before {
+    margin-top: 5px;
+    @extend .icon-thin-arrow-down;
     @include icon-white;
   }
 }

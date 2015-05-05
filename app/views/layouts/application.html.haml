@@ -30,6 +30,55 @@
             = link_to 'Manage', dashboard_index_path, title: 'Manage'
           %li.documentation-link
             = link_to 'Documentation', 'http://panamax.io/documentation', target: '_blank', title: 'Documentation'
+          %li.about-link
+            %nav.ctl
+              %ul
+                %li
+                  %a{:href => ""} About
+                  %ul
+                    %li
+                      .about-contents
+                        = image_tag('about_ctl/logo_panamax.svg', class: 'logo', width: 150)
+                        %p.clear.strong
+                          Panamax is an open-source project that makes deploying complex containerized apps as easy as Drag-and-Drop.
+                        %p
+                          %a{:href => "https://github.com/CenturyLinkLabs/panamax-ui", :target => "_blank"} Panamax UI on GitHub
+                          |
+                          %a{:href => "https://github.com/CenturyLinkLabs/panamax-api", :target => "_blank"} Panamax API on GitHub
+                        %hr
+                          %h3 Other Projects from CenturyLink Labs
+                          %a.project{:href => "http://imagelayers.io", :target => "_blank"}
+                            %article
+                              .ilayers-logo
+                              %h4 ImageLayers.io
+                              %p
+                                Docker image layer visualization.
+                                %br
+                                  %mark ImageLayers.io
+                          %a.project{:href => "http://dray.it", :target => "_blank"}
+                            %article
+                              .dray-logo
+                              %h4 Dray
+                              %p
+                                Docker Workflow Engine.
+                                %br
+                                  %mark dray.it
+                          %a.project{:href => "http://lorry.io", :target => "_blank"}
+                            %article
+                              .lorry-logo
+                              %h4 Lorry
+                              %p
+                                Coming Soon...
+                                %br
+                                  %mark lorry.io
+                          .clear
+                          %hr
+                            %h4
+                              Read tutorials and articles about these tools at
+                              %a{:href => "http://www.centurylinklabs.com", :target => "_blank"} CenturyLinkLabs.com
+
+
+
     %aside.metrics
       %span
         %a{ href: metrics_url, target: '_blank' }
