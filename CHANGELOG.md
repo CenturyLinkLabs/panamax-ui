@@ -1,6 +1,15 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+0.2.18 - 2015-5-6
+-------------------
+### Added
+- Link to ImageLayers image view from image management page (#516)
+- CTL Labs about menu (#519)
+
+### Fixed
+- Remote Agent token file names getting blanked out (https://github.com/CenturyLinkLabs/panamax-ui/commit/80715bd271d03e5fba7487cfac4667381953b3e8)
+
 0.2.17 - 2015-4-28
 -------------------
 ### Added
