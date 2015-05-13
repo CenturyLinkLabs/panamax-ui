@@ -58,6 +58,10 @@ class Service < BaseResource
     self.sub_state == 'running'
   end
 
+  def restart_attribute=(attribute)
+    self.restart = attribute
+  end
+
   def environment_attributes=(attributes)
     self.environment = attributes.each_with_object([]) do |(_, env), memo|
       memo << Environment.new(env.except('id')) unless env['_deleted'].to_s == '1'

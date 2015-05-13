@@ -84,6 +84,8 @@
           service.position = idx;
         }
 
+        service.restart_attribute = false;
+
         $.ajax({
           type: 'PUT',
           headers: {

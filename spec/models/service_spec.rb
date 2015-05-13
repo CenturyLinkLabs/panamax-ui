@@ -220,6 +220,13 @@ describe Service do
 
   end
 
+  describe '#restart_attribute=' do
+    it 'assigns restart when present' do
+      subject.restart_attribute = 'true'
+      expect(subject.restart).to eq 'true'
+    end
+  end
+
   describe '#links_attributes=' do
     let(:attributes) do
       {
