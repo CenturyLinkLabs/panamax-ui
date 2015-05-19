@@ -1,3 +1,10 @@
+
+@media all and (max-width: 1040px) {
+  li.about,
+  li.sidr-class-about {
+    display: none !important;
+  }
+}
 nav.ctl .about-contents a {
   display: inline;
   width: inherit;
