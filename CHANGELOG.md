@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+0.2.19 - 2015-5-29
+-------------------
+### Added
+- Set service restart flag to false when dragging into category (#522)
+- Play nice with new version of cadvisor (#523)
+
 0.2.18 - 2015-5-6
 -------------------
 ### Added
