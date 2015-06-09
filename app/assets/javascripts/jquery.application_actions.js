@@ -23,6 +23,7 @@
   $.fn.applicationActions = function(options){
     return this.each(function(){
       (new $.PMX.ApplicationDestroyer(this, options)).init();
+      (new $.PMX.ApplicationComposeExporter(this, options)).init();
     });
   };
 })(jQuery);

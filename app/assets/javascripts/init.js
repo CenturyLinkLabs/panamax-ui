@@ -31,6 +31,8 @@
 
     $('#manage_flow section.applications').applicationActions();
 
+    $('#manage_flow section.deployment-details').composeExportDialog();
+
     $('.category-panel').categoryActions();
 
     $('main').noticeActions();

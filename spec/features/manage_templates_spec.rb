@@ -1,15 +1,12 @@
 require 'spec_helper'
 
 describe 'managing a template' do
-
   context 'as a user' do
-
     context 'from a running application' do
-
       it 'allows template creation' do
         visit '/apps/2'
 
-        click_on 'Save as Template'
+        click_on 'Save as PMX Template'
 
         expect(page).to have_title 'Save as Template'
         expect(page).to have_css 'h1', text: 'Save as Template'
@@ -37,7 +34,6 @@ describe 'managing a template' do
       end
 
       context 'when user does not have a github access token' do
-
         before do
           user = User.new(github_access_token_present: false)
           allow(User).to receive(:find).and_return(user)
@@ -45,7 +41,6 @@ describe 'managing a template' do
         end
 
         it 'allows the user to request and enter a token' do
-
           visit '/templates/new?app_id=1'
 
           expect(page).to have_link(
@@ -64,7 +59,6 @@ describe 'managing a template' do
       end
 
       context 'when user does not have an email' do
-
         before do
           user = User.new(github_access_token_present: true, email: '', github_username: 'bar')
           allow(User).to receive(:find).and_return(user)
@@ -72,13 +66,10 @@ describe 'managing a template' do
         end
 
         it 'allows the user to request and enter a token' do
-
           visit '/templates/new?app_id=1'
 
-          expect(page).to have_link(
-                              'Generate a Github access token',
-                              href: 'https://github.com/settings/tokens/new?scope=repo,user:email'
-                          )
+          expect(page).to have_link('Generate a Github access token',
+                                    href: 'https://github.com/settings/tokens/new?scope=repo,user:email')
 
           expect(page).to have_unchecked_field 'user_subscribe'
           expect(page).to have_content 'Sign up for our newsletter - Get all the latest news'
@@ -91,7 +82,6 @@ describe 'managing a template' do
       end
 
       context 'when user does not have a github username' do
-
         before do
           user = User.new(github_access_token_present: true, email: 'foo', github_username: '')
           allow(User).to receive(:find).and_return(user)
@@ -99,13 +89,10 @@ describe 'managing a template' do
         end
 
         it 'allows the user to request and enter a token' do
-
           visit '/templates/new?app_id=1'
 
-          expect(page).to have_link(
-                              'Generate a Github access token',
-                              href: 'https://github.com/settings/tokens/new?scope=repo,user:email'
-                          )
+          expect(page).to have_link('Generate a Github access token',
+                                    href: 'https://github.com/settings/tokens/new?scope=repo,user:email')
 
           expect(page).to have_unchecked_field 'user_subscribe'
           expect(page).to have_content 'Sign up for our newsletter - Get all the latest news'
@@ -116,7 +103,6 @@ describe 'managing a template' do
           expect(page).to have_content 'Save as Template'
         end
       end
-
     end
   end
 end

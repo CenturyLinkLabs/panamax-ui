@@ -131,7 +131,7 @@ a.button-add-positive {
     }
 
     .settings-menu {
-      max-height: 80px;
+      max-height: 210px;
     }
   }
 
@@ -141,7 +141,7 @@ a.button-add-positive {
     box-sizing: border-box;
     top: 39px;
     right: 0;
-    width: 140px;
+    width: 215px;
     background: $dark_grey;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
@@ -150,9 +150,13 @@ a.button-add-positive {
     li {
       padding: 0px 10px 5px 10px;
       margin-left: 0;
+
+      &:first-child {
+        padding-top: 5px;
+      }
     }
 
-    .delete, .reload {
+    .template, .deploy, .delete, .reload , .export {
       background-color: transparent;
 
       &:after {

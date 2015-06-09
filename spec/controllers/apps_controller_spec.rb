@@ -126,7 +126,6 @@ describe AppsController do
   end
 
   describe 'GET #show' do
-
     it 'retrieves the application' do
       expect(App).to receive(:find).with('77')
       get :show, id: 77
@@ -150,7 +149,6 @@ describe AppsController do
   end
 
   describe 'GET #documentation' do
-
     it 'renders the apps documentation with the documentation layout' do
       allow(dummy_app).to receive(:documentation_to_html).and_return('<p>some instructions</a>')
       get :documentation, id: 77
@@ -174,9 +172,9 @@ describe AppsController do
   describe 'POST #template' do
     let(:template_response) do
       double(:template_response,
-        body: '{ "template": "My Template String" }',
-        status: 200
-      )
+             body: '{ "template": "My Template String" }',
+             status: 200
+            )
     end
 
     before do
@@ -196,7 +194,6 @@ describe AppsController do
   end
 
   describe '#journal' do
-
     let(:journal_lines) do
       [
         { id: 1, message: 'foo' }
@@ -224,10 +221,34 @@ describe AppsController do
     end
   end
 
+  describe '#compose_yml' do
+    let(:compose) do
+      '{"compose_yaml": "---\nWP:\n  image: centurylink/wordpress:3.9.1\n"}'
+    end
+
+    before do
+      allow(Net::HTTP).to receive(:get).and_return(compose)
+    end
+
+    it 'retrieves the compose yaml representation of the app' do
+      expect(Net::HTTP).to receive(:get).with(URI("#{PanamaxApi::URL}/apps/#{dummy_app.id}/compose_yml.json"))
+      get :compose_yml, id: 1, format: :json
+    end
+
+    it 'returns the compose yaml' do
+      get :compose_yml, id: 1, format: :json
+      expect(response.body).to eq compose
+    end
+
+    it 'returns a 200 status code' do
+      get :compose_yml, id: 1, format: :json
+      expect(response.status).to eq 200
+    end
+  end
+
   describe '#rebuild' do
     it 'rebuilds the application' do
-      expect(dummy_app).to receive(:put)
-                           .with(:rebuild)
+      expect(dummy_app).to receive(:put).with(:rebuild)
       put :rebuild, id: 77
     end
 
@@ -274,14 +295,12 @@ describe AppsController do
     end
 
     context 'when an ActiveResource::ServerError occurs' do
-
       before do
         allow(dummy_app).to receive(:put).and_raise(
           ActiveResource::ServerError.new(nil, 'oops'))
       end
 
       context 'when a referer is present' do
-
         before do
           request.env['HTTP_REFERER'] = '/some/path'
         end
@@ -298,7 +317,6 @@ describe AppsController do
       end
 
       context 'when a referer is not present' do
-
         it 'flashes the error message' do
           put :rebuild, id: 77
           expect(flash[:alert]).to eq 'oops'

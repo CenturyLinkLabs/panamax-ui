@@ -3,7 +3,6 @@ require 'spec_helper'
 describe 'managing an application' do
   context 'as a user' do
     context 'from an application' do
-
       it 'can navigate to the search page' do
         visit '/apps/2'
 
@@ -38,7 +37,7 @@ describe 'managing an application' do
       it 'can create a template from an app' do
         visit '/apps/2'
 
-        click_on 'Save as Template'
+        click_on 'Save as PMX Template'
 
         expect(page.find('#template_form_app_id', visible: false).value).to eq '2'
       end
@@ -71,7 +70,6 @@ describe 'managing an application' do
           expect(page).to have_css '.deployment-env', text: 'Deployed to: CoreOS Local'
         end
       end
-
     end
 
     context 'perform actions' do
@@ -82,8 +80,6 @@ describe 'managing an application' do
 
         expect(page).to have_css 'div.notice-success', text: I18n.t('apps.rebuild.success')
       end
-
     end
-
   end
 end

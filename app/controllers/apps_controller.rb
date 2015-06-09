@@ -56,6 +56,12 @@ class AppsController < ApplicationController
     render json: response.body
   end
 
+  def compose_yml
+    app = retrieve_app
+    response = Net::HTTP.get(URI("#{PanamaxApi::URL}/apps/#{app.id}/compose_yml.json"))
+    render json: response
+  end
+
   def journal
     app = retrieve_app
     respond_with app.get(:journal, journal_params)

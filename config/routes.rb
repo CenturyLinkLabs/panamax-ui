@@ -49,6 +49,7 @@ Rails.application.routes.draw do
       get 'relations'
       put 'rebuild'
       post 'template'
+      get 'compose_yml'
     end
     resources :services, only: [:index, :update, :create, :show, :destroy] do
       get 'journal', on: :member

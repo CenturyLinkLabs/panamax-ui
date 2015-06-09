@@ -305,6 +305,26 @@ ul[class*='button-menu'] {
         }
       }
 
+      &.export {
+        background: $dark_grey;
+
+        &:hover {
+          background: $medium_grey;
+        }
+
+        &:after {
+          @include icon-white;
+          @extend .icon-outbox;
+          content: '';
+          position: absolute;
+          left: 10px;
+          top: 12px;
+          display: block;
+          height: 10px;
+          width: 10px;
+        }
+      }
+
       &.delete {
         background: $dark_red;
 

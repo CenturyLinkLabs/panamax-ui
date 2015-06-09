@@ -15,6 +15,7 @@
 //= require handlebars
 //= require zeroclipboard
 //= require google-code-prettify/prettify
+//= require google-code-prettify/lang-yaml
 //= require_tree ./template_helpers
 //= require chosen.jquery
 //= require moment
