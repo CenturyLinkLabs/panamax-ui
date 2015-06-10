@@ -101,3 +101,48 @@ a.button-minor {
   @extend .button-secondary;
   @include border-box;
 }
+
+button.clipboard-copy {
+  background: white;
+  outline: none;
+  border: none;
+  display: block;
+  color: #777777;
+  padding: 10px;
+  font-size: 1em;
+  line-height: 1.2em;
+  position: relative;
+
+  &:hover, &:focus {
+    text-decoration: none;
+    outline: none;
+    border: none;
+  }
+
+  &:before, &:after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    position: absolute;
+    display: block;
+    left: -20px;
+    top: 8px;
+  }
+  &:before {
+    background: #AAAAAA;
+  }
+  &:after {
+    top: 12px;
+    left: -17px;
+    height: 13px;
+    width: 13px;
+    background-size: 13px 1300px;
+    background-position: 0 -130px;
+    @extend .icon-checkmark;
+    @include icon-white;
+  }
+  &.copied:before {
+    background: #91B748;
+  }
+}

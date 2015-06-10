@@ -35,6 +35,7 @@ describe('$.fn.composeExportDialog', function() {
         responseText: JSON.stringify({compose_yaml: '---\n'})
       });
 
+
       expect($('pre').dialog).toHaveBeenCalledWith({
         autoOpen: false,
         modal: true,
@@ -46,12 +47,29 @@ describe('$.fn.composeExportDialog', function() {
         close: jasmine.any(Function),
         buttons: [
           {
-            text: 'Dismiss',
-            class: 'button-secondary',
+            text: 'Copy to Clipboard',
+            class: 'link clipboard-copy',
             click: jasmine.any(Function)
           }
         ]
       });
+    });
+  });
+
+  describe('after the content has been copied', function () {
+    var button;
+
+    beforeEach(function () {
+      button = $('<button>Copy to Clipboard</button>');
+      subject.afterCopy({ target: button });
+    });
+
+    it('adds the "copied" class to the copy button', function () {
+      expect($(button).hasClass('copied')).toEqual(true);
+    });
+
+    it('changes the text of the copy button', function () {
+      expect($(button).text()).toEqual('YAML Copied to Clipboard');
     });
   });
 });
