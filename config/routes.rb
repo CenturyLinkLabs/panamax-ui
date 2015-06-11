@@ -50,6 +50,7 @@ Rails.application.routes.draw do
       put 'rebuild'
       post 'template'
       get 'compose_yml'
+      get 'compose_download'
     end
     resources :services, only: [:index, :update, :create, :show, :destroy] do
       get 'journal', on: :member

@@ -8,6 +8,7 @@
 
     base.defaultOptions = {
       composePath: 'data-composePath',
+      downloadPath: 'data-downloadPath',
       composeExportSelector: 'ul.application-button-menu a.export'
     };
 
@@ -25,6 +26,7 @@
     base.triggerExport = function(e) {
       var $target = $(e.currentTarget);
       var composeUrl = $target.attr(base.options.composePath);
+      base.options.downloadUrl = $target.attr(base.options.downloadPath);
 
       e.preventDefault();
       $.ajax({
@@ -45,14 +47,17 @@
     };
 
     base.initiateDialog = function (contents) {
-      var dialogContents = $('<pre id="composeYaml" class="prettyprint lang-yaml">' + contents + '</pre>');
-      return $.PMX.Helpers.dialog(base, dialogContents, {
-          title: 'Docker Compose YAML',
-          buttons: [{
-            text: 'Copy to Clipboard',
-            class: 'link clipboard-copy',
-            click: $.noop
-          }]
+      return $.PMX.Helpers.dialog(base, $('<pre class="prettyprint lang-yaml">' + contents + '</pre>'), {
+        title: 'Docker Compose YAML',
+        buttons: [{
+          text: 'Save as Local File',
+          class: 'button-primary download',
+          click: base.handleDownload
+        },{
+          text: 'Copy to Clipboard',
+          class: 'link clipboard-copy',
+          click: $.noop
+        }]
         }
       );
     };
@@ -60,6 +65,10 @@
     base.afterCopy = function (e) {
       $(e.target).addClass('copied');
       $(e.target).text('YAML Copied to Clipboard');
+    };
+
+    base.handleDownload = function () {
+      window.open(base.options.downloadUrl, '_blank');
     };
 
     base.handleClose = function () {

@@ -5,7 +5,7 @@
         %li
           = link_to 'Save as PMX Template', new_template_path(app_id: app.id), class: 'link template no-event-propagation', title: 'save template'
         %li
-          = link_to 'Save As Compose YAML', '#', title: 'export', class: 'link export', data: { composePath: compose_yml_app_path(app.id) }
+          = link_to 'Save As Compose YAML', '#', title: 'export', class: 'link export', data: { composePath: compose_yml_app_path(app.id), downloadPath: compose_download_app_path(app.id) }
         %li
           = link_to 'Deploy to Target', select_deployment_targets_path(resource_id: app.id, resource_type: 'App'), class: 'link deploy select-deployment-target', title: 'save template'
         %li

@@ -62,6 +62,12 @@ class AppsController < ApplicationController
     render json: response
   end
 
+  def compose_download
+    app = retrieve_app
+    compose_yml_for_app = Net::HTTP.get(URI("#{PanamaxApi::URL}/apps/#{app.id}/compose_yml.yaml"))
+    send_data compose_yml_for_app, filename: 'docker-compose.yml', type: 'text/yaml'
+  end
+
   def journal
     app = retrieve_app
     respond_with app.get(:journal, journal_params)

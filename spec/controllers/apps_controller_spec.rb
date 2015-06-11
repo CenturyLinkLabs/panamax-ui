@@ -246,6 +246,28 @@ describe AppsController do
     end
   end
 
+  describe '#compose_download' do
+    let(:compose) do
+      "---\nWP:\n  image: centurylink/wordpress:3.9.1\n"
+    end
+
+    before do
+      allow(Net::HTTP).to receive(:get).and_return(compose)
+    end
+
+    it 'retrieves the compose yaml representation of the app' do
+      expect(Net::HTTP).to receive(:get).with(URI("#{PanamaxApi::URL}/apps/#{dummy_app.id}/compose_yml.yaml"))
+      get :compose_download, id: 1
+    end
+
+    it 'sends a file of the compose yaml' do
+      expect(controller).to receive(:send_data).with("---\nWP:\n  image: centurylink/wordpress:3.9.1\n",
+                                                     filename: 'docker-compose.yml',
+                                                     type: 'text/yaml')
+      get :compose_download, id: 1
+    end
+  end
+
   describe '#rebuild' do
     it 'rebuilds the application' do
       expect(dummy_app).to receive(:put).with(:rebuild)

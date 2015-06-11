@@ -25,6 +25,11 @@ describe('$.fn.composeExportDialog', function() {
       var request = mostRecentAjaxRequest();
       expect(request.url).toEqual('/apps/11/compose_yml');
     });
+
+    it('sets the download url into the options', function () {
+      exportLink.click();
+      expect(subject.options.downloadUrl).toEqual('http://localhost/apps/11/compose_download.yaml');
+    });
   });
 
   describe('when compose yaml request returns', function() {
@@ -50,6 +55,11 @@ describe('$.fn.composeExportDialog', function() {
         close: jasmine.any(Function),
         buttons: [
           {
+            text : 'Save as Local File',
+            class : 'button-primary download',
+            click : jasmine.any(Function)
+          },
+          {
             text: 'Copy to Clipboard',
             class: 'link clipboard-copy',
             click: jasmine.any(Function)
@@ -70,6 +80,18 @@ describe('$.fn.composeExportDialog', function() {
       it('sets the aftercopy handler', function () {
         expect(clipboard.on).toHaveBeenCalledWith('aftercopy', subject.afterCopy);
       });
+    });
+  });
+
+  describe('when the user has clicked to save the compose yaml as a local file', function () {
+    beforeEach(function () {
+      spyOn(window, 'open');
+      subject.options.downloadUrl = 'http://localhost/apps/11/compose_download.yaml';
+      subject.handleDownload();
+    });
+
+    it('redirects to the download url', function () {
+      expect(window.open).toHaveBeenCalledWith('http://localhost/apps/11/compose_download.yaml','_blank');
     });
   });
 
