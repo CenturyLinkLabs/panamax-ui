@@ -1,10 +1,12 @@
 describe('$.fn.composeExportDialog', function() {
   var exportLink,
-    subject;
+    subject,
+    clipboard = jasmine.createSpyObj('zeroclipboard', ['clip', 'setText', 'on']);
 
   beforeEach(function() {
     fixture.load('export-compose.html');
     spyOn($.fn, 'dialog').andCallThrough();
+    spyOn(window, 'ZeroClipboard').andReturn(clipboard);
     subject = new $.PMX.ApplicationComposeExporter($('section'));
     subject.init();
     exportLink = $('a.export');
@@ -26,7 +28,7 @@ describe('$.fn.composeExportDialog', function() {
   });
 
   describe('when compose yaml request returns', function() {
-    it('initializes content dialog', function() {
+    beforeEach(function () {
       subject.triggerExport($.Event());
       var request = mostRecentAjaxRequest();
 
@@ -34,8 +36,9 @@ describe('$.fn.composeExportDialog', function() {
         status: 200,
         responseText: JSON.stringify({compose_yaml: '---\n'})
       });
+    });
 
-
+    it('initializes content dialog', function() {
       expect($('pre').dialog).toHaveBeenCalledWith({
         autoOpen: false,
         modal: true,
@@ -52,6 +55,20 @@ describe('$.fn.composeExportDialog', function() {
             click: jasmine.any(Function)
           }
         ]
+      });
+    });
+
+    describe('the zeroclipboard plugin is setup', function () {
+      it('attaches to the clipboard-copy button', function () {
+        expect(clipboard.clip).toHaveBeenCalledWith($('.clipboard-copy'));
+      });
+
+      it('sets the text to the compose_yaml in the api response', function () {
+        expect(clipboard.setText).toHaveBeenCalledWith('---\n');
+      });
+
+      it('sets the aftercopy handler', function () {
+        expect(clipboard.on).toHaveBeenCalledWith('aftercopy', subject.afterCopy);
       });
     });
   });

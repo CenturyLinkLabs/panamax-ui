@@ -1,6 +1,7 @@
 (function($){
   $.PMX.ApplicationComposeExporter = function(el, options) {
     var base = this,
+      client,
       composeDialog;
 
     base.$el = $(el);
@@ -11,6 +12,8 @@
     };
 
     base.init = function() {
+      client = new ZeroClipboard();
+
       base.options = $.extend({}, base.defaultOptions, options);
       base.bindEvents();
     };
@@ -35,10 +38,9 @@
           composeDialog = base.initiateDialog(response.compose_yaml);
           composeDialog.dialog('open');
 
-          $('.clipboard-copy').attr('data-clipboard-text', $('#composeYaml').text());
-          new $.PMX.Clipboard($('.clipboard-copy'), {
-            afterCopy: base.afterCopy
-          }).init();
+          client.clip($('.clipboard-copy'));
+          client.setText(response.compose_yaml);
+          client.on('aftercopy', base.afterCopy);
         });
     };
 
