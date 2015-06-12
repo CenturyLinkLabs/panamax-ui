@@ -2,14 +2,18 @@
   $.PMX.ApplicationComposeExporter = function(el, options) {
     var base = this,
       client,
-      composeDialog;
+      composeDialog,
+      gistConfirmationDialog;
 
     base.$el = $(el);
 
     base.defaultOptions = {
       composePath: 'data-composePath',
       downloadPath: 'data-downloadPath',
-      composeExportSelector: 'ul.application-button-menu a.export'
+      composeExportSelector: 'ul.application-button-menu a.export',
+      gistConfirmationDialogSelector: '#gistConfirmationDialog',
+      gistConfirmationCancelSelector: '.cancel-export',
+      gistConfirmationConfirmSelector: '.gist-confirm'
     };
 
     base.init = function() {
@@ -54,6 +58,10 @@
           class: 'button-primary download',
           click: base.handleDownload
         },{
+          text: 'Inspect & Validate in Lorry.io',
+          class: 'link lorry-export',
+          click: base.confirmGistCreation
+        },{
           text: 'Copy to Clipboard',
           class: 'link clipboard-copy',
           click: $.noop
@@ -69,6 +77,36 @@
 
     base.handleDownload = function () {
       window.open(base.options.downloadUrl, '_blank');
+    };
+
+    base.confirmGistCreation = function () {
+      // hide text of underlying dialog
+      $('.prettyprint').css('visibility', 'hidden');
+
+      gistConfirmationDialog = $(base.options.gistConfirmationDialogSelector).dialog({
+        autoOpen: true,
+        dialogClass: 'dialog-dialog',
+        maxHeight: 500,
+        modal: true,
+        resizable: false,
+        draggable: false,
+        width: 860,
+        close: base.cancelExport,
+        position: { my: 'top', at: 'top+50', of: window }
+      });
+
+      gistConfirmationDialog.on('click', base.options.gistConfirmationCancelSelector, base.cancelExport);
+      gistConfirmationDialog.on('click', base.options.gistConfirmationConfirmSelector, base.confirmExport);
+    };
+
+    base.cancelExport = function () {
+      gistConfirmationDialog.dialog('close');
+      $('.prettyprint').css('visibility', 'visible');
+    };
+
+    base.confirmExport = function () {
+      gistConfirmationDialog.dialog('close');
+      base.handleClose();
     };
 
     base.handleClose = function () {

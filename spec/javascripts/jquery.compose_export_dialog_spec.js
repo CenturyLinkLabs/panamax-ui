@@ -60,6 +60,11 @@ describe('$.fn.composeExportDialog', function() {
             click : jasmine.any(Function)
           },
           {
+            text: 'Inspect & Validate in Lorry.io',
+            class: 'link lorry-export',
+            click: jasmine.any(Function)
+          },
+          {
             text: 'Copy to Clipboard',
             class: 'link clipboard-copy',
             click: jasmine.any(Function)
@@ -111,4 +116,58 @@ describe('$.fn.composeExportDialog', function() {
       expect($(button).text()).toEqual('YAML Copied to Clipboard');
     });
   });
+
+  describe('when the user chooses to view the compose yaml in lorry', function () {
+    beforeEach(function () {
+      subject.confirmGistCreation();
+    });
+
+    it('sets the yaml output element display to hidden', function () {
+      expect($('.prettyprint').css('visibility')).toBe('hidden');
+    });
+
+    it('opens a confirmation dialog', function () {
+      expect($('#gistConfirmationDialog').dialog).toHaveBeenCalledWith({
+        autoOpen: true,
+        dialogClass: 'dialog-dialog',
+        maxHeight: 500,
+        modal: true,
+        resizable: false,
+        draggable: false,
+        width: 860,
+        position: { my: 'top', at: 'top+50', of: window },
+        close: jasmine.any(Function)
+      });
+    });
+
+    describe('when the user confirms the export', function () {
+      beforeEach(function () {
+        spyOn(subject, 'handleClose');
+        subject.confirmExport();
+      });
+
+      it('closes the confirmation dialog', function () {
+        expect($('#gistConfirmationDialog').dialog).toHaveBeenCalledWith('close');
+      });
+
+      it('closes the yaml export dialog', function () {
+        expect(subject.handleClose).toHaveBeenCalled();
+      });
+    });
+
+    describe('when the user cancels the export', function () {
+      beforeEach(function () {
+        subject.cancelExport();
+      });
+
+      it('closes the confirmation dialog', function () {
+        expect($('#gistConfirmationDialog').dialog).toHaveBeenCalledWith('close');
+      });
+
+      it('sets the yaml output element display to visible', function () {
+        expect($('.prettyprint').css('visibility')).toBe('visible');
+      });
+    });
+  });
+
 });

@@ -12,3 +12,13 @@
           = link_to 'Rebuild App', rebuild_app_path(app.id), method: :put, title: 'rebuild', class: 'link reload'
         %li
           = link_to 'Delete App', app_path(app.id), method: :delete, title: 'delete', class: 'delete'
+
+#gistConfirmationDialog
+  %h4 Just so you know, this will generate an anonymous Gist on Github.
+  %p If you have sensitive information in your file, such as passwords, you may not want to do this.
+  %p Would you like to proceed?
+  %ul
+    %li
+      = link_to 'No, Cancel', '#', title: 'No, Cancel', class: 'cancel-export'
+    %li
+      = link_to 'Yes, export to Lorry.io', compose_export_app_path(app.id), title: 'Yes, export to Lorry.io', class: 'button-primary gist-confirm', target: '_blank'

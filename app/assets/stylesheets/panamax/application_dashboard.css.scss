@@ -156,10 +156,17 @@ a.button-add-positive {
       }
     }
 
-    .template, .deploy, .delete, .reload , .export {
+    .template, .deploy, .delete, .reload, .export {
       background-color: transparent;
 
+      &:hover {
+        &:after {
+          @include icon-white;
+        }
+      }
+
       &:after {
+        @include icon-light-grey;
         left: 5px;
       }
 
@@ -172,5 +179,55 @@ a.button-add-positive {
     .disabled {
       color: $white;
     }
+  }
+}
+
+
+#gistConfirmationDialog {
+  display: none;
+}
+
+.dialog-dialog {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  color: $white;
+
+  &:focus {
+    outline: none;
+  }
+
+  .ui-dialog-titlebar {
+    display: none;
+  }
+
+  .ui-dialog-content {
+    overflow: hidden;
+    text-align: center;
+    margin-top: 60px;
+
+    h4 {
+      color: white;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    li {
+      display: inline-block;
+
+      &:first-child {
+        margin-right: 20px;
+      }
+
+      a.cancel-export {
+        color: $white;
+      }
+
+      a.button-primary,
+      a.cancel-export:hover {
+        text-decoration: none;
+      }
+    }
+
   }
 }

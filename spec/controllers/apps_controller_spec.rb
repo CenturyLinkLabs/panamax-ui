@@ -268,6 +268,34 @@ describe AppsController do
     end
   end
 
+  describe '#compose_export' do
+    let(:gist_response_body) do
+      {
+        links: {
+          gist: {
+            html_url: 'html',
+            raw_url: 'raw'
+          }
+        }
+      }
+    end
+    let(:gist_response) { double('gist_response', body: gist_response_body.to_json) }
+    before do
+      allow(Net::HTTP).to receive(:post_form).and_return(gist_response)
+    end
+
+    it 'sends a post request to the API to create the gist from the app' do
+      expect(Net::HTTP).to receive(:post_form).with(URI("#{PanamaxApi::URL}/apps/#{dummy_app.id}/compose_gist.json"),
+                                                    {})
+      get :compose_export, id: 1
+    end
+
+    it 'redirects to lorry.io with the gist uri in the query string' do
+      get :compose_export, id: 1
+      expect(response).to redirect_to("https://lorry.io/#/?gist=#{gist_response_body[:links][:gist][:raw_url]}")
+    end
+  end
+
   describe '#rebuild' do
     it 'rebuilds the application' do
       expect(dummy_app).to receive(:put).with(:rebuild)

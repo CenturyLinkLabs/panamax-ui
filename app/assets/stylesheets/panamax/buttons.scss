@@ -102,7 +102,7 @@ a.button-minor {
   @include border-box;
 }
 
-button.clipboard-copy {
+.compose-dialog-button {
   background: white;
   outline: none;
   border: none;
@@ -112,12 +112,40 @@ button.clipboard-copy {
   font-size: 1em;
   line-height: 1.2em;
   position: relative;
+  text-decoration: underline;
 
   &:hover, &:focus {
     text-decoration: none;
     outline: none;
     border: none;
   }
+}
+
+button.lorry-export {
+  @extend .compose-dialog-button;
+  margin-right: 5px;
+
+  &:hover:before {
+      background-position: -34px -35px;
+  }
+
+  &:before {
+    content: '';
+    width: 22px;
+    height: 21px;
+    position: absolute;
+    display: block;
+    left: -20px;
+    top: 8px;
+    background-size: 90px 70px;
+    background-position: -34px -14px;
+    background-image: image-url('icon_lorry.svg');
+  }
+}
+
+button.clipboard-copy {
+  @extend .compose-dialog-button;
+  margin-right: 30px;
 
   &:before, &:after {
     content: '';
@@ -129,9 +157,15 @@ button.clipboard-copy {
     left: -20px;
     top: 8px;
   }
-  &:before {
-    background: #AAAAAA;
+
+  &:hover:before {
+    background: $dark_grey;
   }
+
+  &:before {
+    background: $grey;
+  }
+
   &:after {
     top: 12px;
     left: -17px;
@@ -143,6 +177,6 @@ button.clipboard-copy {
     @include icon-white;
   }
   &.copied:before {
-    background: #91B748;
+    background: $ctl_light_green;
   }
 }

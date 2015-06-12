@@ -9,3 +9,15 @@
                       title: 'export',
                       class: 'link export',
                       data: { composePath: '/apps/11/compose_yml', downloadPath: 'http://localhost/apps/11/compose_download.yaml' }
+
+%pre.prettyprint
+
+#gistConfirmationDialog
+  %h4 Just so you know, this will generate an anonymous Gist on Github.
+  %p If you have sensitive information in your file, such as passwords, you may not want to do this.
+  %p Would you like to proceed?
+  %ul
+    %li
+      = link_to 'No, Cancel', '#', title: 'No, Cancel', class: 'cancel-export'
+    %li
+      = link_to 'Yes, export to Lorry.io', '/apps/11/compose_export', title: 'Yes, export to Lorry.io', class: 'button-primary gist-confirm', target: '_blank'

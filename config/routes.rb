@@ -51,6 +51,7 @@ Rails.application.routes.draw do
       post 'template'
       get 'compose_yml'
       get 'compose_download'
+      get 'compose_export'
     end
     resources :services, only: [:index, :update, :create, :show, :destroy] do
       get 'journal', on: :member

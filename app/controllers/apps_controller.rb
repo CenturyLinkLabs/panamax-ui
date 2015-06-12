@@ -68,6 +68,14 @@ class AppsController < ApplicationController
     send_data compose_yml_for_app, filename: 'docker-compose.yml', type: 'text/yaml'
   end
 
+  def compose_export
+    app = retrieve_app
+    gist_response = Net::HTTP.post_form(URI("#{PanamaxApi::URL}/apps/#{app.id}/compose_gist.json"), {})
+    gist_links = JSON.parse(gist_response.body)
+    gist_uri = gist_links['links']['gist']['raw_url']
+    redirect_to "https://lorry.io/#/?gist=#{gist_uri}"
+  end
+
   def journal
     app = retrieve_app
     respond_with app.get(:journal, journal_params)
