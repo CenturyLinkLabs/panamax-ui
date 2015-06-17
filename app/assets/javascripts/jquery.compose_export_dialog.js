@@ -53,6 +53,7 @@
     base.initiateDialog = function (contents) {
       return $.PMX.Helpers.dialog(base, $('<pre class="prettyprint lang-yaml">' + contents + '</pre>'), {
         title: 'Docker Compose YAML',
+        draggable: false,
         buttons: [{
           text: 'Save as Local File',
           class: 'button-primary download',

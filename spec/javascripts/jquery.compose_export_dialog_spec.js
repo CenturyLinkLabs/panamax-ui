@@ -48,7 +48,7 @@ describe('$.fn.composeExportDialog', function() {
         autoOpen: false,
         modal: true,
         resizable: false,
-        draggable: true,
+        draggable: false,
         width: 860,
         position: { my: 'top', at: 'top+50', of: window },
         title: 'Docker Compose YAML',
