@@ -6,10 +6,10 @@ deployment:
     #branch: release
     #commands:
       #- ./deploy_pro.sh
-  QA:
-    branch: master
-    commands:
-      - ./bin/deploy_qa.sh: {timeout: 300}
+  #QA:
+    #branch: master
+    #commands:
+      #- ./bin/deploy_qa.sh: {timeout: 300}
   #Feature_Branch:
     #branch: /feature_.*/
     #commands:
