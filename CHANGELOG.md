@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+0.2.20 - 2015-6-18
+-------------------
+### Added
+- Contributor code of conduct (#525)
+- Ability to view compose representation of a Panamax application (#526, #527, #528, #531)
+- Links to imagelayers from search results (#532)
+
 0.2.19 - 2015-5-29
 -------------------
 ### Added
