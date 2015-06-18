@@ -11,7 +11,7 @@ describe 'managing images' do
     it 'can visit the image layers page for an image' do
       visit '/images'
 
-      expect(page).to have_link 'Inspect socialize_api:latest with ImageLayers.io', href: 'https://ImageLayers.io?images=socialize_api:latest'
+      expect(page).to have_link 'Inspect socialize_api:latest with imagelayers.io', href: 'https://imagelayers.io/?images=socialize_api'
     end
   end
 end

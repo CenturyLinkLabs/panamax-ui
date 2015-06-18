@@ -12,7 +12,8 @@ describe ImagePresenter do
       status_label: 'Local',
       badge_class: 'local',
       star_count: 123,
-      docker_index_url: 'index.docker/boom/shaka'
+      docker_index_url: "#{DOCKER_INDEX_BASE_URL}boom/shaka",
+      imagelayers_url: "#{IMAGELAYERS_URL}?images=boom/shaka"
     )
   end
 
@@ -58,7 +59,13 @@ describe ImagePresenter do
 
   describe '#docker_index_url' do
     it 'exposes the docker index url' do
-      expect(subject.docker_index_url).to eq 'index.docker/boom/shaka'
+      expect(subject.docker_index_url).to eq "#{DOCKER_INDEX_BASE_URL}boom/shaka"
+    end
+  end
+
+  describe '#imagelayers_url' do
+    it 'exposes the imagelayers url' do
+      expect(subject.imagelayers_url).to eq "#{IMAGELAYERS_URL}?images=boom/shaka"
     end
   end
 

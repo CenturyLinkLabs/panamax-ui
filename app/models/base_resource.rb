@@ -3,6 +3,7 @@ require 'active_resource'
 class BaseResource < ActiveResource::Base
 
   DOCKER_INDEX_BASE_URL = 'https://registry.hub.docker.com/'
+  IMAGELAYERS_BASE_URL = 'https://imagelayers.io/'
 
   self.site = PanamaxApi::URL
 

@@ -59,7 +59,8 @@ describe RemoteImage do
         'short_description' => 'this thing goes boom shaka laka',
         'status_label' => 'Repository',
         'badge_class' => 'repository',
-        'docker_index_url' => "#{DOCKER_INDEX_BASE_URL}u/boom/shaka"
+        'docker_index_url' => "#{DOCKER_INDEX_BASE_URL}u/boom/shaka",
+        'imagelayers_url' => "#{IMAGELAYERS_URL}?images=boom/shaka"
       )
       expect(subject.as_json).to eq expected
     end

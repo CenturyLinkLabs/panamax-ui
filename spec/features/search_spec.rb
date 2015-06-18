@@ -20,7 +20,8 @@ describe 'searching for templates and images' do
       expect(page).to have_title 'Panamax > Search Results'
 
       # remote image result
-      expect(page.find_link('tutum/wordpress')['href']).to eq "#{DOCKER_INDEX_BASE_URL}u/tutum/wordpress"
+      expect(page.find_link('Docker Hub')['href']).to eq "#{DOCKER_INDEX_BASE_URL}u/tutum/wordpress"
+      expect(page.find_link('imagelayers.io')['href']).to eq "#{IMAGELAYERS_URL}?images=tutum/wordpress"
       expect(page).to have_content 'Wordpress Docker image - listens in port 80.'
       expect(page).to have_css '.star-count', text: '7'
 

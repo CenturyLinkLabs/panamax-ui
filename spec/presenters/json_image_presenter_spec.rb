@@ -43,6 +43,12 @@ describe JsonImagePresenter do
     end
   end
 
+  describe '#imagelayers_url' do
+    it 'exposes the handlebar template tag for imagelayers url' do
+      expect(subject.imagelayers_url).to eq '{{imagelayers_url}}'
+    end
+  end
+
   describe '#badge_class' do
     it 'exposes handlebar template for badge_class' do
       expect(subject.badge_class).to eq '{{badge_class}}'

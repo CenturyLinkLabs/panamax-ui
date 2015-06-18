@@ -27,6 +27,10 @@ class JsonImagePresenter
     '{{docker_index_url}}'
   end
 
+  def imagelayers_url
+    '{{imagelayers_url}}'
+  end
+
   def badge_class
     '{{badge_class}}'
   end

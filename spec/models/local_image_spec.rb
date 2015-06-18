@@ -52,9 +52,9 @@ describe LocalImage do
     end
   end
 
-  describe '#image_layers_url' do
-    it 'concatenates the image layers URL with the image name' do
-      expect(subject.image_layers_url).to eq 'https://ImageLayers.io?images=blah/not-panamax'
+  describe '#imagelayers_url' do
+    it 'concatenates the imagelayers URL with the image name' do
+      expect(subject.imagelayers_url).to eq "#{IMAGELAYERS_URL}?images=blah/not-panamax"
     end
   end
 
@@ -124,7 +124,8 @@ describe LocalImage do
         'short_description' => 'this thing goes boom shaka laka',
         'status_label' => 'Local',
         'badge_class' => 'local',
-        'docker_index_url' => nil
+        'docker_index_url' => nil,
+        'imagelayers_url' => "#{IMAGELAYERS_URL}?images=blah/not-panamax"
       )
       expect(subject.as_json).to eq expected
     end

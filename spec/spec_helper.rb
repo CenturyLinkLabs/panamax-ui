@@ -23,6 +23,7 @@ if ENV['CIRCLE_ARTIFACTS'] || ENV['COVERAGE'].present?
 end
 
 DOCKER_INDEX_BASE_URL = 'https://registry.hub.docker.com/'
+IMAGELAYERS_URL = 'https://imagelayers.io/'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
