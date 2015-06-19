@@ -14,4 +14,22 @@
       .actions
         = render 'application_button_menu', app: app
 
-  = link_to 'Create a New Application', root_path, class: 'button-add-positive'
+  .select-target-container
+    .select-target{ data: { toggle: { class: 'expanded' } } }
+      %header
+        Create a New Application
+      .target-options
+        %ul
+          %li
+            = link_to 'From a Template or Image', new_search_path, data: { passthru: true }
+          %li
+            = link_to 'From a Docker Compose YAML', '#', class: 'compose-import'
+
+  #app-from-compose-modal
+    %p If you have an existing YAML you'd like to run as a Panamax application, you can upload a docker-compose.yml
+    %h4  Select your local docker-compose.yml
+    = form_tag({ action: :create }, multipart: true) do
+      = label_tag 'app_compose_yaml_file', 'Browse local files', class: 'button-secondary'
+      %span.import-file-name
+      = file_field_tag 'app[compose_yaml_file]', accept: ".yaml,.yml,text/yaml,text/x-yaml,application/yaml,application/x-yaml"
+

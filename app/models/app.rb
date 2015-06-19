@@ -4,8 +4,8 @@ class App < BaseResource
   include MarkdownRenderable
   include Deployable
 
-  before_create :source_image,
-    unless: -> { self.attributes[:template_id].present? }
+  before_create :source_image
+  before_create :resolve_compose_yaml
 
   has_many :services
 
@@ -80,8 +80,15 @@ class App < BaseResource
     end
 
     def source_image
-      self.attributes[:image] =
-        BaseImage.source(self.attributes[:image], self.attributes.delete(:tag))
+      if self.attributes[:template_id].blank? && self.attributes[:compose_yaml_file].blank?
+        self.attributes[:image] = BaseImage.source(self.attributes[:image], self.attributes.delete(:tag))
+      end
+    end
+
+    def resolve_compose_yaml
+      if self.attributes[:compose_yaml_file].present?
+        self.attributes[:compose_yaml] = self.attributes[:compose_yaml_file].read
+      end
     end
   end
 end

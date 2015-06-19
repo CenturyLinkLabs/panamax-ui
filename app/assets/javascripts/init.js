@@ -31,6 +31,8 @@
 
     $('#manage_flow section.applications').applicationActions();
 
+    $('#manage_flow section.applications').composeImportDialog();
+
     $('#manage_flow section.deployment-details').composeExportDialog();
 
     $('.no-event-propagation').on('click', function (e) { e.stopPropagation(); });

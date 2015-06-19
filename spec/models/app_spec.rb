@@ -145,4 +145,24 @@ describe App do
       end
     end
   end
+
+  describe '#resolve_compose_yaml' do
+    let(:file) { StringIO.new('test') }
+
+    context 'when the compose_yaml_file attribute is present' do
+      before { subject.compose_yaml_file = file }
+
+      it 'sets the compose_yaml attribute with the contents of the compose_yaml_file attribute' do
+        subject.send(:resolve_compose_yaml)
+        expect(subject.compose_yaml).to eq('test')
+      end
+    end
+
+    context 'when the compose_yaml_file attribute is blank' do
+      it 'the compose_yaml attribute is blank' do
+        subject.send(:resolve_compose_yaml)
+        expect(subject.attributes[:compose_yaml]).to be_nil
+      end
+    end
+  end
 end

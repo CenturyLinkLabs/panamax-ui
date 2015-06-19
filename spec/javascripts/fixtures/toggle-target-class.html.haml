@@ -1,3 +1,5 @@
 .target-container
-%a.toggler{data: { toggle: { target: '.target-container', class: 'collapsed' }}}
-%a.toggler-no-target{data: { toggle: { class: 'collapsed' }}}
+.toggler{data: { toggle: { target: '.target-container', class: 'collapsed' }}}
+  %a.no-passthru{ href: '#' }
+  %a.passthru{ href: '#', 'data-passthru' => 'true' }
+.toggler-no-target{data: { toggle: { class: 'collapsed' }}}

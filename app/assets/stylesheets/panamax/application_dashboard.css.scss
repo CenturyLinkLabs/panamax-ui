@@ -1,6 +1,7 @@
 @import 'ctl_base_ui/colors';
 @import 'ctl_base_ui/mixins';
 @import 'ctl_base_ui/icons';
+@import 'ctl_base_ui/typography';
 @import 'panamax/extensions';
 
 h1 + header {
@@ -63,6 +64,89 @@ section.applications {
     width: 420px;
     padding-top: 20px;
     position: relative;
+  }
+
+  .select-target-container {
+    width: 255px;
+    margin-top: 10px;
+  }
+
+  .select-target {
+    @include border-radius(0.3em);
+    @include border-box;
+    width: 255px;
+    position: absolute;
+    margin: 10px 0 0;
+    background: $orange;
+    overflow:hidden;
+    border-radius: 0.3em;
+    padding: 10px 30px 11px;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+
+    &.expanded {
+      header:after {
+        @extend .icon-thick-arrow-down;
+        content: '';
+        position: absolute;
+        right: 10px;
+        top: 12px;
+        display: block;
+        @include icon-white;
+        width: 10px;
+        height: 10px;
+      }
+
+      .target-options {
+        padding-top: 20px;
+        height: 50px;
+      }
+    }
+
+    header {
+      color: $white;
+      font-size: 14px;
+
+      &:after {
+        content: '';
+        position: absolute;
+        right: 10px;
+        top: 12px;
+        display: block;
+        @extend .icon-thick-arrow-right;
+        @include icon-white;
+        width: 10px;
+        height: 10px;
+      }
+    }
+
+    a {
+      color: $white;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: normal;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .target-options {
+      @include transition('height 0.5s, padding 0.5s');
+      height: 0;
+      text-align: left;
+      overflow: hidden;
+
+      li {
+        padding: 5px 0;
+      }
+    }
+  }
+
+  .select-target.disabled {
+    cursor: not-allowed;
   }
 }
 
@@ -182,6 +266,19 @@ a.button-add-positive {
   }
 }
 
+#app-from-compose-modal {
+  display: none;
+  overflow: auto;
+
+  input[type=file] {
+    position: fixed;
+    top: -1000px;
+  }
+
+  .import-file-name {
+    font-family: $monospace_font_family;
+  }
+}
 
 #gistConfirmationDialog {
   display: none;
