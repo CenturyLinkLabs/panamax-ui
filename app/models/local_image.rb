@@ -13,6 +13,11 @@ class LocalImage < BaseImage
     tags.first
   end
 
+  def imagelayers_url
+    image_name = self.tags.first.split(':').first
+    "#{IMAGELAYERS_BASE_URL}?images=#{image_name}"
+  end
+
   def self.batch_destroy(image_ids)
     count = 0
     failed = image_ids.each_with_object(Set.new) do |id, fail_list|

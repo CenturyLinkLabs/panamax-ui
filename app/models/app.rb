@@ -28,7 +28,17 @@ class App < BaseResource
   end
 
   def service_count_label
-    'Service'.pluralize(services.length)
+    'service'.pluralize(services.length)
+  end
+
+  def imagelayers_url
+    service_string = ''
+
+    services.each do |service|
+      service_string << "#{service.from},"
+    end
+
+    "#{IMAGELAYERS_BASE_URL}?images=#{service_string.chop}"
   end
 
   def find_service_by_name(name)

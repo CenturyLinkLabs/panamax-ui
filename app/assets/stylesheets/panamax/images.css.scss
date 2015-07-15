@@ -6,9 +6,7 @@
   h1 {
     margin-bottom: 0;
   }
-}
 
-#images_flow {
   .select-all {
     margin-top: 30px;
     float: right;
@@ -62,27 +60,45 @@
   }
 }
 
-ul.images {
-  clear: both;
+.imagelayers-link {
+  background: image-url('icon_image_layers.svg') -10px -17px no-repeat;
+  background-size: 40px 60px;
+  float: left;
+  width: 20px;
+  height: 20px;
+  @include hide-text;
+
+  &:hover {
+    background-position: -10px 3px;
+  }
+}
+.imagelayers-link-with-text {
+  position: relative;
+  padding-left: 26px;
+  &:after {
+    content: '';
+    height: 20px;
+    width: 20px;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: image-url('icon_image_layers.svg') 0 -19px no-repeat;
+    background-size: 20px 60px;
+  }
+
+  &:hover:after {
+    background-position: 0 1px;
+  }
 }
 
-ul.images li {
-  border-bottom: $light_grey 1px solid;
-  overflow: auto;
-  padding-bottom: 22px;
-  padding-top: 22px;
-
-  .imagelayers-link {
-    background: image-url('icon_image_layers.svg') -10px -17px;
-    background-size: 40px 40px;
-    float: left;
-    width: 20px;
-    height: 20px;
-    @include hide-text;
-
-    &:hover {
-      background-position: -10px 3px;
-    }
+ul.images {
+  clear: both;
+  li {
+    border-bottom: $light_grey 1px solid;
+    overflow: auto;
+    padding-bottom: 22px;
+    padding-top: 22px;
   }
 
   h3 {

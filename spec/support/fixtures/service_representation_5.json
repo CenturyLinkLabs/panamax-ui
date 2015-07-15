@@ -1,6 +1,7 @@
 {
   "id":"5",
   "name":"bark",
+  "from": "foo/bark:latest",
   "categories":[{"name":"bar"}],
   "sub_state": null,
   "ports": []

@@ -52,18 +52,6 @@ describe LocalImage do
     end
   end
 
-  describe '#imagelayers_url' do
-    it 'concatenates the imagelayers URL with the image name' do
-      expect(subject.imagelayers_url).to eq "#{IMAGELAYERS_URL}?images=blah/not-panamax"
-    end
-  end
-
-  describe '#docker_index_url' do
-    it 'is nil' do
-      expect(subject.docker_index_url).to be_nil
-    end
-  end
-
   describe '.batch_destroy' do
     describe 'when successful' do
       let(:fake_image) { double(:fake_image, id: 1, destroy: true) }
@@ -123,9 +111,7 @@ describe LocalImage do
       expected = attributes.merge(
         'short_description' => 'this thing goes boom shaka laka',
         'status_label' => 'Local',
-        'badge_class' => 'local',
-        'docker_index_url' => nil,
-        'imagelayers_url' => "#{IMAGELAYERS_URL}?images=blah/not-panamax"
+        'badge_class' => 'local'
       )
       expect(subject.as_json).to eq expected
     end

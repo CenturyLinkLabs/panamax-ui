@@ -32,22 +32,6 @@ class BaseImage < BaseResource
     status_label.downcase
   end
 
-  def docker_index_url
-    if remote?
-      path_part = (source =~ /\//) ? "u/#{source}" : "_/#{source}"
-      "#{DOCKER_INDEX_BASE_URL}#{path_part}"
-    end
-  end
-
-  def imagelayers_url
-    if remote?
-      "#{IMAGELAYERS_BASE_URL}?images=#{source}"
-    else
-      image_name = self.tags.first.split(':').first
-      "#{IMAGELAYERS_BASE_URL}?images=#{image_name}"
-    end
-  end
-
   def short_description
     truncate(description, length: 165, escape: false, separator: ' ')
   end
@@ -57,8 +41,6 @@ class BaseImage < BaseResource
       .merge(
         'status_label' => status_label,
         'short_description' => short_description,
-        'docker_index_url' => docker_index_url,
-        'imagelayers_url' => imagelayers_url,
         'badge_class' => badge_class
       )
   end

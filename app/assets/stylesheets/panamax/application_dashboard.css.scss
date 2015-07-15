@@ -19,31 +19,21 @@ section.applications {
     border-bottom: 1px solid $light_grey;
     width: 100%;
     height: 75px;
-    color: $grey;
-    &:hover {
-      color: $dark_grey;
-
-      .actions{
-        div {
-          display: block;
-        }
-      }
-    }
+    color: $dark_grey;
 
     > div {
       display: table-cell;
     }
   }
+  .name, .info {
+    vertical-align: middle;
+  }
 
   .name {
     font-size: 0.8em;
-    vertical-align: middle;
-
-    * {
-      vertical-align: middle;
-    }
 
     a {
+      vertical-align: middle;
       font-size: 2.2em;
       text-decoration: none;
 
@@ -52,10 +42,15 @@ section.applications {
         color: $blue_grey_dark;
       }
     }
+  }
 
-    b {
-      font-size: 2.2em;
-      margin: 0 5px 0 20px;
+  .info {
+    > a {
+      margin: 0 8px 0 10px;
+    }
+    span {
+      display: inline-block;
+      margin-top: 3px;
     }
   }
 
@@ -74,10 +69,13 @@ header.application {
 
   h1.breadcrumbs {
     display: inline-block;
-    width: 900px;
     border-bottom: none;
     margin-bottom: 0;
     padding-bottom: 0;
+    + .imagelayers-link {
+      display: inline-block;
+      float: none;
+    }
   }
 }
 

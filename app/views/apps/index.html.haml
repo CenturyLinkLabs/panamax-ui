@@ -9,8 +9,13 @@
     %div.application
       .name
         = link_to app.name, app_path(app.id)
-        %b= app.services.length
-        %span= app.service_count_label
+      .info
+        = link_to app.name, app.imagelayers_url, target: '_blank', title: 'View this application on imagelayers.io', class: 'imagelayers-link'
+        %span
+          %b
+            = app.services.length
+          = app.service_count_label
+
       .actions
         = render 'application_button_menu', app: app
 

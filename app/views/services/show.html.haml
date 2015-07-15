@@ -42,6 +42,7 @@
     .documentation
       = link_to('Documentation', '#', { class: 'instructions-dialog', data: {'doc-url'=> documentation_app_path(@app.id)} })  if @app.documentation_to_html.present?
       = link_to 'Find on Docker Hub', @service.docker_search_url, { target: 'blank', data: { 'tracking-method' => 'click', 'tracking-action' => 'Find on Docker Hub', 'tracking-category' => 'Outbound Link', 'tracking-label' => @service.docker_search_url }}
+      = link_to "View #{@service.base_image_name} on imagelayers.io", @service.imagelayers_url, title: "View #{@service.base_image_name} on imagelayers.io", class: 'imagelayers-link-with-text', target: '_blank', data: { 'tracking-method' => 'click', 'tracking-action' => 'View on Imagelayers', 'tracking-category' => 'Outbound Link', 'tracking-label' => @service.imagelayers_url }
 
   = form_for [@app, @service], html: { class: 'service-edit-form' } do |f|
     = render 'shared/errors', errors: f.object.errors
