@@ -1,11 +1,27 @@
 %section.applications
 
-  = link_to 'Create a New Application', root_path, class: 'button-add-positive compose-import'
+  = link_to 'From a Docker Compose YAML', '#', class: 'compose-import'
 
   #app-from-compose-modal
-    %p If you have an existing YAML you'd like to run as a Panamax application, you can upload a docker-compose.yml
-    %h4  Select your local docker-compose.yml
-    = form_tag '/applications', multipart: true do
-      = label_tag 'app_compose_yaml_file', 'Browse local files', class: 'button-secondary'
-      %span.import-file-name
-      = file_field_tag 'app[compose_yaml_file]', accept: ".yaml,.yml,text/yaml,text/x-yaml,application/yaml,application/x-yaml"
+    #tabs
+      %ul
+        %li
+          %a{ href: '#import-upload' } Import from File
+        %li
+          %a{ href: '#import-uri' } Import from URI
+      %p
+        If you have an existing YAML you'd like to run as a Panamax application, you can upload a docker-compose.yml
+        or import one from a URI
+      #import-upload
+        %h4
+          Select your local docker-compose.yml
+        = form_tag '/apps', multipart: true, id: 'upload-form' do
+          = label_tag 'app_compose_yaml_file', 'Browse local files', class: 'button-secondary'
+          %span.import-file-name
+          = file_field_tag 'app[compose_yaml_file]', accept: ".yaml,.yml,text/yaml,text/x-yaml,application/yaml,application/x-yaml"
+      #import-uri
+        %h4
+          Enter the URI to your docker-compose.yml
+        = form_tag '/apps', method: :post, id: 'uri-form' do
+          = label_tag 'app_compose_yaml_uri', 'URI:'
+          = text_field_tag 'app[compose_yaml_uri]'

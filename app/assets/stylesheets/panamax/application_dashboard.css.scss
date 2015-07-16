@@ -268,6 +268,11 @@ a.button-add-positive {
   display: none;
   overflow: auto;
 
+  &.ui-dialog-content {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   input[type=file] {
     position: fixed;
     top: -1000px;
@@ -275,6 +280,45 @@ a.button-add-positive {
 
   .import-file-name {
     font-family: $monospace_font_family;
+  }
+
+  #app_compose_yaml_uri {
+    width: 760px;
+  }
+  
+  #tabs {
+    ul {
+      border-bottom: 1px solid $medium_grey;
+      padding: 20px 20px 0;
+    }
+
+    li {
+      display: inline;
+      list-style-type: none;
+
+      &.ui-state-active {
+        a {
+          background-color: white;
+          color: $blue_grey;
+        }
+      }
+
+      a {
+        display: inline-block;
+        background-color: $medium_grey;
+        color: $blue_grey_dark;
+        padding: .9em 15px;
+        text-decoration: none;
+        border-top: 1px solid $medium_grey;
+        border-right: 1px solid $medium_grey;
+        border-left: 1px solid $medium_grey;
+        margin-right: 15px;
+      }
+    }
+
+    div, p {
+      padding: 15px;
+    }
   }
 }
 

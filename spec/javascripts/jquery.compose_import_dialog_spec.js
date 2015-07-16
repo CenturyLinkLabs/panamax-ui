@@ -13,15 +13,20 @@ describe('$.fn.composeImportDialog', function() {
   });
 
   describe('clicking import compose yaml link', function() {
-    it('prevents default behavior', function () {
-      var clickEvent = $.Event('click');
+    var tabSpy,
+      clickEvent;
+
+    beforeEach(function () {
+      tabSpy = spyOn($.fn, 'tabs');
+      clickEvent = $.Event('click');
       importLink.trigger(clickEvent);
+    });
+
+    it('prevents default behavior', function () {
       expect(clickEvent.isDefaultPrevented()).toBeTruthy();
     });
 
     it('initializes content dialog', function() {
-      var clickEvent = $.Event('click');
-      importLink.trigger(clickEvent);
       expect($('#app-from-compose-modal').dialog).toHaveBeenCalledWith({
         autoOpen: false,
         modal: true,
@@ -40,33 +45,68 @@ describe('$.fn.composeImportDialog', function() {
         ]
       });
     });
+
+    it('initializes the dialog tabs', function () {
+      expect(tabSpy).toHaveBeenCalled();
+      expect(tabSpy).toHaveBeenCalledWith({
+        heightStyle: 'fill'
+      });
+    });
   });
 
- describe('when submitting the form', function () {
-   var runButtonClickEvent;
+  describe('when submitting the form', function () {
+    var runButtonClickEvent,
+      formSpy;
 
-   beforeEach(function () {
-     var clickEvent = $.Event('click');
+    beforeEach(function () {
+      var clickEvent = $.Event('click');
 
-     importLink.trigger(clickEvent);
-     runButtonClickEvent = $.Event('click');
+      importLink.trigger(clickEvent);
+      runButtonClickEvent = $.Event('click');
 
-     $('form').each(function (i, formObj) {
-       spyOn(formObj, 'submit');
-     });
-     $('button.button-primary').trigger(runButtonClickEvent);
+      formSpy = spyOn($.fn, 'submit');
     });
 
-    it('prevents default behavior', function () {
-      expect(runButtonClickEvent.isDefaultPrevented()).toBeTruthy();
+    describe('when the upload tab is active', function () {
+      beforeEach(function () {
+        $('#app-from-compose-modal #tabs').tabs( 'option', 'active', 0);
+        $('button.button-primary').trigger(runButtonClickEvent);
+      });
+
+      it('submits the upload form', function () {
+        expect(formSpy).toHaveBeenCalled();
+        expect(formSpy.mostRecentCall.object.selector).toEqual('#app-from-compose-modal #upload-form');
+      });
     });
 
-    it('changes the text of the dialog button to \'Running...\'', function () {
-      expect($('button.button-primary span').text()).toEqual('Running...');
+    describe('when the uri tab is active', function () {
+      beforeEach(function () {
+        $('#app-from-compose-modal #tabs').tabs( 'option', 'active', 1);
+        $('button.button-primary').trigger(runButtonClickEvent);
+      });
+
+      it('submits the upload form', function () {
+        expect(formSpy).toHaveBeenCalled();
+        expect(formSpy.mostRecentCall.object.selector).toEqual('#app-from-compose-modal #uri-form');
+      });
     });
 
-    it('disables the dialog button', function () {
-      expect($('button.button-primary').closest('button').attr('disabled')).toEqual('disabled');
+    describe('always', function () {
+      beforeEach(function () {
+        $('button.button-primary').trigger(runButtonClickEvent);
+      });
+
+      it('prevents default behavior', function () {
+        expect(runButtonClickEvent.isDefaultPrevented()).toBeTruthy();
+      });
+
+      it('changes the text of the dialog button to \'Running...\'', function () {
+        expect($('button.button-primary span').text()).toEqual('Running...');
+      });
+
+      it('disables the dialog button', function () {
+        expect($('button.button-primary').closest('button').attr('disabled')).toEqual('disabled');
+      });
     });
   });
 

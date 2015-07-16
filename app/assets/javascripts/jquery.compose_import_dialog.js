@@ -1,7 +1,10 @@
+//= require jquery.ui.tabs
+
 (function($) {
   $.PMX.ApplicationComposeImporter = function (el, options) {
     var base = this,
-      composeDialog;
+      composeDialog,
+      importTabs;
 
     base.$el = $(el);
 
@@ -35,16 +38,25 @@
         }
       );
       composeDialog.dialog('open');
+      importTabs = $(base.options.composeImportDialogSelector).find('#tabs').tabs(
+        {
+          heightStyle: 'fill'
+        }
+      );
     };
 
     base.updateFilename = function () {
       var filename = $(base.options.composeImportDialogSelector).find($('input[type=file]')).val();
+      filename = filename.replace('C:\\fakepath\\', '');
       $(base.options.composeImportDialogSelector).find(base.options.composeImportFilenameSelector).text(filename);
     };
 
     base.importFile = function (e) {
+      var activeTabIndex = importTabs.tabs( 'option', 'active' ),
+        formId = activeTabIndex === 0 ? '#upload-form' : '#uri-form';
+
       e.preventDefault();
-      $(base.options.composeImportDialogSelector).find('form').submit();
+      $(base.options.composeImportDialogSelector).find(formId).submit();
       $(e.currentTarget).attr('disabled', 'disabled');
       $(e.currentTarget).find('span').text('Running...');
     };

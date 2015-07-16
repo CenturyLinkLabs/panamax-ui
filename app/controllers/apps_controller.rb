@@ -4,6 +4,7 @@ class AppsController < ApplicationController
   protect_from_forgery except: :template
 
   def create
+    set_compose_yaml_file_param
     if @app = App.create(params[:app])
       flash[:success] = I18n.t('apps.create.success')
       redirect_to app_url(@app.to_param)
@@ -101,5 +102,15 @@ class AppsController < ApplicationController
 
   def journal_params
     params.permit(:cursor)
+  end
+
+  def set_compose_yaml_file_param
+    params[:app][:compose_yaml_file] = fetch_compose_yaml_io if params[:app][:compose_yaml_uri].present?
+  end
+
+  def fetch_compose_yaml_io
+    compose_yaml_uri = params[:app].delete(:compose_yaml_uri)
+    yaml = Net::HTTP.get(URI(compose_yaml_uri))
+    StringIO.new(yaml)
   end
 end

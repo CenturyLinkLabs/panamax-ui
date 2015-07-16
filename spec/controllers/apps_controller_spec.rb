@@ -61,6 +61,25 @@ describe AppsController do
         expect(response).to render_template(:show)
       end
     end
+
+    context 'when a compose_yaml_uri is present in the post params (before_filter)' do
+      let(:compose_yaml_uri) { 'http://www.example.com' }
+      let(:compose_yaml_contents) { '---\n' }
+
+      before do
+        allow(Net::HTTP).to receive(:get).with(URI(compose_yaml_uri)).and_return(compose_yaml_contents)
+      end
+
+      it 'gets the content of the uri' do
+        expect(Net::HTTP).to receive(:get).with(URI(compose_yaml_uri))
+        post :create, app: { compose_yaml_uri: compose_yaml_uri }
+      end
+
+      it 'sets the compose_yaml_file param with a StringIO of the compose yaml contents' do
+        post :create, app: { compose_yaml_uri: compose_yaml_uri }
+        expect(controller.params[:app][:compose_yaml_file].read).to eq(StringIO.new(compose_yaml_contents).read)
+      end
+    end
   end
 
   describe 'PUT #update' do
