@@ -203,6 +203,29 @@
           height: 20px;
         }
       }
+      .imagelayers-action {
+        position: relative;
+        text-indent: -9999px;
+        color: transparent;
+        float: left;
+        height: 40px;
+        width: 20px;
+        &:after {
+          content: '';
+          height: 18px;
+          width: 20px;
+          display: block;
+          position: absolute;
+          top: 13px;
+          left: -1px;
+          background: image-url('icon_image_layers.svg') -2px -34px no-repeat;
+          background-size: 20px 50px;
+        }
+
+        &:hover:after {
+          background-position: -2px 1px;
+        }
+      }
     }
   }
 }
@@ -354,6 +377,10 @@ section.deployment-details {
     span.application-access {
       position: relative;
       text-decoration: underline;
+      display: inline-block;
+      padding-right: 10px;
+      border-right: 1px solid #aaa;
+      margin-right: 8px;
 
       &:hover {
         cursor: pointer;
@@ -544,7 +571,7 @@ section.application-services {
                 background-color: $white;
                 color: $blue_grey_dark;
                 > a {
-                  width: 195px;
+                  width: 167px;
                 }
                 .actions {
                   display: inline-block;

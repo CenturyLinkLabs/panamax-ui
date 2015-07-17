@@ -42,6 +42,12 @@ describe RemoteImage do
     end
   end
 
+  describe '#imagelayers_url' do
+    it 'concatenates the imagelayers URL with the image name' do
+      expect(subject.imagelayers_url).to eq "#{IMAGELAYERS_URL}?images=boom/shaka"
+    end
+  end
+
   describe '#status_label' do
     it 'returns the registry name' do
       subject.registry_name = 'private reg'

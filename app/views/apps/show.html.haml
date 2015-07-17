@@ -11,8 +11,8 @@
 %header.application
   = render '/shared/breadcrumbs', breadcrumbs: ['Manage',
                                                 link_to('Dashboard', dashboard_index_path),
-                                                link_to('Applications', apps_path), yield(:title)]
-
+                                                link_to('Applications', apps_path),
+                                                yield(:title)]
 %section.deployment-details
   %ul.deployment-env
     %li
@@ -32,6 +32,7 @@
             %p
               = succeed '.' do
                 %a{href:'https://github.com/CenturyLinkLabs/panamax-ui/wiki/How-To%3A-Port-Forwarding-on-VirtualBox'}Go to our wiki for instructions
+      = link_to("View #{@app.name} on imagelayers.io", @app.imagelayers_url, title: "View #{@app.name} on imagelayers.io", target: '_blank', class:'imagelayers-link-with-text')
 
   = render 'application_button_menu', app: @app
 

@@ -6,7 +6,7 @@
     %h3
       - if remote
         = link_to presenter.title, presenter.docker_index_url, target: '_blank', title: 'View details on the Docker Hub', class: 'docker-hub'
-        = link_to presenter.title, presenter.imagelayers_url, target: '_blank', title: 'Inspect this image on imagelayers.io', class: 'imagelayers'
+        = link_to presenter.title, presenter.imagelayers_url, target: '_blank', title: 'Inspect this image on imagelayers.io', class: 'imagelayers-link'
       - else
         = presenter.title
     %p= presenter.short_description

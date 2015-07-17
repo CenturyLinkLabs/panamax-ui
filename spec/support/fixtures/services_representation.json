@@ -2,6 +2,7 @@
   {
     "id": 1,
     "name": "tutum_wordpress_1",
+    "from": "tutum/wordpress",
     "errors": null,
     "categories": [
       {

@@ -1,6 +1,6 @@
 class ServiceRowPresenter
 
-  delegate :id, :icon, :name, :status, to: :@service
+  delegate :id, :icon, :name, :status, :imagelayers_url, to: :@service
 
   def initialize(service)
     @service = service

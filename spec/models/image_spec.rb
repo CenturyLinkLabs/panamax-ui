@@ -66,16 +66,6 @@ describe Image do
     end
   end
 
-  describe '#docker_index_url' do
-    before do
-      subject.source = 'ctl/booyah:latest'
-    end
-
-    it 'returns the url' do
-      expect(subject.docker_index_url).to eq 'https://registry.hub.docker.com/u/ctl/booyah'
-    end
-  end
-
   describe '#base_image_name' do
     let(:docker_image_name) { double(:docker_image_name, base_image: 'fooyah') }
 

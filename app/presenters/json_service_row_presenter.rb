@@ -11,6 +11,10 @@ class JsonServiceRowPresenter
     '{{service_url}}'
   end
 
+  def imagelayers_url
+    '{{imagelayers_url}}'
+  end
+
   def status
     '{{status}}'
   end

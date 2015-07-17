@@ -5,6 +5,11 @@
             presenter.service_url,
             title: 'service-details'
   .actions
+    = link_to presenter.name,
+              presenter.imagelayers_url,
+              class: 'imagelayers-action',
+              target: '_blank',
+              title: 'Inspect this application on imagelayers.io'
     = link_to 'view',
               presenter.service_url,
               class: 'edit-action',

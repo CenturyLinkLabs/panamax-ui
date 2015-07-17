@@ -121,6 +121,10 @@ class Service < BaseResource
     "#{DOCKER_INDEX_BASE_URL}search?q=#{self.base_image_name}"
   end
 
+  def imagelayers_url
+    "#{IMAGELAYERS_BASE_URL}images?=#{self.base_image_name}:#{self.image_tag_name}"
+  end
+
   def as_json(options={})
     super.merge('status' => status)
   end
