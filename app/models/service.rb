@@ -122,7 +122,9 @@ class Service < BaseResource
   end
 
   def imagelayers_url
-    "#{IMAGELAYERS_BASE_URL}images?=#{self.base_image_name}:#{self.image_tag_name}"
+    url = "#{IMAGELAYERS_BASE_URL}?images=#{self.base_image_name}"
+    url += ":#{self.image_tag_name}" if self.image_tag_name
+    url
   end
 
   def as_json(options={})

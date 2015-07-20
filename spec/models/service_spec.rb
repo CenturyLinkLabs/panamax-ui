@@ -420,6 +420,22 @@ describe Service do
     end
   end
 
+  describe '#imagelayers_url' do
+    context 'an image tag is present' do
+      it 'composes an imagelayers URL' do
+        subject.from = 'supercool/repository:latest'
+        expect(subject.imagelayers_url).to eq "#{IMAGELAYERS_URL}?images=supercool/repository:latest"
+      end
+    end
+
+    context 'an image tag is not present' do
+      it 'composes an imagelayers URL' do
+        subject.from = 'supercool/repository'
+        expect(subject.imagelayers_url).to eq "#{IMAGELAYERS_URL}?images=supercool/repository"
+      end
+    end
+  end
+
   describe '#category_priority' do
     it 'returns the category with the lowest id' do
       result = described_class.build_from_response(fake_json_response)
