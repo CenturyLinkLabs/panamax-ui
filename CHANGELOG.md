@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+0.2.21 - 2015-6-21
+-------------------
+### Added
+- Ability to run a remote Docker Compose YAML as a Panamax app (#541)
+- Adding imagelayers links to all application and service views (#540)
+- Create PMX app from docker-compose.yml upload (#538)
+
 0.2.20 - 2015-6-18
 -------------------
 ### Added
