@@ -64,6 +64,14 @@ body#search_flow main:after {
           margin-left: 12px;
           padding-left: 12px;
           line-height: 27px;
+          a {
+            &:first-child {
+              margin-right: 14px;
+            }
+            &:hover {
+              color: $dark_blue
+            }
+          }
         }
       }
     }
@@ -189,7 +197,7 @@ body#search_flow main:after {
     width: 465px;
     @include border-box;
     height: 90px;
-    overflow: auto;
+    overflow: hidden;
 
     h3 {
       margin-bottom: 0;
@@ -204,7 +212,7 @@ body#search_flow main:after {
       line-height: 1.2;
     }
     .imagelayers-link {
-      margin-right: 6px;
+      margin-left: 4px;
     }
   }
 

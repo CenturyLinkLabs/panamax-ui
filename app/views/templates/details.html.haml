@@ -8,8 +8,8 @@
           %img{src: image.icon}
         = image.source
         .template-image-external
-          = link_to 'View on Docker Hub', image.docker_index_url, { target: 'blank' }
-
+          = link_to 'View on Docker Hub', image.docker_index_url, target: '_blank'
+          = link_to 'Inspect on imagelayers.io', "#{@template.imagelayers_url}&lock=#{image.source}", class: 'imagelayers-link-with-text', target: '_blank'
 - if @template.documentation
   %h2 Documentation
 

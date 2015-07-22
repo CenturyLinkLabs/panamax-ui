@@ -33,7 +33,39 @@
       "type": "wordpress",
       "created_at":"2014-04-17T16:07:35.690Z",
       "updated_at":"2014-04-17T16:07:35.690Z",
-      "image_count":2
+      "image_count": 2,
+      "images": [
+        {
+          "id": 1,
+          "category": null,
+          "name": "AWS_CLI_wetty",
+          "source": "centurylink/aws-cli-wetty:latest",
+          "description": null,
+          "type": "Default",
+          "expose": [],
+          "ports": [
+            {
+              "host_port": "8088",
+              "container_port": "3000",
+              "proto": "TCP"
+            }
+          ],
+          "links": [],
+          "environment": [
+            {
+              "variable": "AWS_ACCESS_KEY_ID",
+              "value": ""
+            },
+            {
+              "variable": "AWS_SECRET_ACCESS_KEY",
+              "value": "zzz"
+            }
+          ],
+          "volumes": [],
+          "volumes_from": [],
+          "command": null
+        }
+      ]
     }
   ]
 }

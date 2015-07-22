@@ -34,6 +34,12 @@ class Template < BaseResource
     'Image'.pluralize(image_count)
   end
 
+  def imagelayers_url
+    service_string = ''
+    images.each { |i| service_string << "#{i.source}," } if images
+    "#{IMAGELAYERS_BASE_URL}?images=#{service_string.chop}"
+  end
+
   def icon_src
     if type.blank?
       icon_source_for('default')
@@ -48,6 +54,7 @@ class Template < BaseResource
       .merge(
         'short_description' => short_description,
         'last_updated_on' => last_updated_on,
+        'imagelayers_url' => imagelayers_url,
         'image_count_label' => image_count_label,
         'icon_src' => icon_src
       )

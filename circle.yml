@@ -1,7 +1,13 @@
+machine:
+  ruby:
+    version:
+      2.2.2
+
 checkout:
   post:
     - git submodule update --init
-deployment:
+
+# deployment:
   #Production:
     #branch: release
     #commands:

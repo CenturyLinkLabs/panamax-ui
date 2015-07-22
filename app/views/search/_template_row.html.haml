@@ -4,7 +4,9 @@
       %img{src: presenter.icon_src}
     = presenter.status_label
   .basic-info
-    %h3= presenter.title
+    %h3
+      = presenter.title
+      = link_to 'Inspect template on imagelayers.io', presenter.imagelayers_url, class: 'imagelayers-link'
     %p
       = presenter.short_description
       %a{href:"/templates/#{presenter.id}/details", class: "template-details-link" } More Details

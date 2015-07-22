@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe Template do
+  let(:fake_image) { Image.new(source: 'centurylink/foobar:latest') }
+
   let(:attributes) do
     {
       'id' => 77,
@@ -8,6 +10,7 @@ describe Template do
       'description' => 'this thing goes boom shaka laka',
       'updated_at' => Time.parse('2012-1-13').to_s,
       'image_count' => 4,
+      'images' => [fake_image],
       'type' => 'wordpress'
     }
   end
@@ -76,7 +79,7 @@ describe Template do
       Template.new(long_description_attributes)
     end
 
-    it 'truncates the description to 165 charectors' do
+    it 'truncates the description to 165 characters' do
       expect(subject.short_description).to eq 'w' * 117 + '...'
     end
   end
@@ -103,6 +106,12 @@ describe Template do
     end
   end
 
+  describe '#imagelayers_url' do
+    it 'creates an imagelayers url for the template' do
+      expect(subject.imagelayers_url).to eq "#{IMAGELAYERS_URL}?images=centurylink/foobar:latest"
+    end
+  end
+
   describe '#icon_src' do
     it 'exposes the icon url' do
       expect(subject.icon_src).to eq '/assets/type_icons/wordpress.svg'
@@ -122,6 +131,7 @@ describe Template do
       expected = attributes.merge(
         'short_description' => 'this thing goes boom shaka laka',
         'last_updated_on' => 'January 13th, 2012 00:00',
+        'imagelayers_url' => "#{IMAGELAYERS_URL}?images=centurylink/foobar:latest",
         'image_count_label' => 'Images',
         'icon_src' => '/assets/type_icons/wordpress.svg'
       )

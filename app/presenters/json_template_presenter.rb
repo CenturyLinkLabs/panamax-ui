@@ -27,6 +27,10 @@ class JsonTemplatePresenter
     '{{image_count_label}}'
   end
 
+  def imagelayers_url
+    '{{imagelayers_url}}'
+  end
+
   def status_label
     'Template'
   end

@@ -61,15 +61,17 @@
 }
 
 .imagelayers-link {
-  background: image-url('icon_image_layers.svg') -10px -17px no-repeat;
+  background: image-url('icon_image_layers.svg') -10px -18px no-repeat;
   background-size: 40px 60px;
-  float: left;
+  display: inline-block;
   width: 20px;
   height: 20px;
+  position: relative;
+  top: 2px;
   @include hide-text;
 
   &:hover {
-    background-position: -10px 3px;
+    background-position: -10px 2px;
   }
 }
 .imagelayers-link-with-text {
@@ -102,7 +104,7 @@ ul.images {
   }
 
   h3 {
-    margin: 0 0 0 25px;
+    margin: 0 4px 0 0;
     padding: 0;
   }
 

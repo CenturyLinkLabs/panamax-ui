@@ -4,7 +4,7 @@ class TemplatePresenter
   end
 
   delegate :id, :description, :last_updated_on, :short_description,
-           :image_count, :image_count_label, :icon_src,
+           :image_count, :image_count_label, :imagelayers_url, :icon_src,
            to: :@template
 
   def title
