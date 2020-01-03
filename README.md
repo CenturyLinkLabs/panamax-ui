@@ -6,10 +6,6 @@
 
 This project exposes a friendly user interface to the [Panamax API](https://github.com/CenturyLinkLabs/panamax-api), and is one of the components used by [Panamax-Coreos](https://github.com/CenturyLinkLabs/panamax-coreos)
 
-## NOTE
-
-This repo is no longer being maintained. Users are welcome to fork it, but we make no warranty of its functionality.
-
 ## Getting Started
 
 ### Pre-requisites
