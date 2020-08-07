@@ -85,7 +85,8 @@ GEM
     jquery-ui-rails (4.2.1)
       railties (>= 3.2.16)
     json (1.8.2)
-    kramdown (1.4.0)
+    kramdown (2.3.0)
+      rexml
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
@@ -135,6 +136,7 @@ GEM
     rest-client (1.7.2)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
+    rexml (3.2.4)
     rspec-core (3.1.7)
       rspec-support (~> 3.1.0)
     rspec-expectations (3.1.2)
@@ -204,7 +206,7 @@ DEPENDENCIES
   dotenv-rails (= 0.11.1)
   haml (= 4.0.5)
   its
-  kramdown (= 1.4.0)
+  kramdown (= 2.3.0)
   phantomjs
   pry
   pry-byebug
