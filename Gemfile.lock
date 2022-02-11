@@ -94,6 +94,7 @@ GEM
     minitest (5.5.1)
     multi_json (1.10.1)
     netrc (0.8.0)
+    nio4r (2.5.8)
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
     phantomjs (1.9.7.1)
@@ -107,9 +108,9 @@ GEM
     pry-stack_explorer (0.4.9.1)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
-    puma (2.8.2)
-      rack (>= 1.1, < 2.0)
-    rack (1.5.2)
+    puma (4.3.11)
+      nio4r (~> 2.0)
+    rack (1.5.5)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
@@ -209,7 +210,7 @@ DEPENDENCIES
   pry
   pry-byebug
   pry-stack_explorer
-  puma (= 2.8.2)
+  puma (= 4.3.11)
   rails (= 4.1.7)
   rspec-rails
   sass (= 3.3.9)
